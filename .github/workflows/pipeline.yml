@@ -36,6 +36,8 @@ jobs:
       # needs importance>=4 AND >=2 corroborating outlets; else update-only/hold.
       PUBLISH_MIN_IMPORTANCE: '4'
       PUBLISH_MIN_CORROBORATION: '2'
+      MAX_AGE_H: '36'
+      VERIFY_FAITHFUL: '1'
       PER_FEED: '15'
     steps:
       - uses: actions/checkout@v4

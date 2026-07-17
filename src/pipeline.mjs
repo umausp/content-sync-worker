@@ -179,6 +179,26 @@ export async function buildCandidates() {
   return candidates;
 }
 
+// ── LLM FACT-CONSISTENCY VERIFIER (the anti-hallucination gold gate) ─────────
+// A SECOND LLM pass (what Reuters Tracer / BBC verification do): given the source
+// headline+snippet and our synthesised title+body, judge whether the synthesis is
+// FAITHFUL — no invented facts, numbers, names, or claims beyond the source, and
+// on the same event. Schema-constrained boolean so it can't waffle. Runs only on
+// candidates that already passed the cheap algorithmic gates (review.mjs), so the
+// extra call is spent only on plausibles. Returns { faithful, reason } or null on error.
+const VERIFY_SCHEMA = { type: 'object', properties: { faithful: { type: 'boolean' }, sameEvent: { type: 'boolean' }, reason: { type: 'string' } }, required: ['faithful', 'sameEvent', 'reason'] };
+export async function verifyFaithful(c) {
+  const a = c.article;
+  const prompt = `You are a fact-checker. Compare the SOURCE to the SYNTHESIS. Answer JSON:\n{"faithful": true only if the synthesis invents NO facts/numbers/names/claims beyond the source, "sameEvent": true if they describe the same event, "reason":"short"}\nBe strict: any number, quote, or named person in the synthesis that is NOT supported by the source → faithful=false.\n\nSOURCE:\nTITLE: ${a.title}\nSNIPPET: ${a.snippet}\n\nSYNTHESIS:\nTITLE: ${c.title}\nBODY: ${c.body}`;
+  try {
+    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: VERIFY_SCHEMA, options: { temperature: 0, num_predict: 120 } }), signal: AbortSignal.timeout(90000) });
+    if (!r.ok) return null;
+    const j = safeJson((await r.json()).response || '');
+    if (!j) return null;
+    return { faithful: j.faithful === true, sameEvent: j.sameEvent === true, reason: String(j.reason || '').slice(0, 120) };
+  } catch { return null; }
+}
+
 // Build the ingest payload for a reviewed candidate.
 const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
 export function toIngestBody(s) {
