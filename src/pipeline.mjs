@@ -207,7 +207,7 @@ async function synthBatch(articles) {
   try {
     const r = await fetch(`${OLLAMA}/api/generate`, {
       method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.2, num_predict: 220 * articles.length } }),
+      body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', keep_alive: '30m', options: { temperature: 0.2, num_predict: 220 * articles.length } }),
       signal: AbortSignal.timeout(SYNTH_TIMEOUT_MS),
     });
     if (!r.ok) return null;

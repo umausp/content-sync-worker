@@ -37,7 +37,7 @@ env:
   SYNTH_HARD_MAX: '48'
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
-  SYNTH_BUDGET_MS: '900000' # 15-min hard budget for the synth loop (job timeout is 25)
+  SYNTH_BUDGET_MS: '1140000' # 19-min budget (job timeout 25; warm start keeps 6 batches ~13-14m)
   MIN_IMPORTANCE: '3'
   PUBLISH_MIN_IMPORTANCE: '4'
   PUBLISH_MIN_CORROBORATION: '2'
@@ -74,12 +74,15 @@ jobs:
           ollama pull "$OLLAMA_MODEL"
           echo "installed models:"; ollama list
 
-      - name: Verify model (fail-fast health check)
-        timeout-minutes: 3
+      - name: Verify + WARM model (fail-fast health check)
+        timeout-minutes: 4
         run: |
-          echo "warming + testing one generation..."
+          echo "warming model (keep_alive 30m so batch 1 isn't a cold start)..."
+          # A realistic-size generation loads weights + warms the runtime; keep_alive
+          # pins the model resident so the first real batch doesn't pay cold-load
+          # (observed: cold batch 1 = 267s vs warm ~140s).
           RESP=$(curl -sf http://127.0.0.1:11434/api/generate \
-            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Reply with the word OK.\",\"stream\":false,\"options\":{\"num_predict\":5}}")
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}")
           echo "response: $RESP"
           echo "$RESP" | grep -qi '"response"' || { echo "::error::model did not respond — aborting"; exit 1; }
 
