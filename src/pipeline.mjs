@@ -134,7 +134,15 @@ const SYNTH_SCHEMA = {
   required: ['skip', 'hashtag', 'title', 'summary', 'category', 'body', 'importance', 'signal'],
 };
 async function synth(a) {
-  const prompt = `${CHARTER}\n\nSynthesise ONE news story as JSON. category = exactly ONE genre. hashtag = a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial. Set skip=true if it fails the SKIP rules.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
+  // Show the EXACT JSON template — small models omit fields (esp. body/summary)
+  // if you only describe them. This literal shape is what makes plain-json mode
+  // reliable without the (CPU-stalling) schema-grammar format.
+  const prompt =
+    `${CHARTER}\n\n` +
+    `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
+    `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<one sentence, <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
+    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words from the snippet; never leave them empty.\n\n` +
+    `ARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
   try {
     // Plain JSON mode (NOT schema-grammar `format`): the JSON-schema-constrained
     // `format` uses GBNF grammar decoding which on CPU can stall for MINUTES on a
@@ -192,10 +200,11 @@ export async function buildCandidates() {
     const s = await synth(p.a);
     if (!s) {
       nullCount++;
-      // FAIL-FAST: if the first few calls all return null, the model is unhealthy
-      // — abort loudly rather than burn the whole budget on dead calls.
-      if (i < 5 && nullCount === i + 1 && nullCount >= 3) {
-        throw new Error(`synth returned null for first ${nullCount} calls — model unhealthy, aborting`);
+      // FAIL-FAST only on a TRULY dead model: the FIRST 5 calls ALL null → abort
+      // loudly (something's wrong with model/prompt) rather than burn the budget.
+      // Occasional nulls later are fine — we just skip them.
+      if (i === 4 && nullCount === 5) {
+        throw new Error('synth returned null for all first 5 calls — model/prompt unhealthy, aborting');
       }
       console.log(`  · synth null ${i + 1}/${eligible.length} (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
       continue;
