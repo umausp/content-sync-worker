@@ -23,9 +23,11 @@ jobs:
     timeout-minutes: 25
     env:
       INGEST_URL: ${{ secrets.INGEST_URL }}
+      STORIES_URL: https://api.agyata.com/news/stories
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-      OLLAMA_MODEL: qwen2.5:3b-instruct
-      MAX_STORIES: '30'
+      OLLAMA_MODEL: qwen2.5:7b-instruct
+      SYNTH_MIN_SCORE: '6'
+      SYNTH_HARD_MAX: '120'
       MIN_IMPORTANCE: '3'
       PER_FEED: '15'
     steps:
@@ -51,5 +53,5 @@ jobs:
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
           ollama pull "$OLLAMA_MODEL"
 
-      - name: Run pipeline
-        run: node src/pipeline.mjs
+      - name: Run pipeline (gather → cluster → synth → REVIEW → publish)
+        run: node src/review.mjs

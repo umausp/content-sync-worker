@@ -27,8 +27,11 @@ const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const OLLAMA = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
 const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:3b-instruct';
-const MAX_STORIES = Number(process.env.MAX_STORIES || 30);
-const MIN_IMPORTANCE = Number(process.env.MIN_IMPORTANCE || 3);
+// SCORE-GATE (not a fixed story cap): synth every cluster scoring >= this. On a
+// big news hour that's 50-100 stories; a quiet hour fewer. SYNTH_HARD_MAX only
+// bounds runtime so a runner can't run away.
+const SYNTH_MIN_SCORE = Number(process.env.SYNTH_MIN_SCORE || 6);
+const SYNTH_HARD_MAX = Number(process.env.SYNTH_HARD_MAX || 120);
 const PER_FEED = Number(process.env.PER_FEED || 15);
 const BREAKING_TTL_H = Number(process.env.BREAKING_TTL_HOURS || 3);
 const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 2);
@@ -94,38 +97,33 @@ function resolveHashtag(modelTag, title) {
 }
 
 // ── LLM synth via Ollama (runs on the runner) ───────────────────────────────
+const CATEGORIES = ['top', 'politics', 'world', 'business', 'tech', 'science', 'health', 'sports', 'entertainment'];
+// Normalise whatever the model returns to ONE valid category. Weak models echo
+// the whole enum ("top|politics|world…") — that was a real defect; here we pick
+// the FIRST valid token found, else fall back to the feed's category.
+function normalizeCategory(raw, fallback) {
+  const s = String(raw || '').toLowerCase();
+  for (const c of CATEGORIES) if (s.includes(c)) return c;
+  return CATEGORIES.includes(fallback) ? fallback : 'top';
+}
 function safeJson(text) { try { return JSON.parse(text); } catch { const m = text.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch {} } return null; } }
 async function synth(a) {
-  const prompt = `${CHARTER}\n\nReturn ONLY JSON:\n{"skip":false,"hashtag":"CamelCaseEventTag","title":"...","summary":"...","category":"top|politics|world|business|tech|science|health|sports|entertainment","body":"2-4 sentences","importance":1-5,"signal":"breaking|live|none"}\nhashtag: a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
+  const prompt = `${CHARTER}\n\nReturn ONLY JSON:\n{"skip":false,"hashtag":"CamelCaseEventTag","title":"...","summary":"...","category":"ONE of: top OR politics OR world OR business OR tech OR science OR health OR sports OR entertainment","body":"2-4 sentences","importance":1-5,"signal":"breaking|live|none"}\ncategory MUST be exactly ONE word from the list, not a list. hashtag: a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
   try {
     const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.3, num_predict: 400 } }), signal: AbortSignal.timeout(120000) });
     if (!r.ok) return null;
     const j = safeJson((await r.json()).response || '');
     if (!j || !j.title) return null;
     const title = String(j.title).slice(0, 300);
-    return { skip: j.skip === true, hashtag: resolveHashtag(String(j.hashtag || ''), title), title, summary: String(j.summary || '').slice(0, 240), category: String(j.category || a.category).slice(0, 40), body: String(j.body || '').slice(0, 5000), importance: Math.max(1, Math.min(5, Math.round(Number(j.importance) || 3))), signal: ['breaking', 'live', 'none'].includes(j.signal) ? j.signal : 'none' };
+    return { skip: j.skip === true, hashtag: resolveHashtag(String(j.hashtag || ''), title), title, summary: String(j.summary || '').slice(0, 240), category: normalizeCategory(j.category, a.category), body: String(j.body || '').slice(0, 5000), importance: Math.max(1, Math.min(5, Math.round(Number(j.importance) || 3))), signal: ['breaking', 'live', 'none'].includes(j.signal) ? j.signal : 'none' };
   } catch { return null; }
 }
 
-// ── Push to ingest ──────────────────────────────────────────────────────────
-const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
-async function push(s, a) {
-  const nowMs = Date.now();
-  const body = {
-    hashtag: s.hashtag, title: s.title, summary: s.summary, category: s.category,
-    imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined,
-    breakingUntil: s.signal === 'breaking' ? new Date(nowMs + BREAKING_TTL_H * 3.6e6).toISOString() : undefined,
-    liveUntil: s.signal === 'live' ? new Date(nowMs + LIVE_TTL_H * 3.6e6).toISOString() : undefined,
-    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: [{ name: a.sourceName, url: a.url }], imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined },
-  };
-  try {
-    const r = await fetch(INGEST_URL, { method: 'POST', headers: { authorization: `Bearer ${INGEST_TOKEN}`, 'content-type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(20000) });
-    return r.ok;
-  } catch { return false; }
-}
-
-// ── Main ────────────────────────────────────────────────────────────────────
-async function main() {
+// ── STAGE 1: gather → cluster → corroboration-score → synth → CANDIDATES ─────
+// This stage does NOT push. It returns validated-shape candidates for review.mjs
+// to gate. NO fixed story cap — we synth every cluster above a cheap pre-score
+// (SYNTH_MIN_SCORE) so a busy news hour can yield 50-100, a quiet one fewer.
+export async function buildCandidates() {
   const now = Date.now();
   const lists = await Promise.all(FEEDS.map(fetchFeed));
   const raw = lists.flat();
@@ -138,24 +136,40 @@ async function main() {
     for (const c of clusters) if (isSameStory(a.title, c.rep.title)) { c.sources.add(a.sourceName); if ((RANK[a.sourceName] || 2) > (RANK[c.rep.sourceName] || 2) && a.imageUrl) c.rep = a; joined = true; break; }
     if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]) });
   }
-  const scored = clusters.map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s }; }).sort((x, y) => y.score - x.score);
-  const picked = scored.slice(0, MAX_STORIES);
-  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; top corroboration ${Math.max(0, ...picked.map((p) => p.corr))}`);
+  const scored = clusters
+    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s }; })
+    .sort((x, y) => y.score - x.score);
+  // SCORE-GATE, not a fixed cap: synth everything above SYNTH_MIN_SCORE, bounded
+  // by SYNTH_HARD_MAX only to keep runtime sane (still 50-100 on a big hour).
+  const eligible = scored.filter((p) => p.score >= SYNTH_MIN_SCORE).slice(0, SYNTH_HARD_MAX);
+  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${eligible.length}; top corroboration ${Math.max(0, ...eligible.map((p) => p.corr))}`);
 
-  const recent = []; // in-cycle dedup of synthesized titles
-  let synthesized = 0, pushed = 0, skipped = 0;
-  for (const p of picked) {
+  const candidates = [];
+  let synthesized = 0;
+  for (const p of eligible) {
     const s = await synth(p.a);
     if (!s) continue;
     synthesized++;
     // Corroboration shapes importance + gates breaking (Google-News velocity).
     if (p.corr >= 3) s.importance = Math.min(5, s.importance + 1);
     if (s.signal === 'breaking' && p.corr < 2) s.signal = 'none';
-    if (s.skip || s.importance < MIN_IMPORTANCE || !s.body) { skipped++; console.log(`  skip [${s.category}] imp${s.importance} corr${p.corr} ${s.title.slice(0, 50)}`); continue; }
-    const match = recent.find((r) => isSameStory(s.title, r));
-    if (match) continue;
-    if (await push(s, p.a)) { pushed++; recent.push(s.title); console.log(`  push [${s.category}] imp${s.importance} corr${p.corr} #${s.hashtag} ${s.title.slice(0, 46)}`); }
+    candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
   }
-  console.log(`\nDONE fetched=${raw.length} synthesized=${synthesized} pushed=${pushed} skipped=${skipped}`);
+  console.log(`synthesized ${synthesized} candidates`);
+  return candidates;
 }
-main().catch((e) => { console.error(e); process.exit(1); });
+
+// Build the ingest payload for a reviewed candidate.
+const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
+export function toIngestBody(s) {
+  const nowMs = Date.now();
+  const a = s.article;
+  return {
+    hashtag: s.hashtag, title: s.title, summary: s.summary, category: s.category,
+    imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined,
+    breakingUntil: s.signal === 'breaking' ? new Date(nowMs + BREAKING_TTL_H * 3.6e6).toISOString() : undefined,
+    liveUntil: s.signal === 'live' ? new Date(nowMs + LIVE_TTL_H * 3.6e6).toISOString() : undefined,
+    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: [{ name: a.sourceName, url: a.url }], imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined },
+  };
+}
+export { CATEGORIES, isSameStory };
