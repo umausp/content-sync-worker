@@ -24,12 +24,12 @@ env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: https://api.agyata.com/news/stories
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-  # qwen2.5:1.5b — instruct-tuned, JSON-reliable, ~1.8× faster than 3b on CPU
-  # (research: ~18 vs ~10 tok/s). The speed lever that lets a runner finish the
-  # whole pool in budget. 3b/7b are more accurate but too slow for full coverage;
-  # 1.5b + gates + corroboration still yields quality. Schema-grammar `format`
-  # stays OFF (it stalled for minutes on cold CPU).
-  OLLAMA_MODEL: qwen2.5:1.5b
+  # qwen2.5:3b — the quality/speed sweet spot. VERIFIED: writes full 2-4 sentence
+  # bodies that pass the language gate (1.5b under-wrote → 29/48 rejected for
+  # body_too_few_sentences), and at ~90s/batch of 8 it finishes the 48-story pool
+  # in ~10min, inside budget. The earlier 3b timeouts were the 80-cap + 60s batch
+  # timeout, not the model — both fixed below. Schema-grammar `format` stays OFF.
+  OLLAMA_MODEL: qwen2.5:3b
   SYNTH_MIN_SCORE: '6'
   # Right-sized to what a CPU runner can synth in budget: candidates are
   # score-sorted, so the top 48 ARE the best; the low-priority tail is dropped.
