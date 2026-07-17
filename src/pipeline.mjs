@@ -107,10 +107,30 @@ function normalizeCategory(raw, fallback) {
   return CATEGORIES.includes(fallback) ? fallback : 'top';
 }
 function safeJson(text) { try { return JSON.parse(text); } catch { const m = text.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch {} } return null; } }
+// JSON-SCHEMA-CONSTRAINED decoding: Ollama accepts a full JSON Schema as `format`
+// and constrains generation to it (llama.cpp GBNF under the hood). This makes the
+// weak-model "category enum leak" IMPOSSIBLE by construction — category can ONLY
+// be one of the enum values, importance is an integer 1-5, etc. Research finding:
+// this is what lets a small fast model produce reliable structured output, so we
+// don't need a slow 7B. See huggingface / llama.cpp grammar docs.
+const SYNTH_SCHEMA = {
+  type: 'object',
+  properties: {
+    skip: { type: 'boolean' },
+    hashtag: { type: 'string' },
+    title: { type: 'string' },
+    summary: { type: 'string' },
+    category: { type: 'string', enum: CATEGORIES },
+    body: { type: 'string' },
+    importance: { type: 'integer', minimum: 1, maximum: 5 },
+    signal: { type: 'string', enum: ['breaking', 'live', 'none'] },
+  },
+  required: ['skip', 'hashtag', 'title', 'summary', 'category', 'body', 'importance', 'signal'],
+};
 async function synth(a) {
-  const prompt = `${CHARTER}\n\nReturn ONLY JSON:\n{"skip":false,"hashtag":"CamelCaseEventTag","title":"...","summary":"...","category":"ONE of: top OR politics OR world OR business OR tech OR science OR health OR sports OR entertainment","body":"2-4 sentences","importance":1-5,"signal":"breaking|live|none"}\ncategory MUST be exactly ONE word from the list, not a list. hashtag: a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
+  const prompt = `${CHARTER}\n\nSynthesise ONE news story as JSON. category = exactly ONE genre. hashtag = a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial. Set skip=true if it fails the SKIP rules.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
   try {
-    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.3, num_predict: 400 } }), signal: AbortSignal.timeout(120000) });
+    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: SYNTH_SCHEMA, options: { temperature: 0.2, num_predict: 400 } }), signal: AbortSignal.timeout(120000) });
     if (!r.ok) return null;
     const j = safeJson((await r.json()).response || '');
     if (!j || !j.title) return null;

@@ -23,6 +23,13 @@ const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const STORIES_URL = process.env.STORIES_URL || INGEST_URL.replace(/\/ingest$/, '/stories');
 const MIN_IMPORTANCE = Number(process.env.MIN_IMPORTANCE || 3);
+// SELECTIVE PUBLISH BAR (how Google News actually gates — significance, not
+// volume). A NEW front-page story must clear a HIGH bar: importance >= this AND
+// corroboration >= this many distinct outlets. Everything below can still become
+// an UPDATE to an existing thread, but does NOT spawn a new story. This is what
+// turns "120 synthesized" into ~15-30 genuinely significant stories per cycle.
+const PUBLISH_MIN_IMPORTANCE = Number(process.env.PUBLISH_MIN_IMPORTANCE || 4);
+const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION || 2);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 // ── Layer 1: validation ─────────────────────────────────────────────────────
@@ -108,18 +115,28 @@ async function main() {
     const match = published.find((p) => isSameStory(c.title, p.title));
     const body = toIngestBody(c);
     if (match) {
-      // Reuse the published story's hashtag → ingest appends as an UPDATE to that
-      // thread (its no-new-info guard decides if it's a real development).
+      // A development on a LIVE thread is always welcome (keeps stories evolving).
+      // Reuse the published story's hashtag → ingest appends as an UPDATE (its
+      // no-new-info guard decides if it's a real development).
       body.hashtag = match.hashtag;
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 46)}`); }
       continue;
     }
 
-    // New event → new story.
+    // NEW story → must clear the SELECTIVE publish bar (significance + corroboration).
+    // This is the Google-News gate: we do NOT publish every synthesised item as a
+    // new front-page story — only genuinely significant, corroborated events.
+    if (c.importance < PUBLISH_MIN_IMPORTANCE || c.corr < PUBLISH_MIN_CORROBORATION) {
+      rejected++;
+      reasons.below_publish_bar = (reasons.below_publish_bar || 0) + 1;
+      console.log(`  ▽ hold [imp${c.importance}<${PUBLISH_MIN_IMPORTANCE} or corr${c.corr}<${PUBLISH_MIN_CORROBORATION}] ${c.title.slice(0, 44)}`);
+      continue;
+    }
     if (await post(body)) { published_new++; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] imp${c.importance} corr${c.corr} #${c.hashtag} ${c.title.slice(0, 42)}`); }
   }
 
   console.log(`\nREVIEW DONE candidates=${candidates.length} new=${published_new} updated=${updated} rejected=${rejected} batch-dups=${dupdropped}`);
+  console.log(`  publish bar: importance>=${PUBLISH_MIN_IMPORTANCE} AND corroboration>=${PUBLISH_MIN_CORROBORATION}`);
   console.log('reject reasons:', JSON.stringify(reasons));
 }
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -25,10 +25,17 @@ jobs:
       INGEST_URL: ${{ secrets.INGEST_URL }}
       STORIES_URL: https://api.agyata.com/news/stories
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-      OLLAMA_MODEL: qwen2.5:7b-instruct
+      # 3B is the research-backed sweet spot for CPU (7B ~6 tok/s = too slow for
+      # ~100 items). JSON-schema-constrained decoding (in pipeline.mjs) guarantees
+      # valid structured output, so we don't need a bigger model for reliability.
+      OLLAMA_MODEL: qwen2.5:3b-instruct
       SYNTH_MIN_SCORE: '6'
       SYNTH_HARD_MAX: '120'
       MIN_IMPORTANCE: '3'
+      # Selective publish bar (Google-News-style significance gate): a NEW story
+      # needs importance>=4 AND >=2 corroborating outlets; else update-only/hold.
+      PUBLISH_MIN_IMPORTANCE: '4'
+      PUBLISH_MIN_CORROBORATION: '2'
       PER_FEED: '15'
     steps:
       - uses: actions/checkout@v4
