@@ -50,8 +50,11 @@ async function fetchPublished() {
 async function post(body) {
   try {
     const r = await fetch(INGEST_URL, { method: 'POST', headers: { authorization: `Bearer ${INGEST_TOKEN}`, 'content-type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(20000) });
+    // Surface WHY a publish failed (was silent → stories vanished with no clue).
+    // Never log the response body/headers (avoid leaking anything token-adjacent).
+    if (!r.ok) console.log(`  ! ingest ${r.status} for #${body.hashtag}`);
     return r.ok;
-  } catch { return false; }
+  } catch (e) { console.log(`  ! ingest error for #${body.hashtag}: ${e.message}`); return false; }
 }
 
 const bump = (o, k) => { o[k] = (o[k] || 0) + 1; };
@@ -114,5 +117,14 @@ async function main() {
   console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar}`);
   console.log(`  publish bar: importance>=${PUBLISH_MIN_IMPORTANCE} AND corroboration>=${PUBLISH_MIN_CORROBORATION}; verifier=${VERIFY ? 'on' : 'off'}`);
   console.log('  reject reasons:', JSON.stringify(reasons));
+
+  // FAIL LOUD on total failure: if we HAD candidates but published nothing (all
+  // posts errored, e.g. bad token / ingest down), exit non-zero so the run shows
+  // RED instead of a green "success" that silently published nothing. A genuinely
+  // quiet news cycle (0 candidates) is not a failure.
+  if (candidates.length > 0 && newStory === 0 && updated === 0) {
+    console.error('published 0 of >0 candidates — likely ingest/auth failure');
+    process.exit(1);
+  }
 }
 main().catch((e) => { console.error(e); process.exit(1); });

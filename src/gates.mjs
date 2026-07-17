@@ -75,8 +75,10 @@ export function gStaleness(c, nowMs, maxAgeH) {
 }
 export function gLanguage(c) {
   const body = (c.body || '').trim();
-  // Must read as >=2 real sentences, not a fragment or a headline echo.
-  const sentences = body.split(/[.!?]\s/).filter((s) => s.trim().length > 12).length;
+  // Must read as >=2 real sentences, not a fragment or a headline echo. Split on a
+  // sentence-ender followed by whitespace OR end-of-string, so the FINAL sentence
+  // and newline-separated sentences are counted (the old /[.!?]\s/ dropped both).
+  const sentences = body.split(/[.!?]+(?:\s+|$)/).filter((s) => s.trim().length > 12).length;
   if (sentences < 2) return 'body_too_few_sentences';
   if (/[.,;:]$/.test(c.title || '')) return 'title_bad_terminal_punct';
   // Title shouldn't just equal the body's first fragment (lazy model).
