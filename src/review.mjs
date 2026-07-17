@@ -74,7 +74,19 @@ async function main() {
     // Layer C — is this an update to an already-published story?
     const match = published.find((p) => isSameStory(c.title, p.title));
 
-    // Layer D — LLM fact-consistency verifier (anti-hallucination). On survivors only.
+    // Layer D — SELECTIVE PUBLISH BAR (cheap, runs BEFORE the expensive verifier
+    // so we only fact-check items that will actually publish). Updates to a live
+    // thread bypass the bar (developments are always welcome); a NEW story must
+    // clear importance + corroboration.
+    if (!match && (c.importance < PUBLISH_MIN_IMPORTANCE || c.corr < PUBLISH_MIN_CORROBORATION)) {
+      heldBar++; bump(reasons, 'below_publish_bar');
+      console.log(`  ▽ hold [imp${c.importance}<${PUBLISH_MIN_IMPORTANCE} | corr${c.corr}<${PUBLISH_MIN_CORROBORATION}] ${c.title.slice(0, 42)}`);
+      continue;
+    }
+
+    // Layer E — LLM fact-consistency verifier (anti-hallucination), the EXPENSIVE
+    // gate. Now runs ONLY on the ~15-30 items that cleared everything above, so a
+    // second LLM call per item stays within the runner budget.
     if (VERIFY) {
       const v = await verifyFaithful(c);
       if (v && (!v.faithful || !v.sameEvent)) { verifyFail++; bump(reasons, 'verify:' + (!v.faithful ? 'unfaithful' : 'diff_event')); console.log(`  ✗ verify [${v.reason}] ${c.title.slice(0, 42)}`); continue; }
@@ -82,16 +94,8 @@ async function main() {
 
     const body = toIngestBody(c);
     if (match) {
-      // Update to a live thread — always welcome (keeps stories evolving).
       body.hashtag = match.hashtag;
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
-      continue;
-    }
-
-    // Layer E — selective publish bar for NEW stories (significance + corroboration).
-    if (c.importance < PUBLISH_MIN_IMPORTANCE || c.corr < PUBLISH_MIN_CORROBORATION) {
-      heldBar++; bump(reasons, 'below_publish_bar');
-      console.log(`  ▽ hold [imp${c.importance}<${PUBLISH_MIN_IMPORTANCE} | corr${c.corr}<${PUBLISH_MIN_CORROBORATION}] ${c.title.slice(0, 42)}`);
       continue;
     }
     if (await post(body)) { newStory++; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] imp${c.importance} corr${c.corr} #${c.hashtag} ${c.title.slice(0, 40)}`); }
