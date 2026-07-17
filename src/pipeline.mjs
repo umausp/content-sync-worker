@@ -37,8 +37,10 @@ const PER_FEED = Number(process.env.PER_FEED || 15);
 // budget is the key safety net: rather than let ~100 calls each hit their
 // timeout (→ 29 min silent hang → GitHub cancels), we stop synthesising once the
 // budget is spent and publish whatever we have. Tune via SYNTH_BUDGET_MS.
-const SYNTH_TIMEOUT_MS = Number(process.env.SYNTH_TIMEOUT_MS || 60000);
+const SYNTH_TIMEOUT_MS = Number(process.env.SYNTH_TIMEOUT_MS || 120000); // per BATCH now (bigger)
 const SYNTH_BUDGET_MS = Number(process.env.SYNTH_BUDGET_MS || 18 * 60 * 1000); // 18m default
+// Articles per batched model call — the call-count lever (80 items / 8 = 10 calls).
+const SYNTH_BATCH = Number(process.env.SYNTH_BATCH || 8);
 const BREAKING_TTL_H = Number(process.env.BREAKING_TTL_HOURS || 3);
 const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 2);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
@@ -153,9 +155,71 @@ async function synth(a) {
     const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.2, num_predict: 320 } }), signal: AbortSignal.timeout(SYNTH_TIMEOUT_MS) });
     if (!r.ok) return null;
     const j = safeJson((await r.json()).response || '');
-    if (!j || !j.title) return null;
-    const title = String(j.title).slice(0, 300);
-    return { skip: j.skip === true, hashtag: resolveHashtag(String(j.hashtag || ''), title), title, summary: String(j.summary || '').slice(0, 240), category: normalizeCategory(j.category, a.category), body: String(j.body || '').slice(0, 5000), importance: Math.max(1, Math.min(5, Math.round(Number(j.importance) || 3))), signal: ['breaking', 'live', 'none'].includes(j.signal) ? j.signal : 'none' };
+    return normalizeSynth(j, a);
+  } catch { return null; }
+}
+
+// Normalize one raw model object → a validated synth record (or null if unusable).
+function normalizeSynth(j, a) {
+  if (!j || !j.title) return null;
+  const title = String(j.title).slice(0, 300);
+  return {
+    skip: j.skip === true,
+    hashtag: resolveHashtag(String(j.hashtag || ''), title),
+    title,
+    summary: String(j.summary || '').slice(0, 240),
+    category: normalizeCategory(j.category, a.category),
+    body: String(j.body || '').slice(0, 5000),
+    importance: Math.max(1, Math.min(5, Math.round(Number(j.importance) || 3))),
+    signal: ['breaking', 'live', 'none'].includes(j.signal) ? j.signal : 'none',
+  };
+}
+
+// Extract a JSON ARRAY from a model response (batched output). Tolerant of prose
+// around it or a {"stories":[...]} wrapper.
+function safeJsonArray(text) {
+  const tryParse = (s) => { try { return JSON.parse(s); } catch { return null; } };
+  let v = tryParse(text);
+  if (Array.isArray(v)) return v;
+  if (v && Array.isArray(v.stories)) return v.stories;
+  const m = text.match(/\[[\s\S]*\]/);
+  if (m) { v = tryParse(m[0]); if (Array.isArray(v)) return v; }
+  return null;
+}
+
+// BATCHED synth — synthesize N articles in ONE model call (returns a JSON array).
+// This is the big lever: ~80 single calls (~20 min) → ~8 batch calls. Each input
+// article is numbered so we can map outputs back by index. Falls back to null so
+// the caller can retry those articles individually.
+async function synthBatch(articles) {
+  const list = articles
+    .map((a, i) => `[${i}] TITLE: ${a.title}\n    OUTLET: ${a.sourceName} | PUBLISHED: ${a.publishedAt ?? 'unknown'}\n    SNIPPET: ${a.snippet}`)
+    .join('\n\n');
+  // NOTE: Ollama's format:'json' forces a JSON OBJECT (an array prompt returns
+  // just the first element), so we ask for an OBJECT WRAPPING the array —
+  // {"stories":[...]} — which safeJsonArray unwraps. This is the reliable shape.
+  const prompt =
+    `${CHARTER}\n\n` +
+    `Rewrite EACH numbered article below into a news card. Reply with ONLY a JSON object of the form {"stories": [ ... ]}, with one array element per article, in the SAME ORDER, each element having ALL keys:\n` +
+    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<headline <=90 chars>", "summary": "<one sentence <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
+    `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
+    `ARTICLES:\n${list}`;
+  try {
+    const r = await fetch(`${OLLAMA}/api/generate`, {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.2, num_predict: 220 * articles.length } }),
+      signal: AbortSignal.timeout(SYNTH_TIMEOUT_MS),
+    });
+    if (!r.ok) return null;
+    const arr = safeJsonArray((await r.json()).response || '');
+    if (!arr) return null;
+    // Map each output back to its article by the "i" field (fallback: position).
+    const out = new Array(articles.length).fill(null);
+    arr.forEach((obj, pos) => {
+      const idx = Number.isInteger(obj?.i) && obj.i >= 0 && obj.i < articles.length ? obj.i : pos;
+      if (idx < articles.length) out[idx] = normalizeSynth(obj, articles[idx]);
+    });
+    return out;
   } catch { return null; }
 }
 
@@ -184,39 +248,47 @@ export async function buildCandidates() {
   const eligible = scored.filter((p) => p.score >= SYNTH_MIN_SCORE).slice(0, SYNTH_HARD_MAX);
   console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${eligible.length}; top corroboration ${Math.max(0, ...eligible.map((p) => p.corr))}`);
 
+  // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
+  // instead of one. ~80 calls (~20 min) → ~10 calls. Each batch is one LLM call;
+  // a batch that fails entirely falls back to per-item synth so we don't lose a
+  // whole group to one bad response. Global budget + per-batch progress keep it
+  // from ever silently hanging.
   const candidates = [];
   let synthesized = 0;
-  let nullCount = 0;
   const started = Date.now();
-  for (let i = 0; i < eligible.length; i++) {
-    // GLOBAL TIME BUDGET — the safety net against the 29-min silent hang. Once
-    // spent, stop and publish what we have instead of getting cancelled.
-    if (Date.now() - started > SYNTH_BUDGET_MS) {
-      console.log(`synth budget spent (${((Date.now() - started) / 60000).toFixed(1)}m) — stopping at ${i}/${eligible.length}`);
-      break;
-    }
-    const p = eligible[i];
-    const t0 = Date.now();
-    const s = await synth(p.a);
-    if (!s) {
-      nullCount++;
-      // FAIL-FAST only on a TRULY dead model: the FIRST 5 calls ALL null → abort
-      // loudly (something's wrong with model/prompt) rather than burn the budget.
-      // Occasional nulls later are fine — we just skip them.
-      if (i === 4 && nullCount === 5) {
-        throw new Error('synth returned null for all first 5 calls — model/prompt unhealthy, aborting');
-      }
-      console.log(`  · synth null ${i + 1}/${eligible.length} (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
-      continue;
-    }
-    synthesized++;
+  const attach = (s, p) => {
+    if (!s) return;
     if (p.corr >= 3) s.importance = Math.min(5, s.importance + 1);
     if (s.signal === 'breaking' && p.corr < 2) s.signal = 'none';
     candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
-    // PROGRESS every 10 so a run always shows forward motion (no silent black box).
-    if (synthesized % 10 === 0) console.log(`  synth progress ${synthesized} ok / ${i + 1} tried (${((Date.now() - started) / 60000).toFixed(1)}m)`);
+    synthesized++;
+  };
+  const nBatches = Math.ceil(eligible.length / SYNTH_BATCH);
+  let emptyBatches = 0;
+  for (let b = 0; b < nBatches; b++) {
+    if (Date.now() - started > SYNTH_BUDGET_MS) {
+      console.log(`synth budget spent (${((Date.now() - started) / 60000).toFixed(1)}m) — stopping at batch ${b}/${nBatches}`);
+      break;
+    }
+    const group = eligible.slice(b * SYNTH_BATCH, (b + 1) * SYNTH_BATCH);
+    const t0 = Date.now();
+    const results = await synthBatch(group.map((p) => p.a));
+    let got = 0;
+    if (results) {
+      results.forEach((s, k) => { if (s) { attach(s, group[k]); got++; } });
+    } else {
+      // Batch failed to parse — fall back to per-item for this group only.
+      for (const p of group) { const s = await synth(p.a); if (s) { attach(s, p); got++; } }
+    }
+    if (got === 0) emptyBatches++;
+    // FAIL-FAST: first 2 batches yield NOTHING → model/prompt is broken, abort
+    // loudly instead of burning the whole budget.
+    if (b === 1 && emptyBatches === 2) {
+      throw new Error('first 2 synth batches produced 0 usable stories — model/prompt unhealthy, aborting');
+    }
+    console.log(`  batch ${b + 1}/${nBatches}: ${got}/${group.length} ok (${((Date.now() - t0) / 1000).toFixed(0)}s, total ${synthesized} in ${((Date.now() - started) / 60000).toFixed(1)}m)`);
   }
-  console.log(`synthesized ${synthesized} candidates (${nullCount} null, ${((Date.now() - started) / 60000).toFixed(1)}m)`);
+  console.log(`synthesized ${synthesized} candidates from ${nBatches} batches (${((Date.now() - started) / 60000).toFixed(1)}m)`);
   return candidates;
 }
 
