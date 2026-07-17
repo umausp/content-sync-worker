@@ -24,12 +24,19 @@ env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: https://api.agyata.com/news/stories
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-  # qwen2.5:3b — instruct-tuned, ~15s/call plain-json on CPU. (7b is ~2× slower;
-  # the schema-grammar `format` was removed — it stalled for minutes on cold CPU.)
-  OLLAMA_MODEL: qwen2.5:3b
+  # qwen2.5:1.5b — instruct-tuned, JSON-reliable, ~1.8× faster than 3b on CPU
+  # (research: ~18 vs ~10 tok/s). The speed lever that lets a runner finish the
+  # whole pool in budget. 3b/7b are more accurate but too slow for full coverage;
+  # 1.5b + gates + corroboration still yields quality. Schema-grammar `format`
+  # stays OFF (it stalled for minutes on cold CPU).
+  OLLAMA_MODEL: qwen2.5:1.5b
   SYNTH_MIN_SCORE: '6'
-  SYNTH_HARD_MAX: '80'
-  SYNTH_TIMEOUT_MS: '60000'
+  # Right-sized to what a CPU runner can synth in budget: candidates are
+  # score-sorted, so the top 48 ARE the best; the low-priority tail is dropped.
+  # 48 / SYNTH_BATCH(8) = 6 batches, comfortably within the 15-min budget.
+  SYNTH_HARD_MAX: '48'
+  SYNTH_BATCH: '8'
+  SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
   SYNTH_BUDGET_MS: '900000' # 15-min hard budget for the synth loop (job timeout is 25)
   MIN_IMPORTANCE: '3'
   PUBLISH_MIN_IMPORTANCE: '4'
