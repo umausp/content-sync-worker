@@ -1,0 +1,55 @@
+name: news-pipeline
+
+# Runs the whole news pipeline on the GitHub runner (no external machine):
+# fetch RSS → cluster → corroboration → LLM synth (Ollama on the runner) →
+# push to the ingest API. Public repo = unlimited minutes, so a real ~3B model
+# on CPU is fine. schedule + manual only — NEVER on pull_request (a fork PR must
+# not be able to read the secret).
+on:
+  schedule:
+    - cron: '*/30 * * * *' # every 30 min (UTC)
+  workflow_dispatch: {}
+
+concurrency:
+  group: news-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      INGEST_URL: ${{ secrets.INGEST_URL }}
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+      OLLAMA_MODEL: qwen2.5:3b-instruct
+      MAX_STORIES: '30'
+      MIN_IMPORTANCE: '3'
+      PER_FEED: '15'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      # Cache the pulled model between runs so we don't re-download ~2GB hourly.
+      - name: Cache Ollama models
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL }}
+
+      - name: Start Ollama + pull model
+        run: |
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "$OLLAMA_MODEL"
+
+      - name: Run pipeline
+        run: node src/pipeline.mjs

@@ -1,0 +1,10 @@
+{
+  "name": "content-sync-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scheduled content aggregation + summarization pipeline.",
+  "scripts": {
+    "start": "node src/pipeline.mjs"
+  }
+}
