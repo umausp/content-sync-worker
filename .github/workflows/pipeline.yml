@@ -1,10 +1,13 @@
 name: news-pipeline
 
-# Runs the whole news pipeline on the GitHub runner (no external machine):
-# fetch RSS → cluster → corroboration → LLM synth (Ollama on the runner) →
-# push to the ingest API. Public repo = unlimited minutes, so a real ~3B model
-# on CPU is fine. schedule + manual only — NEVER on pull_request (a fork PR must
-# not be able to read the secret).
+# Full news pipeline on the GitHub runner (no external machine): fetch RSS →
+# cluster → corroboration → LLM synth (Ollama on the runner) → gate → publish to
+# the ingest API. Public repo = unlimited minutes. schedule + manual only —
+# NEVER on pull_request (a fork PR must not read the secret).
+#
+# Split into OBSERVABLE STEPS (prod practice): install → cache → serve+pull →
+# VERIFY model (fail-fast) → run pipeline. Each step has its own timeout and
+# logs, so a hang is localized to one step instead of a 30-min black box.
 on:
   schedule:
     - cron: '*/30 * * * *' # every 30 min (UTC)
@@ -12,55 +15,67 @@ on:
 
 concurrency:
   group: news-pipeline
-  cancel-in-progress: false
+  cancel-in-progress: true # a new run supersedes a stuck one instead of queueing
 
 permissions:
   contents: read
 
+env:
+  INGEST_URL: ${{ secrets.INGEST_URL }}
+  STORIES_URL: https://api.agyata.com/news/stories
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  # qwen2.5:3b — instruct-tuned, ~15s/call plain-json on CPU. (7b is ~2× slower;
+  # the schema-grammar `format` was removed — it stalled for minutes on cold CPU.)
+  OLLAMA_MODEL: qwen2.5:3b
+  SYNTH_MIN_SCORE: '6'
+  SYNTH_HARD_MAX: '80'
+  SYNTH_TIMEOUT_MS: '60000'
+  SYNTH_BUDGET_MS: '900000' # 15-min hard budget for the synth loop (job timeout is 25)
+  MIN_IMPORTANCE: '3'
+  PUBLISH_MIN_IMPORTANCE: '4'
+  PUBLISH_MIN_CORROBORATION: '2'
+  MAX_AGE_H: '36'
+  VERIFY_FAITHFUL: '0' # 2nd-pass verifier off by default (doubles LLM calls)
+  PER_FEED: '15'
+
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    env:
-      INGEST_URL: ${{ secrets.INGEST_URL }}
-      STORIES_URL: https://api.agyata.com/news/stories
-      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-      # 3B is the research-backed sweet spot for CPU (7B ~6 tok/s = too slow for
-      # ~100 items). JSON-schema-constrained decoding (in pipeline.mjs) guarantees
-      # valid structured output, so we don't need a bigger model for reliability.
-      OLLAMA_MODEL: qwen2.5:3b-instruct
-      SYNTH_MIN_SCORE: '6'
-      SYNTH_HARD_MAX: '120'
-      MIN_IMPORTANCE: '3'
-      # Selective publish bar (Google-News-style significance gate): a NEW story
-      # needs importance>=4 AND >=2 corroborating outlets; else update-only/hold.
-      PUBLISH_MIN_IMPORTANCE: '4'
-      PUBLISH_MIN_CORROBORATION: '2'
-      MAX_AGE_H: '36'
-      VERIFY_FAITHFUL: '1'
-      PER_FEED: '15'
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install Ollama
+        timeout-minutes: 3
         run: curl -fsSL https://ollama.com/install.sh | sh
 
-      # Cache the pulled model between runs so we don't re-download ~2GB hourly.
-      - name: Cache Ollama models
+      - name: Cache Ollama model
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
-          key: ollama-${{ env.OLLAMA_MODEL }}
+          key: ollama-${{ env.OLLAMA_MODEL }}-v2
 
       - name: Start Ollama + pull model
+        timeout-minutes: 8
         run: |
           ollama serve > /tmp/ollama.log 2>&1 &
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          echo "pulling $OLLAMA_MODEL ..."
           ollama pull "$OLLAMA_MODEL"
+          echo "installed models:"; ollama list
 
-      - name: Run pipeline (gather → cluster → synth → REVIEW → publish)
+      - name: Verify model (fail-fast health check)
+        timeout-minutes: 3
+        run: |
+          echo "warming + testing one generation..."
+          RESP=$(curl -sf http://127.0.0.1:11434/api/generate \
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Reply with the word OK.\",\"stream\":false,\"options\":{\"num_predict\":5}}")
+          echo "response: $RESP"
+          echo "$RESP" | grep -qi '"response"' || { echo "::error::model did not respond — aborting"; exit 1; }
+
+      - name: Run pipeline (gather → cluster → synth → gate → publish)
+        timeout-minutes: 20
         run: node src/review.mjs

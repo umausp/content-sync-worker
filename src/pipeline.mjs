@@ -26,13 +26,19 @@ const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const OLLAMA = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
-const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:3b-instruct';
+const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:3b';
 // SCORE-GATE (not a fixed story cap): synth every cluster scoring >= this. On a
 // big news hour that's 50-100 stories; a quiet hour fewer. SYNTH_HARD_MAX only
 // bounds runtime so a runner can't run away.
 const SYNTH_MIN_SCORE = Number(process.env.SYNTH_MIN_SCORE || 6);
 const SYNTH_HARD_MAX = Number(process.env.SYNTH_HARD_MAX || 120);
 const PER_FEED = Number(process.env.PER_FEED || 15);
+// Per-call synth timeout + a GLOBAL time budget for the whole synth loop. The
+// budget is the key safety net: rather than let ~100 calls each hit their
+// timeout (→ 29 min silent hang → GitHub cancels), we stop synthesising once the
+// budget is spent and publish whatever we have. Tune via SYNTH_BUDGET_MS.
+const SYNTH_TIMEOUT_MS = Number(process.env.SYNTH_TIMEOUT_MS || 60000);
+const SYNTH_BUDGET_MS = Number(process.env.SYNTH_BUDGET_MS || 18 * 60 * 1000); // 18m default
 const BREAKING_TTL_H = Number(process.env.BREAKING_TTL_HOURS || 3);
 const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 2);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
@@ -130,7 +136,13 @@ const SYNTH_SCHEMA = {
 async function synth(a) {
   const prompt = `${CHARTER}\n\nSynthesise ONE news story as JSON. category = exactly ONE genre. hashtag = a SPECIFIC event tag with the key proper noun + a distinguishing word (e.g. IsroChandrayaan4, TrumpChinaTariffs), NEVER a broad topic. importance: 5=major breaking … 1=trivial. Set skip=true if it fails the SKIP rules.\n\nARTICLE:\nTITLE: ${a.title}\nOUTLET: ${a.sourceName}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${a.snippet}`;
   try {
-    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: SYNTH_SCHEMA, options: { temperature: 0.2, num_predict: 400 } }), signal: AbortSignal.timeout(120000) });
+    // Plain JSON mode (NOT schema-grammar `format`): the JSON-schema-constrained
+    // `format` uses GBNF grammar decoding which on CPU can stall for MINUTES on a
+    // cold model — that was the 29-min-timeout bug. Plain 'json' is ~15s/call and
+    // reliable; the enum-leak it might allow is re-caught by gates.mjs gStructure
+    // (bad_category) + normalizeCategory. num_predict trimmed to 320 (headline +
+    // 2-3 sentences + JSON fits well under this) to cut per-call time.
+    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.2, num_predict: 320 } }), signal: AbortSignal.timeout(SYNTH_TIMEOUT_MS) });
     if (!r.ok) return null;
     const j = safeJson((await r.json()).response || '');
     if (!j || !j.title) return null;
@@ -166,17 +178,55 @@ export async function buildCandidates() {
 
   const candidates = [];
   let synthesized = 0;
-  for (const p of eligible) {
+  let nullCount = 0;
+  const started = Date.now();
+  for (let i = 0; i < eligible.length; i++) {
+    // GLOBAL TIME BUDGET — the safety net against the 29-min silent hang. Once
+    // spent, stop and publish what we have instead of getting cancelled.
+    if (Date.now() - started > SYNTH_BUDGET_MS) {
+      console.log(`synth budget spent (${((Date.now() - started) / 60000).toFixed(1)}m) — stopping at ${i}/${eligible.length}`);
+      break;
+    }
+    const p = eligible[i];
+    const t0 = Date.now();
     const s = await synth(p.a);
-    if (!s) continue;
+    if (!s) {
+      nullCount++;
+      // FAIL-FAST: if the first few calls all return null, the model is unhealthy
+      // — abort loudly rather than burn the whole budget on dead calls.
+      if (i < 5 && nullCount === i + 1 && nullCount >= 3) {
+        throw new Error(`synth returned null for first ${nullCount} calls — model unhealthy, aborting`);
+      }
+      console.log(`  · synth null ${i + 1}/${eligible.length} (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+      continue;
+    }
     synthesized++;
-    // Corroboration shapes importance + gates breaking (Google-News velocity).
     if (p.corr >= 3) s.importance = Math.min(5, s.importance + 1);
     if (s.signal === 'breaking' && p.corr < 2) s.signal = 'none';
     candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
+    // PROGRESS every 10 so a run always shows forward motion (no silent black box).
+    if (synthesized % 10 === 0) console.log(`  synth progress ${synthesized} ok / ${i + 1} tried (${((Date.now() - started) / 60000).toFixed(1)}m)`);
   }
-  console.log(`synthesized ${synthesized} candidates`);
+  console.log(`synthesized ${synthesized} candidates (${nullCount} null, ${((Date.now() - started) / 60000).toFixed(1)}m)`);
   return candidates;
+}
+
+// HEALTH CHECK — one tiny generation with a short timeout. Run BEFORE the loop so
+// a broken model/endpoint fails in seconds, not after a 30-min timeout.
+export async function healthCheck() {
+  const t0 = Date.now();
+  try {
+    const r = await fetch(`${OLLAMA}/api/generate`, {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ model: MODEL, prompt: 'Reply with the word OK.', stream: false, options: { num_predict: 5 } }),
+      signal: AbortSignal.timeout(60000),
+    });
+    if (!r.ok) return { ok: false, ms: Date.now() - t0, error: `http ${r.status}` };
+    const j = await r.json();
+    return { ok: typeof j.response === 'string', ms: Date.now() - t0, sample: (j.response || '').slice(0, 20) };
+  } catch (e) {
+    return { ok: false, ms: Date.now() - t0, error: e.message };
+  }
 }
 
 // ── LLM FACT-CONSISTENCY VERIFIER (the anti-hallucination gold gate) ─────────

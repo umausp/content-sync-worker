@@ -18,7 +18,7 @@
 //
 // Only survivors POST to the ingest endpoint.
 
-import { buildCandidates, toIngestBody, verifyFaithful, isSameStory } from './pipeline.mjs';
+import { buildCandidates, toIngestBody, verifyFaithful, isSameStory, healthCheck } from './pipeline.mjs';
 import { runGates } from './gates.mjs';
 
 const INGEST_URL = process.env.INGEST_URL || '';
@@ -27,7 +27,10 @@ const STORIES_URL = process.env.STORIES_URL || INGEST_URL.replace(/\/ingest$/, '
 const PUBLISH_MIN_IMPORTANCE = Number(process.env.PUBLISH_MIN_IMPORTANCE || 4);
 const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION || 2);
 const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
-const VERIFY = process.env.VERIFY_FAITHFUL !== '0'; // on by default; set 0 to skip
+// Fact-verifier is OFF by default: it DOUBLES the LLM calls (a 2nd pass per
+// publishing story) and the algorithmic fact-shape gate already catches invented
+// numbers/quotes. Turn on with VERIFY_FAITHFUL=1 when runtime budget allows.
+const VERIFY = process.env.VERIFY_FAITHFUL === '1';
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 async function fetchPublished() {
@@ -55,6 +58,13 @@ const bump = (o, k) => { o[k] = (o[k] || 0) + 1; };
 
 async function main() {
   const nowMs = Date.now();
+  // FAIL-FAST: verify the model answers before doing any work. A broken model/
+  // endpoint now fails in seconds with a clear message, instead of the loop
+  // hanging until GitHub's 30-min timeout cancels the job (the old failure mode).
+  const h = await healthCheck();
+  console.log(`model health: ok=${h.ok} ${h.ms}ms ${h.error ? 'error=' + h.error : 'sample=' + JSON.stringify(h.sample)}`);
+  if (!h.ok) { console.error('model unhealthy — aborting before synth'); process.exit(1); }
+
   const candidates = await buildCandidates();
   const published = await fetchPublished();
   console.log(`review: ${candidates.length} candidates, ${published.length} already-published for dedup`);
