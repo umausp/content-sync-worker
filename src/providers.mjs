@@ -77,10 +77,10 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault, reasoningEffor
       // silent null on a bad key/model was un-debuggable (the cerebras case).
       const detail = await r.text().catch(() => '');
       const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
-      // 401/402/403/404 are PERMANENT for this run (bad key, billing required,
-      // forbidden, missing model) — retrying every 90s is pointless. Flag it so the
-      // router DISABLES the provider for the whole run and moves on immediately.
-      if ([401, 402, 403, 404].includes(r.status)) err.permanent = true;
+      // PERMANENT for this run (retrying is pointless → bench + move on): 401 bad
+      // key, 402 billing, 403 forbidden, 404 missing model, 410 GONE (model retired
+      // — the NVIDIA qwen2.5-coder EOL case). All are config problems, not blips.
+      if ([401, 402, 403, 404, 410].includes(r.status)) err.permanent = true;
       throw err;
     }
     const j = await r.json();
@@ -110,7 +110,7 @@ function geminiAdapter() {
     if (!r.ok) {
       const detail = await r.text().catch(() => '');
       const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
-      if ([400, 401, 403, 404].includes(r.status)) err.permanent = true; // bad key/model/request — permanent this run
+      if ([400, 401, 403, 404, 410].includes(r.status)) err.permanent = true; // bad key/model/request — permanent this run
       throw err;
     }
     const j = await r.json();
@@ -162,7 +162,7 @@ function cohereAdapter() {
     if (!r.ok) {
       const detail = await r.text().catch(() => '');
       const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
-      if ([400, 401, 403, 404].includes(r.status)) err.permanent = true;
+      if ([400, 401, 403, 404, 410].includes(r.status)) err.permanent = true;
       throw err;
     }
     const j = await r.json();
@@ -242,9 +242,11 @@ const REGISTRY = {
   },
   nvidia: {
     tier: 'free', // NVIDIA NIM (build.nvidia.com) — generous free API credits
-    // OpenAI-compatible at integrate.api.nvidia.com/v1. User picked qwen2.5-coder-32b
-    // (strong instruction-following; fine for a news rewrite). Override via NVIDIA_MODEL.
-    adapter: openAiAdapter({ baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY', modelEnv: 'NVIDIA_MODEL', modelDefault: 'qwen/qwen2.5-coder-32b-instruct' }),
+    // OpenAI-compatible at integrate.api.nvidia.com/v1. Default = a CURRENT general
+    // instruct model; the original qwen2.5-coder-32b returned HTTP 410 GONE (retired
+    // — and a coding model, wrong tool for a news rewrite anyway). llama-3.1-8b is
+    // fast + general. Override via NVIDIA_MODEL (e.g. meta/llama-3.3-70b-instruct).
+    adapter: openAiAdapter({ baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY', modelEnv: 'NVIDIA_MODEL', modelDefault: 'meta/llama-3.1-8b-instruct' }),
     enabled: () => !!process.env.NVIDIA_API_KEY,
     cap: Number(process.env.NVIDIA_DAILY_CAP || 1000),
   },
