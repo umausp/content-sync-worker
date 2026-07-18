@@ -58,20 +58,14 @@ async function fetchTrendingTerms(opts) {
   return terms;
 }
 
-// Fresh articles for one search TERM via Google News search RSS. Each item has a
-// clean "<source url=...>Outlet</source>" (name + domain) + pubDate. The <link> is
-// a news.google.com redirect (opaque) — we keep it as the article URL (it resolves
-// in a browser) but derive outlet + domain from the <source> tag for attribution.
-async function fetchNewsForTerm(term, opts) {
-  const hl = opts.hl || 'en-IN';
-  const geo = opts.geo || 'IN';
-  const ceid = `${geo}:${hl.split('-')[0]}`;
-  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(term)}&hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(geo)}&ceid=${encodeURIComponent(ceid)}`;
-  const xml = await getXml(url).catch(() => null);
-  if (!xml) return [];
+// Parse Google News RSS <item>s → Article[]. Shared by the search feed and the
+// top/section feeds (identical item shape). Each item has a clean
+// "<source url=...>Outlet</source>" (name + domain) + pubDate; the <link> is a
+// news.google.com redirect (opaque) that resolves in a browser — we keep it as the
+// article URL but derive outlet + domain from <source> for attribution/favicons.
+function parseNewsItems(xml, { category = 'top', buzzTerm = null, limit = 20 } = {}) {
   const out = [];
-  const perTerm = Number(opts.perTerm || 5);
-  for (const [, block] of [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0, perTerm)) {
+  for (const [, block] of [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0, limit)) {
     let title = tag(block, 'title');
     const link = tag(block, 'link');
     const pub = tag(block, 'pubDate');
@@ -79,9 +73,8 @@ async function fetchNewsForTerm(term, opts) {
     const sourceUrl = srcMatch ? srcMatch[1] : '';
     const sourceName = srcMatch ? decode(srcMatch[2]) : 'Google News';
     if (!title || !link) continue;
-    // Skip non-article sources: social platforms + org homepages Trends sometimes
-    // surfaces (facebook/x/instagram/youtube channel pages, party sites) — they're
-    // not news events and pollute the pool.
+    // Skip non-article sources: social platforms + org homepages Google sometimes
+    // surfaces (facebook/x/instagram/party sites) — not news events, pollute the pool.
     if (/(facebook|twitter|x|instagram|threads|tiktok|reddit)\.com|\.org$|bjp\.|inc\.in/i.test(sourceUrl)) continue;
     // Google News appends " - Outlet" to the title; strip it (we have the source).
     if (sourceName && title.endsWith(` - ${sourceName}`)) title = title.slice(0, -(sourceName.length + 3)).trim();
@@ -89,18 +82,64 @@ async function fetchNewsForTerm(term, opts) {
       title,
       url: link,
       sourceName,
-      // Prefer the real publisher domain for the source link (favicons + attribution);
-      // keep the GNews link as the tappable article URL.
       sourceUrl: sourceUrl || undefined,
-      snippet: title, // GNews descriptions are HTML link lists — use the title; og-enrich later if needed
+      snippet: title, // GNews descriptions are HTML link lists — use the title
       imageUrl: null,
       publishedAt: pub ? new Date(pub).toISOString() : null,
-      category: 'top',
+      category,
       via: 'buzz',
-      buzzTerm: term,
+      buzzTerm,
     });
   }
   return out;
+}
+
+// Fresh articles for one search TERM via Google News search RSS.
+async function fetchNewsForTerm(term, opts) {
+  const hl = opts.hl || 'en-IN';
+  const geo = opts.geo || 'IN';
+  const ceid = `${geo}:${hl.split('-')[0]}`;
+  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(term)}&hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(geo)}&ceid=${encodeURIComponent(ceid)}`;
+  const xml = await getXml(url).catch(() => null);
+  if (!xml) return [];
+  return parseNewsItems(xml, { category: 'top', buzzTerm: term, limit: Number(opts.perTerm || 5) });
+}
+
+// Google News's OWN feeds — the broad "latest Google News" firehose the user asked
+// for: the TOP-headlines feed + each SECTION topic feed. These carry the SAME event
+// from MANY outlets (verified 38-70 items each), so they add real corroboration +
+// section balance on top of the trend-driven search results. Each section maps to
+// our category. All run in parallel; a dead feed just yields []. Off via
+// BUZZ_GNEWS_FEEDS=0.
+const GNEWS_SECTIONS = [
+  { topic: null, category: 'top' }, // top headlines (no topic path)
+  { topic: 'WORLD', category: 'world' },
+  { topic: 'NATION', category: 'top' },
+  { topic: 'BUSINESS', category: 'business' },
+  { topic: 'TECHNOLOGY', category: 'tech' },
+  { topic: 'ENTERTAINMENT', category: 'entertainment' },
+  { topic: 'SPORTS', category: 'sports' },
+  { topic: 'SCIENCE', category: 'science' },
+  { topic: 'HEALTH', category: 'health' },
+];
+async function fetchGoogleNewsFeeds(opts) {
+  const hl = opts.hl || 'en-IN';
+  const geo = opts.geo || 'IN';
+  const ceid = `${geo}:${hl.split('-')[0]}`;
+  const perFeed = Number(process.env.BUZZ_GNEWS_PER_FEED || 12);
+  const qs = `hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(geo)}&ceid=${encodeURIComponent(ceid)}`;
+  const lists = await Promise.all(
+    GNEWS_SECTIONS.map(async ({ topic, category }) => {
+      const url = topic
+        ? `https://news.google.com/rss/headlines/section/topic/${topic}?${qs}`
+        : `https://news.google.com/rss?${qs}`;
+      const xml = await getXml(url).catch(() => null);
+      return xml ? parseNewsItems(xml, { category, buzzTerm: null, limit: perFeed }) : [];
+    }),
+  );
+  const arts = lists.flat();
+  opts.log('buzz.gnews_feeds', { sections: GNEWS_SECTIONS.length, articles: arts.length });
+  return arts;
 }
 
 // Per-CATEGORY trend probes. Google News has topic RSS feeds + we add category
@@ -133,18 +172,22 @@ export async function fetchBuzz(opts = {}) {
   const withCategories = process.env.BUZZ_CATEGORIES !== '0'; // per-category probes (on by default)
   const t0 = Date.now();
 
+  const results = [];
+  // (1) Google News's OWN feeds (top + sections) — the broad "latest Google News"
+  // firehose — run in PARALLEL with the trend-driven flow below. Off via
+  // BUZZ_GNEWS_FEEDS=0. This is what carries the same event from MANY outlets →
+  // corroboration + section balance the trend searches alone don't give.
+  const gnewsP = process.env.BUZZ_GNEWS_FEEDS === '0' ? Promise.resolve([]) : fetchGoogleNewsFeeds(o).catch(() => []);
+
+  // (2) Trend-driven: Google Trends "searched now" terms + always-on extras +
+  // per-category probes → News search each. termCat maps term→desk.
   const trending = await fetchTrendingTerms(o);
-  // Trending terms + always-on extras carry no category (→ 'top'); category probes
-  // carry their desk. We track term→category so the article inherits it.
   const termCat = new Map();
   for (const t of [...trending.slice(0, maxTerms), ...extra]) termCat.set(t, null);
   if (withCategories) for (const p of DEFAULT_CATEGORY_PROBES) if (!termCat.has(p.q)) termCat.set(p.q, p.category);
   const terms = [...termCat.keys()];
-  if (terms.length === 0) { log('buzz.no_terms', {}); return []; }
 
-  // Fan out over terms (concurrency-capped), flatten, dedup by normalised URL.
   const CONC = Number(process.env.BUZZ_CONCURRENCY || 6);
-  const results = [];
   let idx = 0;
   async function worker() {
     while (idx < terms.length) {
@@ -157,8 +200,10 @@ export async function fetchBuzz(opts = {}) {
       } catch { /* skip a bad term */ }
     }
   }
-  await Promise.all(Array.from({ length: Math.min(CONC, terms.length) }, worker));
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(CONC, terms.length)) }, worker));
+  results.push(...(await gnewsP)); // fold in the Google News feed articles
 
+  // Dedup by normalised URL (search + feeds overlap heavily on hot events).
   const seen = new Set();
   const deduped = [];
   for (const a of results) {
