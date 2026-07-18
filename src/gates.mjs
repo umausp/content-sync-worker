@@ -39,6 +39,17 @@ export function gStructure(c) {
   if (BAD_TITLE.test(t)) return 'placeholder_title';
   if (/\|/.test(t)) return 'title_has_pipe';
   if (/(\.\.\.|…)\s*$/.test(t)) return 'title_trailing_ellipsis';
+  // RAW SLUG / MARKUP leak guard — a title must read like prose, not a URL slug or
+  // template token. Rejects e.g. "<ss_rajamouli_first_pics_mandakini>": angle
+  // brackets / other markup chars; underscores (slug joiners); and slug-shape
+  // (multi-"word" but NO spaces, or all-lowercase with no capitalised word — a real
+  // headline has spaces + at least one capital or Devanagari char).
+  if (/[<>{}\[\]|]/.test(t)) return 'title_has_markup';
+  if (/_/.test(t)) return 'title_has_underscore';
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length < 3) return 'title_too_few_words'; // a real headline is a sentence
+  const hasCap = /[A-Zऀ-ॿ]/.test(t); // a capital OR Devanagari (Hindi has no case)
+  if (!hasCap) return 'title_looks_like_slug'; // all-lowercase ascii = a slug, not a headline
   if (!CATEGORIES.includes(c.category)) return 'bad_category';
   if (!/^[A-Za-z][\p{L}\p{N}_]{5,59}$/u.test(c.hashtag || '')) return 'bad_hashtag';
   const body = (c.body || '').trim();

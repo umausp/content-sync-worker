@@ -22,6 +22,7 @@
 import { FEEDS } from './feeds.mjs';
 import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory } from './dedup.mjs';
+import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 
 // ── EDITION ─────────────────────────────────────────────────────────────────
@@ -350,8 +351,35 @@ export async function buildCandidates() {
     }
     if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]) });
   }
+
+  // SECOND PASS — ENTITY clustering. Word-overlap (above) can't tell that
+  // "Kejriwal urges Wangchuk" and "Tharoor appeals to Wangchuk" are the SAME
+  // ongoing event (few shared words, one shared SUBJECT). This collapsed one event
+  // into ~25 stories. clusterByEntity groups the word-overlap clusters by their
+  // shared dominant entity, so all Wangchuk headlines merge into ONE thread with
+  // combined corroboration. Reps + source sets are merged into the best rep.
+  const beforeEntity = clusters.length;
+  const { clusters: entGroups, solo } = clusterByEntity(clusters, (c) => c.rep.title, 2);
+  const merged = [];
+  for (const g of entGroups) {
+    const parts = g.items;
+    if (parts.length === 1) { merged.push(parts[0]); continue; }
+    // merge: union all source sets, pick the best rep across the group
+    const sources = new Set();
+    let best = parts[0];
+    for (const c of parts) {
+      for (const s of c.sources) sources.add(s);
+      if (repScore(c.rep) > repScore(best.rep)) best = c;
+    }
+    merged.push({ rep: best.rep, sources, entityKey: g.key, canonicalEntity: g.canonicalEntity });
+  }
+  for (const s of solo) merged.push(s[0]);
+  clusters.length = 0;
+  clusters.push(...merged);
+  console.log(`entity-merge: ${beforeEntity} → ${clusters.length} clusters (collapsed ${beforeEntity - clusters.length} same-subject dupes)`);
+
   const scored = clusters
-    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s }; })
+    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity }; })
     .sort((x, y) => y.score - x.score);
   // SCORE-GATE, not a fixed cap: synth everything above SYNTH_MIN_SCORE, bounded
   // by SYNTH_HARD_MAX only to keep runtime sane (still 50-100 on a big hour).
@@ -380,6 +408,11 @@ export async function buildCandidates() {
     if (s.skip) { skippedByModel++; return true; }
     if (p.corr >= 3) s.importance = Math.min(5, s.importance + 1);
     if (s.signal === 'breaking' && p.corr < 2) s.signal = 'none';
+    // CANONICAL HASHTAG: if this cluster has a dominant entity, ALL its stories
+    // share the entity-derived hashtag → ingest upserts them onto ONE thread as
+    // updates (the fix for "one event → 25 story cards"). Falls back to the
+    // model/title hashtag only when there's no clear entity.
+    if (p.canonicalEntity) s.hashtag = entityHashtag(p.canonicalEntity);
     candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
     synthesized++;
     return true;
