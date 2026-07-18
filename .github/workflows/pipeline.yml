@@ -100,6 +100,14 @@ env:
   GDELT_MAX: '100'
   GDELT_TIMESPAN: '1h'
   GDELT_ENRICH: '1' # fetch real og:title+desc for GKG-sourced articles
+  # SEMANTIC DEDUP — a 3rd clustering signal (transformers.js/ONNX embeddings) that
+  # catches "same event, different words" dupes the word-overlap+entity passes miss
+  # (e.g. "What is Kimi K3" ~ "Moonshot AI unveils Kimi K3"). Fail-open: if the model
+  # can't load, nothing merges → identical to before. Each merge is logged for audit
+  # so the threshold can be tuned down with evidence. bge-base-en (CLS) for national.
+  EMBED_DEDUP: '1'
+  EMBED_MODEL: 'Xenova/bge-base-en-v1.5'
+  EMBED_SIM_THRESHOLD: '0.85' # conservative (a false merge is worse than a missed dupe); lower with audit-log evidence
 
 jobs:
   run:
@@ -110,6 +118,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Install npm deps (transformers.js for semantic dedup)
+        run: npm install --no-audit --no-fund
+
+      # Cache the ONNX embedding model (transformers.js downloads to ~/.cache/
+      # huggingface). ~110MB; cached so it's fetched once, not every run.
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-embed-${{ env.EMBED_MODEL || 'bge-base-en-v1.5' }}-v1
 
       - name: Pick SOURCE_MODE
         run: |

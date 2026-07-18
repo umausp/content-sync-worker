@@ -6,5 +6,8 @@
   "description": "Scheduled content aggregation + summarization pipeline.",
   "scripts": {
     "start": "node src/pipeline.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0"
   }
 }

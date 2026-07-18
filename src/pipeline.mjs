@@ -22,6 +22,7 @@
 import { FEEDS } from './feeds.mjs';
 import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
+import { embedMany, cosine, SIM_THRESHOLD, EMBED_ENABLED, EMBED_VERIFY_ENABLED, EMBED_MODEL_NAME } from './embed.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
@@ -551,6 +552,45 @@ export async function buildCandidates() {
   clusters.push(...merged);
   console.log(`entity-merge: ${beforeEntity} → ${clusters.length} clusters (collapsed ${beforeEntity - clusters.length} same-subject dupes)`);
 
+  // THIRD PASS — SEMANTIC merge (opt-in EMBED_DEDUP=1). Word-overlap + entity catch
+  // shared-token / shared-subject dupes; they still MISS "same event, DIFFERENT
+  // words" (verified: "What is Kimi K3" vs "Moonshot AI unveils Kimi K3"; two FIFA-
+  // final previews). An embedding model scores those pairs by MEANING. We embed the
+  // surviving reps and greedily merge any pair with cosine >= SIM_THRESHOLD (0.85,
+  // CLS-pooled bge/gte — tuned high so added merges are precise). FAIL-OPEN: if the
+  // model can't load, embeds are null, cosine returns 0, nothing merges → identical
+  // to today. This also sharpens CORROBORATION (merged reworded coverage = more
+  // distinct outlets on one event = a truer significance score).
+  if (EMBED_ENABLED && clusters.length > 1) {
+    const t0 = Date.now();
+    const vecs = await embedMany(clusters.map((c) => c.rep.title), { log: glog });
+    const alive = clusters.map(() => true);
+    let semMerged = 0;
+    for (let i = 0; i < clusters.length; i++) {
+      if (!alive[i] || !vecs[i]) continue;
+      for (let j = i + 1; j < clusters.length; j++) {
+        if (!alive[j] || !vecs[j]) continue;
+        // skip pairs word/entity ALREADY handles (they'd have merged) — only add NEW.
+        if (isSameStory(clusters[i].rep.title, clusters[j].rep.title)) continue;
+        if (cosine(vecs[i], vecs[j]) < SIM_THRESHOLD) continue;
+        // merge j INTO i: union sources + members, keep the better rep + its entity.
+        const ci = clusters[i], cj = clusters[j];
+        for (const s of cj.sources) ci.sources.add(s);
+        for (const m of cj.members || [cj.rep]) if (!ci.members.some((x) => x.sourceName === m.sourceName) && ci.members.length < 3) ci.members.push(m);
+        // AUDIT LOG each merge (title-a ~ title-b @ score) — the threshold is a
+        // precision/recall knob, so the first live runs must be eyeball-checkable to
+        // confirm no false merges before we consider lowering EMBED_SIM_THRESHOLD.
+        console.log(`  ⋈ semantic-merge [${cosine(vecs[i], vecs[j]).toFixed(3)}] "${(cj.rep.title || '').slice(0, 44)}" → "${(ci.rep.title || '').slice(0, 44)}"`);
+        if (repScore(cj.rep) > repScore(ci.rep)) { ci.rep = cj.rep; if (cj.canonicalEntity) ci.canonicalEntity = cj.canonicalEntity; }
+        else if (!ci.canonicalEntity && cj.canonicalEntity) ci.canonicalEntity = cj.canonicalEntity;
+        alive[j] = false;
+        semMerged++;
+      }
+    }
+    if (semMerged) clusters.splice(0, clusters.length, ...clusters.filter((_, k) => alive[k]));
+    console.log(`semantic-merge: +${semMerged} reworded-dupe merges → ${clusters.length} clusters (model=${EMBED_MODEL_NAME}, cos>=${SIM_THRESHOLD}, ${((Date.now() - t0) / 1000).toFixed(1)}s)`);
+  }
+
   const scored = clusters
     .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
@@ -782,7 +822,20 @@ export async function verifyFaithful(c) {
     if (!r.ok) return null;
     const j = safeJson((await r.json()).response || '');
     if (!j) return null;
-    return { faithful: j.faithful === true, sameEvent: j.sameEvent === true, reason: String(j.reason || '').slice(0, 120) };
+    let sameEvent = j.sameEvent === true;
+    let reason = String(j.reason || '').slice(0, 120);
+    // SEMANTIC same-event guard (opt-in EMBED_VERIFY=1): a cheap embedding cross-
+    // check on the LLM's sameEvent call. If synth and source are semantically FAR
+    // apart (cosine below EMBED_VERIFY_MIN), the synthesis drifted off the source
+    // event — override sameEvent→false. Only DOWNGRADES on strong divergence (never
+    // upgrades), and fail-open: a null embed leaves the LLM verdict untouched.
+    if (EMBED_VERIFY_ENABLED && sameEvent) {
+      const floor = Number(process.env.EMBED_VERIFY_MIN || 0.4);
+      const [sv, cv] = await embedMany([`${a.title} ${a.snippet || ''}`, `${c.title} ${c.body || ''}`]);
+      const sim = cosine(sv, cv);
+      if (sv && cv && sim < floor) { sameEvent = false; reason = `semantic drift (cos ${sim.toFixed(2)}<${floor}); ${reason}`.slice(0, 120); }
+    }
+    return { faithful: j.faithful === true, sameEvent, reason };
   } catch { return null; }
 }
 
