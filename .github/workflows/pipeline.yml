@@ -32,23 +32,17 @@ env:
   #    first, PAID OpenAI last (spillover only, tight cap), local Ollama last-
   #    resort. A provider is skipped if its key secret is absent. Models are the
   #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
-  PROVIDER_ORDER: 'cerebras,groq,gemini,sambanova,cloudflare,openai,ollama'
+  # Cloudflare excluded (billable creds in a public repo) + Groq excluded (no key).
+  PROVIDER_ORDER: 'cerebras,gemini,sambanova,openai,ollama'
   # free, very fast — PRIMARY
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'llama-3.3-70b'
-  # free, fast
-  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-  GROQ_MODEL: 'llama-3.3-70b-versatile'
   # free Flash TEXT model (NOT a *-live/realtime model). Override to your account's id.
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   # free tier
   SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
-  # free neurons but BILLS past them → hard cap, spillover only
-  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-  CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
-  CF_DAILY_CAP: '150'
   # PAID — gpt-4o-mini (cheapest, highest RPM/TPM, NO wasted reasoning tokens; do
   # NOT use o3/o4-mini here — reasoning models cost more + are slower for a simple
   # rewrite). LAST in the ladder + tight cap → fires only if ALL free tiers are

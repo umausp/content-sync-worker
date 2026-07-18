@@ -17,23 +17,21 @@ extra cross-source coverage (see below).
 | `STORIES_URL` | yes | HTTPS endpoint for the dedup/update reference list |
 | `NEWS_INGEST_TOKEN` | yes | Bearer token for the ingest endpoint |
 | `CEREBRAS_API_KEY` | optional | Free, very fast — primary synthesis |
-| `GROQ_API_KEY` | optional | Free, fast |
 | `GEMINI_API_KEY` | optional | Free Flash tier |
 | `SAMBANOVA_API_KEY` | optional | Free tier |
-| `CF_ACCOUNT_ID` + `CF_AI_TOKEN` | optional | Cloudflare Workers AI (capped spillover) |
 | `OPENAI_API_KEY` | optional | PAID — last-resort spillover, tightly capped |
 
 ### Synthesis providers — pluggable registry, $0-safe (`src/providers.mjs`)
 
 Providers are a **registry/factory**: add or reorder via `PROVIDER_ORDER`; each is
 skipped if its key is absent. Default ladder:
-**Cerebras → Groq → Gemini → SambaNova → Cloudflare → OpenAI → Ollama**.
+**Cerebras → Gemini → SambaNova → OpenAI → Ollama**. (Groq and Cloudflare remain in
+the registry but are OFF by default — no Groq key, and Cloudflare's billable
+credentials are unwanted in a public repo; re-enable either via `PROVIDER_ORDER`.)
 
 Cost model:
-- **Free tiers** (Cerebras/Groq/Gemini/SambaNova) just rate-limit (429) when
-  exhausted — no bill. They carry the load.
-- **Cloudflare** is free but *bills past* its neuron allowance → hard per-run cap
-  (`CF_DAILY_CAP`), spillover only.
+- **Free tiers** (Cerebras/Gemini/SambaNova) just rate-limit (429) when exhausted
+  — no bill. They carry the load.
 - **OpenAI is PAID** → placed LAST with a tight cap (`OPENAI_DAILY_CAP`), so it
   fires only if every free tier is exhausted → in practice ≈ $0. Model defaults to
   `gpt-4o-mini` (cheapest, highest limits; deliberately NOT a reasoning `o*-mini`).

@@ -171,8 +171,11 @@ const REGISTRY = {
   },
 };
 
-// Order: cheap fast FREE first, capped free next, PAID last (spillover), local last.
-const DEFAULT_ORDER = 'cerebras,groq,gemini,sambanova,cloudflare,openai,ollama';
+// Order: cheap fast FREE first, PAID last (spillover), local last. Groq +
+// Cloudflare are still in the REGISTRY (usable by setting PROVIDER_ORDER) but are
+// OFF by default — no Groq key, and Cloudflare's billable creds are unwanted in a
+// public repo. Set PROVIDER_ORDER to re-include them.
+const DEFAULT_ORDER = 'cerebras,gemini,sambanova,openai,ollama';
 
 // ── usage state (persisted so per-run/day caps are honoured) ─────────────────
 function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }
