@@ -172,7 +172,11 @@ async function fetchFeed(f) { try { const r = await fetch(f.url, { headers: { 'u
 
 // ── Scoring ─────────────────────────────────────────────────────────────────
 const RANK = { BBC: 5, 'The Guardian': 5, 'Al Jazeera': 5, 'New York Times': 5, DW: 4, NPR: 4, CNBC: 4, NASA: 5, 'Space.com': 4, 'The Hindu': 5, 'The Indian Express': 4, 'Hindustan Times': 4, 'Times of India': 4, NDTV: 4, Mint: 4, 'Economic Times': 4, 'Business Standard': 4, 'India Today': 4, Moneycontrol: 3, News18: 3, 'Zee News': 3, 'DNA India': 3, Scroll: 3, 'Bollywood Hungama': 4, Pinkvilla: 3, Koimoi: 3 };
-const PRIORITY = new Set(['politics', 'entertainment', 'science']);
+// Genres given a small pre-synth score nudge. HARD NEWS leads a serious feed —
+// entertainment was boosted equal to politics, structurally over-indexing
+// Bollywood/OTT on the front page (quality-review finding). Now: politics + world
+// + business get the nudge; entertainment/science compete on their own merits.
+const PRIORITY = new Set(['politics', 'world', 'business']);
 function fresh(a, now) { const t = a.publishedAt ? Date.parse(a.publishedAt) : NaN; if (isNaN(t)) return 3; const h = (now - t) / 3.6e6; if (h < 3) return 6; if (h < 8) return 4; if (h < 24) return 2; if (h > 72) return -3; return 0; }
 
 // ── Event-specific hashtag (algorithmic; avoids topic-collision mega-threads) ─

@@ -24,9 +24,13 @@ import { runGates } from './gates.mjs';
 const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const STORIES_URL = process.env.STORIES_URL || INGEST_URL.replace(/\/ingest$/, '/stories');
-const PUBLISH_MIN_IMPORTANCE = Number(process.env.PUBLISH_MIN_IMPORTANCE || 4);
+// Objective significance floor — the PRIMARY publish signal (score = source-rank
+// + freshness + corroboration×3). ~11 = a fresh mid-rank story with 1 corroborator
+// or a top desk alone; well-corroborated events score much higher. Tune per feed.
+const PUBLISH_MIN_SCORE = Number(process.env.PUBLISH_MIN_SCORE || 11);
+const PUBLISH_MIN_IMPORTANCE = Number(process.env.PUBLISH_MIN_IMPORTANCE || 4); // kept for scoop override + logging
 const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION || 2);
-// A single-source story this important publishes even at corr=1 (GDELT primary
+// A single-source SCOOP this important publishes even at corr=1 (GDELT primary
 // may surface a major event from one outlet first). Set to 6 to disable.
 const PUBLISH_SOLO_IMPORTANCE = Number(process.env.PUBLISH_SOLO_IMPORTANCE || 5);
 const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
@@ -76,8 +80,15 @@ async function main() {
   console.log(`review: ${candidates.length} candidates, ${published.length} already-published for dedup`);
 
   const acceptedTitles = [];
-  let newStory = 0, updated = 0, rejected = 0, batchDup = 0, verifyFail = 0, heldBar = 0;
+  let newStory = 0, updated = 0, rejected = 0, batchDup = 0, verifyFail = 0, heldBar = 0, catCapped = 0;
   const reasons = {};
+  // FRONT-PAGE DIVERSITY: no single category may exceed CAT_CAP_FRACTION of NEW
+  // stories, so one hot topic (politics, or GDELT's 'top' bucket) can't swamp the
+  // feed. Candidates are score-sorted, so the best of each category lands first.
+  // Cap applies only to NEW stories (updates to live threads always go through).
+  const CAT_CAP_FRACTION = Number(process.env.CAT_CAP_FRACTION || 0.4);
+  const CAT_CAP_MIN = Number(process.env.CAT_CAP_MIN || 6); // don't cap tiny runs
+  const catCount = {};
 
   for (const c of candidates) {
     // Layer A — algorithmic gates.
@@ -90,20 +101,38 @@ async function main() {
     // Layer C — is this an update to an already-published story?
     const match = published.find((p) => isSameStory(c.title, p.title));
 
-    // Layer D — SELECTIVE PUBLISH BAR (cheap, runs BEFORE the expensive verifier
-    // so we only fact-check items that will actually publish). Updates to a live
-    // thread bypass the bar. A NEW story must clear importance AND corroboration —
-    // EXCEPT a very-high-importance single-source story (corr=1) still publishes
-    // (PUBLISH_SOLO_IMPORTANCE): with GDELT primary, a major event may surface from
-    // one outlet first, and we don't want to suppress a genuine 5/5 story just
-    // because only one source has it yet. Ordinary stories still need corroboration.
-    const meetsImportance = c.importance >= PUBLISH_MIN_IMPORTANCE;
-    const meetsCorroboration = c.corr >= PUBLISH_MIN_CORROBORATION;
-    const soloException = c.importance >= PUBLISH_SOLO_IMPORTANCE; // top-tier single-source
-    if (!match && (!meetsImportance || (!meetsCorroboration && !soloException))) {
+    // Layer D — SELECTIVE PUBLISH BAR, keyed on the OBJECTIVE SIGNIFICANCE SCORE,
+    // not the 3B model's importance guess. Rationale (quality review): the score
+    // = source-rank + freshness + corroboration×3 is our most RELIABLE signal;
+    // the LLM importance is noisy (a 3B clusters everything at 3-4). So the gate
+    // is: significance score >= PUBLISH_MIN_SCORE, with corroboration as the spine.
+    // A NEW story publishes if EITHER:
+    //   • it clears the score bar AND has ≥2 corroborating outlets (the norm), OR
+    //   • it's a strong single-source SCOOP: high objective score AND the model
+    //     flags it important (PUBLISH_SOLO_IMPORTANCE) — so a real exclusive isn't
+    //     suppressed just for lacking a second outlet yet.
+    // Updates to a live thread always bypass the bar (developments are welcome).
+    const score = Number(c.score) || 0;
+    const meetsScore = score >= PUBLISH_MIN_SCORE;
+    const corroborated = c.corr >= PUBLISH_MIN_CORROBORATION;
+    const scoop = c.corr < PUBLISH_MIN_CORROBORATION && c.importance >= PUBLISH_SOLO_IMPORTANCE && score >= PUBLISH_MIN_SCORE - 2;
+    if (!match && !((meetsScore && corroborated) || scoop)) {
       heldBar++; bump(reasons, 'below_publish_bar');
-      console.log(`  ▽ hold [imp${c.importance}<${PUBLISH_MIN_IMPORTANCE} | corr${c.corr}<${PUBLISH_MIN_CORROBORATION}] ${c.title.slice(0, 42)}`);
+      console.log(`  ▽ hold [score${score.toFixed(0)}<${PUBLISH_MIN_SCORE} | corr${c.corr}<${PUBLISH_MIN_CORROBORATION} | imp${c.importance}] ${c.title.slice(0, 40)}`);
       continue;
+    }
+
+    // FRONT-PAGE DIVERSITY CAP — a NEW story in an already-saturated category is
+    // held so one topic can't dominate. Skipped for updates + small runs.
+    if (!match) {
+      const cat = c.category || 'top';
+      const publishedNew = newStory; // NEW stories accepted so far
+      const cap = Math.max(CAT_CAP_MIN, Math.ceil((publishedNew + 1) * CAT_CAP_FRACTION));
+      if ((catCount[cat] || 0) >= cap && publishedNew >= CAT_CAP_MIN) {
+        catCapped++; bump(reasons, 'category_cap:' + cat);
+        console.log(`  ▤ cap [${cat} ${catCount[cat]}>=${cap}] ${c.title.slice(0, 40)}`);
+        continue;
+      }
     }
 
     // Layer E — LLM fact-consistency verifier (anti-hallucination), the EXPENSIVE
@@ -120,11 +149,12 @@ async function main() {
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
     }
-    if (await post(body)) { newStory++; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] imp${c.importance} corr${c.corr} #${c.hashtag} ${c.title.slice(0, 40)}`); }
+    if (await post(body)) { newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 38)}`); }
   }
 
-  console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar}`);
-  console.log(`  publish bar: importance>=${PUBLISH_MIN_IMPORTANCE} AND corroboration>=${PUBLISH_MIN_CORROBORATION}; verifier=${VERIFY ? 'on' : 'off'}`);
+  console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped}`);
+  console.log('  published by category:', JSON.stringify(catCount));
+  console.log(`  publish bar: score>=${PUBLISH_MIN_SCORE} AND corroboration>=${PUBLISH_MIN_CORROBORATION} (or scoop: imp>=${PUBLISH_SOLO_IMPORTANCE}); verifier=${VERIFY ? 'on' : 'off'}`);
   console.log('  reject reasons:', JSON.stringify(reasons));
 
   // FAIL LOUD on total failure: if we HAD candidates but published nothing (all
