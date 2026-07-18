@@ -49,12 +49,17 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
     const key = envKey(...(Array.isArray(keyEnv) ? keyEnv : [keyEnv]));
     if (!key) return null;
     const model = process.env[modelEnv] || modelDefault;
+    // OpenAI (and strict clones) HARD-REJECT response_format=json_object unless the
+    // word "json" appears in the messages. Our callers usually include it, but the
+    // paid OpenAI safety-net must never 400 on a JSON call just because a prompt
+    // didn't — so append a JSON instruction when json mode is on and it's missing.
+    const content = opts.json && !/json/i.test(prompt) ? `${prompt}\n\nRespond ONLY with a valid JSON object.` : prompt;
     const r = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
       body: JSON.stringify({
         model,
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content }],
         temperature: 0.2,
         max_tokens: opts.maxTokens || 400,
         response_format: opts.json ? { type: 'json_object' } : undefined,
@@ -120,12 +125,13 @@ function cohereAdapter() {
     const key = envKey('COHERE_API_KEY', 'COHERA_API_KEY');
     if (!key) return null;
     const model = process.env.COHERE_MODEL || 'command-r-08-2024'; // fast, cheap free-tier chat model
+    const content = opts.json && !/json/i.test(prompt) ? `${prompt}\n\nRespond ONLY with a valid JSON object.` : prompt;
     const r = await fetch('https://api.cohere.com/v2/chat', {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
       body: JSON.stringify({
         model,
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content }],
         temperature: 0.2,
         max_tokens: opts.maxTokens || 400,
         response_format: opts.json ? { type: 'json_object' } : undefined,
@@ -240,11 +246,25 @@ export function availableProviders() {
 // fallback — never a paid call beyond its cap, never a hard fail).
 const usage = loadUsage();
 let flushCounter = 0;
+// Transient-429 COOLDOWN: a 429 is often a per-minute (TPM) blip, not the daily
+// cap. Benching a provider for the whole run on one blip needlessly degrades the
+// (free, fast) fallback pool — especially our primary. So a 429 parks the provider
+// for a SHORT window and it's retried after; only a genuine daily-cap hit (below)
+// bans it for the run. Keyed by provider name → epoch-ms it becomes usable again.
+const COOLDOWN_MS = Number(process.env.PROVIDER_COOLDOWN_MS || 90000);
+const cooldownUntil = {};
 export async function generate(prompt, opts = {}) {
+  // DATE ROLLOVER: usage was loaded at import; if this (rare, but a Hindi hourly
+  // run could) crosses midnight UTC, reset the day's counts so caps aren't locked
+  // to the process's start date.
+  const day = today();
+  if (usage.date !== day) { usage.date = day; usage.counts = {}; }
+  const nowMs = Date.now();
   for (const name of availableProviders()) {
     const entry = REGISTRY[name];
     const used = usage.counts[name] || 0;
     if (used >= entry.cap) continue; // cap hit — the $0/spend guardrail
+    if (cooldownUntil[name] && nowMs < cooldownUntil[name]) continue; // transient 429 — skip, retry later
     try {
       const text = await entry.adapter(prompt, opts);
       if (text != null) {
@@ -252,9 +272,13 @@ export async function generate(prompt, opts = {}) {
         if (++flushCounter % 5 === 0) saveUsage(usage);
         return { text, provider: name };
       }
+      // adapter returned null on a non-OK response (bad key / 5xx / empty) — this is
+      // silent by design elsewhere, but a PAID or PRIMARY provider failing quietly
+      // hides real problems (e.g. a rolled OpenAI key → we lean on Ollama unnoticed).
+      console.warn(`[providers] ${name} returned no text (bad key / non-OK / empty response) — falling through`);
     } catch (e) {
-      if (e?.rateLimited) { usage.counts[name] = entry.cap; continue; } // exhausted this run
-      // network/other error → next provider
+      if (e?.rateLimited) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; console.warn(`[providers] ${name} rate-limited (429) — cooling down ${Math.round(COOLDOWN_MS / 1000)}s`); continue; }
+      console.warn(`[providers] ${name} error: ${e?.message || e} — trying next provider`);
     }
   }
   saveUsage(usage);
