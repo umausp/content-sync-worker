@@ -26,6 +26,9 @@ const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const STORIES_URL = process.env.STORIES_URL || INGEST_URL.replace(/\/ingest$/, '/stories');
 const PUBLISH_MIN_IMPORTANCE = Number(process.env.PUBLISH_MIN_IMPORTANCE || 4);
 const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION || 2);
+// A single-source story this important publishes even at corr=1 (GDELT primary
+// may surface a major event from one outlet first). Set to 6 to disable.
+const PUBLISH_SOLO_IMPORTANCE = Number(process.env.PUBLISH_SOLO_IMPORTANCE || 5);
 const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
 // Fact-verifier is OFF by default: it DOUBLES the LLM calls (a 2nd pass per
 // publishing story) and the algorithmic fact-shape gate already catches invented
@@ -89,9 +92,15 @@ async function main() {
 
     // Layer D — SELECTIVE PUBLISH BAR (cheap, runs BEFORE the expensive verifier
     // so we only fact-check items that will actually publish). Updates to a live
-    // thread bypass the bar (developments are always welcome); a NEW story must
-    // clear importance + corroboration.
-    if (!match && (c.importance < PUBLISH_MIN_IMPORTANCE || c.corr < PUBLISH_MIN_CORROBORATION)) {
+    // thread bypass the bar. A NEW story must clear importance AND corroboration —
+    // EXCEPT a very-high-importance single-source story (corr=1) still publishes
+    // (PUBLISH_SOLO_IMPORTANCE): with GDELT primary, a major event may surface from
+    // one outlet first, and we don't want to suppress a genuine 5/5 story just
+    // because only one source has it yet. Ordinary stories still need corroboration.
+    const meetsImportance = c.importance >= PUBLISH_MIN_IMPORTANCE;
+    const meetsCorroboration = c.corr >= PUBLISH_MIN_CORROBORATION;
+    const soloException = c.importance >= PUBLISH_SOLO_IMPORTANCE; // top-tier single-source
+    if (!match && (!meetsImportance || (!meetsCorroboration && !soloException))) {
       heldBar++; bump(reasons, 'below_publish_bar');
       console.log(`  ▽ hold [imp${c.importance}<${PUBLISH_MIN_IMPORTANCE} | corr${c.corr}<${PUBLISH_MIN_CORROBORATION}] ${c.title.slice(0, 42)}`);
       continue;

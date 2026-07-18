@@ -260,35 +260,58 @@ async function synthBatch(articles) {
 // (SYNTH_MIN_SCORE) so a busy news hour can yield 50-100, a quiet one fewer.
 export async function buildCandidates() {
   const now = Date.now();
-  const lists = await Promise.all(FEEDS.map(fetchFeed));
-  const raw = lists.flat();
-  console.log(`fetched ${raw.length} from ${FEEDS.length} feeds`);
+  const raw = [];
+  const glog = (event, data = {}) => console.log(`  [${event}] ${JSON.stringify(data)}`);
 
-  // GDELT — an EXTRA independent source (thousands of publishers via the global
-  // firehose). Its articles enter the SAME pool, so a GDELT outlet covering an
-  // event an RSS outlet also ran raises that cluster's corroboration (the whole
-  // point: more independent sources = better importance signal). Flag-gated,
-  // best-effort: any failure returns [] and the pipeline runs on RSS alone.
-  // Runs in parallel-ish (after RSS, before clustering); its own retry/backoff
-  // is internal. See src/gdelt/.
+  // SOURCE ORDER: GDELT PRIMARY, RSS FALLBACK (per product decision). GDELT is the
+  // global firehose (thousands of publishers → widest coverage + real corroboration
+  // across many outlets). We fetch it first; RSS then FILLS to a target pool size
+  // so a quiet/failed GDELT run still yields a full feed. Both land in ONE pool and
+  // compete on freshness/corroboration/quality — a GDELT-only event with ≥2
+  // distinct outlets clears the publish bar on its own (that's the fix for
+  // "GDELT stories never publish").
+  const POOL_TARGET = Number(process.env.POOL_TARGET || 600);
+  let gdeltCount = 0;
   if (process.env.GDELT_ENABLED === '1') {
-    const glog = (event, data = {}) => console.log(`  [${event}] ${JSON.stringify(data)}`);
     try {
-      const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 100) });
-      if (gdelt.length > 0) {
-        raw.push(...gdelt);
-        console.log(`+ gdelt: ${gdelt.length} articles (pool now ${raw.length})`);
-      }
+      const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 150) });
+      raw.push(...gdelt);
+      gdeltCount = gdelt.length;
+      console.log(`gdelt (primary): ${gdelt.length} articles`);
     } catch (e) {
-      console.log(`  gdelt skipped: ${e.message}`);
+      console.log(`  gdelt failed: ${e.message}`);
     }
   }
 
-  // Cluster same-event; corroboration = distinct outlets.
+  // RSS — fallback/backfill. Always fetched (cheap, parallel, clean titles+images
+  // +categories GDELT lacks), but conceptually the secondary source now. If GDELT
+  // already filled the pool we still merge RSS (its clean category/image data and
+  // curated-desk quality strengthen clusters), but GDELT-thin runs lean on it.
+  const lists = await Promise.all(FEEDS.map(fetchFeed));
+  const rss = lists.flat();
+  raw.push(...rss);
+  console.log(`rss (fallback): ${rss.length} from ${FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
+  if (POOL_TARGET && raw.length < POOL_TARGET / 4 && gdeltCount === 0) {
+    console.log(`  note: thin pool (${raw.length}) — GDELT unavailable this run, RSS-only`);
+  }
+
+  // Cluster same-event; corroboration = distinct outlets. When two sources cover
+  // one event, pick the BETTER representative: a real genre (not GDELT's default
+  // 'top') + an image + higher source rank. So a GDELT event that an RSS desk also
+  // ran shows the clean RSS card, while GDELT still counts toward corroboration;
+  // a GDELT-ONLY event keeps its (og-enriched) GDELT rep.
+  const repScore = (a) => (RANK[a.sourceName] || 2) + (a.category && a.category !== 'top' ? 3 : 0) + (a.imageUrl ? 1 : 0) + (a.enriched ? 1 : 0);
   const clusters = [];
   for (const a of raw) {
     let joined = false;
-    for (const c of clusters) if (isSameStory(a.title, c.rep.title)) { c.sources.add(a.sourceName); if ((RANK[a.sourceName] || 2) > (RANK[c.rep.sourceName] || 2) && a.imageUrl) c.rep = a; joined = true; break; }
+    for (const c of clusters) {
+      if (isSameStory(a.title, c.rep.title)) {
+        c.sources.add(a.sourceName);
+        if (repScore(a) > repScore(c.rep)) c.rep = a;
+        joined = true;
+        break;
+      }
+    }
     if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]) });
   }
   const scored = clusters

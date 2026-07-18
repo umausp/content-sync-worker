@@ -22,7 +22,7 @@ permissions:
 
 env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
-  STORIES_URL: https://api.agyata.com/news/stories
+  STORIES_URL: ${{ secrets.STORIES_URL }}
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
   # qwen2.5:3b — the quality/speed sweet spot. VERIFIED: writes full 2-4 sentence
   # bodies that pass the language gate (1.5b under-wrote → 29/48 rejected for
@@ -51,6 +51,7 @@ env:
   GDELT_QUERY: 'sourcecountry:IN sourcelang:english'
   GDELT_MAX: '100'
   GDELT_TIMESPAN: '1h'
+  GDELT_ENRICH: '1' # fetch real og:title+desc for GKG-sourced articles
 
 jobs:
   run:

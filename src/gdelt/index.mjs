@@ -11,6 +11,7 @@
 
 import { fetchDocArtList } from './doc.mjs';
 import { fetchGkg } from './gkg.mjs';
+import { enrichArticles } from './ogfetch.mjs';
 
 export async function fetchGdelt(opts = {}) {
   const log = opts.log || (() => {});
@@ -39,7 +40,7 @@ export async function fetchGdelt(opts = {}) {
 
   // Dedup by normalised URL (both surfaces can carry the same link).
   const seen = new Set();
-  const deduped = [];
+  let deduped = [];
   for (const a of articles) {
     const key = normalizeUrl(a.url);
     if (seen.has(key)) continue;
@@ -47,7 +48,15 @@ export async function fetchGdelt(opts = {}) {
     deduped.push(a);
   }
 
-  log('gdelt.done', { source, articles: deduped.length, ms: Date.now() - t0 });
+  // ENRICH: fetch each article's real og:title + og:description + og:image. The
+  // DOC path already has clean titles (skip enrichment there — save the fetches);
+  // the GKG path has only slug titles + no snippet, so enrich those for quality.
+  // Best-effort: 403/timeout keeps the slug title. Off with GDELT_ENRICH=0.
+  if (process.env.GDELT_ENRICH !== '0' && source === 'gkg' && deduped.length > 0) {
+    deduped = await enrichArticles(deduped, { concurrency: Number(process.env.GDELT_ENRICH_CONCURRENCY || 8), log });
+  }
+
+  log('gdelt.done', { source, articles: deduped.length, enriched: deduped.filter((a) => a.enriched).length, ms: Date.now() - t0 });
   return deduped;
 }
 
