@@ -10,11 +10,14 @@ name: news-pipeline
 # logs, so a hang is localized to one step instead of a 30-min black box.
 on:
   schedule:
-    - cron: '*/15 * * * *' # every 15 min (UTC) — hosted inference is fast, so run more often for fresher news
+    # HOURLY — the heavy RSS(73 feeds)+GDELT pipeline. The fast-moving TRENDING feed
+    # is handled by the separate buzz cron (buzz.yml, every 30 min), so this can run
+    # at a calmer cadence for the deep/corroborated national news. (Was */15.)
+    - cron: '5 * * * *' # hourly at :05
   workflow_dispatch:
     inputs:
       source_mode:
-        description: 'Source: gdelt | rss | both | auto (alternate by clock)'
+        description: 'Source: gdelt | rss | both | buzz | auto (alternate by clock)'
         default: 'auto'
 
 concurrency:

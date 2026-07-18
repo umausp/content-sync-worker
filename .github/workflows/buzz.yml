@@ -1,0 +1,128 @@
+name: news-buzz
+
+# TRENDING BUZZ cron — the FAST engagement feed. Every 30 min it asks Google Trends
+# "what is India searching RIGHT NOW", explores per-category trend probes
+# (entertainment/sports/tech/business/politics/world), fetches the freshest Google
+# News articles for each, and runs them through the SAME synth→gate→publish path as
+# the main pipeline (SOURCE_MODE=buzz skips RSS+GDELT entirely, so it's quick).
+#
+# Split rationale (user): the heavy RSS+GDELT pipeline (pipeline.yml) runs HOURLY for
+# deep/corroborated national news; THIS runs every 30 min to keep users engaged with
+# the latest buzzing things — the two are independent crons with separate concurrency.
+# schedule + manual only — never on pull_request (fork PRs must not read secrets).
+on:
+  schedule:
+    - cron: '*/30 * * * *' # every 30 min
+  workflow_dispatch: {}
+
+concurrency:
+  group: news-buzz
+  cancel-in-progress: false # never kill mid-publish; idempotent (dedup vs already-published) → overlap safe
+
+permissions:
+  contents: read
+
+env:
+  SOURCE_MODE: buzz # ← the switch: ONLY the Google Trends→News buzz engine (no RSS/GDELT)
+  INGEST_URL: ${{ secrets.INGEST_URL }}
+  STORIES_URL: ${{ secrets.STORIES_URL }}
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  # Same free-first provider ladder + strict fail-fast router as the main pipeline.
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: qwen2.5:3b
+  # BUZZ engine config — trending terms + per-category probes.
+  BUZZ_GEO: 'IN'
+  BUZZ_HL: 'en-IN'
+  BUZZ_MAX_TERMS: '12' # top-N Google-Trends terms
+  BUZZ_PER_TERM: '5' # articles per term/probe
+  BUZZ_CATEGORIES: '1' # per-category trend probes (keeps every desk fresh)
+  # SYNTH — the buzz pool is small (~60-80 articles), so synth all of it.
+  SYNTH_MIN_SCORE: '5'
+  SYNTH_HARD_MAX: '40'
+  SYNTH_HOSTED_MAX: '80'
+  SYNTH_MIN_IMPORTANCE: '2' # trending items are inherently interesting; lower the synth bar
+  SYNTH_BATCH: '8'
+  SYNTH_TIMEOUT_MS: '150000'
+  SYNTH_BUDGET_MS: '900000' # 15-min budget (buzz is smaller than the main pipeline)
+  MIN_IMPORTANCE: '2'
+  # PUBLISH — a trending item is engagement-worthy even single-source, so the bar is
+  # looser than the corroboration-heavy national pipeline. Trending = the signal.
+  PUBLISH_MIN_SCORE: '6'
+  PUBLISH_MIN_IMPORTANCE: '2'
+  PUBLISH_MIN_CORROBORATION: '1' # Trends already proved it's buzzing; don't require a 2nd outlet
+  PUBLISH_SOLO_IMPORTANCE: '3'
+  MAX_AGE_H: '24' # buzz must be FRESH
+  VERIFY_FAITHFUL: '1'
+  VERIFY_BUDGET_MS: '180000'
+  # Semantic dedup (reuses the loaded embedding model) — collapse the same trend's
+  # reworded coverage into one card + accurate multi-source attribution.
+  EMBED_DEDUP: '1'
+  EMBED_MODEL: 'Xenova/bge-base-en-v1.5'
+  EMBED_SIM_THRESHOLD: '0.80'
+  EMBED_VERIFY: '1'
+  EMBED_VERIFY_MIN: '0.4'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm deps (transformers.js for semantic dedup)
+        run: npm install --no-audit --no-fund
+
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-embed-${{ env.EMBED_MODEL || 'bge-base-en-v1.5' }}-v1
+
+      - name: Install Ollama
+        timeout-minutes: 3
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL }}-v2
+
+      - name: Start Ollama + pull model
+        timeout-minutes: 8
+        run: |
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "$OLLAMA_MODEL"
+
+      - name: Warm Ollama (best-effort, NON-fatal)
+        timeout-minutes: 4
+        continue-on-error: true
+        run: |
+          curl -sf http://127.0.0.1:11434/api/generate \
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}" >/dev/null || true
+          echo "ollama warm attempted (hosted providers carry the run)"
+
+      - name: Run BUZZ pipeline (trending → news → synth → gate → publish)
+        timeout-minutes: 18
+        run: node src/review.mjs

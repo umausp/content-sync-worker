@@ -448,9 +448,13 @@ export async function buildCandidates() {
   // 'rss') so the published-by-source log makes the comparison explicit.
   const POOL_TARGET = Number(process.env.POOL_TARGET || 600);
   const SOURCE_MODE = (process.env.SOURCE_MODE || 'both').toLowerCase();
-  const useGdelt = process.env.GDELT_ENABLED === '1' && SOURCE_MODE !== 'rss';
-  const useRss = SOURCE_MODE !== 'gdelt';
-  console.log(`[${EDITION}] SOURCE_MODE=${SOURCE_MODE} (gdelt=${useGdelt} rss=${useRss})`);
+  // SOURCE_MODE='buzz' → ONLY the trending buzz engine (the fast 30-min engagement
+  // cron); it skips RSS+GDELT entirely so it's quick + purely trend-driven. Other
+  // modes ('both'/'rss'/'gdelt') run the heavy hourly pipeline as before.
+  const buzzOnly = SOURCE_MODE === 'buzz';
+  const useGdelt = !buzzOnly && process.env.GDELT_ENABLED === '1' && SOURCE_MODE !== 'rss';
+  const useRss = !buzzOnly && SOURCE_MODE !== 'gdelt';
+  console.log(`[${EDITION}] SOURCE_MODE=${SOURCE_MODE} (gdelt=${useGdelt} rss=${useRss} buzzOnly=${buzzOnly})`);
 
   let gdeltCount = 0;
   if (useGdelt) {
@@ -481,7 +485,7 @@ export async function buildCandidates() {
   // News gives us the fresh article. Tagged via='buzz'; merges into the same pool.
   // Off by default (BUZZ_ENABLED=1). National only (Trends geo=IN, English News).
   let buzzCount = 0;
-  if (process.env.BUZZ_ENABLED === '1' && !IS_LOCAL) {
+  if ((buzzOnly || process.env.BUZZ_ENABLED === '1') && !IS_LOCAL) {
     try {
       const buzz = await fetchBuzz({ log: glog });
       raw.push(...buzz);

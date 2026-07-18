@@ -103,8 +103,23 @@ async function fetchNewsForTerm(term, opts) {
   return out;
 }
 
-// Fetch the buzzing news: trending terms (+ any always-on queries) → News search →
-// merged, deduped-by-URL Article[]. Best-effort throughout ([] on total failure).
+// Per-CATEGORY trend probes. Google News has topic RSS feeds + we add category
+// "what's trending" search queries, so the buzz cron surfaces the hot item in EACH
+// desk (not just whatever's #1 overall) → a balanced, always-fresh feed across
+// entertainment/sports/tech/business/etc. Each maps to a category tag so the app's
+// sections stay populated. Tunable via BUZZ_CATEGORIES (comma of key:query pairs).
+const DEFAULT_CATEGORY_PROBES = [
+  { category: 'entertainment', q: 'trending movie OR OTT OR web series OR trailer India' },
+  { category: 'sports', q: 'trending cricket OR football OR match India today' },
+  { category: 'tech', q: 'trending AI OR gadget OR smartphone OR app launch' },
+  { category: 'business', q: 'trending stock OR IPO OR company OR economy India' },
+  { category: 'politics', q: 'trending India politics OR election OR government today' },
+  { category: 'world', q: 'trending world news today' },
+];
+
+// Fetch the buzzing news: (1) Google Trends "searched right now" terms, (2) per-
+// category trend probes, (3) any always-on queries → Google News → merged, deduped
+// Article[]. Best-effort throughout ([] on total failure).
 export async function fetchBuzz(opts = {}) {
   const log = opts.log || (() => {});
   const o = {
@@ -115,10 +130,16 @@ export async function fetchBuzz(opts = {}) {
   };
   const maxTerms = Number(process.env.BUZZ_MAX_TERMS || 10);
   const extra = (process.env.BUZZ_EXTRA_QUERIES || '').split(',').map((s) => s.trim()).filter(Boolean);
+  const withCategories = process.env.BUZZ_CATEGORIES !== '0'; // per-category probes (on by default)
   const t0 = Date.now();
 
   const trending = await fetchTrendingTerms(o);
-  const terms = [...new Set([...trending.slice(0, maxTerms), ...extra])];
+  // Trending terms + always-on extras carry no category (→ 'top'); category probes
+  // carry their desk. We track term→category so the article inherits it.
+  const termCat = new Map();
+  for (const t of [...trending.slice(0, maxTerms), ...extra]) termCat.set(t, null);
+  if (withCategories) for (const p of DEFAULT_CATEGORY_PROBES) if (!termCat.has(p.q)) termCat.set(p.q, p.category);
+  const terms = [...termCat.keys()];
   if (terms.length === 0) { log('buzz.no_terms', {}); return []; }
 
   // Fan out over terms (concurrency-capped), flatten, dedup by normalised URL.
@@ -128,7 +149,12 @@ export async function fetchBuzz(opts = {}) {
   async function worker() {
     while (idx < terms.length) {
       const term = terms[idx++];
-      try { results.push(...(await fetchNewsForTerm(term, o))); } catch { /* skip a bad term */ }
+      const cat = termCat.get(term); // category-probe desk, or null for generic trends
+      try {
+        const arts = await fetchNewsForTerm(term, o);
+        if (cat) for (const a of arts) a.category = cat; // stamp the probe's desk
+        results.push(...arts);
+      } catch { /* skip a bad term */ }
     }
   }
   await Promise.all(Array.from({ length: Math.min(CONC, terms.length) }, worker));
