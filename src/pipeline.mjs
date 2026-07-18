@@ -24,7 +24,7 @@ import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
-import { generate, availableProviders, usageSummary, flushUsage } from './providers.mjs';
+import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
 import { triage, filterLiveUrls } from './triage.mjs';
 
 // ── EDITION ─────────────────────────────────────────────────────────────────
@@ -723,6 +723,19 @@ export async function buildCandidates() {
 
   flushUsage();
   console.log('provider usage:', JSON.stringify(usageSummary().counts));
+  // Per-run provider FAILURE report — which providers failed once (fail-fast) and
+  // why. 'permanent' = bad key/model/billing (candidate to REMOVE); 'rate_limited'
+  // = key works, just throttled (KEEP); 'error' = timeout/5xx (flaky). Empty = all
+  // configured providers worked. This is the definitive "which keys aren't working".
+  const failures = providerFailures();
+  if (failures.length) {
+    console.log('provider failures (fail-fast, no retry):');
+    for (const f of failures) console.log(`  ✗ ${f.name} [${f.kind}] ${f.reason}`);
+    const remove = failures.filter((f) => f.kind === 'permanent').map((f) => f.name);
+    if (remove.length) console.log(`  → REMOVE candidates (bad key/model/billing): ${remove.join(', ')}`);
+  } else {
+    console.log('provider failures: none (all configured providers responded)');
+  }
   return candidates;
 }
 

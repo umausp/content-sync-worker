@@ -332,32 +332,24 @@ export function availableProviders() {
 // fallback — never a paid call beyond its cap, never a hard fail).
 const usage = loadUsage();
 let flushCounter = 0;
-// COOLDOWN: park a provider for a SHORT window instead of banning it for the run.
-// Triggered by (a) a 429 (often a per-minute TPM blip, not the daily cap) and
-// (b) the CIRCUIT BREAKER below. Keyed by name → epoch-ms it's usable again.
-const COOLDOWN_MS = Number(process.env.PROVIDER_COOLDOWN_MS || 90000);
 // PER-ATTEMPT timeout for a HOSTED provider. Healthy hosted inference answers in a
-// few seconds; if it hasn't in HOSTED_ATTEMPT_MS it's effectively down for THIS
-// call, so we fall through rather than burn the caller's whole (up to 150s synth)
-// budget on one hung endpoint. Ollama is legitimately slow (local CPU) → it alone
-// keeps the caller's full timeout.
+// few seconds; if it hasn't in HOSTED_ATTEMPT_MS it's down for this run (we bench
+// it below), so one hung endpoint can't eat the caller's whole (up to 150s synth)
+// budget. Ollama is legitimately slow (local CPU) → it alone keeps the full timeout.
 const HOSTED_ATTEMPT_MS = Number(process.env.PROVIDER_HOSTED_TIMEOUT_MS || 30000);
-// CIRCUIT BREAKER: after this many CONSECUTIVE failures (bad key / timeout / 5xx —
-// NOT a 429, which has its own cooldown) a hosted provider is benched for
-// COOLDOWN_MS. This is what makes the router DECIDE FAST to stop re-trying a dead
-// provider (e.g. a bad CEREBRAS key) as the wasteful first hop on every one of the
-// run's ~90 calls, and fall straight through to a working one (incl. Ollama).
-const FAIL_THRESHOLD = Number(process.env.PROVIDER_FAIL_THRESHOLD || 2);
-const cooldownUntil = {};
-const consecFails = {};
-const disabled = new Set(); // providers dead for the WHOLE run (permanent 401/402/403/404)
-// Bench a provider after repeated non-429 failures so a dead provider stops being
-// re-tried every call. Ollama is never benched — it's the last resort.
-function tripBreaker(name, why) {
-  consecFails[name] = (consecFails[name] || 0) + 1;
-  const open = name !== 'ollama' && consecFails[name] >= FAIL_THRESHOLD;
-  if (open) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; consecFails[name] = 0; }
-  console.warn(`[providers] ${name} ${why}${open ? ` — circuit OPEN, benched ${Math.round(COOLDOWN_MS / 1000)}s` : ' — falling through'}`);
+// STRICT FAIL-FAST (user: "check once; if it fails move to next and NEVER retry"):
+// each provider gets ONE attempt per run. On ANY failure — 429, permanent
+// (401/402/403/404), timeout, 5xx, empty — it's BENCHED for the whole run and
+// never tried again. No cooldown, no circuit-counter, no retry loop (that loop
+// spun 18 min on OpenRouter's constant :free 429s → run timed out + cancelled).
+// benched: name → { reason, kind } so the run can PRINT exactly which providers
+// failed and why (the user's "which keys to remove" list). Ollama is NEVER benched
+// — it's the local last resort and must always be reachable.
+const benched = new Map();
+function bench(name, kind, reason) {
+  if (name === 'ollama') { console.warn(`[providers] ollama ${reason} — last resort, will retry`); return; }
+  benched.set(name, { kind, reason });
+  console.warn(`[providers] ${name} ${reason} — benched for this run (${kind}, no retry)`);
 }
 export async function generate(prompt, opts = {}) {
   // DATE ROLLOVER: usage was loaded at import; if this (rare, but a Hindi hourly
@@ -366,36 +358,38 @@ export async function generate(prompt, opts = {}) {
   const day = today();
   if (usage.date !== day) { usage.date = day; usage.counts = {}; }
   for (const name of availableProviders()) {
-    if (disabled.has(name)) continue; // permanently dead this run — skip instantly
+    if (benched.has(name)) continue; // already failed once this run — skip instantly, never retry
     const entry = REGISTRY[name];
     const used = usage.counts[name] || 0;
     if (used >= entry.cap) continue; // cap hit — the $0/spend guardrail
-    if (cooldownUntil[name] && Date.now() < cooldownUntil[name]) continue; // cooling down (429 or circuit) — skip
     // Cap a hosted attempt so one hung endpoint can't eat the whole synth budget.
     const attemptMs = name === 'ollama' ? (opts.timeoutMs || 150000) : Math.min(opts.timeoutMs || HOSTED_ATTEMPT_MS, HOSTED_ATTEMPT_MS);
     try {
       const text = await entry.adapter(prompt, { ...opts, timeoutMs: attemptMs });
       if (text != null) {
         usage.counts[name] = used + 1;
-        consecFails[name] = 0; // healthy again → reset the breaker
         if (++flushCounter % 5 === 0) saveUsage(usage);
         return { text, provider: name };
       }
-      // null = non-OK / empty (bad key, 5xx). Count toward the circuit breaker so a
-      // dead provider (e.g. a rolled key silently rolling us toward PAID OpenAI) is
-      // benched fast + visibly, not retried as the first hop every call.
-      tripBreaker(name, 'returned no text (bad key / non-OK / empty)');
+      bench(name, 'empty', 'returned no text (non-OK / empty response)');
     } catch (e) {
-      // PERMANENT failure (401/402/403/404) → disable for the WHOLE run and move on.
-      // Retrying a 'payment required' / 'bad key' every 90s just wastes calls (the
-      // cerebras 402 spam). Fail fast → straight to the next provider → Ollama.
-      if (e?.permanent) { disabled.add(name); console.warn(`[providers] ${name} ${e.message} — PERMANENT, disabled for this run`); continue; }
-      if (e?.rateLimited) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; consecFails[name] = 0; console.warn(`[providers] ${name} rate-limited (429) — cooling down ${Math.round(COOLDOWN_MS / 1000)}s`); continue; }
-      tripBreaker(name, `error: ${e?.message || e}`); // timeout / network / 5xx
+      // Categorise so the end-of-run report tells the user which keys are actually
+      // BAD (permanent) vs merely RATE-LIMITED (key is fine, just throttled) — the
+      // two need different actions (remove the key vs keep it).
+      if (e?.permanent) bench(name, 'permanent', e.message);            // 401/402/403/404 — bad key/model/billing
+      else if (e?.rateLimited) bench(name, 'rate_limited', 'http 429'); // key WORKS, just throttled this run
+      else bench(name, 'error', e?.message || String(e));              // timeout / network / 5xx
     }
   }
   saveUsage(usage);
   return { text: null, provider: null };
+}
+
+// The per-run provider FAILURE report (user's "which keys aren't working" list).
+// kind: 'permanent' = bad key/model/billing (REMOVE candidate); 'rate_limited' =
+// key works but throttled (KEEP); 'error' = timeout/5xx (flaky, watch); 'empty'.
+export function providerFailures() {
+  return [...benched.entries()].map(([name, v]) => ({ name, ...v }));
 }
 
 export function usageSummary() {
