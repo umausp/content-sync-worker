@@ -149,6 +149,19 @@ function cleanForSynth(a) {
   if (looksSlug(snippet)) snippet = humanize(snippet) || title;
   return { ...a, title, snippet };
 }
+
+// Build a MULTI-SOURCE context block: the rep's title/snippet + up to 2 OTHER
+// outlets' snippets on the same event. Feeding several source reports lets the
+// model write a genuinely multi-source, attributed body (quality-review fix #2)
+// instead of paraphrasing one lone 400-char snippet.
+function sourceBlock(a) {
+  const members = Array.isArray(a._members) ? a._members : [];
+  const extra = members
+    .filter((m) => m.sourceName !== a.sourceName && (m.snippet || '').trim().length > 20)
+    .slice(0, 2)
+    .map((m) => { const c = cleanForSynth(m); return `- ${sanitizeForPrompt(m.sourceName)}: ${sanitizeForPrompt(c.snippet).slice(0, 300)}`; });
+  return extra.length ? `\nOTHER SOURCES on the same event:\n${extra.join('\n')}` : '';
+}
 function inlineImage(b) { for (const re of [/<media:content[^>]+url=["']([^"']+)["']/i, /<media:thumbnail[^>]+url=["']([^"']+)["']/i, /<enclosure[^>]+url=["']([^"']+)["'][^>]*type=["']image/i, /<img[^>]+src=["']([^"']+)["']/i]) { const m = b.match(re); if (m?.[1] && /^https?:\/\//i.test(m[1])) return decode(m[1]); } return null; }
 function domainOf(u) { try { return new URL(u).hostname.replace(/^www\./, '').replace(/^feeds?\./, ''); } catch { return ''; } }
 function outlet(u) { const h = domainOf(u); const map = { 'bbci.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'aljazeera.com': 'Al Jazeera', 'nytimes.com': 'New York Times', 'dw.com': 'DW', 'npr.org': 'NPR', 'cnbc.com': 'CNBC', 'thehindu.com': 'The Hindu', 'indianexpress.com': 'The Indian Express', 'hindustantimes.com': 'Hindustan Times', 'livemint.com': 'Mint', 'moneycontrol.com': 'Moneycontrol', 'news18.com': 'News18', 'economictimes.indiatimes.com': 'Economic Times', 'indiatimes.com': 'Times of India', 'feedburner.com': 'NDTV', 'nasa.gov': 'NASA', 'space.com': 'Space.com', 'bollywoodhungama.com': 'Bollywood Hungama', 'pinkvilla.com': 'Pinkvilla', 'koimoi.com': 'Koimoi', 'indiatoday.in': 'India Today', 'zeenews.india.com': 'Zee News', 'dnaindia.com': 'DNA India', 'business-standard.com': 'Business Standard', 'scroll.in': 'Scroll', ...HINDI_OUTLETS }; for (const [d, n] of Object.entries(map)) if (h.endsWith(d)) return n; const w = h.split('.')[0] || 'source'; return w.charAt(0).toUpperCase() + w.slice(1); }
@@ -241,8 +254,8 @@ async function synth(a) {
     `${CHARTER}\n\n` +
     `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
     `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<one sentence, <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
-    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words from the snippet; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
-    `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}`;
+    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
+    `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}${sourceBlock(a)}`;
   try {
     // Plain JSON mode (NOT schema-grammar `format`): the JSON-schema-constrained
     // `format` uses GBNF grammar decoding which on CPU can stall for MINUTES on a
@@ -295,7 +308,7 @@ function safeJsonArray(text) {
 // the caller can retry those articles individually.
 async function synthBatch(articles) {
   const list = articles
-    .map((raw, i) => { const a = cleanForSynth(raw); return `[${i}] TITLE: ${sanitizeForPrompt(a.title)}\n    OUTLET: ${sanitizeForPrompt(a.sourceName)} | PUBLISHED: ${a.publishedAt ?? 'unknown'}\n    SNIPPET: ${sanitizeForPrompt(a.snippet)}`; })
+    .map((raw, i) => { const a = cleanForSynth(raw); return `[${i}] TITLE: ${sanitizeForPrompt(a.title)}\n    OUTLET: ${sanitizeForPrompt(a.sourceName)} | PUBLISHED: ${a.publishedAt ?? 'unknown'}\n    SNIPPET: ${sanitizeForPrompt(a.snippet)}${sourceBlock(raw).replace(/\n/g, '\n    ')}`; })
     .join('\n\n');
   // NOTE: Ollama's format:'json' forces a JSON OBJECT (an array prompt returns
   // just the first element), so we ask for an OBJECT WRAPPING the array —
@@ -390,12 +403,15 @@ export async function buildCandidates() {
     for (const c of clusters) {
       if (isSameStory(a.title, c.rep.title)) {
         c.sources.add(a.sourceName);
+        // Keep up to 3 DISTINCT-outlet member snippets — synth writes a richer,
+        // genuinely multi-source body from them instead of one lone snippet.
+        if (c.members.length < 3 && !c.members.some((m) => m.sourceName === a.sourceName)) c.members.push(a);
         if (repScore(a) > repScore(c.rep)) c.rep = a;
         joined = true;
         break;
       }
     }
-    if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]) });
+    if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]), members: [a] });
   }
 
   // SECOND PASS — ENTITY clustering. Word-overlap (above) can't tell that
@@ -410,14 +426,16 @@ export async function buildCandidates() {
   for (const g of entGroups) {
     const parts = g.items;
     if (parts.length === 1) { merged.push(parts[0]); continue; }
-    // merge: union all source sets, pick the best rep across the group
+    // merge: union all source sets + member snippets, pick the best rep.
     const sources = new Set();
+    const memberMap = new Map(); // dedup members by outlet across merged parts
     let best = parts[0];
     for (const c of parts) {
       for (const s of c.sources) sources.add(s);
+      for (const m of c.members || [c.rep]) if (!memberMap.has(m.sourceName)) memberMap.set(m.sourceName, m);
       if (repScore(c.rep) > repScore(best.rep)) best = c;
     }
-    merged.push({ rep: best.rep, sources, entityKey: g.key, canonicalEntity: g.canonicalEntity });
+    merged.push({ rep: best.rep, sources, members: [...memberMap.values()].slice(0, 3), entityKey: g.key, canonicalEntity: g.canonicalEntity });
   }
   for (const s of solo) merged.push(s[0]);
   clusters.length = 0;
@@ -425,7 +443,7 @@ export async function buildCandidates() {
   console.log(`entity-merge: ${beforeEntity} → ${clusters.length} clusters (collapsed ${beforeEntity - clusters.length} same-subject dupes)`);
 
   const scored = clusters
-    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity }; })
+    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
   // SCORE-GATE, not a fixed cap: synth everything above SYNTH_MIN_SCORE, bounded
   // by SYNTH_HARD_MAX only to keep runtime sane (still 50-100 on a big hour).
@@ -487,7 +505,7 @@ export async function buildCandidates() {
     }
     const group = eligible.slice(b * SYNTH_BATCH, (b + 1) * SYNTH_BATCH);
     const t0 = Date.now();
-    const results = await synthBatch(group.map((p) => p.a));
+    const results = await synthBatch(group.map((p) => ({ ...p.a, _members: p.members })));
     let parsed = 0; // model produced a usable object (health signal)
     if (results) {
       results.forEach((s, k) => { if (attach(s, group[k])) parsed++; });
@@ -498,7 +516,7 @@ export async function buildCandidates() {
       // top of the loop can't interrupt this inner loop).
       for (const p of group) {
         if (Date.now() - started > SYNTH_BUDGET_MS) { console.log(`  budget spent mid-fallback — stopping`); break; }
-        if (attach(await synth(p.a), p)) parsed++;
+        if (attach(await synth({ ...p.a, _members: p.members }), p)) parsed++;
       }
     }
     attempted++;
