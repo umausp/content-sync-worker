@@ -305,12 +305,21 @@ export async function buildCandidates() {
     return true;
   };
   const nBatches = Math.ceil(eligible.length / SYNTH_BATCH);
-  const overBudget = () => Date.now() - started > SYNTH_BUDGET_MS;
+  // PREDICTIVE budget guard: don't START a batch unless there's room to FINISH one
+  // as slow as the slowest seen so far (+20% headroom). GitHub runner CPUs vary
+  // wildly (batches observed 130s–290s), so a fixed "have we passed the budget?"
+  // check let a batch that starts at 18.7m overshoot to 23m → past the step
+  // timeout → hard FAILURE. This instead stops EARLY on a slow runner and exits
+  // SUCCESSFULLY with fewer (but published) stories. Seeded with a conservative
+  // estimate so the guard is meaningful before we've timed a batch.
+  let maxBatchMs = 180000; // seed ~3m; updated to the real worst-case as we go
   let consecutiveEmpty = 0; // resets on any productive batch
   let attempted = 0;
   for (let b = 0; b < nBatches; b++) {
-    if (overBudget()) {
-      console.log(`synth budget spent (${((Date.now() - started) / 60000).toFixed(1)}m) — stopping at batch ${b}/${nBatches}`);
+    const elapsed = Date.now() - started;
+    const need = maxBatchMs * 1.2;
+    if (elapsed + need > SYNTH_BUDGET_MS) {
+      console.log(`stopping before batch ${b + 1}/${nBatches}: ${(elapsed / 60000).toFixed(1)}m elapsed, need ~${(need / 1000).toFixed(0)}s, budget ${(SYNTH_BUDGET_MS / 60000).toFixed(0)}m — publishing ${synthesized} so far`);
       break;
     }
     const group = eligible.slice(b * SYNTH_BATCH, (b + 1) * SYNTH_BATCH);
@@ -325,11 +334,12 @@ export async function buildCandidates() {
       // in a single iteration and blow the job timeout — the budget check at the
       // top of the loop can't interrupt this inner loop).
       for (const p of group) {
-        if (overBudget()) { console.log(`  budget spent mid-fallback — stopping`); break; }
+        if (Date.now() - started > SYNTH_BUDGET_MS) { console.log(`  budget spent mid-fallback — stopping`); break; }
         if (attach(await synth(p.a), p)) parsed++;
       }
     }
     attempted++;
+    maxBatchMs = Math.max(maxBatchMs, Date.now() - t0); // learn the runner's real worst-case
     consecutiveEmpty = parsed === 0 ? consecutiveEmpty + 1 : 0;
     // FAIL-FAST: 2 CONSECUTIVE batches produced nothing usable → model/prompt is
     // broken; abort loudly rather than burn the whole budget on dead calls. (Was

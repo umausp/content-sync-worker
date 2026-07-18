@@ -37,7 +37,7 @@ env:
   SYNTH_HARD_MAX: '48'
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
-  SYNTH_BUDGET_MS: '1140000' # 19-min budget (job timeout 25; warm start keeps 6 batches ~13-14m)
+  SYNTH_BUDGET_MS: '1200000' # 20-min budget; PREDICTIVE guard won't start a batch it can't finish before this, so on a slow runner it stops early + exits SUCCESS (step timeout 24m, job 25m give headroom for gate+publish)
   MIN_IMPORTANCE: '3'
   PUBLISH_MIN_IMPORTANCE: '4'
   PUBLISH_MIN_CORROBORATION: '2'
@@ -87,5 +87,5 @@ jobs:
           echo "$RESP" | grep -qi '"response"' || { echo "::error::model did not respond — aborting"; exit 1; }
 
       - name: Run pipeline (gather → cluster → synth → gate → publish)
-        timeout-minutes: 20
+        timeout-minutes: 24
         run: node src/review.mjs
