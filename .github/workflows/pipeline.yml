@@ -107,7 +107,9 @@ env:
   # so the threshold can be tuned down with evidence. bge-base-en (CLS) for national.
   EMBED_DEDUP: '1'
   EMBED_MODEL: 'Xenova/bge-base-en-v1.5'
-  EMBED_SIM_THRESHOLD: '0.85' # conservative (a false merge is worse than a missed dupe); lower with audit-log evidence
+  EMBED_SIM_THRESHOLD: '0.80' # stepped 0.85→0.80 (1st live merge was clean); measured — a false merge is worse than a missed dupe; go lower only with more audit-log evidence
+  EMBED_VERIFY: '1' # embedding topic-drift cross-check on the Ollama verifier's sameEvent (downgrade-only, fail-open)
+  EMBED_VERIFY_MIN: '0.4' # synth vs source cosine below this = drifted off the source event
 
 jobs:
   run:

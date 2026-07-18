@@ -689,7 +689,7 @@ export async function buildCandidates() {
     // updates (the fix for "one event → 25 story cards"). Falls back to the
     // model/title hashtag only when there's no clear entity.
     if (p.canonicalEntity) s.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), s.title);
-    candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
+    candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a, members: p.members });
     synthesized++;
     return true;
   };
@@ -772,7 +772,7 @@ export async function buildCandidates() {
       if (!e) continue;
       if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
       if (p.canonicalEntity) e.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), e.title);
-      candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a });
+      candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a, members: p.members });
       ext++;
     }
     console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)${ranked ? `, ${ranked} embedding-ranked (multi-source)` : ''}`);
@@ -861,19 +861,35 @@ const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
 export function toIngestBody(s) {
   const nowMs = Date.now();
   const a = s.article;
+  // ALL cluster members (rep + the other outlets that covered the same event), so
+  // we send the BEST asset from ANY source, not just the rep's. Deduped by outlet.
+  const members = [a, ...(Array.isArray(s.members) ? s.members : [])];
+  const seenSrc = new Set();
+  const allMembers = members.filter((m) => m && m.sourceName && !seenSrc.has(m.sourceName) && seenSrc.add(m.sourceName));
+
   // VIDEO: prefer a video URL extracted from the article (RSS enclosure/YouTube),
   // else scan the article's URL/title/snippet for a YouTube/video link. YouTube is
-  // http-or-https; direct video files must be https (mixed-content safe). The app
-  // renders videoUrl as an embedded player.
+  // http-or-https; direct video files must be https (mixed-content safe).
   const rawVideo = a.videoUrl || videoFromText(a.url, a.title, a.snippet);
   const video = rawVideo && /youtube\.com|youtu\.be/i.test(rawVideo) ? rawVideo : HTTPS(rawVideo);
-  const img = HTTPS(a.imageUrl);
+  // IMAGE — best-of-all-sources: prefer the rep's image, but if it has none, fall
+  // back to the FIRST member (any outlet) that does. A cluster where the top outlet
+  // ran text-only but another had a photo now shows the photo instead of a blank.
+  const img = HTTPS(a.imageUrl) || (allMembers.map((m) => HTTPS(m.imageUrl)).find(Boolean));
+  // ALL SOURCES — every distinct outlet that covered this event (contract accepts
+  // up to 20), so the card can show "Reuters · NDTV · The Hindu" + their icons and
+  // corroboration is visible. Was: only the rep. Rep first, then the rest.
+  const sources = allMembers
+    .filter((m) => m.url && /^https?:\/\//i.test(m.url))
+    .slice(0, 20)
+    .map((m) => ({ name: m.sourceName, url: m.url }));
+  const sourcesOrRep = sources.length ? sources : [{ name: a.sourceName, url: a.url }];
   return {
     hashtag: s.hashtag, title: s.title, summary: s.summary, category: s.category,
     imageUrl: img, videoUrl: video || undefined, publishedAt: a.publishedAt || undefined,
     breakingUntil: s.signal === 'breaking' ? new Date(nowMs + BREAKING_TTL_H * 3.6e6).toISOString() : undefined,
     liveUntil: s.signal === 'live' ? new Date(nowMs + LIVE_TTL_H * 3.6e6).toISOString() : undefined,
-    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: [{ name: a.sourceName, url: a.url }], imageUrl: img, videoUrl: video || undefined, publishedAt: a.publishedAt || undefined },
+    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: sourcesOrRep, imageUrl: img, videoUrl: video || undefined, publishedAt: a.publishedAt || undefined },
   };
 }
 export { CATEGORIES, isSameStory };
