@@ -1,0 +1,43 @@
+name: merge-dedup
+
+# Backlog de-duplication. The main pipeline now prevents NEW duplicates (entity
+# hashtag → same event upserts onto one thread), but older stories predate that
+# fix. This job scans recent published stories, clusters them by entity, and
+# SAFELY merges high-confidence duplicate groups into one thread via /news/merge.
+# CONSERVATIVE by design (merging is destructive): only merges clusters with a
+# SPECIFIC multi-word entity anchor AND a same-event confirmation. Runs a few
+# times a day (not every cycle — the backlog shrinks, not grows).
+on:
+  schedule:
+    - cron: '50 */6 * * *' # every 6 hours at :50
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log the merge plan without changing anything (1/0)'
+        default: '0'
+
+concurrency:
+  group: merge-dedup
+  cancel-in-progress: false # never interrupt a merge mid-write
+
+permissions:
+  contents: read
+
+env:
+  STORIES_URL: ${{ secrets.STORIES_URL }}
+  INGEST_URL: ${{ secrets.INGEST_URL }}
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  MERGE_PAGES: '6'
+  MERGE_DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Merge duplicate story threads
+        run: node src/merge.mjs
