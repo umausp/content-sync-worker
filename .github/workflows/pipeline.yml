@@ -33,7 +33,7 @@ env:
   #    resort. A provider is skipped if its key secret is absent. Models are the
   #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
   # Cloudflare excluded (billable creds in a public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'cerebras,gemini,sambanova,cohere,openai,ollama'
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
   # free, very fast — PRIMARY
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)

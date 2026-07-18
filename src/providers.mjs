@@ -76,7 +76,12 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault, reasoningEffor
       // Surface the STATUS (and a short body) so a misconfig is diagnosable — a
       // silent null on a bad key/model was un-debuggable (the cerebras case).
       const detail = await r.text().catch(() => '');
-      throw new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+      const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+      // 401/402/403/404 are PERMANENT for this run (bad key, billing required,
+      // forbidden, missing model) — retrying every 90s is pointless. Flag it so the
+      // router DISABLES the provider for the whole run and moves on immediately.
+      if ([401, 402, 403, 404].includes(r.status)) err.permanent = true;
+      throw err;
     }
     const j = await r.json();
     return j.choices?.[0]?.message?.content ?? null;
@@ -102,7 +107,12 @@ function geminiAdapter() {
       signal: AbortSignal.timeout(opts.timeoutMs || 30000),
     });
     if (r.status === 429) throw { rateLimited: true };
-    if (!r.ok) return null;
+    if (!r.ok) {
+      const detail = await r.text().catch(() => '');
+      const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+      if ([400, 401, 403, 404].includes(r.status)) err.permanent = true; // bad key/model/request — permanent this run
+      throw err;
+    }
     const j = await r.json();
     return j.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
   };
@@ -149,7 +159,12 @@ function cohereAdapter() {
       signal: AbortSignal.timeout(opts.timeoutMs || 30000),
     });
     if (r.status === 429) throw { rateLimited: true };
-    if (!r.ok) return null;
+    if (!r.ok) {
+      const detail = await r.text().catch(() => '');
+      const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+      if ([400, 401, 403, 404].includes(r.status)) err.permanent = true;
+      throw err;
+    }
     const j = await r.json();
     // Cohere v2: message.content is an array of {type,text}
     return j.message?.content?.map((p) => p.text).join('') ?? null;
@@ -240,7 +255,12 @@ const REGISTRY = {
 // Cloudflare are still in the REGISTRY (usable by setting PROVIDER_ORDER) but are
 // OFF by default — no Groq key, and Cloudflare's billable creds are unwanted in a
 // public repo. Set PROVIDER_ORDER to re-include them.
-const DEFAULT_ORDER = 'cerebras,gemini,sambanova,cohere,openai,ollama';
+// Cerebras is OMITTED by default: on our free account gpt-oss-120b returns 402
+// 'Payment required' (Llama models retired), so it can't run at $0. It stays in the
+// REGISTRY — re-add via PROVIDER_ORDER if billing is ever enabled. (The runtime
+// permanent-failure disable also catches it, but omitting it avoids the wasted
+// first-hop probe each run.)
+const DEFAULT_ORDER = 'gemini,sambanova,cohere,openai,ollama';
 
 // ── usage state (persisted so per-run/day caps are honoured) ─────────────────
 function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }
@@ -279,6 +299,7 @@ const HOSTED_ATTEMPT_MS = Number(process.env.PROVIDER_HOSTED_TIMEOUT_MS || 30000
 const FAIL_THRESHOLD = Number(process.env.PROVIDER_FAIL_THRESHOLD || 2);
 const cooldownUntil = {};
 const consecFails = {};
+const disabled = new Set(); // providers dead for the WHOLE run (permanent 401/402/403/404)
 // Bench a provider after repeated non-429 failures so a dead provider stops being
 // re-tried every call. Ollama is never benched — it's the last resort.
 function tripBreaker(name, why) {
@@ -294,6 +315,7 @@ export async function generate(prompt, opts = {}) {
   const day = today();
   if (usage.date !== day) { usage.date = day; usage.counts = {}; }
   for (const name of availableProviders()) {
+    if (disabled.has(name)) continue; // permanently dead this run — skip instantly
     const entry = REGISTRY[name];
     const used = usage.counts[name] || 0;
     if (used >= entry.cap) continue; // cap hit — the $0/spend guardrail
@@ -313,6 +335,10 @@ export async function generate(prompt, opts = {}) {
       // benched fast + visibly, not retried as the first hop every call.
       tripBreaker(name, 'returned no text (bad key / non-OK / empty)');
     } catch (e) {
+      // PERMANENT failure (401/402/403/404) → disable for the WHOLE run and move on.
+      // Retrying a 'payment required' / 'bad key' every 90s just wastes calls (the
+      // cerebras 402 spam). Fail fast → straight to the next provider → Ollama.
+      if (e?.permanent) { disabled.add(name); console.warn(`[providers] ${name} ${e.message} — PERMANENT, disabled for this run`); continue; }
       if (e?.rateLimited) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; consecFails[name] = 0; console.warn(`[providers] ${name} rate-limited (429) — cooling down ${Math.round(COOLDOWN_MS / 1000)}s`); continue; }
       tripBreaker(name, `error: ${e?.message || e}`); // timeout / network / 5xx
     }
