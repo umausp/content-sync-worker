@@ -35,26 +35,30 @@ function quoted(s) { return (String(s).match(/[""][^""]{6,}[""]|"[^"]{6,}"/g) ||
 // ── Individual gates ────────────────────────────────────────────────────────
 export function gStructure(c) {
   const t = (c.title || '').trim();
-  if (t.length < 12) return 'title_too_short';
+  // These gates reject only STRUCTURALLY BROKEN output (garbage/slug/markup) — NOT
+  // short news. A crisp 2-word headline ("Modi resigns") or a tight body is fine
+  // if it's real prose; quality is judged elsewhere, not by length.
+  if (t.length < 8) return 'title_too_short'; // 12→8: allow short real headlines
   if (BAD_TITLE.test(t)) return 'placeholder_title';
   if (/\|/.test(t)) return 'title_has_pipe';
   if (/(\.\.\.|…)\s*$/.test(t)) return 'title_trailing_ellipsis';
   // RAW SLUG / MARKUP leak guard — a title must read like prose, not a URL slug or
-  // template token. Rejects e.g. "<ss_rajamouli_first_pics_mandakini>": angle
-  // brackets / other markup chars; underscores (slug joiners); and slug-shape
-  // (multi-"word" but NO spaces, or all-lowercase with no capitalised word — a real
-  // headline has spaces + at least one capital or Devanagari char).
+  // template token. Rejects "<ss_rajamouli_first_pics_mandakini>": markup chars,
+  // underscores, or a hyphen/all-lowercase slug shape. (The pipeline now HUMANIZES
+  // slug input before synth + as a safety net, so a genuine quality story is fixed
+  // upstream, not rejected here — this gate only catches what slipped through.)
   if (/[<>{}\[\]|]/.test(t)) return 'title_has_markup';
   if (/_/.test(t)) return 'title_has_underscore';
   const words = t.split(/\s+/).filter(Boolean);
-  if (words.length < 3) return 'title_too_few_words'; // a real headline is a sentence
+  // slug shape = 3+ tokens joined ONLY by hyphens with no spaces, all lowercase
+  if (words.length === 1 && /^[a-z0-9]+(-[a-z0-9]+){2,}$/.test(t)) return 'title_looks_like_slug';
   const hasCap = /[A-Zऀ-ॿ]/.test(t); // a capital OR Devanagari (Hindi has no case)
-  if (!hasCap) return 'title_looks_like_slug'; // all-lowercase ascii = a slug, not a headline
+  if (!hasCap && words.length >= 3) return 'title_looks_like_slug'; // multiword all-lowercase = slug
   if (!CATEGORIES.includes(c.category)) return 'bad_category';
   if (!/^[A-Za-z][\p{L}\p{N}_]{5,59}$/u.test(c.hashtag || '')) return 'bad_hashtag';
   const body = (c.body || '').trim();
-  if (body.length < 80) return 'body_too_short';
-  if ((c.summary || '').trim().length < 25) return 'summary_too_short';
+  if (body.length < 50) return 'body_too_short'; // 80→50: allow crisp short stories
+  if ((c.summary || '').trim().length < 20) return 'summary_too_short'; // 25→20
   if (!c.article?.url || !/^https?:\/\//i.test(c.article.url)) return 'no_source_url';
   return null;
 }
@@ -86,15 +90,16 @@ export function gStaleness(c, nowMs, maxAgeH) {
 }
 export function gLanguage(c) {
   const body = (c.body || '').trim();
-  // Must read as >=2 real sentences, not a fragment or a headline echo. Split on a
-  // sentence-ender — including the Devanagari DANDA (।/॥) used in Hindi — followed
-  // by whitespace or end-of-string. (Without ।, every Hindi body counted as 1
-  // sentence and was falsely rejected.)
+  // A body must be a real, complete sentence — but ONE good sentence is acceptable
+  // for a crisp short story (was >=2, too strict; short quality news is fine). Split
+  // on a sentence-ender incl. the Devanagari DANDA (।/॥). We only reject a body that
+  // isn't even one proper sentence (a bare fragment).
   const sentences = body.split(/[.!?।॥]+(?:\s+|$)/).filter((s) => s.trim().length > 6).length;
-  if (sentences < 2) return 'body_too_few_sentences';
+  const endsProperly = /[.!?।॥]\s*$/.test(body);
+  if (sentences < 1 || (sentences < 2 && !endsProperly)) return 'body_not_a_sentence';
   if (/[.,;:]$/.test(c.title || '')) return 'title_bad_terminal_punct';
-  // Title shouldn't just equal the body's first fragment (lazy model).
-  if (body.toLowerCase().startsWith((c.title || '').toLowerCase().slice(0, 40)) && body.length < 120) return 'body_echoes_title';
+  // Title shouldn't just be echoed as the entire (short) body — a lazy non-summary.
+  if (body.toLowerCase().startsWith((c.title || '').toLowerCase().slice(0, 40)) && body.length < 90) return 'body_echoes_title';
   return null;
 }
 // Fact-shape: the synthesised body must not INVENT numbers or quotes that aren't

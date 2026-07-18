@@ -112,6 +112,43 @@ function sanitizeForPrompt(s) {
     .replace(/"?\bimportance"?\s*:\s*\d/gi, '[redacted]')
     .slice(0, 500);
 }
+
+// A string is SLUG-SHAPED if it looks like a URL slug, not prose: underscores/
+// markup, or 3+ lowercase words joined with no real spaces/capitals. These reach
+// synth from feeds/GKG that only had a slug, and the model then ECHOES the slug
+// as the "title" — the '<ss_rajamouli_first_pics_mandakini>' bug. The FIX is not
+// to reject at the gate but to HUMANIZE the input so the model gets readable text
+// and writes a proper headline from good news.
+function looksSlug(s) {
+  const t = String(s || '').trim();
+  if (/[_<>{}\[\]]/.test(t)) return true;
+  if (/^[a-z0-9]+([-_][a-z0-9]+){2,}$/.test(t)) return true; // hyphen/underscore slug
+  return false;
+}
+// Turn a slug into readable Title Case ("ss_rajamouli_first_pics" → "Ss Rajamouli
+// First Pics"). Strips markup, splits on -/_ , drops pure-id tokens, title-cases.
+function humanize(s) {
+  const words = String(s || '')
+    .replace(/[<>{}\[\]]/g, ' ')
+    .replace(/\.(html?|php|cms|amp|ece)$/i, '')
+    .split(/[\s\-_]+/)
+    .filter((w) => /[a-z]/i.test(w) && w.length > 1 && !/^\d+[a-z]?$/i.test(w));
+  return words.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').slice(0, 140);
+}
+// Clean the article's title/snippet BEFORE synth: if slug-shaped, humanize; if the
+// title is still weak, rebuild from the URL slug. Quality news is preserved, not
+// rejected — the model always gets readable input.
+function cleanForSynth(a) {
+  let title = a.title || '';
+  if (looksSlug(title)) title = humanize(title) || title;
+  // if title is now empty/too short, try the URL's last path segment
+  if (title.replace(/[^a-z0-9]/gi, '').length < 6 && a.url) {
+    try { title = humanize(new URL(a.url).pathname.split('/').filter(Boolean).pop() || '') || title; } catch {}
+  }
+  let snippet = a.snippet || '';
+  if (looksSlug(snippet)) snippet = humanize(snippet) || title;
+  return { ...a, title, snippet };
+}
 function inlineImage(b) { for (const re of [/<media:content[^>]+url=["']([^"']+)["']/i, /<media:thumbnail[^>]+url=["']([^"']+)["']/i, /<enclosure[^>]+url=["']([^"']+)["'][^>]*type=["']image/i, /<img[^>]+src=["']([^"']+)["']/i]) { const m = b.match(re); if (m?.[1] && /^https?:\/\//i.test(m[1])) return decode(m[1]); } return null; }
 function domainOf(u) { try { return new URL(u).hostname.replace(/^www\./, '').replace(/^feeds?\./, ''); } catch { return ''; } }
 function outlet(u) { const h = domainOf(u); const map = { 'bbci.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'aljazeera.com': 'Al Jazeera', 'nytimes.com': 'New York Times', 'dw.com': 'DW', 'npr.org': 'NPR', 'cnbc.com': 'CNBC', 'thehindu.com': 'The Hindu', 'indianexpress.com': 'The Indian Express', 'hindustantimes.com': 'Hindustan Times', 'livemint.com': 'Mint', 'moneycontrol.com': 'Moneycontrol', 'news18.com': 'News18', 'economictimes.indiatimes.com': 'Economic Times', 'indiatimes.com': 'Times of India', 'feedburner.com': 'NDTV', 'nasa.gov': 'NASA', 'space.com': 'Space.com', 'bollywoodhungama.com': 'Bollywood Hungama', 'pinkvilla.com': 'Pinkvilla', 'koimoi.com': 'Koimoi', 'indiatoday.in': 'India Today', 'zeenews.india.com': 'Zee News', 'dnaindia.com': 'DNA India', 'business-standard.com': 'Business Standard', 'scroll.in': 'Scroll', ...HINDI_OUTLETS }; for (const [d, n] of Object.entries(map)) if (h.endsWith(d)) return n; const w = h.split('.')[0] || 'source'; return w.charAt(0).toUpperCase() + w.slice(1); }
@@ -192,6 +229,7 @@ const SYNTH_SCHEMA = {
   required: ['skip', 'hashtag', 'title', 'summary', 'category', 'body', 'importance', 'signal'],
 };
 async function synth(a) {
+  const cleaned = cleanForSynth(a); // humanize slug-shaped title/snippet BEFORE synth
   // Show the EXACT JSON template — small models omit fields (esp. body/summary)
   // if you only describe them. This literal shape is what makes plain-json mode
   // reliable without the (CPU-stalling) schema-grammar format.
@@ -199,8 +237,8 @@ async function synth(a) {
     `${CHARTER}\n\n` +
     `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
     `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<one sentence, <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
-    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words from the snippet; never leave them empty.\n\n` +
-    `ARTICLE:\nTITLE: ${sanitizeForPrompt(a.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(a.snippet)}`;
+    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words from the snippet; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
+    `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}`;
   try {
     // Plain JSON mode (NOT schema-grammar `format`): the JSON-schema-constrained
     // `format` uses GBNF grammar decoding which on CPU can stall for MINUTES on a
@@ -218,7 +256,11 @@ async function synth(a) {
 // Normalize one raw model object → a validated synth record (or null if unusable).
 function normalizeSynth(j, a) {
   if (!j || !j.title) return null;
-  const title = String(j.title).slice(0, 300);
+  // FINAL SAFETY NET: if the model STILL echoed a slug-shaped title (rare, but the
+  // '<ss_rajamouli_first_pics_mandakini>' case), humanize it here rather than let
+  // a QUALITY story get rejected downstream. Fix the title, keep the news.
+  let title = String(j.title).slice(0, 300);
+  if (looksSlug(title)) title = humanize(title) || humanize(a.title) || title;
   return {
     skip: j.skip === true,
     hashtag: resolveHashtag(String(j.hashtag || ''), title),
@@ -249,7 +291,7 @@ function safeJsonArray(text) {
 // the caller can retry those articles individually.
 async function synthBatch(articles) {
   const list = articles
-    .map((a, i) => `[${i}] TITLE: ${sanitizeForPrompt(a.title)}\n    OUTLET: ${sanitizeForPrompt(a.sourceName)} | PUBLISHED: ${a.publishedAt ?? 'unknown'}\n    SNIPPET: ${sanitizeForPrompt(a.snippet)}`)
+    .map((raw, i) => { const a = cleanForSynth(raw); return `[${i}] TITLE: ${sanitizeForPrompt(a.title)}\n    OUTLET: ${sanitizeForPrompt(a.sourceName)} | PUBLISHED: ${a.publishedAt ?? 'unknown'}\n    SNIPPET: ${sanitizeForPrompt(a.snippet)}`; })
     .join('\n\n');
   // NOTE: Ollama's format:'json' forces a JSON OBJECT (an array prompt returns
   // just the first element), so we ask for an OBJECT WRAPPING the array —
@@ -257,7 +299,7 @@ async function synthBatch(articles) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite EACH numbered article below into a news card. Reply with ONLY a JSON object of the form {"stories": [ ... ]}, with one array element per article, in the SAME ORDER, each element having ALL keys:\n` +
-    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<headline <=90 chars>", "summary": "<one sentence <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
+    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<one sentence <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
     `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
     `ARTICLES:\n${list}`;
   try {
