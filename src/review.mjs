@@ -34,10 +34,13 @@ const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION |
 // may surface a major event from one outlet first). Set to 6 to disable.
 const PUBLISH_SOLO_IMPORTANCE = Number(process.env.PUBLISH_SOLO_IMPORTANCE || 5);
 const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
-// Fact-verifier is OFF by default: it DOUBLES the LLM calls (a 2nd pass per
-// publishing story) and the algorithmic fact-shape gate already catches invented
-// numbers/quotes. Turn on with VERIFY_FAITHFUL=1 when runtime budget allows.
-const VERIFY = process.env.VERIFY_FAITHFUL === '1';
+// Fact-verifier ON by default but BUDGET-CAPPED (see Layer E): it verifies the
+// highest-scored survivors until VERIFY_BUDGET_MS is spent, then lets the rest
+// publish unverified (still guarded by gFactShape). This gives the anti-
+// hallucination check on the stories that matter most without the timeout risk of
+// verifying all. Set VERIFY_FAITHFUL=0 to disable entirely.
+const VERIFY = process.env.VERIFY_FAITHFUL !== '0';
+const VERIFY_BUDGET_MS = Number(process.env.VERIFY_BUDGET_MS || 4 * 60 * 1000); // ~4 min of verify total
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 async function fetchPublished() {
@@ -89,6 +92,7 @@ async function main() {
   const CAT_CAP_FRACTION = Number(process.env.CAT_CAP_FRACTION || 0.4);
   const CAT_CAP_MIN = Number(process.env.CAT_CAP_MIN || 6); // don't cap tiny runs
   const catCount = {};
+  const verifyStart = Date.now(); // verify budget clock starts at the review loop
 
   for (const c of candidates) {
     // Layer A — algorithmic gates.
@@ -135,10 +139,14 @@ async function main() {
       }
     }
 
-    // Layer E — LLM fact-consistency verifier (anti-hallucination), the EXPENSIVE
-    // gate. Now runs ONLY on the ~15-30 items that cleared everything above, so a
-    // second LLM call per item stays within the runner budget.
-    if (VERIFY) {
+    // Layer E — LLM fact-consistency verifier (anti-hallucination). BUDGET-AWARE:
+    // each verify is a 2nd LLM call (~30-60s on a CPU runner); verifying every
+    // survivor would add ~12min and blow the timeout. So we verify only while
+    // there's time left (VERIFY_BUDGET_MS) — and since candidates are score-sorted,
+    // the HIGHEST-value stories get checked first, lower ones publish unverified
+    // (still guarded by the algorithmic gFactShape). Best-effort quality, no
+    // timeout risk. VERIFY_FAITHFUL=1 to enable; VERIFY_BUDGET_MS caps total spend.
+    if (VERIFY && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
       const v = await verifyFaithful(c);
       if (v && (!v.faithful || !v.sameEvent)) { verifyFail++; bump(reasons, 'verify:' + (!v.faithful ? 'unfaithful' : 'diff_event')); console.log(`  ✗ verify [${v.reason}] ${c.title.slice(0, 42)}`); continue; }
     }
@@ -154,7 +162,7 @@ async function main() {
 
   console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped}`);
   console.log('  published by category:', JSON.stringify(catCount));
-  console.log(`  publish bar: score>=${PUBLISH_MIN_SCORE} AND corroboration>=${PUBLISH_MIN_CORROBORATION} (or scoop: imp>=${PUBLISH_SOLO_IMPORTANCE}); verifier=${VERIFY ? 'on' : 'off'}`);
+  console.log(`  publish bar: score>=${PUBLISH_MIN_SCORE} AND corroboration>=${PUBLISH_MIN_CORROBORATION} (or scoop: imp>=${PUBLISH_SOLO_IMPORTANCE}); verifier=${VERIFY ? `on (budget ${(VERIFY_BUDGET_MS / 60000).toFixed(0)}m)` : 'off'}`);
   console.log('  reject reasons:', JSON.stringify(reasons));
 
   // FAIL LOUD on total failure: if we HAD candidates but published nothing (all

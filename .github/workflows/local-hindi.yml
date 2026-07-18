@@ -30,11 +30,13 @@ env:
   SYNTH_TIMEOUT_MS: '150000'
   SYNTH_BUDGET_MS: '1200000'
   MIN_IMPORTANCE: '3'
+  PUBLISH_MIN_SCORE: '7'
   PUBLISH_MIN_IMPORTANCE: '3' # hyperlocal civic news is valuable at importance 3 (national bar is 4)
   PUBLISH_MIN_CORROBORATION: '1' # local stories often run in ONE regional outlet — corroboration is naturally low; the editorial gates carry quality here
   PUBLISH_SOLO_IMPORTANCE: '4'
   MAX_AGE_H: '48' # local news has a slightly longer useful life
-  VERIFY_FAITHFUL: '0'
+  VERIFY_FAITHFUL: '1' # budget-capped (VERIFY_BUDGET_MS) — verifies top stories only, no timeout risk
+  VERIFY_BUDGET_MS: '240000'
   PER_FEED: '20'
   # GDELT Hindi as the extra source (sourcelang:hindi). Same GKG-first strategy.
   GDELT_ENABLED: '1'
