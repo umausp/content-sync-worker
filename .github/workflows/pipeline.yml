@@ -100,6 +100,15 @@ env:
   GDELT_MAX: '100'
   GDELT_TIMESPAN: '1h'
   GDELT_ENRICH: '1' # fetch real og:title+desc for GKG-sourced articles
+  # BUZZ ENGINE — Google Trends (what India searches NOW) → Google News search. The
+  # fix for "Twitter is buzzing but we don't have it": publisher RSS/GDELT lag the
+  # trend (surface only after an outlet writes); Trends spikes in minutes. $0, no
+  # auth. Merges into the pool tagged via='buzz'. National only (Trends geo=IN).
+  BUZZ_ENABLED: '1'
+  BUZZ_GEO: 'IN'
+  BUZZ_HL: 'en-IN'
+  BUZZ_MAX_TERMS: '10' # top-N trending terms to expand into news searches
+  BUZZ_PER_TERM: '5' # articles per term
   # SEMANTIC DEDUP — a 3rd clustering signal (transformers.js/ONNX embeddings) that
   # catches "same event, different words" dupes the word-overlap+entity passes miss
   # (e.g. "What is Kimi K3" ~ "Moonshot AI unveils Kimi K3"). Fail-open: if the model

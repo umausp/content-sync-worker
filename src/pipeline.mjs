@@ -25,6 +25,7 @@ import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
 import { embedMany, cosine, rankSnippetsByCentrality, SIM_THRESHOLD, EMBED_ENABLED, EMBED_VERIFY_ENABLED, EMBED_EXTRACTIVE_ENABLED, EMBED_MODEL_NAME } from './embed.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
+import { fetchBuzz } from './buzz/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
 import { triage, filterLiveUrls } from './triage.mjs';
 
@@ -473,7 +474,24 @@ export async function buildCandidates() {
     for (const a of rss) if (!a.via) a.via = 'rss';
     raw.push(...rss);
   }
-  console.log(`[${EDITION}] rss: ${rss.length} from ${EDITION_FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
+
+  // BUZZ — Google Trends (what India searches RIGHT NOW) → Google News search. The
+  // fix for lagging social/Twitter buzz: publisher RSS + GDELT only surface a story
+  // after an outlet writes it, so we lag the trend; Trends spikes within minutes and
+  // News gives us the fresh article. Tagged via='buzz'; merges into the same pool.
+  // Off by default (BUZZ_ENABLED=1). National only (Trends geo=IN, English News).
+  let buzzCount = 0;
+  if (process.env.BUZZ_ENABLED === '1' && !IS_LOCAL) {
+    try {
+      const buzz = await fetchBuzz({ log: glog });
+      raw.push(...buzz);
+      buzzCount = buzz.length;
+      console.log(`[${EDITION}] buzz: ${buzz.length} articles from trending terms`);
+    } catch (e) {
+      console.log(`  buzz failed: ${e.message}`);
+    }
+  }
+  console.log(`[${EDITION}] rss: ${rss.length} from ${EDITION_FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length} + buzz ${buzzCount})`);
   if (raw.length === 0) { console.error(`SOURCE_MODE=${SOURCE_MODE} produced 0 articles — check config`); }
 
   // Cluster same-event; corroboration = distinct outlets. When two sources cover
