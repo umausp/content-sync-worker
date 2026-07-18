@@ -21,6 +21,7 @@
 
 import { FEEDS } from './feeds.mjs';
 import { isSameStory } from './dedup.mjs';
+import { fetchGdelt } from './gdelt/index.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36';
 const INGEST_URL = process.env.INGEST_URL || '';
@@ -262,6 +263,26 @@ export async function buildCandidates() {
   const lists = await Promise.all(FEEDS.map(fetchFeed));
   const raw = lists.flat();
   console.log(`fetched ${raw.length} from ${FEEDS.length} feeds`);
+
+  // GDELT — an EXTRA independent source (thousands of publishers via the global
+  // firehose). Its articles enter the SAME pool, so a GDELT outlet covering an
+  // event an RSS outlet also ran raises that cluster's corroboration (the whole
+  // point: more independent sources = better importance signal). Flag-gated,
+  // best-effort: any failure returns [] and the pipeline runs on RSS alone.
+  // Runs in parallel-ish (after RSS, before clustering); its own retry/backoff
+  // is internal. See src/gdelt/.
+  if (process.env.GDELT_ENABLED === '1') {
+    const glog = (event, data = {}) => console.log(`  [${event}] ${JSON.stringify(data)}`);
+    try {
+      const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 100) });
+      if (gdelt.length > 0) {
+        raw.push(...gdelt);
+        console.log(`+ gdelt: ${gdelt.length} articles (pool now ${raw.length})`);
+      }
+    } catch (e) {
+      console.log(`  gdelt skipped: ${e.message}`);
+    }
+  }
 
   // Cluster same-event; corroboration = distinct outlets.
   const clusters = [];

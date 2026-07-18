@@ -44,6 +44,13 @@ env:
   MAX_AGE_H: '36'
   VERIFY_FAITHFUL: '0' # 2nd-pass verifier off by default (doubles LLM calls)
   PER_FEED: '15'
+  # GDELT global firehose as an extra corroboration source (src/gdelt/). DOC API
+  # ArtList primary (real titles+images) → GKG raw-file fallback (unthrottled CDN)
+  # when the API 429s. Best-effort; failure → RSS-only. Enabled on.
+  GDELT_ENABLED: '1'
+  GDELT_QUERY: 'sourcecountry:IN sourcelang:english'
+  GDELT_MAX: '100'
+  GDELT_TIMESPAN: '1h'
 
 jobs:
   run:
