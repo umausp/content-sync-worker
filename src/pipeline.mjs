@@ -20,8 +20,22 @@
 //   PER_FEED          articles per feed (default 15)
 
 import { FEEDS } from './feeds.mjs';
+import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory } from './dedup.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
+
+// ── EDITION ─────────────────────────────────────────────────────────────────
+// One pipeline, two editions. EDITION=local runs the Hindi "Local News" section
+// (Hindi feeds + GDELT Hindi + Hindi synth + category=local); default is the
+// English national feed. This keeps ALL the quality gates + clustering +
+// corroboration identical across both — only the source roster, LLM language,
+// and section tag change.
+const EDITION = (process.env.EDITION || 'national').toLowerCase();
+const IS_LOCAL = EDITION === 'local';
+const EDITION_FEEDS = IS_LOCAL ? FEEDS_HINDI : FEEDS;
+const EDITION_LANG = IS_LOCAL ? 'Hindi' : 'English';
+const EDITION_CATEGORY = IS_LOCAL ? 'local' : null; // local edition forces category=local
+const DEFAULT_GDELT_QUERY = IS_LOCAL ? 'sourcecountry:IN sourcelang:hindi' : 'sourcecountry:IN sourcelang:english';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36';
 const INGEST_URL = process.env.INGEST_URL || '';
@@ -51,7 +65,7 @@ const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 2);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 // ── Editorial charter (mirrors docs/NEWS_EDITORIAL_CHARTER.md) ──────────────
-const CHARTER =
+const CHARTER_NATIONAL =
   'You are the front-page editor of a serious India-first news app (Reuters/AP/BBC discipline, Inshorts crispness). ' +
   'QUALITY OVER QUANTITY. SKIP (skip:true) if ANY apply: ads/PR; listicles; horoscopes/quizzes; clickbait; ' +
   'celebrity gossip/personal-life chatter (spotted/loves/dating/throwback/spats); opinion/prediction-as-news (backs/could/set to shine/previews); ' +
@@ -59,6 +73,23 @@ const CHARTER =
   'PREFER: government/policy/courts/elections, economy/markets with numbers, major world events, confirmed film/OTT releases-reviews-box-office(with source), science/space. When in doubt, SKIP. ' +
   'HEADLINE: complete specific sentence, real names/numbers, active voice, <=90 chars, no clickbait, no ellipsis; neutral framing for sensitive crime/court items. ' +
   'SUMMARY: one "so what" sentence <=200 chars. BODY: 2-4 tight sentences, inverted pyramid, neutral, attributed, include key number/date. Own words. Never fabricate.';
+
+// LOCAL (Hindi) edition — deep regional/local news, WRITTEN IN HINDI. Same
+// discipline, but the value here is INFORMATIVE HYPERLOCAL coverage (district/
+// city/state governance, civic issues, local crime with real impact, regional
+// politics/economy) that the national feed misses. Output MUST be in Hindi
+// (Devanagari). We keep the JSON KEYS in English (the parser reads them) but the
+// VALUES — title/summary/body — in fluent Hindi.
+const CHARTER_LOCAL =
+  'आप एक गंभीर भारतीय समाचार ऐप के स्थानीय समाचार संपादक हैं (Reuters/AP/BBC जैसा अनुशासन)। ' +
+  'गुणवत्ता सर्वोपरि। SKIP करें (skip:true) यदि: विज्ञापन/PR; लिस्टिकल; राशिफल/क्विज़; क्लिकबेट; ' +
+  'सेलिब्रिटी गॉसिप/निजी जीवन; राय/भविष्यवाणी को समाचार बताना; बिना स्रोत की अफवाह; बिना व्यापक महत्व वाली मामूली खबर। ' +
+  'प्राथमिकता दें: ज़िला/शहर/राज्य प्रशासन व राजनीति, नागरिक मुद्दे (पानी, बिजली, सड़क, स्वास्थ्य, शिक्षा), स्थानीय अर्थव्यवस्था, ऐसी स्थानीय घटनाएँ जिनका वास्तविक प्रभाव हो। संदेह हो तो SKIP करें। ' +
+  'शीर्षक: पूरा, विशिष्ट वाक्य, असली नाम/संख्या, सक्रिय आवाज़, <=90 अक्षर, कोई क्लिकबेट नहीं। ' +
+  'SUMMARY: एक "तो क्या" वाक्य <=200 अक्षर। BODY: 2-4 कसे हुए वाक्य, उल्टा पिरामिड, तटस्थ, स्रोत-सहित, मुख्य संख्या/तारीख़ शामिल। ' +
+  'title, summary, body सब हिंदी (देवनागरी) में लिखें। JSON keys अंग्रेज़ी में ही रखें। कभी मनगढ़ंत तथ्य न लिखें।';
+
+const CHARTER = IS_LOCAL ? CHARTER_LOCAL : CHARTER_NATIONAL;
 
 // ── RSS parsing (regex, dependency-free) ────────────────────────────────────
 const tag = (b, n) => { const m = b.match(new RegExp(`<${n}[^>]*>([\\s\\S]*?)</${n}>`, 'i')); return m?.[1] ? m[1].replace(/^<!\[CDATA\[/, '').replace(/\]\]>$/, '').trim() : ''; };
@@ -82,7 +113,7 @@ function sanitizeForPrompt(s) {
 }
 function inlineImage(b) { for (const re of [/<media:content[^>]+url=["']([^"']+)["']/i, /<media:thumbnail[^>]+url=["']([^"']+)["']/i, /<enclosure[^>]+url=["']([^"']+)["'][^>]*type=["']image/i, /<img[^>]+src=["']([^"']+)["']/i]) { const m = b.match(re); if (m?.[1] && /^https?:\/\//i.test(m[1])) return decode(m[1]); } return null; }
 function domainOf(u) { try { return new URL(u).hostname.replace(/^www\./, '').replace(/^feeds?\./, ''); } catch { return ''; } }
-function outlet(u) { const h = domainOf(u); const map = { 'bbci.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'aljazeera.com': 'Al Jazeera', 'nytimes.com': 'New York Times', 'dw.com': 'DW', 'npr.org': 'NPR', 'cnbc.com': 'CNBC', 'thehindu.com': 'The Hindu', 'indianexpress.com': 'The Indian Express', 'hindustantimes.com': 'Hindustan Times', 'livemint.com': 'Mint', 'moneycontrol.com': 'Moneycontrol', 'news18.com': 'News18', 'economictimes.indiatimes.com': 'Economic Times', 'indiatimes.com': 'Times of India', 'feedburner.com': 'NDTV', 'nasa.gov': 'NASA', 'space.com': 'Space.com', 'bollywoodhungama.com': 'Bollywood Hungama', 'pinkvilla.com': 'Pinkvilla', 'koimoi.com': 'Koimoi', 'indiatoday.in': 'India Today', 'zeenews.india.com': 'Zee News', 'dnaindia.com': 'DNA India', 'business-standard.com': 'Business Standard', 'scroll.in': 'Scroll' }; for (const [d, n] of Object.entries(map)) if (h.endsWith(d)) return n; const w = h.split('.')[0] || 'source'; return w.charAt(0).toUpperCase() + w.slice(1); }
+function outlet(u) { const h = domainOf(u); const map = { 'bbci.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'aljazeera.com': 'Al Jazeera', 'nytimes.com': 'New York Times', 'dw.com': 'DW', 'npr.org': 'NPR', 'cnbc.com': 'CNBC', 'thehindu.com': 'The Hindu', 'indianexpress.com': 'The Indian Express', 'hindustantimes.com': 'Hindustan Times', 'livemint.com': 'Mint', 'moneycontrol.com': 'Moneycontrol', 'news18.com': 'News18', 'economictimes.indiatimes.com': 'Economic Times', 'indiatimes.com': 'Times of India', 'feedburner.com': 'NDTV', 'nasa.gov': 'NASA', 'space.com': 'Space.com', 'bollywoodhungama.com': 'Bollywood Hungama', 'pinkvilla.com': 'Pinkvilla', 'koimoi.com': 'Koimoi', 'indiatoday.in': 'India Today', 'zeenews.india.com': 'Zee News', 'dnaindia.com': 'DNA India', 'business-standard.com': 'Business Standard', 'scroll.in': 'Scroll', ...HINDI_OUTLETS }; for (const [d, n] of Object.entries(map)) if (h.endsWith(d)) return n; const w = h.split('.')[0] || 'source'; return w.charAt(0).toUpperCase() + w.slice(1); }
 function parseFeed(xml, category, limit) {
   const isAtom = /<entry[\s>]/i.test(xml) && !/<item[\s>]/i.test(xml);
   const blocks = xml.split(isAtom ? /<entry[\s>]/i : /<item[\s>]/i).slice(1).map((b) => b.split(isAtom ? /<\/entry>/i : /<\/item>/i)[0] || '');
@@ -126,13 +157,16 @@ function resolveHashtag(modelTag, title) {
 }
 
 // ── LLM synth via Ollama (runs on the runner) ───────────────────────────────
-const CATEGORIES = ['top', 'politics', 'world', 'business', 'tech', 'science', 'health', 'sports', 'entertainment'];
+const CATEGORIES = ['top', 'politics', 'world', 'business', 'tech', 'science', 'health', 'sports', 'entertainment', 'local'];
 // Normalise whatever the model returns to ONE valid category. Weak models echo
 // the whole enum ("top|politics|world…") — that was a real defect; here we pick
-// the FIRST valid token found, else fall back to the feed's category.
+// the FIRST valid token found, else fall back to the feed's category. In the
+// LOCAL edition EVERY story is tagged 'local' (the app's Local News section is
+// defined by this tag), regardless of the model's genre guess.
 function normalizeCategory(raw, fallback) {
+  if (IS_LOCAL) return 'local';
   const s = String(raw || '').toLowerCase();
-  for (const c of CATEGORIES) if (s.includes(c)) return c;
+  for (const c of CATEGORIES) if (c !== 'local' && s.includes(c)) return c;
   return CATEGORIES.includes(fallback) ? fallback : 'top';
 }
 function safeJson(text) { try { return JSON.parse(text); } catch { const m = text.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch {} } return null; } }
@@ -274,10 +308,12 @@ export async function buildCandidates() {
   let gdeltCount = 0;
   if (process.env.GDELT_ENABLED === '1') {
     try {
-      const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 150) });
+      const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 150), query: process.env.GDELT_QUERY || DEFAULT_GDELT_QUERY });
+      // Local edition: force category=local on GDELT articles too.
+      if (IS_LOCAL) for (const a of gdelt) a.category = 'local';
       raw.push(...gdelt);
       gdeltCount = gdelt.length;
-      console.log(`gdelt (primary): ${gdelt.length} articles`);
+      console.log(`[${EDITION}] gdelt (primary): ${gdelt.length} articles`);
     } catch (e) {
       console.log(`  gdelt failed: ${e.message}`);
     }
@@ -287,10 +323,10 @@ export async function buildCandidates() {
   // +categories GDELT lacks), but conceptually the secondary source now. If GDELT
   // already filled the pool we still merge RSS (its clean category/image data and
   // curated-desk quality strengthen clusters), but GDELT-thin runs lean on it.
-  const lists = await Promise.all(FEEDS.map(fetchFeed));
+  const lists = await Promise.all(EDITION_FEEDS.map(fetchFeed));
   const rss = lists.flat();
   raw.push(...rss);
-  console.log(`rss (fallback): ${rss.length} from ${FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
+  console.log(`[${EDITION}] rss (fallback): ${rss.length} from ${EDITION_FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
   if (POOL_TARGET && raw.length < POOL_TARGET / 4 && gdeltCount === 0) {
     console.log(`  note: thin pool (${raw.length}) — GDELT unavailable this run, RSS-only`);
   }
@@ -362,7 +398,11 @@ export async function buildCandidates() {
   for (let b = 0; b < nBatches; b++) {
     const elapsed = Date.now() - started;
     const need = maxBatchMs * 1.2;
-    if (elapsed + need > SYNTH_BUDGET_MS) {
+    // ALWAYS attempt the FIRST batch (b===0): before we've timed a real batch the
+    // seed estimate is a guess, and it must not block the entire run on a tight
+    // budget. From batch 2 on, maxBatchMs is a MEASURED worst-case, so the
+    // predictive stop is trustworthy.
+    if (b > 0 && elapsed + need > SYNTH_BUDGET_MS) {
       console.log(`stopping before batch ${b + 1}/${nBatches}: ${(elapsed / 60000).toFixed(1)}m elapsed, need ~${(need / 1000).toFixed(0)}s, budget ${(SYNTH_BUDGET_MS / 60000).toFixed(0)}m — publishing ${synthesized} so far`);
       break;
     }

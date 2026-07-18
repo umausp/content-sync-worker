@@ -23,7 +23,12 @@ export async function fetchGdelt(opts = {}) {
   let articles = [];
   let source = 'none';
 
-  if (process.env.GDELT_FORCE_GKG !== '1') {
+  // GKG-FIRST by default. The DOC API 429s on GitHub's shared IPs on EVERY attempt
+  // (verified across runs) and burns ~2min in backoff for nothing — so it's now
+  // OPT-IN (GDELT_TRY_DOC=1). GKG is the unthrottled CDN; we og-enrich it to real
+  // titles below, so we lose little by skipping DOC. Set GDELT_TRY_DOC=1 to
+  // attempt DOC first (e.g. from a non-shared IP where it works).
+  if (process.env.GDELT_TRY_DOC === '1' && process.env.GDELT_FORCE_GKG !== '1') {
     const doc = await fetchDocArtList({ query, max, timespan, log });
     if (doc.ok && doc.articles.length > 0) {
       articles = doc.articles;
@@ -34,7 +39,7 @@ export async function fetchGdelt(opts = {}) {
   }
 
   if (articles.length === 0) {
-    articles = await fetchGkg({ max, log });
+    articles = await fetchGkg({ max, query, log });
     if (articles.length > 0) source = 'gkg';
   }
 

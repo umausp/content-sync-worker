@@ -17,7 +17,7 @@
 //   G9  fact-shape     — body must not invent numbers/quotes absent from source
 //   (G10 fact-consistency LLM verifier + G11 corroboration/importance bar: review.mjs)
 
-export const CATEGORIES = ['top', 'politics', 'world', 'business', 'tech', 'science', 'health', 'sports', 'entertainment'];
+export const CATEGORIES = ['top', 'politics', 'world', 'business', 'tech', 'science', 'health', 'sports', 'entertainment', 'local'];
 
 const BAD_TITLE = /^[\s.\-–—…]*$|^(untitled|news|update|test|breaking|latest)$/i;
 const PR_MARKERS = /\b(press release|prnewswire|businesswire|sponsored|advertorial|partnered content|brand ?post|in partnership with|use code|affiliate|shop now|buy now|discount|coupon|% off|deal of the day|book now|sign up today)\b/i;
@@ -76,9 +76,10 @@ export function gStaleness(c, nowMs, maxAgeH) {
 export function gLanguage(c) {
   const body = (c.body || '').trim();
   // Must read as >=2 real sentences, not a fragment or a headline echo. Split on a
-  // sentence-ender followed by whitespace OR end-of-string, so the FINAL sentence
-  // and newline-separated sentences are counted (the old /[.!?]\s/ dropped both).
-  const sentences = body.split(/[.!?]+(?:\s+|$)/).filter((s) => s.trim().length > 12).length;
+  // sentence-ender — including the Devanagari DANDA (।/॥) used in Hindi — followed
+  // by whitespace or end-of-string. (Without ।, every Hindi body counted as 1
+  // sentence and was falsely rejected.)
+  const sentences = body.split(/[.!?।॥]+(?:\s+|$)/).filter((s) => s.trim().length > 6).length;
   if (sentences < 2) return 'body_too_few_sentences';
   if (/[.,;:]$/.test(c.title || '')) return 'title_bad_terminal_punct';
   // Title shouldn't just equal the body's first fragment (lazy model).
