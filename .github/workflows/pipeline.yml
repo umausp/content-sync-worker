@@ -62,6 +62,10 @@ env:
   # SYNTH_HARD_MAX is only the fallback ceiling when NO hosted provider is keyed.
   SYNTH_HARD_MAX: '48'
   SYNTH_HOSTED_MAX: '90'
+  # QUALITY BAR for entering LLM synthesis (after dedup+url-check+triage): a story
+  # must clear this triage-importance floor to earn the expensive LLM rewrite;
+  # kept-but-lower items still publish via the free extractive tail. 3 = notable+.
+  SYNTH_MIN_IMPORTANCE: '3'
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
   SYNTH_BUDGET_MS: '1200000' # 20-min budget; PREDICTIVE guard won't start a batch it can't finish before this, so on a slow runner it stops early + exits SUCCESS (step timeout 24m, job 25m give headroom for gate+publish)
@@ -124,17 +128,22 @@ jobs:
           ollama pull "$OLLAMA_MODEL"
           echo "installed models:"; ollama list
 
-      - name: Verify + WARM model (fail-fast health check)
+      - name: Warm Ollama (best-effort, NON-fatal)
         timeout-minutes: 4
+        continue-on-error: true
         run: |
-          echo "warming model (keep_alive 30m so batch 1 isn't a cold start)..."
-          # A realistic-size generation loads weights + warms the runtime; keep_alive
-          # pins the model resident so the first real batch doesn't pay cold-load
-          # (observed: cold batch 1 = 267s vs warm ~140s).
+          # Ollama is now the LAST-RESORT fallback behind 5 hosted providers, so this
+          # is a best-effort cache warm, NOT a health gate. keep_alive pins the model
+          # resident so IF the pipeline ever falls through to Ollama, batch 1 isn't a
+          # cold start. The REAL health gate is provider-aware and lives in the
+          # pipeline (healthCheck() → generate(), which pings the primary hosted
+          # provider first). A failed warm here must never kill a run hosted
+          # inference can serve — hence continue-on-error + no exit 1.
+          echo "warming Ollama (best-effort)..."
           RESP=$(curl -sf http://127.0.0.1:11434/api/generate \
-            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}")
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}") || true
           echo "response: $RESP"
-          echo "$RESP" | grep -qi '"response"' || { echo "::error::model did not respond — aborting"; exit 1; }
+          echo "$RESP" | grep -qi '"response"' && echo "ollama warm OK" || echo "ollama warm skipped (hosted providers carry the run)"
 
       - name: Run pipeline (gather → cluster → synth → gate → publish)
         timeout-minutes: 24

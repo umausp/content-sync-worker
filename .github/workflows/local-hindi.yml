@@ -89,13 +89,18 @@ jobs:
           ollama pull "$OLLAMA_MODEL"
           echo "installed models:"; ollama list
 
-      - name: Verify + WARM model (fail-fast health check)
+      - name: Warm Ollama (best-effort, NON-fatal)
         timeout-minutes: 4
+        continue-on-error: true
         run: |
+          # Ollama is the LAST-RESORT fallback behind the hosted providers now, so
+          # this is a best-effort cache warm — NOT a health gate. The real gate is
+          # provider-aware (pipeline healthCheck() → generate()). A failed warm must
+          # never kill a run hosted inference can serve.
           RESP=$(curl -sf http://127.0.0.1:11434/api/generate \
-            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"एक वाक्य लिखें।\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}")
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"एक वाक्य लिखें।\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}") || true
           echo "response: $RESP"
-          echo "$RESP" | grep -qi '"response"' || { echo "::error::model did not respond — aborting"; exit 1; }
+          echo "$RESP" | grep -qi '"response"' && echo "ollama warm OK" || echo "ollama warm skipped (hosted providers carry the run)"
 
       - name: Run LOCAL pipeline (Hindi → gate → publish)
         timeout-minutes: 24

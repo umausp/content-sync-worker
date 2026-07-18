@@ -555,16 +555,35 @@ export async function buildCandidates() {
     console.log(`triage: kept ${r.kept}, dropped ${r.dropped}, fail-open ${r.failOpen}`);
   }
 
-  // SCORE-GATE: everything above SYNTH_MIN_SCORE is eligible. With HOSTED
-  // inference the LLM cap can be much higher (sub-second calls), so we process far
-  // more — even ALL clusters. The cap only bounds runaway runs. The score-sorted
-  // TAIL beyond the LLM cap is NOT dropped: it gets EXTRACTIVE (no-LLM) treatment
-  // below, so nothing is lost and it still costs $0.
-  const llmCap = hosted.length > 0 ? Number(process.env.SYNTH_HOSTED_MAX || 400) : SYNTH_HARD_MAX;
-  const allEligible = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE);
+  // QUALITY GATE for SYNTHESIS ENTRY (user: "make sure good quality news goes for
+  // synthesis; create a quality standard"). The pipeline already ran the three
+  // upstream filters — DEDUP (entity-cluster), URL-LIVENESS (dead links dropped),
+  // and TRIAGE (editorial keep/drop) — so candidatePool is already "clean". This is
+  // the final QUALITY BAR that decides which clean stories deserve the expensive
+  // LLM rewrite vs. the cheap extractive treatment:
+  //   • score  ≥ SYNTH_MIN_SCORE       — corroboration/freshness/source-rank floor
+  //   • importance ≥ SYNTH_MIN_IMPORTANCE — editorial weight (ONLY when triage
+  //       actually assigned it; if triage was off/failed-open we don't have a
+  //       trustworthy importance, so we fall back to score alone and don't over-cut).
+  // Everything that clears the bar is score-sorted and the top `llmCap` are
+  // LLM-synthesised; the rest (and anything below the bar) get EXTRACTIVE (no-LLM)
+  // treatment — nothing is dropped here, and it all still costs $0.
+  const SYNTH_MIN_IMPORTANCE = Number(process.env.SYNTH_MIN_IMPORTANCE || 3);
+  const llmCap = hosted.length > 0 ? Number(process.env.SYNTH_HOSTED_MAX || 90) : SYNTH_HARD_MAX;
+  const meetsQuality = (p) =>
+    p.score >= SYNTH_MIN_SCORE &&
+    (p.triageImportance == null || p.triageImportance >= SYNTH_MIN_IMPORTANCE);
+  // quality-first order: importance desc, then score desc — so the LLM budget is
+  // spent on the WEIGHTIEST stories first, not merely the freshest.
+  const allEligible = candidatePool
+    .filter(meetsQuality)
+    .sort((x, y) => (y.triageImportance || y.importance || 3) - (x.triageImportance || x.importance || 3) || y.score - x.score);
   const eligible = allEligible.slice(0, llmCap);
-  const tail = allEligible.slice(llmCap); // extractive fallback for the rest
-  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
+  // extractive fallback = the below-cap quality set + anything that missed the
+  // quality bar but still clears the score floor (so a quiet hour still fills).
+  const belowBar = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE && !meetsQuality(p));
+  const tail = allEligible.slice(llmCap).concat(belowBar);
+  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; quality-eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); minImp=${SYNTH_MIN_IMPORTANCE}; hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
 
   // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
   // instead of one. ~80 calls (~20 min) → ~10 calls. Each batch is one LLM call;
@@ -677,18 +696,22 @@ export async function buildCandidates() {
 }
 
 // HEALTH CHECK — one tiny generation with a short timeout. Run BEFORE the loop so
-// a broken model/endpoint fails in seconds, not after a 30-min timeout.
+// a broken inference path fails in seconds, not after a 30-min timeout.
+//
+// PROVIDER-AWARE (was Ollama-only): with 5 hosted providers keyed, Ollama is only
+// the LAST-RESORT fallback. A run hosted inference can fully serve must NOT be
+// killed by an Ollama warm-up hiccup. So health = "can ANY enabled provider
+// generate one token?" We go through the SAME router the pipeline uses (generate()
+// honours PROVIDER_ORDER + failover), so this pings the primary and only falls
+// through to Ollama if the hosted ones are all down. Healthy if even one responds.
 export async function healthCheck() {
   const t0 = Date.now();
+  const providers = availableProviders();
+  if (providers.length === 0) return { ok: false, ms: 0, error: 'no providers configured (check PROVIDER_ORDER + API keys)' };
   try {
-    const r = await fetch(`${OLLAMA}/api/generate`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, prompt: 'Reply with the word OK.', stream: false, options: { num_predict: 5 } }),
-      signal: AbortSignal.timeout(60000),
-    });
-    if (!r.ok) return { ok: false, ms: Date.now() - t0, error: `http ${r.status}` };
-    const j = await r.json();
-    return { ok: typeof j.response === 'string', ms: Date.now() - t0, sample: (j.response || '').slice(0, 20) };
+    const { text, provider } = await generate('Reply with the word OK.', { maxTokens: 5, timeoutMs: 60000 });
+    if (text == null) return { ok: false, ms: Date.now() - t0, error: `all ${providers.length} providers failed: ${providers.join(',')}` };
+    return { ok: true, ms: Date.now() - t0, provider, providers, sample: String(text).slice(0, 20) };
   } catch (e) {
     return { ok: false, ms: Date.now() - t0, error: e.message };
   }
