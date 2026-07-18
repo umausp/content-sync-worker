@@ -84,6 +84,26 @@ export function cosine(a, b) {
   return s;
 }
 
+// EXTRACTIVE centrality ranking — order `snippets` by how CENTRAL each is to the
+// event, measured as cosine to an ANCHOR (the title). The naive extractive path
+// takes snippets by fetch-position; this instead surfaces the snippet that best
+// captures the core event (matters for multi-source clusters). Returns the snippets
+// re-ordered best-first. FAIL-OPEN: if embedding is unavailable, returns the input
+// order unchanged (→ identical to today's positional behaviour).
+export async function rankSnippetsByCentrality(anchor, snippets, opts = {}) {
+  const uniq = [...new Set(snippets.filter((s) => s && s.trim().length > 30))];
+  if (uniq.length <= 1) return uniq;
+  const [av, ...svs] = await embedMany([anchor, ...uniq], opts);
+  if (!av || svs.some((v) => !v)) return uniq; // any embed missing → keep original order
+  return uniq
+    .map((s, i) => ({ s, sim: cosine(av, svs[i]) }))
+    .sort((a, b) => b.sim - a.sim)
+    .map((x) => x.s);
+}
+
 export const EMBED_ENABLED = process.env.EMBED_DEDUP === '1';
 export const EMBED_VERIFY_ENABLED = process.env.EMBED_VERIFY === '1';
+// Embedding-ranked extractive tail — default ON whenever the model is already
+// loaded for dedup (free: reuses the loaded model), off via EMBED_EXTRACTIVE=0.
+export const EMBED_EXTRACTIVE_ENABLED = process.env.EMBED_EXTRACTIVE !== '0' && (EMBED_ENABLED || process.env.EMBED_EXTRACTIVE === '1');
 export const EMBED_MODEL_NAME = MODEL;

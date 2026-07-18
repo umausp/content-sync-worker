@@ -22,7 +22,7 @@
 import { FEEDS } from './feeds.mjs';
 import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
-import { embedMany, cosine, SIM_THRESHOLD, EMBED_ENABLED, EMBED_VERIFY_ENABLED, EMBED_MODEL_NAME } from './embed.mjs';
+import { embedMany, cosine, rankSnippetsByCentrality, SIM_THRESHOLD, EMBED_ENABLED, EMBED_VERIFY_ENABLED, EMBED_EXTRACTIVE_ENABLED, EMBED_MODEL_NAME } from './embed.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
@@ -159,14 +159,20 @@ function cleanForSynth(a) {
 // Quality is plainer than LLM-written (it's the outlet's own words, lightly
 // assembled) but it's accurate, instant, and hallucination-proof. Marked
 // via+extractive so it's distinguishable in logs/UI.
-function extractiveCandidate(a) {
+function extractiveCandidate(a, rankedSnippets) {
   const c = cleanForSynth(a);
   const title = c.title;
   if (looksSlug(title) || title.replace(/[^a-z0-9]/gi, '').length < 6) return null; // no usable headline
   // body = the source snippet(s), cleaned; prefer a real description over the title.
+  // If `rankedSnippets` is provided (embedding-centrality order), use that — the
+  // most event-CENTRAL snippet leads instead of whichever outlet was fetched first;
+  // else fall back to positional order (a + members), which is the original behaviour.
   const parts = [];
   const seen = new Set();
-  for (const m of [a, ...(Array.isArray(a._members) ? a._members : [])]) {
+  const source = Array.isArray(rankedSnippets) && rankedSnippets.length
+    ? rankedSnippets.map((s) => ({ snippet: s }))
+    : [a, ...(Array.isArray(a._members) ? a._members : [])];
+  for (const m of source) {
     const s = (m.snippet || '').trim();
     if (s.length > 30 && !looksSlug(s) && !seen.has(s.slice(0, 40))) { seen.add(s.slice(0, 40)); parts.push(s); }
     if (parts.length >= 2) break;
@@ -749,16 +755,27 @@ export async function buildCandidates() {
   if (process.env.EXTRACTIVE !== '0') {
     const llmReached = (lastBatch + 1) * SYNTH_BATCH; // eligible items the batch loop got to
     const notSynthed = [...eligible.slice(llmReached), ...tail];
-    let ext = 0;
+    let ext = 0, ranked = 0;
     for (const p of notSynthed) {
-      const e = extractiveCandidate({ ...p.a, _members: p.members });
+      // EMBEDDING-RANKED extraction (EMBED_EXTRACTIVE, default on when the dedup
+      // model is loaded — free reuse): for a MULTI-source cluster, order the member
+      // snippets by centrality to the title so the most event-relevant snippet leads
+      // the card, instead of whichever outlet was fetched first. Fail-open: returns
+      // positional order if embedding is unavailable → identical to before.
+      let rankedSnips = null;
+      const members = p.members || [];
+      if (EMBED_EXTRACTIVE_ENABLED && members.length >= 2) {
+        rankedSnips = await rankSnippetsByCentrality(p.a.title, members.map((m) => m.snippet || ''), { log: glog });
+        if (rankedSnips && rankedSnips.length) ranked++;
+      }
+      const e = extractiveCandidate({ ...p.a, _members: p.members }, rankedSnips);
       if (!e) continue;
       if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
       if (p.canonicalEntity) e.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), e.title);
       candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a });
       ext++;
     }
-    console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)`);
+    console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)${ranked ? `, ${ranked} embedding-ranked (multi-source)` : ''}`);
   }
 
   flushUsage();
