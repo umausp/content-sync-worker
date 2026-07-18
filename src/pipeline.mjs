@@ -243,8 +243,23 @@ function resolveHashtag(modelTag, title) {
   const c = String(modelTag || '').replace(/[^\p{L}\p{N}_]/gu, ''); const lo = c.toLowerCase();
   const words = new Set(String(title).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3));
   const overlaps = [...words].some((w) => lo.includes(w));
-  if (c.length >= 6 && !GENERIC.has(lo) && overlaps) return c.slice(0, 60);
-  return hashtagFromTitle(title);
+  const pick = c.length >= 6 && !GENERIC.has(lo) && overlaps ? c.slice(0, 60) : hashtagFromTitle(title);
+  return ensureValidHashtag(pick, title);
+}
+// GUARANTEE a gate-valid hashtag (gStructure requires ^[A-Za-z][\p{L}\p{N}_]{5,59}$).
+// A title like "1 held with ₹59.2 lakh…" yielded a digit-leading tag → the gate
+// dropped a QUALITY story. Never drop for a bad tag: strip a leading non-letter,
+// pad from the title's letters, and last-resort prefix "News". Fixing the tag is
+// always correct here — it's derived metadata, not content.
+function ensureValidHashtag(tag, title) {
+  let t = String(tag || '').replace(/^[^A-Za-z]+/, '').replace(/[^\p{L}\p{N}_]/gu, '');
+  if (t.length < 6) {
+    const letters = String(title).replace(/[^A-Za-z ]/g, '').split(/\s+/).filter(Boolean).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+    t = (t + letters).slice(0, 40);
+  }
+  if (!/^[A-Za-z]/.test(t)) t = 'News' + t;
+  if (t.length < 6) t = ('News' + t + 'Story').slice(0, 40);
+  return t.slice(0, 60);
 }
 
 // ── LLM synth via Ollama (runs on the runner) ───────────────────────────────
@@ -521,7 +536,7 @@ export async function buildCandidates() {
     // share the entity-derived hashtag → ingest upserts them onto ONE thread as
     // updates (the fix for "one event → 25 story cards"). Falls back to the
     // model/title hashtag only when there's no clear entity.
-    if (p.canonicalEntity) s.hashtag = entityHashtag(p.canonicalEntity);
+    if (p.canonicalEntity) s.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), s.title);
     candidates.push({ ...s, corr: p.corr, score: p.score, article: p.a });
     synthesized++;
     return true;
@@ -593,7 +608,7 @@ export async function buildCandidates() {
       const e = extractiveCandidate({ ...p.a, _members: p.members });
       if (!e) continue;
       if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
-      if (p.canonicalEntity) e.hashtag = entityHashtag(p.canonicalEntity);
+      if (p.canonicalEntity) e.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), e.title);
       candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a });
       ext++;
     }
@@ -633,7 +648,12 @@ export async function healthCheck() {
 const VERIFY_SCHEMA = { type: 'object', properties: { faithful: { type: 'boolean' }, sameEvent: { type: 'boolean' }, reason: { type: 'string' } }, required: ['faithful', 'sameEvent', 'reason'] };
 export async function verifyFaithful(c) {
   const a = c.article;
-  const prompt = `You are a fact-checker. Compare the SOURCE to the SYNTHESIS. Answer JSON:\n{"faithful": true only if the synthesis invents NO facts/numbers/names/claims beyond the source, "sameEvent": true if they describe the same event, "reason":"short"}\nBe strict: any number, quote, or named person in the synthesis that is NOT supported by the source → faithful=false.\n\nSOURCE:\nTITLE: ${sanitizeForPrompt(a.title)}\nSNIPPET: ${sanitizeForPrompt(a.snippet)}\n\nSYNTHESIS:\nTITLE: ${sanitizeForPrompt(c.title)}\nBODY: ${sanitizeForPrompt(c.body)}`;
+  // Judge FABRICATION, not completeness. The synthesis may legitimately name
+  // people/places the terse source only implies — that is NOT hallucination. Flag
+  // faithful=false ONLY for INVENTED specifics: a NUMBER/STATISTIC/QUOTE/DATE with
+  // no basis in the source, or a claim that CONTRADICTS it. Do NOT penalise the
+  // synthesis merely for containing a name the short source didn't spell out.
+  const prompt = `You are a fact-checker. Compare SOURCE to SYNTHESIS. Answer JSON:\n{"faithful": false ONLY if the synthesis INVENTS a specific number/statistic/quote/date with no basis in the source, or states something that CONTRADICTS the source; otherwise true. Adding a reasonable name/place/context the source implies is FINE — do not flag it., "sameEvent": true if they are about the same event, "reason":"short"}\n\nSOURCE:\nTITLE: ${sanitizeForPrompt(a.title)}\nSNIPPET: ${sanitizeForPrompt(a.snippet)}\n\nSYNTHESIS:\nTITLE: ${sanitizeForPrompt(c.title)}\nBODY: ${sanitizeForPrompt(c.body)}`;
   try {
     const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: VERIFY_SCHEMA, options: { temperature: 0, num_predict: 120 } }), signal: AbortSignal.timeout(90000) });
     if (!r.ok) return null;

@@ -24,6 +24,22 @@ const GCS = 'https://storage.googleapis.com/data.gdeltproject.org/gdeltv2';
 const INDIA_DOMAIN =
   /(\.in\/|\.in$|indianexpress|thehindu|hindustantimes|timesofindia|ndtv|news18|indiatoday|livemint|moneycontrol|economictimes|business-standard|deccanherald|firstpost|zeenews|dnaindia|scroll\.in|thewire|theprint|aninews|ptinews|freepressjournal)/i;
 
+// GLOBAL-INTEREST admission (user ask): don't restrict GKG to India — admit
+// genuinely USEFUL global content readers want (OTT/streaming, personal finance &
+// investing, gadgets/tech, science & interesting facts, business/markets, health/
+// lifestyle), EVEN if not India-related. We key on URL-slug TOPIC keywords —
+// reliable + language-free — but ONLY from REPUTABLE outlets, and we EXCLUDE junk
+// (gossip/deals/quiz/listicle) up front so filtering happens BEFORE the LLM.
+const TOPIC_KEYWORDS =
+  /(netflix|prime-?video|disney|hotstar|jiocinema|ott|streaming|box-?office|web-?series|\bmovie-?review|series-?review|\btrailer\b|warren-?buffett|berkshire|mutual-?fund|index-?fund|investing|personal-finance|retirement|savings|portfolio|interest-?rate|inflation|\bstock-?market|\bnasdaq|\bnifty|\bsensex|\bipo\b|earnings|iphone|android|smartphone|laptop|gadget|\bai\b|artificial-intelligence|chatgpt|openai|gemini|\bev\b|electric-vehicle|space|nasa|isro|science|study-finds|researchers|discovery|explained|how-to|health|nutrition|fitness|climate)/i;
+// Reputable global outlets whose slug-topic content is worth admitting. Keeps out
+// content-farm/SEO-spam domains. Extend freely.
+const QUALITY_GLOBAL_DOMAIN =
+  /(reuters|apnews|bbc\.|theguardian|nytimes|washingtonpost|wsj\.|bloomberg|cnbc|forbes|ft\.com|economist|axios|npr\.org|apple\.com|techcrunch|theverge|wired|arstechnica|engadget|variety|hollywoodreporter|deadline|screenrant|collider|space\.com|scientificamerican|nature\.com|nationalgeographic|investopedia|morningstar|marketwatch|fool\.com|businessinsider|cnn\.com|aljazeera)/i;
+// Hard junk exclusions applied to ALL global (non-India) admits — before the LLM.
+const GLOBAL_JUNK =
+  /(coupon|promo-?code|discount|\bdeal(s)?\b|best-?\d+|top-?\d+|listicle|quiz|horoscope|zodiac|astrolog|giveaway|sponsored|advertorial|casino|betting|porn|onlyfans|sex\b)/i;
+
 async function get(url, asBuffer) {
   const res = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
   if (!res.ok) return null;
@@ -78,6 +94,9 @@ export function titleFromUrl(u) {
 export async function fetchGkg(opts = {}) {
   const log = opts.log || (() => {});
   const max = opts.max || 250;
+  // Admit useful GLOBAL content (not just India) by default; GDELT_GLOBAL=0 to
+  // restrict to India-only.
+  const allowGlobal = process.env.GDELT_GLOBAL !== '0';
   try {
     const url = await resolveGkgUrl(log);
     if (!url) { log('gdelt.gkg.no_url', {}); return []; }
@@ -94,12 +113,20 @@ export async function fetchGkg(opts = {}) {
       const domain = (c[3] || '').toLowerCase();
       const link = c[4] || '';
       if (!/^https?:\/\//i.test(link)) continue;
-      // India relevance = INDIAN PUBLISHER domain only. A location/mention match
-      // ("...IN..." in V1Locations) is too loose — it let in a UK paper merely
-      // MENTIONING India (verified: swindonadvertiser.co.uk). Publisher domain is
-      // the precise signal for "India-first" news.
+      // ADMISSION (filtering BEFORE the LLM):
+      //   • INDIA publisher domain → always in (the home feed), OR
+      //   • GLOBAL-INTEREST: a reputable global outlet whose URL matches a useful
+      //     TOPIC (OTT/finance/gadgets/science/facts/markets/health) AND is not junk.
+      // This surfaces the useful non-India content the user asked for while keeping
+      // deals/gossip/spam out up front.
       const isIndia = INDIA_DOMAIN.test(link) || INDIA_DOMAIN.test(domain);
-      if (!isIndia) continue;
+      const isGlobalUseful =
+        !isIndia &&
+        allowGlobal &&
+        QUALITY_GLOBAL_DOMAIN.test(domain) &&
+        TOPIC_KEYWORDS.test(link) &&
+        !GLOBAL_JUNK.test(link);
+      if (!isIndia && !isGlobalUseful) continue;
       if (seen.has(link)) continue;
       seen.add(link);
       const title = titleFromUrl(link);
@@ -107,10 +134,11 @@ export async function fetchGkg(opts = {}) {
       const img = c[18] && /^https:\/\//i.test(c[18]) ? c[18] : null;
       const d = (c[1] || '').match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/);
       const publishedAt = d ? `${d[1]}-${d[2]}-${d[3]}T${d[4]}:${d[5]}:${d[6]}Z` : null;
-      out.push({ title, url: link, sourceName: outletFromDomain(domain), snippet: title, imageUrl: img, publishedAt, category: 'top', via: 'gdelt-gkg' });
+      out.push({ title, url: link, sourceName: outletFromDomain(domain), snippet: title, imageUrl: img, publishedAt, category: 'top', via: isIndia ? 'gdelt-gkg' : 'gdelt-global' });
       if (out.length >= max) break;
     }
-    log('gdelt.gkg.ok', { url, india: out.length });
+    const nGlobal = out.filter((a) => a.via === 'gdelt-global').length;
+    log('gdelt.gkg.ok', { url, total: out.length, india: out.length - nGlobal, global: nGlobal });
     return out;
   } catch (e) {
     log('gdelt.gkg.error', { err: e.message });

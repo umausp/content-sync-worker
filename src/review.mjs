@@ -41,6 +41,11 @@ const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
 // verifying all. Set VERIFY_FAITHFUL=0 to disable entirely.
 const VERIFY = process.env.VERIFY_FAITHFUL !== '0';
 const VERIFY_BUDGET_MS = Number(process.env.VERIFY_BUDGET_MS || 4 * 60 * 1000); // ~4 min of verify total
+// Only verify when the source snippet is long enough to check against. A thin
+// snippet (a slug/headline) lacks the article's entities, so the verifier would
+// falsely flag accurate synthesis as "introducing new names". Below this, we trust
+// the synthesis (gFactShape still guards invented numbers).
+const VERIFY_MIN_SOURCE = Number(process.env.VERIFY_MIN_SOURCE || 160);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 async function fetchPublished() {
@@ -140,14 +145,20 @@ async function main() {
       }
     }
 
-    // Layer E — LLM fact-consistency verifier (anti-hallucination). BUDGET-AWARE:
-    // each verify is a 2nd LLM call (~30-60s on a CPU runner); verifying every
-    // survivor would add ~12min and blow the timeout. So we verify only while
-    // there's time left (VERIFY_BUDGET_MS) — and since candidates are score-sorted,
-    // the HIGHEST-value stories get checked first, lower ones publish unverified
-    // (still guarded by the algorithmic gFactShape). Best-effort quality, no
-    // timeout risk. VERIFY_FAITHFUL=1 to enable; VERIFY_BUDGET_MS caps total spend.
-    if (VERIFY && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
+    // Layer E — LLM fact-consistency verifier (anti-hallucination). BUDGET-AWARE +
+    // ONLY WHEN THE SOURCE IS SUBSTANTIAL. Critical fix: the verifier compares the
+    // synthesis to the source SNIPPET. For GKG / thin-snippet articles the snippet
+    // is often just the (slug-derived) title, so it lacks the real entities — and
+    // the verifier then FALSELY rejects an ACCURATE story ("introduces Shashi
+    // Tharoor / Yogi Adityanath not in source") simply because the thin source text
+    // never contained them. That was dropping good stories. So: skip verification
+    // unless the source snippet is long enough to meaningfully verify against
+    // (VERIFY_MIN_SOURCE chars) AND materially longer than the title. Invented
+    // NUMBERS are still caught by the algorithmic gFactShape regardless.
+    const srcLen = (c.article?.snippet || '').trim().length;
+    const titleLen = (c.title || '').length;
+    const verifiable = srcLen >= VERIFY_MIN_SOURCE && srcLen > titleLen + 40;
+    if (VERIFY && verifiable && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
       const v = await verifyFaithful(c);
       if (v && (!v.faithful || !v.sameEvent)) { verifyFail++; bump(reasons, 'verify:' + (!v.faithful ? 'unfaithful' : 'diff_event')); console.log(`  ✗ verify [${v.reason}] ${c.title.slice(0, 42)}`); continue; }
     }
