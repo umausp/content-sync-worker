@@ -28,23 +28,34 @@ env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: ${{ secrets.STORIES_URL }}
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-  # ── LLM PROVIDER LADDER (free hosted inference → local Ollama fallback). Add the
-  #    keys as repo secrets; a provider is skipped if its key is absent. Order +
-  #    daily caps in src/providers.mjs. Cloudflare is the only one that BILLS past
-  #    free, so its cap (CF_DAILY_CAP) is the hard $0 guardrail. ──
-  PROVIDER_ORDER: 'groq,gemini,cloudflare,ollama'
+  # ── LLM PROVIDER LADDER (registry in src/providers.mjs). FREE fast providers
+  #    first, PAID OpenAI last (spillover only, tight cap), local Ollama last-
+  #    resort. A provider is skipped if its key secret is absent. Models are the
+  #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
+  PROVIDER_ORDER: 'cerebras,groq,gemini,sambanova,cloudflare,openai,ollama'
+  # free, very fast — PRIMARY
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  CEREBRAS_MODEL: 'llama-3.3-70b'
+  # free, fast
   GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
   GROQ_MODEL: 'llama-3.3-70b-versatile'
+  # free Flash TEXT model (NOT a *-live/realtime model). Override to your account's id.
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
+  # free tier
+  SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  # free neurons but BILLS past them → hard cap, spillover only
   CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
   CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
-  # $0 guardrail. NOTE: GitHub runners are ephemeral, so this cap is effectively
-  # PER-RUN (the usage file doesn't persist across runs). That's fine: at 15-min
-  # cadence, even 96 runs/day × a few hundred CF calls stays well under the ~10k-
-  # neuron/day free tier because Groq/Gemini absorb most calls first (CF is 3rd in
-  # the ladder). Set low so CF is only a spillover, never the primary spend.
   CF_DAILY_CAP: '150'
+  # PAID — gpt-4o-mini (cheapest, highest RPM/TPM, NO wasted reasoning tokens; do
+  # NOT use o3/o4-mini here — reasoning models cost more + are slower for a simple
+  # rewrite). LAST in the ladder + tight cap → fires only if ALL free tiers are
+  # exhausted, so in practice ≈ $0. Raise OPENAI_DAILY_CAP only if you accept spend.
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '80'
   OLLAMA_MODEL: qwen2.5:3b
   SYNTH_MIN_SCORE: '6'
   # Hosted inference is fast, so we LLM-synthesise the top SYNTH_HOSTED_MAX events

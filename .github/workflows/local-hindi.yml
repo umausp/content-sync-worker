@@ -23,7 +23,24 @@ env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: ${{ secrets.STORIES_URL }}
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-  OLLAMA_MODEL: qwen2.5:3b # writes fluent Hindi (verified)
+  # Same provider ladder as national (registry in src/providers.mjs). Free-first,
+  # OpenAI last+capped, Ollama last-resort. Skipped if a key is absent.
+  PROVIDER_ORDER: 'cerebras,groq,gemini,sambanova,cloudflare,openai,ollama'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  CEREBRAS_MODEL: 'llama-3.3-70b'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  GROQ_MODEL: 'llama-3.3-70b-versatile'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+  CF_DAILY_CAP: '100'
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '50'
+  OLLAMA_MODEL: qwen2.5:3b # writes fluent Hindi (verified); local fallback
   SYNTH_MIN_SCORE: '5' # local news has thinner corroboration than national — a slightly lower synth gate
   SYNTH_HARD_MAX: '40'
   SYNTH_BATCH: '8'

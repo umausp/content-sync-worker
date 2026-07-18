@@ -1,168 +1,213 @@
-// Multi-provider LLM router — the throughput unlock. Synthesis moves off the slow
-// CPU Ollama to FREE hosted inference (sub-second), with a fallback ladder so no
-// single provider's rate-limit/outage stops the run:
+// Multi-provider LLM router — pluggable FACTORY/REGISTRY design so providers can
+// be added, reordered, capped, and switched on demand purely by config/env, with
+// automatic failover. Synthesis runs on FREE hosted inference (sub-second) with a
+// fallback ladder so no single provider's rate-limit/outage stops the run.
 //
-//   Groq (fast, generous free RPD) → Gemini Flash (free) → Cloudflare Workers AI
-//   (free neurons, already on our stack) → Ollama (local CPU, last resort)
+// DESIGN
+//   • Every provider is a REGISTRY entry: { name, kind, tier, adapterFactory,
+//     enabled(), model, cap }. The router reads PROVIDER_ORDER, keeps the enabled
+//     ones, and tries them in order — each call falls through to the next on
+//     rate-limit/error/cap.
+//   • kind='openai' → ONE shared adapter (Groq, Cerebras, SambaNova, OpenAI all
+//     speak the OpenAI /chat/completions shape — only base URL + key + model
+//     differ). kind='gemini' and kind='cloudflare' have their own adapters.
+//   • tier='free' providers just 429 when exhausted (no bill). tier='paid'
+//     (OpenAI) is placed LAST with a tight cap so it's spillover only → $0-safe.
+//   • Cloudflare is the one FREE provider that BILLS past its neuron allowance,
+//     so it also carries a hard cap.
 //
-// $0 GUARANTEE — the hard part. Free tiers mostly just 429 when exhausted (no
-// bill), EXCEPT Cloudflare Workers AI, which BILLS past the free neuron
-// allowance. So every provider has a conservative DAILY REQUEST CAP persisted
-// across runs (state file), and Cloudflare's cap is the strictest. When a
-// provider is caby-capped or errors, we fall to the next. If ALL hosted
-// providers are exhausted, we fall to Ollama (free) or, failing that, signal the
-// caller to use the extractive path — so a run never costs money and never fully
-// fails.
+// Add a provider = add one REGISTRY entry. Switch order = set PROVIDER_ORDER.
 //
-// Env (GitHub secrets, all optional — a provider is simply skipped if unkeyed):
-//   GROQ_API_KEY, GROQ_MODEL (default llama-3.3-70b-versatile)
-//   GEMINI_API_KEY, GEMINI_MODEL (default gemini-2.0-flash)
-//   CF_ACCOUNT_ID + CF_AI_TOKEN, CF_AI_MODEL (default @cf/meta/llama-3.1-8b-instruct-fp8-fast)
-//   OLLAMA_HOST, OLLAMA_MODEL (local fallback)
-//   PROVIDER_ORDER (comma list, default "groq,gemini,cloudflare,ollama")
-//   *_DAILY_CAP per provider (see DEFAULT_CAPS); CF cap is the $0 guardrail.
+// Env (all optional — a provider is skipped if its key is absent):
+//   CEREBRAS_API_KEY / CEREBRAS_MODEL        (free, very fast — good primary)
+//   GROQ_API_KEY / GROQ_MODEL                (free, fast)
+//   SAMBANOVA_API_KEY / SAMBANOVA_MODEL      (free tier)
+//   GEMINI_API_KEY / GEMINI_MODEL            (free Flash tier)
+//   CF_ACCOUNT_ID + CF_AI_TOKEN / CF_AI_MODEL(free neurons, capped)
+//   OPENAI_API_KEY / OPENAI_MODEL            (PAID — last, tight cap, spillover)
+//   OLLAMA_HOST / OLLAMA_MODEL               (local CPU, last-resort)
+//   PROVIDER_ORDER  (comma list; default below)  •  <NAME>_DAILY_CAP per provider
 
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const STATE_FILE = process.env.PROVIDER_STATE_FILE || '/tmp/agyata_provider_usage.json';
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Conservative daily request caps — WELL under each free tier so we never spill.
-// Cloudflare is the only one that BILLS past free, so its cap is the real $0
-// guardrail (a small-model call ≈ tens of neurons; 3000 calls stays under the
-// ~10k-neuron/day free allowance with margin). Others just 429 when exhausted.
-const DEFAULT_CAPS = {
-  groq: Number(process.env.GROQ_DAILY_CAP || 12000), // free ~14.4k/day; leave headroom
-  gemini: Number(process.env.GEMINI_DAILY_CAP || 1400), // free ~1500/day
-  cloudflare: Number(process.env.CF_DAILY_CAP || 2500), // HARD $0 guardrail (bills past free)
-  ollama: Number(process.env.OLLAMA_DAILY_CAP || 100000), // local, effectively unlimited
+// ── shared OpenAI-compatible adapter factory ────────────────────────────────
+// Groq / Cerebras / SambaNova / OpenAI all use POST {baseUrl}/chat/completions
+// with a Bearer key. One factory, parameterised.
+function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
+  return async (prompt, opts) => {
+    const key = process.env[keyEnv];
+    if (!key) return null;
+    const model = process.env[modelEnv] || modelDefault;
+    const r = await fetch(`${baseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+        max_tokens: opts.maxTokens || 400,
+        response_format: opts.json ? { type: 'json_object' } : undefined,
+      }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 30000),
+    });
+    if (r.status === 429) throw { rateLimited: true };
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j.choices?.[0]?.message?.content ?? null;
+  };
+}
+
+// ── Gemini adapter (generateContent) ────────────────────────────────────────
+function geminiAdapter() {
+  return async (prompt, opts) => {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) return null;
+    // Use a FLASH TEXT model (fast, cheap, free tier). NOT a *-live model — those
+    // are realtime audio/video streaming, not batch JSON text. Override via GEMINI_MODEL.
+    const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.2, maxOutputTokens: opts.maxTokens || 400, responseMimeType: opts.json ? 'application/json' : 'text/plain' },
+      }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 30000),
+    });
+    if (r.status === 429) throw { rateLimited: true };
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
+  };
+}
+
+// ── Cloudflare Workers AI adapter ───────────────────────────────────────────
+function cloudflareAdapter() {
+  return async (prompt, opts) => {
+    const acct = process.env.CF_ACCOUNT_ID;
+    const key = process.env.CF_AI_TOKEN;
+    if (!acct || !key) return null;
+    const model = process.env.CF_AI_MODEL || '@cf/meta/llama-3.1-8b-instruct-fp8-fast';
+    const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${acct}/ai/run/${model}`, {
+      method: 'POST',
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prompt, max_tokens: opts.maxTokens || 400, temperature: 0.2 }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 30000),
+    });
+    if (r.status === 429) throw { rateLimited: true };
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j.result?.response ?? null;
+  };
+}
+
+// ── local Ollama adapter (last-resort, free, slow) ──────────────────────────
+function ollamaAdapter() {
+  return async (prompt, opts) => {
+    const host = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
+    const model = process.env.OLLAMA_MODEL || 'qwen2.5:3b';
+    const r = await fetch(`${host}/api/generate`, {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ model, prompt, stream: false, format: opts.json ? 'json' : undefined, keep_alive: '30m', options: { temperature: 0.2, num_predict: opts.maxTokens || 400 } }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 150000),
+    });
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j.response ?? null;
+  };
+}
+
+// ── PROVIDER REGISTRY ───────────────────────────────────────────────────────
+// One entry per provider. `enabled()` = has its credentials. `cap` = per-run
+// request budget (the $0 guardrail — conservative for capped/paid providers). The
+// chosen MODELS are deliberately the CHEAP/FAST "mini/flash/instant" tier — a news
+// title+summary rewrite needs no heavy or reasoning model. (OpenAI: gpt-4o-mini,
+// NOT o3/o4-mini — reasoning models burn hidden tokens + cost more for this task.)
+const REGISTRY = {
+  cerebras: {
+    tier: 'free', // very fast; strong free tier — good PRIMARY
+    adapter: openAiAdapter({ baseUrl: 'https://api.cerebras.ai/v1', keyEnv: 'CEREBRAS_API_KEY', modelEnv: 'CEREBRAS_MODEL', modelDefault: 'llama-3.3-70b' }),
+    enabled: () => !!process.env.CEREBRAS_API_KEY,
+    cap: Number(process.env.CEREBRAS_DAILY_CAP || 8000),
+  },
+  groq: {
+    tier: 'free',
+    adapter: openAiAdapter({ baseUrl: 'https://api.groq.com/openai/v1', keyEnv: 'GROQ_API_KEY', modelEnv: 'GROQ_MODEL', modelDefault: 'llama-3.3-70b-versatile' }),
+    enabled: () => !!process.env.GROQ_API_KEY,
+    cap: Number(process.env.GROQ_DAILY_CAP || 8000),
+  },
+  sambanova: {
+    tier: 'free',
+    adapter: openAiAdapter({ baseUrl: 'https://api.sambanova.ai/v1', keyEnv: 'SAMBANOVA_API_KEY', modelEnv: 'SAMBANOVA_MODEL', modelDefault: 'Meta-Llama-3.3-70B-Instruct' }),
+    enabled: () => !!process.env.SAMBANOVA_API_KEY,
+    cap: Number(process.env.SAMBANOVA_DAILY_CAP || 2000),
+  },
+  gemini: {
+    tier: 'free',
+    adapter: geminiAdapter(),
+    enabled: () => !!process.env.GEMINI_API_KEY,
+    cap: Number(process.env.GEMINI_DAILY_CAP || 1400),
+  },
+  cloudflare: {
+    tier: 'free-metered', // free neurons but BILLS past them → hard cap
+    adapter: cloudflareAdapter(),
+    enabled: () => !!(process.env.CF_ACCOUNT_ID && process.env.CF_AI_TOKEN),
+    cap: Number(process.env.CF_DAILY_CAP || 150),
+  },
+  openai: {
+    tier: 'paid', // PAID — last resort, TIGHT cap, spillover only ($ guardrail)
+    adapter: openAiAdapter({ baseUrl: 'https://api.openai.com/v1', keyEnv: 'OPENAI_API_KEY', modelEnv: 'OPENAI_MODEL', modelDefault: 'gpt-4o-mini' }),
+    enabled: () => !!process.env.OPENAI_API_KEY,
+    cap: Number(process.env.OPENAI_DAILY_CAP || 100),
+  },
+  ollama: {
+    tier: 'local',
+    adapter: ollamaAdapter(),
+    enabled: () => process.env.PROVIDER_USE_OLLAMA !== '0',
+    cap: Number(process.env.OLLAMA_DAILY_CAP || 100000),
+  },
 };
 
-// ── usage state (persisted so DAILY caps are real across runs) ───────────────
-function today() {
-  // UTC date key. Date.now is available on the runner; if unavailable, fall back.
-  try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; }
-}
+// Order: cheap fast FREE first, capped free next, PAID last (spillover), local last.
+const DEFAULT_ORDER = 'cerebras,groq,gemini,sambanova,cloudflare,openai,ollama';
+
+// ── usage state (persisted so per-run/day caps are honoured) ─────────────────
+function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }
 function loadUsage() {
-  try {
-    const u = JSON.parse(readFileSync(STATE_FILE, 'utf8'));
-    if (u.date === today()) return u;
-  } catch {}
+  try { const u = JSON.parse(readFileSync(STATE_FILE, 'utf8')); if (u.date === today()) return u; } catch {}
   return { date: today(), counts: {} };
 }
-function saveUsage(u) {
-  try { writeFileSync(STATE_FILE, JSON.stringify(u)); } catch {}
-}
+function saveUsage(u) { try { writeFileSync(STATE_FILE, JSON.stringify(u)); } catch {} }
 
-// ── provider adapters — each: (prompt, opts) → text | null ───────────────────
-async function callGroq(prompt, opts) {
-  const key = process.env.GROQ_API_KEY;
-  if (!key) return null;
-  const model = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
-  const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0.2,
-      max_tokens: opts.maxTokens || 400,
-      response_format: opts.json ? { type: 'json_object' } : undefined,
-    }),
-    signal: AbortSignal.timeout(opts.timeoutMs || 30000),
-  });
-  if (r.status === 429) throw { rateLimited: true };
-  if (!r.ok) return null;
-  const j = await r.json();
-  return j.choices?.[0]?.message?.content ?? null;
-}
-
-async function callGemini(prompt, opts) {
-  const key = process.env.GEMINI_API_KEY;
-  if (!key) return null;
-  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
-  const r = await fetch(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: opts.maxTokens || 400, responseMimeType: opts.json ? 'application/json' : 'text/plain' },
-    }),
-    signal: AbortSignal.timeout(opts.timeoutMs || 30000),
-  });
-  if (r.status === 429) throw { rateLimited: true };
-  if (!r.ok) return null;
-  const j = await r.json();
-  return j.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
-}
-
-async function callCloudflare(prompt, opts) {
-  const acct = process.env.CF_ACCOUNT_ID;
-  const key = process.env.CF_AI_TOKEN;
-  if (!acct || !key) return null;
-  const model = process.env.CF_AI_MODEL || '@cf/meta/llama-3.1-8b-instruct-fp8-fast';
-  const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${acct}/ai/run/${model}`, {
-    method: 'POST',
-    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ prompt, max_tokens: opts.maxTokens || 400, temperature: 0.2 }),
-    signal: AbortSignal.timeout(opts.timeoutMs || 30000),
-  });
-  if (r.status === 429) throw { rateLimited: true };
-  if (!r.ok) return null;
-  const j = await r.json();
-  return j.result?.response ?? null;
-}
-
-async function callOllama(prompt, opts) {
-  const host = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
-  const model = process.env.OLLAMA_MODEL || 'qwen2.5:3b';
-  const r = await fetch(`${host}/api/generate`, {
-    method: 'POST', headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ model, prompt, stream: false, format: opts.json ? 'json' : undefined, keep_alive: '30m', options: { temperature: 0.2, num_predict: opts.maxTokens || 400 } }),
-    signal: AbortSignal.timeout(opts.timeoutMs || 150000),
-  });
-  if (!r.ok) return null;
-  const j = await r.json();
-  return j.response ?? null;
-}
-
-const ADAPTERS = { groq: callGroq, gemini: callGemini, cloudflare: callCloudflare, ollama: callOllama };
-
-// Which providers are actually configured (have keys). Ollama is assumed available
-// (local); the caller can drop it via PROVIDER_ORDER.
+// Ordered list of ENABLED provider names (per PROVIDER_ORDER, filtered to keyed).
 export function availableProviders() {
-  const order = (process.env.PROVIDER_ORDER || 'groq,gemini,cloudflare,ollama').split(',').map((s) => s.trim()).filter(Boolean);
-  return order.filter((p) => {
-    if (p === 'groq') return !!process.env.GROQ_API_KEY;
-    if (p === 'gemini') return !!process.env.GEMINI_API_KEY;
-    if (p === 'cloudflare') return !!(process.env.CF_ACCOUNT_ID && process.env.CF_AI_TOKEN);
-    if (p === 'ollama') return process.env.PROVIDER_USE_OLLAMA !== '0';
-    return false;
-  });
+  const order = (process.env.PROVIDER_ORDER || DEFAULT_ORDER).split(',').map((s) => s.trim()).filter(Boolean);
+  return order.filter((name) => REGISTRY[name]?.enabled());
 }
 
-// The router. Tries providers in order, honouring daily caps + rate-limit backoff.
-// Returns { text, provider } or { text: null } if every provider is exhausted/failed
-// (caller then uses the extractive fallback — never a paid call, never a hard fail).
+// The router. Tries enabled providers in order, honouring per-run caps + failover.
+// Returns { text, provider } or { text: null } (caller uses the extractive
+// fallback — never a paid call beyond its cap, never a hard fail).
 const usage = loadUsage();
 let flushCounter = 0;
 export async function generate(prompt, opts = {}) {
-  const providers = availableProviders();
-  for (const p of providers) {
-    const cap = DEFAULT_CAPS[p] ?? 1000;
-    const used = usage.counts[p] || 0;
-    if (used >= cap) continue; // daily cap hit — the $0 guardrail (esp. cloudflare)
+  for (const name of availableProviders()) {
+    const entry = REGISTRY[name];
+    const used = usage.counts[name] || 0;
+    if (used >= entry.cap) continue; // cap hit — the $0/spend guardrail
     try {
-      const text = await ADAPTERS[p](prompt, opts);
+      const text = await entry.adapter(prompt, opts);
       if (text != null) {
-        usage.counts[p] = used + 1;
-        if (++flushCounter % 5 === 0) saveUsage(usage); // persist periodically
-        return { text, provider: p };
+        usage.counts[name] = used + 1;
+        if (++flushCounter % 5 === 0) saveUsage(usage);
+        return { text, provider: name };
       }
     } catch (e) {
-      if (e?.rateLimited) { usage.counts[p] = cap; /* treat as exhausted for this run */ continue; }
-      // network/other error → try next provider
+      if (e?.rateLimited) { usage.counts[name] = entry.cap; continue; } // exhausted this run
+      // network/other error → next provider
     }
   }
   saveUsage(usage);
@@ -170,6 +215,8 @@ export async function generate(prompt, opts = {}) {
 }
 
 export function usageSummary() {
-  return { date: usage.date, counts: { ...usage.counts }, caps: DEFAULT_CAPS };
+  const caps = {};
+  for (const [n, e] of Object.entries(REGISTRY)) caps[n] = e.cap;
+  return { date: usage.date, counts: { ...usage.counts }, caps };
 }
 export function flushUsage() { saveUsage(usage); }
