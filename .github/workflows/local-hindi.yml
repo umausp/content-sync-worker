@@ -26,7 +26,7 @@ env:
   # Same provider ladder as national (registry in src/providers.mjs). Free-first,
   # OpenAI last+capped, Ollama last-resort. Skipped if a key is absent.
   # Cloudflare excluded (billable creds in public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -35,6 +35,10 @@ env:
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
   COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA_MODEL: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '50'

@@ -33,7 +33,7 @@ env:
   #    resort. A provider is skipped if its key secret is absent. Models are the
   #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
   # Cloudflare excluded (billable creds in a public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
   # free, very fast — PRIMARY
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)
@@ -46,6 +46,12 @@ env:
   # free/trial tier (repo secret name is COHERA_API_KEY)
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
   COHERE_MODEL: 'command-r-08-2024'
+  # OpenRouter — aggregator; ':free' model = zero-cost pool (rate-limited, not billed).
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  # DeepInfra — OpenAI-compatible; free SIGNUP CREDITS then pay-per-use → capped, sits before paid OpenAI.
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA_MODEL: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
   # PAID — gpt-4o-mini (cheapest, highest RPM/TPM, NO wasted reasoning tokens; do
   # NOT use o3/o4-mini here — reasoning models cost more + are slower for a simple
   # rewrite). LAST in the ladder + tight cap → fires only if ALL free tiers are

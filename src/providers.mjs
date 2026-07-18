@@ -230,6 +230,26 @@ const REGISTRY = {
     enabled: () => !!process.env.GEMINI_API_KEY,
     cap: Number(process.env.GEMINI_DAILY_CAP || 1400),
   },
+  openrouter: {
+    tier: 'free', // aggregator — use a ':free' model (free daily quota, then 429)
+    // OpenRouter is OpenAI-compatible. The ':free' suffix routes to a zero-cost
+    // model pool (rate-limited, not billed). Default to a solid free Llama; override
+    // via OPENROUTER_MODEL (e.g. 'deepseek/deepseek-chat-v3:free', 'google/
+    // gemini-2.0-flash-exp:free'). Keep the ':free' suffix or it may BILL.
+    adapter: openAiAdapter({ baseUrl: 'https://openrouter.ai/api/v1', keyEnv: 'OPENROUTER_API_KEY', modelEnv: 'OPENROUTER_MODEL', modelDefault: 'meta-llama/llama-3.3-70b-instruct:free' }),
+    enabled: () => !!process.env.OPENROUTER_API_KEY,
+    cap: Number(process.env.OPENROUTER_DAILY_CAP || 900),
+  },
+  deepinfra: {
+    tier: 'free-metered', // free signup credits, then PAY-PER-USE (bills the card)
+    // DeepInfra is OpenAI-compatible at /v1/openai. New accounts get free credits,
+    // but it BILLS once they're spent — so it's OFF the default order (we keep the
+    // ladder strictly $0). Re-add via PROVIDER_ORDER to spend the free credits; the
+    // cap bounds the burn. Small fast model per 'use only what's needed'.
+    adapter: openAiAdapter({ baseUrl: 'https://api.deepinfra.com/v1/openai', keyEnv: 'DEEPINFRA_API_KEY', modelEnv: 'DEEPINFRA_MODEL', modelDefault: 'meta-llama/Meta-Llama-3.1-8B-Instruct' }),
+    enabled: () => !!process.env.DEEPINFRA_API_KEY,
+    cap: Number(process.env.DEEPINFRA_DAILY_CAP || 600),
+  },
   cloudflare: {
     tier: 'free-metered', // free neurons but BILLS past them → hard cap
     adapter: cloudflareAdapter(),
@@ -260,7 +280,13 @@ const REGISTRY = {
 // REGISTRY — re-add via PROVIDER_ORDER if billing is ever enabled. (The runtime
 // permanent-failure disable also catches it, but omitting it avoids the wasted
 // first-hop probe each run.)
-const DEFAULT_ORDER = 'gemini,sambanova,cohere,openai,ollama';
+// Free-first ladder: gemini/sambanova/cohere/openrouter (all $0), then PAID openai
+// (spillover, tight cap), then local ollama (last resort). DeepInfra is OMITTED by
+// default — it BILLS the card once free signup credits run out, and we keep the
+// default ladder STRICTLY $0 (user decision 2026-07-18). It stays in the REGISTRY,
+// re-add via PROVIDER_ORDER='...,deepinfra,...' to spend its free credits. Cerebras
+// + Groq + Cloudflare are also OFF by default (see notes above).
+const DEFAULT_ORDER = 'gemini,sambanova,cohere,openrouter,openai,ollama';
 
 // ── usage state (persisted so per-run/day caps are honoured) ─────────────────
 function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }
