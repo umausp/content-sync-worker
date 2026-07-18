@@ -33,16 +33,19 @@ env:
   #    resort. A provider is skipped if its key secret is absent. Models are the
   #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
   # Cloudflare excluded (billable creds in a public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'cerebras,gemini,sambanova,openai,ollama'
+  PROVIDER_ORDER: 'cerebras,gemini,sambanova,cohere,openai,ollama'
   # free, very fast — PRIMARY
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'llama-3.3-70b'
   # free Flash TEXT model (NOT a *-live/realtime model). Override to your account's id.
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
-  # free tier
-  SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+  # free tier (repo secret name is SOMBANOVA_API_KEY — code reads it as-is)
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  # free/trial tier (repo secret name is COHERA_API_KEY)
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
   # PAID — gpt-4o-mini (cheapest, highest RPM/TPM, NO wasted reasoning tokens; do
   # NOT use o3/o4-mini here — reasoning models cost more + are slower for a simple
   # rewrite). LAST in the ladder + tight cap → fires only if ALL free tiers are

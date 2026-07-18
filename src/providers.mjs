@@ -33,11 +33,20 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const STATE_FILE = process.env.PROVIDER_STATE_FILE || '/tmp/agyata_provider_usage.json';
 
 // ── shared OpenAI-compatible adapter factory ────────────────────────────────
+// Read an API key from the FIRST configured env name — tolerates the exact secret
+// names in the repo (e.g. SOMBANOVA_API_KEY / COHERA_API_KEY) alongside the
+// correctly-spelled fallbacks, so a naming typo never silently disables a provider.
+function envKey(...names) {
+  for (const n of names) if (process.env[n]) return process.env[n];
+  return undefined;
+}
+
 // Groq / Cerebras / SambaNova / OpenAI all use POST {baseUrl}/chat/completions
-// with a Bearer key. One factory, parameterised.
+// with a Bearer key. One factory, parameterised. keyEnv may be an array of
+// candidate env names.
 function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
   return async (prompt, opts) => {
-    const key = process.env[keyEnv];
+    const key = envKey(...(Array.isArray(keyEnv) ? keyEnv : [keyEnv]));
     if (!key) return null;
     const model = process.env[modelEnv] || modelDefault;
     const r = await fetch(`${baseUrl}/chat/completions`, {
@@ -104,6 +113,33 @@ function cloudflareAdapter() {
   };
 }
 
+// ── Cohere adapter (v2 /chat) ───────────────────────────────────────────────
+// Reads the key from whatever name is configured (the repo has COHERA_API_KEY).
+function cohereAdapter() {
+  return async (prompt, opts) => {
+    const key = envKey('COHERE_API_KEY', 'COHERA_API_KEY');
+    if (!key) return null;
+    const model = process.env.COHERE_MODEL || 'command-r-08-2024'; // fast, cheap free-tier chat model
+    const r = await fetch('https://api.cohere.com/v2/chat', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+        max_tokens: opts.maxTokens || 400,
+        response_format: opts.json ? { type: 'json_object' } : undefined,
+      }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 30000),
+    });
+    if (r.status === 429) throw { rateLimited: true };
+    if (!r.ok) return null;
+    const j = await r.json();
+    // Cohere v2: message.content is an array of {type,text}
+    return j.message?.content?.map((p) => p.text).join('') ?? null;
+  };
+}
+
 // ── local Ollama adapter (last-resort, free, slow) ──────────────────────────
 function ollamaAdapter() {
   return async (prompt, opts) => {
@@ -141,9 +177,16 @@ const REGISTRY = {
   },
   sambanova: {
     tier: 'free',
-    adapter: openAiAdapter({ baseUrl: 'https://api.sambanova.ai/v1', keyEnv: 'SAMBANOVA_API_KEY', modelEnv: 'SAMBANOVA_MODEL', modelDefault: 'Meta-Llama-3.3-70B-Instruct' }),
-    enabled: () => !!process.env.SAMBANOVA_API_KEY,
+    // repo secret is SOMBANOVA_API_KEY (typo) — read that first, then the correct spelling
+    adapter: openAiAdapter({ baseUrl: 'https://api.sambanova.ai/v1', keyEnv: ['SOMBANOVA_API_KEY', 'SAMBANOVA_API_KEY'], modelEnv: 'SAMBANOVA_MODEL', modelDefault: 'Meta-Llama-3.3-70B-Instruct' }),
+    enabled: () => !!envKey('SOMBANOVA_API_KEY', 'SAMBANOVA_API_KEY'),
     cap: Number(process.env.SAMBANOVA_DAILY_CAP || 2000),
+  },
+  cohere: {
+    tier: 'free', // free/trial tier — command-r class, fast
+    adapter: cohereAdapter(),
+    enabled: () => !!envKey('COHERE_API_KEY', 'COHERA_API_KEY'),
+    cap: Number(process.env.COHERE_DAILY_CAP || 900),
   },
   gemini: {
     tier: 'free',
@@ -171,11 +214,12 @@ const REGISTRY = {
   },
 };
 
-// Order: cheap fast FREE first, PAID last (spillover), local last. Groq +
+// Order: cheap fast FREE first (cerebras/gemini/sambanova/cohere), PAID openai
+// last (spillover), local ollama last-resort. Groq +
 // Cloudflare are still in the REGISTRY (usable by setting PROVIDER_ORDER) but are
 // OFF by default — no Groq key, and Cloudflare's billable creds are unwanted in a
 // public repo. Set PROVIDER_ORDER to re-include them.
-const DEFAULT_ORDER = 'cerebras,gemini,sambanova,openai,ollama';
+const DEFAULT_ORDER = 'cerebras,gemini,sambanova,cohere,openai,ollama';
 
 // ── usage state (persisted so per-run/day caps are honoured) ─────────────────
 function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }

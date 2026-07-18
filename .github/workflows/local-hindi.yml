@@ -26,13 +26,15 @@ env:
   # Same provider ladder as national (registry in src/providers.mjs). Free-first,
   # OpenAI last+capped, Ollama last-resort. Skipped if a key is absent.
   # Cloudflare excluded (billable creds in public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'cerebras,gemini,sambanova,openai,ollama'
+  PROVIDER_ORDER: 'cerebras,gemini,sambanova,cohere,openai,ollama'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'llama-3.3-70b'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
-  SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '50'
