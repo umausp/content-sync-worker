@@ -20,14 +20,27 @@ const STOP = new Set([
   'near', 'up', 'out', 'off', 'about', 'more', 'than', 'been', 'being', 'ahead', 'amid',
 ]);
 
+// MEMOISED (perf): the O(N²) clustering/dedup loops call wordSet on the SAME
+// titles thousands of times (once per pairwise comparison). Rebuilding the set —
+// lowercase + regex + split + alloc — each time is the dominant constant factor.
+// Caching by title string turns N² set-BUILDS into N. The returned Set is treated
+// as read-only by all callers (jaccard/containment/distinctiveTokens only read),
+// so sharing the instance is safe. The process is ephemeral (one run, ~1-2k unique
+// titles) so the cache can't grow unbounded; a soft cap guards pathological input.
+const _wordSetCache = new Map();
 export function wordSet(title) {
-  return new Set(
-    String(title || '')
+  const key = String(title || '');
+  const hit = _wordSetCache.get(key);
+  if (hit) return hit;
+  const s = new Set(
+    key
       .toLowerCase()
       .replace(/[^a-z0-9 ]+/g, ' ')
       .split(/\s+/)
       .filter((w) => w.length > 2 && !STOP.has(w)),
   );
+  if (_wordSetCache.size < 50000) _wordSetCache.set(key, s);
+  return s;
 }
 
 function jaccard(a, b) {
@@ -63,7 +76,7 @@ const GENERIC = new Set([
   'health', 'environmental', 'environment', 'economy', 'economic', 'market', 'markets', 'plan',
   'plans', 'issue', 'issues', 'day', 'year', 'years', 'time', 'week', 'top', 'first', 'set',
 ]);
-function distinctiveTokens(set) {
+export function distinctiveTokens(set) {
   const out = new Set();
   for (const w of set) {
     if (GENERIC.has(w)) continue;

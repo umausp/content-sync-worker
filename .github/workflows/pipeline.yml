@@ -19,7 +19,7 @@ on:
 
 concurrency:
   group: news-pipeline
-  cancel-in-progress: true # a new run supersedes a stuck one instead of queueing
+  cancel-in-progress: false # NEVER kill a run mid-publish — a new run QUEUES behind it (user ask). The pipeline is idempotent (dedup vs already-published), so an overlapping run is safe; runtime is now well under the 15-min cadence anyway.
 
 permissions:
   contents: read

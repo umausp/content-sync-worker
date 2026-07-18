@@ -13,7 +13,7 @@ on:
 
 concurrency:
   group: local-news-hindi
-  cancel-in-progress: true
+  cancel-in-progress: false # NEVER kill a run mid-publish — a new run QUEUES behind it (user ask). Idempotent pipeline → overlap is safe.
 
 permissions:
   contents: read

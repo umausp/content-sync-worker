@@ -67,7 +67,12 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
       signal: AbortSignal.timeout(opts.timeoutMs || 30000),
     });
     if (r.status === 429) throw { rateLimited: true };
-    if (!r.ok) return null;
+    if (!r.ok) {
+      // Surface the STATUS (and a short body) so a misconfig is diagnosable — a
+      // silent null on a bad key/model was un-debuggable (the cerebras case).
+      const detail = await r.text().catch(() => '');
+      throw new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+    }
     const j = await r.json();
     return j.choices?.[0]?.message?.content ?? null;
   };
@@ -246,39 +251,60 @@ export function availableProviders() {
 // fallback — never a paid call beyond its cap, never a hard fail).
 const usage = loadUsage();
 let flushCounter = 0;
-// Transient-429 COOLDOWN: a 429 is often a per-minute (TPM) blip, not the daily
-// cap. Benching a provider for the whole run on one blip needlessly degrades the
-// (free, fast) fallback pool — especially our primary. So a 429 parks the provider
-// for a SHORT window and it's retried after; only a genuine daily-cap hit (below)
-// bans it for the run. Keyed by provider name → epoch-ms it becomes usable again.
+// COOLDOWN: park a provider for a SHORT window instead of banning it for the run.
+// Triggered by (a) a 429 (often a per-minute TPM blip, not the daily cap) and
+// (b) the CIRCUIT BREAKER below. Keyed by name → epoch-ms it's usable again.
 const COOLDOWN_MS = Number(process.env.PROVIDER_COOLDOWN_MS || 90000);
+// PER-ATTEMPT timeout for a HOSTED provider. Healthy hosted inference answers in a
+// few seconds; if it hasn't in HOSTED_ATTEMPT_MS it's effectively down for THIS
+// call, so we fall through rather than burn the caller's whole (up to 150s synth)
+// budget on one hung endpoint. Ollama is legitimately slow (local CPU) → it alone
+// keeps the caller's full timeout.
+const HOSTED_ATTEMPT_MS = Number(process.env.PROVIDER_HOSTED_TIMEOUT_MS || 30000);
+// CIRCUIT BREAKER: after this many CONSECUTIVE failures (bad key / timeout / 5xx —
+// NOT a 429, which has its own cooldown) a hosted provider is benched for
+// COOLDOWN_MS. This is what makes the router DECIDE FAST to stop re-trying a dead
+// provider (e.g. a bad CEREBRAS key) as the wasteful first hop on every one of the
+// run's ~90 calls, and fall straight through to a working one (incl. Ollama).
+const FAIL_THRESHOLD = Number(process.env.PROVIDER_FAIL_THRESHOLD || 2);
 const cooldownUntil = {};
+const consecFails = {};
+// Bench a provider after repeated non-429 failures so a dead provider stops being
+// re-tried every call. Ollama is never benched — it's the last resort.
+function tripBreaker(name, why) {
+  consecFails[name] = (consecFails[name] || 0) + 1;
+  const open = name !== 'ollama' && consecFails[name] >= FAIL_THRESHOLD;
+  if (open) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; consecFails[name] = 0; }
+  console.warn(`[providers] ${name} ${why}${open ? ` — circuit OPEN, benched ${Math.round(COOLDOWN_MS / 1000)}s` : ' — falling through'}`);
+}
 export async function generate(prompt, opts = {}) {
   // DATE ROLLOVER: usage was loaded at import; if this (rare, but a Hindi hourly
   // run could) crosses midnight UTC, reset the day's counts so caps aren't locked
   // to the process's start date.
   const day = today();
   if (usage.date !== day) { usage.date = day; usage.counts = {}; }
-  const nowMs = Date.now();
   for (const name of availableProviders()) {
     const entry = REGISTRY[name];
     const used = usage.counts[name] || 0;
     if (used >= entry.cap) continue; // cap hit — the $0/spend guardrail
-    if (cooldownUntil[name] && nowMs < cooldownUntil[name]) continue; // transient 429 — skip, retry later
+    if (cooldownUntil[name] && Date.now() < cooldownUntil[name]) continue; // cooling down (429 or circuit) — skip
+    // Cap a hosted attempt so one hung endpoint can't eat the whole synth budget.
+    const attemptMs = name === 'ollama' ? (opts.timeoutMs || 150000) : Math.min(opts.timeoutMs || HOSTED_ATTEMPT_MS, HOSTED_ATTEMPT_MS);
     try {
-      const text = await entry.adapter(prompt, opts);
+      const text = await entry.adapter(prompt, { ...opts, timeoutMs: attemptMs });
       if (text != null) {
         usage.counts[name] = used + 1;
+        consecFails[name] = 0; // healthy again → reset the breaker
         if (++flushCounter % 5 === 0) saveUsage(usage);
         return { text, provider: name };
       }
-      // adapter returned null on a non-OK response (bad key / 5xx / empty) — this is
-      // silent by design elsewhere, but a PAID or PRIMARY provider failing quietly
-      // hides real problems (e.g. a rolled OpenAI key → we lean on Ollama unnoticed).
-      console.warn(`[providers] ${name} returned no text (bad key / non-OK / empty response) — falling through`);
+      // null = non-OK / empty (bad key, 5xx). Count toward the circuit breaker so a
+      // dead provider (e.g. a rolled key silently rolling us toward PAID OpenAI) is
+      // benched fast + visibly, not retried as the first hop every call.
+      tripBreaker(name, 'returned no text (bad key / non-OK / empty)');
     } catch (e) {
-      if (e?.rateLimited) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; console.warn(`[providers] ${name} rate-limited (429) — cooling down ${Math.round(COOLDOWN_MS / 1000)}s`); continue; }
-      console.warn(`[providers] ${name} error: ${e?.message || e} — trying next provider`);
+      if (e?.rateLimited) { cooldownUntil[name] = Date.now() + COOLDOWN_MS; consecFails[name] = 0; console.warn(`[providers] ${name} rate-limited (429) — cooling down ${Math.round(COOLDOWN_MS / 1000)}s`); continue; }
+      tripBreaker(name, `error: ${e?.message || e}`); // timeout / network / 5xx
     }
   }
   saveUsage(usage);
