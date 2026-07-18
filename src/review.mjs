@@ -34,6 +34,10 @@ const PUBLISH_MIN_CORROBORATION = Number(process.env.PUBLISH_MIN_CORROBORATION |
 // may surface a major event from one outlet first). Set to 6 to disable.
 const PUBLISH_SOLO_IMPORTANCE = Number(process.env.PUBLISH_SOLO_IMPORTANCE || 5);
 const MAX_AGE_H = Number(process.env.MAX_AGE_H || 36);
+// Trending/buzz items stay fresh longer — a live search trend is current even when
+// its anchor article is a day or two old. Prevents the 24h clock from dropping
+// genuinely-trending stories (see buzz cron staleness leak).
+const MAX_AGE_H_BUZZ = Number(process.env.MAX_AGE_H_BUZZ || 72);
 // Fact-verifier ON by default but BUDGET-CAPPED (see Layer E): it verifies the
 // highest-scored survivors until VERIFY_BUDGET_MS is spent, then lets the rest
 // publish unverified (still guarded by gFactShape). This gives the anti-
@@ -101,8 +105,12 @@ async function main() {
   const verifyStart = Date.now(); // verify budget clock starts at the review loop
 
   for (const c of candidates) {
-    // Layer A — algorithmic gates.
-    const g = runGates(c, { nowMs, maxAgeH: MAX_AGE_H });
+    // Layer A — algorithmic gates. BUZZ/trending items get a longer stale window:
+    // a topic people are searching RIGHT NOW is fresh even if Google News anchors it
+    // to a 1-2 day-old article — the 24h clock was wrongly dropping live trends
+    // (iPhone launch, Sensex, FIFA). MAX_AGE_H_BUZZ (default 72h) for via='buzz'.
+    const maxAgeH = c.article?.via === 'buzz' ? MAX_AGE_H_BUZZ : MAX_AGE_H;
+    const g = runGates(c, { nowMs, maxAgeH });
     if (g) { rejected++; bump(reasons, g.gate + ':' + g.reason); console.log(`  ✗ ${g.gate} [${g.reason}] ${(c.title || '').slice(0, 46)}`); continue; }
 
     // Layer B — in-batch dedup.
