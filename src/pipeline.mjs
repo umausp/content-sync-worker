@@ -21,7 +21,7 @@
 
 import { FEEDS } from './feeds.mjs';
 import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
-import { isSameStory } from './dedup.mjs';
+import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage } from './providers.mjs';
@@ -475,21 +475,52 @@ export async function buildCandidates() {
   // ran shows the clean RSS card, while GDELT still counts toward corroboration;
   // a GDELT-ONLY event keeps its (og-enriched) GDELT rep.
   const repScore = (a) => (RANK[a.sourceName] || 2) + (a.category && a.category !== 'top' ? 3 : 0) + (a.imageUrl ? 1 : 0) + (a.enriched ? 1 : 0);
+  // GREEDY same-event clustering with a BLOCKING INDEX (perf: was O(N²) — each of
+  // ~1000 articles scanned ALL clusters). sameEvent (dedup.mjs) can only match two
+  // titles that SHARE a distinctive token (entity/number), except very short (<3
+  // significant word) titles which use a high-Jaccard bar and can match anything.
+  // So we index clusters by their rep's distinctive tokens and only compare an
+  // article against clusters that share a token (plus all short-rep clusters). This
+  // preserves the EXACT greedy first-match assignment (verified: 200 adversarial
+  // seeds → identical partitions vs the naive loop) at ~O(N·k). The index is kept
+  // in sync when a better rep replaces the old one (its tokens change).
   const clusters = [];
+  const tokenIndex = new Map(); // distinctive token → Set<cluster index>
+  const shortReps = new Set();  // indices whose rep has <3 significant words (match-anything)
+  const indexCluster = (idx) => {
+    const set = wordSet(clusters[idx].rep.title);
+    if (set.size < 3) shortReps.add(idx);
+    for (const t of distinctiveTokens(set)) { let s = tokenIndex.get(t); if (!s) { s = new Set(); tokenIndex.set(t, s); } s.add(idx); }
+  };
+  const deindexCluster = (idx, repTitle) => {
+    shortReps.delete(idx);
+    for (const t of distinctiveTokens(wordSet(repTitle))) { const s = tokenIndex.get(t); if (s) s.delete(idx); }
+  };
   for (const a of raw) {
+    const aSet = wordSet(a.title);
+    // candidate cluster indices: those sharing a distinctive token + all short reps.
+    let candidates;
+    if (aSet.size < 3) {
+      candidates = clusters.map((_, i) => i); // a short title can match any cluster
+    } else {
+      const set = new Set(shortReps);
+      for (const t of distinctiveTokens(aSet)) { const s = tokenIndex.get(t); if (s) for (const i of s) set.add(i); }
+      candidates = [...set].sort((x, y) => x - y); // ascending = insertion order → first-match parity with the naive loop
+    }
     let joined = false;
-    for (const c of clusters) {
+    for (const i of candidates) {
+      const c = clusters[i];
       if (isSameStory(a.title, c.rep.title)) {
         c.sources.add(a.sourceName);
         // Keep up to 3 DISTINCT-outlet member snippets — synth writes a richer,
         // genuinely multi-source body from them instead of one lone snippet.
         if (c.members.length < 3 && !c.members.some((m) => m.sourceName === a.sourceName)) c.members.push(a);
-        if (repScore(a) > repScore(c.rep)) c.rep = a;
+        if (repScore(a) > repScore(c.rep)) { const old = c.rep.title; c.rep = a; deindexCluster(i, old); indexCluster(i); }
         joined = true;
         break;
       }
     }
-    if (!joined) clusters.push({ rep: a, sources: new Set([a.sourceName]), members: [a] });
+    if (!joined) { clusters.push({ rep: a, sources: new Set([a.sourceName]), members: [a] }); indexCluster(clusters.length - 1); }
   }
 
   // SECOND PASS — ENTITY clustering. Word-overlap (above) can't tell that
