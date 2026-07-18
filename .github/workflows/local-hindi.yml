@@ -26,7 +26,7 @@ env:
   # Same provider ladder as national (registry in src/providers.mjs). Free-first,
   # OpenAI last+capped, Ollama last-resort. Skipped if a key is absent.
   # Cloudflare excluded (billable creds in public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama' # cerebras dropped (402 at $0); deepinfra omitted (bills after credits)
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -39,6 +39,12 @@ env:
   OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
   DEEPINFRA_MODEL: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'qwen/qwen2.5-coder-32b-instruct'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '50'

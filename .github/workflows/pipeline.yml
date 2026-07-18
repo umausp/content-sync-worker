@@ -33,7 +33,7 @@ env:
   #    resort. A provider is skipped if its key secret is absent. Models are the
   #    CHEAP/FAST tier — a title+summary rewrite needs nothing heavy. ──
   # Cloudflare excluded (billable creds in a public repo) + Groq excluded (no key).
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); re-add if billing enabled
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama' # cerebras dropped: 402 payment-required at $0 (Llama retired); deepinfra omitted (bills after credits); re-add either via PROVIDER_ORDER
   # free, very fast — PRIMARY
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)
@@ -49,9 +49,18 @@ env:
   # OpenRouter — aggregator; ':free' model = zero-cost pool (rate-limited, not billed).
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
   OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
-  # DeepInfra — OpenAI-compatible; free SIGNUP CREDITS then pay-per-use → capped, sits before paid OpenAI.
+  # DeepInfra — OpenAI-compatible; free SIGNUP CREDITS then pay-per-use → OFF the default order (kept for re-add).
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
   DEEPINFRA_MODEL: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
+  # NVIDIA NIM — free API credits; OpenAI-compatible at integrate.api.nvidia.com/v1.
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'qwen/qwen2.5-coder-32b-instruct'
+  # Mistral La Plateforme — free experiment tier.
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  # GitHub Models — free for GitHub users (rate-limited). Namespaced model IDs.
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
   # PAID — gpt-4o-mini (cheapest, highest RPM/TPM, NO wasted reasoning tokens; do
   # NOT use o3/o4-mini here — reasoning models cost more + are slower for a simple
   # rewrite). LAST in the ladder + tight cap → fires only if ALL free tiers are

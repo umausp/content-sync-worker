@@ -240,6 +240,31 @@ const REGISTRY = {
     enabled: () => !!process.env.OPENROUTER_API_KEY,
     cap: Number(process.env.OPENROUTER_DAILY_CAP || 900),
   },
+  nvidia: {
+    tier: 'free', // NVIDIA NIM (build.nvidia.com) — generous free API credits
+    // OpenAI-compatible at integrate.api.nvidia.com/v1. User picked qwen2.5-coder-32b
+    // (strong instruction-following; fine for a news rewrite). Override via NVIDIA_MODEL.
+    adapter: openAiAdapter({ baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY', modelEnv: 'NVIDIA_MODEL', modelDefault: 'qwen/qwen2.5-coder-32b-instruct' }),
+    enabled: () => !!process.env.NVIDIA_API_KEY,
+    cap: Number(process.env.NVIDIA_DAILY_CAP || 1000),
+  },
+  mistral: {
+    tier: 'free', // Mistral La Plateforme — free "experiment" tier
+    // OpenAI-compatible at api.mistral.ai/v1. mistral-small = fast + free-tier
+    // friendly; ample for a title+summary rewrite. Override via MISTRAL_MODEL.
+    adapter: openAiAdapter({ baseUrl: 'https://api.mistral.ai/v1', keyEnv: 'MISTRAL_API_KEY', modelEnv: 'MISTRAL_MODEL', modelDefault: 'mistral-small-latest' }),
+    enabled: () => !!process.env.MISTRAL_API_KEY,
+    cap: Number(process.env.MISTRAL_DAILY_CAP || 900),
+  },
+  gitmodels: {
+    tier: 'free', // GitHub Models — free for GitHub users (rate-limited, not billed)
+    // OpenAI-compatible at models.github.ai/inference. Model IDs are namespaced
+    // ('openai/gpt-4o-mini', 'meta/Llama-3.3-70B-Instruct'). Low free RPM/TPD, so
+    // the cap is modest + the cooldown/breaker handle its 429s. Override via GITMODELS_MODEL.
+    adapter: openAiAdapter({ baseUrl: 'https://models.github.ai/inference', keyEnv: 'GITMODELS_API_KEY', modelEnv: 'GITMODELS_MODEL', modelDefault: 'openai/gpt-4o-mini' }),
+    enabled: () => !!process.env.GITMODELS_API_KEY,
+    cap: Number(process.env.GITMODELS_DAILY_CAP || 300),
+  },
   deepinfra: {
     tier: 'free-metered', // free signup credits, then PAY-PER-USE (bills the card)
     // DeepInfra is OpenAI-compatible at /v1/openai. New accounts get free credits,
@@ -280,13 +305,13 @@ const REGISTRY = {
 // REGISTRY — re-add via PROVIDER_ORDER if billing is ever enabled. (The runtime
 // permanent-failure disable also catches it, but omitting it avoids the wasted
 // first-hop probe each run.)
-// Free-first ladder: gemini/sambanova/cohere/openrouter (all $0), then PAID openai
-// (spillover, tight cap), then local ollama (last resort). DeepInfra is OMITTED by
-// default — it BILLS the card once free signup credits run out, and we keep the
-// default ladder STRICTLY $0 (user decision 2026-07-18). It stays in the REGISTRY,
-// re-add via PROVIDER_ORDER='...,deepinfra,...' to spend its free credits. Cerebras
-// + Groq + Cloudflare are also OFF by default (see notes above).
-const DEFAULT_ORDER = 'gemini,sambanova,cohere,openrouter,openai,ollama';
+// Free-first ladder — all $0 (rate-limited, not billed): gemini, sambanova, cohere,
+// openrouter(:free), nvidia, mistral, gitmodels; then PAID openai (spillover, tight
+// cap); then local ollama (last resort). DeepInfra is OMITTED — it BILLS the card
+// once free signup credits run out, and we keep the default ladder STRICTLY $0 (user
+// decision 2026-07-18); re-add via PROVIDER_ORDER='...,deepinfra,...' to spend its
+// credits. Cerebras + Groq + Cloudflare are also OFF by default (see notes above).
+const DEFAULT_ORDER = 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama';
 
 // ── usage state (persisted so per-run/day caps are honoured) ─────────────────
 function today() { try { return new Date().toISOString().slice(0, 10); } catch { return 'nodate'; } }
