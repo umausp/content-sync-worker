@@ -242,11 +242,13 @@ const REGISTRY = {
   },
   nvidia: {
     tier: 'free', // NVIDIA NIM (build.nvidia.com) — generous free API credits
-    // OpenAI-compatible at integrate.api.nvidia.com/v1. Default = a CURRENT general
-    // instruct model; the original qwen2.5-coder-32b returned HTTP 410 GONE (retired
-    // — and a coding model, wrong tool for a news rewrite anyway). llama-3.1-8b is
-    // fast + general. Override via NVIDIA_MODEL (e.g. meta/llama-3.3-70b-instruct).
-    adapter: openAiAdapter({ baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY', modelEnv: 'NVIDIA_MODEL', modelDefault: 'meta/llama-3.1-8b-instruct' }),
+    // OpenAI-compatible at integrate.api.nvidia.com/v1. Default = llama-3.3-70b (a
+    // strong general model, free on NVIDIA's dev-program credits → a QUALITY tier;
+    // its ~40 RPM limit makes it quality-not-volume, which the fail-fast router
+    // handles). The original qwen2.5-coder-32b returned HTTP 410 GONE (retired +
+    // a coding model). Override via NVIDIA_MODEL (e.g. meta/llama-3.1-8b-instruct
+    // for a faster, higher-RPM option).
+    adapter: openAiAdapter({ baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY', modelEnv: 'NVIDIA_MODEL', modelDefault: 'meta/llama-3.3-70b-instruct' }),
     enabled: () => !!process.env.NVIDIA_API_KEY,
     cap: Number(process.env.NVIDIA_DAILY_CAP || 1000),
   },
