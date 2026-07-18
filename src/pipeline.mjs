@@ -25,6 +25,7 @@ import { isSameStory } from './dedup.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage } from './providers.mjs';
+import { triage, filterLiveUrls } from './triage.mjs';
 
 // ── EDITION ─────────────────────────────────────────────────────────────────
 // One pipeline, two editions. EDITION=local runs the Hindi "Local News" section
@@ -498,14 +499,45 @@ export async function buildCandidates() {
   const scored = clusters
     .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
+
+  // LLM TRIAGE GATEWAY — the "one initial review". A fast batched classifier (see
+  // triage.mjs) judges every scored candidate: keep/drop + category + importance,
+  // using editorial JUDGMENT instead of brittle regexes. Runs BEFORE the expensive
+  // full synth so we only synthesise what an editor would run. We cap the triaged
+  // set (TRIAGE_MAX) for cost/time; anything past it keeps its heuristic score.
+  // Fail-open (keep) on provider outage. Gated by TRIAGE_ENABLED (default on when
+  // a hosted provider is configured — triage on slow local Ollama is impractical).
+  const hosted = availableProviders().filter((p) => p !== 'ollama');
+  const triageOn = process.env.TRIAGE_ENABLED !== '0' && hosted.length > 0;
+  let candidatePool = scored;
+
+  // URL LIVENESS — drop stories whose source link is definitively dead (4xx/5xx)
+  // BEFORE triage, so we neither spend an LLM call on nor publish a broken link.
+  // Fail-open on network blips. Runs on the score-sorted set (best first).
+  const { live, dead } = await filterLiveUrls(scored, { log: glog });
+  if (dead > 0) { candidatePool = live; console.log(`url-check: dropped ${dead} dead-link stories (${live.length} live)`); }
+
+  if (triageOn) {
+    const triageMax = Number(process.env.TRIAGE_MAX || 600);
+    const toTriage = candidatePool.slice(0, triageMax);
+    const r = await triage(toTriage, { log: glog });
+    // apply: drop keep=false; fold triage importance/category onto the candidate.
+    for (const p of toTriage) {
+      if (p.triageImportance != null) { p.importance = p.triageImportance; p.score += (p.triageImportance - 3) * 2; }
+      if (p.triageCategory && p.a) p.a.category = p.triageCategory;
+    }
+    candidatePool = toTriage.filter((p) => p.triageKeep !== false).concat(candidatePool.slice(triageMax));
+    candidatePool.sort((x, y) => y.score - x.score);
+    console.log(`triage: kept ${r.kept}, dropped ${r.dropped}, fail-open ${r.failOpen}`);
+  }
+
   // SCORE-GATE: everything above SYNTH_MIN_SCORE is eligible. With HOSTED
   // inference the LLM cap can be much higher (sub-second calls), so we process far
   // more — even ALL clusters. The cap only bounds runaway runs. The score-sorted
   // TAIL beyond the LLM cap is NOT dropped: it gets EXTRACTIVE (no-LLM) treatment
   // below, so nothing is lost and it still costs $0.
-  const hosted = availableProviders().filter((p) => p !== 'ollama');
   const llmCap = hosted.length > 0 ? Number(process.env.SYNTH_HOSTED_MAX || 400) : SYNTH_HARD_MAX;
-  const allEligible = scored.filter((p) => p.score >= SYNTH_MIN_SCORE);
+  const allEligible = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE);
   const eligible = allEligible.slice(0, llmCap);
   const tail = allEligible.slice(llmCap); // extractive fallback for the rest
   console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);

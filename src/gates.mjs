@@ -116,22 +116,36 @@ export function gFactShape(c) {
   return null;
 }
 
-// Run all algorithmic gates in order; return {reason} or null (pass).
+// Run the algorithmic gates in order; return {reason} or null (pass).
+//
+// DIVISION OF LABOUR (redesign): the LLM TRIAGE gateway (triage.mjs) now owns
+// EDITORIAL judgment — is this junk / gossip / clickbait / opinion / low-value?
+// It does that far better than regexes. So these gates keep ONLY what regexes are
+// genuinely good at — MECHANICAL, deterministic checks:
+//   • structure  — real title (not slug/markup), valid hashtag, has body/summary
+//   • safety     — hard backstop (minors+crime, suicide method, communal/slurs):
+//                  kept even though triage also judges, because safety must be
+//                  deterministic + non-bypassable, never left solely to a model
+//   • staleness  — source age (a clock check, not judgment)
+//   • language   — is the BODY a real sentence (not a fragment/echo)
+//   • factshape  — did synth INVENT a number/quote absent from source (mechanical
+//                  hallucination guard)
+// The editorial regexes (spam/clickbait/gossip/opinion/superlative) are RETIRED
+// from the chain — the LLM triage replaces them. Set GATES_LEGACY_EDITORIAL=1 to
+// re-add them (belt-and-suspenders) if ever needed.
 export function runGates(c, opts = {}) {
   const nowMs = opts.nowMs ?? Date.now();
   const maxAgeH = opts.maxAgeH ?? 36;
   const chain = [
     ['structure', gStructure(c)],
-    ['spam', gSpam(c)],
-    ['clickbait', gClickbait(c)],
-    ['gossip', gGossip(c)],
-    ['opinion', gOpinion(c)],
-    ['superlative', gSuperlative(c)],
-    ['safety', gSafety(c)],
+    ['safety', gSafety(c)], // hard backstop — always on
     ['staleness', gStaleness(c, nowMs, maxAgeH)],
     ['language', gLanguage(c)],
     ['factshape', gFactShape(c)],
   ];
+  if (process.env.GATES_LEGACY_EDITORIAL === '1') {
+    chain.splice(1, 0, ['spam', gSpam(c)], ['clickbait', gClickbait(c)], ['gossip', gGossip(c)], ['opinion', gOpinion(c)], ['superlative', gSuperlative(c)]);
+  }
   for (const [gate, reason] of chain) if (reason) return { gate, reason };
   return null;
 }

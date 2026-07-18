@@ -113,18 +113,18 @@ export async function fetchGkg(opts = {}) {
       const domain = (c[3] || '').toLowerCase();
       const link = c[4] || '';
       if (!/^https?:\/\//i.test(link)) continue;
-      // ADMISSION (filtering BEFORE the LLM):
-      //   • INDIA publisher domain → always in (the home feed), OR
-      //   • GLOBAL-INTEREST: a reputable global outlet whose URL matches a useful
-      //     TOPIC (OTT/finance/gadgets/science/facts/markets/health) AND is not junk.
-      // This surfaces the useful non-India content the user asked for while keeping
-      // deals/gossip/spam out up front.
+      // ADMISSION (a light PRE-filter — the LLM TRIAGE gateway does the real
+      // editorial judgment downstream, so we admit generously and let triage decide
+      // keep/drop + category + importance):
+      //   • INDIA publisher domain → always in, OR
+      //   • any REPUTABLE global outlet that isn't obvious junk (deals/spam/porn).
+      // The restrictive TOPIC_KEYWORDS requirement is dropped — triage now judges
+      // whether a global story is useful, so we no longer pre-guess by URL keyword.
       const isIndia = INDIA_DOMAIN.test(link) || INDIA_DOMAIN.test(domain);
       const isGlobalUseful =
         !isIndia &&
         allowGlobal &&
         QUALITY_GLOBAL_DOMAIN.test(domain) &&
-        TOPIC_KEYWORDS.test(link) &&
         !GLOBAL_JUNK.test(link);
       if (!isIndia && !isGlobalUseful) continue;
       if (seen.has(link)) continue;
