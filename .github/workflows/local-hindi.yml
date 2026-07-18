@@ -28,7 +28,7 @@ env:
   # Cloudflare excluded (billable creds in public repo) + Groq excluded (no key).
   PROVIDER_ORDER: 'cerebras,gemini,sambanova,cohere,openai,ollama'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-  CEREBRAS_MODEL: 'llama-3.3-70b'
+  CEREBRAS_MODEL: 'gpt-oss-120b' # Cerebras retired Llama; gpt-oss-120b is their only Production model (reasoning_effort=low keeps it fast/cheap — set in providers.mjs)
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}

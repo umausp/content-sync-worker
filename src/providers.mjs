@@ -44,7 +44,7 @@ function envKey(...names) {
 // Groq / Cerebras / SambaNova / OpenAI all use POST {baseUrl}/chat/completions
 // with a Bearer key. One factory, parameterised. keyEnv may be an array of
 // candidate env names.
-function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
+function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault, reasoningEffort }) {
   return async (prompt, opts) => {
     const key = envKey(...(Array.isArray(keyEnv) ? keyEnv : [keyEnv]));
     if (!key) return null;
@@ -54,6 +54,10 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
     // paid OpenAI safety-net must never 400 on a JSON call just because a prompt
     // didn't — so append a JSON instruction when json mode is on and it's missing.
     const content = opts.json && !/json/i.test(prompt) ? `${prompt}\n\nRespond ONLY with a valid JSON object.` : prompt;
+    // reasoning_effort='low' keeps a REASONING model (e.g. Cerebras gpt-oss-120b —
+    // the only tier left after Cerebras retired Llama) fast + cheap for a simple
+    // rewrite, so it doesn't burn hidden reasoning tokens. Set per-provider in the
+    // REGISTRY; omitted providers send no such field.
     const r = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
@@ -63,6 +67,7 @@ function openAiAdapter({ baseUrl, keyEnv, modelEnv, modelDefault }) {
         temperature: 0.2,
         max_tokens: opts.maxTokens || 400,
         response_format: opts.json ? { type: 'json_object' } : undefined,
+        ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}),
       }),
       signal: AbortSignal.timeout(opts.timeoutMs || 30000),
     });
@@ -175,8 +180,13 @@ function ollamaAdapter() {
 // NOT o3/o4-mini — reasoning models burn hidden tokens + cost more for this task.)
 const REGISTRY = {
   cerebras: {
-    tier: 'free', // very fast; strong free tier — good PRIMARY
-    adapter: openAiAdapter({ baseUrl: 'https://api.cerebras.ai/v1', keyEnv: 'CEREBRAS_API_KEY', modelEnv: 'CEREBRAS_MODEL', modelDefault: 'llama-3.3-70b' }),
+    tier: 'free', // very fast (~3000 tok/s); strong free tier — good PRIMARY
+    // Cerebras RETIRED all Llama/Qwen models (llama-3.3-70b now 404s — verified live
+    // 2026-07-18). gpt-oss-120b is their only Production model; it's reasoning-capable,
+    // so reasoning_effort='low' keeps it fast/cheap for a plain news rewrite. Override
+    // via CEREBRAS_MODEL. Free tier: 5 RPM / 30K TPM / 1M TPD (mind the low RPM — the
+    // circuit breaker + cooldown handle its 429s gracefully).
+    adapter: openAiAdapter({ baseUrl: 'https://api.cerebras.ai/v1', keyEnv: 'CEREBRAS_API_KEY', modelEnv: 'CEREBRAS_MODEL', modelDefault: 'gpt-oss-120b', reasoningEffort: process.env.CEREBRAS_REASONING_EFFORT || 'low' }),
     enabled: () => !!process.env.CEREBRAS_API_KEY,
     cap: Number(process.env.CEREBRAS_DAILY_CAP || 8000),
   },
