@@ -15,6 +15,15 @@
 import { unzipSingle } from './unzip.mjs';
 import { outletFromDomain } from './doc.mjs';
 
+// Extract a YouTube/video URL from a string (self-contained to avoid a circular
+// import with pipeline.mjs). Normalises YouTube to a canonical watch URL.
+function extractVideo(s) {
+  const yt = String(s || '').match(/(?:youtube\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+  if (yt?.[1]) return `https://www.youtube.com/watch?v=${yt[1]}`;
+  const v = String(s || '').match(/https?:\/\/[^\s"';]+\.(?:mp4|webm|m3u8)(?:\?[^\s"';]*)?/i);
+  return v?.[0] || null;
+}
+
 const UA = 'agyata-newsbot/1.0 (+https://agyata.com)';
 // TLS-safe canonical GCS host (avoids the data.gdeltproject.org cert mismatch).
 const GCS = 'https://storage.googleapis.com/data.gdeltproject.org/gdeltv2';
@@ -132,9 +141,11 @@ export async function fetchGkg(opts = {}) {
       const title = titleFromUrl(link);
       if (title.split(' ').length < 3) continue; // unusable slug → skip
       const img = c[18] && /^https:\/\//i.test(c[18]) ? c[18] : null;
+      // GKG col 21 = V2.1SocialVideoEmbeds (';'-list); take the first YouTube/video.
+      const videoUrl = extractVideo(`${c[21] || ''} ${link}`);
       const d = (c[1] || '').match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/);
       const publishedAt = d ? `${d[1]}-${d[2]}-${d[3]}T${d[4]}:${d[5]}:${d[6]}Z` : null;
-      out.push({ title, url: link, sourceName: outletFromDomain(domain), snippet: title, imageUrl: img, publishedAt, category: 'top', via: isIndia ? 'gdelt-gkg' : 'gdelt-global' });
+      out.push({ title, url: link, sourceName: outletFromDomain(domain), snippet: title, imageUrl: img, videoUrl, publishedAt, category: 'top', via: isIndia ? 'gdelt-gkg' : 'gdelt-global' });
       if (out.length >= max) break;
     }
     const nGlobal = out.filter((a) => a.via === 'gdelt-global').length;

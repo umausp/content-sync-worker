@@ -200,6 +200,30 @@ function sourceBlock(a) {
   return extra.length ? `\nOTHER SOURCES on the same event:\n${extra.join('\n')}` : '';
 }
 function inlineImage(b) { for (const re of [/<media:content[^>]+url=["']([^"']+)["']/i, /<media:thumbnail[^>]+url=["']([^"']+)["']/i, /<enclosure[^>]+url=["']([^"']+)["'][^>]*type=["']image/i, /<img[^>]+src=["']([^"']+)["']/i]) { const m = b.match(re); if (m?.[1] && /^https?:\/\//i.test(m[1])) return decode(m[1]); } return null; }
+// Extract a VIDEO URL from a feed item: a YouTube link anywhere in the block, an
+// iframe/embed, or a video enclosure/media:content. Returns a canonical
+// https://www.youtube.com/watch?v=ID for YouTube, else the direct video URL. null
+// if none. The app renders this as an embedded player.
+function inlineVideo(b) {
+  const s = String(b || '');
+  // YouTube (watch, youtu.be, embed, shorts) — normalise to a watch URL.
+  const yt = s.match(/(?:youtube\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+  if (yt?.[1]) return `https://www.youtube.com/watch?v=${yt[1]}`;
+  // video enclosure / media:content with a video type or a video file extension.
+  const enc = s.match(/<(?:enclosure|media:content)[^>]+url=["']([^"']+)["'][^>]*(?:type=["']video|\.(?:mp4|webm|m3u8))/i)
+    || s.match(/<(?:enclosure|media:content)[^>]+url=["']([^"']+\.(?:mp4|webm|m3u8)[^"']*)["']/i);
+  if (enc?.[1] && /^https?:\/\//i.test(enc[1])) return decode(enc[1]);
+  return null;
+}
+// Extract a YouTube/video URL from an arbitrary string (title/snippet/URL) — used
+// for GKG (no markup, but a URL may itself be a youtube link or embed a video id).
+export function videoFromText(...parts) {
+  const s = parts.filter(Boolean).join(' ');
+  const yt = s.match(/(?:youtube\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+  if (yt?.[1]) return `https://www.youtube.com/watch?v=${yt[1]}`;
+  const v = s.match(/https?:\/\/[^\s"']+\.(?:mp4|webm|m3u8)(?:\?[^\s"']*)?/i);
+  return v?.[0] || null;
+}
 function domainOf(u) { try { return new URL(u).hostname.replace(/^www\./, '').replace(/^feeds?\./, ''); } catch { return ''; } }
 function outlet(u) { const h = domainOf(u); const map = { 'bbci.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'aljazeera.com': 'Al Jazeera', 'nytimes.com': 'New York Times', 'dw.com': 'DW', 'npr.org': 'NPR', 'cnbc.com': 'CNBC', 'thehindu.com': 'The Hindu', 'indianexpress.com': 'The Indian Express', 'hindustantimes.com': 'Hindustan Times', 'livemint.com': 'Mint', 'moneycontrol.com': 'Moneycontrol', 'news18.com': 'News18', 'economictimes.indiatimes.com': 'Economic Times', 'indiatimes.com': 'Times of India', 'feedburner.com': 'NDTV', 'nasa.gov': 'NASA', 'space.com': 'Space.com', 'bollywoodhungama.com': 'Bollywood Hungama', 'pinkvilla.com': 'Pinkvilla', 'koimoi.com': 'Koimoi', 'indiatoday.in': 'India Today', 'zeenews.india.com': 'Zee News', 'dnaindia.com': 'DNA India', 'business-standard.com': 'Business Standard', 'scroll.in': 'Scroll', ...HINDI_OUTLETS }; for (const [d, n] of Object.entries(map)) if (h.endsWith(d)) return n; const w = h.split('.')[0] || 'source'; return w.charAt(0).toUpperCase() + w.slice(1); }
 function parseFeed(xml, category, limit) {
@@ -214,7 +238,7 @@ function parseFeed(xml, category, limit) {
     if (!title || !link) continue;
     const pub = tag(b, 'pubDate') || tag(b, 'published') || tag(b, 'updated');
     let publishedAt = null; if (pub) { const d = new Date(pub); if (!isNaN(d.getTime())) publishedAt = d.toISOString(); }
-    out.push({ title, url: decode(link), sourceName: outlet(link), snippet: strip(tag(b, 'description') || tag(b, 'summary') || tag(b, 'content')).slice(0, 400), imageUrl: inlineImage(b), publishedAt, category });
+    out.push({ title, url: decode(link), sourceName: outlet(link), snippet: strip(tag(b, 'description') || tag(b, 'summary') || tag(b, 'content')).slice(0, 400), imageUrl: inlineImage(b), videoUrl: inlineVideo(b), publishedAt, category });
   }
   return out;
 }
@@ -700,12 +724,19 @@ const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
 export function toIngestBody(s) {
   const nowMs = Date.now();
   const a = s.article;
+  // VIDEO: prefer a video URL extracted from the article (RSS enclosure/YouTube),
+  // else scan the article's URL/title/snippet for a YouTube/video link. YouTube is
+  // http-or-https; direct video files must be https (mixed-content safe). The app
+  // renders videoUrl as an embedded player.
+  const rawVideo = a.videoUrl || videoFromText(a.url, a.title, a.snippet);
+  const video = rawVideo && /youtube\.com|youtu\.be/i.test(rawVideo) ? rawVideo : HTTPS(rawVideo);
+  const img = HTTPS(a.imageUrl);
   return {
     hashtag: s.hashtag, title: s.title, summary: s.summary, category: s.category,
-    imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined,
+    imageUrl: img, videoUrl: video || undefined, publishedAt: a.publishedAt || undefined,
     breakingUntil: s.signal === 'breaking' ? new Date(nowMs + BREAKING_TTL_H * 3.6e6).toISOString() : undefined,
     liveUntil: s.signal === 'live' ? new Date(nowMs + LIVE_TTL_H * 3.6e6).toISOString() : undefined,
-    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: [{ name: a.sourceName, url: a.url }], imageUrl: HTTPS(a.imageUrl), publishedAt: a.publishedAt || undefined },
+    update: { kind: 'update', headline: s.title, summary: s.summary, body: s.body, sources: [{ name: a.sourceName, url: a.url }], imageUrl: img, videoUrl: video || undefined, publishedAt: a.publishedAt || undefined },
   };
 }
 export { CATEGORIES, isSameStory };

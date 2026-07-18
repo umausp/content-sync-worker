@@ -55,11 +55,13 @@ env:
   OPENAI_DAILY_CAP: '80'
   OLLAMA_MODEL: qwen2.5:3b
   SYNTH_MIN_SCORE: '6'
-  # Hosted inference is fast, so we LLM-synthesise the top SYNTH_HOSTED_MAX events
-  # and give the score-sorted TAIL extractive (no-LLM) treatment — nothing dropped.
+  # LLM-synthesise the top SYNTH_HOSTED_MAX events (by score, AFTER triage keeps the
+  # good ones); the score-sorted TAIL gets extractive (no-LLM) treatment. Kept at 90
+  # — the front page only needs ~30-50 published, and synthesising 250+ was slow +
+  # burned free-tier rate limits for stories that never surface. Fewer, better.
   # SYNTH_HARD_MAX is only the fallback ceiling when NO hosted provider is keyed.
   SYNTH_HARD_MAX: '48'
-  SYNTH_HOSTED_MAX: '400'
+  SYNTH_HOSTED_MAX: '90'
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
   SYNTH_BUDGET_MS: '1200000' # 20-min budget; PREDICTIVE guard won't start a batch it can't finish before this, so on a slow runner it stops early + exits SUCCESS (step timeout 24m, job 25m give headroom for gate+publish)
