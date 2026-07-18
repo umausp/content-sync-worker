@@ -11,7 +11,11 @@ name: news-pipeline
 on:
   schedule:
     - cron: '*/30 * * * *' # every 30 min (UTC)
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      source_mode:
+        description: 'Source: gdelt | rss | both | auto (alternate by clock)'
+        default: 'auto'
 
 concurrency:
   group: news-pipeline
@@ -64,6 +68,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Pick SOURCE_MODE (rotate GDELT / RSS by clock, so each is A/B-comparable)
+        run: |
+          REQ="${{ github.event.inputs.source_mode }}"
+          if [ -n "$REQ" ] && [ "$REQ" != "auto" ]; then
+            MODE="$REQ"
+          else
+            # alternate: :00-slot → gdelt, :30-slot → rss (permanent rotation)
+            MIN=$(date -u +%M)
+            if [ "$MIN" -lt 30 ]; then MODE="gdelt"; else MODE="rss"; fi
+          fi
+          echo "SOURCE_MODE=$MODE" >> "$GITHUB_ENV"
+          echo "this run: SOURCE_MODE=$MODE"
 
       - name: Install Ollama
         timeout-minutes: 3

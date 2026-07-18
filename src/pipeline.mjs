@@ -364,32 +364,41 @@ export async function buildCandidates() {
   // compete on freshness/corroboration/quality — a GDELT-only event with ≥2
   // distinct outlets clears the publish bar on its own (that's the fix for
   // "GDELT stories never publish").
+  // SOURCE_MODE — rotate/isolate sources so each can be quality-judged on its own:
+  //   'gdelt' = GDELT only, 'rss' = RSS only, 'both' (default) = merged pool.
+  // Alternate at the WORKFLOW level (two offset crons, one gdelt + one rss) to A/B
+  // each source's quality. Every article is tagged `via` (gdelt-doc/gdelt-gkg or
+  // 'rss') so the published-by-source log makes the comparison explicit.
   const POOL_TARGET = Number(process.env.POOL_TARGET || 600);
+  const SOURCE_MODE = (process.env.SOURCE_MODE || 'both').toLowerCase();
+  const useGdelt = process.env.GDELT_ENABLED === '1' && SOURCE_MODE !== 'rss';
+  const useRss = SOURCE_MODE !== 'gdelt';
+  console.log(`[${EDITION}] SOURCE_MODE=${SOURCE_MODE} (gdelt=${useGdelt} rss=${useRss})`);
+
   let gdeltCount = 0;
-  if (process.env.GDELT_ENABLED === '1') {
+  if (useGdelt) {
     try {
       const gdelt = await fetchGdelt({ log: glog, max: Number(process.env.GDELT_MAX || 150), query: process.env.GDELT_QUERY || DEFAULT_GDELT_QUERY });
       // Local edition: force category=local on GDELT articles too.
       if (IS_LOCAL) for (const a of gdelt) a.category = 'local';
       raw.push(...gdelt);
       gdeltCount = gdelt.length;
-      console.log(`[${EDITION}] gdelt (primary): ${gdelt.length} articles`);
+      console.log(`[${EDITION}] gdelt: ${gdelt.length} articles`);
     } catch (e) {
       console.log(`  gdelt failed: ${e.message}`);
     }
   }
 
-  // RSS — fallback/backfill. Always fetched (cheap, parallel, clean titles+images
-  // +categories GDELT lacks), but conceptually the secondary source now. If GDELT
-  // already filled the pool we still merge RSS (its clean category/image data and
-  // curated-desk quality strengthen clusters), but GDELT-thin runs lean on it.
-  const lists = await Promise.all(EDITION_FEEDS.map(fetchFeed));
-  const rss = lists.flat();
-  raw.push(...rss);
-  console.log(`[${EDITION}] rss (fallback): ${rss.length} from ${EDITION_FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
-  if (POOL_TARGET && raw.length < POOL_TARGET / 4 && gdeltCount === 0) {
-    console.log(`  note: thin pool (${raw.length}) — GDELT unavailable this run, RSS-only`);
+  // RSS — curated feeds (clean titles+images+categories). Each article tagged via='rss'.
+  let rss = [];
+  if (useRss) {
+    const lists = await Promise.all(EDITION_FEEDS.map(fetchFeed));
+    rss = lists.flat();
+    for (const a of rss) if (!a.via) a.via = 'rss';
+    raw.push(...rss);
   }
+  console.log(`[${EDITION}] rss: ${rss.length} from ${EDITION_FEEDS.length} feeds; pool=${raw.length} (gdelt ${gdeltCount} + rss ${rss.length})`);
+  if (raw.length === 0) { console.error(`SOURCE_MODE=${SOURCE_MODE} produced 0 articles — check config`); }
 
   // Cluster same-event; corroboration = distinct outlets. When two sources cover
   // one event, pick the BETTER representative: a real genre (not GDELT's default

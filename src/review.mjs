@@ -92,6 +92,7 @@ async function main() {
   const CAT_CAP_FRACTION = Number(process.env.CAT_CAP_FRACTION || 0.4);
   const CAT_CAP_MIN = Number(process.env.CAT_CAP_MIN || 6); // don't cap tiny runs
   const catCount = {};
+  const srcCount = {}; // published-by-source (gdelt-doc/gdelt-gkg/rss) for quality A/B
   const verifyStart = Date.now(); // verify budget clock starts at the review loop
 
   for (const c of candidates) {
@@ -157,11 +158,12 @@ async function main() {
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
     }
-    if (await post(body)) { newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 38)}`); }
+    if (await post(body)) { newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`); }
   }
 
   console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped}`);
   console.log('  published by category:', JSON.stringify(catCount));
+  console.log('  published by source:', JSON.stringify(srcCount), `(SOURCE_MODE=${process.env.SOURCE_MODE || 'both'})`);
   console.log(`  publish bar: score>=${PUBLISH_MIN_SCORE} AND corroboration>=${PUBLISH_MIN_CORROBORATION} (or scoop: imp>=${PUBLISH_SOLO_IMPORTANCE}); verifier=${VERIFY ? `on (budget ${(VERIFY_BUDGET_MS / 60000).toFixed(0)}m)` : 'off'}`);
   console.log('  reject reasons:', JSON.stringify(reasons));
 
