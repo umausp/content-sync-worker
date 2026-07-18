@@ -24,6 +24,7 @@ import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory } from './dedup.mjs';
 import { clusterByEntity, entityHashtag } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
+import { generate, availableProviders, usageSummary, flushUsage } from './providers.mjs';
 
 // ── EDITION ─────────────────────────────────────────────────────────────────
 // One pipeline, two editions. EDITION=local runs the Hindi "Local News" section
@@ -150,6 +151,41 @@ function cleanForSynth(a) {
   return { ...a, title, snippet };
 }
 
+// EXTRACTIVE candidate — a NO-LLM story built directly from the cleaned title +
+// source snippets. Used for the long tail (events beyond LLM capacity) and when
+// every hosted provider is exhausted, so nothing is DROPPED and it costs nothing.
+// Quality is plainer than LLM-written (it's the outlet's own words, lightly
+// assembled) but it's accurate, instant, and hallucination-proof. Marked
+// via+extractive so it's distinguishable in logs/UI.
+function extractiveCandidate(a) {
+  const c = cleanForSynth(a);
+  const title = c.title;
+  if (looksSlug(title) || title.replace(/[^a-z0-9]/gi, '').length < 6) return null; // no usable headline
+  // body = the source snippet(s), cleaned; prefer a real description over the title.
+  const parts = [];
+  const seen = new Set();
+  for (const m of [a, ...(Array.isArray(a._members) ? a._members : [])]) {
+    const s = (m.snippet || '').trim();
+    if (s.length > 30 && !looksSlug(s) && !seen.has(s.slice(0, 40))) { seen.add(s.slice(0, 40)); parts.push(s); }
+    if (parts.length >= 2) break;
+  }
+  let body = parts.join(' ').slice(0, 600);
+  if (body.replace(/[^a-z0-9]/gi, '').length < 40) return null; // too thin to publish
+  if (!/[.!?।॥]\s*$/.test(body)) body += '.';
+  const summary = (parts[0] || title).slice(0, 200);
+  return {
+    skip: false,
+    title,
+    summary,
+    body,
+    category: normalizeCategory(a.category, a.category),
+    hashtag: resolveHashtag('', title),
+    importance: 3,
+    signal: 'none',
+    extractive: true,
+  };
+}
+
 // Build a MULTI-SOURCE context block: the rep's title/snippet + up to 2 OTHER
 // outlets' snippets on the same event. Feeding several source reports lets the
 // model write a genuinely multi-source, attributed body (quality-review fix #2)
@@ -257,16 +293,11 @@ async function synth(a) {
     `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
     `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}${sourceBlock(a)}`;
   try {
-    // Plain JSON mode (NOT schema-grammar `format`): the JSON-schema-constrained
-    // `format` uses GBNF grammar decoding which on CPU can stall for MINUTES on a
-    // cold model — that was the 29-min-timeout bug. Plain 'json' is ~15s/call and
-    // reliable; the enum-leak it might allow is re-caught by gates.mjs gStructure
-    // (bad_category) + normalizeCategory. num_predict trimmed to 320 (headline +
-    // 2-3 sentences + JSON fits well under this) to cut per-call time.
-    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', keep_alive: '30m', options: { temperature: 0.2, num_predict: 320 } }), signal: AbortSignal.timeout(SYNTH_ITEM_TIMEOUT_MS) });
-    if (!r.ok) return null;
-    const j = safeJson((await r.json()).response || '');
-    return normalizeSynth(j, a);
+    // Route through the multi-provider ladder (Groq/Gemini/Cloudflare/Ollama).
+    // JSON mode requested; enum leaks are re-caught by gStructure + normalizeCategory.
+    const { text } = await generate(prompt, { json: true, maxTokens: 320, timeoutMs: SYNTH_ITEM_TIMEOUT_MS });
+    if (text == null) return null;
+    return normalizeSynth(safeJson(text), a);
   } catch { return null; }
 }
 
@@ -320,13 +351,11 @@ async function synthBatch(articles) {
     `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
     `ARTICLES:\n${list}`;
   try {
-    const r = await fetch(`${OLLAMA}/api/generate`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', keep_alive: '30m', options: { temperature: 0.2, num_predict: 220 * articles.length } }),
-      signal: AbortSignal.timeout(SYNTH_TIMEOUT_MS),
-    });
-    if (!r.ok) return null;
-    const arr = safeJsonArray((await r.json()).response || '');
+    // Route through the provider ladder. Hosted providers are fast, so a big batch
+    // is fine; num_predict scales with batch size for the local-Ollama fallback.
+    const { text } = await generate(prompt, { json: true, maxTokens: 220 * articles.length, timeoutMs: SYNTH_TIMEOUT_MS });
+    if (text == null) return null;
+    const arr = safeJsonArray(text);
     if (!arr) return null;
     // Map each output back to its SOURCE article. normalizeSynth pairs the model's
     // text with articles[idx], so a wrong idx attaches a story to the WRONG source
@@ -454,10 +483,17 @@ export async function buildCandidates() {
   const scored = clusters
     .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
-  // SCORE-GATE, not a fixed cap: synth everything above SYNTH_MIN_SCORE, bounded
-  // by SYNTH_HARD_MAX only to keep runtime sane (still 50-100 on a big hour).
-  const eligible = scored.filter((p) => p.score >= SYNTH_MIN_SCORE).slice(0, SYNTH_HARD_MAX);
-  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${eligible.length}; top corroboration ${Math.max(0, ...eligible.map((p) => p.corr))}`);
+  // SCORE-GATE: everything above SYNTH_MIN_SCORE is eligible. With HOSTED
+  // inference the LLM cap can be much higher (sub-second calls), so we process far
+  // more — even ALL clusters. The cap only bounds runaway runs. The score-sorted
+  // TAIL beyond the LLM cap is NOT dropped: it gets EXTRACTIVE (no-LLM) treatment
+  // below, so nothing is lost and it still costs $0.
+  const hosted = availableProviders().filter((p) => p !== 'ollama');
+  const llmCap = hosted.length > 0 ? Number(process.env.SYNTH_HOSTED_MAX || 400) : SYNTH_HARD_MAX;
+  const allEligible = scored.filter((p) => p.score >= SYNTH_MIN_SCORE);
+  const eligible = allEligible.slice(0, llmCap);
+  const tail = allEligible.slice(llmCap); // extractive fallback for the rest
+  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
 
   // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
   // instead of one. ~80 calls (~20 min) → ~10 calls. Each batch is one LLM call;
@@ -501,6 +537,7 @@ export async function buildCandidates() {
   let maxBatchMs = 180000; // seed ~3m; updated to the real worst-case as we go
   let consecutiveEmpty = 0; // resets on any productive batch
   let attempted = 0;
+  let lastBatch = -1; // highest batch index reached (for the extractive-tail split)
   for (let b = 0; b < nBatches; b++) {
     const elapsed = Date.now() - started;
     const need = maxBatchMs * 1.2;
@@ -531,16 +568,40 @@ export async function buildCandidates() {
     attempted++;
     maxBatchMs = Math.max(maxBatchMs, Date.now() - t0); // learn the runner's real worst-case
     consecutiveEmpty = parsed === 0 ? consecutiveEmpty + 1 : 0;
-    // FAIL-FAST: 2 CONSECUTIVE batches produced nothing usable → model/prompt is
-    // broken; abort loudly rather than burn the whole budget on dead calls. (Was
-    // `b===1 && emptyBatches===2`, which never fired when there was 1 batch, or
-    // when batch 0 succeeded and later batches all failed.)
+    // FAIL-FAST: 2 CONSECUTIVE empty batches → the LLM path is unhealthy (all
+    // providers down/exhausted or prompt broken). Don't throw — BREAK and let the
+    // EXTRACTIVE tail below publish what it can ($0, no LLM). A run should degrade
+    // to extractive, never hard-fail and lose everything.
     if (consecutiveEmpty >= 2) {
-      throw new Error(`${consecutiveEmpty} consecutive synth batches produced 0 usable stories (${attempted} attempted) — model/prompt unhealthy, aborting`);
+      console.log(`${consecutiveEmpty} consecutive empty batches — LLM path unhealthy; stopping synth, extractive will cover the rest`);
+      break;
     }
+    lastBatch = b;
     console.log(`  batch ${b + 1}/${nBatches}: ${parsed}/${group.length} parsed (${synthesized} kept) (${((Date.now() - t0) / 1000).toFixed(0)}s, total in ${((Date.now() - started) / 60000).toFixed(1)}m)`);
   }
   console.log(`synthesized ${synthesized} candidates from ${nBatches} batches, ${skippedByModel} model-skipped (${((Date.now() - started) / 60000).toFixed(1)}m)`);
+
+  // EXTRACTIVE TAIL (no LLM, $0, instant): everything eligible that the LLM DIDN'T
+  // cover — the score-sorted tail beyond the cap, PLUS any eligible batch not
+  // reached before the budget/stop. Nothing gets dropped; the tail publishes as
+  // plain, accurate, hallucination-proof extractive cards. Gated by EXTRACTIVE=0.
+  if (process.env.EXTRACTIVE !== '0') {
+    const llmReached = (lastBatch + 1) * SYNTH_BATCH; // eligible items the batch loop got to
+    const notSynthed = [...eligible.slice(llmReached), ...tail];
+    let ext = 0;
+    for (const p of notSynthed) {
+      const e = extractiveCandidate({ ...p.a, _members: p.members });
+      if (!e) continue;
+      if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
+      if (p.canonicalEntity) e.hashtag = entityHashtag(p.canonicalEntity);
+      candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a });
+      ext++;
+    }
+    console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)`);
+  }
+
+  flushUsage();
+  console.log('provider usage:', JSON.stringify(usageSummary().counts));
   return candidates;
 }
 

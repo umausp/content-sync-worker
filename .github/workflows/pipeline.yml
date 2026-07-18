@@ -10,7 +10,7 @@ name: news-pipeline
 # logs, so a hang is localized to one step instead of a 30-min black box.
 on:
   schedule:
-    - cron: '*/30 * * * *' # every 30 min (UTC)
+    - cron: '*/15 * * * *' # every 15 min (UTC) — hosted inference is fast, so run more often for fresher news
   workflow_dispatch:
     inputs:
       source_mode:
@@ -28,17 +28,30 @@ env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: ${{ secrets.STORIES_URL }}
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-  # qwen2.5:3b — the quality/speed sweet spot. VERIFIED: writes full 2-4 sentence
-  # bodies that pass the language gate (1.5b under-wrote → 29/48 rejected for
-  # body_too_few_sentences), and at ~90s/batch of 8 it finishes the 48-story pool
-  # in ~10min, inside budget. The earlier 3b timeouts were the 80-cap + 60s batch
-  # timeout, not the model — both fixed below. Schema-grammar `format` stays OFF.
+  # ── LLM PROVIDER LADDER (free hosted inference → local Ollama fallback). Add the
+  #    keys as repo secrets; a provider is skipped if its key is absent. Order +
+  #    daily caps in src/providers.mjs. Cloudflare is the only one that BILLS past
+  #    free, so its cap (CF_DAILY_CAP) is the hard $0 guardrail. ──
+  PROVIDER_ORDER: 'groq,gemini,cloudflare,ollama'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  GROQ_MODEL: 'llama-3.3-70b-versatile'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+  # $0 guardrail. NOTE: GitHub runners are ephemeral, so this cap is effectively
+  # PER-RUN (the usage file doesn't persist across runs). That's fine: at 15-min
+  # cadence, even 96 runs/day × a few hundred CF calls stays well under the ~10k-
+  # neuron/day free tier because Groq/Gemini absorb most calls first (CF is 3rd in
+  # the ladder). Set low so CF is only a spillover, never the primary spend.
+  CF_DAILY_CAP: '150'
   OLLAMA_MODEL: qwen2.5:3b
   SYNTH_MIN_SCORE: '6'
-  # Right-sized to what a CPU runner can synth in budget: candidates are
-  # score-sorted, so the top 48 ARE the best; the low-priority tail is dropped.
-  # 48 / SYNTH_BATCH(8) = 6 batches, comfortably within the 15-min budget.
+  # Hosted inference is fast, so we LLM-synthesise the top SYNTH_HOSTED_MAX events
+  # and give the score-sorted TAIL extractive (no-LLM) treatment — nothing dropped.
+  # SYNTH_HARD_MAX is only the fallback ceiling when NO hosted provider is keyed.
   SYNTH_HARD_MAX: '48'
+  SYNTH_HOSTED_MAX: '400'
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000' # per BATCH of 8 (a batch generates ~1700 tokens)
   SYNTH_BUDGET_MS: '1200000' # 20-min budget; PREDICTIVE guard won't start a batch it can't finish before this, so on a slow runner it stops early + exits SUCCESS (step timeout 24m, job 25m give headroom for gate+publish)
@@ -69,16 +82,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Pick SOURCE_MODE (rotate GDELT / RSS by clock, so each is A/B-comparable)
+      - name: Pick SOURCE_MODE
         run: |
+          # DEFAULT = both (merged GDELT+RSS every run). Rotating gdelt/rss HALVED
+          # per-run corroboration (a gdelt-only run can't corroborate vs RSS → fewer
+          # clear the corr>=2 bar). Hosted inference removed the CPU reason to
+          # isolate sources, so we merge for max corroboration. Force gdelt/rss via
+          # workflow_dispatch only for A/B quality testing.
           REQ="${{ github.event.inputs.source_mode }}"
-          if [ -n "$REQ" ] && [ "$REQ" != "auto" ]; then
-            MODE="$REQ"
-          else
-            # alternate: :00-slot → gdelt, :30-slot → rss (permanent rotation)
-            MIN=$(date -u +%M)
-            if [ "$MIN" -lt 30 ]; then MODE="gdelt"; else MODE="rss"; fi
-          fi
+          MODE="both"
+          if [ -n "$REQ" ] && [ "$REQ" != "auto" ]; then MODE="$REQ"; fi
           echo "SOURCE_MODE=$MODE" >> "$GITHUB_ENV"
           echo "this run: SOURCE_MODE=$MODE"
 

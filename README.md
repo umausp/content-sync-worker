@@ -11,11 +11,27 @@ extra cross-source coverage (see below).
 
 ## Configuration (repository secrets)
 
-| Secret | Purpose |
-|---|---|
-| `INGEST_URL` | HTTPS endpoint that accepts summarized items |
-| `STORIES_URL` | HTTPS endpoint for the dedup/update reference list |
-| `NEWS_INGEST_TOKEN` | Bearer token for the ingest endpoint |
+| Secret | Required? | Purpose |
+|---|---|---|
+| `INGEST_URL` | yes | HTTPS endpoint that accepts summarized items |
+| `STORIES_URL` | yes | HTTPS endpoint for the dedup/update reference list |
+| `NEWS_INGEST_TOKEN` | yes | Bearer token for the ingest endpoint |
+| `GROQ_API_KEY` | optional | Free-tier hosted inference (primary — fast) |
+| `GEMINI_API_KEY` | optional | Free-tier hosted inference (fallback) |
+| `CF_ACCOUNT_ID` + `CF_AI_TOKEN` | optional | Cloudflare Workers AI (spillover — capped) |
+
+### Synthesis providers ($0)
+
+Summarization routes through a provider ladder (`src/providers.mjs`):
+**Groq → Gemini → Cloudflare Workers AI → local Ollama**. Each is skipped if its
+key is absent; add any subset. All run on FREE tiers — most just rate-limit (429)
+when exhausted with no bill. **Cloudflare is the only one that bills past its free
+neuron allowance**, so it sits LAST in the ladder and has a hard per-run cap
+(`CF_DAILY_CAP`, default 150) — it only ever handles spillover, guaranteeing $0.
+If every provider is exhausted/unkeyed, the pipeline falls back to **extractive
+summaries** (no LLM, instant, hallucination-proof) so no story is ever dropped and
+no paid call is ever made. Hosted inference is fast enough to synthesise the top
+~400 events/run (`SYNTH_HOSTED_MAX`) with the tail handled extractively.
 
 ## Run
 
