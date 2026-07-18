@@ -168,7 +168,22 @@ export async function fetchBuzz(opts = {}) {
     log,
   };
   const maxTerms = Number(process.env.BUZZ_MAX_TERMS || 10);
-  const extra = (process.env.BUZZ_EXTRA_QUERIES || '').split(',').map((s) => s.trim()).filter(Boolean);
+  // ALWAYS-ON WATCH TERMS — the fix for "ramayana is buzzing on Twitter but Trends
+  // doesn't list it". Google Trends only surfaces the last few HOURS' search spikes,
+  // so SUSTAINED buzz (a film in its release window, an ongoing controversy) that
+  // social media still talks about isn't a live search trend — and we'd never query
+  // it. These are searched EVERY run regardless of Trends. Verified: "ramayana" has
+  // 104 fresh GNews results right now but was absent from the Trends top-8. Curated
+  // India evergreen-buzz seeds; extend/replace via BUZZ_EXTRA_QUERIES (comma list).
+  const DEFAULT_WATCH = [
+    'Ramayana movie Ranbir Kapoor', 'Bollywood box office', 'ICC cricket India',
+    'IPL', 'Indian stock market Sensex Nifty', 'ISRO', 'Supreme Court India verdict',
+    'iPhone OR Android launch India', 'OTT release this week India',
+  ];
+  const extraEnv = (process.env.BUZZ_EXTRA_QUERIES || '').split(',').map((s) => s.trim()).filter(Boolean);
+  // BUZZ_EXTRA_QUERIES REPLACES the defaults when set; BUZZ_WATCH_DEFAULT=0 disables
+  // the built-in list (use only env). Otherwise defaults + any env additions.
+  const extra = extraEnv.length ? extraEnv : (process.env.BUZZ_WATCH_DEFAULT === '0' ? [] : DEFAULT_WATCH);
   const withCategories = process.env.BUZZ_CATEGORIES !== '0'; // per-category probes (on by default)
   const t0 = Date.now();
 

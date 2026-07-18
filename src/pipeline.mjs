@@ -644,14 +644,24 @@ export async function buildCandidates() {
     const triageMax = Number(process.env.TRIAGE_MAX || 600);
     const toTriage = candidatePool.slice(0, triageMax);
     const r = await triage(toTriage, { log: glog });
-    // apply: drop keep=false; fold triage importance/category onto the candidate.
+    // apply: fold triage importance/category onto the candidate; drop keep=false.
+    // BUT a BUZZ/trending item is PRE-VALIDATED — Google Trends already proved
+    // thousands are searching for it, so it is newsworthy BY DEFINITION. Triage
+    // (esp. a weak local model) wrongly nukes real trending news as "gossip" (a
+    // major film's trailer launch scored keep=false imp=1 in testing). So for
+    // via='buzz' we KEEP the item regardless of triage's drop, and floor its
+    // importance at 3 — we still take triage's CATEGORY (useful) but never let it
+    // suppress a trend. Non-buzz (RSS/GDELT firehose) still respects triage fully.
+    let buzzRescued = 0;
     for (const p of toTriage) {
+      const isBuzz = p.a?.via === 'buzz';
+      if (isBuzz && p.triageKeep === false) { p.triageKeep = true; p.triageImportance = Math.max(3, p.triageImportance || 3); buzzRescued++; }
       if (p.triageImportance != null) { p.importance = p.triageImportance; p.score += (p.triageImportance - 3) * 2; }
       if (p.triageCategory && p.a) p.a.category = p.triageCategory;
     }
     candidatePool = toTriage.filter((p) => p.triageKeep !== false).concat(candidatePool.slice(triageMax));
     candidatePool.sort((x, y) => y.score - x.score);
-    console.log(`triage: kept ${r.kept}, dropped ${r.dropped}, fail-open ${r.failOpen}`);
+    console.log(`triage: kept ${r.kept}, dropped ${r.dropped}, fail-open ${r.failOpen}${buzzRescued ? `, buzz-rescued ${buzzRescued}` : ''}`);
   }
 
   // QUALITY GATE for SYNTHESIS ENTRY (user: "make sure good quality news goes for
