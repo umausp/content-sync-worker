@@ -209,10 +209,16 @@ function ytChannels() {
   return env.map((pair) => { const [id, category] = pair.split(':'); return { id, category: category || 'top' }; });
 }
 
-// Parse ONE channel's RSS → video-native articles.
+// RECENT-only window for YouTube video (user: "all recent only"). A trending clip
+// stops being buzz fast; default 24h. Older channel uploads are skipped.
+const YT_MAX_AGE_H = Number(process.env.BUZZ_YT_MAX_AGE_H || 24);
+// Parse ONE channel's RSS → video-native articles. `perChannel` caps how many we
+// KEEP (so no single channel floods) after recency + junk filtering.
 function parseYouTubeFeed(xml, category, perChannel) {
   const out = [];
-  for (const [, block] of [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)].slice(0, perChannel)) {
+  const cutoff = Date.now() - YT_MAX_AGE_H * 3.6e6;
+  for (const [, block] of [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)]) {
+    if (out.length >= perChannel) break;
     const vid = (block.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/) || [])[1];
     const title = tag(block, 'title');
     const pub = tag(block, 'published');
@@ -220,8 +226,11 @@ function parseYouTubeFeed(xml, category, perChannel) {
     const author = (block.match(/<author>[\s\S]*?<name>([\s\S]*?)<\/name>/i) || [])[1];
     const desc = (block.match(/<media:description>([\s\S]*?)<\/media:description>/i) || [])[1];
     if (!vid || !title) continue;
-    // Skip obvious 24x7 LIVE-stream loops (not a discrete story) — common on news channels.
-    if (/\bLIVE TV\b|24x7|live stream/i.test(title)) continue;
+    // RECENT ONLY — skip anything older than the window.
+    const pubMs = pub ? Date.parse(pub) : NaN;
+    if (!Number.isNaN(pubMs) && pubMs < cutoff) continue;
+    // Skip 24x7 LIVE-stream loops + shorts/podcast-y noise (not discrete news video).
+    if (/\bLIVE TV\b|24x7|live stream|#shorts|full episode|podcast/i.test(title)) continue;
     const body = desc ? decode(desc).replace(/\s+/g, ' ').trim().slice(0, 500) : '';
     out.push({
       title,
@@ -244,17 +253,31 @@ function parseYouTubeFeed(xml, category, perChannel) {
 }
 
 // Fetch trending video from all configured channels (India news + global), parallel.
+// Video is MIXED into the feed, not flooding it: per-channel cap (BUZZ_YT_PER_CHANNEL,
+// default 2) AND a GLOBAL cap (BUZZ_YT_TOTAL, default 10) — round-robin across
+// channels so the total is spread (not all from one channel), keeping the feed
+// mostly text news with video as a garnish.
 async function fetchYouTubeTrending(opts) {
   const channels = ytChannels();
-  const perChannel = Number(process.env.BUZZ_YT_PER_CHANNEL || 3);
+  const perChannel = Number(process.env.BUZZ_YT_PER_CHANNEL || 2);
+  const total = Number(process.env.BUZZ_YT_TOTAL || 10);
   const lists = await Promise.all(
     channels.map(async ({ id, category }) => {
       const xml = await getXml(`https://www.youtube.com/feeds/videos.xml?channel_id=${id}`).catch(() => null);
       return xml ? parseYouTubeFeed(xml, category, perChannel) : [];
     }),
   );
-  const out = lists.flat();
-  opts.log('buzz.youtube', { channels: channels.length, videos: out.length });
+  // Round-robin interleave so the global cap draws EVENLY across channels (one from
+  // each, then a second from each, …) rather than exhausting the first channel.
+  const out = [];
+  for (let i = 0; out.length < total; i++) {
+    let added = false;
+    for (const list of lists) {
+      if (list[i]) { out.push(list[i]); added = true; if (out.length >= total) break; }
+    }
+    if (!added) break; // all lists exhausted
+  }
+  opts.log('buzz.youtube', { channels: channels.length, videos: out.length, cap: total });
   return out;
 }
 

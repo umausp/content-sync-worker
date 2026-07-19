@@ -65,8 +65,12 @@ const SYNTH_ITEM_TIMEOUT_MS = Number(process.env.SYNTH_ITEM_TIMEOUT_MS || 30000)
 const SYNTH_BUDGET_MS = Number(process.env.SYNTH_BUDGET_MS || 18 * 60 * 1000); // 18m default
 // Articles per batched model call — the call-count lever (80 items / 8 = 10 calls).
 const SYNTH_BATCH = Number(process.env.SYNTH_BATCH || 8);
-const BREAKING_TTL_H = Number(process.env.BREAKING_TTL_HOURS || 3);
-const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 2);
+// Breaking/Live TTLs — how long a flagged story stays on those tabs. Bumped
+// (breaking 3→6h, live 2→4h) so the tabs don't sit EMPTY between the sparse moments
+// a breaking/live event actually occurs. Still short enough that a flagged story is
+// genuinely recent. Override via BREAKING_TTL_HOURS / LIVE_TTL_HOURS.
+const BREAKING_TTL_H = Number(process.env.BREAKING_TTL_HOURS || 6);
+const LIVE_TTL_H = Number(process.env.LIVE_TTL_HOURS || 4);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
 // ── Editorial charter (mirrors docs/NEWS_EDITORIAL_CHARTER.md) ──────────────
@@ -154,13 +158,34 @@ function cleanForSynth(a) {
   return { ...a, title, snippet };
 }
 
+// HEURISTIC breaking/live detection — the fix for near-always-EMPTY Live/Breaking
+// tabs. Previously breaking/live came ONLY from the LLM's conservative `signal`,
+// and the EXTRACTIVE path (which buzz uses most) always emitted 'none' → the tabs
+// almost never filled. This adds a deterministic classifier used by BOTH paths:
+//   • BREAKING = a breaking-word in the title AND fresh (<~3h) AND corroborated
+//     (≥2 outlets, so it's a real fast-moving event, not one outlet's clickbait), OR
+//     a very fresh high-corroboration story even without the keyword.
+//   • LIVE = a live/ongoing-event word (live/vs/score/match/result/updates) + fresh.
+// Conservative enough not to spam, generous enough to keep the tabs populated.
+const BREAKING_WORDS = /\b(breaking|just in|dies|killed|dead|blast|explosion|attack|arrested|resigns?|verdict|banned|crash|collapse|evacuat|emergency|strikes?|coup|quits?|wins? election|declared|announces?)\b/i;
+const LIVE_WORDS = /\b(live|vs\.?|v\/s|score|scores|match|final|semi-?final|results?|counting|updates?|ongoing|underway|streaming|watch live)\b/i;
+function detectSignal({ title = '', snippet = '', corr = 1, freshH = 99, llmSignal = 'none' }) {
+  if (llmSignal === 'breaking' || llmSignal === 'live') return llmSignal; // trust an explicit LLM call
+  const hay = `${title} ${snippet}`;
+  // BREAKING: keyword + fresh + corroborated, OR very-fresh + strongly corroborated.
+  if (freshH <= 4 && ((BREAKING_WORDS.test(hay) && corr >= 2) || corr >= 4)) return 'breaking';
+  // LIVE: an ongoing/live-event word + reasonably fresh.
+  if (freshH <= 12 && LIVE_WORDS.test(hay)) return 'live';
+  return 'none';
+}
+
 // EXTRACTIVE candidate — a NO-LLM story built directly from the cleaned title +
 // source snippets. Used for the long tail (events beyond LLM capacity) and when
 // every hosted provider is exhausted, so nothing is DROPPED and it costs nothing.
 // Quality is plainer than LLM-written (it's the outlet's own words, lightly
 // assembled) but it's accurate, instant, and hallucination-proof. Marked
 // via+extractive so it's distinguishable in logs/UI.
-function extractiveCandidate(a, rankedSnippets) {
+function extractiveCandidate(a, rankedSnippets, corr = 1) {
   const c = cleanForSynth(a);
   const title = c.title;
   if (looksSlug(title) || title.replace(/[^a-z0-9]/gi, '').length < 6) return null; // no usable headline
@@ -192,6 +217,10 @@ function extractiveCandidate(a, rankedSnippets) {
   }
   if (!/[.!?।॥]\s*$/.test(body)) body += '.';
   const summary = (parts[0] || title).slice(0, 200);
+  // Heuristic breaking/live so the extractive path (buzz's main path) can populate
+  // the Live/Breaking tabs. Freshness from the article's publish date; corr passed in.
+  const freshH = a.publishedAt ? (Date.now() - Date.parse(a.publishedAt)) / 3.6e6 : 99;
+  const signal = detectSignal({ title, snippet: parts[0] || '', corr: corr || 1, freshH });
   return {
     skip: false,
     title,
@@ -199,8 +228,8 @@ function extractiveCandidate(a, rankedSnippets) {
     body,
     category: normalizeCategory(a.category, a.category),
     hashtag: resolveHashtag('', title),
-    importance: 3,
-    signal: 'none',
+    importance: signal === 'breaking' ? 4 : 3,
+    signal,
     extractive: true,
     videoNative: a.videoNative === true, // carried to gates + review
   };
@@ -741,6 +770,12 @@ export async function buildCandidates() {
     if (s.skip) { skippedByModel++; return true; }
     if (p.corr >= 3) s.importance = Math.min(5, s.importance + 1);
     if (s.signal === 'breaking' && p.corr < 2) s.signal = 'none';
+    // HEURISTIC breaking/live: if the LLM said 'none', still flag genuinely
+    // breaking/live events (keyword + fresh + corroborated) so the tabs populate.
+    if (s.signal === 'none') {
+      const freshH = p.a?.publishedAt ? (Date.now() - Date.parse(p.a.publishedAt)) / 3.6e6 : 99;
+      s.signal = detectSignal({ title: s.title, snippet: p.a?.snippet || '', corr: p.corr, freshH });
+    }
     // CANONICAL HASHTAG: if this cluster has a dominant entity, ALL its stories
     // share the entity-derived hashtag → ingest upserts them onto ONE thread as
     // updates (the fix for "one event → 25 story cards"). Falls back to the
@@ -825,7 +860,7 @@ export async function buildCandidates() {
         rankedSnips = await rankSnippetsByCentrality(p.a.title, members.map((m) => m.snippet || ''), { log: glog });
         if (rankedSnips && rankedSnips.length) ranked++;
       }
-      const e = extractiveCandidate({ ...p.a, _members: p.members }, rankedSnips);
+      const e = extractiveCandidate({ ...p.a, _members: p.members }, rankedSnips, p.corr);
       if (!e) continue;
       if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
       if (p.canonicalEntity) e.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), e.title);
