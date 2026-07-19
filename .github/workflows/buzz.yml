@@ -56,7 +56,12 @@ env:
   # IMAGES: resolve each GNews link → real publisher URL → og:image (GNews serves
   # none). BUZZ_RESOLVE_MAX caps how many we resolve/run to keep the 30-min cron fast.
   BUZZ_RESOLVE: '1'
-  BUZZ_RESOLVE_MAX: '70'
+  # Resolve the WHOLE deduped pool (~200), not just 70 — the pipeline re-clusters +
+  # re-scores AFTER resolve, so a story that publishes may sit past an arbitrary 70th
+  # slot and would otherwise be imageless. Resolve is cheap+parallel (~9s/70, ~27s
+  # for 200), well within the 30-min cron. Raise BUZZ_RESOLVE_CONCURRENCY if needed.
+  BUZZ_RESOLVE_MAX: '220'
+  BUZZ_RESOLVE_CONCURRENCY: '10'
   # RECENCY-FIRST ranking (buzz is an engagement feed): amplify freshness, cap the
   # corroboration bonus so a 1h story beats a 22h one. (National pipeline stays
   # corroboration-first.)
