@@ -81,7 +81,7 @@ const CHARTER_NATIONAL =
   'unverifiable superlatives (biggest/highest-grossing/record) unless attributed with a number; lone local crime with no wider significance; single-source rumour. ' +
   'PREFER: government/policy/courts/elections, economy/markets with numbers, major world events, confirmed film/OTT releases-reviews-box-office(with source), science/space. When in doubt, SKIP. ' +
   'HEADLINE: complete specific sentence, real names/numbers, active voice, <=90 chars, no clickbait, no ellipsis; neutral framing for sensitive crime/court items. ' +
-  'SUMMARY: one "so what" sentence <=200 chars. BODY: 2-4 tight sentences, inverted pyramid, neutral, attributed, include key number/date. Own words. Never fabricate.';
+  'SUMMARY: a substantial 1-2 sentence description, BETWEEN 160 AND 260 chars (this is REQUIRED — a one-liner is too thin; give the who/what/why/where with the key fact). BODY: 2-4 tight sentences, inverted pyramid, neutral, attributed, include key number/date. Own words. Never fabricate.';
 
 // LOCAL (Hindi) edition — deep regional/local news, WRITTEN IN HINDI. Same
 // discipline, but the value here is INFORMATIVE HYPERLOCAL coverage (district/
@@ -377,7 +377,7 @@ async function synth(a) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
-    `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<one sentence, <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
+    `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
     `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
     `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}${sourceBlock(a)}`;
   try {
@@ -435,7 +435,7 @@ async function synthBatch(articles) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite EACH numbered article below into a news card. Reply with ONLY a JSON object of the form {"stories": [ ... ]}, with one array element per article, in the SAME ORDER, each element having ALL keys:\n` +
-    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<one sentence <=200 chars>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
+    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
     `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
     `ARTICLES:\n${list}`;
   try {
@@ -1037,6 +1037,37 @@ export async function isNovelUpdate(existing, candidate) {
     return { novel: j.novel, reason: String(j.reason || '').slice(0, 80) };
   } catch {
     return { novel: true, reason: 'error → fail-open' };
+  }
+}
+
+// DESCRIPTION EXPANDER — strict-quality (user: "description we can rewrite to at
+// least 160 chars"). A one-line summary reads thin on the card; this rewrites a
+// short summary to a fuller 160-260 char description GROUNDED in the story's own
+// title + body + source snippet (no new facts — expansion, not invention). Returns
+// the expanded string, or the original if the LLM is unavailable / returns junk
+// (fail-safe: never blanks or shortens a working summary). SUMMARY_MIN default 160.
+const SUMMARY_MIN = Number(process.env.SUMMARY_MIN || 160);
+export async function expandSummary(c) {
+  const cur = String(c.summary || '').trim();
+  if (cur.length >= SUMMARY_MIN) return cur; // already substantial
+  const title = String(c.title || '').slice(0, 200);
+  const body = String(c.body || '').slice(0, 600);
+  const snip = String(c.article?.snippet || '').slice(0, 400);
+  const material = `${body} ${snip}`.trim();
+  if (material.replace(/[^a-z0-9]/gi, '').length < 40) return cur; // not enough to expand from → keep
+  const prompt =
+    `Rewrite this into a single news DESCRIPTION of ${SUMMARY_MIN}-260 characters — factual, neutral, ` +
+    `the who/what/why/where + the key detail. Use ONLY facts present below; do NOT invent anything. ` +
+    `Return ONLY the description text, no quotes, no label.\n\n` +
+    `HEADLINE: ${sanitizeForPrompt(title)}\nDETAILS: ${sanitizeForPrompt(material)}`;
+  try {
+    const { text } = await generate(prompt, { maxTokens: 140, timeoutMs: 30000 });
+    const out = String(text || '').replace(/^["'\s]+|["'\s]+$/g, '').replace(/\s+/g, ' ').trim();
+    // Accept only a real expansion: longer than the original, within a sane ceiling.
+    if (out.length >= Math.min(SUMMARY_MIN, cur.length + 20) && out.length <= 400) return out.slice(0, 300);
+    return cur;
+  } catch {
+    return cur;
   }
 }
 

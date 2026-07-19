@@ -18,7 +18,7 @@
 //
 // Only survivors POST to the ingest endpoint.
 
-import { buildCandidates, toIngestBody, verifyFaithful, isNovelUpdate, isSameStory, healthCheck } from './pipeline.mjs';
+import { buildCandidates, toIngestBody, verifyFaithful, isNovelUpdate, expandSummary, isSameStory, healthCheck } from './pipeline.mjs';
 import { normalizeCandidate, runGates } from './gates.mjs';
 
 const INGEST_URL = process.env.INGEST_URL || '';
@@ -192,6 +192,16 @@ async function main() {
     if (VERIFY && verifiable && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
       const v = await verifyFaithful(c);
       if (v && (!v.faithful || !v.sameEvent)) { verifyFail++; bump(reasons, 'verify:' + (!v.faithful ? 'unfaithful' : 'diff_event')); console.log(`  ✗ verify [${v.reason}] ${c.title.slice(0, 42)}`); continue; }
+    }
+
+    // STRICT DESCRIPTION QUALITY — a card's description must be substantial. If the
+    // synth summary came back thin (<160 chars), LLM-rewrite it to a fuller
+    // 160-260-char description grounded in the story's own body+snippet (expansion,
+    // not invention). Budget-shared; fail-safe (keeps the original if unavailable).
+    // Skipped for video-native (the video is the content, caption is fine).
+    if (!c.videoNative && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
+      const expanded = await expandSummary(c);
+      if (expanded && expanded !== c.summary) c.summary = expanded;
     }
 
     const body = toIngestBody(c);
