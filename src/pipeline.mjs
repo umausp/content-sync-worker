@@ -23,7 +23,7 @@ import { FEEDS } from './feeds.mjs';
 import { FEEDS_HINDI, HINDI_OUTLETS } from './feeds_hindi.mjs';
 import { isSameStory, wordSet, distinctiveTokens } from './dedup.mjs';
 import { embedMany, cosine, rankSnippetsByCentrality, SIM_THRESHOLD, EMBED_ENABLED, EMBED_VERIFY_ENABLED, EMBED_EXTRACTIVE_ENABLED, EMBED_MODEL_NAME } from './embed.mjs';
-import { clusterByEntity, entityHashtag } from './entity.mjs';
+import { clusterByEntity, entityHashtag, sameEntityEvent, primaryEntity } from './entity.mjs';
 import { fetchGdelt } from './gdelt/index.mjs';
 import { fetchBuzz } from './buzz/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
@@ -601,24 +601,48 @@ export async function buildCandidates() {
   const beforeEntity = clusters.length;
   const { clusters: entGroups, solo } = clusterByEntity(clusters, (c) => c.rep.title, 2);
   const merged = [];
+  let falseMergesPrevented = 0;
   for (const g of entGroups) {
     const parts = g.items;
     if (parts.length === 1) { merged.push(parts[0]); continue; }
-    // merge: union all source sets + member snippets, pick the best rep.
-    const sources = new Set();
-    const memberMap = new Map(); // dedup members by outlet across merged parts
-    let best = parts[0];
+    // CRITICAL: a shared hot ENTITY is NOT enough to merge — "hydrogen train" +
+    // "US-Iran strikes on railways" + "new trains" all share 'railway' but are 3
+    // DIFFERENT events. Merging them corrupted stories (wrong title/summary/image on
+    // one thread). So within an entity group, only merge parts that pass
+    // sameEntityEvent (shared primary subject AND shared event-word, per the
+    // module's own guard). We sub-cluster: seed a bucket with the first part, add a
+    // later part only if it's the same EVENT as the bucket's rep; else start a new
+    // bucket. Each bucket becomes its own story.
+    const buckets = [];
     for (const c of parts) {
-      for (const s of c.sources) sources.add(s);
-      for (const m of c.members || [c.rep]) if (!memberMap.has(m.sourceName)) memberMap.set(m.sourceName, m);
-      if (repScore(c.rep) > repScore(best.rep)) best = c;
+      const b = buckets.find((bk) => sameEntityEvent(bk.rep.title, c.rep.title));
+      if (b) b.parts.push(c);
+      else buckets.push({ rep: c.rep, parts: [c] });
     }
-    merged.push({ rep: best.rep, sources, members: [...memberMap.values()].slice(0, 3), entityKey: g.key, canonicalEntity: g.canonicalEntity });
+    if (buckets.length > 1) falseMergesPrevented += buckets.length - 1;
+    for (const bk of buckets) {
+      if (bk.parts.length === 1) { merged.push(bk.parts[0]); continue; }
+      // merge same-event parts: union source sets + member snippets, best rep.
+      const sources = new Set();
+      const memberMap = new Map();
+      let best = bk.parts[0];
+      for (const c of bk.parts) {
+        for (const s of c.sources) sources.add(s);
+        for (const m of c.members || [c.rep]) if (!memberMap.has(m.sourceName)) memberMap.set(m.sourceName, m);
+        if (repScore(c.rep) > repScore(best.rep)) best = c;
+      }
+      // canonicalEntity for the hashtag: the group's canonical form if this bucket's
+      // rep carries the group entity, else the bucket rep's own primary entity — so a
+      // split-out different-event bucket gets its OWN hashtag, not the group's.
+      const pe = primaryEntity(best.rep.title);
+      const canon = pe && !g.canonicalEntity?.toLowerCase().includes((pe.key || '').slice(0, 4)) ? pe.raw : (g.canonicalEntity || pe?.raw);
+      merged.push({ rep: best.rep, sources, members: [...memberMap.values()].slice(0, 3), entityKey: g.key, canonicalEntity: canon });
+    }
   }
   for (const s of solo) merged.push(s[0]);
   clusters.length = 0;
   clusters.push(...merged);
-  console.log(`entity-merge: ${beforeEntity} → ${clusters.length} clusters (collapsed ${beforeEntity - clusters.length} same-subject dupes)`);
+  console.log(`entity-merge: ${beforeEntity} → ${clusters.length} clusters (collapsed ${beforeEntity - clusters.length} same-subject dupes; ${falseMergesPrevented} different-event splits kept apart)`);
 
   // THIRD PASS — SEMANTIC merge (opt-in EMBED_DEDUP=1). Word-overlap + entity catch
   // shared-token / shared-subject dupes; they still MISS "same event, DIFFERENT
