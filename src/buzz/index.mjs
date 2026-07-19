@@ -438,16 +438,14 @@ async function fetchOgMeta(url, timeoutMs = 7000) {
       image = cleanImg(ld && ld[1]);
     }
 
-    // VIDEO — STRICT, article-specific only. A bare YouTube link ANYWHERE in the
-    // HTML is WRONG: publisher pages embed channel-promo/header/sidebar/recommended
-    // videos (e.g. "Hindustan Times@100") that have nothing to do with the story —
-    // that produced videos mismatched to the news. So we trust ONLY high-confidence
-    // signals that describe THIS article's video, in priority order:
-    //   1. og:video / twitter:player — the page's OWN declared video (most reliable)
-    //   2. JSON-LD VideoObject embedUrl/contentUrl — structured article video
-    //   3. a YouTube <iframe> that sits INSIDE the article body (not header/footer)
-    // A loose scattered link is intentionally IGNORED (better no video than a wrong
-    // one). ytUrl() → canonical watch URL; null if it isn't a real YouTube id.
+    // VIDEO — STRICT: only the page's OWN DECLARED video. Anything else (bare links,
+    // <iframe> embeds) is UNRELIABLE — publisher pages carry promo/recommended/
+    // sidebar embeds unrelated to the story (verified mismatches: "Hindustan Times@100"
+    // via a scattered link; "Meet Mayo..." via a single in-body iframe on an
+    // indiantelevision.com Lava article). So we trust ONLY the two signals where the
+    // page explicitly says "THIS is my video": og:video / twitter:player, and JSON-LD
+    // VideoObject. The iframe heuristic is REMOVED — a lone in-body iframe is still
+    // often a promo. Better NO video than a WRONG one. ytUrl() → canonical or null.
     const ytUrl = (s) => {
       const m = String(s || '').match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
       return m && m[1] ? `https://www.youtube.com/watch?v=${m[1]}` : null;
@@ -465,14 +463,6 @@ async function fetchOgMeta(url, timeoutMs = 7000) {
     if (!video) {
       const vo = html.match(/"@type"\s*:\s*"VideoObject"[\s\S]{0,600}?"(?:embedUrl|contentUrl)"\s*:\s*"([^"]+)"/i);
       video = ytUrl(vo && vo[1]) || (vo && /^https:\/\/[^\s"']+\.(?:mp4|webm|m3u8)/i.test(vo[1]) ? vo[1] : null);
-    }
-    // 3. A YouTube <iframe> embedded in the article — accept ONLY if it appears once
-    // or is clearly a content embed (data-* article markers). To avoid promo embeds
-    // we require the iframe be a youtube EMBED url (articles embed via /embed/), and
-    // take it only when there's a SINGLE such iframe (multiple ⇒ likely chrome/promo).
-    if (!video) {
-      const embeds = [...html.matchAll(/<iframe[^>]+src=["']([^"']*youtube(?:-nocookie)?\.com\/embed\/[A-Za-z0-9_-]{11}[^"']*)["']/gi)];
-      if (embeds.length === 1) video = ytUrl(embeds[0][1]);
     }
     return { image, video };
   } catch {
