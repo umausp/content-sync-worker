@@ -296,27 +296,69 @@ export async function fetchBuzz(opts = {}) {
   return deduped;
 }
 
-// Fetch og:IMAGE + any YOUTUBE/VIDEO from a resolved publisher URL, in ONE request.
-// Returns { image, video } (either may be null). Timeout-bounded (buzz runs every
-// 30 min; don't hang on a slow site). The app renders videoUrl as an embedded player.
-async function fetchOgMeta(url, timeoutMs = 6000) {
-  try {
-    const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'text/html' }, redirect: 'follow', signal: AbortSignal.timeout(timeoutMs) });
-    if (!r.ok) return { image: null, video: null };
-    const html = (await r.text()).slice(0, 300000);
-    const im =
-      html.match(/<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i) ||
-      html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
-    const image = im && im[1] && /^https:\/\//i.test(im[1].trim()) ? im[1].trim() : null; // https-only
+// Pull a meta/link content value by property/name — tolerant of ATTRIBUTE ORDER
+// (content before OR after property=), which a single regex misses and is a common
+// reason og:image "isn't found" on real pages. Returns the trimmed value or null.
+function metaContent(html, key) {
+  // property/name="key" ... content="val"   AND   content="val" ... property/name="key"
+  const k = key.replace(/[:]/g, '\\:');
+  const re1 = new RegExp(`<meta[^>]+(?:property|name)=["']${k}["'][^>]*?\\scontent=["']([^"']+)["']`, 'i');
+  const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]*?\\s(?:property|name)=["']${k}["']`, 'i');
+  const m = html.match(re1) || html.match(re2);
+  return m && m[1] ? m[1].trim() : null;
+}
 
-    // YOUTUBE first (most common embedded video in articles), then og:video. Match a
-    // watch/embed/youtu.be/shorts id anywhere in the article HTML → canonical watch URL.
+// Normalise an extracted image URL: decode entities, allow protocol-relative (//x)
+// by forcing https, reject data:/non-http. https-only (mixed-content safe).
+function cleanImg(u) {
+  if (!u) return null;
+  let s = u.replace(/&amp;/g, '&').trim();
+  if (s.startsWith('//')) s = 'https:' + s;
+  if (s.startsWith('http://')) s = 'https://' + s.slice(7); // upgrade (most CDNs serve https)
+  return /^https:\/\/.+\.(?:jpe?g|png|webp|avif|gif)(?:[?#]|$)/i.test(s) || /^https:\/\//i.test(s) ? s : null;
+}
+
+// Fetch article IMAGE + any YOUTUBE/VIDEO from a resolved publisher URL, ONE request.
+// Robust image extraction — tries, in order: og:image(:url/:secure_url),
+// twitter:image(:src), <link rel=image_src>, JSON-LD "image", then the first large
+// content <img>. Returns { image, video } (either may be null). Timeout-bounded.
+async function fetchOgMeta(url, timeoutMs = 7000) {
+  try {
+    const r = await fetch(url, {
+      headers: {
+        'user-agent': UA,
+        // Browser-like headers cut bot-blocks that otherwise return a stub w/o og tags.
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'accept-language': 'en-IN,en;q=0.9',
+      },
+      redirect: 'follow',
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (!r.ok) return { image: null, video: null };
+    const html = (await r.text()).slice(0, 400000);
+
+    // IMAGE — ordered fallbacks (og is best; the rest catch partial-tagged pages).
+    let image =
+      cleanImg(metaContent(html, 'og:image:secure_url')) ||
+      cleanImg(metaContent(html, 'og:image:url')) ||
+      cleanImg(metaContent(html, 'og:image')) ||
+      cleanImg(metaContent(html, 'twitter:image')) ||
+      cleanImg(metaContent(html, 'twitter:image:src'));
+    if (!image) {
+      const lnk = html.match(/<link[^>]+rel=["']image_src["'][^>]+href=["']([^"']+)["']/i);
+      image = cleanImg(lnk && lnk[1]);
+    }
+    if (!image) {
+      // JSON-LD: "image":"..." or "image":["..."] or "image":{"url":"..."}
+      const ld = html.match(/"image"\s*:\s*(?:\[\s*)?(?:\{[^}]*?"url"\s*:\s*)?["'](https?:\/\/[^"']+)["']/i);
+      image = cleanImg(ld && ld[1]);
+    }
+
+    // YOUTUBE first (most common embedded article video), then og:video.
     const yt = html.match(/(?:youtube\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
     let video = yt && yt[1] ? `https://www.youtube.com/watch?v=${yt[1]}` : null;
     if (!video) {
-      const ov = html.match(/<meta[^>]+property=["']og:video(?::url|:secure_url)?["'][^>]+content=["']([^"']+)["']/i);
-      const v = ov && ov[1] ? ov[1].trim() : null;
-      // Accept a YouTube og:video or a direct https video file; skip other embeds.
+      const v = metaContent(html, 'og:video:secure_url') || metaContent(html, 'og:video:url') || metaContent(html, 'og:video');
       if (v && (/youtube\.com|youtu\.be/i.test(v) || /^https:\/\/[^\s"']+\.(?:mp4|webm|m3u8)/i.test(v))) {
         video = /youtube\.com|youtu\.be/i.test(v) ? v.replace(/\/embed\/([A-Za-z0-9_-]{11})/, '/watch?v=$1') : v;
       }
