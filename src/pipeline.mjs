@@ -667,7 +667,12 @@ export async function buildCandidates() {
   const freshWeight = buzzOnly ? Number(process.env.FRESH_WEIGHT || 3) : 1;
   const corrCap = buzzOnly ? Number(process.env.CORR_CAP || 2) : Infinity;
   const scored = clusters
-    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now) * freshWeight; if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.min(corrCap, Math.max(0, corr - 1)) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
+    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now) * freshWeight; if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.min(corrCap, Math.max(0, corr - 1)) * 3;
+      // Google-Trends search VOLUME boost: a trend the whole country is searching
+      // (approx_traffic) is high-interest — nudge it up so it clears the synth/publish
+      // bars. +1 at 1k+, +2 at 10k+ (capped so it complements, not overwhelms, corroboration).
+      if (a.trafficN >= 10000) s += 2; else if (a.trafficN >= 1000) s += 1;
+      return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
 
   // LLM TRIAGE GATEWAY — the "one initial review". A fast batched classifier (see
@@ -686,6 +691,7 @@ export async function buildCandidates() {
   // Fail-open on network blips. Runs on the score-sorted set (best first).
   const { live, dead } = await filterLiveUrls(scored, { log: glog });
   if (dead > 0) { candidatePool = live; console.log(`url-check: dropped ${dead} dead-link stories (${live.length} live)`); }
+  let triageDropped = 0; // tracked for the end-of-run drop accounting
 
   if (triageOn) {
     const triageMax = Number(process.env.TRIAGE_MAX || 600);
@@ -708,6 +714,7 @@ export async function buildCandidates() {
     }
     candidatePool = toTriage.filter((p) => p.triageKeep !== false).concat(candidatePool.slice(triageMax));
     candidatePool.sort((x, y) => y.score - x.score);
+    triageDropped = r.dropped;
     console.log(`triage: kept ${r.kept}, dropped ${r.dropped}, fail-open ${r.failOpen}${buzzRescued ? `, buzz-rescued ${buzzRescued}` : ''}`);
   }
 
@@ -742,11 +749,17 @@ export async function buildCandidates() {
   const synthable = allEligible.filter((p) => !isVideoNative(p));
   const videoNative = allEligible.filter(isVideoNative);
   const eligible = synthable.slice(0, llmCap);
-  // extractive path = below-cap synthable + video-native + below-quality-bar (so a
-  // quiet hour still fills). Video-native always gets published (extractive).
-  const belowBar = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE && !meetsQuality(p) && !isVideoNative(p));
-  const tail = synthable.slice(llmCap).concat(videoNative, belowBar);
-  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; quality-eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); minImp=${SYNTH_MIN_IMPORTANCE}; hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
+  // extractive path = below-cap synthable + video-native + EVERYTHING the quality
+  // bar didn't pass (below importance AND below score). NOTHING clustered is dropped
+  // before review anymore — the REAL gates are the publish bar + editorial gates in
+  // review.mjs, and updates (which bypass the publish bar) must still get a chance.
+  // (Fix: previously only score>=SYNTH_MIN_SCORE items were rescued, silently
+  // dropping below-floor items — which lost fresh single-source UPDATES to live
+  // threads.) Exclude video-native (already in its own list) + dedupe by identity.
+  const inEligible = new Set(allEligible);
+  const rescued = candidatePool.filter((p) => !inEligible.has(p) && !isVideoNative(p));
+  const tail = synthable.slice(llmCap).concat(videoNative, rescued);
+  console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; quality-eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}, rescued-below-bar ${rescued.length}); minImp=${SYNTH_MIN_IMPORTANCE}; hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
 
   // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
   // instead of one. ~80 calls (~20 min) → ~10 calls. Each batch is one LLM call;
@@ -796,7 +809,6 @@ export async function buildCandidates() {
   let maxBatchMs = 180000; // seed ~3m; updated to the real worst-case as we go
   let consecutiveEmpty = 0; // resets on any productive batch
   let attempted = 0;
-  let lastBatch = -1; // highest batch index reached (for the extractive-tail split)
   for (let b = 0; b < nBatches; b++) {
     const elapsed = Date.now() - started;
     const need = maxBatchMs * 1.2;
@@ -812,16 +824,25 @@ export async function buildCandidates() {
     const t0 = Date.now();
     const results = await synthBatch(group.map((p) => ({ ...p.a, _members: p.members })));
     let parsed = 0; // model produced a usable object (health signal)
+    // Mark each item _handled the moment attach() succeeds (a pushed candidate OR an
+    // honored editorial skip). The extractive recovery below uses this per-ITEM flag
+    // instead of a per-BATCH index — so an item that the model failed to convert
+    // (null slot / index mismatch / mid-batch budget cut) is NOT lost: it falls
+    // through to extractive. (Bug fix: the old (lastBatch+1)*SYNTH_BATCH math assumed
+    // every item in a "reached" batch converted, silently dropping the un-converted
+    // ones — preferentially the highest-importance stories, since eligible is
+    // importance-sorted.)
     if (results) {
-      results.forEach((s, k) => { if (attach(s, group[k])) parsed++; });
+      results.forEach((s, k) => { if (attach(s, group[k])) { parsed++; group[k]._handled = true; } });
     } else {
       // Batch failed to parse — fall back to per-item, but STOP if the budget is
       // spent mid-fallback (8 sequential synth calls could otherwise run ~20min
       // in a single iteration and blow the job timeout — the budget check at the
-      // top of the loop can't interrupt this inner loop).
+      // top of the loop can't interrupt this inner loop). Un-reached items stay
+      // _handled=false → recovered by the extractive tail.
       for (const p of group) {
         if (Date.now() - started > SYNTH_BUDGET_MS) { console.log(`  budget spent mid-fallback — stopping`); break; }
-        if (attach(await synth({ ...p.a, _members: p.members }), p)) parsed++;
+        if (attach(await synth({ ...p.a, _members: p.members }), p)) { parsed++; p._handled = true; }
       }
     }
     attempted++;
@@ -835,7 +856,6 @@ export async function buildCandidates() {
       console.log(`${consecutiveEmpty} consecutive empty batches — LLM path unhealthy; stopping synth, extractive will cover the rest`);
       break;
     }
-    lastBatch = b;
     console.log(`  batch ${b + 1}/${nBatches}: ${parsed}/${group.length} parsed (${synthesized} kept) (${((Date.now() - t0) / 1000).toFixed(0)}s, total in ${((Date.now() - started) / 60000).toFixed(1)}m)`);
   }
   console.log(`synthesized ${synthesized} candidates from ${nBatches} batches, ${skippedByModel} model-skipped (${((Date.now() - started) / 60000).toFixed(1)}m)`);
@@ -845,9 +865,12 @@ export async function buildCandidates() {
   // reached before the budget/stop. Nothing gets dropped; the tail publishes as
   // plain, accurate, hallucination-proof extractive cards. Gated by EXTRACTIVE=0.
   if (process.env.EXTRACTIVE !== '0') {
-    const llmReached = (lastBatch + 1) * SYNTH_BATCH; // eligible items the batch loop got to
-    const notSynthed = [...eligible.slice(llmReached), ...tail];
-    let ext = 0, ranked = 0;
+    // Recover EVERY eligible item the synth loop didn't turn into a candidate
+    // (never reached, parse-failed, index-mismatched, or budget-cut) — keyed on the
+    // per-item _handled flag, not a batch index — plus the tail. Guarantees no
+    // eligible cluster is lost regardless of how synth behaved.
+    const notSynthed = [...eligible.filter((p) => !p._handled), ...tail];
+    let ext = 0, ranked = 0, extSkipped = 0;
     for (const p of notSynthed) {
       // EMBEDDING-RANKED extraction (EMBED_EXTRACTIVE, default on when the dedup
       // model is loaded — free reuse): for a MULTI-source cluster, order the member
@@ -861,13 +884,13 @@ export async function buildCandidates() {
         if (rankedSnips && rankedSnips.length) ranked++;
       }
       const e = extractiveCandidate({ ...p.a, _members: p.members }, rankedSnips, p.corr);
-      if (!e) continue;
+      if (!e) { extSkipped++; continue; } // unusable headline (slug/too-thin) — counted, not silent
       if (p.corr >= 3) e.importance = Math.min(5, e.importance + 1);
       if (p.canonicalEntity) e.hashtag = ensureValidHashtag(entityHashtag(p.canonicalEntity), e.title);
       candidates.push({ ...e, corr: p.corr, score: p.score, article: p.a, members: p.members });
       ext++;
     }
-    console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)${ranked ? `, ${ranked} embedding-ranked (multi-source)` : ''}`);
+    console.log(`extractive tail: +${ext} candidates (from ${notSynthed.length} un-synthesised eligible)${extSkipped ? `, ${extSkipped} skipped (slug/too-thin)` : ''}${ranked ? `, ${ranked} embedding-ranked (multi-source)` : ''}`);
   }
 
   flushUsage();
@@ -885,6 +908,19 @@ export async function buildCandidates() {
   } else {
     console.log('provider failures: none (all configured providers responded)');
   }
+  // DROP ACCOUNTING — reconciles every article's fate so nothing is silently lost:
+  //   raw pool → collapsed by dedup into clusters → (dead-link + triage-junk dropped,
+  //   both intentional + logged above) → candidates that reach review. The remainder
+  //   (clusters that became neither a candidate nor a logged drop) are the low-signal
+  //   tail (stale + single-source + no media, score below floor) — expected, and now
+  //   quantified here instead of vanishing invisibly.
+  const clusteredN = clusters.length;
+  const accountedDrops = dead + triageDropped;
+  const lowSignal = Math.max(0, clusteredN - accountedDrops - candidates.length);
+  console.log(
+    `drop-accounting: raw ${raw.length} → ${clusteredN} clusters (dedup collapsed ${raw.length - clusteredN}) → ` +
+    `${candidates.length} candidates | dropped: ${dead} dead-link + ${triageDropped} triage-junk + ${lowSignal} low-signal (stale/uncorroborated/no-media)`,
+  );
   return candidates;
 }
 

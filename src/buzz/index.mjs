@@ -93,6 +93,56 @@ async function fetchTrendingTerms(opts) {
   return terms;
 }
 
+// Trends RSS carries FAR more than the term string: each <item> has 1-3
+// <ht:news_item> blocks with a REAL publisher URL + title + source + a real IMAGE
+// (<ht:news_item_picture>), plus the term's <ht:approx_traffic> (search volume).
+// Reading these DIRECTLY is strictly better than our term→GoogleNews-search→resolve
+// chain: real links + real images come FREE, no extra fetches. This yields the
+// freshest, most-searched India stories with media attached. Junk/ad-ish trends
+// (lottery/jackpot/result/horoscope/exam-result/betting — user: "some ads, filter
+// out") are dropped. Returns Article[] tagged via='buzz'.
+const TREND_JUNK = /\b(lottery|jackpot|satta|matka|result today|results? today|admit card|answer key|hall ticket|horoscope|rashifal|betting|casino|coupon|promo code|sarkari result|recruitment|vacancy)\b/i;
+async function fetchTrendingArticles(opts) {
+  const geo = opts.geo || 'IN';
+  const xml = await getXml(`https://trends.google.com/trending/rss?geo=${encodeURIComponent(geo)}`).catch(() => null);
+  if (!xml) return [];
+  const perTrend = Number(process.env.BUZZ_TREND_ARTICLES || 2); // top N attached articles per trend
+  const out = [];
+  for (const [, block] of [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)]) {
+    const term = tag(block, 'title');
+    if (!term || TREND_JUNK.test(term)) continue; // drop junk/ad trends up front
+    const traffic = tag(block, 'ht:approx_traffic'); // e.g. "10000+"
+    const trafficN = Number((traffic || '').replace(/[^\d]/g, '')) || 0;
+    const newsItems = [...block.matchAll(/<ht:news_item>([\s\S]*?)<\/ht:news_item>/gi)];
+    let kept = 0;
+    for (const [, ni] of newsItems) {
+      if (kept >= perTrend) break;
+      const title = tag(ni, 'ht:news_item_title');
+      const url = tag(ni, 'ht:news_item_url');
+      const img = tag(ni, 'ht:news_item_picture');
+      const src = tag(ni, 'ht:news_item_source');
+      if (!title || !url || !/^https?:\/\//i.test(url)) continue;
+      if (TREND_JUNK.test(title)) continue; // article-level junk filter
+      out.push({
+        title,
+        url,
+        sourceName: src || 'Google News',
+        sourceUrl: url,
+        snippet: title, // Trends gives no snippet; og-enrich can fill later if wanted
+        imageUrl: img && /^https:\/\//i.test(img) ? img : null, // real article image, FREE
+        publishedAt: null, // trend items are current by definition; freshness via the tab
+        category: 'top',
+        via: 'buzz',
+        buzzTerm: term,
+        trafficN, // search volume — a popularity signal (used to boost score)
+      });
+      kept++;
+    }
+  }
+  opts.log('buzz.trend_articles', { articles: out.length, withImage: out.filter((a) => a.imageUrl).length });
+  return out;
+}
+
 // Parse Google News RSS <item>s → Article[]. Shared by the search feed and the
 // top/section feeds (identical item shape). Each item has a clean
 // "<source url=...>Outlet</source>" (name + domain) + pubDate; the <link> is a
@@ -334,6 +384,9 @@ export async function fetchBuzz(opts = {}) {
   const gnewsP = process.env.BUZZ_GNEWS_FEEDS === '0' ? Promise.resolve([]) : fetchGoogleNewsFeeds(o).catch(() => []);
   // YouTube trending videos (video-first items) — also in parallel. Off via BUZZ_YT=0.
   const ytP = process.env.BUZZ_YT === '0' ? Promise.resolve([]) : fetchYouTubeTrending(o).catch(() => []);
+  // TRENDS ATTACHED ARTICLES — read the real publisher URLs + IMAGES already inside
+  // the Trends RSS (fresher + images FREE, no search/resolve). Off via BUZZ_TREND_ARTICLES=0.
+  const trendArtP = process.env.BUZZ_TREND_ARTICLES === '0' ? Promise.resolve([]) : fetchTrendingArticles(o).catch(() => []);
 
   // (2) Trend-driven: Google Trends "searched now" terms + always-on extras +
   // per-category probes → News search each. termCat maps term→desk.
@@ -359,6 +412,7 @@ export async function fetchBuzz(opts = {}) {
   await Promise.all(Array.from({ length: Math.max(1, Math.min(CONC, terms.length)) }, worker));
   results.push(...(await gnewsP)); // fold in the Google News feed articles
   results.push(...(await ytP)); // fold in YouTube trending videos (video-first)
+  results.push(...(await trendArtP)); // fold in Trends' attached articles (real URL + image)
 
   // Dedup by normalised URL (search + feeds overlap heavily on hot events).
   const seen = new Set();
