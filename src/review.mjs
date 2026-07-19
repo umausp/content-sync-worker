@@ -18,7 +18,7 @@
 //
 // Only survivors POST to the ingest endpoint.
 
-import { buildCandidates, toIngestBody, verifyFaithful, isSameStory, healthCheck } from './pipeline.mjs';
+import { buildCandidates, toIngestBody, verifyFaithful, isNovelUpdate, isSameStory, healthCheck } from './pipeline.mjs';
 import { runGates } from './gates.mjs';
 
 const INGEST_URL = process.env.INGEST_URL || '';
@@ -45,6 +45,10 @@ const MAX_AGE_H_BUZZ = Number(process.env.MAX_AGE_H_BUZZ || 72);
 // verifying all. Set VERIFY_FAITHFUL=0 to disable entirely.
 const VERIFY = process.env.VERIFY_FAITHFUL !== '0';
 const VERIFY_BUDGET_MS = Number(process.env.VERIFY_BUDGET_MS || 4 * 60 * 1000); // ~4 min of verify total
+// NOVELTY gate for updates — LLM-check that a same-topic item adds NEW info before
+// appending it to an existing story (else ignore). On by default; VERIFY_NOVELTY=0
+// to disable (falls back to the old always-append behaviour).
+const NOVELTY_CHECK = process.env.VERIFY_NOVELTY !== '0';
 // Only verify when the source snippet is long enough to check against. A thin
 // snippet (a slug/headline) lacks the article's entities, so the verifier would
 // falsely flag accurate synthesis as "introducing new names". Below this, we trust
@@ -59,7 +63,7 @@ async function fetchPublished() {
       const r = await fetch(`${STORIES_URL}?mode=${mode}&limit=50`, { signal: AbortSignal.timeout(15000) });
       if (!r.ok) continue;
       const j = await r.json();
-      for (const s of j.items || []) out.push({ hashtag: s.hashtag, title: s.title });
+      for (const s of j.items || []) out.push({ hashtag: s.hashtag, title: s.title, summary: s.summary || '' });
     }
   } catch (e) { console.log('warn: dedup reference fetch failed:', e.message); }
   const seen = new Set();
@@ -92,7 +96,7 @@ async function main() {
   console.log(`review: ${candidates.length} candidates, ${published.length} already-published for dedup`);
 
   const acceptedTitles = [];
-  let newStory = 0, updated = 0, rejected = 0, batchDup = 0, verifyFail = 0, heldBar = 0, catCapped = 0;
+  let newStory = 0, updated = 0, rejected = 0, batchDup = 0, verifyFail = 0, heldBar = 0, catCapped = 0, staleUpdate = 0;
   const reasons = {};
   // FRONT-PAGE DIVERSITY: no single category may exceed CAT_CAP_FRACTION of NEW
   // stories, so one hot topic (politics, or GDELT's 'top' bucket) can't swamp the
@@ -173,6 +177,18 @@ async function main() {
 
     const body = toIngestBody(c);
     if (match) {
+      // NOVELTY GATE — don't append the SAME event restated by another outlet as a
+      // redundant "update". Only append when it adds a material development; else
+      // IGNORE. (Fixes: any same-title item from any source was blindly merged.)
+      // Budget-shared with the verifier so the run can't blow its time.
+      if (NOVELTY_CHECK && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
+        const n = await isNovelUpdate(match, c);
+        if (n && n.novel === false) {
+          staleUpdate++; bump(reasons, 'update_not_novel');
+          console.log(`  ⊘ not-novel [${n.reason}] ${c.title.slice(0, 44)}`);
+          continue;
+        }
+      }
       body.hashtag = match.hashtag;
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
@@ -180,7 +196,7 @@ async function main() {
     if (await post(body)) { newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`); }
   }
 
-  console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped}`);
+  console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped} notNovel=${staleUpdate}`);
   console.log('  published by category:', JSON.stringify(catCount));
   console.log('  published by source:', JSON.stringify(srcCount), `(SOURCE_MODE=${process.env.SOURCE_MODE || 'both'})`);
   console.log(`  publish bar: score>=${PUBLISH_MIN_SCORE} AND corroboration>=${PUBLISH_MIN_CORROBORATION} (or scoop: imp>=${PUBLISH_SOLO_IMPORTANCE}); verifier=${VERIFY ? `on (budget ${(VERIFY_BUDGET_MS / 60000).toFixed(0)}m)` : 'off'}`);

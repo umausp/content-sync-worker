@@ -895,6 +895,38 @@ export async function verifyFaithful(c) {
   } catch { return null; }
 }
 
+// NOVELTY gate for UPDATES. When a candidate matches an already-published story, we
+// USED to append it as an "update" blindly — so the SAME event re-reported by
+// another outlet (reworded, no new facts) spammed the thread with redundant
+// updates. This asks an LLM: does the NEW item add materially NEW information (a
+// development, new number/quote/outcome/detail) beyond what the existing story
+// already says — or is it just the same event restated? Returns:
+//   { novel: bool, reason }  — novel=false → SKIP (ignore, don't append).
+// Fail-open (novel=true) on any error/outage so a model hiccup never silently stops
+// legitimate developing-story updates. Runs through the hosted router (generate()).
+const NOVELTY_SCHEMA = { type: 'object', properties: { novel: { type: 'boolean' }, reason: { type: 'string' } }, required: ['novel', 'reason'] };
+export async function isNovelUpdate(existing, candidate) {
+  const exTitle = String(existing?.title || '').slice(0, 200);
+  const exSummary = String(existing?.summary || '').slice(0, 400);
+  const newTitle = String(candidate?.title || '').slice(0, 200);
+  const newBody = String(candidate?.body || candidate?.summary || '').slice(0, 500);
+  if (!exTitle || !newTitle) return { novel: true, reason: 'insufficient text → fail-open' };
+  const prompt =
+    `You are a news editor deciding whether to APPEND an update to an existing story.\n` +
+    `EXISTING STORY:\nTITLE: ${sanitizeForPrompt(exTitle)}\nSUMMARY: ${sanitizeForPrompt(exSummary)}\n\n` +
+    `INCOMING ITEM (same topic):\nTITLE: ${sanitizeForPrompt(newTitle)}\nBODY: ${sanitizeForPrompt(newBody)}\n\n` +
+    `Answer JSON: {"novel": true ONLY if the incoming item adds a MATERIAL DEVELOPMENT the existing story does NOT already convey (a new fact/number/quote/outcome/named development/later time), false if it is the SAME event merely restated or reworded by another outlet with no new information, "reason":"<=8 words"}`;
+  try {
+    const { text } = await generate(prompt, { json: true, maxTokens: 80, timeoutMs: 30000 });
+    if (text == null) return { novel: true, reason: 'no provider → fail-open' };
+    const j = safeJson(text);
+    if (!j || typeof j.novel !== 'boolean') return { novel: true, reason: 'unparsed → fail-open' };
+    return { novel: j.novel, reason: String(j.reason || '').slice(0, 80) };
+  } catch {
+    return { novel: true, reason: 'error → fail-open' };
+  }
+}
+
 // Build the ingest payload for a reviewed candidate.
 const HTTPS = (u) => (u && /^https:\/\//i.test(u) ? u : undefined);
 export function toIngestBody(s) {

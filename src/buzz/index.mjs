@@ -111,6 +111,10 @@ function parseNewsItems(xml, { category = 'top', buzzTerm = null, limit = 20 } =
     // Skip non-article sources: social platforms + org homepages Google sometimes
     // surfaces (facebook/x/instagram/party sites) — not news events, pollute the pool.
     if (/(facebook|twitter|x|instagram|threads|tiktok|reddit)\.com|\.org$|bjp\.|inc\.in/i.test(sourceUrl)) continue;
+    // LOW-TRUST source filter (#5 quality — reliable news only). Google News is
+    // already well-curated (verified: 101/102 outlets reputable), so this just drops
+    // the occasional content-farm/blog/aggregator that slips in. Opt out: BUZZ_TRUST=0.
+    if (process.env.BUZZ_TRUST !== '0' && /blogspot|wordpress|\.medium\.com|substack|\.info\b|\bblog\b|gossip|\bviral\b|clickb|content-?farm|sarkari|jagranjosh|freejobalert/i.test(`${sourceUrl} ${sourceName}`)) continue;
     // Google News appends " - Outlet" to the title; strip it (we have the source).
     if (sourceName && title.endsWith(` - ${sourceName}`)) title = title.slice(0, -(sourceName.length + 3)).trim();
     out.push({
