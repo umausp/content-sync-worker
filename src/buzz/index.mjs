@@ -23,11 +23,25 @@
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36';
 
+// Channel-BRANDING/promo YouTube IDs some publishers declare in og:video /
+// twitter:player on EVERY article page — they're not the story's video and mismatch
+// every headline. Never attach these. Extend via BUZZ_PROMO_VIDEO_IDS (comma list).
+const PROMO_VIDEO_IDS = new Set([
+  'T50u-Ka1XAs', // Hindustan Times@100 — Voice Of The Nation (HT sitewide promo)
+  ...(process.env.BUZZ_PROMO_VIDEO_IDS || '').split(',').map((s) => s.trim()).filter(Boolean),
+]);
+
 function decode(s) {
   return String(s || '')
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n))
+    // NUMERIC entities first (hex + decimal), THEN named — and &amp; LAST so a
+    // double-encoded "&amp;apos;" resolves cleanly (→ &apos; → '). &apos; was
+    // MISSING → "&apos;Focus On…" leaked into titles.
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(parseInt(n, 10)))
+    .replace(/&apos;/g, "'").replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
     .trim();
 }
 function tag(block, name) { const m = block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)<\\/${name}>`, 'i')); return m ? decode(m[1]) : ''; }
@@ -525,7 +539,12 @@ async function fetchOgMeta(url, timeoutMs = 7000) {
     // often a promo. Better NO video than a WRONG one. ytUrl() → canonical or null.
     const ytUrl = (s) => {
       const m = String(s || '').match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
-      return m && m[1] ? `https://www.youtube.com/watch?v=${m[1]}` : null;
+      if (!m || !m[1]) return null;
+      // PROMO DENYLIST — publishers put a CHANNEL-BRANDING video in og:video/
+      // twitter:player (e.g. HT's "Hindustan Times@100" = T50u-Ka1XAs), which is NOT
+      // the article's video and mismatches EVERY story. Never attach these.
+      if (PROMO_VIDEO_IDS.has(m[1])) return null;
+      return `https://www.youtube.com/watch?v=${m[1]}`;
     };
     let video = null;
     // 1. og:video / twitter:player (the article's declared video)
