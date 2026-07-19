@@ -53,6 +53,15 @@ env:
   BUZZ_MAX_TERMS: '12' # top-N Google-Trends terms
   BUZZ_PER_TERM: '5' # articles per term/probe
   BUZZ_CATEGORIES: '1' # per-category trend probes (keeps every desk fresh)
+  # IMAGES: resolve each GNews link → real publisher URL → og:image (GNews serves
+  # none). BUZZ_RESOLVE_MAX caps how many we resolve/run to keep the 30-min cron fast.
+  BUZZ_RESOLVE: '1'
+  BUZZ_RESOLVE_MAX: '70'
+  # RECENCY-FIRST ranking (buzz is an engagement feed): amplify freshness, cap the
+  # corroboration bonus so a 1h story beats a 22h one. (National pipeline stays
+  # corroboration-first.)
+  FRESH_WEIGHT: '3'
+  CORR_CAP: '2'
   # SYNTH — the buzz pool is small (~60-80 articles), so synth all of it.
   SYNTH_MIN_SCORE: '5'
   SYNTH_HARD_MAX: '40'
@@ -68,7 +77,7 @@ env:
   PUBLISH_MIN_IMPORTANCE: '2'
   PUBLISH_MIN_CORROBORATION: '1' # Trends already proved it's buzzing; don't require a 2nd outlet
   PUBLISH_SOLO_IMPORTANCE: '3'
-  MAX_AGE_H: '24' # buzz must be FRESH
+  MAX_AGE_H: '12' # buzz must be FRESH — recent news only (tightened 24→12h)
   VERIFY_FAITHFUL: '1'
   VERIFY_BUDGET_MS: '180000'
   # Semantic dedup (reuses the loaded embedding model) — collapse the same trend's

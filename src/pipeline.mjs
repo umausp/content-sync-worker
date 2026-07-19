@@ -619,8 +619,15 @@ export async function buildCandidates() {
     console.log(`semantic-merge: +${semMerged} reworded-dupe merges → ${clusters.length} clusters (model=${EMBED_MODEL_NAME}, cos>=${SIM_THRESHOLD}, ${((Date.now() - t0) / 1000).toFixed(1)}s)`);
   }
 
+  // RECENCY-FIRST for the buzz cron: the national pipeline ranks by CORROBORATION
+  // (+3/source, unbounded) which rightly surfaces deep, well-sourced news — but it
+  // made a 22h-old 4-source story outrank a 1h-old fresh one, wrong for an
+  // ENGAGEMENT feed. In buzz mode we AMPLIFY freshness (×FRESH_WEIGHT) and CAP the
+  // corroboration bonus so recency wins. FRESH_WEIGHT/CORR_CAP are buzz-tuned.
+  const freshWeight = buzzOnly ? Number(process.env.FRESH_WEIGHT || 3) : 1;
+  const corrCap = buzzOnly ? Number(process.env.CORR_CAP || 2) : Infinity;
   const scored = clusters
-    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now); if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.max(0, corr - 1) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
+    .map((c) => { const a = c.rep; const corr = c.sources.size; let s = (RANK[a.sourceName] || 2) + fresh(a, now) * freshWeight; if (PRIORITY.has(a.category)) s += 2; if (a.imageUrl) s += 1; s += Math.min(corrCap, Math.max(0, corr - 1)) * 3; return { a, corr, score: s, canonicalEntity: c.canonicalEntity, members: c.members || [a] }; })
     .sort((x, y) => y.score - x.score);
 
   // LLM TRIAGE GATEWAY — the "one initial review". A fast batched classifier (see

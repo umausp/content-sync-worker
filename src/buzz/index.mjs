@@ -38,6 +38,41 @@ async function getXml(url, timeoutMs = 10000) {
   return r.text();
 }
 
+// Resolve a Google News RSS redirect (news.google.com/rss/articles/<id>) to the
+// REAL publisher URL. GNews encrypts the id, but the article page carries a
+// signature (data-n-a-sg) + timestamp (data-n-a-ts) that its own batchexecute
+// endpoint uses to return the real URL — the only reliable way (verified). We need
+// this so we can (a) fetch the publisher's og:IMAGE (GNews serves none) and (b)
+// give the card the real article link + domain (better attribution/favicons).
+// Best-effort: returns null on any failure → caller keeps the GNews link.
+async function resolveGoogleNewsUrl(gnewsUrl, timeoutMs = 8000) {
+  try {
+    const m = gnewsUrl.match(/\/articles\/([^?]+)/);
+    if (!m) return null;
+    const id = m[1];
+    const page = await fetch(gnewsUrl, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(timeoutMs) });
+    if (!page.ok) return null;
+    const html = await page.text();
+    const sg = html.match(/data-n-a-sg="([^"]+)"/);
+    const ts = html.match(/data-n-a-ts="([^"]+)"/);
+    if (!sg || !ts) return null;
+    const inner = JSON.stringify(['garturlreq', [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1], 'X', 'X', 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0], id, ts[1], sg[1]]);
+    const body = 'f.req=' + encodeURIComponent(JSON.stringify([[['Fbv4je', inner, null, 'generic']]]));
+    const r = await fetch('https://news.google.com/_/DotsSplashUi/data/batchexecute', {
+      method: 'POST',
+      headers: { 'user-agent': UA, 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body,
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (!r.ok) return null;
+    const txt = await r.text();
+    const real = txt.match(/https?:\/\/(?!news\.google)[^\\"\s]+/);
+    return real ? real[0] : null;
+  } catch {
+    return null;
+  }
+}
+
 // The trending SEARCH TERMS in a geo, right now. Google's newer /trending/rss path
 // (the older /trends/trendingsearches/daily/rss 404s — verified). Returns [] on
 // failure so the caller degrades to BUZZ_EXTRA_QUERIES only.
@@ -227,6 +262,67 @@ export async function fetchBuzz(opts = {}) {
     seen.add(key);
     deduped.push(a);
   }
-  log('buzz.done', { terms: terms.length, trending: trending.length, extra: extra.length, articles: deduped.length, ms: Date.now() - t0 });
+
+  // RESOLVE + IMAGE ENRICH. GNews items have NO image and an opaque redirect link.
+  // Resolve each to the real publisher URL, then fetch its og:image — so buzz cards
+  // get the REAL article photo (+ a real article link + domain for attribution).
+  // Concurrency-capped, best-effort (a failure keeps the GNews link, imageless →
+  // the web's topical fallback covers it). Bounded to BUZZ_RESOLVE_MAX to keep the
+  // 30-min cron fast. Off via BUZZ_RESOLVE=0.
+  if (process.env.BUZZ_RESOLVE !== '0' && deduped.length) {
+    const cap = Number(process.env.BUZZ_RESOLVE_MAX || 60);
+    const targets = deduped.slice(0, cap);
+    const conc = Number(process.env.BUZZ_RESOLVE_CONCURRENCY || 8);
+    let ri = 0, resolved = 0, withImg = 0, withVid = 0;
+    async function rworker() {
+      while (ri < targets.length) {
+        const a = targets[ri++];
+        const real = await resolveGoogleNewsUrl(a.url).catch(() => null);
+        if (!real) continue;
+        a.url = real; // real publisher link (better than the GNews redirect)
+        resolved++;
+        try {
+          const meta = await fetchOgMeta(real);
+          if (meta.image) { a.imageUrl = meta.image; withImg++; }
+          if (meta.video) { a.videoUrl = meta.video; withVid++; } // YouTube/embed → card plays it
+        } catch { /* keep imageless → web fallback */ }
+      }
+    }
+    await Promise.all(Array.from({ length: Math.max(1, Math.min(conc, targets.length)) }, rworker));
+    log('buzz.resolve', { attempted: targets.length, resolved, withImage: withImg, withVideo: withVid });
+  }
+
+  log('buzz.done', { terms: terms.length, trending: trending.length, extra: extra.length, articles: deduped.length, withImage: deduped.filter((a) => a.imageUrl).length, ms: Date.now() - t0 });
   return deduped;
+}
+
+// Fetch og:IMAGE + any YOUTUBE/VIDEO from a resolved publisher URL, in ONE request.
+// Returns { image, video } (either may be null). Timeout-bounded (buzz runs every
+// 30 min; don't hang on a slow site). The app renders videoUrl as an embedded player.
+async function fetchOgMeta(url, timeoutMs = 6000) {
+  try {
+    const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'text/html' }, redirect: 'follow', signal: AbortSignal.timeout(timeoutMs) });
+    if (!r.ok) return { image: null, video: null };
+    const html = (await r.text()).slice(0, 300000);
+    const im =
+      html.match(/<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i) ||
+      html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
+    const image = im && im[1] && /^https:\/\//i.test(im[1].trim()) ? im[1].trim() : null; // https-only
+
+    // YOUTUBE first (most common embedded video in articles), then og:video. Match a
+    // watch/embed/youtu.be/shorts id anywhere in the article HTML → canonical watch URL.
+    const yt = html.match(/(?:youtube\.com\/(?:watch\?[^"'\s<]*v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+    let video = yt && yt[1] ? `https://www.youtube.com/watch?v=${yt[1]}` : null;
+    if (!video) {
+      const ov = html.match(/<meta[^>]+property=["']og:video(?::url|:secure_url)?["'][^>]+content=["']([^"']+)["']/i);
+      const v = ov && ov[1] ? ov[1].trim() : null;
+      // Accept a YouTube og:video or a direct https video file; skip other embeds.
+      if (v && (/youtube\.com|youtu\.be/i.test(v) || /^https:\/\/[^\s"']+\.(?:mp4|webm|m3u8)/i.test(v))) {
+        video = /youtube\.com|youtu\.be/i.test(v) ? v.replace(/\/embed\/([A-Za-z0-9_-]{11})/, '/watch?v=$1') : v;
+      }
+    }
+    return { image, video };
+  } catch {
+    return { image: null, video: null };
+  }
 }
