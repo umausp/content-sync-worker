@@ -181,6 +181,44 @@ async function fetchGoogleNewsFeeds(opts) {
   return arts;
 }
 
+// YOUTUBE TRENDING — real trending VIDEOS (user: "video improves quality; where's
+// the YouTube trending RSS?"). Google's own Trending channel RSS
+// (channel UCBR8-60-B28hp2BmDPdntcQ) returns 15 items each with <yt:videoId> +
+// <media:thumbnail> — no scraping. Each becomes a video-first article (videoUrl set
+// to the canonical watch URL, imageUrl to the YT thumbnail). Off via BUZZ_YT=0.
+// Note: YouTube's global trending skews US/creator content; keep the count modest
+// so it garnishes the feed with video rather than dominating the India news mix.
+const YT_TRENDING_CHANNEL = process.env.BUZZ_YT_CHANNEL || 'UCBR8-60-B28hp2BmDPdntcQ';
+async function fetchYouTubeTrending(opts) {
+  const xml = await getXml(`https://www.youtube.com/feeds/videos.xml?channel_id=${YT_TRENDING_CHANNEL}`).catch(() => null);
+  if (!xml) { opts.log('buzz.yt_failed', {}); return []; }
+  const limit = Number(process.env.BUZZ_YT_MAX || 8);
+  const out = [];
+  for (const [, block] of [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)].slice(0, limit)) {
+    const vid = (block.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/) || [])[1];
+    const title = tag(block, 'title');
+    const pub = tag(block, 'published');
+    const thumb = (block.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i) || [])[1];
+    const author = (block.match(/<author>[\s\S]*?<name>([\s\S]*?)<\/name>/i) || [])[1];
+    if (!vid || !title) continue;
+    out.push({
+      title,
+      url: `https://www.youtube.com/watch?v=${vid}`,
+      sourceName: author ? decode(author) : 'YouTube',
+      sourceUrl: 'https://www.youtube.com',
+      snippet: title,
+      imageUrl: thumb && /^https:\/\//i.test(thumb) ? thumb : `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`,
+      videoUrl: `https://www.youtube.com/watch?v=${vid}`, // VIDEO-FIRST
+      publishedAt: pub ? new Date(pub).toISOString() : null,
+      category: 'entertainment',
+      via: 'buzz',
+      buzzTerm: null,
+    });
+  }
+  opts.log('buzz.youtube', { videos: out.length });
+  return out;
+}
+
 // Per-CATEGORY trend probes. Google News has topic RSS feeds + we add category
 // "what's trending" search queries, so the buzz cron surfaces the hot item in EACH
 // desk (not just whatever's #1 overall) → a balanced, always-fresh feed across
@@ -232,6 +270,8 @@ export async function fetchBuzz(opts = {}) {
   // BUZZ_GNEWS_FEEDS=0. This is what carries the same event from MANY outlets →
   // corroboration + section balance the trend searches alone don't give.
   const gnewsP = process.env.BUZZ_GNEWS_FEEDS === '0' ? Promise.resolve([]) : fetchGoogleNewsFeeds(o).catch(() => []);
+  // YouTube trending videos (video-first items) — also in parallel. Off via BUZZ_YT=0.
+  const ytP = process.env.BUZZ_YT === '0' ? Promise.resolve([]) : fetchYouTubeTrending(o).catch(() => []);
 
   // (2) Trend-driven: Google Trends "searched now" terms + always-on extras +
   // per-category probes → News search each. termCat maps term→desk.
@@ -256,6 +296,7 @@ export async function fetchBuzz(opts = {}) {
   }
   await Promise.all(Array.from({ length: Math.max(1, Math.min(CONC, terms.length)) }, worker));
   results.push(...(await gnewsP)); // fold in the Google News feed articles
+  results.push(...(await ytP)); // fold in YouTube trending videos (video-first)
 
   // Dedup by normalised URL (search + feeds overlap heavily on hot events).
   const seen = new Set();
