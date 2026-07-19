@@ -200,19 +200,27 @@ async function fetchYouTubeTrending(opts) {
     const pub = tag(block, 'published');
     const thumb = (block.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i) || [])[1];
     const author = (block.match(/<author>[\s\S]*?<name>([\s\S]*?)<\/name>/i) || [])[1];
+    // YouTube feed carries a real <media:description> — use it as the body so the
+    // card/thread has text under the player (not just an echoed title).
+    const desc = (block.match(/<media:description>([\s\S]*?)<\/media:description>/i) || [])[1];
     if (!vid || !title) continue;
+    const body = desc ? decode(desc).replace(/\s+/g, ' ').trim().slice(0, 500) : '';
     out.push({
       title,
       url: `https://www.youtube.com/watch?v=${vid}`,
       sourceName: author ? decode(author) : 'YouTube',
       sourceUrl: 'https://www.youtube.com',
-      snippet: title,
+      snippet: body && body.length > 40 ? body : title,
       imageUrl: thumb && /^https:\/\//i.test(thumb) ? thumb : `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`,
       videoUrl: `https://www.youtube.com/watch?v=${vid}`, // VIDEO-FIRST
       publishedAt: pub ? new Date(pub).toISOString() : null,
       category: 'entertainment',
       via: 'buzz',
       buzzTerm: null,
+      // A video IS the content — no article body to synthesise. This tells the
+      // pipeline to publish it directly (extractive) and the gates to relax the
+      // body checks (body_echoes_title / too-short / not-a-sentence).
+      videoNative: true,
     });
   }
   opts.log('buzz.youtube', { videos: out.length });

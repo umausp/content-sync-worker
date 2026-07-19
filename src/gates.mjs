@@ -32,6 +32,12 @@ const SAFETY = /\b(child (porn|sexual)|minor.*(rape|sexual)|underage.*(sexual|nu
 function numbers(s) { return (String(s).match(/\b\d[\d,.]*\b/g) || []).map((x) => x.replace(/[.,]$/, '')); }
 function quoted(s) { return (String(s).match(/[""][^""]{6,}[""]|"[^"]{6,}"/g) || []); }
 
+// A VIDEO-NATIVE story = a trending video where the clip IS the content (YouTube-
+// trending). Its "body" is a caption, so the body-shape gates (length, echoes-
+// title, is-a-sentence) don't apply — the player carries the value. Flag set on the
+// candidate + its article in the pipeline.
+function isVideoNative(c) { return c?.videoNative === true || c?.article?.videoNative === true; }
+
 // ── Individual gates ────────────────────────────────────────────────────────
 export function gStructure(c) {
   const t = (c.title || '').trim();
@@ -50,15 +56,21 @@ export function gStructure(c) {
   if (/[<>{}\[\]|]/.test(t)) return 'title_has_markup';
   if (/_/.test(t)) return 'title_has_underscore';
   const words = t.split(/\s+/).filter(Boolean);
+  const vn = isVideoNative(c);
   // slug shape = 3+ tokens joined ONLY by hyphens with no spaces, all lowercase
   if (words.length === 1 && /^[a-z0-9]+(-[a-z0-9]+){2,}$/.test(t)) return 'title_looks_like_slug';
   const hasCap = /[A-Zऀ-ॿ]/.test(t); // a capital OR Devanagari (Hindi has no case)
-  if (!hasCap && words.length >= 3) return 'title_looks_like_slug'; // multiword all-lowercase = slug
+  // multiword all-lowercase = slug — but a VIDEO-NATIVE title comes straight from
+  // YouTube (creators often title in lowercase), not a URL slug, so allow it there.
+  if (!vn && !hasCap && words.length >= 3) return 'title_looks_like_slug';
   if (!CATEGORIES.includes(c.category)) return 'bad_category';
   if (!/^[A-Za-z][\p{L}\p{N}_]{5,59}$/u.test(c.hashtag || '')) return 'bad_hashtag';
   const body = (c.body || '').trim();
-  if (body.length < 50) return 'body_too_short'; // 80→50: allow crisp short stories
-  if ((c.summary || '').trim().length < 20) return 'summary_too_short'; // 25→20
+  // A VIDEO-NATIVE story (YouTube-trending) IS the video — the body is just a short
+  // caption, so the article-length body requirement doesn't apply. Everything else
+  // still needs a real body. (`vn` computed above.)
+  if (!vn && body.length < 50) return 'body_too_short'; // 80→50: allow crisp short stories
+  if (!vn && (c.summary || '').trim().length < 20) return 'summary_too_short'; // 25→20
   if (!c.article?.url || !/^https?:\/\//i.test(c.article.url)) return 'no_source_url';
   return null;
 }
@@ -90,6 +102,13 @@ export function gStaleness(c, nowMs, maxAgeH) {
 }
 export function gLanguage(c) {
   const body = (c.body || '').trim();
+  // VIDEO-NATIVE: the clip is the content; its caption needn't be a full sentence or
+  // differ from the title. Skip the body-shape checks (only the title-punct check
+  // below still applies).
+  if (isVideoNative(c)) {
+    if (/[.,;:]$/.test(c.title || '')) return 'title_bad_terminal_punct';
+    return null;
+  }
   // A body must be a real, complete sentence — but ONE good sentence is acceptable
   // for a crisp short story (was >=2, too strict; short quality news is fine). Split
   // on a sentence-ender incl. the Devanagari DANDA (।/॥). We only reject a body that

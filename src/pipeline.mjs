@@ -179,7 +179,17 @@ function extractiveCandidate(a, rankedSnippets) {
     if (parts.length >= 2) break;
   }
   let body = parts.join(' ').slice(0, 600);
-  if (body.replace(/[^a-z0-9]/gi, '').length < 40) return null; // too thin to publish
+  // VIDEO-NATIVE (YouTube-trending): the VIDEO is the content — there's no article
+  // body. So we don't require a substantial body; if the description is thin, build
+  // a minimal caption from the video title + channel. Never return null here — a
+  // trending video should publish.
+  if (a.videoNative) {
+    if (body.replace(/[^a-z0-9]/gi, '').length < 40) {
+      body = `${title}${a.sourceName && a.sourceName !== 'YouTube' ? ` — a trending video from ${a.sourceName}.` : '. Watch the trending video.'}`;
+    }
+  } else if (body.replace(/[^a-z0-9]/gi, '').length < 40) {
+    return null; // too thin to publish (non-video news needs a real body)
+  }
   if (!/[.!?।॥]\s*$/.test(body)) body += '.';
   const summary = (parts[0] || title).slice(0, 200);
   return {
@@ -192,6 +202,7 @@ function extractiveCandidate(a, rankedSnippets) {
     importance: 3,
     signal: 'none',
     extractive: true,
+    videoNative: a.videoNative === true, // carried to gates + review
   };
 }
 
@@ -694,11 +705,18 @@ export async function buildCandidates() {
   const allEligible = candidatePool
     .filter(meetsQuality)
     .sort((x, y) => (y.triageImportance || y.importance || 3) - (x.triageImportance || x.importance || 3) || y.score - x.score);
-  const eligible = allEligible.slice(0, llmCap);
-  // extractive fallback = the below-cap quality set + anything that missed the
-  // quality bar but still clears the score floor (so a quiet hour still fills).
-  const belowBar = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE && !meetsQuality(p));
-  const tail = allEligible.slice(llmCap).concat(belowBar);
+  // VIDEO-NATIVE items (YouTube-trending) have no article to synthesise — the video
+  // IS the content. Route them AROUND LLM synth (which rejects "body echoes title")
+  // straight to the extractive path, which uses the snippet/title as the body and
+  // preserves videoUrl. Everything else goes through synth as before.
+  const isVideoNative = (p) => p.a?.videoNative === true;
+  const synthable = allEligible.filter((p) => !isVideoNative(p));
+  const videoNative = allEligible.filter(isVideoNative);
+  const eligible = synthable.slice(0, llmCap);
+  // extractive path = below-cap synthable + video-native + below-quality-bar (so a
+  // quiet hour still fills). Video-native always gets published (extractive).
+  const belowBar = candidatePool.filter((p) => p.score >= SYNTH_MIN_SCORE && !meetsQuality(p) && !isVideoNative(p));
+  const tail = synthable.slice(llmCap).concat(videoNative, belowBar);
   console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; quality-eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}); minImp=${SYNTH_MIN_IMPORTANCE}; hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
 
   // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
