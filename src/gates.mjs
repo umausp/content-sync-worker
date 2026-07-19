@@ -38,6 +38,52 @@ function quoted(s) { return (String(s).match(/[""][^""]{6,}[""]|"[^"]{6,}"/g) ||
 // candidate + its article in the pipeline.
 function isVideoNative(c) { return c?.videoNative === true || c?.article?.videoNative === true; }
 
+// ── REPAIR pass (run BEFORE the gates) ───────────────────────────────────────
+// A real newsroom (Google News / Reuters / Inshorts) does NOT discard a genuine
+// story because its headline carries the outlet's " | The Hindu" suffix or a
+// trailing "…", or because the body just echoes the title. It NORMALISES them.
+// normalizeCandidate mutates+returns the candidate with these COSMETIC defects
+// FIXED, so the gates then only reject GENUINE garbage (empty/slug/markup/unsafe),
+// not fixable formatting. Idempotent + safe on already-clean input.
+export function normalizeCandidate(c) {
+  if (!c) return c;
+  let t = String(c.title || '').trim();
+  // Strip an outlet/section suffix after a pipe or middot: "Headline | The Hindu",
+  // "Headline · NDTV" → "Headline". Keep the LONGEST leading segment that's a real
+  // headline (>=15 chars) so we don't nuke a title that legitimately contains a pipe
+  // mid-sentence (rare). Also collapse any remaining pipes to a dash.
+  if (/[|]/.test(t)) {
+    const head = t.split(/\s*\|\s*/)[0].trim();
+    t = head.length >= 15 ? head : t.replace(/\s*\|\s*/g, ' — ');
+  }
+  // Trim a trailing ellipsis ("Makers announce…" → "Makers announce").
+  t = t.replace(/\s*(\.\.\.|…)\s*$/, '').trim();
+  // Trailing terminal punctuation on a headline reads oddly → drop a lone .,;:
+  t = t.replace(/[.,;:]+$/, '').trim();
+  c.title = t;
+
+  // BODY repair. A thin/empty body OR one that just echoes the title (lazy synth /
+  // extractive fallback) is not WRONG — but we can enrich it from the source snippet
+  // when that's richer, rather than reject the story. A short accurate body is fine.
+  const body = String(c.body || '').trim();
+  const snip = String(c.article?.snippet || '').trim();
+  const echoes = body.toLowerCase().startsWith(t.toLowerCase().slice(0, 40)) && body.length < 90;
+  const thin = body.replace(/[^a-z0-9]/gi, '').length < 40;
+  if ((echoes || thin) && snip && snip.length > body.length && snip.toLowerCase() !== t.toLowerCase()) {
+    c.body = snip.slice(0, 600);
+  }
+  // ensure the body ends as a sentence so the language gate passes
+  if (c.body && !/[.!?।॥]\s*$/.test(String(c.body).trim())) c.body = String(c.body).trim() + '.';
+  // Thin/missing summary → derive one from the body (first sentence) or snippet, so
+  // a real story isn't rejected for a lazy summary field.
+  if (String(c.summary || '').trim().length < 20) {
+    const src = String(c.body || c.article?.snippet || '').trim();
+    const firstSentence = (src.match(/^.{20,200}?[.!?।॥]/) || [src.slice(0, 200)])[0].trim();
+    if (firstSentence.length >= 20) c.summary = firstSentence;
+  }
+  return c;
+}
+
 // ── Individual gates ────────────────────────────────────────────────────────
 export function gStructure(c) {
   const t = (c.title || '').trim();
@@ -46,8 +92,9 @@ export function gStructure(c) {
   // if it's real prose; quality is judged elsewhere, not by length.
   if (t.length < 8) return 'title_too_short'; // 12→8: allow short real headlines
   if (BAD_TITLE.test(t)) return 'placeholder_title';
-  if (/\|/.test(t)) return 'title_has_pipe';
-  if (/(\.\.\.|…)\s*$/.test(t)) return 'title_trailing_ellipsis';
+  // NOTE: title_has_pipe + title_trailing_ellipsis are now REPAIRED by
+  // normalizeCandidate() (run before gates), not rejected — a "Headline | Outlet"
+  // or "Headline…" is a real story, just cosmetically dirty.
   // RAW SLUG / MARKUP leak guard — a title must read like prose, not a URL slug or
   // template token. Rejects "<ss_rajamouli_first_pics_mandakini>": markup chars,
   // underscores, or a hyphen/all-lowercase slug shape. (The pipeline now HUMANIZES
@@ -117,8 +164,9 @@ export function gLanguage(c) {
   const endsProperly = /[.!?।॥]\s*$/.test(body);
   if (sentences < 1 || (sentences < 2 && !endsProperly)) return 'body_not_a_sentence';
   if (/[.,;:]$/.test(c.title || '')) return 'title_bad_terminal_punct';
-  // Title shouldn't just be echoed as the entire (short) body — a lazy non-summary.
-  if (body.toLowerCase().startsWith((c.title || '').toLowerCase().slice(0, 40)) && body.length < 90) return 'body_echoes_title';
+  // NOTE: body_echoes_title is REPAIRED by normalizeCandidate() (swaps in the source
+  // snippet when richer) — no longer a reject. A short accurate body is acceptable
+  // news, not a defect worth discarding a real story over.
   return null;
 }
 // Fact-shape: the synthesised body must not INVENT numbers or quotes that aren't

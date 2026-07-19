@@ -19,7 +19,7 @@
 // Only survivors POST to the ingest endpoint.
 
 import { buildCandidates, toIngestBody, verifyFaithful, isNovelUpdate, isSameStory, healthCheck } from './pipeline.mjs';
-import { runGates } from './gates.mjs';
+import { normalizeCandidate, runGates } from './gates.mjs';
 
 const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
@@ -109,6 +109,12 @@ async function main() {
   const verifyStart = Date.now(); // verify budget clock starts at the review loop
 
   for (const c of candidates) {
+    // Layer 0 — REPAIR (like a pro newsroom copy-desk): fix COSMETIC defects
+    // (" | Outlet" suffix, trailing "…", body-echoes-title) BEFORE gating, so the
+    // gates only reject GENUINE garbage, not fixable formatting. Was rejecting ~26
+    // real stories/run for pipes/ellipses/echoes that a human editor just cleans up.
+    normalizeCandidate(c);
+
     // Layer A — algorithmic gates. BUZZ/trending items get a longer stale window:
     // a topic people are searching RIGHT NOW is fresh even if Google News anchors it
     // to a 1-2 day-old article — the 24h clock was wrongly dropping live trends
@@ -117,11 +123,24 @@ async function main() {
     const g = runGates(c, { nowMs, maxAgeH });
     if (g) { rejected++; bump(reasons, g.gate + ':' + g.reason); console.log(`  ✗ ${g.gate} [${g.reason}] ${(c.title || '').slice(0, 46)}`); continue; }
 
-    // Layer B — in-batch dedup.
+    // Layer B — DEDUP (both in-batch + vs already-published) runs BEFORE the
+    // expensive LLM verify, so we never spend a fact-check on a story we're about to
+    // drop as a duplicate or ignore as a non-novel update. (Cost-ordered like
+    // Google/Reuters: cheap kills → dedup → bar → LLM verify last.)
     if (acceptedTitles.some((t) => isSameStory(c.title, t))) { batchDup++; console.log(`  ⊘ batch-dup ${c.title.slice(0, 46)}`); continue; }
 
-    // Layer C — is this an update to an already-published story?
+    // Is this an update to an already-published story?
     const match = published.find((p) => isSameStory(c.title, p.title));
+    // NOVELTY — if it matches a published story but adds NO material development,
+    // IGNORE it now (before verify). Only real developments proceed as updates.
+    if (match && NOVELTY_CHECK && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
+      const n = await isNovelUpdate(match, c);
+      if (n && n.novel === false) {
+        staleUpdate++; bump(reasons, 'update_not_novel');
+        console.log(`  ⊘ not-novel [${n.reason}] ${c.title.slice(0, 44)}`);
+        continue;
+      }
+    }
 
     // Layer D — SELECTIVE PUBLISH BAR, keyed on the OBJECTIVE SIGNIFICANCE SCORE,
     // not the 3B model's importance guess. Rationale (quality review): the score
@@ -177,18 +196,7 @@ async function main() {
 
     const body = toIngestBody(c);
     if (match) {
-      // NOVELTY GATE — don't append the SAME event restated by another outlet as a
-      // redundant "update". Only append when it adds a material development; else
-      // IGNORE. (Fixes: any same-title item from any source was blindly merged.)
-      // Budget-shared with the verifier so the run can't blow its time.
-      if (NOVELTY_CHECK && Date.now() - verifyStart < VERIFY_BUDGET_MS) {
-        const n = await isNovelUpdate(match, c);
-        if (n && n.novel === false) {
-          staleUpdate++; bump(reasons, 'update_not_novel');
-          console.log(`  ⊘ not-novel [${n.reason}] ${c.title.slice(0, 44)}`);
-          continue;
-        }
-      }
+      // (Novelty already checked above — a matched story here is a real development.)
       body.hashtag = match.hashtag;
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
