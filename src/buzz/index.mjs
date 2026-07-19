@@ -188,22 +188,40 @@ async function fetchGoogleNewsFeeds(opts) {
 // to the canonical watch URL, imageUrl to the YT thumbnail). Off via BUZZ_YT=0.
 // Note: YouTube's global trending skews US/creator content; keep the count modest
 // so it garnishes the feed with video rather than dominating the India news mix.
-const YT_TRENDING_CHANNEL = process.env.BUZZ_YT_CHANNEL || 'UCBR8-60-B28hp2BmDPdntcQ';
-async function fetchYouTubeTrending(opts) {
-  const xml = await getXml(`https://www.youtube.com/feeds/videos.xml?channel_id=${YT_TRENDING_CHANNEL}`).catch(() => null);
-  if (!xml) { opts.log('buzz.yt_failed', {}); return []; }
-  const limit = Number(process.env.BUZZ_YT_MAX || 8);
+// YouTube channels to pull trending VIDEO from (user: news + creator mix). Each is
+// {id, category, perChannel}. INDIA NEWS channels (verified live: NDTV/India Today/
+// Aaj Tak/WION/Republic/Zee/The Hindu) give relevant news video; the GLOBAL trending
+// channel adds creator/entertainment variety. Override the whole set via
+// BUZZ_YT_CHANNELS ("id:category,id:category,..."); per-channel cap BUZZ_YT_PER_CHANNEL.
+const YT_CHANNELS = [
+  { id: 'UCZFMm1mMw0F81Z37aaEzTUA', category: 'top' }, // NDTV
+  { id: 'UCYPvAwZP8pZhSMW8qs7cVCw', category: 'top' }, // India Today
+  { id: 'UCt4t-jeY85JegMlZ-E5UWtA', category: 'top' }, // Aaj Tak (Hindi)
+  { id: 'UC_gUM8rL-Lrg6O3adPW9K1g', category: 'world' }, // WION
+  { id: 'UCwqusr8YDwM-3mEYTDeJHzw', category: 'top' }, // Republic
+  { id: 'UCIvaYmXn910QMdemBG3v1pQ', category: 'top' }, // Zee News
+  { id: 'UCI_7rpgXm-AQY62ZaE87dIw', category: 'top' }, // The Hindu
+  { id: 'UCBR8-60-B28hp2BmDPdntcQ', category: 'entertainment' }, // YouTube global Trending (creator mix)
+];
+function ytChannels() {
+  const env = (process.env.BUZZ_YT_CHANNELS || '').split(',').map((s) => s.trim()).filter(Boolean);
+  if (!env.length) return YT_CHANNELS;
+  return env.map((pair) => { const [id, category] = pair.split(':'); return { id, category: category || 'top' }; });
+}
+
+// Parse ONE channel's RSS → video-native articles.
+function parseYouTubeFeed(xml, category, perChannel) {
   const out = [];
-  for (const [, block] of [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)].slice(0, limit)) {
+  for (const [, block] of [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)].slice(0, perChannel)) {
     const vid = (block.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/) || [])[1];
     const title = tag(block, 'title');
     const pub = tag(block, 'published');
     const thumb = (block.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i) || [])[1];
     const author = (block.match(/<author>[\s\S]*?<name>([\s\S]*?)<\/name>/i) || [])[1];
-    // YouTube feed carries a real <media:description> — use it as the body so the
-    // card/thread has text under the player (not just an echoed title).
     const desc = (block.match(/<media:description>([\s\S]*?)<\/media:description>/i) || [])[1];
     if (!vid || !title) continue;
+    // Skip obvious 24x7 LIVE-stream loops (not a discrete story) — common on news channels.
+    if (/\bLIVE TV\b|24x7|live stream/i.test(title)) continue;
     const body = desc ? decode(desc).replace(/\s+/g, ' ').trim().slice(0, 500) : '';
     out.push({
       title,
@@ -214,16 +232,29 @@ async function fetchYouTubeTrending(opts) {
       imageUrl: thumb && /^https:\/\//i.test(thumb) ? thumb : `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`,
       videoUrl: `https://www.youtube.com/watch?v=${vid}`, // VIDEO-FIRST
       publishedAt: pub ? new Date(pub).toISOString() : null,
-      category: 'entertainment',
+      category,
       via: 'buzz',
       buzzTerm: null,
-      // A video IS the content — no article body to synthesise. This tells the
-      // pipeline to publish it directly (extractive) and the gates to relax the
-      // body checks (body_echoes_title / too-short / not-a-sentence).
+      // A video IS the content — no article body to synthesise. Publish directly
+      // (extractive) + relax the body gates.
       videoNative: true,
     });
   }
-  opts.log('buzz.youtube', { videos: out.length });
+  return out;
+}
+
+// Fetch trending video from all configured channels (India news + global), parallel.
+async function fetchYouTubeTrending(opts) {
+  const channels = ytChannels();
+  const perChannel = Number(process.env.BUZZ_YT_PER_CHANNEL || 3);
+  const lists = await Promise.all(
+    channels.map(async ({ id, category }) => {
+      const xml = await getXml(`https://www.youtube.com/feeds/videos.xml?channel_id=${id}`).catch(() => null);
+      return xml ? parseYouTubeFeed(xml, category, perChannel) : [];
+    }),
+  );
+  const out = lists.flat();
+  opts.log('buzz.youtube', { channels: channels.length, videos: out.length });
   return out;
 }
 
