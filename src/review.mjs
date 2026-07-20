@@ -75,9 +75,18 @@ async function post(body) {
     const r = await fetch(INGEST_URL, { method: 'POST', headers: { authorization: `Bearer ${INGEST_TOKEN}`, 'content-type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(20000) });
     // Surface WHY a publish failed (was silent → stories vanished with no clue).
     // Never log the response body/headers (avoid leaking anything token-adjacent).
-    if (!r.ok) console.log(`  ! ingest ${r.status} for #${body.hashtag}`);
-    return r.ok;
-  } catch (e) { console.log(`  ! ingest error for #${body.hashtag}: ${e.message}`); return false; }
+    if (!r.ok) { console.log(`  ! ingest ${r.status} for #${body.hashtag}`); return { ok: false, created: false }; }
+    // Read the backend's AUTHORITATIVE `created` flag. Ingest is upsert-by-hashtag:
+    // `created:false` means it merely APPENDED an update to an existing story — even
+    // when OUR title-dedup (isSameStory) missed it (reworded headline, dedup window
+    // overflow, or a fail-open reference fetch). Breaking-push keys off this flag, so
+    // a live story that resurfaces reworded can NEVER re-alert. The one residual case
+    // — a reworded title that also yields a DIFFERENT entity hashtag — is a genuinely
+    // separate thread in D1 (its own card), so a fresh alert there is correct, not spam.
+    let created = false;
+    try { const j = await r.json(); created = j?.created === true; } catch { /* body unreadable → treat as not-created (no push) */ }
+    return { ok: true, created };
+  } catch (e) { console.log(`  ! ingest error for #${body.hashtag}: ${e.message}`); return { ok: false, created: false }; }
 }
 
 // BREAKING-NEWS PUSH — when a genuinely breaking NEW story publishes, fire a
@@ -85,14 +94,26 @@ async function post(body) {
 // endpoint (same NEWS_INGEST_TOKEN we already hold). Best-effort: a push failure
 // never blocks publishing. Gated by NEWS_PUSH=1 (off by default until subscribers
 // exist) + capped per run so a burst of breaking stories can't spam users.
-const BREAKING_PUSH_URL = INGEST_URL.replace(/\/ingest$/, '/breaking-push');
-const NEWS_PUSH_ON = process.env.NEWS_PUSH === '1';
-const NEWS_PUSH_MAX = Number(process.env.NEWS_PUSH_MAX || 3); // at most N alerts/run
+// Derive the breaking-push endpoint from the ingest URL. Explicit BREAKING_PUSH_URL
+// env wins; else swap the /ingest suffix. ASSERT the derivation actually changed the
+// URL — if INGEST_URL doesn't end in /ingest the regex is a no-op and we'd POST a
+// push-shaped body to the ingest endpoint (silently 400s → zero alerts, no crash).
+// Better to disable the feature loudly than silently no-op.
+const BREAKING_PUSH_URL = process.env.BREAKING_PUSH_URL
+  || (/\/ingest$/.test(INGEST_URL) ? INGEST_URL.replace(/\/ingest$/, '/breaking-push') : '');
+const NEWS_PUSH_ON = process.env.NEWS_PUSH === '1' && !!BREAKING_PUSH_URL;
+if (process.env.NEWS_PUSH === '1' && !BREAKING_PUSH_URL) {
+  console.log('  ⚠ NEWS_PUSH=1 but cannot derive breaking-push URL (INGEST_URL lacks /ingest and no BREAKING_PUSH_URL) — breaking alerts DISABLED this run');
+}
+const NEWS_PUSH_MAX = Number(process.env.NEWS_PUSH_MAX || 3); // at most N alert ATTEMPTS/run
 let breakingPushed = 0;
 async function sendBreakingPush(c, body) {
+  // Cap counts ATTEMPTS, not successes: a hung/erroring gateway must not make us fire
+  // a 20s-timeout push for EVERY breaking story in the run (could add minutes). One
+  // increment up-front bounds total attempts to NEWS_PUSH_MAX regardless of outcome.
   if (!NEWS_PUSH_ON || breakingPushed >= NEWS_PUSH_MAX) return;
+  breakingPushed++;
   const hashtag = body.hashtag;
-  const storyUrl = STORIES_URL.replace(/\/stories$/, '') + '/' + encodeURIComponent(hashtag);
   try {
     const r = await fetch(BREAKING_PUSH_URL, {
       method: 'POST',
@@ -106,7 +127,7 @@ async function sendBreakingPush(c, body) {
       }),
       signal: AbortSignal.timeout(20000),
     });
-    if (r.ok) { breakingPushed++; console.log(`  🔔 breaking-push sent for #${hashtag}`); }
+    if (r.ok) console.log(`  🔔 breaking-push sent for #${hashtag}`);
     else console.log(`  ! breaking-push ${r.status} for #${hashtag}`);
   } catch (e) { console.log(`  ! breaking-push error: ${e.message}`); }
 }
@@ -239,15 +260,21 @@ async function main() {
     if (match) {
       // (Novelty already checked above — a matched story here is a real development.)
       body.hashtag = match.hashtag;
-      if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
+      const r = await post(body);
+      if (r.ok) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
     }
-    if (await post(body)) {
-      newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title);
-      console.log(`  ✓ new [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`);
-      // BREAKING → lockscreen alert. Only genuinely breaking + well-corroborated new
-      // stories (not every publish) so alerts stay rare + meaningful.
-      if (c.signal === 'breaking' && c.corr >= PUBLISH_MIN_CORROBORATION) await sendBreakingPush(c, body);
+    const r = await post(body);
+    if (r.ok) {
+      // r.created distinguishes a genuinely NEW story from a backend-side merge (a
+      // reworded/duplicate title our dedup missed but the hashtag upsert caught).
+      if (r.created) { newStory++; } else { updated++; }
+      catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title);
+      console.log(`  ${r.created ? '✓ new' : '↑ merged'} [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`);
+      // BREAKING → lockscreen alert. Fires ONLY on a truly-new breaking, well-
+      // corroborated story (r.created) — never on a backend merge — so a live story
+      // resurfacing under a reworded title can't re-alert. Rare + meaningful.
+      if (r.created && c.signal === 'breaking' && c.corr >= PUBLISH_MIN_CORROBORATION) await sendBreakingPush(c, body);
     }
   }
 
