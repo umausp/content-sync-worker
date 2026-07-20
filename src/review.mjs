@@ -80,6 +80,37 @@ async function post(body) {
   } catch (e) { console.log(`  ! ingest error for #${body.hashtag}: ${e.message}`); return false; }
 }
 
+// BREAKING-NEWS PUSH — when a genuinely breaking NEW story publishes, fire a
+// lockscreen alert to all opt-in subscribers via the token-guarded gateway
+// endpoint (same NEWS_INGEST_TOKEN we already hold). Best-effort: a push failure
+// never blocks publishing. Gated by NEWS_PUSH=1 (off by default until subscribers
+// exist) + capped per run so a burst of breaking stories can't spam users.
+const BREAKING_PUSH_URL = INGEST_URL.replace(/\/ingest$/, '/breaking-push');
+const NEWS_PUSH_ON = process.env.NEWS_PUSH === '1';
+const NEWS_PUSH_MAX = Number(process.env.NEWS_PUSH_MAX || 3); // at most N alerts/run
+let breakingPushed = 0;
+async function sendBreakingPush(c, body) {
+  if (!NEWS_PUSH_ON || breakingPushed >= NEWS_PUSH_MAX) return;
+  const hashtag = body.hashtag;
+  const storyUrl = STORIES_URL.replace(/\/stories$/, '') + '/' + encodeURIComponent(hashtag);
+  try {
+    const r = await fetch(BREAKING_PUSH_URL, {
+      method: 'POST',
+      headers: { authorization: `Bearer ${INGEST_TOKEN}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        title: `🔴 ${c.title}`.slice(0, 120),
+        body: (c.summary || '').slice(0, 200),
+        url: `https://agyata.com/news/${encodeURIComponent(hashtag)}`,
+        image: body.imageUrl || undefined,
+        tag: `news_${hashtag}`.slice(0, 60),
+      }),
+      signal: AbortSignal.timeout(20000),
+    });
+    if (r.ok) { breakingPushed++; console.log(`  🔔 breaking-push sent for #${hashtag}`); }
+    else console.log(`  ! breaking-push ${r.status} for #${hashtag}`);
+  } catch (e) { console.log(`  ! breaking-push error: ${e.message}`); }
+}
+
 const bump = (o, k) => { o[k] = (o[k] || 0) + 1; };
 
 async function main() {
@@ -211,7 +242,13 @@ async function main() {
       if (await post(body)) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
       continue;
     }
-    if (await post(body)) { newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title); console.log(`  ✓ new [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`); }
+    if (await post(body)) {
+      newStory++; catCount[c.category || 'top'] = (catCount[c.category || 'top'] || 0) + 1; const via = c.article?.via || 'rss'; srcCount[via] = (srcCount[via] || 0) + 1; acceptedTitles.push(c.title);
+      console.log(`  ✓ new [${c.category}] via=${via} score${(Number(c.score)||0).toFixed(0)} corr${c.corr} imp${c.importance} #${c.hashtag} ${c.title.slice(0, 34)}`);
+      // BREAKING → lockscreen alert. Only genuinely breaking + well-corroborated new
+      // stories (not every publish) so alerts stay rare + meaningful.
+      if (c.signal === 'breaking' && c.corr >= PUBLISH_MIN_CORROBORATION) await sendBreakingPush(c, body);
+    }
   }
 
   console.log(`\nREVIEW DONE candidates=${candidates.length} → new=${newStory} updated=${updated} | rejected=${rejected} verifyFail=${verifyFail} batchDup=${batchDup} heldBar=${heldBar} catCapped=${catCapped} notNovel=${staleUpdate}`);
