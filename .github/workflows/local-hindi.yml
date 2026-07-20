@@ -5,10 +5,14 @@ name: local-news-hindi
 # Hindi, and every story is tagged category=local for the app's "Local News"
 # section. Runs HOURLY (deep-local news moves slower than national headlines).
 # Separate concurrency group so it runs independently of the national pipeline.
-# schedule + manual only — never on pull_request (fork PRs must not read secrets).
+# workflow_dispatch only — never on pull_request (fork PRs must not read secrets).
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker, which
+# fires workflow_dispatch on a reliable clock (hourly at :25 UTC, offset from
+# the national feed to spread load). GitHub's `schedule:` trigger was REMOVED —
+# best-effort and dropping ticks. To change cadence, edit WORKFLOWS in
+# agyata/services/cron-pinger/src/index.ts.
 on:
-  schedule:
-    - cron: '25 * * * *' # hourly at :25 (offset from the national :*/30 to spread load)
   workflow_dispatch: {}
 
 concurrency:

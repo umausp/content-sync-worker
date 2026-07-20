@@ -2,18 +2,20 @@ name: news-pipeline
 
 # Full news pipeline on the GitHub runner (no external machine): fetch RSS →
 # cluster → corroboration → LLM synth (Ollama on the runner) → gate → publish to
-# the ingest API. Public repo = unlimited minutes. schedule + manual only —
+# the ingest API. Public repo = unlimited minutes. workflow_dispatch only —
 # NEVER on pull_request (a fork PR must not read the secret).
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker, which
+# fires workflow_dispatch on a reliable clock (hourly at :05 UTC). GitHub's own
+# `schedule:` trigger was REMOVED — it is best-effort and was dropping ticks
+# badly (this workflow firing 1-5h apart instead of hourly). See the pinger at
+# agyata/services/cron-pinger. To change cadence, edit WORKFLOWS in its
+# src/index.ts — NOT here.
 #
 # Split into OBSERVABLE STEPS (prod practice): install → cache → serve+pull →
 # VERIFY model (fail-fast) → run pipeline. Each step has its own timeout and
 # logs, so a hang is localized to one step instead of a 30-min black box.
 on:
-  schedule:
-    # HOURLY — the heavy RSS(73 feeds)+GDELT pipeline. The fast-moving TRENDING feed
-    # is handled by the separate buzz cron (buzz.yml, every 30 min), so this can run
-    # at a calmer cadence for the deep/corroborated national news. (Was */15.)
-    - cron: '5 * * * *' # hourly at :05
   workflow_dispatch:
     inputs:
       source_mode:

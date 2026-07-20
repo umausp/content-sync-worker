@@ -9,10 +9,13 @@ name: news-buzz
 # Split rationale (user): the heavy RSS+GDELT pipeline (pipeline.yml) runs HOURLY for
 # deep/corroborated national news; THIS runs every 30 min to keep users engaged with
 # the latest buzzing things — the two are independent crons with separate concurrency.
-# schedule + manual only — never on pull_request (fork PRs must not read secrets).
+# workflow_dispatch only — never on pull_request (fork PRs must not read secrets).
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker, which
+# fires workflow_dispatch on a reliable clock (every 30 min, :00/:30 UTC).
+# GitHub's `schedule:` trigger was REMOVED — best-effort and dropping ticks. To
+# change cadence, edit WORKFLOWS in agyata/services/cron-pinger/src/index.ts.
 on:
-  schedule:
-    - cron: '*/30 * * * *' # every 30 min
   workflow_dispatch: {}
 
 concurrency:

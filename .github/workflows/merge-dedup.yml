@@ -7,9 +7,13 @@ name: merge-dedup
 # CONSERVATIVE by design (merging is destructive): only merges clusters with a
 # SPECIFIC multi-word entity anchor AND a same-event confirmation. Runs a few
 # times a day (not every cycle — the backlog shrinks, not grows).
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker, which
+# fires workflow_dispatch on a reliable clock (every 6h at :50 UTC —
+# 00:50/06:50/12:50/18:50). GitHub's `schedule:` trigger was REMOVED —
+# best-effort and dropping ticks. To change cadence, edit WORKFLOWS in
+# agyata/services/cron-pinger/src/index.ts.
 on:
-  schedule:
-    - cron: '50 */6 * * *' # every 6 hours at :50
   workflow_dispatch:
     inputs:
       dry_run:
