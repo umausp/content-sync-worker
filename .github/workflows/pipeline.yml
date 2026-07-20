@@ -30,6 +30,8 @@ permissions:
 env:
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: ${{ secrets.STORIES_URL }}
+  NEWS_PUSH: '1' # fire a breaking-news lockscreen push on breaking new-story publish
+  NEWS_PUSH_MAX: '2' # hourly pipeline: max 2 alerts/run
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
   # ── LLM PROVIDER LADDER (registry in src/providers.mjs). FREE fast providers
   #    first, PAID OpenAI last (spillover only, tight cap), local Ollama last-

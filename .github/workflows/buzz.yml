@@ -26,6 +26,8 @@ env:
   SOURCE_MODE: buzz # ← the switch: ONLY the Google Trends→News buzz engine (no RSS/GDELT)
   INGEST_URL: ${{ secrets.INGEST_URL }}
   STORIES_URL: ${{ secrets.STORIES_URL }}
+  NEWS_PUSH: '1' # fire a breaking-news lockscreen push on breaking new-story publish
+  NEWS_PUSH_MAX: '3' # at most 3 alerts per run so a burst can't spam users
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
   # Same free-first provider ladder + strict fail-fast router as the main pipeline.
   PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
