@@ -306,12 +306,27 @@ function fresh(a, now) { const t = a.publishedAt ? Date.parse(a.publishedAt) : N
 // ── Event-specific hashtag (algorithmic; avoids topic-collision mega-threads) ─
 const GENERIC = new Set(['camelcasetoken', 'news', 'breaking', 'update', 'india', 'indiapolitics', 'politics', 'world', 'business', 'sports', 'entertainment', 'science', 'tech', 'story', 'today', 'fifaworldcup', 'worldcup', 'cricket', 'bollywood', 'movies', 'ott', 'market', 'economy']);
 const TSTOP = new Set(['the', 'a', 'an', 'to', 'of', 'in', 'on', 'at', 'for', 'and', 'or', 'as', 'is', 'are', 'be', 'with', 'after', 'over', 'vs', 'set', 'new', 'says', 'said', 'will', 'has', 'have', 'from', 'by', 'its', 'was', 'were', 'that', 'this', 'it', 'who', 'what', 'how', 'why', 'up', 'out', 'about', 'more', 'than', 'may', 'can', 'get', 'day', 'year']);
+// Stable 32-bit title hash → a short base36 suffix. Used to GUARANTEE a UNIQUE
+// hashtag when the title yields no usable distinctive token (esp. Devanagari/
+// Hindi titles, which have no [A-Za-z] to build a tag from). Without this, every
+// such story collapsed to the SAME padded fallback ("NewsNewsStory"/"NewsStory-
+// Story") and upsert-by-hashtag merged 100s of UNRELATED stories into one thread.
+function titleHash(t) {
+  let h = 0;
+  const s = String(t || '');
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return Math.abs(h).toString(36).slice(0, 7);
+}
 function hashtagFromTitle(t) {
   const words = String(t || '').split(/\s+/); const proper = [], other = [];
-  for (const raw of words) { const w = raw.replace(/[^\p{L}\p{N}]/gu, ''); if (!w) continue; const lo = w.toLowerCase(); if (TSTOP.has(lo)) continue; if (/^[A-Z0-9]/.test(w) && w.length > 1) proper.push(w); else if (lo.length >= 4) other.push(w); }
+  // Keep ANY Unicode word (incl. Devanagari) — the gate allows \p{L}\p{N} after
+  // the first char, so a Hindi token is a perfectly valid hashtag body.
+  for (const raw of words) { const w = raw.replace(/[^\p{L}\p{N}]/gu, ''); if (!w) continue; const lo = w.toLowerCase(); if (TSTOP.has(lo)) continue; if (/^[A-Z0-9]/.test(w) && w.length > 1) proper.push(w); else if ([...lo].length >= 3) other.push(w); }
   const pick = (proper.length >= 2 ? proper : [...proper, ...other]).slice(0, 4);
-  let tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').replace(/[^\p{L}\p{N}_]/gu, '').slice(0, 60);
-  if (tag.length < 6) { const k = String(t).toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 24); tag = k ? 'Story' + k.charAt(0).toUpperCase() + k.slice(1) : 'Story'; }
+  const tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').replace(/[^\p{L}\p{N}_]/gu, '').slice(0, 52);
+  // If the distinctive-word tag is too thin, DON'T pad to a shared constant —
+  // append a per-title hash so the tag stays UNIQUE to this story.
+  if ([...tag].length < 6) return `Story${titleHash(t)}`;
   return tag;
 }
 function resolveHashtag(modelTag, title) {
@@ -321,19 +336,29 @@ function resolveHashtag(modelTag, title) {
   const pick = c.length >= 6 && !GENERIC.has(lo) && overlaps ? c.slice(0, 60) : hashtagFromTitle(title);
   return ensureValidHashtag(pick, title);
 }
-// GUARANTEE a gate-valid hashtag (gStructure requires ^[A-Za-z][\p{L}\p{N}_]{5,59}$).
-// A title like "1 held with ₹59.2 lakh…" yielded a digit-leading tag → the gate
-// dropped a QUALITY story. Never drop for a bad tag: strip a leading non-letter,
-// pad from the title's letters, and last-resort prefix "News". Fixing the tag is
-// always correct here — it's derived metadata, not content.
+// GUARANTEE a gate-valid hashtag (gStructure requires ^[A-Za-z][\p{L}\p{N}_]{5,59}$
+// — Latin FIRST char, then any Unicode letter/number). Never drop a quality story
+// for a bad tag; but CRITICALLY, never pad to a SHARED constant either — a Hindi
+// title (no [A-Za-z]) must get its OWN tag, not merge into a mega-thread. So when
+// the tag can't start with / isn't a real Latin-anchored token, we anchor it with
+// a stable per-title hash to keep it unique.
 function ensureValidHashtag(tag, title) {
-  let t = String(tag || '').replace(/^[^A-Za-z]+/, '').replace(/[^\p{L}\p{N}_]/gu, '');
-  if (t.length < 6) {
-    const letters = String(title).replace(/[^A-Za-z ]/g, '').split(/\s+/).filter(Boolean).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-    t = (t + letters).slice(0, 40);
+  const raw = String(tag || '');
+  // Keep the tag body as-is (Devanagari allowed after char 1), just strip invalid.
+  let t = raw.replace(/[^\p{L}\p{N}_]/gu, '');
+  // The FIRST character must be a Latin letter (gate rule). If it isn't (e.g. a
+  // Devanagari-leading Hindi tag, or a digit), prefix a stable hash-anchored stem
+  // rather than a constant "News" — the constant is exactly what caused the merge.
+  if (!/^[A-Za-z]/.test(t)) {
+    // If the tag is a GENERIC/empty stem, replace it wholesale with a unique one.
+    const stem = [...t].length >= 3 && !GENERIC.has(t.toLowerCase()) ? t : '';
+    t = `N${titleHash(title)}${stem}`.slice(0, 60);
   }
-  if (!/^[A-Za-z]/.test(t)) t = 'News' + t;
-  if (t.length < 6) t = ('News' + t + 'Story').slice(0, 40);
+  // Too short OR a known generic constant → make it unique with a title hash.
+  if ([...t].length < 6 || GENERIC.has(t.toLowerCase()) || /^(News|Story)+$/i.test(t)) {
+    t = `${t.replace(/[^A-Za-z]/g, '') || 'Story'}${titleHash(title)}`.slice(0, 60);
+  }
+  if (!/^[A-Za-z]/.test(t)) t = `S${t}`.slice(0, 60);
   return t.slice(0, 60);
 }
 
