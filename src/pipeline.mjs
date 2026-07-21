@@ -317,45 +317,90 @@ function titleHash(t) {
   for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
   return Math.abs(h).toString(36).slice(0, 7);
 }
+
+// Devanagari → Latin transliteration (ITRANS-ish, lossy-but-readable). The
+// hashtag is the shareable /news/<slug> URL, so it MUST be ASCII — a Devanagari
+// body percent-encodes into an unshareable "%E0%A4..." string. The synth LLM is
+// asked to ROMANISE/translate the proper noun to English (primary path); this is
+// the deterministic BACKSTOP so a Hindi title that the model left in Devanagari
+// still yields a READABLE tag (सुरंग→"surang") rather than an opaque hash.
+const DEVA_MAP = {
+  'अ': 'a', 'आ': 'aa', 'इ': 'i', 'ई': 'ii', 'उ': 'u', 'ऊ': 'uu', 'ऋ': 'ri',
+  'ए': 'e', 'ऐ': 'ai', 'ओ': 'o', 'औ': 'au', 'अं': 'an', 'अः': 'ah',
+  'क': 'k', 'ख': 'kh', 'ग': 'g', 'घ': 'gh', 'ङ': 'ng',
+  'च': 'ch', 'छ': 'chh', 'ज': 'j', 'झ': 'jh', 'ञ': 'ny',
+  'ट': 't', 'ठ': 'th', 'ड': 'd', 'ढ': 'dh', 'ण': 'n',
+  'त': 't', 'थ': 'th', 'द': 'd', 'ध': 'dh', 'न': 'n',
+  'प': 'p', 'फ': 'ph', 'ब': 'b', 'भ': 'bh', 'म': 'm',
+  'य': 'y', 'र': 'r', 'ल': 'l', 'व': 'v', 'श': 'sh', 'ष': 'sh', 'स': 's', 'ह': 'h',
+  'क्ष': 'ksh', 'त्र': 'tr', 'ज्ञ': 'gy', 'ड़': 'r', 'ढ़': 'rh', 'फ़': 'f', 'ज़': 'z', 'क़': 'q',
+  // matras (vowel signs)
+  'ा': 'a', 'ि': 'i', 'ी': 'i', 'ु': 'u', 'ू': 'u', 'ृ': 'ri',
+  'े': 'e', 'ै': 'ai', 'ो': 'o', 'ौ': 'au', 'ं': 'n', 'ः': 'h', 'ँ': 'n',
+  '्': '', 'ऽ': '', '़': '',
+  '०': '0', '१': '1', '२': '2', '३': '3', '४': '4', '५': '5', '६': '6', '७': '7', '८': '8', '९': '9',
+};
+function transliterateDevanagari(s) {
+  let out = '';
+  const str = String(s || '');
+  for (let i = 0; i < str.length; i++) {
+    // Try 2-char conjuncts first (क्ष, त्र…), then single char.
+    const two = str.slice(i, i + 2);
+    if (DEVA_MAP[two] !== undefined) { out += DEVA_MAP[two]; i++; continue; }
+    const ch = str[i];
+    if (DEVA_MAP[ch] !== undefined) out += DEVA_MAP[ch];
+    else if (/[A-Za-z0-9]/.test(ch)) out += ch;
+    else out += ' '; // word boundary for anything else (spaces, punctuation)
+  }
+  return out;
+}
+
 function hashtagFromTitle(t) {
-  const words = String(t || '').split(/\s+/); const proper = [], other = [];
-  // Keep ANY Unicode word (incl. Devanagari) — the gate allows \p{L}\p{N} after
-  // the first char, so a Hindi token is a perfectly valid hashtag body.
-  for (const raw of words) { const w = raw.replace(/[^\p{L}\p{N}]/gu, ''); if (!w) continue; const lo = w.toLowerCase(); if (TSTOP.has(lo)) continue; if (/^[A-Z0-9]/.test(w) && w.length > 1) proper.push(w); else if ([...lo].length >= 3) other.push(w); }
+  // Transliterate Devanagari → Latin FIRST so a Hindi title yields a readable
+  // ASCII tag (सुरंग हत्या → "surang hatya" → SurangHatya) instead of nothing.
+  const src = transliterateDevanagari(String(t || ''));
+  const words = src.split(/\s+/); const proper = [], other = [];
+  // ASCII/Latin tokens only — the tag is the shareable URL slug.
+  for (const raw of words) { const w = raw.replace(/[^A-Za-z0-9]/g, ''); if (!w) continue; const lo = w.toLowerCase(); if (TSTOP.has(lo)) continue; if (/^[A-Z0-9]/.test(w) && w.length > 1) proper.push(w); else if (lo.length >= 3) other.push(w); }
   const pick = (proper.length >= 2 ? proper : [...proper, ...other]).slice(0, 4);
-  const tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').replace(/[^\p{L}\p{N}_]/gu, '').slice(0, 52);
+  const tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').replace(/[^A-Za-z0-9_]/g, '').slice(0, 52);
   // If the distinctive-word tag is too thin, DON'T pad to a shared constant —
   // append a per-title hash so the tag stays UNIQUE to this story.
-  if ([...tag].length < 6) return `Story${titleHash(t)}`;
+  if (tag.length < 6) return `Story${titleHash(t)}`;
   return tag;
 }
 function resolveHashtag(modelTag, title) {
-  const c = String(modelTag || '').replace(/[^\p{L}\p{N}_]/gu, ''); const lo = c.toLowerCase();
+  // The model tag is ASCII-only (we asked it to romanise); strip anything else.
+  const c = String(modelTag || '').replace(/[^A-Za-z0-9_]/g, ''); const lo = c.toLowerCase();
   const words = new Set(String(title).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3));
   const overlaps = [...words].some((w) => lo.includes(w));
-  const pick = c.length >= 6 && !GENERIC.has(lo) && overlaps ? c.slice(0, 60) : hashtagFromTitle(title);
+  // A non-Latin (Hindi) title has NO Latin words to overlap with — so a CORRECTLY
+  // romanised model tag (PuneTunnelMurder) can't be confirmed by overlap and would
+  // be wrongly discarded. Trust a substantive non-generic model tag when the title
+  // itself is non-Latin; else derive one from the (transliterated) title.
+  const titleHasLatin = /[A-Za-z]/.test(String(title).replace(/https?:\S+/g, ''));
+  const trustModelTag = c.length >= 6 && !GENERIC.has(lo) && (overlaps || !titleHasLatin);
+  const pick = trustModelTag ? c.slice(0, 60) : hashtagFromTitle(title);
   return ensureValidHashtag(pick, title);
 }
-// GUARANTEE a gate-valid hashtag (gStructure requires ^[A-Za-z][\p{L}\p{N}_]{5,59}$
-// — Latin FIRST char, then any Unicode letter/number). Never drop a quality story
-// for a bad tag; but CRITICALLY, never pad to a SHARED constant either — a Hindi
-// title (no [A-Za-z]) must get its OWN tag, not merge into a mega-thread. So when
-// the tag can't start with / isn't a real Latin-anchored token, we anchor it with
-// a stable per-title hash to keep it unique.
+// GUARANTEE a gate-valid, SHAREABLE hashtag: ^[A-Za-z][A-Za-z0-9_]{5,59}$ — PURE
+// ASCII (the tag is the URL slug; a non-Latin body breaks sharing). Never drop a
+// quality story for a bad tag; but CRITICALLY, never pad to a SHARED constant
+// either — a Hindi title with no usable token must get its OWN unique tag, not
+// merge into a mega-thread (the /news/newsnewsstory bug). Mirrors services/
+// news-svc canonicalHashtag so the pipeline + backend agree on the slug.
 function ensureValidHashtag(tag, title) {
-  const raw = String(tag || '');
-  // Keep the tag body as-is (Devanagari allowed after char 1), just strip invalid.
-  let t = raw.replace(/[^\p{L}\p{N}_]/gu, '');
-  // The FIRST character must be a Latin letter (gate rule). If it isn't (e.g. a
-  // Devanagari-leading Hindi tag, or a digit), prefix a stable hash-anchored stem
-  // rather than a constant "News" — the constant is exactly what caused the merge.
+  // ASCII ONLY — drop Devanagari + every non-[A-Za-z0-9_] char (hard backstop for
+  // when the model ignores the romanise instruction).
+  let t = String(tag || '').replace(/[^A-Za-z0-9_]/g, '');
+  // First char must be a Latin letter (leading digit/empty → anchor uniquely).
   if (!/^[A-Za-z]/.test(t)) {
-    // If the tag is a GENERIC/empty stem, replace it wholesale with a unique one.
-    const stem = [...t].length >= 3 && !GENERIC.has(t.toLowerCase()) ? t : '';
+    const stem = t.length >= 3 && !GENERIC.has(t.toLowerCase()) ? t : '';
     t = `N${titleHash(title)}${stem}`.slice(0, 60);
   }
-  // Too short OR a known generic constant → make it unique with a title hash.
-  if ([...t].length < 6 || GENERIC.has(t.toLowerCase()) || /^(News|Story)+$/i.test(t)) {
+  // Too short OR a known generic constant → make it unique with a title hash, so
+  // unrelated tokenless (Hindi) titles never collapse onto one shared tag.
+  if (t.length < 6 || GENERIC.has(t.toLowerCase()) || /^(News|Story|Update|Breaking)+$/i.test(t)) {
     t = `${t.replace(/[^A-Za-z]/g, '') || 'Story'}${titleHash(title)}`.slice(0, 60);
   }
   if (!/^[A-Za-z]/.test(t)) t = `S${t}`.slice(0, 60);
@@ -405,7 +450,8 @@ async function synth(a) {
     `${CHARTER}\n\n` +
     `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
     `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
-    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n\n` +
+    `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n` +
+    `The "hashtag" MUST be English/Latin letters and digits ONLY (ASCII, CamelCase, no spaces, no '#'). If the article is in Hindi or another non-Latin script, TRANSLATE/ROMANISE the key proper noun into English (e.g. "पुणे सुरंग हत्या" → "PuneTunnelMurder", "इसरो चंद्रयान" → "IsroChandrayaan", "दिल्ली प्रदर्शन" → "DelhiProtest"). NEVER put Devanagari or other non-Latin characters in the hashtag — it becomes the shareable URL.\n\n` +
     `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}${sourceBlock(a)}`;
   try {
     // Route through the multi-provider ladder (Groq/Gemini/Cloudflare/Ollama).
@@ -462,7 +508,7 @@ async function synthBatch(articles) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite EACH numbered article below into a news card. Reply with ONLY a JSON object of the form {"stories": [ ... ]}, with one array element per article, in the SAME ORDER, each element having ALL keys:\n` +
-    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
+    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun, English/Latin ASCII ONLY — romanise Hindi, e.g. पुणे सुरंग हत्या→PuneTunnelMurder; never Devanagari>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
     `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
     `ARTICLES:\n${list}`;
   try {
