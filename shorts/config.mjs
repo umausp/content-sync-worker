@@ -51,11 +51,13 @@ export const CHANNELS = {
   world: {
     id: 'world',
     label: 'Agyata World',
-    lang: 'a', // Kokoro English
-    // USA audio style (user ask): American-accent Kokoro voice + espeak en-us
-    // phonemization. am_michael = authoritative American male news read.
-    voice: process.env.SHORTS_VOICE_WORLD || 'am_michael',
-    espeakLang: 'en-us',
+    // Neutral British/RP is the single best voice for a channel serving BOTH US + UK:
+    // a Podcastle survey found British = most-trusted (42%) + most-appealing (46%) with
+    // US audiences, and 48% of Americans prefer British on short-form. bm_george (Kokoro
+    // British male, lang 'b') + espeak en-gb = calm-authoritative BBC-style news read.
+    lang: 'b', // Kokoro British English
+    voice: process.env.SHORTS_VOICE_WORLD || 'bm_george',
+    espeakLang: 'en-gb',
     scriptLang: 'en',
     font: FONTS.latin,
     // Feed selection: global-interest English stories (world/business/science/tech lead).

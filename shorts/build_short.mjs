@@ -19,7 +19,7 @@ import { mkdir, writeFile, readFile, cp, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
 import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.mjs';
-import { buildChrome, buildCaption } from './frames.mjs';
+import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
 import { resolveBackground, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
@@ -28,9 +28,13 @@ import { buildWorldRoundup } from './world_feeds.mjs';
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 // LONG-FORM mode (16:9, ~3.5min, 10 stories) = the higher-RPM monetization format.
-// Triggered by SHORTS_ORIENTATION=landscape; defaults to 10 stories there, 5 for Shorts.
+// Triggered by SHORTS_ORIENTATION=landscape; defaults to 10 stories there.
 const LONGFORM = process.env.SHORTS_ORIENTATION === 'landscape';
-const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || (LONGFORM ? 10 : 5));
+// SINGLE-STORY mode = the research-backed default for Shorts retention (one strong
+// story, deep, ~25-35s beats a 5-roundup that drops viewers at each topic switch).
+// SHORTS_SINGLE=0 restores the 5-story roundup. Long-form always does 10.
+const SINGLE = !LONGFORM && process.env.SHORTS_SINGLE !== '0';
+const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || (LONGFORM ? 10 : SINGLE ? 1 : 5));
 
 async function getJson(path) {
   const r = await fetch(`${API_BASE}${path}`, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) });
@@ -66,7 +70,13 @@ async function gatherStories(cfg) {
     // slot (→10 stories); Shorts pull 1 per slot (→5).
     const perSlot = LONGFORM ? 2 : 1;
     // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
-    const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18), perSlot });
+    // Enrich summaries (fetch article body for a fuller 20-35s script) when we're doing
+    // a single deep story or the long-form recap — not needed for the 5-story roundup.
+    const round = await buildWorldRoundup({
+      maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
+      perSlot,
+      enrich: SINGLE || LONGFORM,
+    });
     return round.slice(0, STORY_COUNT);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
@@ -151,12 +161,15 @@ function storySentences(story, cfg, index) {
   const out = [title];
   const sents = summary.split(/(?<=[.!?।])\s+/).map((s) => s.trim()).filter(Boolean);
   if (LONGFORM) {
-    // Long-form (16:9, ~3.5min) has time for real context: up to 2 sentences per story,
-    // less aggressively trimmed — this is the higher-RPM monetization format.
+    // Long-form (16:9, ~3.5min): up to 2 sentences per story — the higher-RPM format.
     for (const s of sents.slice(0, 2)) out.push(s.length > 240 ? `${s.slice(0, 237).replace(/\s+\S*$/, '')}…` : s);
+  } else if (SINGLE) {
+    // Single-story Short: it's the ONLY story, so give real depth (2-3 sentences) to
+    // fill ~25-35s and keep the viewer to the payoff — the retention-optimal format.
+    for (const s of sents.slice(0, 3)) out.push(s.length > 200 ? `${s.slice(0, 197).replace(/\s+\S*$/, '')}…` : s);
   } else {
-    // Shorts: budget ~9-10s/story so 5 land under YouTube's 60s cap. Headline is the
-    // star; add ONE short context clause only when the title is brief.
+    // 5-story roundup: budget ~9-10s/story so 5 land under 60s. Headline is the star;
+    // add ONE short context clause only when the title is brief.
     if (title.length < 70) {
       let ctx = sents[0] || '';
       if (ctx.length > 120) ctx = `${ctx.slice(0, 117).replace(/\s+\S*$/, '')}…`;
@@ -172,7 +185,8 @@ async function ttsForStory(sentences, cfg, work, id) {
     lang: cfg.lang,
     voice: cfg.voice,
     espeakLang: cfg.espeakLang, // espeak-ng phonemization language (en-us / hi)
-    speed: Number(process.env.SHORTS_TTS_SPEED || 0.94), // slightly slower = clearer
+    // ~1.02 ≈ broadcast-anchor 150-170 WPM (research spec). Was 0.94 (too slow for Shorts).
+    speed: Number(process.env.SHORTS_TTS_SPEED || 1.02),
     out: join(work, `nar-${id}`),
   };
   await writeFile(join(work, `tts-${id}.json`), JSON.stringify(job));
@@ -232,8 +246,8 @@ async function main() {
       );
       const hcaps = [];
       for (let j = 0; j < hookTiming.segments.length; j++) {
-        const png = await buildCaption(hookTiming.segments[j].text, `hook-${j}`, cfg, join(work, 'hook'));
-        hcaps.push({ png, start: hookTiming.segments[j].start, end: hookTiming.segments[j].end });
+        const sg = hookTiming.segments[j];
+        hcaps.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `hook-${j}`, cfg, join(work, 'hook'))));
       }
       const hclip = join(work, 'clip-hook.mp4');
       await renderSegment({ bgPath: hbg.path, chromePath: hchrome, captions: hcaps, narrationWav: join(work, 'nar-hook.wav'), dur: hookTiming.duration, outPath: hclip });
@@ -256,8 +270,8 @@ async function main() {
       const chrome = await buildChrome(story, cfg, join(work, `s${i}`));
       const captions = [];
       for (let j = 0; j < timing.segments.length; j++) {
-        const png = await buildCaption(timing.segments[j].text, `${i}-${j}`, cfg, join(work, `s${i}`));
-        captions.push({ png, start: timing.segments[j].start, end: timing.segments[j].end });
+        const sg = timing.segments[j];
+        captions.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `${i}-${j}`, cfg, join(work, `s${i}`))));
       }
       const clip = join(work, `clip-${i}.mp4`);
       await renderSegment({
@@ -290,8 +304,8 @@ async function main() {
       );
       const ocaps = [];
       for (let j = 0; j < oTiming.segments.length; j++) {
-        const png = await buildCaption(oTiming.segments[j].text, `outro-${j}`, cfg, join(work, 'outro'));
-        ocaps.push({ png, start: oTiming.segments[j].start, end: oTiming.segments[j].end });
+        const sg = oTiming.segments[j];
+        ocaps.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `outro-${j}`, cfg, join(work, 'outro'))));
       }
       const oclip = join(work, 'clip-outro.mp4');
       await renderSegment({ bgPath: obg.path, chromePath: ochrome, captions: ocaps, narrationWav: join(work, 'nar-outro.wav'), dur: oTiming.duration, outPath: oclip });

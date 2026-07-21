@@ -197,7 +197,7 @@ function normTitle(t) {
 // Fetch one representative, corroborated, recent story PER SLOT → 5 stories.
 // corroboration = how many of the slot's outlets ran a title-similar story (a light
 // quality signal). Prefers items WITH an image + more corroboration + freshness.
-export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
+export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false } = {}) {
   const now = Date.now();
   const out = [];
   // Cross-slot dedup: the SAME event can match two slots (e.g. 'Trump tariffs' fits both
@@ -250,6 +250,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
         hashtag: slotHashtag(slot.key, pick.rep.title),
         title: pick.rep.title,
         summary: pick.rep.summary || pick.rep.title,
+        url: pick.rep.url,
         imageUrl: pick.rep.imageUrl,
         sourceName: pick.rep.sourceName,
         sources: pick.sources,
@@ -258,7 +259,41 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
       });
     }
   }
+  // ENRICH the summaries: RSS gives only ~1 sentence (~120 chars) — too thin for a
+  // 20-35s single-story Short. Fetch each picked article and append real body
+  // paragraphs so there's enough script. Parallel + best-effort (keeps the RSS summary
+  // on any failure). Only bother when a fuller script is wanted (single/long-form).
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
   return out;
+}
+
+// Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
+// the story on-topic + factual; strips boilerplate (cookie/subscribe/newsletter lines).
+async function enrichSummary(story) {
+  if (!story.url || !/^https?:\/\//i.test(story.url)) return;
+  try {
+    const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
+    if (!r.ok) return;
+    const html = await r.text();
+    const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map((m) => stripHtml(m[1]))
+      .filter((t) => t.length > 60 && !/cookie|subscri|sign ?up|newsletter|advertisement|©|\ball rights reserved\b/i.test(t));
+    if (!paras.length) return;
+    // Build a fuller summary: the RSS lead + the first distinct body paragraphs, capped
+    // so the script stays ~20-35s (~90 words ≈ 30s at ~170 WPM → ~600 chars).
+    const seen = new Set();
+    const parts = [story.summary, ...paras].filter((p) => {
+      const k = (p || '').slice(0, 40).toLowerCase();
+      if (!p || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    let full = parts.join(' ').replace(/\s+/g, ' ').trim();
+    if (full.length > 620) full = `${full.slice(0, 617).replace(/\s+\S*$/, '')}…`;
+    if (full.length > (story.summary || '').length) story.summary = full;
+  } catch {
+    /* keep the RSS summary */
+  }
 }
 
 function slotHashtag(slotKey, title) {

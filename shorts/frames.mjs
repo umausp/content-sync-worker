@@ -167,3 +167,59 @@ export async function buildCaption(text, idx, cfg, outDir) {
   </svg>`;
   return rasterize(svg, join(outDir, `cap-${String(idx).padStart(2, '0')}.png`));
 }
+
+// KARAOKE captions — the retention-driving style for US/UK Shorts (word-by-word, 3-4
+// words on screen, one word highlighted). Splits a spoken segment's text into small
+// word-groups, times each group evenly across the segment's [start,end] audio window,
+// and renders one PNG per group with the "active" word highlighted brand-yellow.
+// Returns [{ png, start, end }] the caller overlays with enable='between(t,...)'.
+const KARAOKE_HIGHLIGHT = '#ffd400'; // yellow-on-white — the top-performing combo
+export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, outDir) {
+  const W = VIDEO.width;
+  const H = VIDEO.height;
+  const isDeva = cfg.scriptLang === 'hi';
+  const land = VIDEO.landscape;
+  // Bigger than the old block captions (fewer words on screen). Centered/lower-center,
+  // OUT of the bottom 20% (mobile UI covers it) per the research spec.
+  const fontSize = land ? (isDeva ? 62 : 68) : isDeva ? 68 : 78;
+  const perGroup = isDeva ? 4 : 3; // words visible at once
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  if (!words.length) return [];
+  // Build word-groups.
+  const groups = [];
+  for (let i = 0; i < words.length; i += perGroup) groups.push(words.slice(i, i + perGroup));
+  // Distribute the segment duration across groups, weighted by group char-length so a
+  // longer group stays on screen a touch longer (feels naturally synced).
+  const dur = Math.max(0.4, segEnd - segStart);
+  const weights = groups.map((g) => g.join(' ').length);
+  const wSum = weights.reduce((a, b) => a + b, 0) || 1;
+  const out = [];
+  let t = segStart;
+  const cy = land ? H * 0.68 : H * 0.62; // vertical centre of the caption band
+  for (let gi = 0; gi < groups.length; gi++) {
+    const g = groups[gi];
+    const gEnd = gi === groups.length - 1 ? segEnd : t + (dur * weights[gi]) / wSum;
+    // Highlight one word per short beat within the group so it reads as karaoke; for a
+    // 3-word group we just highlight the middle/rolling word — approximate but lively.
+    const activeWord = Math.min(g.length - 1, Math.floor(g.length / 2));
+    // Real spaces between words: SVG collapses whitespace between adjacent tspans, so we
+    // emit an explicit space tspan between words (a leading space inside a tspan is
+    // dropped). This fixes 'ministerbriefscabinet' → 'minister briefs cabinet'.
+    const tspans = g
+      .map(
+        (w, wi) =>
+          `${wi ? '<tspan> </tspan>' : ''}<tspan fill="${wi === activeWord ? KARAOKE_HIGHLIGHT : BRAND.text}">${esc(w)}</tspan>`,
+      )
+      .join('');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      ${defs()}
+      <text x="${W / 2}" y="${Math.round(cy)}" font-family="${cfg.font}" font-size="${fontSize}"
+            font-weight="900" text-anchor="middle" filter="url(#ds)" xml:space="preserve"
+            style="paint-order:stroke">${tspans}</text>
+    </svg>`;
+    const png = await rasterize(svg, join(outDir, `kcap-${idx}-${String(gi).padStart(2, '0')}.png`));
+    out.push({ png, start: t, end: gEnd });
+    t = gEnd;
+  }
+  return out;
+}
