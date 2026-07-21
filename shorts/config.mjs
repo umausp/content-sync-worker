@@ -54,6 +54,10 @@ export const CHANNELS = {
     // Feed selection: global-interest English stories (world/business/science/tech lead).
     apiMode: 'latest',
     categoryPriority: ['world', 'business', 'science', 'tech', 'top', 'politics'],
+    // Tier-1 audience fit: lead with globally-relevant desks. Exclude India-local +
+    // entertainment (regional-interest) so the English channel doesn't open on a story
+    // a US/UK viewer won't recognise. `sports` kept out too (very region-specific).
+    categoryFit: (s) => ['world', 'business', 'science', 'tech', 'top', 'politics'].includes(s.category),
     ctaLine: 'Full story → agyata.com',
     subCta: 'Subscribe for world news',
     hashtags: ['#shorts', '#news', '#worldnews', '#breaking'],

@@ -31,14 +31,23 @@ async function getJson(path) {
 // Pick the freshest high-value story for this channel: prefer breaking/live, then the
 // channel's category priority, then newest. Skips content-feed/evergreen tags.
 function pickStory(items, cfg, forceTag) {
-  const usable = items.filter((s) => s.title && s.summary && s.hashtag);
+  let usable = items.filter((s) => s.title && s.summary && s.hashtag);
   if (forceTag) return usable.find((s) => s.hashtag === forceTag) || null;
+  // Channel audience fit: the WORLD (English, tier-1) channel skips India-local
+  // categories so it doesn't lead with a regional story a US/UK viewer won't care
+  // about; BHARAT keeps everything (India audience). categoryFit is per-channel.
+  if (cfg.categoryFit) {
+    const fitted = usable.filter((s) => cfg.categoryFit(s));
+    if (fitted.length) usable = fitted; // only narrow if something survives
+  }
   const rank = (s) => {
     let r = 0;
-    if (s.isBreaking) r -= 100;
-    if (s.isLive) r -= 60;
+    // Breaking/live still lead, but LESS overwhelmingly, so a globally-relevant
+    // world/business story isn't beaten by a minor local "live" ticker.
+    if (s.isBreaking) r -= 40;
+    if (s.isLive) r -= 20;
     const ci = cfg.categoryPriority.indexOf(s.category);
-    r += ci === -1 ? 50 : ci * 5;
+    r += ci === -1 ? 50 : ci * 8;
     return r;
   };
   return usable.sort((a, b) => rank(a) - rank(b))[0] || null;
