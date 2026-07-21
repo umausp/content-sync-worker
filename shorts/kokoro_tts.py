@@ -38,6 +38,23 @@ SR = 24000
 # Map our job lang → espeak-ng language code. World channel = 'en-us' (USA style).
 ESPEAK_LANG = {"a": "en-us", "b": "en-gb", "h": "hi"}
 
+# SPOKEN substitutions applied to the narration text BEFORE phonemization (the on-screen
+# caption uses the caller's ORIGINAL text, so spelling is unaffected). espeak says the
+# brand as "a-JI-ah-ta" and mangles ".com"; respell for a clean, natural read.
+import re as _re
+
+SAY_AS = [
+    (_re.compile(r"\bagyata\.com\b", _re.I), "ag-yaa-ta dot com"),
+    (_re.compile(r"\bagyata\b", _re.I), "ag-yaa-ta"),
+]
+
+
+def spoken_form(text):
+    out = text
+    for pat, rep in SAY_AS:
+        out = pat.sub(rep, out)
+    return out
+
 
 def make_phonemizer(espeak_lang):
     """espeak-ng backend via phonemizer. Uses Kokoro's bundled libespeak-ng if the
@@ -114,10 +131,11 @@ def main() -> int:
     phonemized = 0
     for text in chunks:
         a = np.zeros(0, dtype=np.float32)
+        spoken = spoken_form(text)  # voice-only respelling; caption keeps `text`
         # Preferred path: espeak phonemes → Kokoro tokens.
         if backend is not None:
             try:
-                ph = backend.phonemize([text], strip=True)
+                ph = backend.phonemize([spoken], strip=True)
                 ph = (ph[0] if ph else "").strip()
                 if ph:
                     a = synth_phonemes(pipe, ph, voice, speed)
@@ -126,9 +144,9 @@ def main() -> int:
             except Exception as e:
                 print(f"kokoro_tts: phoneme synth failed on a chunk ({e}); text fallback", file=sys.stderr)
                 a = np.zeros(0, dtype=np.float32)
-        # Fallback: Kokoro's normal text path.
+        # Fallback: Kokoro's normal text path (also uses the spoken respelling).
         if len(a) / SR < 0.05:
-            a = synth_text(pipe, text, voice, speed)
+            a = synth_text(pipe, spoken, voice, speed)
         dur = len(a) / SR
         if dur < 0.02:
             continue  # one bad chunk shouldn't kill the run

@@ -255,4 +255,11 @@ export async function resolveBackground(story, outDir, seen = new Set()) {
   return { path: await brandFallback(outDir), kind: 'brand' };
 }
 
+// A branded gradient background — for the hook + outro TITLE cards, which are NOT news
+// stories and must NOT reuse a story's photo (that made story 1's image appear 3x).
+export async function brandBackground(outDir) {
+  await mkdir(outDir, { recursive: true });
+  return { path: await brandFallback(outDir), kind: 'brand' };
+}
+
 export { BW, BH };

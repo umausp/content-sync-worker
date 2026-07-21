@@ -20,7 +20,7 @@ import { join } from 'node:path';
 import { promisify } from 'node:util';
 import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.mjs';
 import { buildChrome, buildCaption } from './frames.mjs';
-import { resolveBackground } from './visuals.mjs';
+import { resolveBackground, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 import { toHinglish } from './translate.mjs';
 import { buildWorldRoundup } from './world_feeds.mjs';
@@ -188,10 +188,14 @@ async function main() {
     const hookText = hookLine(cfg, stories.length);
     const hookTiming = await ttsForStory([hookText], cfg, work, 'hook');
     if (hookTiming.duration && hookTiming.segments?.length) {
-      // Hook uses its OWN throwaway seen-set so it doesn't consume story 1's image
-      // (the stories share `seenImages`; the hook is just a title beat).
-      const hbg = await resolveBackground(stories[0], join(work, 'hook'), new Set());
-      const hchrome = await buildChrome({ ...stories[0], badge: cfg.scriptLang === 'hi' ? 'आज की खबरें' : 'TODAY' }, cfg, join(work, 'hook'));
+      // Hook is a TITLE card — branded gradient, NOT a story photo (reusing story 1's
+      // image here made it appear 3x / look like a repeated story). No story badge/tag.
+      const hbg = await brandBackground(join(work, 'hook'));
+      const hchrome = await buildChrome(
+        { hashtag: 'agyata', category: '', badge: cfg.scriptLang === 'hi' ? 'आज की खबरें' : "TODAY'S TOP" },
+        cfg,
+        join(work, 'hook'),
+      );
       const hcaps = [];
       for (let j = 0; j < hookTiming.segments.length; j++) {
         const png = await buildCaption(hookTiming.segments[j].text, `hook-${j}`, cfg, join(work, 'hook'));
@@ -244,8 +248,12 @@ async function main() {
     const outroText = outroLine(cfg);
     const oTiming = await ttsForStory([outroText], cfg, work, 'outro');
     if (oTiming.duration && oTiming.segments?.length) {
-      const obg = await resolveBackground(stories[0], join(work, 'outro'), new Set());
-      const ochrome = await buildChrome({ ...stories[0], hashtag: 'agyata', badge: cfg.scriptLang === 'hi' ? 'देखते रहें' : 'FOLLOW' }, cfg, join(work, 'outro'));
+      const obg = await brandBackground(join(work, 'outro'));
+      const ochrome = await buildChrome(
+        { hashtag: 'agyata', category: '', badge: cfg.scriptLang === 'hi' ? 'देखते रहें' : 'FOLLOW' },
+        cfg,
+        join(work, 'outro'),
+      );
       const ocaps = [];
       for (let j = 0; j < oTiming.segments.length; j++) {
         const png = await buildCaption(oTiming.segments[j].text, `outro-${j}`, cfg, join(work, 'outro'));

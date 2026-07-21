@@ -135,16 +135,25 @@ export async function buildCaption(text, idx, cfg, outDir) {
   // heavy, so keep the Latin budget tight enough to stay inside the 1080px width with
   // the 60px side margins (measured: ~20 caps fit before the right edge clips).
   const isDeva = cfg.scriptLang === 'hi';
-  // Landscape (long-form 16:9) is wider + shorter — fit more chars per line, place the
-  // caption band lower (78%) so it sits in the lower third over the scrim.
   const land = VIDEO.landscape;
-  const maxChars = land ? (isDeva ? 34 : 40) : isDeva ? 18 : 20;
-  const fontSize = land ? (isDeva ? 52 : 56) : isDeva ? 60 : 64;
+  // AUTO-FIT: never truncate the caption (user: "does not write full text"). Start at
+  // the ideal font size, and if the text needs more than maxLines, step the font DOWN
+  // (which widens chars-per-line) until it fits — so the FULL sentence always shows.
+  const baseFont = land ? (isDeva ? 52 : 56) : isDeva ? 60 : 64;
+  const baseChars = land ? (isDeva ? 34 : 40) : isDeva ? 18 : 20;
+  const maxLines = 4;
+  let fontSize = baseFont;
+  let lines = wrap(text, baseChars);
+  while (lines.length > maxLines && fontSize > baseFont * 0.62) {
+    fontSize -= 4;
+    // chars-per-line scales inversely with font size.
+    const chars = Math.round(baseChars * (baseFont / fontSize));
+    lines = wrap(text, chars);
+  }
+  // Safety: if still over (extremely long), keep all lines but they'll be small.
   const lineH = fontSize * 1.24;
-  const lines = wrap(text, maxChars).slice(0, 3);
   // Captions sit in the BOTTOM band, just above the source/hashtag/CTA chrome (user:
-  // "all captions at the bottom"). We bottom-ALIGN the block to a baseline near the
-  // lower chrome so 1-, 2- or 3-line captions all hug the bottom consistently.
+  // "all captions at the bottom"). Bottom-align so 1..N-line captions hug the bottom.
   const blockH = lines.length * lineH;
   const bottomBaseline = land ? H - 150 : H - 260; // above the source/CTA lines
   const startY = bottomBaseline - blockH + fontSize;
