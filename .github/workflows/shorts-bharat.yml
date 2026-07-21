@@ -68,13 +68,14 @@ jobs:
         run: node shorts/build_short.mjs bharat
 
       - name: Auto-upload to YouTube (unlisted)
-        if: ${{ secrets.YT_REFRESH_TOKEN_BHARAT != '' }}
         continue-on-error: true
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
-        run: node shorts/upload.mjs bharat "$SHORTS_STAMP"
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_BHARAT" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs bharat "$SHORTS_STAMP"
 
       - name: Upload staged Short artifact
         uses: actions/upload-artifact@v4
