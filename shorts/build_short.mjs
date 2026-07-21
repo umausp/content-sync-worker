@@ -47,11 +47,27 @@ async function gatherStories(cfg) {
     const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 36), perSlot });
     return round.slice(0, STORY_COUNT);
   }
-  // bharat: top India stories from the Agyata feed.
-  const feed = await getJson(`/news/stories?mode=${cfg.apiMode}&limit=40`);
+  // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
+  // bulletin isn't all-politics (editor's mix: top/politics, business, entertainment,
+  // sports, tech, science, world, health). Breaking/live float up within that.
+  const feed = await getJson(`/news/stories?mode=${cfg.apiMode}&limit=60`);
   const usable = (feed.items || []).filter((s) => s.title && s.summary && s.hashtag);
+  const BHARAT_SLATE = ['top', 'politics', 'business', 'entertainment', 'sports', 'tech', 'science', 'world', 'health'];
   const rank = (s) => (s.isBreaking ? -40 : 0) + (s.isLive ? -20 : 0);
-  const picked = usable.sort((a, b) => rank(a) - rank(b)).slice(0, STORY_COUNT);
+  const byRank = [...usable].sort((a, b) => rank(a) - rank(b));
+  const picked = [];
+  const usedCats = new Set();
+  // First pass: one story per slate category (in slate order) for diversity.
+  for (const cat of BHARAT_SLATE) {
+    if (picked.length >= STORY_COUNT) break;
+    const s = byRank.find((x) => (x.category || 'top') === cat && !picked.includes(x));
+    if (s) { picked.push(s); usedCats.add(cat); }
+  }
+  // Second pass: fill any remaining slots with the next best stories (breaking-first).
+  for (const s of byRank) {
+    if (picked.length >= STORY_COUNT) break;
+    if (!picked.includes(s)) picked.push(s);
+  }
   // Translate each to Hinglish (fail-safe to English).
   for (const s of picked) {
     const t = await toHinglish(s.title, s.summary);
@@ -72,6 +88,18 @@ function hookLine(cfg, count) {
   return LONGFORM
     ? `Here are the ${count} biggest world stories today.`
     : `Today's top ${count} world stories — let's go.`;
+}
+
+// The closing CTA — subscribe + drive to the site. Short + long variants.
+function outroLine(cfg) {
+  if (cfg.scriptLang === 'hi') {
+    return LONGFORM
+      ? 'ऐसी और खबरों के लिए चैनल को Subscribe करें, और पूरी खबरें पढ़िए agyata.com पर।'
+      : 'Subscribe करें और पूरी खबरें पढ़िए agyata dot com पर।';
+  }
+  return LONGFORM
+    ? 'For more world news every day, subscribe to the channel — and read the full stories at agyata dot com.'
+    : 'Subscribe for daily world news, and read more at agyata dot com.';
 }
 
 // ── Natural narration for ONE story ──────────────────────────────────────────
@@ -150,6 +178,9 @@ async function main() {
   await mkdir(work, { recursive: true });
 
   const segmentPaths = [];
+  // Per-VIDEO image dedup: shared across the hook + every story so NO two segments use
+  // the same photo (user: "always use a different image for different story").
+  const seenImages = new Set();
 
   // 1-5s HOOK clip: the video opens with a punchy spoken+captioned hook (top-creator
   // pattern — grab attention in the first seconds) before the stories start.
@@ -157,7 +188,9 @@ async function main() {
     const hookText = hookLine(cfg, stories.length);
     const hookTiming = await ttsForStory([hookText], cfg, work, 'hook');
     if (hookTiming.duration && hookTiming.segments?.length) {
-      const hbg = await resolveBackground(stories[0], join(work, 'hook'));
+      // Hook uses its OWN throwaway seen-set so it doesn't consume story 1's image
+      // (the stories share `seenImages`; the hook is just a title beat).
+      const hbg = await resolveBackground(stories[0], join(work, 'hook'), new Set());
       const hchrome = await buildChrome({ ...stories[0], badge: cfg.scriptLang === 'hi' ? 'आज की खबरें' : 'TODAY' }, cfg, join(work, 'hook'));
       const hcaps = [];
       for (let j = 0; j < hookTiming.segments.length; j++) {
@@ -181,7 +214,7 @@ async function main() {
       const timing = await ttsForStory(sentences, cfg, work, i);
       if (!timing.duration || !timing.segments?.length) throw new Error('no TTS timing');
 
-      const bg = await resolveBackground(story, join(work, `s${i}`));
+      const bg = await resolveBackground(story, join(work, `s${i}`), seenImages);
       const chrome = await buildChrome(story, cfg, join(work, `s${i}`));
       const captions = [];
       for (let j = 0; j < timing.segments.length; j++) {
@@ -204,6 +237,28 @@ async function main() {
     }
   }
   if (!segmentPaths.length) throw new Error('all story clips failed to render');
+
+  // OUTRO end-card: a branded closing beat with a spoken + captioned call-to-action
+  // (subscribe + agyata.com). Standard top-creator pattern; boosts subs + site traffic.
+  try {
+    const outroText = outroLine(cfg);
+    const oTiming = await ttsForStory([outroText], cfg, work, 'outro');
+    if (oTiming.duration && oTiming.segments?.length) {
+      const obg = await resolveBackground(stories[0], join(work, 'outro'), new Set());
+      const ochrome = await buildChrome({ ...stories[0], hashtag: 'agyata', badge: cfg.scriptLang === 'hi' ? 'देखते रहें' : 'FOLLOW' }, cfg, join(work, 'outro'));
+      const ocaps = [];
+      for (let j = 0; j < oTiming.segments.length; j++) {
+        const png = await buildCaption(oTiming.segments[j].text, `outro-${j}`, cfg, join(work, 'outro'));
+        ocaps.push({ png, start: oTiming.segments[j].start, end: oTiming.segments[j].end });
+      }
+      const oclip = join(work, 'clip-outro.mp4');
+      await renderSegment({ bgPath: obg.path, chromePath: ochrome, captions: ocaps, narrationWav: join(work, 'nar-outro.wav'), dur: oTiming.duration, outPath: oclip });
+      segmentPaths.push(oclip);
+      console.log(`[shorts:${cfg.id}]   ✓ outro clip (${oTiming.duration.toFixed(1)}s)`);
+    }
+  } catch (e) {
+    console.log(`[shorts:${cfg.id}]   (outro skipped: ${e.message})`);
+  }
 
   // Concat clips + low music bed → final validated MP4.
   const totalDur = await sumDurations(segmentPaths);

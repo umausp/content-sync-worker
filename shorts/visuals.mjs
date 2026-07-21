@@ -81,9 +81,10 @@ async function imageWidth(path) {
   }
 }
 
-async function tryStoryImage(story, outDir) {
+async function tryStoryImage(story, outDir, seen) {
   const url = story.imageUrl;
   if (!url || !/^https:\/\//i.test(url)) return null;
+  if (seen.has(`url:${url}`)) return null; // same photo already used by another story
   try {
     const buf = await fetchBuf(url);
     if (buf.length < 2000) return null; // too small to be a real photo
@@ -91,6 +92,7 @@ async function tryStoryImage(story, outDir) {
     await writeFile(raw, buf);
     // Reject low-res thumbnails so we don't ship a pixelated full-frame.
     if ((await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
+    seen.add(`url:${url}`);
     return await coverTo(raw, join(outDir, 'bg.png'));
   } catch {
     return null;
@@ -113,6 +115,18 @@ function stockQuery(story) {
 // long-form (better cover, less cropping).
 const ORIENT = VIDEO.landscape ? 'landscape' : 'portrait';
 
+// Pick the first candidate URL whose identity ISN'T already in `seen`, so no two
+// stories in the same video share an image. Records the chosen id in `seen`.
+function pickUnused(candidates, seen) {
+  for (const c of candidates) {
+    if (!c?.id || !c?.src) continue;
+    if (seen.has(c.id)) continue;
+    seen.add(c.id);
+    return c.src;
+  }
+  return null;
+}
+
 async function downloadTo(src, outDir, name) {
   const buf = await fetchBuf(src);
   if (buf.length < 2000) return null;
@@ -121,66 +135,68 @@ async function downloadTo(src, outDir, name) {
   return coverTo(raw, join(outDir, 'bg.png'));
 }
 
-async function tryPexels(story, outDir) {
+async function tryPexels(story, outDir, seen) {
   if (!PEXELS_KEY) return null;
   const q = stockQuery(story);
   try {
     const r = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=${ORIENT}&per_page=5`,
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=${ORIENT}&per_page=15`,
       { headers: { Authorization: PEXELS_KEY, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
     );
     if (!r.ok) return null;
     const j = await r.json();
-    const photo = (j.photos || [])[0];
-    const src = VIDEO.landscape
-      ? photo?.src?.landscape || photo?.src?.large2x || photo?.src?.original
-      : photo?.src?.portrait || photo?.src?.large2x || photo?.src?.original;
-    if (!src) return null;
-    return await downloadTo(src, outDir, 'src-pexels');
+    const cands = (j.photos || []).map((p) => ({
+      id: `pexels:${p.id}`,
+      src: VIDEO.landscape
+        ? p.src?.landscape || p.src?.large2x || p.src?.original
+        : p.src?.portrait || p.src?.large2x || p.src?.original,
+    }));
+    const src = pickUnused(cands, seen);
+    return src ? await downloadTo(src, outDir, 'src-pexels') : null;
   } catch {
     return null;
   }
 }
 
-async function tryPixabay(story, outDir) {
+async function tryPixabay(story, outDir, seen) {
   if (!PIXABAY_KEY) return null;
   const q = stockQuery(story);
   try {
-    // editors_choice + photo type + min width so we get quality editorial shots.
     const r = await fetch(
       `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_KEY)}&q=${encodeURIComponent(q)}` +
-        `&image_type=photo&orientation=${VIDEO.landscape ? 'horizontal' : 'vertical'}&safesearch=true&per_page=5&min_width=${VIDEO.width}`,
+        `&image_type=photo&orientation=${VIDEO.landscape ? 'horizontal' : 'vertical'}&safesearch=true&per_page=15&min_width=${VIDEO.width}`,
       { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
     );
     if (!r.ok) return null;
     const j = await r.json();
-    const hit = (j.hits || [])[0];
-    const src = hit?.largeImageURL || hit?.fullHDURL || hit?.webformatURL;
-    if (!src) return null;
-    return await downloadTo(src, outDir, 'src-pixabay');
+    const cands = (j.hits || []).map((h) => ({
+      id: `pixabay:${h.id}`,
+      src: h.largeImageURL || h.fullHDURL || h.webformatURL,
+    }));
+    const src = pickUnused(cands, seen);
+    return src ? await downloadTo(src, outDir, 'src-pixabay') : null;
   } catch {
     return null;
   }
 }
 
-async function tryUnsplash(story, outDir) {
+async function tryUnsplash(story, outDir, seen) {
   if (!UNSPLASH_KEY) return null;
   const q = stockQuery(story);
   try {
     const r = await fetch(
       `https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}` +
-        `&orientation=${VIDEO.landscape ? 'landscape' : 'portrait'}&per_page=5&content_filter=high`,
+        `&orientation=${VIDEO.landscape ? 'landscape' : 'portrait'}&per_page=15&content_filter=high`,
       { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}`, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
     );
     if (!r.ok) return null;
     const j = await r.json();
-    const photo = (j.results || [])[0];
-    // Unsplash raw URL + sizing params for a hi-res crop at our canvas width.
-    const src = photo?.urls?.raw
-      ? `${photo.urls.raw}&w=${BW}&fit=max`
-      : photo?.urls?.full || photo?.urls?.regular;
-    if (!src) return null;
-    return await downloadTo(src, outDir, 'src-unsplash');
+    const cands = (j.results || []).map((p) => ({
+      id: `unsplash:${p.id}`,
+      src: p.urls?.raw ? `${p.urls.raw}&w=${BW}&fit=max` : p.urls?.full || p.urls?.regular,
+    }));
+    const src = pickUnused(cands, seen);
+    return src ? await downloadTo(src, outDir, 'src-unsplash') : null;
   } catch {
     return null;
   }
@@ -206,15 +222,18 @@ async function brandFallback(outDir) {
 // Resolve the best available background → bg.png (BWxBH). Returns { path, kind }.
 // Chain: the story's OWN photo (best — real news image) → Pexels → Pixabay → Unsplash
 // (more stock coverage = fewer gradient fallbacks) → branded gradient (always works).
-export async function resolveBackground(story, outDir) {
+// `seen` is a per-VIDEO Set of image identities so NO two stories share an image (user:
+// "always use a different image for different story"); pass the same Set for every story
+// in one video. Omit it (fresh Set) for a standalone render.
+export async function resolveBackground(story, outDir, seen = new Set()) {
   await mkdir(outDir, { recursive: true });
-  const story1 = await tryStoryImage(story, outDir);
+  const story1 = await tryStoryImage(story, outDir, seen);
   if (story1) return { path: story1, kind: 'story' };
-  const pex = await tryPexels(story, outDir);
+  const pex = await tryPexels(story, outDir, seen);
   if (pex) return { path: pex, kind: 'pexels' };
-  const pix = await tryPixabay(story, outDir);
+  const pix = await tryPixabay(story, outDir, seen);
   if (pix) return { path: pix, kind: 'pixabay' };
-  const uns = await tryUnsplash(story, outDir);
+  const uns = await tryUnsplash(story, outDir, seen);
   if (uns) return { path: uns, kind: 'unsplash' };
   return { path: await brandFallback(outDir), kind: 'brand' };
 }

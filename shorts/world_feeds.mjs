@@ -79,6 +79,16 @@ export const WORLD_SLOTS = [
     ],
   },
   {
+    key: 'tech',
+    label: 'TECH',
+    feeds: [
+      'https://feeds.bbci.co.uk/news/technology/rss.xml',
+      'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml',
+      'https://www.theverge.com/rss/index.xml',
+      'https://techcrunch.com/feed/',
+    ],
+  },
+  {
     key: 'facts',
     label: 'SCIENCE',
     feeds: [
@@ -86,6 +96,33 @@ export const WORLD_SLOTS = [
       'https://feeds.bbci.co.uk/news/science_and_environment/rss.xml',
       'https://rss.nytimes.com/services/xml/rss/nyt/Science.xml',
       'https://www.nasa.gov/news-release/feed/',
+    ],
+  },
+  {
+    key: 'sports',
+    label: 'SPORTS',
+    feeds: [
+      'https://feeds.bbci.co.uk/sport/rss.xml',
+      'https://www.espn.com/espn/rss/news',
+      'https://www.skysports.com/rss/12040',
+    ],
+  },
+  {
+    key: 'health',
+    label: 'HEALTH',
+    feeds: [
+      'https://feeds.bbci.co.uk/news/health/rss.xml',
+      'https://rss.nytimes.com/services/xml/rss/nyt/Health.xml',
+      'https://www.theguardian.com/society/health/rss',
+    ],
+  },
+  {
+    key: 'offbeat',
+    label: 'TRENDING',
+    feeds: [
+      'https://www.theguardian.com/world/series/the-upside/rss',
+      'https://feeds.arstechnica.com/arstechnica/index',
+      'https://feeds.bbci.co.uk/news/world/rss.xml',
     ],
   },
 ];
