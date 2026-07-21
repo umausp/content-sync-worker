@@ -200,6 +200,10 @@ function normTitle(t) {
 export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
   const now = Date.now();
   const out = [];
+  // Cross-slot dedup: the SAME event can match two slots (e.g. 'Trump tariffs' fits both
+  // BREAKING and GLOBAL). Track normalized titles already taken so no story repeats
+  // across slots — each slot picks the best story NOT already used.
+  const usedTitles = new Set();
   for (const slot of WORLD_SLOTS) {
     const all = (await Promise.all(slot.feeds.map(fetchFeed))).flat();
     // cluster by normalized title to count corroboration + keep the best-imaged rep
@@ -231,9 +235,15 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
         if (d !== 0) return d;
         return a.freshH - b.freshH;
       });
-    // Take the top `perSlot` distinct stories from this slot (1 for Shorts, 2 for
-    // long-form → 10 stories across 5 slots).
-    for (const pick of ranked.slice(0, perSlot)) {
+    // Take the top `perSlot` stories from this slot that HAVEN'T already been used by an
+    // earlier slot (skip cross-slot duplicates like the same Trump story in 2 slots).
+    let taken = 0;
+    for (const pick of ranked) {
+      if (taken >= perSlot) break;
+      const key = normTitle(pick.rep.title);
+      if (usedTitles.has(key)) continue; // already in another slot → skip to next-best
+      usedTitles.add(key);
+      taken++;
       out.push({
         slot: slot.key,
         badge: slot.label,
