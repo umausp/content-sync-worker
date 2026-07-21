@@ -22,7 +22,7 @@ import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.
 import { buildChrome, buildCaption } from './frames.mjs';
 import { resolveBackground, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
-import { toHinglish } from './translate.mjs';
+// EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
 import { buildWorldRoundup } from './world_feeds.mjs';
 
 const execFileP = promisify(execFile);
@@ -39,6 +39,27 @@ async function getJson(path) {
 }
 
 // ── Story gathering, per channel ────────────────────────────────────────────
+// Batch-translate stories EN→HI via the offline m2m100 model (translate_hi.py). Returns
+// an array aligned to `stories`: [{ title, summary, translated }] or null on total failure.
+async function translateHindi(stories) {
+  const dir = join(WORK_DIR, 'bharat', '_tr');
+  await mkdir(dir, { recursive: true });
+  const jobPath = join(dir, 'job.json');
+  const outPath = join(dir, 'out.json');
+  await writeFile(
+    jobPath,
+    JSON.stringify({ items: stories.map((s) => ({ title: s.title, summary: s.summary })), out: outPath }),
+  );
+  try {
+    await execFileP(PY, [join(process.cwd(), 'shorts', 'translate_hi.py'), jobPath], { timeout: 300000 });
+    const res = JSON.parse(await readFile(outPath, 'utf-8'));
+    return res.items || stories.map(() => null);
+  } catch (e) {
+    console.log(`[shorts:bharat] translate_hi failed (${e.message}); keeping English`);
+    return stories.map(() => null);
+  }
+}
+
 async function gatherStories(cfg) {
   if (cfg.id === 'world') {
     // Dedicated world/US-UK 5-slot roundup — NOT the India feed. Long-form pulls 2 per
@@ -69,12 +90,24 @@ async function gatherStories(cfg) {
     if (picked.length >= STORY_COUNT) break;
     if (!picked.includes(s)) picked.push(s);
   }
-  // Translate each to Hinglish (fail-safe to English).
-  for (const s of picked) {
-    const t = await toHinglish(s.title, s.summary);
-    s.title = t.title;
-    s.summary = t.summary;
-    s.badge = s.isBreaking ? 'BREAKING' : s.isLive ? 'LIVE' : (s.category || 'NEWS').toUpperCase();
+  // Translate to Hindi with the OFFLINE m2m100 model (MIT, no API, no rate limits).
+  const CAT_HI = { top: 'खबर', politics: 'राजनीति', business: 'बिज़नेस', entertainment: 'मनोरंजन', sports: 'खेल', tech: 'टेक', science: 'विज्ञान', world: 'विश्व', health: 'सेहत' };
+  const translated = await translateHindi(picked);
+  for (let i = 0; i < picked.length; i++) {
+    const s = picked[i];
+    const t = translated[i];
+    if (t) {
+      s.title = t.title;
+      s.summary = t.summary;
+    }
+    // Hindi badge (English category labels look wrong on a Hindi channel).
+    s.badge = s.isBreaking ? 'ब्रेकिंग' : s.isLive ? 'लाइव' : CAT_HI[(s.category || 'top').toLowerCase()] || 'खबर';
+  }
+  const okCount = translated.filter((t) => t?.translated).length;
+  if (okCount < picked.length) {
+    console.log(`[shorts:bharat] ⚠ translation: ${okCount}/${picked.length} translated to Hindi (m2m100); the rest kept English`);
+  } else {
+    console.log(`[shorts:bharat] translated ${okCount}/${picked.length} stories to Hindi (m2m100)`);
   }
   return picked;
 }

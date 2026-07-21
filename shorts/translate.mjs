@@ -67,11 +67,16 @@ async function viaOpenAICompatible(prompt) {
 
 function buildPrompt(title, summary) {
   return [
-    'You are an Indian news anchor. Translate the following English news into natural,',
-    'conversational HINGLISH — Hindi written in Devanagari, but KEEP English proper nouns,',
-    'place names, organisation names, numbers and common English news words as-is (the way',
-    'real Indian TV anchors speak). Keep it crisp and factual. Do NOT add opinion or new facts.',
-    'Return ONLY valid JSON: {"title": "...", "summary": "..."} with no markdown, no extra text.',
+    'You are a senior Hindi news anchor for a national TV channel. Translate the English',
+    'news below into clear, professional, NATURAL HINDI in Devanagari script.',
+    'RULES:',
+    '- Write EVERYTHING in Hindi/Devanagari — including people, places and organisation',
+    "  names, transliterated to Devanagari (e.g. 'Donald Trump' → 'डोनाल्ड ट्रंप',",
+    "  'Netflix' → 'नेटफ्लिक्स', 'Parliament' → 'संसद').",
+    '- Keep numbers/dates readable in Hindi. Do NOT leave English words in Latin script.',
+    '- Crisp, factual, broadcast tone. NO opinion, NO new facts, NO English sentences.',
+    '- Do NOT add greetings or filler; translate only the given text.',
+    'Return ONLY valid JSON: {"title": "...", "summary": "..."} — no markdown, no extra text.',
     '',
     `English title: ${title}`,
     `English summary: ${summary}`,
@@ -95,12 +100,16 @@ function parseJson(text) {
   }
 }
 
-// Translate → { title, summary } in Hinglish, or the ORIGINAL English on any failure.
+// Translate → { title, summary } in professional Devanagari HINDI, or the ORIGINAL
+// English on any failure (fail-safe so a Short still renders). Prefers FREE providers
+// (SambaNova / OpenRouter / Groq — all free tiers) and only uses Gemini if its key is
+// set. `translated:false` means it fell back to English — the caller logs that loudly.
 export async function toHinglish(title, summary) {
   const prompt = buildPrompt(title, summary);
   let out = null;
   try {
-    out = (await viaGemini(prompt)) || (await viaOpenAICompatible(prompt));
+    // Free OpenAI-compatible providers first; Gemini only as an optional extra.
+    out = (await viaOpenAICompatible(prompt)) || (await viaGemini(prompt));
   } catch {
     out = null;
   }

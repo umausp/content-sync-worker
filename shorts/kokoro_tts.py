@@ -137,6 +137,12 @@ def main() -> int:
             try:
                 ph = backend.phonemize([spoken], strip=True)
                 ph = (ph[0] if ph else "").strip()
+                # espeak injects LANGUAGE-SWITCH markers like "(en)word(hi)" when it hits
+                # a foreign word (e.g. an English name inside Hindi). Kokoro reads those
+                # literally → the voice says "hi"/"en". Strip all "(xx)" markers so only
+                # real phonemes remain. (This was the 'always voicing hi' bug.)
+                ph = _re.sub(r"\((?:en|hi|[a-z]{2,3})\)", " ", ph)
+                ph = _re.sub(r"\s+", " ", ph).strip()
                 if ph:
                     a = synth_phonemes(pipe, ph, voice, speed)
                     if len(a) / SR >= 0.05:

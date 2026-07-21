@@ -19,12 +19,8 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
-  # Hinglish translation uses the free LLM router keys (Gemini primary).
-  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-  GEMINI_MODEL: gemini-2.0-flash
-  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
-  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  # EN→Hindi is now done OFFLINE by the m2m100 model (translate_hi.py) — no LLM API
+  # keys, no rate limits. (Old Gemini/SambaNova/OpenRouter/Groq keys no longer needed.)
 
 jobs:
   render:
@@ -46,16 +42,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Kokoro TTS (Apache-2.0)
+      - name: Install Kokoro TTS + m2m100 translation deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile
+          # kokoro (TTS) + sentencepiece (m2m100 tokenizer). transformers comes via kokoro.
+          python -m pip install --quiet kokoro soundfile sentencepiece
 
-      - name: Cache Kokoro model
+      - name: Cache HuggingFace models (Kokoro + m2m100)
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: kokoro-hf-v1
+          key: hf-kokoro-m2m100-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
@@ -65,6 +62,9 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          # Authenticated HF downloads (faster/reliable; m2m100 is public, token optional).
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
         run: node shorts/build_short.mjs bharat
 
       - name: Auto-upload to YouTube (unlisted)
