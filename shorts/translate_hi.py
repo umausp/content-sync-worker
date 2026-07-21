@@ -60,10 +60,14 @@ def main() -> int:
     for it in items:
         ti, ok1 = tr(it.get("title"))
         su, ok2 = tr(it.get("summary"))
-        translated = bool(ok1 and ok2)
-        if translated:
+        out = {**it, "title": ti or it.get("title", ""), "summary": su or it.get("summary", ""), "translated": bool(ok1 and ok2)}
+        # Optional backstory (thread origin) — translate it too when present.
+        if it.get("backstory"):
+            bs, _ok = tr(it.get("backstory"))
+            out["backstory"] = bs or it.get("backstory", "")
+        if out["translated"]:
             done += 1
-        out_items.append({**it, "title": ti or it.get("title", ""), "summary": su or it.get("summary", ""), "translated": translated})
+        out_items.append(out)
 
     json.dump({"items": out_items}, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
     print(f"translate_hi: {done}/{len(items)} translated EN→HI (m2m100)", file=sys.stderr)

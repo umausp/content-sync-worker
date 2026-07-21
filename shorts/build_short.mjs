@@ -52,7 +52,10 @@ async function translateHindi(stories) {
   const outPath = join(dir, 'out.json');
   await writeFile(
     jobPath,
-    JSON.stringify({ items: stories.map((s) => ({ title: s.title, summary: s.summary })), out: outPath }),
+    JSON.stringify({
+      items: stories.map((s) => ({ title: s.title, summary: s.summary, backstory: s.backstory || '' })),
+      out: outPath,
+    }),
   );
   try {
     await execFileP(PY, [join(process.cwd(), 'shorts', 'translate_hi.py'), jobPath], { timeout: 300000 });
@@ -61,6 +64,26 @@ async function translateHindi(stories) {
   } catch (e) {
     console.log(`[shorts:bharat] translate_hi failed (${e.message}); keeping English`);
     return stories.map(() => null);
+  }
+}
+
+// For a thread with prior updates, fetch the ORIGINAL development so the Short can give
+// backstory. Sets story.backstory (English) — translated alongside the rest for bharat.
+async function attachBackstory(story) {
+  if (!story.hashtag || (story.updateCount || 0) < 2) return; // single-update = no arc
+  try {
+    const t = await getJson(`/news/stories/${encodeURIComponent(story.hashtag)}/thread`);
+    const ups = t.updates || [];
+    if (ups.length < 2) return;
+    // Oldest update = how the story began. Use its short body/title as the backstory.
+    const first = ups[ups.length - 1];
+    let bs = String(first.body || first.title || '').replace(/\s+/g, ' ').trim();
+    if (bs && bs.slice(0, 40) !== String(story.title).slice(0, 40)) {
+      if (bs.length > 160) bs = `${bs.slice(0, 157).replace(/\s+\S*$/, '')}…`;
+      story.backstory = bs;
+    }
+  } catch {
+    /* best-effort — no backstory */
   }
 }
 
@@ -100,6 +123,10 @@ async function gatherStories(cfg) {
     if (picked.length >= STORY_COUNT) break;
     if (!picked.includes(s)) picked.push(s);
   }
+  // BACKSTORY: for a story that's an UPDATE to an existing thread (updateCount > 1),
+  // pull the ORIGINAL development from its thread so the Short can remind the viewer how
+  // it began ("यह मामला तब शुरू हुआ जब… अब…") — connects returning viewers to the arc.
+  await Promise.all(picked.map((s) => attachBackstory(s)));
   // Translate to Hindi with the OFFLINE m2m100 model (MIT, no API, no rate limits).
   const CAT_HI = { top: 'खबर', politics: 'राजनीति', business: 'बिज़नेस', entertainment: 'मनोरंजन', sports: 'खेल', tech: 'टेक', science: 'विज्ञान', world: 'विश्व', health: 'सेहत' };
   const translated = await translateHindi(picked);
@@ -109,6 +136,7 @@ async function gatherStories(cfg) {
     if (t) {
       s.title = t.title;
       s.summary = t.summary;
+      if (t.backstory) s.backstory = t.backstory;
     }
     // Hindi badge (English category labels look wrong on a Hindi channel).
     s.badge = s.isBreaking ? 'ब्रेकिंग' : s.isLive ? 'लाइव' : CAT_HI[(s.category || 'top').toLowerCase()] || 'खबर';
@@ -160,6 +188,13 @@ function storySentences(story, cfg, index) {
   // Start DIRECTLY with the news headline — no "Story N." prefix (spoken or captioned).
   const out = [title];
   const sents = summary.split(/(?<=[.!?।])\s+/).map((s) => s.trim()).filter(Boolean);
+  // BACKSTORY line for evolving threads — a short "here's how it started" recap so a
+  // returning viewer connects the update to the arc. Placed after the headline, before
+  // the latest development. Only in single/long-form (roundup has no room).
+  if ((SINGLE || LONGFORM) && story.backstory) {
+    const lead = cfg.scriptLang === 'hi' ? `पृष्ठभूमि: ${story.backstory}` : `The background: ${story.backstory}`;
+    out.push(lead);
+  }
   if (LONGFORM) {
     // Long-form (16:9, ~3.5min): up to 2 sentences per story — the higher-RPM format.
     for (const s of sents.slice(0, 2)) out.push(s.length > 240 ? `${s.slice(0, 237).replace(/\s+\S*$/, '')}…` : s);
