@@ -113,7 +113,7 @@ export async function buildChrome(story, cfg, outDir) {
     <rect x="0" y="0" width="${W}" height="${H}" fill="url(#scrim)"/>
     <!-- top brand bar -->
     ${brandMark(48, 60, 96)}
-    <text x="164" y="128" font-family="${cfg.font}" font-size="46" font-weight="900" fill="${BRAND.text}">Agyata</text>
+    <text x="164" y="128" font-family="${cfg.font}" font-size="42" font-weight="900" fill="${BRAND.text}">Agyata News</text>
     <!-- badge chip -->
     <rect x="${W - 340}" y="66" width="292" height="72" rx="36" fill="${badgeColor}"/>
     <text x="${W - 194}" y="115" font-family="${cfg.font}" font-size="38" font-weight="900" fill="#fff" text-anchor="middle">${esc(badge)}</text>
