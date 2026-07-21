@@ -86,6 +86,7 @@ async function ttsForStory(sentences, cfg, work, id) {
     chunks: sentences,
     lang: cfg.lang,
     voice: cfg.voice,
+    espeakLang: cfg.espeakLang, // espeak-ng phonemization language (en-us / hi)
     speed: Number(process.env.SHORTS_TTS_SPEED || 0.94), // slightly slower = clearer
     out: join(work, `nar-${id}`),
   };

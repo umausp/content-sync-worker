@@ -48,7 +48,10 @@ export const CHANNELS = {
     id: 'world',
     label: 'Agyata World',
     lang: 'a', // Kokoro English
-    voice: process.env.SHORTS_VOICE_WORLD || 'af_heart',
+    // USA audio style (user ask): American-accent Kokoro voice + espeak en-us
+    // phonemization. am_michael = authoritative American male news read.
+    voice: process.env.SHORTS_VOICE_WORLD || 'am_michael',
+    espeakLang: 'en-us',
     scriptLang: 'en',
     font: FONTS.latin,
     // Feed selection: global-interest English stories (world/business/science/tech lead).
@@ -68,6 +71,7 @@ export const CHANNELS = {
     label: 'Agyata भारत',
     lang: 'h', // Kokoro Hindi (handles Hinglish — Hindi with English proper nouns)
     voice: process.env.SHORTS_VOICE_BHARAT || 'hf_alpha',
+    espeakLang: 'hi', // espeak-ng Hindi phonemization (correct Devanagari → IPA)
     scriptLang: 'hi',
     font: FONTS.deva,
     apiMode: 'latest',
