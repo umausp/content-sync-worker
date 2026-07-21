@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: read
 
 env:
   API_BASE: https://api.agyata.com
@@ -61,14 +61,10 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: node shorts/build_short.mjs world
 
-      - name: Commit staged video for review
-        run: |
-          git config user.name "agyata-shorts-bot"
-          git config user.email "bot@agyata.com"
-          git add docs/shorts/world/ || true
-          if git diff --cached --quiet; then
-            echo "nothing staged — not committing"
-          else
-            git commit -m "longform(world): staged $SHORTS_STAMP for review"
-            git push
-          fi
+      - name: Upload staged long-form for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-world-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/world/
+          retention-days: 14
+          if-no-files-found: warn

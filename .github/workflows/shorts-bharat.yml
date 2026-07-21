@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: read
 
 env:
   API_BASE: https://api.agyata.com
@@ -67,14 +67,19 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: node shorts/build_short.mjs bharat
 
-      - name: Commit staged Short for review
-        run: |
-          git config user.name "agyata-shorts-bot"
-          git config user.email "bot@agyata.com"
-          git add docs/shorts/bharat/ || true
-          if git diff --cached --quiet; then
-            echo "nothing staged — not committing"
-          else
-            git commit -m "shorts(bharat): staged $SHORTS_STAMP for review"
-            git push
-          fi
+      - name: Auto-upload to YouTube (unlisted)
+        if: ${{ secrets.YT_REFRESH_TOKEN_BHARAT != '' }}
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+        run: node shorts/upload.mjs bharat "$SHORTS_STAMP"
+
+      - name: Upload staged Short artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-bharat-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/bharat/
+          retention-days: 7
+          if-no-files-found: warn

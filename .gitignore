@@ -2,6 +2,8 @@ node_modules/
 *.log
 response.json
 
-# Shorts pipeline scratch (regenerated each run). docs/shorts/ IS committed —
-# it holds the staged review MP4 + meta the human-approve upload workflow reads.
+# Shorts pipeline scratch + staged renders — both regenerated each run and NOT
+# committed. Staged videos are uploaded as workflow ARTIFACTS (download from the
+# Actions run page), so main stays code-only + push collisions are avoided.
 .shorts-work/
+docs/shorts/

@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write # commit the staged Short back to the repo for review
+  contents: read # renders upload as artifacts (below), not committed to the repo
 
 env:
   API_BASE: https://api.agyata.com
@@ -63,14 +63,24 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: node shorts/build_short.mjs world
 
-      - name: Commit staged Short for review
-        run: |
-          git config user.name "agyata-shorts-bot"
-          git config user.email "bot@agyata.com"
-          git add docs/shorts/world/ || true
-          if git diff --cached --quiet; then
-            echo "nothing staged (render may have failed) — not committing"
-          else
-            git commit -m "shorts(world): staged $SHORTS_STAMP for review"
-            git push
-          fi
+      # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus in the meta). Runs only when
+      # the channel's refresh token secret is set — until then the render just produces
+      # the artifact below. Never fails the run if upload errors (best-effort).
+      - name: Auto-upload to YouTube (unlisted)
+        if: ${{ secrets.YT_REFRESH_TOKEN_WORLD != '' }}
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+        run: node shorts/upload.mjs world "$SHORTS_STAMP"
+
+      # Also keep the MP4 as a short-lived ARTIFACT (download from the Actions run page)
+      # — a review copy without committing binaries to the repo.
+      - name: Upload staged Short artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-world-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/world/
+          retention-days: 7
+          if-no-files-found: warn

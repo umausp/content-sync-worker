@@ -224,7 +224,9 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
       .sort((a, b) => {
         // AUTHENTICITY ranking: a real, current story with a photo beats an old/imageless
         // one. Score = corroboration + has-image + recency (all favour a genuine event).
-        const score = (x) => x.corr * 3 + (x.hasImg ? 2 : 0) + Math.max(0, 6 - x.freshH / 6);
+        // Weight RECENCY more so the feed feels current: fresher (lower freshH) scores
+        // higher, plus corroboration + a real image.
+        const score = (x) => x.corr * 2 + (x.hasImg ? 2 : 0) + Math.max(0, 10 - x.freshH / 2);
         const d = score(b) - score(a);
         if (d !== 0) return d;
         return a.freshH - b.freshH;

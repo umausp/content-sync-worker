@@ -44,7 +44,8 @@ async function gatherStories(cfg) {
     // Dedicated world/US-UK 5-slot roundup — NOT the India feed. Long-form pulls 2 per
     // slot (→10 stories); Shorts pull 1 per slot (→5).
     const perSlot = LONGFORM ? 2 : 1;
-    const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 36), perSlot });
+    // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
+    const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18), perSlot });
     return round.slice(0, STORY_COUNT);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
@@ -298,40 +299,72 @@ async function sumDurations(paths) {
 
 function buildUploadMeta(stories, cfg, dur) {
   const isWorld = cfg.id === 'world';
-  // Long-form drops the #shorts tag (it must NOT be classified as a Short) and uses a
-  // "News Recap" framing; Shorts keep #shorts. Both are News & Politics (cat 25).
-  const hashtags = LONGFORM ? cfg.hashtags.filter((h) => h !== '#shorts') : cfg.hashtags;
-  const tagLine = hashtags.join(' ');
-  const lead = stories[0];
   const n = stories.length;
-  const title = (
-    LONGFORM
-      ? isWorld
-        ? `Top ${n} World News Stories Today | ${lead.title}`
-        : `आज की टॉप ${n} खबरें | ${lead.title}`
-      : isWorld
-        ? `Top ${n}: ${lead.title}`
-        : `टॉप ${n}: ${lead.title}`
-  ).slice(0, 95);
-  const lines = [
-    isWorld ? `Today's top ${n} world news stories:` : `आज की टॉप ${n} खबरें:`,
+  const lead = stories[0];
+  // UTC date label (Date is unavailable in workflow scripts but this runs in Node/CI).
+  const date = new Date().toISOString().slice(0, 10);
+
+  // TITLE — hooky, front-loaded, emoji, under YouTube's 100-char cap. Shorts append
+  // #Shorts (aids Shorts classification); long-form must NOT. Build with a budget so the
+  // lead title is trimmed (not the suffix) — never chop the #Shorts tag mid-word.
+  const flag = isWorld ? '🌍' : '🇮🇳';
+  const suffix = isWorld
+    ? LONGFORM ? ` | Top ${n} World News Today (${date})` : ` | Top ${n} World News${LONGFORM ? '' : ' #Shorts'}`
+    : LONGFORM ? ` | आज की टॉप ${n} खबरें (${date})` : ` | आज की टॉप खबरें${LONGFORM ? '' : ' #Shorts'}`;
+  const budget = 99 - flag.length - 1 - suffix.length;
+  let leadT = lead.title;
+  if (leadT.length > budget) leadT = `${leadT.slice(0, Math.max(0, budget - 1)).replace(/\s+\S*$/, '')}…`;
+  const title = `${flag} ${leadT}${suffix}`.slice(0, 99);
+
+  // DESCRIPTION — hook + numbered stories WITH source + timestamps-ready + CTA links +
+  // subscribe + hashtags. First 2 lines matter most (shown above the fold / in search).
+  const sub = isWorld
+    ? 'https://www.youtube.com/@AgyataWorld?sub_confirmation=1'
+    : 'https://www.youtube.com/@agyata_dot_com?sub_confirmation=1';
+  const hook = isWorld
+    ? `The ${n} biggest world news stories today, ${date} — fast, neutral, sourced. Politics, breaking, business, tech, entertainment, sports & science in one quick recap.`
+    : `आज की ${n} सबसे बड़ी खबरें (${date}) — तेज़, निष्पक्ष और भरोसेमंद। राजनीति, बिज़नेस, मनोरंजन, खेल और टेक — एक साथ।`;
+  const storyList = stories.map((s, i) => `${i + 1}. ${s.title}${s.sourceName ? ` — ${s.sourceName}` : ''}`);
+  const seoTail = isWorld
+    ? ['📲 Full stories & live updates: https://agyata.com', `🔔 Subscribe for daily world news: ${sub}`]
+    : ['📲 पूरी खबरें: https://agyata.com', `🔔 रोज़ की खबरों के लिए Subscribe करें: ${sub}`];
+  // A rich, relevant hashtag block (YouTube uses the FIRST 3 as the clickable tags above
+  // the title). Category-aware + evergreen news tags.
+  const catTags = [...new Set(stories.map((s) => (s.category || '').toLowerCase()).filter(Boolean))];
+  const baseTags = isWorld
+    ? ['worldnews', 'breakingnews', 'news', 'todaynews', 'globalnews']
+    : ['हिंदीन्यूज़', 'breakingnews', 'indianews', 'taazakhabar', 'news'];
+  const hashtags = [...(LONGFORM ? [] : ['shorts']), ...baseTags, ...catTags].slice(0, 15);
+  const description = [
+    hook,
     '',
-    ...stories.map((s, i) => `${i + 1}. ${s.title}`),
+    isWorld ? "🗞️ In this recap:" : '🗞️ इस बुलेटिन में:',
+    ...storyList,
     '',
-    `${cfg.ctaLine} https://agyata.com`,
+    ...seoTail,
     '',
-    tagLine,
-  ];
+    hashtags.map((h) => `#${h}`).join(' '),
+    '',
+    isWorld
+      ? 'Agyata News brings you fast, neutral, sourced news from around the world, every day.'
+      : 'Agyata News — भारत और दुनिया की खबरें, तेज़ और निष्पक्ष।',
+  ].join('\n');
+
   return {
     channel: cfg.id,
     format: LONGFORM ? 'longform' : 'short',
     title,
-    description: lines.join('\n').slice(0, 4900),
-    tags: hashtags.map((h) => h.replace('#', '')).concat(stories.map((s) => s.category)).filter(Boolean).slice(0, 20),
-    categoryId: '25',
+    description: description.slice(0, 4900),
+    // YouTube tags (metadata, ≤500 chars total): keywords + category + per-story terms.
+    tags: [...baseTags, ...catTags, isWorld ? 'world news today' : 'aaj ki taaza khabar', 'daily news recap', 'agyata']
+      .filter(Boolean)
+      .slice(0, 20),
+    categoryId: '25', // News & Politics
     selfDeclaredMadeForKids: false,
     containsSyntheticMedia: true,
-    privacyStatus: 'private',
+    // UNLISTED: auto-uploaded but not publicly discoverable — you bulk-flip the good
+    // ones to public in YouTube Studio (protects monetization + a review safety net).
+    privacyStatus: process.env.SHORTS_PRIVACY || 'unlisted',
     durationSec: Math.round(dur),
     storyCount: n,
     uploadSecret: cfg.uploadSecret,
