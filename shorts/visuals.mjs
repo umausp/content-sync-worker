@@ -63,6 +63,23 @@ async function coverTo(srcPath, outPath) {
   return outPath;
 }
 
+// Minimum source width to use a story image full-frame. RSS thumbnails below this
+// (e.g. BBC's ~240px feed images) look pixelated blown up to 1080w, so we reject them
+// and let the pipeline fall to Pexels (hi-res) / gradient instead.
+const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || 640);
+
+async function imageWidth(path) {
+  try {
+    const { stdout } = await execFileP('ffprobe', [
+      '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width',
+      '-of', 'default=nw=1:nk=1', path,
+    ]);
+    return Number(String(stdout).trim()) || 0;
+  } catch {
+    return 0;
+  }
+}
+
 async function tryStoryImage(story, outDir) {
   const url = story.imageUrl;
   if (!url || !/^https:\/\//i.test(url)) return null;
@@ -71,6 +88,8 @@ async function tryStoryImage(story, outDir) {
     if (buf.length < 2000) return null; // too small to be a real photo
     const raw = join(outDir, 'src-story');
     await writeFile(raw, buf);
+    // Reject low-res thumbnails so we don't ship a pixelated full-frame.
+    if ((await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
     return await coverTo(raw, join(outDir, 'bg.png'));
   } catch {
     return null;

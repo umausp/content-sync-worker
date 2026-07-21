@@ -14,6 +14,29 @@
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
+// Clean display names for the "Source:" credit (raw RSS hosts read badly, e.g.
+// "feeds.bbci.co.uk"). Falls back to the bare domain for anything unlisted.
+const SOURCE_NAMES = {
+  'bbci.co.uk': 'BBC',
+  'bbc.co.uk': 'BBC',
+  'nytimes.com': 'The New York Times',
+  'theguardian.com': 'The Guardian',
+  'skynews.com': 'Sky News',
+  'aljazeera.com': 'Al Jazeera',
+  'cnbc.com': 'CNBC',
+  'dj.com': 'The Wall Street Journal',
+  'wsj.com': 'The Wall Street Journal',
+  'variety.com': 'Variety',
+  'hollywoodreporter.com': 'The Hollywood Reporter',
+  'sciencedaily.com': 'ScienceDaily',
+  'nasa.gov': 'NASA',
+};
+function cleanSource(host) {
+  const h = String(host || '').replace(/^www\./, '').replace(/^feeds?\./, '').replace(/^rss\./, '');
+  for (const [dom, name] of Object.entries(SOURCE_NAMES)) if (h.endsWith(dom)) return name;
+  return h;
+}
+
 export const WORLD_SLOTS = [
   {
     key: 'politics',
@@ -119,7 +142,7 @@ async function fetchFeed(url) {
         url: link,
         summary: desc.slice(0, 400),
         imageUrl: imageOf(block),
-        sourceName: host,
+        sourceName: cleanSource(host),
         publishedAt: pub ? new Date(pub).toISOString() : null,
       });
     }
