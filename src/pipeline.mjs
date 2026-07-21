@@ -294,6 +294,54 @@ function parseFeed(xml, category, limit) {
 }
 async function fetchFeed(f) { try { const r = await fetch(f.url, { headers: { 'user-agent': UA, accept: 'application/xml,text/xml,*/*' }, signal: AbortSignal.timeout(12000) }); if (!r.ok) return []; return parseFeed(await r.text(), f.category, PER_FEED); } catch { return []; } }
 
+// ── SNIPPET ENRICHMENT — fetch the real article body so synth has more than the thin
+// RSS <description> to work from. Extends article.snippet with the article's own body
+// paragraphs (og:description + first substantive <p> blocks, boilerplate stripped).
+// Fail-open (keeps the RSS snippet on any error), bounded concurrency, and only touches
+// articles whose snippet is short + that have a real URL. $0, no LLM. ─────────────────
+const ENRICH_MIN_SNIPPET = Number(process.env.ENRICH_MIN_SNIPPET || 320); // already-rich? skip
+const ENRICH_TARGET = Number(process.env.ENRICH_TARGET || 900); // cap the enriched snippet
+const ENRICH_CONCURRENCY = Number(process.env.ENRICH_CONCURRENCY || 8);
+const BOILERPLATE = /cookie|subscri|sign ?up|newsletter|advertisement|©|\ball rights reserved\b|accept .*terms|privacy policy/i;
+
+async function enrichOne(a) {
+  const url = a?.url;
+  if (!url || !/^https?:\/\//i.test(url)) return;
+  if ((a.snippet || '').length >= ENRICH_MIN_SNIPPET) return; // already substantial
+  try {
+    const r = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
+    if (!r.ok) return;
+    const html = await r.text();
+    const og = (html.match(/<meta[^>]+(?:property|name)=["'](?:og:description|description)["'][^>]+content=["']([^"']+)/i) || [])[1] || '';
+    const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map((m) => strip(m[1]))
+      .filter((t) => t.length > 60 && !BOILERPLATE.test(t));
+    // Build fuller snippet: RSS snippet + og + distinct body paragraphs, deduped.
+    const seen = new Set();
+    const parts = [a.snippet, og, ...paras].filter((p) => {
+      const k = (p || '').slice(0, 40).toLowerCase();
+      if (!p || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    let full = parts.join(' ').replace(/\s+/g, ' ').trim();
+    if (full.length > ENRICH_TARGET) full = full.slice(0, ENRICH_TARGET).replace(/\s+\S*$/, '');
+    if (full.length > (a.snippet || '').length) a.snippet = full;
+  } catch {
+    /* keep the RSS snippet */
+  }
+}
+
+async function enrichSnippets(articles) {
+  const list = articles.filter(Boolean);
+  let enriched = 0;
+  for (let i = 0; i < list.length; i += ENRICH_CONCURRENCY) {
+    const batch = list.slice(i, i + ENRICH_CONCURRENCY);
+    await Promise.all(batch.map(async (a) => { const before = (a.snippet || '').length; await enrichOne(a); if ((a.snippet || '').length > before) enriched++; }));
+  }
+  console.log(`enriched snippets: ${enriched}/${list.length} extended from article body`);
+}
+
 // ── Scoring ─────────────────────────────────────────────────────────────────
 const RANK = { BBC: 5, 'The Guardian': 5, 'Al Jazeera': 5, 'New York Times': 5, DW: 4, NPR: 4, CNBC: 4, NASA: 5, 'Space.com': 4, 'The Hindu': 5, 'The Indian Express': 4, 'Hindustan Times': 4, 'Times of India': 4, NDTV: 4, Mint: 4, 'Economic Times': 4, 'Business Standard': 4, 'India Today': 4, Moneycontrol: 3, News18: 3, 'Zee News': 3, 'DNA India': 3, Scroll: 3, 'Bollywood Hungama': 4, Pinkvilla: 3, Koimoi: 3 };
 // Genres given a small pre-synth score nudge. HARD NEWS leads a serious feed —
@@ -857,6 +905,18 @@ export async function buildCandidates() {
   const rescued = candidatePool.filter((p) => !inEligible.has(p) && !isVideoNative(p));
   const tail = synthable.slice(llmCap).concat(videoNative, rescued);
   console.log(`clustered ${clusters.length}; multi-source ${clusters.filter((c) => c.sources.size > 1).length}; quality-eligible ${allEligible.length} (llm ${eligible.length}, extractive-tail ${tail.length}, rescued-below-bar ${rescued.length}); minImp=${SYNTH_MIN_IMPORTANCE}; hosted=[${hosted.join(',')}]; top corroboration ${Math.max(0, ...allEligible.map((p) => p.corr))}`);
+
+  // ENRICH SNIPPETS from the article body BEFORE synth. RSS <description> is thin
+  // (~1-2 sentences), so the LLM was synthesising from very little. Here we fetch the
+  // actual article page for the synth candidates + their extractive-tail siblings and
+  // extend each snippet with real body paragraphs — the model then writes a fuller,
+  // better-grounded summary. Benefits EVERYTHING downstream (site, app, both YT
+  // channels, both formats). $0, no LLM; bounded concurrency; fully fail-open (keeps
+  // the RSS snippet on any failure). Skips video-native (no article) + already-rich.
+  if (process.env.ENRICH_SNIPPETS !== '0') {
+    const toEnrich = eligible.concat(tail.filter((p) => !isVideoNative(p)));
+    await enrichSnippets(toEnrich.map((p) => p.a));
+  }
 
   // BATCHED synthesis — the big lever: synth SYNTH_BATCH articles per model call
   // instead of one. ~80 calls (~20 min) → ~10 calls. Each batch is one LLM call;
