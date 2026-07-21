@@ -48,12 +48,19 @@ export const CHANNELS = {
     id: 'world',
     label: 'Agyata World',
     lang: 'a', // Kokoro English
-    voice: process.env.SHORTS_VOICE_WORLD || 'af_heart',
+    // USA audio style (user ask): American-accent Kokoro voice + espeak en-us
+    // phonemization. am_michael = authoritative American male news read.
+    voice: process.env.SHORTS_VOICE_WORLD || 'am_michael',
+    espeakLang: 'en-us',
     scriptLang: 'en',
     font: FONTS.latin,
     // Feed selection: global-interest English stories (world/business/science/tech lead).
     apiMode: 'latest',
     categoryPriority: ['world', 'business', 'science', 'tech', 'top', 'politics'],
+    // Tier-1 audience fit: lead with globally-relevant desks. Exclude India-local +
+    // entertainment (regional-interest) so the English channel doesn't open on a story
+    // a US/UK viewer won't recognise. `sports` kept out too (very region-specific).
+    categoryFit: (s) => ['world', 'business', 'science', 'tech', 'top', 'politics'].includes(s.category),
     ctaLine: 'Full story → agyata.com',
     subCta: 'Subscribe for world news',
     hashtags: ['#shorts', '#news', '#worldnews', '#breaking'],
@@ -64,6 +71,7 @@ export const CHANNELS = {
     label: 'Agyata भारत',
     lang: 'h', // Kokoro Hindi (handles Hinglish — Hindi with English proper nouns)
     voice: process.env.SHORTS_VOICE_BHARAT || 'hf_alpha',
+    espeakLang: 'hi', // espeak-ng Hindi phonemization (correct Devanagari → IPA)
     scriptLang: 'hi',
     font: FONTS.deva,
     apiMode: 'latest',

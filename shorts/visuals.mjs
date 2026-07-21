@@ -28,13 +28,56 @@ async function fetchBuf(url) {
 }
 
 // Scale+crop any input image to exactly BWxBH (cover), via ffmpeg (handles jpg/png/webp).
+//
+// PROFESSIONAL BACKGROUND TREATMENT (the quality fix): we don't drop the raw source
+// photo behind the caption. Instead we build a "cinematic backdrop" — a subtly BLURRED
+// + DARKENED cover layer with a SHARP, slightly-smaller version composited on top.
+// Why: (1) the big caption text always reads clearly over the darkened blur; (2) any
+// source-image chyron / competitor watermark / on-screen text becomes an unobtrusive
+// abstract backdrop instead of a distracting (or off-brand) hard edge — this is exactly
+// the look pro faceless news Shorts use. The sharp inset keeps the actual news photo
+// recognizable. Falls back to a plain cover if the two-layer filter ever errors.
 async function coverTo(srcPath, outPath) {
-  await execFileP('ffmpeg', [
-    '-y', '-loglevel', 'error', '-i', srcPath,
-    '-vf', `scale=${BW}:${BH}:force_original_aspect_ratio=increase,crop=${BW}:${BH},format=yuv420p`,
-    '-frames:v', '1', outPath,
-  ]);
+  const filter =
+    // blurred, darkened full-bleed base…
+    `[0:v]scale=${BW}:${BH}:force_original_aspect_ratio=increase,crop=${BW}:${BH},` +
+    `gblur=sigma=28,eq=brightness=-0.18:saturation=0.9[bgblur];` +
+    // …sharp inset (90% width) centered on top…
+    `[0:v]scale=${Math.round(BW * 0.94)}:${Math.round(BH * 0.94)}:force_original_aspect_ratio=increase,` +
+    `crop=${Math.round(BW * 0.94)}:${Math.round(BH * 0.94)}[fg];` +
+    `[bgblur][fg]overlay=(W-w)/2:(H-h)/2,format=yuv420p[out]`;
+  try {
+    await execFileP('ffmpeg', [
+      '-y', '-loglevel', 'error', '-i', srcPath,
+      '-filter_complex', filter, '-map', '[out]',
+      '-frames:v', '1', outPath,
+    ]);
+  } catch {
+    // Fallback: plain cover (never fail the whole render over the fancy treatment).
+    await execFileP('ffmpeg', [
+      '-y', '-loglevel', 'error', '-i', srcPath,
+      '-vf', `scale=${BW}:${BH}:force_original_aspect_ratio=increase,crop=${BW}:${BH},format=yuv420p`,
+      '-frames:v', '1', outPath,
+    ]);
+  }
   return outPath;
+}
+
+// Minimum source width to use a story image full-frame. RSS thumbnails below this
+// (e.g. BBC's ~240px feed images) look pixelated blown up to 1080w, so we reject them
+// and let the pipeline fall to Pexels (hi-res) / gradient instead.
+const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || 640);
+
+async function imageWidth(path) {
+  try {
+    const { stdout } = await execFileP('ffprobe', [
+      '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width',
+      '-of', 'default=nw=1:nk=1', path,
+    ]);
+    return Number(String(stdout).trim()) || 0;
+  } catch {
+    return 0;
+  }
 }
 
 async function tryStoryImage(story, outDir) {
@@ -45,6 +88,8 @@ async function tryStoryImage(story, outDir) {
     if (buf.length < 2000) return null; // too small to be a real photo
     const raw = join(outDir, 'src-story');
     await writeFile(raw, buf);
+    // Reject low-res thumbnails so we don't ship a pixelated full-frame.
+    if ((await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
     return await coverTo(raw, join(outDir, 'bg.png'));
   } catch {
     return null;
