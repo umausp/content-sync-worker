@@ -26,11 +26,43 @@ import soundfile as sf
 
 SR = 24000
 
+# PRONUNCIATION OVERRIDES — a small dictionary of names a free 82M TTS commonly
+# mangles, respelled phonetically for the voice ONLY (the on-screen caption keeps the
+# correct spelling — captions come from the caller, not from here). This is the honest
+# mitigation for free-TTS proper-noun errors; it's a floor, not a ceiling. Extend via
+# the job's "sayAs" map: { "Bengaluru": "Ben-ga-loo-roo", ... }. Word-boundary, case-
+# insensitive. A paid voice (ElevenLabs) would remove the need, but this covers the
+# frequent offenders at $0.
+DEFAULT_SAY_AS = {
+    "Bengaluru": "Bengalooroo",
+    "Bhopal": "Bhoh-paal",
+    "Kejriwal": "Kej-ree-waal",
+    "Yogi Adityanath": "Yogi Aditya-naat",
+    "Jaishankar": "Jai-shankar",
+    "Sensex": "Sen-sex",
+    "Nifty": "Nif-tee",
+    "BJP": "B J P",
+    "RBI": "R B I",
+    "ISRO": "Iss-ro",
+    "SEBI": "See-bee",
+    "GST": "G S T",
+    "IPO": "I P O",
+    "AQI": "A Q I",
+}
 
-def synth_chunk(pipe, text, voice):
+
+def apply_say_as(text, say_as):
+    import re
+
+    for name, phon in say_as.items():
+        text = re.sub(rf"\b{re.escape(name)}\b", phon, text, flags=re.IGNORECASE)
+    return text
+
+
+def synth_chunk(pipe, text, voice, speed):
     """Return the concatenated float32 audio for one caption chunk."""
     parts = []
-    for _gs, _ps, audio in pipe(text, voice=voice):
+    for _gs, _ps, audio in pipe(text, voice=voice, speed=speed):
         a = np.asarray(audio, dtype=np.float32)
         if a.ndim > 1:
             a = a.reshape(-1)
@@ -48,6 +80,9 @@ def main() -> int:
     out = job["out"]
     # A short silent gap between caption chunks — natural pacing + clean caption swaps.
     gap = float(job.get("gap", 0.18))
+    # Slightly slower default reads clearer/more natural for news.
+    speed = float(job.get("speed", 0.94))
+    say_as = {**DEFAULT_SAY_AS, **(job.get("sayAs") or {})}
     if not chunks:
         print("kokoro_tts: no chunks", file=sys.stderr)
         return 2
@@ -64,7 +99,9 @@ def main() -> int:
     segments = []
     t = 0.0
     for text in chunks:
-        a = synth_chunk(pipe, text, voice)
+        # Speak with pronunciation overrides applied; the CAPTION uses the original text.
+        spoken = apply_say_as(text, say_as)
+        a = synth_chunk(pipe, spoken, voice, speed)
         dur = len(a) / SR
         if dur < 0.02:
             # Kokoro produced nothing usable for this chunk — skip rather than emit a
