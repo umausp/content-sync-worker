@@ -1,3 +1,7 @@
 node_modules/
 *.log
 response.json
+
+# Shorts pipeline scratch (regenerated each run). docs/shorts/ IS committed —
+# it holds the staged review MP4 + meta the human-approve upload workflow reads.
+.shorts-work/

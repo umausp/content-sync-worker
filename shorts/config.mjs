@@ -1,0 +1,88 @@
+// config.mjs — per-channel configuration for the Agyata Shorts pipeline.
+//
+// Two channels, one engine (see docs/youtube/SHORTS_PIPELINE_DESIGN.md):
+//   • world  — ENGLISH, US/UK/global audience → tier-1 CPM (the earnings engine)
+//   • bharat — HINDI/HINGLISH, India audience → reach + app funnel (the growth engine)
+//
+// Everything tunable via env so the GitHub Actions workflow can override per run.
+
+import { join } from 'node:path';
+
+export const ROOT = process.cwd();
+// The Python (venv) that has Kokoro installed. Actions installs it; locally it's the
+// 3.12 venv we built. Override with SHORTS_PY.
+export const PY = process.env.SHORTS_PY || '/tmp/kdenv/bin/python';
+
+// Vertical Shorts canvas. 1080×1920, 30fps, ~30–50s target.
+export const VIDEO = {
+  width: 1080,
+  height: 1920,
+  fps: 30,
+  // Loudness target for YouTube (~-14 LUFS integrated).
+  lufs: -14,
+};
+
+// Brand (matches docs/youtube/channel_logo.svg — purple gradient + geometric A).
+export const BRAND = {
+  bgTop: '#0a0a0a',
+  bgBottom: '#1a1030',
+  accent: '#8b5cf6',
+  accent2: '#5b21b6',
+  breaking: '#ef4444',
+  live: '#ef4444',
+  text: '#ffffff',
+  muted: '#c4b5fd',
+  site: 'agyata.com',
+};
+
+// Fonts on the runner/mac. Latin bold for English; Kohinoor/Noto Devanagari for Hindi.
+// SVG uses font-family names; rsvg resolves via fontconfig. We ship family fallbacks.
+export const FONTS = {
+  latin: "'Arial Black','Arial',sans-serif",
+  // Devanagari-capable stack. Actions (Ubuntu) has Noto; mac has Kohinoor.
+  deva: "'Kohinoor Devanagari','Noto Sans Devanagari','Nirmala UI','Arial Unicode MS',sans-serif",
+};
+
+export const CHANNELS = {
+  world: {
+    id: 'world',
+    label: 'Agyata World',
+    lang: 'a', // Kokoro English
+    voice: process.env.SHORTS_VOICE_WORLD || 'af_heart',
+    scriptLang: 'en',
+    font: FONTS.latin,
+    // Feed selection: global-interest English stories (world/business/science/tech lead).
+    apiMode: 'latest',
+    categoryPriority: ['world', 'business', 'science', 'tech', 'top', 'politics'],
+    ctaLine: 'Full story → agyata.com',
+    subCta: 'Subscribe for world news',
+    hashtags: ['#shorts', '#news', '#worldnews', '#breaking'],
+    uploadSecret: 'YT_REFRESH_TOKEN_WORLD',
+  },
+  bharat: {
+    id: 'bharat',
+    label: 'Agyata भारत',
+    lang: 'h', // Kokoro Hindi (handles Hinglish — Hindi with English proper nouns)
+    voice: process.env.SHORTS_VOICE_BHARAT || 'hf_alpha',
+    scriptLang: 'hi',
+    font: FONTS.deva,
+    apiMode: 'latest',
+    categoryPriority: ['top', 'politics', 'entertainment', 'sports', 'business', 'world'],
+    ctaLine: 'पूरी खबर → agyata.com',
+    subCta: 'भारत की खबरों के लिए Subscribe करें',
+    hashtags: ['#shorts', '#news', '#hindinews', '#breaking', '#india'],
+    uploadSecret: 'YT_REFRESH_TOKEN_BHARAT',
+  },
+};
+
+export function channel(id) {
+  const c = CHANNELS[id];
+  if (!c) throw new Error(`unknown channel '${id}' (want: world | bharat)`);
+  return c;
+}
+
+export const API_BASE = process.env.API_BASE || 'https://api.agyata.com';
+export const STAGE_DIR = process.env.SHORTS_STAGE_DIR || join(ROOT, 'docs', 'shorts');
+export const WORK_DIR = process.env.SHORTS_WORK_DIR || join(ROOT, '.shorts-work');
+export const MUSIC_DIR = process.env.SHORTS_MUSIC_DIR || join(ROOT, 'shorts', 'assets', 'music');
+export const PEXELS_KEY = process.env.PEXELS_API_KEY || '';

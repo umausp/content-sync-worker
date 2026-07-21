@@ -1,0 +1,38 @@
+name: shorts-upload
+
+# HUMAN-APPROVE GATE → upload a staged Short to YouTube. You run this manually
+# (Actions tab → Run workflow) after reviewing the staged MP4, passing the channel +
+# the stamp folder to publish. This is the ~2% human step that keeps the channel on
+# the right side of YouTube's 2025 "authentic content" monetization rule — nothing
+# auto-posts. Uploads PRIVATE by default (flip to public in YouTube Studio, or set
+# privacy=public once the API project is audited).
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Channel: world | bharat'
+        required: true
+        default: 'world'
+      stamp:
+        description: 'Staged folder name (e.g. 20260721T1230) under docs/shorts/<channel>/'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Upload to YouTube
+        run: node shorts/upload.mjs "${{ github.event.inputs.channel }}" "${{ github.event.inputs.stamp }}"

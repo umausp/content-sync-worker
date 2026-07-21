@@ -1,0 +1,74 @@
+name: shorts-world
+
+# Render ONE English Short for the @AgyataWorld channel (tier-1 audience) from the
+# freshest global-interest story, then STAGE it (commit the MP4 + metadata) for the
+# human-approve gate. Nothing uploads here — approval runs shorts-upload.yml.
+#
+# CADENCE: driven by the agyata-cron-pinger Cloudflare Worker (workflow_dispatch),
+# same as the news pipeline. Add a line to the pinger's WORKFLOWS to schedule it.
+# Public repo = free minutes. Never on pull_request.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: shorts-world
+  cancel-in-progress: false
+
+permissions:
+  contents: write # commit the staged Short back to the repo for review
+
+env:
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python # the workflow's venv python (set on PATH below)
+  # LLM key(s) not needed for the English channel (no translation).
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install system deps (ffmpeg + librsvg + fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg librsvg2-bin fonts-dejavu fonts-noto-core fonts-noto-cjk
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Kokoro TTS (Apache-2.0)
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet kokoro soundfile
+
+      - name: Cache Kokoro model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: kokoro-hf-v1
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render English Short
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: node shorts/build_short.mjs world
+
+      - name: Commit staged Short for review
+        run: |
+          git config user.name "agyata-shorts-bot"
+          git config user.email "bot@agyata.com"
+          git add docs/shorts/world/ || true
+          if git diff --cached --quiet; then
+            echo "nothing staged (render may have failed) — not committing"
+          else
+            git commit -m "shorts(world): staged $SHORTS_STAMP for review"
+            git push
+          fi
