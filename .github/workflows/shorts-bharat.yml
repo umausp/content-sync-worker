@@ -63,6 +63,8 @@ jobs:
       - name: Render Hindi Short
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: node shorts/build_short.mjs bharat
 
       - name: Commit staged Short for review

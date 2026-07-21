@@ -12,7 +12,7 @@ import { execFile } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import { BRAND, PEXELS_KEY, VIDEO } from './config.mjs';
+import { BRAND, PEXELS_KEY, PIXABAY_KEY, UNSPLASH_KEY, VIDEO } from './config.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -97,29 +97,90 @@ async function tryStoryImage(story, outDir) {
   }
 }
 
+// Distinctive-word query from the story (drop stopwords/short tokens). Shared by all
+// stock providers so they search the same terms.
+function stockQuery(story) {
+  return (
+    String(story.title || story.hashtag || 'news')
+      .replace(/[^\p{L}\p{N} ]+/gu, ' ')
+      .split(/\s+/)
+      .filter((w) => w.length > 3)
+      .slice(0, 4)
+      .join(' ') || 'news'
+  );
+}
+// Orientation matches the canvas so we get portrait shots for Shorts, landscape for
+// long-form (better cover, less cropping).
+const ORIENT = VIDEO.landscape ? 'landscape' : 'portrait';
+
+async function downloadTo(src, outDir, name) {
+  const buf = await fetchBuf(src);
+  if (buf.length < 2000) return null;
+  const raw = join(outDir, name);
+  await writeFile(raw, buf);
+  return coverTo(raw, join(outDir, 'bg.png'));
+}
+
 async function tryPexels(story, outDir) {
   if (!PEXELS_KEY) return null;
-  // Query from the story's distinctive words (drop stopwords/short tokens).
-  const q = String(story.title || story.hashtag || 'news')
-    .replace(/[^\p{L}\p{N} ]+/gu, ' ')
-    .split(/\s+/)
-    .filter((w) => w.length > 3)
-    .slice(0, 4)
-    .join(' ') || 'news';
+  const q = stockQuery(story);
   try {
     const r = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=portrait&per_page=5`,
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=${ORIENT}&per_page=5`,
       { headers: { Authorization: PEXELS_KEY, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
     );
     if (!r.ok) return null;
     const j = await r.json();
     const photo = (j.photos || [])[0];
-    const src = photo?.src?.portrait || photo?.src?.large2x || photo?.src?.original;
+    const src = VIDEO.landscape
+      ? photo?.src?.landscape || photo?.src?.large2x || photo?.src?.original
+      : photo?.src?.portrait || photo?.src?.large2x || photo?.src?.original;
     if (!src) return null;
-    const buf = await fetchBuf(src);
-    const raw = join(outDir, 'src-pexels');
-    await writeFile(raw, buf);
-    return await coverTo(raw, join(outDir, 'bg.png'));
+    return await downloadTo(src, outDir, 'src-pexels');
+  } catch {
+    return null;
+  }
+}
+
+async function tryPixabay(story, outDir) {
+  if (!PIXABAY_KEY) return null;
+  const q = stockQuery(story);
+  try {
+    // editors_choice + photo type + min width so we get quality editorial shots.
+    const r = await fetch(
+      `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_KEY)}&q=${encodeURIComponent(q)}` +
+        `&image_type=photo&orientation=${VIDEO.landscape ? 'horizontal' : 'vertical'}&safesearch=true&per_page=5&min_width=${VIDEO.width}`,
+      { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
+    );
+    if (!r.ok) return null;
+    const j = await r.json();
+    const hit = (j.hits || [])[0];
+    const src = hit?.largeImageURL || hit?.fullHDURL || hit?.webformatURL;
+    if (!src) return null;
+    return await downloadTo(src, outDir, 'src-pixabay');
+  } catch {
+    return null;
+  }
+}
+
+async function tryUnsplash(story, outDir) {
+  if (!UNSPLASH_KEY) return null;
+  const q = stockQuery(story);
+  try {
+    const r = await fetch(
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}` +
+        `&orientation=${VIDEO.landscape ? 'landscape' : 'portrait'}&per_page=5&content_filter=high`,
+      { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}`, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
+    );
+    if (!r.ok) return null;
+    const j = await r.json();
+    const photo = (j.results || [])[0];
+    // Unsplash raw URL + sizing params for a hi-res crop at our canvas width.
+    const src = photo?.urls?.raw
+      ? `${photo.urls.raw}&w=${BW}&fit=max`
+      : photo?.urls?.full || photo?.urls?.regular;
+    if (!src) return null;
+    return await downloadTo(src, outDir, 'src-unsplash');
   } catch {
     return null;
   }
@@ -143,12 +204,18 @@ async function brandFallback(outDir) {
 }
 
 // Resolve the best available background → bg.png (BWxBH). Returns { path, kind }.
+// Chain: the story's OWN photo (best — real news image) → Pexels → Pixabay → Unsplash
+// (more stock coverage = fewer gradient fallbacks) → branded gradient (always works).
 export async function resolveBackground(story, outDir) {
   await mkdir(outDir, { recursive: true });
   const story1 = await tryStoryImage(story, outDir);
   if (story1) return { path: story1, kind: 'story' };
   const pex = await tryPexels(story, outDir);
   if (pex) return { path: pex, kind: 'pexels' };
+  const pix = await tryPixabay(story, outDir);
+  if (pix) return { path: pix, kind: 'pixabay' };
+  const uns = await tryUnsplash(story, outDir);
+  if (uns) return { path: uns, kind: 'unsplash' };
   return { path: await brandFallback(outDir), kind: 'brand' };
 }
 

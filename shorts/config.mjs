@@ -98,3 +98,7 @@ export const STAGE_DIR = process.env.SHORTS_STAGE_DIR || join(ROOT, 'docs', 'sho
 export const WORK_DIR = process.env.SHORTS_WORK_DIR || join(ROOT, '.shorts-work');
 export const MUSIC_DIR = process.env.SHORTS_MUSIC_DIR || join(ROOT, 'shorts', 'assets', 'music');
 export const PEXELS_KEY = process.env.PEXELS_API_KEY || '';
+// Extra free stock providers (fallbacks after story-image + Pexels). Secret names match
+// what's set on GitHub: PIXBAY_API_KEY (sic) + UNSPLASH_ACCESS_KEY.
+export const PIXABAY_KEY = process.env.PIXBAY_API_KEY || '';
+export const UNSPLASH_KEY = process.env.UNSPLASH_ACCESS_KEY || '';
