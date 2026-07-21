@@ -42,15 +42,18 @@ ESPEAK_LANG = {"a": "en-us", "b": "en-gb", "h": "hi"}
 def make_phonemizer(espeak_lang):
     """espeak-ng backend via phonemizer. Uses Kokoro's bundled libespeak-ng if the
     system one isn't found, so it works on any runner."""
+    # Point phonemizer at Kokoro's bundled libespeak-ng so it works on any runner.
+    # Guard every call with hasattr — the wrapper API differs across phonemizer /
+    # phonemizer-fork versions (older ones lack set_library / set_data_path), and a
+    # missing attribute must NOT crash: we just fall back to whatever's on PATH.
     try:
         import espeakng_loader
         from phonemizer.backend.espeak.wrapper import EspeakWrapper
 
-        EspeakWrapper.set_library(espeakng_loader.get_library_path())
-        try:
+        if hasattr(EspeakWrapper, "set_library"):
+            EspeakWrapper.set_library(espeakng_loader.get_library_path())
+        if hasattr(EspeakWrapper, "set_data_path"):
             EspeakWrapper.set_data_path(espeakng_loader.get_data_path())
-        except Exception:
-            pass
     except Exception:
         pass  # fall through to whatever phonemizer finds on PATH
     from phonemizer.backend import EspeakBackend
