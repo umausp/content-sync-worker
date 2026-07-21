@@ -160,7 +160,7 @@ function normTitle(t) {
 // Fetch one representative, corroborated, recent story PER SLOT → 5 stories.
 // corroboration = how many of the slot's outlets ran a title-similar story (a light
 // quality signal). Prefers items WITH an image + more corroboration + freshness.
-export async function buildWorldRoundup({ maxAgeH = 36 } = {}) {
+export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1 } = {}) {
   const now = Date.now();
   const out = [];
   for (const slot of WORLD_SLOTS) {
@@ -185,13 +185,16 @@ export async function buildWorldRoundup({ maxAgeH = 36 } = {}) {
         return { rep, corr: c.sources.size, hasImg: !!rep.imageUrl, freshH, sources: [...c.sources] };
       })
       .sort((a, b) => {
-        // more corroboration, then has-image, then fresher
-        if (b.corr !== a.corr) return b.corr - a.corr;
-        if (a.hasImg !== b.hasImg) return a.hasImg ? -1 : 1;
+        // AUTHENTICITY ranking: a real, current story with a photo beats an old/imageless
+        // one. Score = corroboration + has-image + recency (all favour a genuine event).
+        const score = (x) => x.corr * 3 + (x.hasImg ? 2 : 0) + Math.max(0, 6 - x.freshH / 6);
+        const d = score(b) - score(a);
+        if (d !== 0) return d;
         return a.freshH - b.freshH;
       });
-    const pick = ranked[0];
-    if (pick) {
+    // Take the top `perSlot` distinct stories from this slot (1 for Shorts, 2 for
+    // long-form → 10 stories across 5 slots).
+    for (const pick of ranked.slice(0, perSlot)) {
       out.push({
         slot: slot.key,
         badge: slot.label,

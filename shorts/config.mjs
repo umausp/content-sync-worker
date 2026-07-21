@@ -13,11 +13,15 @@ export const ROOT = process.cwd();
 // 3.12 venv we built. Override with SHORTS_PY.
 export const PY = process.env.SHORTS_PY || '/tmp/kdenv/bin/python';
 
-// Vertical Shorts canvas. 1080×1920, 30fps, ~30–50s target.
+// Canvas orientation. Default = vertical Shorts (1080×1920). Set SHORTS_ORIENTATION=
+// landscape for the LONG-FORM 16:9 build (1920×1080) — the higher-RPM monetization
+// format. All render/frame/visual modules read VIDEO, so one switch flips everything.
+const LANDSCAPE = process.env.SHORTS_ORIENTATION === 'landscape';
 export const VIDEO = {
-  width: 1080,
-  height: 1920,
+  width: LANDSCAPE ? 1920 : 1080,
+  height: LANDSCAPE ? 1080 : 1920,
   fps: 30,
+  landscape: LANDSCAPE,
   // Loudness target for YouTube (~-14 LUFS integrated).
   lufs: -14,
 };

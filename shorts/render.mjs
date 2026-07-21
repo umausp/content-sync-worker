@@ -87,7 +87,7 @@ export async function concatWithMusic({ segmentPaths, musicPath, outPath, totalD
     // [0] concatenated clips (video+narration), [1] music looped.
     const filter =
       `[1:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:${totalDur.toFixed(3)},` +
-      `volume=0.08,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, totalDur - 2).toFixed(3)}:d=2[mus];` +
+      `volume=0.22,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, totalDur - 2).toFixed(3)}:d=2[mus];` +
       `[0:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=1.0[nar];` +
       `[nar][mus]amix=inputs=2:duration=first:dropout_transition=0,` +
       `loudnorm=I=${VIDEO.lufs}:TP=-1.5:LRA=11[aout]`;

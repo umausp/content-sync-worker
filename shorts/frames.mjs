@@ -135,13 +135,19 @@ export async function buildCaption(text, idx, cfg, outDir) {
   // heavy, so keep the Latin budget tight enough to stay inside the 1080px width with
   // the 60px side margins (measured: ~20 caps fit before the right edge clips).
   const isDeva = cfg.scriptLang === 'hi';
-  const maxChars = isDeva ? 18 : 20;
-  const fontSize = isDeva ? 60 : 64;
+  // Landscape (long-form 16:9) is wider + shorter — fit more chars per line, place the
+  // caption band lower (78%) so it sits in the lower third over the scrim.
+  const land = VIDEO.landscape;
+  const maxChars = land ? (isDeva ? 34 : 40) : isDeva ? 18 : 20;
+  const fontSize = land ? (isDeva ? 52 : 56) : isDeva ? 60 : 64;
   const lineH = fontSize * 1.24;
-  const lines = wrap(text, maxChars).slice(0, 4);
-  // Vertically place the caption block centered in the lower-middle third.
+  const lines = wrap(text, maxChars).slice(0, 3);
+  // Captions sit in the BOTTOM band, just above the source/hashtag/CTA chrome (user:
+  // "all captions at the bottom"). We bottom-ALIGN the block to a baseline near the
+  // lower chrome so 1-, 2- or 3-line captions all hug the bottom consistently.
   const blockH = lines.length * lineH;
-  const startY = H * 0.60 - blockH / 2 + fontSize;
+  const bottomBaseline = land ? H - 150 : H - 260; // above the source/CTA lines
+  const startY = bottomBaseline - blockH + fontSize;
   const tspans = lines
     .map((ln, i) => `<tspan x="${W / 2}" y="${Math.round(startY + i * lineH)}">${esc(ln)}</tspan>`)
     .join('');

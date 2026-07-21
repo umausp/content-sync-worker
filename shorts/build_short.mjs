@@ -27,7 +27,10 @@ import { buildWorldRoundup } from './world_feeds.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
-const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || 5);
+// LONG-FORM mode (16:9, ~3.5min, 10 stories) = the higher-RPM monetization format.
+// Triggered by SHORTS_ORIENTATION=landscape; defaults to 10 stories there, 5 for Shorts.
+const LONGFORM = process.env.SHORTS_ORIENTATION === 'landscape';
+const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || (LONGFORM ? 10 : 5));
 
 async function getJson(path) {
   const r = await fetch(`${API_BASE}${path}`, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) });
@@ -38,8 +41,10 @@ async function getJson(path) {
 // ── Story gathering, per channel ────────────────────────────────────────────
 async function gatherStories(cfg) {
   if (cfg.id === 'world') {
-    // Dedicated world/US-UK 5-slot roundup — NOT the India feed.
-    const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 36) });
+    // Dedicated world/US-UK 5-slot roundup — NOT the India feed. Long-form pulls 2 per
+    // slot (→10 stories); Shorts pull 1 per slot (→5).
+    const perSlot = LONGFORM ? 2 : 1;
+    const round = await buildWorldRoundup({ maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 36), perSlot });
     return round.slice(0, STORY_COUNT);
   }
   // bharat: top India stories from the Agyata feed.
@@ -57,6 +62,18 @@ async function gatherStories(cfg) {
   return picked;
 }
 
+// The opening HOOK — a short, punchy line to grab attention in the first seconds.
+function hookLine(cfg, count) {
+  if (cfg.scriptLang === 'hi') {
+    return LONGFORM
+      ? `आज की ${count} सबसे बड़ी खबरें — शुरू करते हैं।`
+      : `आज की टॉप ${count} खबरें — देखिए।`;
+  }
+  return LONGFORM
+    ? `Here are the ${count} biggest world stories today.`
+    : `Today's top ${count} world stories — let's go.`;
+}
+
 // ── Natural narration for ONE story ──────────────────────────────────────────
 // Full sentences (not isolated fragments) so Kokoro's prosody flows naturally. The
 // caption for each sentence is timed to that sentence's audio. Returns the list of
@@ -68,15 +85,21 @@ function storySentences(story, cfg, index) {
     .replace(/\s+/g, ' ')
     .trim();
   const summary = String(story.summary).replace(/\s+/g, ' ').trim();
-  // Budget each story to ~9-10s so 5 stories land under YouTube's 60s Short cap.
-  // The headline is the star; add ONE short context clause only if the title is brief,
-  // and always trim at a word boundary. (A 5-story Short ≈ 50s at this budget.)
-  const lead = cfg.scriptLang === 'hi' ? `खबर ${index + 1}.` : `Story ${index + 1}.`;
-  const out = [`${lead} ${title}`];
-  if (title.length < 70) {
-    let ctx = summary.split(/(?<=[.!?।])\s+/).map((s) => s.trim()).filter(Boolean)[0] || '';
-    if (ctx.length > 120) ctx = `${ctx.slice(0, 117).replace(/\s+\S*$/, '')}…`;
-    if (ctx) out.push(ctx);
+  // Start DIRECTLY with the news headline — no "Story N." prefix (spoken or captioned).
+  const out = [title];
+  const sents = summary.split(/(?<=[.!?।])\s+/).map((s) => s.trim()).filter(Boolean);
+  if (LONGFORM) {
+    // Long-form (16:9, ~3.5min) has time for real context: up to 2 sentences per story,
+    // less aggressively trimmed — this is the higher-RPM monetization format.
+    for (const s of sents.slice(0, 2)) out.push(s.length > 240 ? `${s.slice(0, 237).replace(/\s+\S*$/, '')}…` : s);
+  } else {
+    // Shorts: budget ~9-10s/story so 5 land under YouTube's 60s cap. Headline is the
+    // star; add ONE short context clause only when the title is brief.
+    if (title.length < 70) {
+      let ctx = sents[0] || '';
+      if (ctx.length > 120) ctx = `${ctx.slice(0, 117).replace(/\s+\S*$/, '')}…`;
+      if (ctx) out.push(ctx);
+    }
   }
   return out.map((s) => s.trim()).filter(Boolean);
 }
@@ -126,9 +149,29 @@ async function main() {
   await rm(work, { recursive: true, force: true });
   await mkdir(work, { recursive: true });
 
-  // Each story renders as its own clip (story 1 leads with "Story 1." so the roundup
-  // reads as a countdown — no separate intro clip needed, which keeps concat clean).
   const segmentPaths = [];
+
+  // 1-5s HOOK clip: the video opens with a punchy spoken+captioned hook (top-creator
+  // pattern — grab attention in the first seconds) before the stories start.
+  try {
+    const hookText = hookLine(cfg, stories.length);
+    const hookTiming = await ttsForStory([hookText], cfg, work, 'hook');
+    if (hookTiming.duration && hookTiming.segments?.length) {
+      const hbg = await resolveBackground(stories[0], join(work, 'hook'));
+      const hchrome = await buildChrome({ ...stories[0], badge: cfg.scriptLang === 'hi' ? 'आज की खबरें' : 'TODAY' }, cfg, join(work, 'hook'));
+      const hcaps = [];
+      for (let j = 0; j < hookTiming.segments.length; j++) {
+        const png = await buildCaption(hookTiming.segments[j].text, `hook-${j}`, cfg, join(work, 'hook'));
+        hcaps.push({ png, start: hookTiming.segments[j].start, end: hookTiming.segments[j].end });
+      }
+      const hclip = join(work, 'clip-hook.mp4');
+      await renderSegment({ bgPath: hbg.path, chromePath: hchrome, captions: hcaps, narrationWav: join(work, 'nar-hook.wav'), dur: hookTiming.duration, outPath: hclip });
+      segmentPaths.push(hclip);
+      console.log(`[shorts:${cfg.id}]   ✓ hook clip (${hookTiming.duration.toFixed(1)}s)`);
+    }
+  } catch (e) {
+    console.log(`[shorts:${cfg.id}]   (hook skipped: ${e.message})`);
+  }
 
   // Render each story as its own clip.
   for (let i = 0; i < stories.length; i++) {
@@ -191,30 +234,43 @@ async function sumDurations(paths) {
 }
 
 function buildUploadMeta(stories, cfg, dur) {
-  const tagLine = cfg.hashtags.join(' ');
-  const lead = stories[0];
   const isWorld = cfg.id === 'world';
-  const title = (isWorld ? `Top ${stories.length}: ${lead.title}` : `टॉप ${stories.length}: ${lead.title}`).slice(0, 95);
+  // Long-form drops the #shorts tag (it must NOT be classified as a Short) and uses a
+  // "News Recap" framing; Shorts keep #shorts. Both are News & Politics (cat 25).
+  const hashtags = LONGFORM ? cfg.hashtags.filter((h) => h !== '#shorts') : cfg.hashtags;
+  const tagLine = hashtags.join(' ');
+  const lead = stories[0];
+  const n = stories.length;
+  const title = (
+    LONGFORM
+      ? isWorld
+        ? `Top ${n} World News Stories Today | ${lead.title}`
+        : `आज की टॉप ${n} खबरें | ${lead.title}`
+      : isWorld
+        ? `Top ${n}: ${lead.title}`
+        : `टॉप ${n}: ${lead.title}`
+  ).slice(0, 95);
   const lines = [
-    isWorld ? `Today's top ${stories.length} world stories:` : `आज की टॉप ${stories.length} खबरें:`,
+    isWorld ? `Today's top ${n} world news stories:` : `आज की टॉप ${n} खबरें:`,
     '',
     ...stories.map((s, i) => `${i + 1}. ${s.title}`),
     '',
-    cfg.ctaLine + ' https://agyata.com',
+    `${cfg.ctaLine} https://agyata.com`,
     '',
     tagLine,
   ];
   return {
     channel: cfg.id,
+    format: LONGFORM ? 'longform' : 'short',
     title,
     description: lines.join('\n').slice(0, 4900),
-    tags: cfg.hashtags.map((h) => h.replace('#', '')).concat(stories.map((s) => s.category)).filter(Boolean).slice(0, 20),
+    tags: hashtags.map((h) => h.replace('#', '')).concat(stories.map((s) => s.category)).filter(Boolean).slice(0, 20),
     categoryId: '25',
     selfDeclaredMadeForKids: false,
     containsSyntheticMedia: true,
     privacyStatus: 'private',
     durationSec: Math.round(dur),
-    storyCount: stories.length,
+    storyCount: n,
     uploadSecret: cfg.uploadSecret,
   };
 }

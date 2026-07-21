@@ -63,10 +63,11 @@ async function coverTo(srcPath, outPath) {
   return outPath;
 }
 
-// Minimum source width to use a story image full-frame. RSS thumbnails below this
-// (e.g. BBC's ~240px feed images) look pixelated blown up to 1080w, so we reject them
-// and let the pipeline fall to Pexels (hi-res) / gradient instead.
-const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || 640);
+// Minimum source width to use a story image full-frame — scaled to the CANVAS width so
+// we don't ship a pixelated blow-up. Tiny RSS thumbnails (BBC ~240px) are rejected →
+// pipeline falls to Pexels (hi-res, keyed on the runner) / gradient. We accept an image
+// at ≥60% of canvas width (the cinematic backdrop's blur hides mild upscaling).
+const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || Math.round(VIDEO.width * 0.6));
 
 async function imageWidth(path) {
   try {
