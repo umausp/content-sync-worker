@@ -67,7 +67,10 @@ async function coverTo(srcPath, outPath) {
 // we don't ship a pixelated blow-up. Tiny RSS thumbnails (BBC ~240px) are rejected →
 // pipeline falls to Pexels (hi-res, keyed on the runner) / gradient. We accept an image
 // at ≥60% of canvas width (the cinematic backdrop's blur hides mild upscaling).
-const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || Math.round(VIDEO.width * 0.6));
+// ~44% of canvas width: rejects only genuinely tiny thumbnails (BBC ~240px) while
+// keeping normal RSS photos (600-800px), which the cinematic blur backdrop upscales
+// cleanly. Too high a bar was discarding real photos → gradient ("everything blue").
+const MIN_IMG_WIDTH = Number(process.env.SHORTS_MIN_IMG_WIDTH || Math.round(VIDEO.width * 0.44));
 
 async function imageWidth(path) {
   try {
@@ -99,17 +102,40 @@ async function tryStoryImage(story, outDir, seen) {
   }
 }
 
-// Distinctive-word query from the story (drop stopwords/short tokens). Shared by all
-// stock providers so they search the same terms.
-function stockQuery(story) {
-  return (
-    String(story.title || story.hashtag || 'news')
-      .replace(/[^\p{L}\p{N} ]+/gu, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length > 3)
-      .slice(0, 4)
-      .join(' ') || 'news'
-  );
+// Generic, high-hit stock search terms per category — a HEADLINE fragment ("Burnham
+// cuts electricity bills") almost never matches a stock library and returns nothing →
+// gradient fallback (the "everything is blue" problem). Category terms reliably return
+// a relevant, professional photo. One proper-noun entity from the title is prepended
+// when present (e.g. a place/org) to keep it on-topic, then we fall back to the term.
+const CATEGORY_TERMS = {
+  politics: 'government parliament politics',
+  breaking: 'breaking news press conference',
+  crisis: 'stock market economy finance',
+  business: 'stock market economy finance',
+  entertainment: 'cinema movie premiere',
+  tech: 'technology computer data',
+  facts: 'science laboratory research',
+  science: 'science laboratory research',
+  sports: 'stadium sports athlete',
+  health: 'hospital medicine healthcare',
+  offbeat: 'world city people',
+  top: 'news world city',
+  world: 'world map globe',
+};
+// Ordered list of stock queries to try for a story: category term first (reliable hit),
+// then a broad news fallback. Providers try each until one returns an unused photo.
+function stockQueries(story) {
+  const cat = String(story.category || story.slot || 'top').toLowerCase();
+  const term = CATEGORY_TERMS[cat] || CATEGORY_TERMS.top;
+  // A distinctive proper noun from the title (Capitalized word ≥4 chars) narrows it.
+  const proper = String(story.title || '')
+    .split(/\s+/)
+    .find((w) => /^[A-Z][a-z]{3,}/.test(w) && !/^(The|This|That|With|From|After|Says)$/.test(w));
+  const queries = [];
+  if (proper) queries.push(`${proper} ${term.split(' ')[0]}`);
+  queries.push(term);
+  queries.push('news world');
+  return queries;
 }
 // Orientation matches the canvas so we get portrait shots for Shorts, landscape for
 // long-form (better cover, less cropping).
@@ -135,71 +161,61 @@ async function downloadTo(src, outDir, name) {
   return coverTo(raw, join(outDir, 'bg.png'));
 }
 
-async function tryPexels(story, outDir, seen) {
-  if (!PEXELS_KEY) return null;
-  const q = stockQuery(story);
-  try {
-    const r = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=${ORIENT}&per_page=15`,
-      { headers: { Authorization: PEXELS_KEY, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
-    );
-    if (!r.ok) return null;
-    const j = await r.json();
-    const cands = (j.photos || []).map((p) => ({
-      id: `pexels:${p.id}`,
-      src: VIDEO.landscape
-        ? p.src?.landscape || p.src?.large2x || p.src?.original
-        : p.src?.portrait || p.src?.large2x || p.src?.original,
-    }));
-    const src = pickUnused(cands, seen);
-    return src ? await downloadTo(src, outDir, 'src-pexels') : null;
-  } catch {
-    return null;
-  }
+// Each provider tries the story's ordered queries (category term → broad fallback)
+// until one returns an UNUSED photo, so we rarely fall through to the gradient.
+async function pexelsCandidates(q) {
+  const r = await fetch(
+    `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&orientation=${ORIENT}&per_page=15`,
+    { headers: { Authorization: PEXELS_KEY, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
+  );
+  if (!r.ok) return [];
+  const j = await r.json();
+  return (j.photos || []).map((p) => ({
+    id: `pexels:${p.id}`,
+    src: VIDEO.landscape
+      ? p.src?.landscape || p.src?.large2x || p.src?.original
+      : p.src?.portrait || p.src?.large2x || p.src?.original,
+  }));
+}
+async function pixabayCandidates(q) {
+  const r = await fetch(
+    `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_KEY)}&q=${encodeURIComponent(q)}` +
+      `&image_type=photo&orientation=${VIDEO.landscape ? 'horizontal' : 'vertical'}&safesearch=true&per_page=15&min_width=${VIDEO.width}`,
+    { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
+  );
+  if (!r.ok) return [];
+  const j = await r.json();
+  return (j.hits || []).map((h) => ({ id: `pixabay:${h.id}`, src: h.largeImageURL || h.fullHDURL || h.webformatURL }));
+}
+async function unsplashCandidates(q) {
+  const r = await fetch(
+    `https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}` +
+      `&orientation=${VIDEO.landscape ? 'landscape' : 'portrait'}&per_page=15&content_filter=high`,
+    { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}`, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
+  );
+  if (!r.ok) return [];
+  const j = await r.json();
+  return (j.results || []).map((p) => ({
+    id: `unsplash:${p.id}`,
+    src: p.urls?.raw ? `${p.urls.raw}&w=${BW}&fit=max` : p.urls?.full || p.urls?.regular,
+  }));
 }
 
-async function tryPixabay(story, outDir, seen) {
-  if (!PIXABAY_KEY) return null;
-  const q = stockQuery(story);
-  try {
-    const r = await fetch(
-      `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_KEY)}&q=${encodeURIComponent(q)}` +
-        `&image_type=photo&orientation=${VIDEO.landscape ? 'horizontal' : 'vertical'}&safesearch=true&per_page=15&min_width=${VIDEO.width}`,
-      { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
-    );
-    if (!r.ok) return null;
-    const j = await r.json();
-    const cands = (j.hits || []).map((h) => ({
-      id: `pixabay:${h.id}`,
-      src: h.largeImageURL || h.fullHDURL || h.webformatURL,
-    }));
-    const src = pickUnused(cands, seen);
-    return src ? await downloadTo(src, outDir, 'src-pixabay') : null;
-  } catch {
-    return null;
+// Generic: try each query for a provider, return the first unused photo downloaded.
+async function tryProvider(hasKey, candidatesFn, queries, seen, outDir, name) {
+  if (!hasKey) return null;
+  for (const q of queries) {
+    try {
+      const src = pickUnused(await candidatesFn(q), seen);
+      if (src) {
+        const out = await downloadTo(src, outDir, name);
+        if (out) return out;
+      }
+    } catch {
+      /* try next query */
+    }
   }
-}
-
-async function tryUnsplash(story, outDir, seen) {
-  if (!UNSPLASH_KEY) return null;
-  const q = stockQuery(story);
-  try {
-    const r = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}` +
-        `&orientation=${VIDEO.landscape ? 'landscape' : 'portrait'}&per_page=15&content_filter=high`,
-      { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}`, 'user-agent': UA }, signal: AbortSignal.timeout(20000) },
-    );
-    if (!r.ok) return null;
-    const j = await r.json();
-    const cands = (j.results || []).map((p) => ({
-      id: `unsplash:${p.id}`,
-      src: p.urls?.raw ? `${p.urls.raw}&w=${BW}&fit=max` : p.urls?.full || p.urls?.regular,
-    }));
-    const src = pickUnused(cands, seen);
-    return src ? await downloadTo(src, outDir, 'src-unsplash') : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 // Branded gradient fallback (always succeeds) — never let a Short fail for lack of image.
@@ -229,11 +245,12 @@ export async function resolveBackground(story, outDir, seen = new Set()) {
   await mkdir(outDir, { recursive: true });
   const story1 = await tryStoryImage(story, outDir, seen);
   if (story1) return { path: story1, kind: 'story' };
-  const pex = await tryPexels(story, outDir, seen);
+  const queries = stockQueries(story);
+  const pex = await tryProvider(!!PEXELS_KEY, pexelsCandidates, queries, seen, outDir, 'src-pexels');
   if (pex) return { path: pex, kind: 'pexels' };
-  const pix = await tryPixabay(story, outDir, seen);
+  const pix = await tryProvider(!!PIXABAY_KEY, pixabayCandidates, queries, seen, outDir, 'src-pixabay');
   if (pix) return { path: pix, kind: 'pixabay' };
-  const uns = await tryUnsplash(story, outDir, seen);
+  const uns = await tryProvider(!!UNSPLASH_KEY, unsplashCandidates, queries, seen, outDir, 'src-unsplash');
   if (uns) return { path: uns, kind: 'unsplash' };
   return { path: await brandFallback(outDir), kind: 'brand' };
 }
