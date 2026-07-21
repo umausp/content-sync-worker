@@ -81,7 +81,9 @@ const CHARTER_NATIONAL =
   'unverifiable superlatives (biggest/highest-grossing/record) unless attributed with a number; lone local crime with no wider significance; single-source rumour. ' +
   'PREFER: government/policy/courts/elections, economy/markets with numbers, major world events, confirmed film/OTT releases-reviews-box-office(with source), science/space. When in doubt, SKIP. ' +
   'HEADLINE: complete specific sentence, real names/numbers, active voice, <=90 chars, no clickbait, no ellipsis; neutral framing for sensitive crime/court items. ' +
-  'SUMMARY: a substantial 1-2 sentence description, BETWEEN 160 AND 260 chars (this is REQUIRED — a one-liner is too thin; give the who/what/why/where with the key fact). BODY: 2-4 tight sentences, inverted pyramid, neutral, attributed, include key number/date. Own words. Never fabricate.';
+  'SUMMARY: a substantial 1-2 sentence description, BETWEEN 160 AND 260 chars (this is REQUIRED — a one-liner is too thin; give the who/what/why/where with the key fact). ' +
+  'SPECIFICS OVER COUNTS: never write a vague count when the source names the items — a reader must NOT need to open the source. For a release/list/roundup (OTT/movies/shows), NAME the actual titles + platform + release date + lead cast from the source (e.g. "Aap Jaisa Koi (Netflix, Jul 25) and Saiyaara (JioHotstar, Jul 26) headline this week\'s OTT releases…"), NOT "9 new movies and shows". For a match/result, give teams + the actual score/result + venue. Pull these facts from the sources provided; if a fact is not in the source, omit it (never invent). ' +
+  'BODY: 2-4 tight sentences, inverted pyramid, neutral, attributed, include key number/date. Own words. Never fabricate.';
 
 // LOCAL (Hindi) edition — deep regional/local news, WRITTEN IN HINDI. Same
 // discipline, but the value here is INFORMATIVE HYPERLOCAL coverage (district/

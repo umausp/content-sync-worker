@@ -116,6 +116,29 @@ async function fetchTrendingTerms(opts) {
 // (lottery/jackpot/result/horoscope/exam-result/betting — user: "some ads, filter
 // out") are dropped. Returns Article[] tagged via='buzz'.
 const TREND_JUNK = /\b(lottery|jackpot|satta|matka|result today|results? today|admit card|answer key|hall ticket|horoscope|rashifal|betting|casino|coupon|promo code|sarkari result|recruitment|vacancy)\b/i;
+
+// STALE-TEMPLATE URL filter — the fix for "Cricbuzz always shows very old
+// updates". Sports sites expose PERPETUAL template pages (live-scores, scorecards,
+// fixtures, points tables, series landing) whose URL never changes, so once
+// ingested they re-surface forever and read as stale ("...- Scorecard" with no
+// real content). We are an RSS/news pipeline, not a live-score API — so instead of
+// trying to keep a live score fresh, we DROP these template URLs and let the actual
+// match REPORT articles (which are fresh + informative) surface instead.
+const STALE_TEMPLATE_URL =
+  /(cricbuzz\.com\/(live-cricket-scores|cricket-scorecard|cricket-match-facts|cricket-series|cricket-schedule)|espncricinfo\.com\/(series|live-cricket-score|ci\/engine\/match)|\/live-score|\/scorecard|\/points-table|\/live-blog|\/fixtures?\b|\/standings)/i;
+// Title guard is DELIBERATELY narrow — only bare template labels, never news
+// phrasings. "India announces squad…" / "…points table shake-up" are real stories,
+// so 'squad'/'points table' are NOT here; we match the tail-label form only.
+const STALE_TEMPLATE_TITLE = /(-\s*(scorecard|live\s?score|points\s?table)\s*$|\bfull\s+scorecard\b|\blive\s+cricket\s+score\b)/i;
+
+// A buzz article is a stale template page (skip it) when its URL matches a known
+// perpetual page, OR its title is a bare template label with no news verb.
+function isStaleTemplate(url, title) {
+  if (url && STALE_TEMPLATE_URL.test(url)) return true;
+  // Title-only guard: "ZIM vs IND, 1st T20I ... - Scorecard" style labels.
+  if (title && STALE_TEMPLATE_TITLE.test(title)) return true;
+  return false;
+}
 async function fetchTrendingArticles(opts) {
   const geo = opts.geo || 'IN';
   const xml = await getXml(`https://trends.google.com/trending/rss?geo=${encodeURIComponent(geo)}`).catch(() => null);
@@ -137,6 +160,7 @@ async function fetchTrendingArticles(opts) {
       const src = tag(ni, 'ht:news_item_source');
       if (!title || !url || !/^https?:\/\//i.test(url)) continue;
       if (TREND_JUNK.test(title)) continue; // article-level junk filter
+      if (isStaleTemplate(url, title)) continue; // drop perpetual scorecard/live-score pages
       out.push({
         title,
         url,
@@ -172,6 +196,7 @@ function parseNewsItems(xml, { category = 'top', buzzTerm = null, limit = 20 } =
     const sourceUrl = srcMatch ? srcMatch[1] : '';
     const sourceName = srcMatch ? decode(srcMatch[2]) : 'Google News';
     if (!title || !link) continue;
+    if (isStaleTemplate(link, title)) continue; // drop perpetual scorecard/live-score pages
     // Skip non-article sources: social platforms + org homepages Google sometimes
     // surfaces (facebook/x/instagram/party sites) — not news events, pollute the pool.
     if (/(facebook|twitter|x|instagram|threads|tiktok|reddit)\.com|\.org$|bjp\.|inc\.in/i.test(sourceUrl)) continue;

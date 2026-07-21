@@ -93,4 +93,24 @@ export const FEEDS = [
   // ── Science / space ─────────────────────────────────────────────────────
   { url: 'https://www.nasa.gov/news-release/feed/', category: 'science' },
   { url: 'https://www.space.com/feeds/all', category: 'science' },
+  // ── Science / knowledge (broader — for 24-55 curious readers). Big global
+  //    science desks: discoveries, space, research, "did you know" material that
+  //    reads well alongside hard news. All verified reachable (Node fetch). ──────
+  { url: 'https://www.sciencedaily.com/rss/top/science.xml', category: 'science' },
+  { url: 'https://phys.org/rss-feed/', category: 'science' },
+  { url: 'https://www.livescience.com/feeds/all', category: 'science' },
+  { url: 'https://feeds.arstechnica.com/arstechnica/science', category: 'science' },
+  { url: 'https://www.nature.com/nature.rss', category: 'science' },
+  // ── Positive / uplifting ("happy news") — good-news desks so the feed isn't
+  //    wall-to-wall grim. Tagged 'top' (no positive-only rail); the genre-quota
+  //    mix then surfaces a few each run. ─────────────────────────────────────────
+  { url: 'https://www.goodnewsnetwork.org/feed/', category: 'top' },
+  { url: 'https://www.positive.news/feed/', category: 'top' },
+  // ── Health / wellness (mid-life readers) ───────────────────────────────────
+  { url: 'https://www.thehindu.com/sci-tech/health/feeder/default.rss', category: 'health' },
+  { url: 'https://indianexpress.com/section/lifestyle/health/feed/', category: 'health' },
+  { url: 'https://www.livemint.com/rss/money', category: 'business' },
+  // ── Entertainment / human-interest (broader desks) ─────────────────────────
+  { url: 'https://www.thehindu.com/entertainment/feeder/default.rss', category: 'entertainment' },
+  { url: 'https://indianexpress.com/section/entertainment/feed/', category: 'entertainment' },
 ];
