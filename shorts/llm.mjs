@@ -1,47 +1,38 @@
-// llm.mjs — a tiny, free-first LLM chat helper for the shorts pipeline. Speaks the
-// OpenAI /chat/completions shape across the free providers we already key (SambaNova /
-// OpenRouter / Groq). Used to SYNTHESISE a genuinely useful multi-source summary from
-// the raw article body (fixes "content is very less"). Fail-open: returns null if no
-// key is set or every provider fails, so the caller keeps the extractive text.
+// llm.mjs — the shorts pipeline's LLM chat helper. This is now a THIN ADAPTER over the
+// SHARED multi-provider router in src/providers.mjs — the SAME NVIDIA-first, fail-fast,
+// Ollama-fallback ladder the news pipeline uses (user: "use AI model with NVidia
+// following others and fallback to ollama").
+//
+// WHY: shorts used to carry its OWN tiny 3-provider list (Groq / SambaNova / OpenRouter)
+// with no NVIDIA and no Ollama. When those weren't keyed or 429'd, llmChat() returned
+// null and every summary fell back to raw extractive paragraphs — the "repeated words,
+// weak content" the user saw. Delegating to src/providers.mjs gives shorts the full free
+// ladder (nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels → paid openai →
+// local ollama), per-run caps, benching, and the same PROVIDER_ORDER env switch.
+//
+// Fail-open: returns null if no provider is reachable, so the caller keeps its extractive
+// text. Same signature as before — callers (world_feeds.enrichSummary) need no change.
 
-const TIMEOUT_MS = Number(process.env.SHORTS_LLM_TIMEOUT_MS || 25000);
+import { generate, availableProviders } from '../src/providers.mjs';
 
-const PROVIDERS = [
-  { key: 'GROQ_API_KEY', base: 'https://api.groq.com/openai/v1', model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile' },
-  { key: 'SOMBANOVA_API_KEY', base: 'https://api.sambanova.ai/v1', model: process.env.SAMBANOVA_MODEL || 'Meta-Llama-3.3-70B-Instruct' },
-  { key: 'SAMBANOVA_API_KEY', base: 'https://api.sambanova.ai/v1', model: process.env.SAMBANOVA_MODEL || 'Meta-Llama-3.3-70B-Instruct' },
-  { key: 'OPENROUTER_API_KEY', base: 'https://openrouter.ai/api/v1', model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free' },
-];
-
-// Run a single-prompt chat completion through the first available free provider.
+// Run a single-prompt chat completion through the shared provider ladder.
 // Returns the assistant text, or null on total failure.
-export async function llmChat(prompt, { maxTokens = 400, temperature = 0.3 } = {}) {
-  for (const p of PROVIDERS) {
-    const key = process.env[p.key];
-    if (!key) continue;
-    try {
-      const r = await fetch(`${p.base}/chat/completions`, {
-        method: 'POST',
-        headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-        body: JSON.stringify({
-          model: p.model,
-          messages: [{ role: 'user', content: prompt }],
-          temperature,
-          max_tokens: maxTokens,
-        }),
-        signal: AbortSignal.timeout(TIMEOUT_MS),
-      });
-      if (!r.ok) continue;
-      const j = await r.json();
-      const txt = j?.choices?.[0]?.message?.content?.trim();
-      if (txt) return txt;
-    } catch {
-      /* try next provider */
-    }
-  }
-  return null;
+export async function llmChat(prompt, { maxTokens = 400, temperature = 0.3, json = false, timeoutMs } = {}) {
+  // NOTE: the shared adapter fixes temperature at 0.2 (news-grade determinism); the
+  // `temperature` arg is accepted for signature-compatibility but the router's low temp
+  // is what we want for factual news summaries anyway (less hallucination/repetition).
+  const { text } = await generate(prompt, {
+    maxTokens,
+    json,
+    timeoutMs: timeoutMs || Number(process.env.SHORTS_LLM_TIMEOUT_MS || 30000),
+  });
+  return text ? String(text).trim() : null;
 }
 
+// True when at least one provider is configured/reachable. The shared router counts
+// Ollama as always-available (local last resort) unless PROVIDER_USE_OLLAMA=0, so this is
+// effectively "is any hosted key set OR is Ollama allowed". Callers use it to decide
+// whether to attempt LLM synthesis before falling back to extractive text.
 export function haveLlmKey() {
-  return PROVIDERS.some((p) => process.env[p.key]);
+  return availableProviders().length > 0;
 }

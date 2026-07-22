@@ -46,7 +46,7 @@ env:
   # fail fast"). NVIDIA NIM has generous free credits and was the ONLY hosted provider
   # still answering when gemini/sambanova/cohere all 429'd — so it leads. Others follow,
   # slow CPU Ollama is the last-resort. Router is fail-fast (one try/provider, no retry).
-  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,openai,ollama'
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}

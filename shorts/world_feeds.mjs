@@ -13,6 +13,7 @@
 // we get a real image + clean headline. Pure RSS, $0, no keys.
 
 import { llmChat, haveLlmKey } from './llm.mjs';
+import { extractArticle, fetchAndExtract } from '../src/extract.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
@@ -156,106 +157,11 @@ function imageOf(block) {
   return m && /^https:\/\//i.test(m[1]) ? m[1] : null;
 }
 
-// Pull the PUBLISHER'S OWN lead image from an article's OpenGraph/Twitter meta. This is
-// the outlet's chosen hero photo — monetization-safe to show with a source credit —
-// unlike the gstatic thumbnail Google Trends hands back (a Google-hosted crop we must
-// NOT use). Returns an https URL or null.
-function ogImage(html) {
-  const h = String(html || '');
-  const m =
-    h.match(/<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i) ||
-    h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image(?::url)?["']/i) ||
-    h.match(/<meta[^>]+name=["']twitter:image(?::src)?["'][^>]+content=["']([^"']+)["']/i) ||
-    h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image(?::src)?["']/i);
-  if (!m) return null;
-  const url = decode(m[1]).trim();
-  // Accept any https og:image (many CDNs serve images from extension-less paths).
-  return /^https:\/\//i.test(url) ? url : null;
-}
-
-// Registrable-ish base domain of a hostname (eTLD+1 heuristic): last 2 labels, or last 3
-// when the SLD is a public suffix like co/com/org (…bbci.co.uk → bbci.co.uk). Good enough
-// to tell "publisher's own image CDN" from a third-party ad host.
-function baseDomain(host) {
-  const p = String(host || '').toLowerCase().split('.').filter(Boolean);
-  if (p.length <= 2) return p.join('.');
-  const sld = p[p.length - 2];
-  const useThree = /^(co|com|org|net|gov|ac|edu|or|go|ne)$/.test(sld) && p[p.length - 1].length <= 3;
-  return p.slice(useThree ? -3 : -2).join('.');
-}
-
-// Third-party ad / tracking / analytics / social-widget image hosts. An <img> from any of
-// these is an AD or a pixel, NEVER story art — reject on sight (user: "I can see you have
-// added google Ads image as well"). This is the belt; the same-publisher-domain gate below
-// is the braces (kills third-party hosts we haven't named).
-const AD_HOST =
-  /doubleclick|googlesyndication|googleadservices|google-?analytics|googletagmanager|gstatic|adservice|adsystem|adnxs|amazon-adsystem|taboola|outbrain|criteo|scorecardresearch|quantserve|2mdn|zedo|pubmatic|rubiconproject|\bopenx\b|smartadserver|teads|sharethrough|indexww|casalemedia|moatads|adsafeprotected|bidswitch|360yield|mgid|revcontent|zergnet|gravatar|fbcdn|facebook\.com\/tr|connect\.facebook|analytics\.|\bpixel\.|\bads?\d*\.|\btrack(?:er|ing)?\./i;
-
-// Collect SEVERAL real photos from an article so a Short can play a proper photo
-// SEQUENCE (user: "at least 5-10 images for a 50s video") instead of one static image.
-// Pulls the og:image (the editorial hero — never an ad), then every reasonably-sized
-// in-body <img>/<figure> photo THAT IS SERVED FROM THE PUBLISHER'S OWN DOMAIN — all the
-// OUTLET'S OWN photos (monetization-safe, credited). Ad/widget/tracking images come from
-// THIRD-PARTY hosts, so keying acceptance off the og:image's domain excludes them
-// automatically (far more robust than chasing every ad network by name). Returns an
-// ordered, deduped list of https image URLs.
-function articleImages(html) {
-  const h = String(html || '');
-  const found = [];
-  // The publisher's editorial image domain, learned from og:image — the trusted host set.
-  const og = ogImage(h);
-  let pubDomain = '';
-  if (og) {
-    try {
-      pubDomain = baseDomain(new URL(og).hostname);
-    } catch {
-      /* leave empty → fall back to path-blocklist only */
-    }
-  }
-  const push = (u) => {
-    if (!u) return;
-    let s = decode(u).trim();
-    if (s.startsWith('//')) s = `https:${s}`;
-    if (!/^https:\/\//i.test(s)) return;
-    let host = '';
-    try {
-      host = new URL(s).hostname;
-    } catch {
-      return;
-    }
-    // Belt: reject known ad/tracking/analytics/widget hosts outright.
-    if (AD_HOST.test(host) || AD_HOST.test(s)) return;
-    // Braces: once we know the publisher's own image domain (from og:image), accept ONLY
-    // images served from it. Ads/widgets live on third-party hosts → dropped. Skipped when
-    // there's no og:image (pubDomain empty) so we don't over-filter — the path blocklist
-    // below still guards those.
-    if (pubDomain && baseDomain(host) !== pubDomain) return;
-    // Skip non-photo assets (logos, icons, sprites, tracking pixels, avatars) AND the
-    // things that read as ADS in a news video (user: "long build added Ads in it"):
-    //   • press-kit / product screenshots (vendor promo graphics with logos),
-    //   • event/conference promo banners (e.g. TechCrunch "Disrupt2026"),
-    //   • author/contributor headshots & "-copy" byline avatars,
-    //   • generic promo/banner/sponsor/newsletter creatives.
-    if (
-      /\.svg(?:$|\?)|sprite|logo|icon|favicon|avatar|placeholder|pixel|1x1|blank/i.test(s) ||
-      /press.?kit|product[-_]|screenshot|-copy|_copy|contributor|headshot|byline|disrupt|promo|banner|sponsor|newsletter|subscribe|advert|\bad[-_s]?\b/i.test(s) ||
-      /[?&](?:w|width)=(?:\d{1,2}|1\d\d|2\d\d)\b/i.test(s) // tiny requested widths (≤299px) = thumbs/avatars
-    )
-      return;
-    if (!found.includes(s)) found.push(s);
-  };
-  if (og) push(og);
-  // Scope to the article body so we don't pull site-wide promo images.
-  const container = (h.match(/<article[\s\S]*?<\/article>/i) || h.match(/<main[\s\S]*?<\/main>/i) || [h])[0];
-  // <img src>, plus lazy-loaded variants (data-src / data-lazy-src) common on news CDNs.
-  for (const m of container.matchAll(/<img[^>]+(?:data-src|data-lazy-src|src)=["']([^"']+\.(?:jpe?g|png|webp)[^"']*)["']/gi)) push(m[1]);
-  // <source srcset> (picture/responsive) — take the LAST (largest) candidate URL.
-  for (const m of container.matchAll(/<source[^>]+srcset=["']([^"']+)["']/gi)) {
-    const last = m[1].split(',').pop().trim().split(/\s+/)[0];
-    if (/\.(?:jpe?g|png|webp)/i.test(last)) push(last);
-  }
-  return found.slice(0, 10);
-}
+// NOTE: article image + prose extraction now lives in the SHARED src/extract.mjs
+// (JSON-LD articleBody → Readability → og; publisher-own, ad-filtered images). The old
+// hand-rolled ogImage/baseDomain/AD_HOST/articleImages/articleProse copies were removed so
+// there's ONE extractor — a second divergent image filter is what let a Google-ads image
+// slip through before. enrichSummary calls extractArticle/fetchAndExtract instead.
 
 async function fetchFeed(url) {
   try {
@@ -725,105 +631,97 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
   });
 }
 
-// Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
-// the story on-topic + factual; strips boilerplate (cookie/subscribe/newsletter lines).
-// Article prose only (scoped to <article>/<main>, boilerplate + nav stripped) — same
-// hardening as the main pipeline so we never scrape "Skip to content / Home News Sport".
-function articleProse(html) {
-  html = html
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    // Drop non-body chrome: nav/header/footer/aside/form AND figure/figcaption (photo
-    // captions like "Roger Rogoff talks with CNN affiliate KING…" are NOT article prose)
-    // and buttons (share widgets: "Facebook Tweet Email Link Copied!"). These leaked into
-    // narration when there was no LLM and the extractive path scraped them as a "sentence".
-    .replace(/<(nav|header|footer|aside|form|figure|figcaption|button)[\s\S]*?<\/\1>/gi, ' ');
-  const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
-  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|hide caption|\bpool\b.*\bcaption\b|reuters\/|associated press|see all topics|related (?:topics|articles)|facebook|tweet|whatsapp|link copied|copy link|share this|most viewed|sign in|log ?in|talks with .* affili/i;
-  // Byline / timestamp / engagement-metadata lines that sit ABOVE the body on many sites
-  // ("Manchester United reporter Published 2 hours ago", "Matt Oliver is The Telegraph's
-  // Industry Editor…", "17 comments"). They're grammatical so they survive the BP filter,
-  // but they're not story prose — drop them so narration is pure article body. Also:
-  //   • AUTHOR BIOS ("Dominic covers the biggest stories… winners at the MHP 30 To Watch
-  //     Awards") — a first-name-led "X covers/writes/reports…" or "…Awards in 20NN" bio;
-  //   • VIDEO-PLAYER labels the extractive path scraped as a paragraph ("Video Dan Dakich
-  //     reacts to… | Don't @ Me w/Dan Dakich") — a leading "Video "/"Watch:" or a "| show"
-  //     divider from an embedded-clip caption.
-  const META = /^\s*(?:by |published |updated |\d+ comments?\b|\d+ min read|last modified|video\b|watch:?\s)|\b(?:is|was) (?:the |a |an )?[A-Z][\w'’]* (?:[A-Z][\w'’]* )*(?:editor|reporter|correspondent|columnist|writer)\b|^[A-Z][a-z]+ (?:covers|writes|reports on|is a|has (?:broken|covered)) |\bTo Watch Awards\b| \| (?:Don'?t @|[A-Z][\w'’]* w\/)|\bpublished \d|\b\d+ hours? ago\b|\bBST\b|\bGMT\b|\bEDT\b/i;
-  return [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
-    .map((m) => stripHtml(m[1]))
-    .filter((t) => {
-      if (t.length < 60 || BP.test(t) || META.test(t)) return false;
-      const w = t.split(/\s+/);
-      if (w.length < 10 || !/[.!?]/.test(t)) return false;
-      const cap = w.filter((x) => /^[A-Z][a-z]*$/.test(x)).length;
-      return cap / w.length <= 0.6; // not a Capitalised nav strip
-    });
+
+// Drop consecutive duplicate sentences + immediate word repeats ("the the", "said said")
+// from LLM/extractive output — the "repeated words" the user reported. Keeps meaning,
+// only removes accidental echoes.
+function dedupeText(s) {
+  let t = String(s || '')
+    .replace(/\b(\w{3,})(\s+\1\b)+/gi, '$1') // "said said" → "said" (words ≥3 chars)
+    .replace(/\s+/g, ' ')
+    .trim();
+  // Drop a sentence that repeats the previous one (case/space-insensitive).
+  const sents = t.split(/(?<=[.!?।])\s+/);
+  const out = [];
+  const seen = new Set();
+  for (const sent of sents) {
+    const k = sent.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    if (!k || seen.has(k)) continue;
+    seen.add(k);
+    out.push(sent);
+  }
+  return out.join(' ').trim();
 }
 
-// Fetch the article body and build a genuinely USEFUL summary. Preferred path: LLM
-// SYNTHESIS across the story's sources into a clean, factual 2-3 sentence brief (the
-// "research from multiple sources, make useful content" ask). Fallback: extractive body
-// paragraphs. $0, fail-open (keeps the RSS lead on any failure).
+// Fetch the article body and build a genuinely USEFUL summary. RESEARCH-GRADE path (user:
+// "do real hard work on content generation"): extract CLEAN prose from the rep article
+// AND every OTHER outlet that covered the same event (shared src/extract.mjs — JSON-LD
+// articleBody → Readability → og), then SYNTHESISE a corroborated, non-repetitive brief
+// across ALL of them with the NVIDIA-first LLM ladder. Images come from the same extractor
+// (publisher-own, ad-filtered). Fallback: extractive from the clean prose. $0, fail-open.
 export async function enrichSummary(story) {
   if (!story.url || !/^https?:\/\//i.test(story.url)) return;
   try {
+    // 1) Extract the representative article — clean prose + publisher-own images (already
+    //    ad-filtered + same-domain-gated inside extractArticle).
     const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
     if (!r.ok) return;
-    const html = await r.text();
-    // MONETIZATION-SAFE IMAGES: harvest the PUBLISHER'S OWN photos from the article we're
-    // already fetching — the og:image plus in-body <img>/<figure> photos. These are the
-    // outlet's chosen images (safe to show with a credit), unlike the gstatic thumbnail
-    // Google Trends hands back. Gives a Short enough real photos to play a SEQUENCE (user:
-    // "at least 5-10 images for a 50s video") instead of one static frame.
-    const arts = articleImages(html);
-    if (arts.length) {
-      if (!story.imageUrl) story.imageUrl = arts[0];
-      story.images = [...new Set([story.imageUrl, ...(story.images || []), ...arts].filter(Boolean))];
+    const repHtml = await r.text();
+    const rep = (await extractArticle(story.url, repHtml)) || { text: '', images: [] };
+    if (rep.images.length) {
+      if (!story.imageUrl) story.imageUrl = rep.images[0];
+      story.images = [...new Set([story.imageUrl, ...(story.images || []), ...rep.images].filter(Boolean))];
     }
-    // HARVEST ACROSS OUTLETS (user: "fetch original story-related images only"): the rep
-    // page alone usually yields 1-2 photos, so the sequence used to pad with unrelated
-    // stock. Instead pull the OWN photos from every OTHER outlet that covered the same
-    // event (story.sourceUrls) — all genuine images OF THIS STORY. Best-effort, parallel,
-    // skips the rep (already fetched). Stops once we have enough real photos.
-    const others = (story.sourceUrls || []).filter((u) => u && u !== story.url).slice(0, 4);
-    if (others.length && (story.images || []).length < 8) {
-      const harvested = await Promise.all(
-        others.map(async (u) => {
-          try {
-            const rr = await fetch(u, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(10000) });
-            if (!rr.ok) return [];
-            return articleImages(await rr.text());
-          } catch {
-            return [];
-          }
-        }),
-      );
-      const more = harvested.flat();
-      if (more.length) story.images = [...new Set([...(story.images || []), ...more].filter(Boolean))];
-    }
-    const paras = articleProse(html);
-    if (!paras.length) return;
-    const body = paras.join(' ').replace(/\s+/g, ' ').trim().slice(0, 2200);
 
-    // LLM synthesis (free providers). Turns raw body into a tight, informative brief a
-    // viewer actually learns from — who/what/where/why/impact — no fluff, no markup.
+    // 2) RESEARCH ACROSS OUTLETS — pull clean prose + images from every OTHER source that
+    //    covered this event (story.sourceUrls). More angles → a fuller, corroborated brief
+    //    and more genuine photos OF THIS STORY. Best-effort, parallel, skips the rep.
+    const others = (story.sourceUrls || []).filter((u) => u && u !== story.url).slice(0, 4);
+    const bodies = [{ src: story.sourceName || cleanSource(new URL(story.url).hostname), text: rep.text }];
+    if (others.length) {
+      const extracted = await Promise.all(others.map((u) => fetchAndExtract(u, { ua: UA, timeoutMs: 10000 })));
+      for (let i = 0; i < extracted.length; i++) {
+        const e = extracted[i];
+        if (!e) continue;
+        if (e.images.length) story.images = [...new Set([...(story.images || []), ...e.images].filter(Boolean))];
+        if (e.text && e.text.length > 200) {
+          let src = 'source';
+          try { src = cleanSource(new URL(others[i]).hostname); } catch { /* keep */ }
+          bodies.push({ src, text: e.text });
+        }
+      }
+    }
+    if (story.images?.length) story.images = story.images.slice(0, 10);
+
+    // Combine the outlets' clean prose into ONE research corpus (labelled by outlet so the
+    // model can corroborate), capped so the prompt stays fast.
+    const corpus = bodies
+      .filter((b) => b.text && b.text.length > 120)
+      .map((b) => `[${b.src}] ${b.text.slice(0, 1200)}`)
+      .join('\n\n')
+      .slice(0, 4200);
+    if (!corpus) return;
+
+    // 3) LLM SYNTHESIS across all sources — the NVIDIA-first ladder (shorts/llm.mjs). A
+    //    tight, factual brief a viewer learns from; corroborate across outlets, no repeats.
     if (haveLlmKey()) {
-      const outlets = (story.sources || []).slice(0, 4).join(', ');
+      const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 5).join(', ');
       const prompt =
-        'You are a sharp broadcast news writer. Using ONLY the facts in the source text ' +
-        'below, write a punchy, informative 2-3 sentence brief (about 45-70 words) for a ' +
-        'short news video. Lead with the most important fact; include the key who/what/' +
-        'where and the number, date or consequence that matters. Neutral, factual, no ' +
-        'hype, no opinion, no fabrication. Plain text only — NO markdown, hashtags, ' +
-        'brackets, quotes or emoji. Do not mention "the article".\n\n' +
+        'You are a sharp broadcast news writer. Below are excerpts from MULTIPLE outlets ' +
+        'reporting the SAME event. Cross-check them and write ONE punchy, informative ' +
+        '3-4 sentence brief (about 60-90 words) for a short news video. Lead with the most ' +
+        'important fact; include the key who/what/where and the number, date or consequence ' +
+        'that matters; add one line of context or what happens next. Prefer facts that ' +
+        'AGREE across outlets; ignore any that contradict. Neutral, factual, no hype, no ' +
+        'opinion, no fabrication, NO repeated words or sentences. Plain text only — NO ' +
+        'markdown, hashtags, brackets, quotes or emoji. Do not mention "the article" or the ' +
+        'outlet names.\n\n' +
         `HEADLINE: ${story.title}\n` +
         (outlets ? `REPORTED BY: ${outlets}\n` : '') +
-        `SOURCE TEXT: ${body}`;
-      const synth = await llmChat(prompt, { maxTokens: 320, temperature: 0.3 });
-      let clean = (synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim();
-      // If the model stopped mid-sentence (hit the token cap), drop the trailing partial
-      // so the brief always ends on a complete sentence.
+        `SOURCES:\n${corpus}`;
+      const synth = await llmChat(prompt, { maxTokens: 360 });
+      let clean = dedupeText((synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim());
+      // If the model stopped mid-sentence (hit the token cap), drop the trailing partial.
       if (clean && !/[.!?]$/.test(clean)) {
         const cut = clean.replace(/\s+\S*$/, '');
         const lastEnd = Math.max(cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'));
@@ -835,22 +733,10 @@ export async function enrichSummary(story) {
       }
     }
 
-    // Extractive fallback: RSS lead + distinct body paragraphs, then trimmed to WHOLE
-    // sentences (never chopped mid-word — that produced narration ending on half a
-    // sentence). We take complete sentences up to ~700 chars.
-    // Only seed with the RSS lead if it's a REAL sentence — a bare HEADLINE (no ending
-    // punctuation, as Google-Trends stories carry) would glue onto the first body
-    // sentence and echo the title into the narration. In that case start from the body.
+    // 4) Extractive fallback from the CLEAN corpus — RSS lead (only if a real sentence) +
+    //    distinct sentences, deduped, complete sentences only, up to ~700 chars.
     const seed = /[.!?]$/.test(String(story.summary || '').trim()) ? story.summary : null;
-    const seen = new Set();
-    const parts = [seed, ...paras].filter((p) => {
-      const k = (p || '').slice(0, 40).toLowerCase();
-      if (!p || seen.has(k)) return false;
-      seen.add(k);
-      return true;
-    });
-    const joined = parts.join(' ').replace(/\s+/g, ' ').trim();
-    // Keep only complete sentences (end in . ! ? …) up to the char budget.
+    const joined = dedupeText([seed, rep.text].filter(Boolean).join(' '));
     const sentences = joined.split(/(?<=[.!?])\s+/).filter((s) => /[.!?]$/.test(s.trim()));
     let full = '';
     for (const s of sentences) {

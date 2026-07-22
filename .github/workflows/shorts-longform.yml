@@ -25,20 +25,40 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
-  # Free LLM keys for multi-source summary synthesis (enrichSummary → llm.mjs).
-  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  # ── LLM PROVIDER LADDER — same shared router as the news pipeline + shorts-world
+  #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
+  #    what synthesises each story's clean, non-repetitive brief. ──
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: qwen2.5:3b # local last-resort so a summary is ALWAYS synthesised
 
 jobs:
   render:
     runs-on: ubuntu-latest
     # Long-form is the heavy render (10-story, ~3 min video, Kokoro TTS + ffmpeg). The
     # 30-min ceiling was KILLING near-complete runs at 30m15s (user: "it was almost
-    # completing"). Give it room: once it starts it must finish. cancel-in-progress is
-    # false, so a run is never pre-empted by a newer dispatch — only this ceiling can
-    # cancel it, so it's the real deadline.
-    timeout-minutes: 55
+    # completing"). Cron fires every ~3h so there's zero contention — give it a wide
+    # ceiling: apt deps + Kokoro + (cold) Ollama pull + 10× multi-source extract/synth +
+    # ffmpeg concat. cancel-in-progress:false → only this ceiling can kill it, so make it
+    # the real deadline, not a clip point.
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -64,6 +84,23 @@ jobs:
         with:
           path: ~/.cache/huggingface
           key: hf-kokoro-m2m100-v1
+
+      # OLLAMA — local last-resort LLM so every one of the 10 recap stories gets a clean
+      # synthesised brief even when hosted providers 429. Best-effort (non-fatal).
+      - name: Install + start Ollama (last-resort LLM)
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=lf-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"

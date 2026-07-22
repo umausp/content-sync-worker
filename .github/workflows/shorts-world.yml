@@ -25,17 +25,41 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python # the workflow's venv python (set on PATH below)
-  # Free LLM keys — used to SYNTHESISE a useful multi-source summary per story
-  # (enrichSummary → llm.mjs). Any one being set is enough; all optional (falls back
-  # to extractive body text).
-  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
+  #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama
+  #    last (user: "use AI model with NVidia following others and fallback to ollama").
+  #    shorts/llm.mjs is now a thin adapter over it. A provider is skipped if its key is
+  #    absent; fail-fast (one try/provider, bench on failure, never retry). This is what
+  #    turns the raw article body into a clean, non-repetitive brief per story. ──
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free' # auto-router to a free model — immune to model-ID rot
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: qwen2.5:3b # local last-resort so a summary is ALWAYS synthesised (never raw extractive)
 
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Cron fires every ~2h, so there's no contention — give the render room to finish.
+    # A Short is 1 story but the run still does: apt deps + Kokoro install + (cold) Ollama
+    # pull + multi-source extraction/synth + ffmpeg. 20m was clipping cold runs; 40m means
+    # once it starts it finishes. cancel-in-progress:false → only this ceiling can kill it.
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -62,6 +86,24 @@ jobs:
         with:
           path: ~/.cache/huggingface
           key: hf-kokoro-m2m100-v1
+
+      # OLLAMA — the LOCAL last-resort LLM so a clean summary is ALWAYS synthesised even
+      # when every hosted provider 429s (the old "raw extractive → repeated words" path).
+      # Best-effort: if install/pull fails the run still proceeds (hosted providers carry it).
+      - name: Install + start Ollama (last-resort LLM)
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"

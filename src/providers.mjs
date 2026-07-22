@@ -171,6 +171,43 @@ function cohereAdapter() {
   };
 }
 
+// ── HuggingFace Inference adapter (OpenAI-compatible router) ─────────────────
+// HF's Inference Providers expose an OpenAI-compatible endpoint at
+// router.huggingface.co/v1/chat/completions, fanning out to many hosted OSS models
+// (Llama, Qwen, Mistral, Gemma, DeepSeek, …) behind ONE token (user: "all kinds of LLMs
+// you can fetch from huggingface"). Free tier has a monthly credit; a provider-suffixed
+// model id ('meta-llama/Llama-3.3-70B-Instruct') routes to the cheapest backend. Reads
+// the token from HF_TOKEN (already set on the shorts runners for Kokoro) or HF_API_KEY.
+function huggingfaceAdapter() {
+  return async (prompt, opts) => {
+    const key = envKey('HF_TOKEN', 'HF_API_KEY', 'HUGGING_FACE_HUB_TOKEN');
+    if (!key) return null;
+    const model = process.env.HF_MODEL || 'meta-llama/Llama-3.3-70B-Instruct';
+    const content = opts.json && !/json/i.test(prompt) ? `${prompt}\n\nRespond ONLY with a valid JSON object.` : prompt;
+    const r = await fetch('https://router.huggingface.co/v1/chat/completions', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'user', content }],
+        temperature: 0.2,
+        max_tokens: opts.maxTokens || 400,
+        response_format: opts.json ? { type: 'json_object' } : undefined,
+      }),
+      signal: AbortSignal.timeout(opts.timeoutMs || 30000),
+    });
+    if (r.status === 429) throw { rateLimited: true };
+    if (!r.ok) {
+      const detail = await r.text().catch(() => '');
+      const err = new Error(`http ${r.status} ${detail.slice(0, 120)}`);
+      if ([400, 401, 402, 403, 404, 410].includes(r.status)) err.permanent = true;
+      throw err;
+    }
+    const j = await r.json();
+    return j.choices?.[0]?.message?.content ?? null;
+  };
+}
+
 // ── local Ollama adapter (last-resort, free, slow) ──────────────────────────
 function ollamaAdapter() {
   return async (prompt, opts) => {
@@ -268,6 +305,12 @@ const REGISTRY = {
     adapter: openAiAdapter({ baseUrl: 'https://models.github.ai/inference', keyEnv: 'GITMODELS_API_KEY', modelEnv: 'GITMODELS_MODEL', modelDefault: 'openai/gpt-4o-mini' }),
     enabled: () => !!process.env.GITMODELS_API_KEY,
     cap: Number(process.env.GITMODELS_DAILY_CAP || 300),
+  },
+  huggingface: {
+    tier: 'free', // HF Inference Providers router — free monthly credit, many OSS models
+    adapter: huggingfaceAdapter(),
+    enabled: () => !!envKey('HF_TOKEN', 'HF_API_KEY', 'HUGGING_FACE_HUB_TOKEN'),
+    cap: Number(process.env.HF_DAILY_CAP || 400),
   },
   deepinfra: {
     tier: 'free-metered', // free signup credits, then PAY-PER-USE (bills the card)

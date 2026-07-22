@@ -43,7 +43,7 @@ env:
   #    the others 429'd. Then the rest of the free tier, PAID OpenAI (tight cap), local
   #    Ollama last-resort. A provider is skipped if its key is absent. Fail-fast: one
   #    try per provider, bench on failure, never retry. ──
-  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,openai,ollama'
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
