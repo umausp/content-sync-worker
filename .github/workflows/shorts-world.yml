@@ -67,6 +67,12 @@ jobs:
         with:
           node-version: '22'
 
+      # Node deps — the shared extractor (src/extract.mjs) needs
+      # @extractus/article-extractor for the Readability path. Without this the module
+      # falls back to JSON-LD + og only (still works, but weaker on non-schema.org sites).
+      - name: Install Node deps
+        run: npm install --no-audit --no-fund
+
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
         run: |
           sudo apt-get update

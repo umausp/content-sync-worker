@@ -22,7 +22,21 @@
 //
 // Fail-open everywhere: any failure returns null/[] and the caller keeps its fallback.
 
-import { extractFromHtml } from '@extractus/article-extractor';
+// @extractus/article-extractor is loaded LAZILY + OPTIONALLY. The shorts workflows don't
+// always `npm install` (they were pure Node built-ins historically), and a missing package
+// must NOT crash this module — JSON-LD + og:description still produce a good body without
+// it. So we dynamic-import on first use and cache the result (the fn, or null if absent).
+let _extractFromHtml; // undefined = not yet tried; null = tried + unavailable; fn = loaded
+async function getExtractFromHtml() {
+  if (_extractFromHtml !== undefined) return _extractFromHtml;
+  try {
+    const mod = await import('@extractus/article-extractor');
+    _extractFromHtml = mod.extractFromHtml || null;
+  } catch {
+    _extractFromHtml = null; // package not installed on this runner — JSON-LD/og carry it
+  }
+  return _extractFromHtml;
+}
 
 const MIN_BODY = Number(process.env.EXTRACT_MIN_BODY || 400); // chars to trust a body
 
@@ -121,6 +135,8 @@ function jsonLdArticle(html) {
 // ── STEP 2: Readability (article-extractor over linkedom) ─────────────────────
 async function readabilityArticle(html, url) {
   try {
+    const extractFromHtml = await getExtractFromHtml();
+    if (!extractFromHtml) return null; // package not installed → skip to og floor
     const a = await extractFromHtml(html, url);
     if (!a || !a.content) return null;
     const text = stripTags(a.content);
