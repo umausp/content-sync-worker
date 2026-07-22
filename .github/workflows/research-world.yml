@@ -1,0 +1,136 @@
+name: research-world
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DEDICATED RESEARCH POOL for the @AgyataWorld channel (user: "shorts world and
+# longform should have dedicated research pool on github actions without timeout").
+#
+# This is the SLOW, deep half of the split. It runs on its OWN schedule with a very
+# generous ceiling and does the heavy lifting ONCE per region:
+#   trends (X + Google Trends) → real-news triage (no ads) → per-keyword Google News
+#   multi-article gather → cluster same-event → multi-source extract (EVERY outlet's
+#   clean prose + the outlet's OWN images: BBC + NYT + …) → single-story LLM synthesis
+#   → verify (≥2 corroborating sources, real image, brief grew past headline) →
+#   cross-source/cross-region dedup → emit a rich category JSON bundle.
+#
+# It COMMITS docs/research/world-<region>.json back to the repo. The render workflows
+# (shorts-world, shorts-longform) then just READ the freshest bundle at checkout and
+# turn it into video — fast + reliable, no live-gather flakiness on the render clock.
+# The bundle is JSON metadata only (titles, briefs, image URLs, source URLs) — NO
+# rendered video ever touches the repo (those stay purged; see shorts-world.yml).
+#
+# CADENCE: driven by the agyata-cron-pinger Cloudflare Worker (workflow_dispatch), a
+# little AHEAD of the render slots so a fresh bundle is always waiting. workflow_dispatch
+# only; never on pull_request (a fork PR must not read secrets or push).
+# ─────────────────────────────────────────────────────────────────────────────
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'Space/comma list of regions to research (usa europe). Blank = both.'
+        required: false
+        default: ''
+
+concurrency:
+  group: research-world
+  cancel-in-progress: false # never kill mid-research; the commit is idempotent (overwrites the bundle)
+
+permissions:
+  contents: write # commits the refreshed docs/research/world-*.json bundle back
+
+env:
+  API_BASE: https://api.agyata.com
+  # DEEP research — this is the timeout-free pool, so go WIDE (the render only reads a
+  # slice). Env-overridable; these are generous defaults for a rich, multi-story bundle.
+  RESEARCH_PER_SLOT: '3' # editorial stories per category
+  RESEARCH_PER_GEO_TRENDS: '6' # Google-Trends stories per geo
+  RESEARCH_PER_GEO_X: '5' # X-trend stories per geo
+  RESEARCH_MAX_AGE_H: '18' # freshness window
+  WORLD_US_GEOS: 'US'
+  WORLD_EU_GEOS: 'GB,IE,DE,FR,IT,ES,NL'
+  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline + renders use
+  #    (src/providers.mjs), NVIDIA-first, huggingface in the middle, local Ollama last.
+  #    This synthesises each story's clean, corroborated, non-repetitive brief. ──
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: qwen2.5:3b # local last-resort so a brief is ALWAYS synthesised
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    # The WHOLE POINT of the split: no clip point. This does deep multi-outlet extraction
+    # + LLM synth across every region — slow by design. Give it a very wide ceiling so it
+    # ALWAYS finishes and commits a complete bundle (the render never waits on it).
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Node deps — the shared extractor (src/extract.mjs) needs
+      # @extractus/article-extractor for the Readability path (else JSON-LD + og only).
+      - name: Install Node deps
+        run: npm install --no-audit --no-fund
+
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-embed-research-v1
+
+      # OLLAMA — local last-resort LLM so every story gets a clean synthesised brief even
+      # when hosted providers 429. Best-effort (non-fatal).
+      - name: Install + start Ollama (last-resort LLM)
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
+
+      - name: Run research pool (deep gather → extract → synth → verify → bundle)
+        env:
+          # Cross-run dedup lives in the render; the pool just needs the ingest token for
+          # any API-backed enrichment helpers that use it (best-effort).
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/research.mjs ${{ inputs.regions }}
+
+      # Commit the refreshed bundle back so the render's checkout reads it. Only the JSON
+      # bundle is touched — nothing rendered. No-op commit is skipped so an unchanged run
+      # (pool produced 0 verified stories → left previous bundle) doesn't churn history.
+      - name: Commit research bundle
+        run: |
+          git config user.name "agyata-research-bot"
+          git config user.email "research-bot@agyata.com"
+          git add docs/research/ || true
+          if git diff --cached --quiet; then
+            echo "no bundle change — nothing to commit"
+          else
+            git commit -m "research(world): refresh trend+multi-source bundle [skip ci]"
+            git push
+          fi

@@ -193,6 +193,35 @@ function mergeByTitle(primary, secondary) {
   return out;
 }
 
+// ── DEDICATED RESEARCH POOL (docs/research/world-<region>.json) ──────────────
+// The research-world.yml workflow does the SLOW, deep work on its own timeout-free
+// schedule (trend discovery → multi-outlet extract → LLM synth → verify) and commits a
+// rich category bundle. The render just READS the freshest bundle and turns it into video
+// — fast + reliable, no live-gather flakiness on the render's clock. Falls back to a live
+// gather (below) only when no fresh bundle exists (user: dedicated research pool).
+const RESEARCH_BUNDLE_MAX_AGE_H = Number(process.env.RESEARCH_BUNDLE_MAX_AGE_H || 4);
+async function loadResearchBundle(region) {
+  const path = join(process.cwd(), 'docs', 'research', `world-${region}.json`);
+  let bundle;
+  try {
+    bundle = JSON.parse(await readFile(path, 'utf-8'));
+  } catch {
+    return null; // no bundle yet → live gather
+  }
+  const stories = Array.isArray(bundle.stories) ? bundle.stories.filter((s) => s && s.title && s.summary) : [];
+  if (!stories.length) return null;
+  // Freshness: a stale bundle would ship yesterday's news. If the pool hasn't run recently
+  // enough, ignore it and gather live so the channel never goes stale.
+  const gen = Date.parse(bundle.generatedAt || '');
+  const ageH = Number.isFinite(gen) ? (Date.now() - gen) / 3.6e6 : Infinity;
+  if (ageH > RESEARCH_BUNDLE_MAX_AGE_H) {
+    console.log(`[shorts:world] research bundle for ${region} is ${ageH.toFixed(1)}h old (> ${RESEARCH_BUNDLE_MAX_AGE_H}h) — gathering live instead`);
+    return null;
+  }
+  console.log(`[shorts:world] using research bundle ${region} (${stories.length} stories, ${ageH.toFixed(1)}h old, ${stories.filter((s) => s.verified).length} corroborated)`);
+  return stories;
+}
+
 async function gatherStories(cfg) {
   if (cfg.id === 'world') {
     // Dedicated world/US-UK 9-slot roundup — NOT the India feed. Long-form pulls 2 per
@@ -205,6 +234,18 @@ async function gatherStories(cfg) {
     const region = resolveRegion();
     const geos = regionGeos(region);
     console.log(`[shorts:world] region=${region} geos=${geos.join(',')}`);
+
+    // FIRST CHOICE: the dedicated research pool's freshest bundle for this region. It's
+    // already trend-ranked + multi-source-enriched + verified, so we can hand it straight
+    // to the cross-run claim + render. SHORTS_RESEARCH_BUNDLE=0 forces a live gather.
+    if (process.env.SHORTS_RESEARCH_BUNDLE !== '0') {
+      const bundled = await loadResearchBundle(region);
+      if (bundled && bundled.length) {
+        const picked = bundled.slice(0, STORY_COUNT + CLAIM_BUFFER);
+        picked.region = region;
+        return picked;
+      }
+    }
     // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
     // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
     // brief (was gated to single/long-form, leaving the roundup thin → "content is very
