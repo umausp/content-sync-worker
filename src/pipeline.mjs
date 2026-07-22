@@ -28,6 +28,7 @@ import { fetchGdelt } from './gdelt/index.mjs';
 import { fetchBuzz } from './buzz/index.mjs';
 import { generate, availableProviders, usageSummary, flushUsage, providerFailures } from './providers.mjs';
 import { triage, filterLiveUrls } from './triage.mjs';
+import { extractArticle } from './extract.mjs';
 
 // ── EDITION ─────────────────────────────────────────────────────────────────
 // One pipeline, two editions. EDITION=local runs the Hindi "Local News" section
@@ -333,6 +334,23 @@ async function enrichOne(a) {
     const r = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
     if (!r.ok) return;
     let html = await r.text();
+    // FAST PATH — the shared extractor: JSON-LD NewsArticle.articleBody → Readability.
+    // This is the cleanest, most reliable body (no nav/ads/boilerplate), so try it first
+    // and only fall through to the <p>-regex heuristic below when it comes up short.
+    try {
+      const ex = await extractArticle(url, html);
+      if (ex && ex.text && ex.text.length > (a.snippet || '').length) {
+        // Prepend the RSS snippet only if it adds a distinct opening line, then cap.
+        const merged = [a.snippet, ex.text].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+        let full = merged.length > ex.text.length ? merged : ex.text;
+        if (full.length > ENRICH_TARGET) full = full.slice(0, ENRICH_TARGET).replace(/\s+\S*$/, '');
+        if (full.length >= ENRICH_MIN_SNIPPET) { a.snippet = full; return; }
+        // else keep `full` as a floor and let the <p> path try to extend it further.
+        if (full.length > (a.snippet || '').length) a.snippet = full;
+      }
+    } catch {
+      /* fall through to the <p>-regex path */
+    }
     const og = (html.match(/<meta[^>]+(?:property|name)=["'](?:og:description|description)["'][^>]+content=["']([^"']+)/i) || [])[1] || '';
     // Strip non-content regions BEFORE extracting <p> (kills nav/menus/scripts).
     html = html
