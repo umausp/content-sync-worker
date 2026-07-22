@@ -25,6 +25,9 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — see shorts-world.yml. Render reads, upload writes.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   # ── LLM PROVIDER LADDER — same shared router as the news pipeline + shorts-world
   #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
   #    what synthesises each story's clean, non-repetitive brief. ──

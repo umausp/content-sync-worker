@@ -25,6 +25,11 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python # the workflow's venv python (set on PATH below)
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — the renderer's OWN "already made a video of
+  # this story?" memory, separate from the website's CF news_dedup_claims. Render step reads
+  # it (drop already-published stories); upload step writes it after a successful upload.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama
   #    last (user: "use AI model with NVidia following others and fallback to ollama").

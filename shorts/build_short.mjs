@@ -24,6 +24,9 @@ import { resolveBackground, resolveBackgrounds, brandBackground } from './visual
 import { renderSegment, concatWithMusic } from './render.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
 import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
+// Durable "already made a video of this story?" ledger (Upstash Redis) — separate from the
+// website's CF news_dedup_claims. Locks a published story until it has a genuine update.
+import { filterAlreadyMade, ledgerRecords } from './video_ledger.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -509,9 +512,15 @@ async function main() {
   console.log(`[shorts:${cfg.id}] gathering top ${STORY_COUNT} stories…`);
   const candidates = await gatherStories(cfg);
   if (!candidates.length) throw new Error('no usable stories found');
+  // VIDEO-DEDUP: drop candidates we've ALREADY made a video of (durable Upstash ledger),
+  // unless the story gained a genuine update since. Runs BEFORE the cross-run claim so we
+  // don't spend claim slots on stories we'd skip anyway. Fail-open (never blanks the feed).
+  const region0 = candidates.region;
+  let pool = await filterAlreadyMade(candidates, { label: cfg.id });
+  pool.region = region0;
   // CLAIM keys against the cross-run dedup ledger, then keep the first STORY_COUNT that
   // this run was granted — so 4 Shorts + 2 long-form in the same hour never share a story.
-  const stories = await claimStories(candidates, STORY_COUNT, stamp);
+  const stories = await claimStories(pool, STORY_COUNT, stamp);
   stories.region = candidates.region; // preserve region across the claim filter
   if (!stories.length) throw new Error('no usable stories left after cross-run dedup claim');
   console.log(`[shorts:${cfg.id}] ${stories.length} stories:`);
@@ -532,6 +541,7 @@ async function main() {
   // starts immediately rather than after a generic gradient card.
 
   // Render each story as its own clip.
+  const rendered = []; // stories that actually produced a clip → recorded in the video ledger
   for (let i = 0; i < stories.length; i++) {
     const story = stories[i];
     try {
@@ -574,6 +584,7 @@ async function main() {
         outPath: clip,
       });
       segmentPaths.push(clip);
+      rendered.push(story);
       console.log(`[shorts:${cfg.id}]   ✓ story ${i + 1} clip (${timing.duration.toFixed(1)}s, ${bg.paths.length} imgs: ${bg.kinds.join('+')})`);
     } catch (e) {
       console.log(`[shorts:${cfg.id}]   ✗ story ${i + 1} skipped: ${e.message}`);
@@ -620,6 +631,10 @@ async function main() {
   await mkdir(stageDir, { recursive: true });
   await cp(outMp4, join(stageDir, 'short.mp4'));
   const meta = buildUploadMeta(stories, cfg, totalDur, stories.region);
+  // Stash the {key, fp} records for the stories that ACTUALLY rendered, so upload.mjs marks
+  // them in the video ledger only AFTER a successful upload (a failed upload never locks a
+  // story). Keyed on normalized title + update-count fingerprint.
+  meta.ledger = ledgerRecords(rendered.length ? rendered : stories);
   await writeFile(join(stageDir, 'meta.json'), JSON.stringify(meta, null, 2));
   console.log(`[shorts:${cfg.id}] ✓ staged → ${join(stageDir, 'short.mp4')} (${totalDur.toFixed(1)}s)`);
   console.log(`[shorts:${cfg.id}] title: ${meta.title}`);

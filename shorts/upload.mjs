@@ -17,6 +17,7 @@
 // videos.insert = 1 quota unit, 100/day (2025 quota model) — volume is a non-issue.
 
 import { readFile, stat } from 'node:fs/promises';
+import { markPublished } from './video_ledger.mjs';
 import { basename, join } from 'node:path';
 import { STAGE_DIR, channel } from './config.mjs';
 
@@ -147,6 +148,13 @@ async function main() {
   const id = res?.id;
   if (!id) throw new Error(`upload returned no video id: ${JSON.stringify(res).slice(0, 200)}`);
   console.log(`[upload:${cfg.id}] ✓ https://youtube.com/watch?v=${id} (privacy=${meta.privacyStatus || 'private'})`);
+
+  // RECORD in the durable video ledger (Upstash) — now that the video is actually live,
+  // lock these stories so we don't remake a video of them until they gain a genuine update.
+  // Best-effort: a ledger error never fails the run (the upload already succeeded).
+  if (Array.isArray(meta.ledger) && meta.ledger.length) {
+    await markPublished(meta.ledger, { label: cfg.id });
+  }
 
   // Add to the region's playlist (USA / Europe) if we have a mapped playlist ID. Best-
   // effort: a scope/permission error is logged, not thrown — the video is already up.
