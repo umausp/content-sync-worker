@@ -586,14 +586,39 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
       if (taken >= perGeo) break;
       const { items, when } = await newsSearchFresh(term, geo, hl);
       if (!items.length) continue;
-      // First article whose HEADLINE actually contains the trend term (on-topic).
-      const hit = items.find((i) => titleMatchesTerm(term, i.title));
+      // ALL articles whose HEADLINE contains the trend term = the outlets covering this
+      // event (on-topic). The FIRST is the representative; the rest are corroborating
+      // sources whose OWN photos we also want (user: "if more than 1 source reported this
+      // they must have their own images — gather those").
+      const onTopic = items.filter((i) => titleMatchesTerm(term, i.title));
+      const hit = onTopic[0];
       if (!hit) continue;
       const key = normTitle(hit.title);
       if (!key || usedTitles.has(key)) continue;
       usedTitles.add(key);
       const real = await resolveGoogleNewsUrl(hit.url);
       if (!real) continue;
+      // MULTI-SOURCE: resolve the OTHER on-topic outlets' Google-News links to real
+      // publisher URLs (deduped by outlet, capped) so enrichSummary can harvest each one's
+      // og:image + prose — a genuine multi-photo sequence + corroborated brief for the
+      // trend, instead of a single-source story with one image. Best-effort, parallel.
+      const seenSrc = new Set([cleanSource(new URL(real).hostname)]);
+      const others = [];
+      for (const it of onTopic.slice(1)) {
+        const src = (it.source || '').toLowerCase().trim();
+        if (src && seenSrc.has(src)) continue; // one article per outlet
+        if (src) seenSrc.add(src);
+        others.push(it);
+        if (others.length >= Number(process.env.WORLD_X_MULTI || 5)) break;
+      }
+      const resolvedOthers = (await Promise.all(others.map((it) => resolveGoogleNewsUrl(it.url).catch(() => null))))
+        .filter((u) => u && u !== real && !isThinUrl(u));
+      const sourceUrls = [...new Set([real, ...resolvedOthers])].slice(0, 6);
+      // Distinct outlet names actually on this story (rep + resolved others).
+      const sourceNames = [...new Set([
+        hit.source || cleanSource(new URL(real).hostname),
+        ...onTopic.slice(1).map((i) => i.source).filter(Boolean),
+      ])];
       taken++;
       out.push({
         slot: 'trending',
@@ -607,9 +632,12 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
         url: real,
         imageUrl: null,
         images: [],
+        // Every on-topic outlet's real article URL → enrichSummary harvests each one's own
+        // photos of THIS event (BBC + NYT + …), so a trending Short gets a real photo set.
+        sourceUrls,
         sourceName: hit.source || cleanSource(new URL(real).hostname),
-        sources: [hit.source].filter(Boolean),
-        corr: items.length,
+        sources: sourceNames,
+        corr: sourceNames.length, // DISTINCT OUTLETS, not the raw search-result count
         category: 'offbeat',
         trend: term,
         // Heat ∝ trend rank on the board (no reliable tweet-count in the markup): a small
