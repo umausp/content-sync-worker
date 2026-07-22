@@ -393,6 +393,10 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
       if (!key || usedTitles.has(key)) continue;
       usedTitles.add(key);
       taken++;
+      // SAME-EVENT gate: Google groups a trend's articles by TERM, which can span several
+      // distinct events. Keep only the ones whose headline reports the SAME event as the rep,
+      // so we don't harvest an unrelated article's og:image into this story's photo sequence.
+      const sameEventItems = newsItems.filter((n) => n === rep || sameEvent(rep.title, n.title, term));
       out.push({
         slot: 'trending',
         badge: 'TRENDING',
@@ -404,12 +408,12 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
         url: rep.url,
         imageUrl: null,
         images: [],
-        // Every trend-backing outlet's article → harvest each one's OWN photos (this
-        // event's real images), so trending Shorts also get a genuine photo sequence.
-        sourceUrls: [...new Set(newsItems.map((n) => n.url).filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, MAX_SOURCE_URLS),
+        // Every SAME-EVENT trend-backing outlet's article → harvest each one's OWN photos
+        // (this event's real images), so trending Shorts get a genuine, on-topic photo set.
+        sourceUrls: [...new Set(sameEventItems.map((n) => n.url).filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, MAX_SOURCE_URLS),
         sourceName: cleanSource(new URL(rep.url).hostname),
-        sources: [...new Set(newsItems.map((n) => n.source).filter(Boolean))],
-        corr: newsItems.length,
+        sources: [...new Set(sameEventItems.map((n) => n.source).filter(Boolean))],
+        corr: sameEventItems.length,
         category: 'offbeat',
         trend: term,
         traffic,
@@ -554,6 +558,40 @@ function titleMatchesTerm(term, title) {
   if (t.includes(' ')) return T.includes(t); // multi-word phrase → substring
   return new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(T); // whole word
 }
+// Significant words of a headline (≥4 chars, minus filler/glue words) — the tokens that
+// identify WHICH event a headline is about.
+function titleTokens(title) {
+  return new Set(
+    String(title || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9 ]+/g, ' ')
+      .split(/\s+/)
+      .filter((w) => w.length > 3 && !TAG_STOP.has(w)),
+  );
+}
+// Do two headlines report the SAME event? Sharing the trend term alone is NOT enough — a
+// single hot word ("California", a celebrity name) matches dozens of UNRELATED stories, and
+// harvesting each of their og:images is exactly how a non-wildfire story ended up narrated
+// over wildfire photos (user report). Require real overlap BEYOND the trend term: ≥2 shared
+// significant words, at least one of which is NOT part of the term itself. Err strict — a
+// dropped genuine source just means fewer photos (fine); a false match pollutes the video.
+function sameEvent(repTitle, otherTitle, term = '') {
+  const a = titleTokens(repTitle);
+  const b = titleTokens(otherTitle);
+  if (!a.size || !b.size) return false;
+  const termWords = new Set(
+    String(term || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3),
+  );
+  let shared = 0;
+  let sharedNonTerm = 0;
+  for (const w of a) {
+    if (b.has(w)) {
+      shared++;
+      if (!termWords.has(w)) sharedNonTerm++;
+    }
+  }
+  return shared >= 2 && sharedNonTerm >= 1;
+}
 // Resolve a Google News RSS redirect (news.google.com/rss/articles/<id>) to the REAL
 // publisher URL — the article page carries a signature the batchexecute endpoint needs.
 // enrichSummary then pulls the outlet's og:image + prose from the real page. Best-effort.
@@ -623,6 +661,11 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
       const seenSrc = new Set([cleanSource(new URL(real).hostname)]);
       const others = [];
       for (const it of onTopic.slice(1)) {
+        // SAME-EVENT gate: sharing the trend term is NOT enough (one hot word matches many
+        // unrelated stories → their off-topic photos leaked into the video, e.g. wildfire
+        // images on a non-wildfire story). Only keep outlets whose headline genuinely
+        // reports the SAME event as the rep.
+        if (!sameEvent(hit.title, it.title, term)) continue;
         const src = (it.source || '').toLowerCase().trim();
         if (src && seenSrc.has(src)) continue; // one article per outlet
         if (src) seenSrc.add(src);
@@ -632,10 +675,11 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
       const resolvedOthers = (await Promise.all(others.map((it) => resolveGoogleNewsUrl(it.url).catch(() => null))))
         .filter((u) => u && u !== real && !isThinUrl(u));
       const sourceUrls = [...new Set([real, ...resolvedOthers])].slice(0, MAX_SOURCE_URLS);
-      // Distinct outlet names actually on this story (rep + resolved others).
+      // Distinct outlet names actually on this story (rep + same-event others only, so the
+      // corroboration count reflects outlets on THIS event — not any headline sharing the term).
       const sourceNames = [...new Set([
         hit.source || cleanSource(new URL(real).hostname),
-        ...onTopic.slice(1).map((i) => i.source).filter(Boolean),
+        ...onTopic.slice(1).filter((i) => sameEvent(hit.title, i.title, term)).map((i) => i.source).filter(Boolean),
       ])];
       taken++;
       out.push({
