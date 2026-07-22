@@ -223,7 +223,10 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         // rep = the cluster item that has an image (preferred) else the first
         const rep = c.items.find((i) => i.imageUrl) || c.items[0];
         const freshH = rep.publishedAt ? (now - Date.parse(rep.publishedAt)) / 3.6e6 : 99;
-        return { rep, corr: c.sources.size, hasImg: !!rep.imageUrl, freshH, sources: [...c.sources] };
+        // ALL distinct images across the cluster's outlets → feeds the multi-image
+        // sequence so a story shows several real photos of the SAME event.
+        const images = [...new Set(c.items.map((i) => i.imageUrl).filter(Boolean))];
+        return { rep, images, corr: c.sources.size, hasImg: !!rep.imageUrl, freshH, sources: [...c.sources] };
       })
       .sort((a, b) => {
         // AUTHENTICITY ranking: a real, current story with a photo beats an old/imageless
@@ -252,6 +255,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         summary: pick.rep.summary || pick.rep.title,
         url: pick.rep.url,
         imageUrl: pick.rep.imageUrl,
+        images: pick.images, // all distinct source images → multi-image sequence
         sourceName: pick.rep.sourceName,
         sources: pick.sources,
         corr: pick.corr,

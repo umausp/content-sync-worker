@@ -84,19 +84,19 @@ async function imageWidth(path) {
   }
 }
 
-async function tryStoryImage(story, outDir, seen) {
-  const url = story.imageUrl;
+async function tryStoryImage(story, outDir, seen, outFile = 'bg.png', imgUrl = null) {
+  const url = imgUrl || story.imageUrl;
   if (!url || !/^https:\/\//i.test(url)) return null;
   if (seen.has(`url:${url}`)) return null; // same photo already used by another story
   try {
     const buf = await fetchBuf(url);
     if (buf.length < 2000) return null; // too small to be a real photo
-    const raw = join(outDir, 'src-story');
+    const raw = join(outDir, `src-story-${outFile}`);
     await writeFile(raw, buf);
     // Reject low-res thumbnails so we don't ship a pixelated full-frame.
     if ((await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
     seen.add(`url:${url}`);
-    return await coverTo(raw, join(outDir, 'bg.png'));
+    return await coverTo(raw, join(outDir, outFile));
   } catch {
     return null;
   }
@@ -153,12 +153,12 @@ function pickUnused(candidates, seen) {
   return null;
 }
 
-async function downloadTo(src, outDir, name) {
+async function downloadTo(src, outDir, name, outFile = 'bg.png') {
   const buf = await fetchBuf(src);
   if (buf.length < 2000) return null;
   const raw = join(outDir, name);
   await writeFile(raw, buf);
-  return coverTo(raw, join(outDir, 'bg.png'));
+  return coverTo(raw, join(outDir, outFile));
 }
 
 // Each provider tries the story's ordered queries (category term → broad fallback)
@@ -202,13 +202,13 @@ async function unsplashCandidates(q) {
 }
 
 // Generic: try each query for a provider, return the first unused photo downloaded.
-async function tryProvider(hasKey, candidatesFn, queries, seen, outDir, name) {
+async function tryProvider(hasKey, candidatesFn, queries, seen, outDir, name, outFile = 'bg.png') {
   if (!hasKey) return null;
   for (const q of queries) {
     try {
       const src = pickUnused(await candidatesFn(q), seen);
       if (src) {
-        const out = await downloadTo(src, outDir, name);
+        const out = await downloadTo(src, outDir, name, outFile);
         if (out) return out;
       }
     } catch {
@@ -260,6 +260,48 @@ export async function resolveBackground(story, outDir, seen = new Set()) {
 export async function brandBackground(outDir) {
   await mkdir(outDir, { recursive: true });
   return { path: await brandFallback(outDir), kind: 'brand' };
+}
+
+// Resolve UP TO `count` DISTINCT canvas-sized background images for ONE story, so a
+// single-story Short plays as a photo SEQUENCE (Ken-Burns + crossfade) instead of one
+// static image (user ask). Order of preference:
+//   1. the story's OWN images — story.imageUrl + any story.images[] / source images
+//   2. top up with category stock (Pexels → Pixabay → Unsplash), each a fresh photo
+// De-duped via `seen`. Always returns ≥1 (gradient fallback). Returns { paths[], kinds[] }.
+export async function resolveBackgrounds(story, outDir, seen = new Set(), count = 3) {
+  await mkdir(outDir, { recursive: true });
+  const paths = [];
+  const kinds = [];
+  // 1) the story's own images — dedupe the URL list (imageUrl + images[]).
+  const ownUrls = [...new Set([story.imageUrl, ...(story.images || [])].filter(Boolean))];
+  for (const u of ownUrls) {
+    if (paths.length >= count) break;
+    const file = `bg-${paths.length}.png`;
+    const p = await tryStoryImage(story, outDir, seen, file, u);
+    if (p) { paths.push(p); kinds.push('story'); }
+  }
+  // 2) top up with stock — try each provider, each writing a fresh file.
+  const queries = stockQueries(story);
+  const providers = [
+    [!!PEXELS_KEY, pexelsCandidates, 'src-pexels'],
+    [!!PIXABAY_KEY, pixabayCandidates, 'src-pixabay'],
+    [!!UNSPLASH_KEY, unsplashCandidates, 'src-unsplash'],
+  ];
+  let pi = 0;
+  while (paths.length < count && pi < providers.length * 2) {
+    const [hasKey, fn, nm] = providers[pi % providers.length];
+    pi++;
+    if (!hasKey) continue;
+    const file = `bg-${paths.length}.png`;
+    const p = await tryProvider(hasKey, fn, queries, seen, outDir, `${nm}-${paths.length}`, file);
+    if (p) { paths.push(p); kinds.push(nm.replace('src-', '')); }
+  }
+  // 3) guarantee at least one background.
+  if (!paths.length) {
+    paths.push(await brandFallback(outDir));
+    kinds.push('brand');
+  }
+  return { paths, kinds };
 }
 
 export { BW, BH };

@@ -30,18 +30,60 @@ async function exists(p) {
 // Render ONE story clip: bg (Ken-Burns) + chrome + captions + narration. No music
 // here (mixed once over the concatenated whole). `captions` = [{ png, start, end }]
 // with times RELATIVE to this clip. Returns outPath.
-export async function renderSegment({ bgPath, chromePath, captions, narrationWav, dur, outPath }) {
+export async function renderSegment({ bgPath, bgPaths, chromePath, captions, narrationWav, dur, outPath }) {
   const { width: W, height: H, fps } = VIDEO;
-  const frames = Math.max(1, Math.round(dur * fps));
+  // MULTI-IMAGE background: a story now carries several images from its sources; show
+  // them in sequence across the segment (each with a Ken-Burns zoom, crossfaded) so the
+  // clip isn't one static photo. Falls back to the single bgPath. `bgPaths` is an
+  // ordered list of canvas-sized PNGs; each gets an equal slice of `dur`.
+  const bgs = (bgPaths && bgPaths.length ? bgPaths : [bgPath]).filter(Boolean);
+  const XF = 0.5; // crossfade seconds between images
   const parts = [];
-  // Ken-Burns zoom on the bg.
-  parts.push(
-    `[0:v]zoompan=z='min(zoom+0.0009,1.12)':d=${frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${W}x${H}:fps=${fps},format=yuva420p[bg]`,
-  );
-  parts.push(`[bg][1:v]overlay=0:0:format=auto[base]`);
+
+  // Build the background track.
+  if (bgs.length === 1) {
+    const frames = Math.max(1, Math.round(dur * fps));
+    parts.push(
+      `[0:v]zoompan=z='min(zoom+0.0009,1.12)':d=${frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${W}x${H}:fps=${fps},format=yuva420p[bg]`,
+    );
+  } else {
+    // Each image is a bounded `slice`-second clip with a Ken-Burns zoom; consecutive
+    // clips overlap by XF so the xfade chain lands them back-to-back and the whole
+    // thing runs exactly `dur`. Each clip is length = slice + XF (except the last),
+    // so after N-1 xfades of XF each the timeline = N*slice = dur.
+    const slice = dur / bgs.length;
+    bgs.forEach((_p, i) => {
+      const clipLen = i < bgs.length - 1 ? slice + XF : slice; // last needs no tail overlap
+      const f = Math.max(1, Math.round(clipLen * fps));
+      const z = i % 2 === 0 ? `min(zoom+0.0015,1.16)` : `if(lte(zoom,1.0),1.16,max(1.0,zoom-0.0015))`;
+      // zoompan d=f gives the clip f frames; trim bounds it; setpts resets its clock so
+      // xfade offsets are measured from each input's own start.
+      parts.push(
+        `[${i}:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},` +
+        `zoompan=z='${z}':d=${f}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${W}x${H}:fps=${fps},` +
+        `trim=duration=${clipLen.toFixed(3)},setpts=PTS-STARTPTS,format=yuva420p[z${i}]`,
+      );
+    });
+    // Chain xfades: offset for step i = i*slice - XF... but on the GROWING track the
+    // running length after k merges = (k)*slice + XF, so each next xfade offset is the
+    // running length minus XF = k*slice. Track it explicitly.
+    let prev = 'z0';
+    let running = slice + XF; // length of z0's clip
+    for (let i = 1; i < bgs.length; i++) {
+      const off = running - XF; // start the crossfade XF before the current track ends
+      const out = i === bgs.length - 1 ? 'bg' : `xf${i}`;
+      parts.push(`[${prev}][z${i}]xfade=transition=fade:duration=${XF}:offset=${off.toFixed(3)}[${out}]`);
+      const thisLen = i < bgs.length - 1 ? slice + XF : slice;
+      running = off + XF + (thisLen - XF); // new track length after this xfade
+      prev = out;
+    }
+  }
+
+  const nBg = bgs.length;
+  parts.push(`[bg][${nBg}:v]overlay=0:0:format=auto[base]`); // chrome is input nBg
   let last = 'base';
   captions.forEach((c, i) => {
-    const inIdx = 2 + i;
+    const inIdx = nBg + 1 + i; // captions start after bgs + chrome
     const out = i === captions.length - 1 ? 'vout' : `v${i}`;
     parts.push(
       `[${last}][${inIdx}:v]overlay=0:0:enable='between(t,${c.start.toFixed(3)},${c.end.toFixed(3)})'[${out}]`,
@@ -49,15 +91,14 @@ export async function renderSegment({ bgPath, chromePath, captions, narrationWav
     last = out;
   });
   if (captions.length === 0) parts.push(`[base]null[vout]`);
-  const idxNar = 2 + captions.length;
-  // Narration only; pad to the clip duration so video+audio lengths match exactly.
+  const idxNar = nBg + 1 + captions.length;
   parts.push(`[${idxNar}:a]aformat=sample_rates=48000:channel_layouts=stereo,apad[aout]`);
 
   const args = ['-y', '-loglevel', 'error'];
-  args.push('-loop', '1', '-i', bgPath); // 0
-  args.push('-loop', '1', '-i', chromePath); // 1
-  for (const c of captions) args.push('-loop', '1', '-i', c.png); // 2..N
-  args.push('-i', narrationWav); // narration
+  for (const b of bgs) args.push('-loop', '1', '-i', b); // 0..nBg-1 backgrounds
+  args.push('-loop', '1', '-i', chromePath); // nBg
+  for (const c of captions) args.push('-loop', '1', '-i', c.png); // nBg+1..
+  args.push('-i', narrationWav);
   args.push(
     '-filter_complex', parts.join(';'),
     '-map', '[vout]', '-map', '[aout]',
@@ -68,7 +109,7 @@ export async function renderSegment({ bgPath, chromePath, captions, narrationWav
     '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
     outPath,
   );
-  await execFileP('ffmpeg', args, { maxBuffer: 64 * 1024 * 1024 });
+  await execFileP('ffmpeg', args, { maxBuffer: 96 * 1024 * 1024 });
   return outPath;
 }
 
@@ -87,7 +128,7 @@ export async function concatWithMusic({ segmentPaths, musicPath, outPath, totalD
     // [0] concatenated clips (video+narration), [1] music looped.
     const filter =
       `[1:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:${totalDur.toFixed(3)},` +
-      `volume=0.13,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, totalDur - 2).toFixed(3)}:d=2[mus];` +
+      `volume=0.16,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, totalDur - 2).toFixed(3)}:d=2[mus];` +
       `[0:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=1.0[nar];` +
       `[nar][mus]amix=inputs=2:duration=first:dropout_transition=0,` +
       `loudnorm=I=${VIDEO.lufs}:TP=-1.5:LRA=11[aout]`;

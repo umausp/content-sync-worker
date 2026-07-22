@@ -20,7 +20,7 @@ import { join } from 'node:path';
 import { promisify } from 'node:util';
 import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.mjs';
 import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
-import { resolveBackground, brandBackground } from './visuals.mjs';
+import { resolveBackground, resolveBackgrounds, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
 import { buildWorldRoundup } from './world_feeds.mjs';
@@ -239,7 +239,15 @@ async function firstMusic() {
   try {
     const { readdir } = await import('node:fs/promises');
     const files = (await readdir(MUSIC_DIR)).filter((f) => /\.(mp3|m4a|aac|wav|ogg)$/i.test(f));
-    return files.length ? join(MUSIC_DIR, files[0]) : null;
+    if (!files.length) return null;
+    // Prefer the high-energy BEAT bed (US/UK Shorts style) — SHORTS_MUSIC overrides,
+    // else a filename containing 'beat', else the first track.
+    const want = process.env.SHORTS_MUSIC;
+    const pick =
+      (want && files.find((f) => f === want)) ||
+      files.find((f) => /beat|energ/i.test(f)) ||
+      files.sort()[0];
+    return join(MUSIC_DIR, pick);
   } catch {
     return null;
   }
@@ -301,7 +309,11 @@ async function main() {
       const timing = await ttsForStory(sentences, cfg, work, i);
       if (!timing.duration || !timing.segments?.length) throw new Error('no TTS timing');
 
-      const bg = await resolveBackground(story, join(work, `s${i}`), seenImages);
+      // MULTI-IMAGE: show ~1 image per 8s of the story (2-5), sequenced + crossfaded, so
+      // the clip isn't a single static photo (user ask). Uses the story's own images
+      // first, then tops up with category stock.
+      const imgCount = Math.max(1, Math.min(5, Math.round(timing.duration / 8)));
+      const bg = await resolveBackgrounds(story, join(work, `s${i}`), seenImages, imgCount);
       const chrome = await buildChrome(story, cfg, join(work, `s${i}`));
       const captions = [];
       for (let j = 0; j < timing.segments.length; j++) {
@@ -310,7 +322,7 @@ async function main() {
       }
       const clip = join(work, `clip-${i}.mp4`);
       await renderSegment({
-        bgPath: bg.path,
+        bgPaths: bg.paths,
         chromePath: chrome,
         captions,
         narrationWav: join(work, `nar-${i}.wav`),
@@ -318,7 +330,7 @@ async function main() {
         outPath: clip,
       });
       segmentPaths.push(clip);
-      console.log(`[shorts:${cfg.id}]   ✓ story ${i + 1} clip (${timing.duration.toFixed(1)}s, bg=${bg.kind})`);
+      console.log(`[shorts:${cfg.id}]   ✓ story ${i + 1} clip (${timing.duration.toFixed(1)}s, ${bg.paths.length} imgs: ${bg.kinds.join('+')})`);
     } catch (e) {
       console.log(`[shorts:${cfg.id}]   ✗ story ${i + 1} skipped: ${e.message}`);
     }
