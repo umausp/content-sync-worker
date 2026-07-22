@@ -23,7 +23,7 @@ import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
 import { resolveBackground, resolveBackgrounds, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
-import { buildWorldRoundup } from './world_feeds.mjs';
+import { buildWorldRoundup, buildTrendingStories } from './world_feeds.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -87,21 +87,56 @@ async function attachBackstory(story) {
   }
 }
 
+// Merge two story lists, interleaving them while dropping cross-list duplicates (the
+// same event can be both an editorial pick AND a Google trend). Word-overlap key so
+// near-identical headlines from two paths count once. `primary` leads each pair.
+function normKey(t) {
+  return String(t || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+}
+function mergeByTitle(primary, secondary) {
+  const out = [];
+  const seen = new Set();
+  const add = (s) => {
+    const k = normKey(s.title);
+    if (!k || seen.has(k)) return;
+    seen.add(k);
+    out.push(s);
+  };
+  // PRIMARY (the round-robin roundup — one per category first) leads, so a long-form
+  // slice(0,10) is guaranteed to span EVERY category the user asked for (politics,
+  // global, entertainment, tech, science, sports, health, weird/offbeat). Google-Trends
+  // stories come AFTER, filling remaining slots — a curated-first, trend-topped mix.
+  primary.forEach(add);
+  secondary.forEach(add);
+  return out;
+}
+
 async function gatherStories(cfg) {
   if (cfg.id === 'world') {
-    // Dedicated world/US-UK 5-slot roundup — NOT the India feed. Long-form pulls 2 per
-    // slot (→10 stories); Shorts pull 1 per slot (→5).
+    // Dedicated world/US-UK 9-slot roundup — NOT the India feed. Long-form pulls 2 per
+    // slot; Shorts pull 1 per slot. The roundup is round-robin ordered (one per category
+    // first) so slice(0, N) always spans ALL categories (politics…sports…science…).
     const perSlot = LONGFORM ? 2 : 1;
     // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
     // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
     // brief (was gated to single/long-form, leaving the roundup thin → "content is very
     // less"). Applies to all formats now.
-    const round = await buildWorldRoundup({
-      maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
-      perSlot,
-      enrich: true,
-    });
-    return round.slice(0, STORY_COUNT);
+    const [round, trending] = await Promise.all([
+      buildWorldRoundup({
+        maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
+        perSlot,
+        enrich: true,
+      }),
+      // GOOGLE TRENDS (US + GB): what's actually being searched right now, resolved to a
+      // real publisher article + the outlet's OWN og:image (never the gstatic thumbnail).
+      // Adds genuine "trending now" stories the editorial slots miss.
+      buildTrendingStories({ perGeo: LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+    ]);
+    // MERGE: interleave the roundup with trending (cross-deduped by normalized title) so
+    // both editorial coverage AND live search trends make the cut. Roundup leads (curated
+    // categories), then a trending story, alternating — slice keeps the mix balanced.
+    const merged = mergeByTitle(round, trending);
+    return merged.slice(0, STORY_COUNT);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
   // bulletin isn't all-politics (editor's mix: top/politics, business, entertainment,
@@ -182,6 +217,43 @@ function outroLine(cfg) {
     : 'Subscribe for daily world news, and read more at agyata dot com.';
 }
 
+// Select COMPLETE sentences that fit a budget — NEVER truncate a sentence mid-word (the
+// "every story ends with half a sentence" bug came from slicing a long sentence and
+// tacking on "…"). We keep whole sentences up to `maxSentences` and a soft `maxWords`
+// cap; a sentence that alone blows the word cap is dropped (not chopped) unless it's the
+// only one — in which case we cut it back to its last COMPLETE clause (…, ; :) so the
+// spoken line still ends cleanly rather than dangling.
+function wordCount(s) {
+  return String(s).split(/\s+/).filter(Boolean).length;
+}
+function pickWholeSentences(sents, { maxSentences, maxWords }) {
+  const out = [];
+  let words = 0;
+  for (const s of sents) {
+    if (out.length >= maxSentences) break;
+    const w = wordCount(s);
+    // A single over-long sentence: keep it only if nothing chosen yet, trimmed to its
+    // last complete clause boundary so it still ends on punctuation (never mid-word).
+    if (w > maxWords) {
+      if (out.length) break; // we already have enough; don't append a giant one
+      const clauses = s.split(/(?<=[,;:—–])\s+/);
+      let clip = '';
+      for (const c of clauses) {
+        if (wordCount(clip ? `${clip} ${c}` : c) > maxWords && clip) break;
+        clip = clip ? `${clip} ${c}` : c;
+      }
+      // Drop a trailing dangling connector so it doesn't end on "and,"/"but,".
+      clip = clip.replace(/[\s,;:—–]+$/, '').replace(/\s+(and|but|or|the|a|to|of|in|on|for|with)$/i, '');
+      out.push(/[.!?।]$/.test(clip) ? clip : `${clip}.`);
+      break;
+    }
+    if (words + w > maxWords && out.length) break;
+    out.push(s);
+    words += w;
+  }
+  return out;
+}
+
 // ── Natural narration for ONE story ──────────────────────────────────────────
 // Full sentences (not isolated fragments) so Kokoro's prosody flows naturally. The
 // caption for each sentence is timed to that sentence's audio. Returns the list of
@@ -195,7 +267,12 @@ function storySentences(story, cfg, index) {
   const summary = String(story.summary).replace(/\s+/g, ' ').trim();
   // Start DIRECTLY with the news headline — no "Story N." prefix (spoken or captioned).
   const out = [title];
-  const sents = summary.split(/(?<=[.!?।])\s+/).map((s) => s.trim()).filter(Boolean);
+  // Split into sentences, keeping ONLY complete ones (must end in terminal punctuation)
+  // — a trailing fragment with no ./!/? is dropped so narration never ends mid-thought.
+  const sents = summary
+    .split(/(?<=[.!?।])\s+/)
+    .map((s) => s.trim())
+    .filter((s) => s && /[.!?।]$/.test(s));
   // BACKSTORY line for evolving threads — a short "here's how it started" recap so a
   // returning viewer connects the update to the arc. Placed after the headline, before
   // the latest development. Only in single/long-form (roundup has no room).
@@ -204,18 +281,17 @@ function storySentences(story, cfg, index) {
     out.push(lead);
   }
   if (LONGFORM) {
-    // Long-form (16:9, ~3.5min): up to 2 sentences per story — the higher-RPM format.
-    for (const s of sents.slice(0, 2)) out.push(s.length > 240 ? `${s.slice(0, 237).replace(/\s+\S*$/, '')}…` : s);
+    // Long-form (16:9): 2-3 COMPLETE sentences per story (the higher-RPM format).
+    out.push(...pickWholeSentences(sents, { maxSentences: 3, maxWords: 55 }));
   } else if (SINGLE) {
-    // Single-story Short: it's the ONLY story, so give real depth (2-3 sentences) to
-    // fill ~25-35s and keep the viewer to the payoff — the retention-optimal format.
-    for (const s of sents.slice(0, 3)) out.push(s.length > 200 ? `${s.slice(0, 197).replace(/\s+\S*$/, '')}…` : s);
+    // Single-story Short: it's the ONLY story, so give real depth — up to 4 COMPLETE
+    // sentences within a word budget to fill ~30-45s and land the payoff.
+    out.push(...pickWholeSentences(sents, { maxSentences: 4, maxWords: 75 }));
   } else {
     // 5-story roundup: budget ~9-10s/story so 5 land under 60s. Headline is the star;
-    // add ONE short context clause only when the title is brief.
+    // add ONE short COMPLETE context sentence only when the title is brief.
     if (title.length < 70) {
-      let ctx = sents[0] || '';
-      if (ctx.length > 120) ctx = `${ctx.slice(0, 117).replace(/\s+\S*$/, '')}…`;
+      const [ctx] = pickWholeSentences(sents, { maxSentences: 1, maxWords: 28 });
       if (ctx) out.push(ctx);
     }
   }
@@ -228,8 +304,14 @@ async function ttsForStory(sentences, cfg, work, id) {
     lang: cfg.lang,
     voice: cfg.voice,
     espeakLang: cfg.espeakLang, // espeak-ng phonemization language (en-us / hi)
-    // ~1.02 ≈ broadcast-anchor 150-170 WPM (research spec). Was 0.94 (too slow for Shorts).
-    speed: Number(process.env.SHORTS_TTS_SPEED || 1.02),
+    // PACE: faceless-news Shorts retain best at ~160-175 WPM. Measured end-to-end on
+    // this build (per-sentence synth adds slight padding vs raw text): 1.22× ≈ 162 WPM
+    // real (brisk energetic broadcast) — 1.02× read as sluggish (~150). Hindi Kokoro is
+    // denser/needs more clarity, so run it a hair slower. Env-overridable per run.
+    speed: Number(process.env.SHORTS_TTS_SPEED || (cfg.lang === 'h' ? 1.14 : 1.22)),
+    // Tighter inter-sentence breath so the delivery feels punchy, not plodding (was
+    // 0.32s → felt slow between lines). ~0.18s keeps sentences distinct without dead air.
+    gap: Number(process.env.SHORTS_TTS_GAP || 0.18),
     out: join(work, `nar-${id}`),
   };
   await writeFile(join(work, `tts-${id}.json`), JSON.stringify(job));
@@ -317,10 +399,14 @@ async function main() {
       const timing = await ttsForStory(sentences, cfg, work, i);
       if (!timing.duration || !timing.segments?.length) throw new Error('no TTS timing');
 
-      // MULTI-IMAGE: show ~1 image per 8s of the story (2-5), sequenced + crossfaded, so
-      // the clip isn't a single static photo (user ask). Uses the story's own images
-      // first, then tops up with category stock.
-      const imgCount = Math.max(1, Math.min(5, Math.round(timing.duration / 8)));
+      // MULTI-IMAGE: show ~1 image every 5s of the story, sequenced + crossfaded, so the
+      // clip is a lively photo SEQUENCE, not one static frame (user: "at least 5-10
+      // images for a 50s video"). Uses the story's OWN article photos first (harvested in
+      // enrichSummary), then tops up with category stock. SINGLE stories get more images
+      // (the whole video is one story) than a 10-up roundup where each story is brief.
+      const perImgSec = Number(process.env.SHORTS_SEC_PER_IMG || (SINGLE ? 5 : 7));
+      const imgCap = SINGLE ? 10 : 4;
+      const imgCount = Math.max(SINGLE ? 5 : 1, Math.min(imgCap, Math.round(timing.duration / perImgSec)));
       const bg = await resolveBackgrounds(story, join(work, `s${i}`), seenImages, imgCount);
       const chrome = await buildChrome(story, cfg, join(work, `s${i}`));
       const captions = [];
@@ -399,6 +485,20 @@ async function sumDurations(paths) {
   return total;
 }
 
+// Outlet names for "Reported by:" — the world feed gives string sources, the India feed
+// gives {name,url} objects. Normalize both to a clean, de-duped list of names (avoids
+// "Reported by: [object Object]").
+function sourceLabels(sources) {
+  return [
+    ...new Set(
+      (sources || [])
+        .map((s) => (typeof s === 'string' ? s : s && (s.name || s.sourceName)) || '')
+        .map((s) => String(s).trim())
+        .filter(Boolean),
+    ),
+  ];
+}
+
 function buildUploadMeta(stories, cfg, dur) {
   const isWorld = cfg.id === 'world';
   const n = stories.length;
@@ -431,10 +531,12 @@ function buildUploadMeta(stories, cfg, dur) {
   const sub = isWorld
     ? 'https://www.youtube.com/@AgyataWorld?sub_confirmation=1'
     : 'https://www.youtube.com/@agyata_dot_com?sub_confirmation=1';
+  const leadSources = sourceLabels(lead.sources);
+  const reportedByLabel = isWorld ? 'Reported by' : 'स्रोत';
   const hook = SINGLE
     ? // Single story: lead the description with the story's own synthesized summary +
       // the outlets that reported it — a genuinely informative blurb, not boilerplate.
-      `${lead.summary || lead.title}${lead.sources?.length ? `\n\nReported by: ${lead.sources.slice(0, 5).join(', ')}.` : ''}`
+      `${lead.summary || lead.title}${leadSources.length ? `\n\n${reportedByLabel}: ${leadSources.slice(0, 5).join(', ')}.` : ''}`
     : isWorld
       ? `The ${n} biggest world news stories today, ${date} — fast, neutral, sourced. Politics, breaking, business, tech, entertainment, sports & science in one quick recap.`
       : `आज की ${n} सबसे बड़ी खबरें (${date}) — तेज़, निष्पक्ष और भरोसेमंद। राजनीति, बिज़नेस, मनोरंजन, खेल और टेक — एक साथ।`;

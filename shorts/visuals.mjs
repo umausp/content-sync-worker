@@ -27,24 +27,28 @@ async function fetchBuf(url) {
   return Buffer.from(await r.arrayBuffer());
 }
 
-// Scale+crop any input image to exactly BWxBH (cover), via ffmpeg (handles jpg/png/webp).
+// Compose any input image onto a BWxBH canvas via ffmpeg (handles jpg/png/webp).
 //
-// PROFESSIONAL BACKGROUND TREATMENT (the quality fix): we don't drop the raw source
-// photo behind the caption. Instead we build a "cinematic backdrop" — a subtly BLURRED
-// + DARKENED cover layer with a SHARP, slightly-smaller version composited on top.
-// Why: (1) the big caption text always reads clearly over the darkened blur; (2) any
-// source-image chyron / competitor watermark / on-screen text becomes an unobtrusive
-// abstract backdrop instead of a distracting (or off-brand) hard edge — this is exactly
-// the look pro faceless news Shorts use. The sharp inset keeps the actual news photo
-// recognizable. Falls back to a plain cover if the two-layer filter ever errors.
+// FULL-PHOTO TREATMENT (the "nothing is visible" fix): a wide 16:9 news photo cropped to
+// a tall 9:16 portrait frame kept only a narrow CENTRE STRIP — the actual subject (a
+// face, a building, a scoreboard) was sliced off. Instead we now show the ENTIRE photo:
+//   • base  = the SAME photo scaled to COVER the frame, then heavily BLURRED + darkened
+//             — an on-brand, on-topic backdrop that fills the letterbox gaps (no black bars);
+//   • front = the WHOLE photo scaled to FIT (force_original_aspect_ratio=decrease, no
+//             crop), centered on top — so every part of the news image is visible.
+// This is the standard pro faceless-news look, and nothing important is ever cropped.
+// Falls back to a plain cover if the two-layer filter ever errors.
 async function coverTo(srcPath, outPath) {
+  // Fit the whole photo to ~96% of the frame so it isn't glued to the edges, over a
+  // full-bleed blurred/darkened cover of the same photo.
+  const fitW = Math.round(BW * 0.985);
+  const fitH = Math.round(BH * 0.985);
   const filter =
-    // blurred, darkened full-bleed base…
+    // blurred, darkened full-bleed cover base…
     `[0:v]scale=${BW}:${BH}:force_original_aspect_ratio=increase,crop=${BW}:${BH},` +
-    `gblur=sigma=28,eq=brightness=-0.18:saturation=0.9[bgblur];` +
-    // …sharp inset (90% width) centered on top…
-    `[0:v]scale=${Math.round(BW * 0.94)}:${Math.round(BH * 0.94)}:force_original_aspect_ratio=increase,` +
-    `crop=${Math.round(BW * 0.94)}:${Math.round(BH * 0.94)}[fg];` +
+    `gblur=sigma=30,eq=brightness=-0.24:saturation=0.85[bgblur];` +
+    // …the WHOLE photo, fit (never cropped), centered on top…
+    `[0:v]scale=${fitW}:${fitH}:force_original_aspect_ratio=decrease[fg];` +
     `[bgblur][fg]overlay=(W-w)/2:(H-h)/2,format=yuv420p[out]`;
   try {
     await execFileP('ffmpeg', [

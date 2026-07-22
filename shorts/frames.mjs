@@ -102,7 +102,16 @@ export async function buildChrome(story, cfg, outDir) {
   await mkdir(outDir, { recursive: true });
   const W = VIDEO.width;
   const H = VIDEO.height;
-  const badge = story.isBreaking ? 'BREAKING' : story.isLive ? 'LIVE' : (story.category || 'NEWS').toUpperCase();
+  // Prefer the caller-set badge (bharat sets a Hindi label like 'राजनीति'/'ब्रेकिंग';
+  // world/hook/outro set an explicit label) so the Hindi channel never shows an English
+  // chip. Fall back to breaking/live/category for the world channel's slot keys.
+  const badge = story.badge
+    ? String(story.badge).toUpperCase()
+    : story.isBreaking
+      ? 'BREAKING'
+      : story.isLive
+        ? 'LIVE'
+        : (story.category || 'NEWS').toUpperCase();
   const badgeColor = story.isBreaking || story.isLive ? BRAND.breaking : BRAND.accent;
   const chip = `#${esc(story.hashtag || 'news')}`;
   const source = story.sourceName ? `Source: ${esc(story.sourceName)}` : '';

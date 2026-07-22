@@ -156,6 +156,65 @@ function imageOf(block) {
   return m && /^https:\/\//i.test(m[1]) ? m[1] : null;
 }
 
+// Pull the PUBLISHER'S OWN lead image from an article's OpenGraph/Twitter meta. This is
+// the outlet's chosen hero photo — monetization-safe to show with a source credit —
+// unlike the gstatic thumbnail Google Trends hands back (a Google-hosted crop we must
+// NOT use). Returns an https URL or null.
+function ogImage(html) {
+  const h = String(html || '');
+  const m =
+    h.match(/<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i) ||
+    h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image(?::url)?["']/i) ||
+    h.match(/<meta[^>]+name=["']twitter:image(?::src)?["'][^>]+content=["']([^"']+)["']/i) ||
+    h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image(?::src)?["']/i);
+  if (!m) return null;
+  const url = decode(m[1]).trim();
+  // Accept any https og:image (many CDNs serve images from extension-less paths).
+  return /^https:\/\//i.test(url) ? url : null;
+}
+
+// Collect SEVERAL real photos from an article so a Short can play a proper photo
+// SEQUENCE (user: "at least 5-10 images for a 50s video") instead of one static image.
+// Pulls the og:image, then every reasonably-sized <img>/<figure> photo inside the
+// article body — all the OUTLET'S OWN photos (monetization-safe, credited). Skips
+// logos/sprites/tracking-pixels/icons/avatars by URL heuristics. Returns an ordered,
+// deduped list of https image URLs.
+function articleImages(html) {
+  const h = String(html || '');
+  const found = [];
+  const push = (u) => {
+    if (!u) return;
+    let s = decode(u).trim();
+    if (s.startsWith('//')) s = `https:${s}`;
+    if (!/^https:\/\//i.test(s)) return;
+    // Skip non-photo assets (logos, icons, sprites, tracking pixels, avatars) AND the
+    // things that read as ADS in a news video (user: "long build added Ads in it"):
+    //   • press-kit / product screenshots (vendor promo graphics with logos),
+    //   • event/conference promo banners (e.g. TechCrunch "Disrupt2026"),
+    //   • author/contributor headshots & "-copy" byline avatars,
+    //   • generic promo/banner/sponsor/newsletter creatives.
+    if (
+      /\.svg(?:$|\?)|sprite|logo|icon|favicon|avatar|placeholder|pixel|1x1|blank|doubleclick|analytics/i.test(s) ||
+      /press.?kit|product[-_]|screenshot|-copy|_copy|contributor|headshot|byline|disrupt|promo|banner|sponsor|newsletter|subscribe|advert|\bad[-_s]?\b/i.test(s) ||
+      /[?&](?:w|width)=(?:\d{1,2}|1\d\d|2\d\d)\b/i.test(s) // tiny requested widths (≤299px) = thumbs/avatars
+    )
+      return;
+    if (!found.includes(s)) found.push(s);
+  };
+  const og = ogImage(h);
+  if (og) push(og);
+  // Scope to the article body so we don't pull site-wide promo images.
+  const container = (h.match(/<article[\s\S]*?<\/article>/i) || h.match(/<main[\s\S]*?<\/main>/i) || [h])[0];
+  // <img src>, plus lazy-loaded variants (data-src / data-lazy-src) common on news CDNs.
+  for (const m of container.matchAll(/<img[^>]+(?:data-src|data-lazy-src|src)=["']([^"']+\.(?:jpe?g|png|webp)[^"']*)["']/gi)) push(m[1]);
+  // <source srcset> (picture/responsive) — take the LAST (largest) candidate URL.
+  for (const m of container.matchAll(/<source[^>]+srcset=["']([^"']+)["']/gi)) {
+    const last = m[1].split(',').pop().trim().split(/\s+/)[0];
+    if (/\.(?:jpe?g|png|webp)/i.test(last)) push(last);
+  }
+  return found.slice(0, 10);
+}
+
 async function fetchFeed(url) {
   try {
     const r = await fetch(url, {
@@ -208,7 +267,11 @@ function normTitle(t) {
 // quality signal). Prefers items WITH an image + more corroboration + freshness.
 export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false } = {}) {
   const now = Date.now();
-  const out = [];
+  // Collect picks PER SLOT into buckets, then INTERLEAVE round-robin at the end so a
+  // downstream slice(0, N) always spans EVERY category (was: fixed slot order meant a
+  // 10-story long-form filled up on politics/breaking/… and never reached sports/
+  // science/health/trending). buckets[slotKey] = [pick, pick, …] in rank order.
+  const buckets = new Map();
   // Cross-slot dedup: the SAME event can match two slots (e.g. 'Trump tariffs' fits both
   // BREAKING and GLOBAL). Track normalized titles already taken so no story repeats
   // across slots — each slot picks the best story NOT already used.
@@ -265,14 +328,13 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
       });
     // Take the top `perSlot` stories from this slot that HAVEN'T already been used by an
     // earlier slot (skip cross-slot duplicates like the same Trump story in 2 slots).
-    let taken = 0;
+    const bucket = [];
     for (const pick of ranked) {
-      if (taken >= perSlot) break;
+      if (bucket.length >= perSlot) break;
       const key = normTitle(pick.rep.title);
       if (usedTitles.has(key)) continue; // already in another slot → skip to next-best
       usedTitles.add(key);
-      taken++;
-      out.push({
+      bucket.push({
         slot: slot.key,
         badge: slot.label,
         hashtag: slotHashtag(slot.key, pick.rep.title),
@@ -287,6 +349,18 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         category: slot.key,
       });
     }
+    if (bucket.length) buckets.set(slot.key, bucket);
+  }
+  // INTERLEAVE round-robin across slots: one story per category first (politics,
+  // breaking, global, entertainment, tech, science, sports, health, trending), THEN a
+  // second pass, etc. So a downstream slice(0, N) — e.g. 10 stories for long-form —
+  // spans EVERY category instead of filling up on the first few slots. Slot order in
+  // WORLD_SLOTS sets the priority of the first pass.
+  const out = [];
+  const cols = WORLD_SLOTS.map((s) => buckets.get(s.key) || []);
+  const maxDepth = Math.max(0, ...cols.map((c) => c.length));
+  for (let depth = 0; depth < maxDepth; depth++) {
+    for (const col of cols) if (col[depth]) out.push(col[depth]);
   }
   // ENRICH the summaries: RSS gives only ~1 sentence (~120 chars) — too thin for a
   // 20-35s single-story Short. Fetch each picked article and append real body
@@ -294,6 +368,78 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
   // on any failure). Only bother when a fuller script is wanted (single/long-form).
   if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
   return out;
+}
+
+// Google Trends "trending now" RSS → real, searched-RIGHT-NOW stories for the US + UK.
+// This is the "check Google Trends for what's hot in USA/Europe" ask. Each trend item
+// carries the REAL publisher article URLs that made it trend (Politico/Fox/BBC/…), plus
+// a gstatic thumbnail we deliberately IGNORE (Google-hosted crop — copyright/monetization
+// risk). We keep the publisher article URL and let enrichSummary pull the OUTLET'S OWN
+// og:image + body prose downstream — 100% monetization-safe.
+const TRENDS_GEOS = (process.env.WORLD_TRENDS_GEOS || 'US,GB').split(',').map((g) => g.trim()).filter(Boolean);
+function trendTag(term) {
+  const words = String(term).replace(/[^\p{L}\p{N} ]+/gu, ' ').split(/\s+/).filter((w) => w.length > 2 && !TAG_STOP.has(w.toLowerCase()));
+  const pick = words.slice(0, 2);
+  if (!pick.length) return 'Trending';
+  return pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').slice(0, 24);
+}
+export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enrich = true } = {}) {
+  const usedTitles = new Set();
+  const out = [];
+  for (const geo of geos) {
+    let xml = '';
+    try {
+      const r = await fetch(`https://trends.google.com/trending/rss?geo=${encodeURIComponent(geo)}`, {
+        headers: { 'user-agent': UA, accept: 'application/rss+xml,application/xml,*/*' },
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!r.ok) continue;
+      xml = await r.text();
+    } catch {
+      continue;
+    }
+    let taken = 0;
+    for (const [, item] of xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)) {
+      if (taken >= perGeo) break;
+      const term = decode((item.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || '').trim();
+      if (!term) continue;
+      // Each trend lists the articles that made it trend. Pick the first REAL article
+      // (skip video/gallery/live pages that carry no prose) as the story's source.
+      const newsItems = [...item.matchAll(/<ht:news_item>([\s\S]*?)<\/ht:news_item>/gi)].map(([, ni]) => ({
+        title: decode((ni.match(/<ht:news_item_title>([\s\S]*?)<\/ht:news_item_title>/i) || [])[1] || '').replace(/\s+/g, ' ').trim(),
+        url: decode((ni.match(/<ht:news_item_url>([\s\S]*?)<\/ht:news_item_url>/i) || [])[1] || '').trim(),
+        source: decode((ni.match(/<ht:news_item_source>([\s\S]*?)<\/ht:news_item_source>/i) || [])[1] || '').trim(),
+      })).filter((n) => n.title && /^https?:\/\//i.test(n.url));
+      if (!newsItems.length) continue;
+      const rep = newsItems.find((n) => !isThinUrl(n.url)) || newsItems[0];
+      const key = normTitle(rep.title);
+      if (!key || usedTitles.has(key)) continue;
+      usedTitles.add(key);
+      taken++;
+      out.push({
+        slot: 'trending',
+        badge: 'TRENDING',
+        hashtag: trendTag(term),
+        title: rep.title,
+        // NO imageUrl / images — enrichSummary pulls the publisher's own og:image (we
+        // never use the gstatic <ht:news_item_picture> thumbnail: copyright/monetization).
+        summary: rep.title,
+        url: rep.url,
+        imageUrl: null,
+        images: [],
+        sourceName: cleanSource(new URL(rep.url).hostname),
+        sources: [...new Set(newsItems.map((n) => n.source).filter(Boolean))],
+        corr: newsItems.length,
+        category: 'offbeat',
+        trend: term,
+        geo,
+      });
+    }
+  }
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
+  // Drop trends we couldn't enrich into a real photo + brief (thin/paywalled): a Short
+  // needs a real image and body. Keep only stories that gained a publisher image.
+  return out.filter((s) => s.imageUrl && s.summary && s.summary.length > 60);
 }
 
 // Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
@@ -322,12 +468,23 @@ function articleProse(html) {
 // SYNTHESIS across the story's sources into a clean, factual 2-3 sentence brief (the
 // "research from multiple sources, make useful content" ask). Fallback: extractive body
 // paragraphs. $0, fail-open (keeps the RSS lead on any failure).
-async function enrichSummary(story) {
+export async function enrichSummary(story) {
   if (!story.url || !/^https?:\/\//i.test(story.url)) return;
   try {
     const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
     if (!r.ok) return;
-    const paras = articleProse(await r.text());
+    const html = await r.text();
+    // MONETIZATION-SAFE IMAGES: harvest the PUBLISHER'S OWN photos from the article we're
+    // already fetching — the og:image plus in-body <img>/<figure> photos. These are the
+    // outlet's chosen images (safe to show with a credit), unlike the gstatic thumbnail
+    // Google Trends hands back. Gives a Short enough real photos to play a SEQUENCE (user:
+    // "at least 5-10 images for a 50s video") instead of one static frame.
+    const arts = articleImages(html);
+    if (arts.length) {
+      if (!story.imageUrl) story.imageUrl = arts[0];
+      story.images = [...new Set([story.imageUrl, ...(story.images || []), ...arts].filter(Boolean))];
+    }
+    const paras = articleProse(html);
     if (!paras.length) return;
     const body = paras.join(' ').replace(/\s+/g, ' ').trim().slice(0, 2200);
 
@@ -345,15 +502,24 @@ async function enrichSummary(story) {
         `HEADLINE: ${story.title}\n` +
         (outlets ? `REPORTED BY: ${outlets}\n` : '') +
         `SOURCE TEXT: ${body}`;
-      const synth = await llmChat(prompt, { maxTokens: 260, temperature: 0.3 });
-      const clean = (synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim();
+      const synth = await llmChat(prompt, { maxTokens: 320, temperature: 0.3 });
+      let clean = (synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim();
+      // If the model stopped mid-sentence (hit the token cap), drop the trailing partial
+      // so the brief always ends on a complete sentence.
+      if (clean && !/[.!?]$/.test(clean)) {
+        const cut = clean.replace(/\s+\S*$/, '');
+        const lastEnd = Math.max(cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'));
+        if (lastEnd > 80) clean = cut.slice(0, lastEnd + 1).trim();
+      }
       if (clean.length >= 120) {
         story.summary = clean;
         return;
       }
     }
 
-    // Extractive fallback: RSS lead + distinct body paragraphs, capped ~620 chars.
+    // Extractive fallback: RSS lead + distinct body paragraphs, then trimmed to WHOLE
+    // sentences (never chopped mid-word — that produced narration ending on half a
+    // sentence). We take complete sentences up to ~700 chars.
     const seen = new Set();
     const parts = [story.summary, ...paras].filter((p) => {
       const k = (p || '').slice(0, 40).toLowerCase();
@@ -361,8 +527,15 @@ async function enrichSummary(story) {
       seen.add(k);
       return true;
     });
-    let full = parts.join(' ').replace(/\s+/g, ' ').trim();
-    if (full.length > 620) full = `${full.slice(0, 617).replace(/\s+\S*$/, '')}…`;
+    const joined = parts.join(' ').replace(/\s+/g, ' ').trim();
+    // Keep only complete sentences (end in . ! ? …) up to the char budget.
+    const sentences = joined.split(/(?<=[.!?])\s+/).filter((s) => /[.!?]$/.test(s.trim()));
+    let full = '';
+    for (const s of sentences) {
+      if (full.length + s.length > 700 && full) break;
+      full = full ? `${full} ${s}` : s;
+    }
+    full = full.trim();
     if (full.length > (story.summary || '').length) story.summary = full;
   } catch {
     /* keep the RSS summary */
@@ -386,7 +559,8 @@ const SLOT_TAGS = {
 };
 // Stopwords that make bad tags (verbs/fillers/glue words a headline leads with).
 const TAG_STOP = new Set(
-  ('will would could should says say said after before amid over into from with that this ' +
+  ('the and for but not are was were has have had its his her our out off per via ' +
+    'will would could should says say said after before amid over into from with that this ' +
     'their there here what when where which while about among across your ours have been being ' +
     'more most many much some such than then they them here news video watch live latest update ' +
     'first last next best worst plan plans deal talks warns urges calls faces sets gets')
