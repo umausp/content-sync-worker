@@ -47,6 +47,15 @@ env:
   RESEARCH_MAX_AGE_H: '18' # freshness window
   WORLD_US_GEOS: 'US'
   WORLD_EU_GEOS: 'GB,IE,DE,FR,IT,ES,NL'
+  # ── MAXIMUM IMAGES per story (user: "if you find 60 sources then fetch 60 images / get
+  #    maximum images for the story"). Timeout-free pool → gather deep; render slices. ──
+  WORLD_X_MULTI: '12' # OTHER outlets resolved per trending story
+  WORLD_MAX_SOURCE_URLS: '15' # distinct publisher article URLs kept per story
+  WORLD_ENRICH_OUTLETS: '12' # outlets enrichSummary extracts prose + OWN photos from
+  WORLD_MAX_STORY_IMAGES: '30' # story-own photos kept per story (a big event → 20-30 real photos)
+  WORLD_SYNTH_CORPUS: '7000' # total cross-outlet prose fed to the LLM for ONE good summary
+  RESEARCH_BUNDLE_MAX_IMAGES: '30'
+  RESEARCH_BUNDLE_MAX_URLS: '15'
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline + renders use
   #    (src/providers.mjs), NVIDIA-first, huggingface in the middle, local Ollama last.
   #    This synthesises each story's clean, corroborated, non-repetitive brief. ──

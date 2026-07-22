@@ -52,6 +52,10 @@ const PER_SLOT = Number(process.env.RESEARCH_PER_SLOT || 3); // editorial storie
 const PER_GEO_TRENDS = Number(process.env.RESEARCH_PER_GEO_TRENDS || 5); // Google-Trends stories/geo
 const PER_GEO_X = Number(process.env.RESEARCH_PER_GEO_X || 5); // X-trend stories/geo
 const MAX_AGE_H = Number(process.env.RESEARCH_MAX_AGE_H || 18); // freshness window for editorial
+// Bundle depth — keep MANY images/URLs per story (user: "get maximum images for the story").
+// The render slices what a given clip needs; the bundle holds the full harvest.
+const BUNDLE_MAX_IMAGES = Number(process.env.RESEARCH_BUNDLE_MAX_IMAGES || 30);
+const BUNDLE_MAX_URLS = Number(process.env.RESEARCH_BUNDLE_MAX_URLS || 15);
 
 // Normalized title key — MUST match build_short.mjs / world_feeds.mjs so dedup + the
 // render's cross-run claim all agree on what "the same story" is.
@@ -143,8 +147,9 @@ async function researchRegion(region) {
     const score = (x) => (x.sources?.length || 0) * 1000 + (x.summary?.length || 0);
     if (score(s) > score(prev)) {
       // preserve the union of source URLs + images so we don't lose any outlet's photos
-      s.sourceUrls = [...new Set([...(s.sourceUrls || []), ...(prev.sourceUrls || [])])].slice(0, 8);
-      s.images = [...new Set([...(s.images || []), ...(prev.images || [])])].slice(0, 12);
+      // (deep caps — this is the timeout-free pool; the render slices what it needs).
+      s.sourceUrls = [...new Set([...(s.sourceUrls || []), ...(prev.sourceUrls || [])])].slice(0, BUNDLE_MAX_URLS);
+      s.images = [...new Set([...(s.images || []), ...(prev.images || [])])].slice(0, BUNDLE_MAX_IMAGES);
       s.sources = [...new Set([...(s.sources || []), ...(prev.sources || [])])];
       byKey.set(k, s);
     }
@@ -170,16 +175,51 @@ async function researchRegion(region) {
     })
     .filter((s) => s._ok);
 
-  // RANK — corroborated (more distinct outlets) + more genuine photos first (a bigger, more
-  // real story with more angles leads). Trend heat breaks ties.
-  verified.sort((a, b) => {
-    const score = (x) =>
-      (x.verified ? 4 : 0) + Math.min(6, x._outlets || 0) + Math.min(6, x.images?.length || 0) + (x.traffic ? 1 : 0);
-    return score(b) - score(a) || (b._outlets || 0) - (a._outlets || 0) || (b.traffic || 0) - (a.traffic || 0);
-  });
+  // RANK by POPULARITY + RECENCY + RELEVANCY (user: "pick best stories for shorts-world and
+  // longform as per the popularity and recency and relevancy"). Each is a 0-1 sub-score;
+  // the render then leads with the highest-scoring story. Components are stored on the story
+  // (_pop/_rec/_rel/_score) so the bundle is auditable.
+  const score = scoreStories(verified);
+  verified.sort((a, b) => (b._score - a._score) || (b._outlets - a._outlets) || (b.traffic || 0) - (a.traffic || 0));
 
-  console.log(`[research:${region}] verified ${verified.length}/${merged.length} stories (${verified.filter((s) => s.verified).length} corroborated ≥2 outlets)`);
+  console.log(`[research:${region}] verified ${verified.length}/${merged.length} stories (${verified.filter((s) => s.verified).length} corroborated ≥2 outlets); top: ${verified.slice(0, 3).map((s) => `"${(s.title || '').slice(0, 40)}" [${s._score.toFixed(2)} pop${s._pop.toFixed(2)}/rec${s._rec.toFixed(2)}/rel${s._rel.toFixed(2)}]`).join('  ')}`);
+  void score;
   return verified;
+}
+
+// POPULARITY + RECENCY + RELEVANCY scoring. Mutates each story with _pop/_rec/_rel/_score
+// and returns the array. Sub-scores are normalized 0-1 so the weighting is transparent.
+//   • POPULARITY — how big/widely-covered: distinct outlets (log-scaled so 25 vs 5 still
+//     separates but doesn't dwarf everything) + trend search volume (Google Trends traffic /
+//     X board rank). A story 60 newsrooms ran is objectively more popular than a 2-outlet one.
+//   • RECENCY — how fresh: freshH (hours since publish / trend window). Half-life ~6h so a
+//     2-hourly channel leads with genuinely current news, not this-morning's.
+//   • RELEVANCY — how well-formed + on-topic for a video: corroborated (verified), a real
+//     multi-sentence brief, and enough genuine photos to fill a clip. A trend that resolved
+//     to one thin outlet with one image is less "relevant" to ship than a rich, multi-photo one.
+function scoreStories(stories) {
+  const maxTraffic = Math.max(1, ...stories.map((s) => s.traffic || 0));
+  for (const s of stories) {
+    const outlets = s._outlets || 1;
+    const nImg = (s.images || []).length + (s.imageUrl && !(s.images || []).length ? 1 : 0);
+    // POPULARITY: 70% breadth-of-coverage (log-scaled, saturates ~30 outlets) + 30% trend heat.
+    const coverage = Math.min(1, Math.log10(outlets) / Math.log10(30));
+    const heat = (s.traffic || 0) / maxTraffic;
+    const pop = 0.7 * coverage + 0.3 * heat;
+    // RECENCY: exponential decay, 6h half-life. freshH unknown → treat as moderately fresh (6h).
+    const freshH = Number.isFinite(s.freshH) ? s.freshH : 6;
+    const rec = Math.pow(0.5, Math.max(0, freshH) / 6);
+    // RELEVANCY: verified corroboration (0.4) + brief quality (0.3) + photo depth (0.3).
+    const briefQ = Math.min(1, ((s.summary || '').length) / 400);
+    const imgQ = Math.min(1, nImg / 6);
+    const rel = 0.4 * (s.verified ? 1 : 0.3) + 0.3 * briefQ + 0.3 * imgQ;
+    // Blend: popularity + recency lead (what viewers click), relevancy guards quality.
+    s._pop = pop;
+    s._rec = rec;
+    s._rel = rel;
+    s._score = 0.4 * pop + 0.35 * rec + 0.25 * rel;
+  }
+  return stories;
 }
 
 // Group a region's stories by category into the bundle shape the render + humans read.
@@ -204,8 +244,8 @@ function slimStory(s) {
     category: s.category || s.slot || 'top',
     url: s.url,
     imageUrl: s.imageUrl || (s.images && s.images[0]) || null,
-    images: (s.images || []).slice(0, 12),
-    sourceUrls: (s.sourceUrls || []).slice(0, 8),
+    images: (s.images || []).slice(0, BUNDLE_MAX_IMAGES),
+    sourceUrls: (s.sourceUrls || []).slice(0, BUNDLE_MAX_URLS),
     sourceName: s.sourceName || null,
     sources: s.sources || [],
     // corr = DISTINCT OUTLETS that covered this story (the real corroboration signal), not
@@ -214,6 +254,13 @@ function slimStory(s) {
     verified: !!s.verified,
     trend: s.trend || null,
     traffic: s.traffic || 0,
+    // RANKING signals (popularity + recency + relevancy) — kept so the render leads with the
+    // pool's best story and a human can audit WHY it ranked where it did.
+    freshH: Number.isFinite(s.freshH) ? Number(s.freshH.toFixed(2)) : null,
+    score: s._score != null ? Number(s._score.toFixed(3)) : null,
+    popularity: s._pop != null ? Number(s._pop.toFixed(3)) : null,
+    recency: s._rec != null ? Number(s._rec.toFixed(3)) : null,
+    relevancy: s._rel != null ? Number(s._rel.toFixed(3)) : null,
     region: s.region || null,
     geo: s.geo || null,
   };

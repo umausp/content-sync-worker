@@ -17,6 +17,18 @@ import { extractArticle, fetchAndExtract } from '../src/extract.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
+// ── DEPTH TUNABLES (user: "if you find 60 sources then fetch 60 images / get MAXIMUM
+// images for the story") ─────────────────────────────────────────────────────────
+// The research pool is timeout-free, so it sets these HIGH via env to gather every
+// reporting outlet's own photos; the fast render fallback keeps the modest defaults so a
+// live gather stays quick. All bounded so a huge story (95 outlets) can't run away.
+const MULTI_OUTLETS = Number(process.env.WORLD_X_MULTI || 8); // OTHER outlets we resolve per trend story
+const MAX_SOURCE_URLS = Number(process.env.WORLD_MAX_SOURCE_URLS || 12); // distinct article URLs kept per story
+const ENRICH_OUTLETS = Number(process.env.WORLD_ENRICH_OUTLETS || 8); // outlets enrichSummary extracts prose+images from
+const MAX_STORY_IMAGES = Number(process.env.WORLD_MAX_STORY_IMAGES || 24); // story-own photos kept per story
+const SYNTH_CORPUS_CHARS = Number(process.env.WORLD_SYNTH_CORPUS || 6000); // total prose fed to the LLM synth
+const SYNTH_PER_OUTLET_CHARS = Number(process.env.WORLD_SYNTH_PER_OUTLET || 1200); // prose per outlet in the corpus
+
 // Clean display names for the "Source:" credit (raw RSS hosts read badly, e.g.
 // "feeds.bbci.co.uk"). Falls back to the bare domain for anything unlisted.
 const SOURCE_NAMES = {
@@ -257,7 +269,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         // photos, so a story yields several genuine event images (user: "fetch original
         // story related images only") instead of one + generic stock padding.
         const sourceUrls = [...new Set([rep.url, ...c.items.map((i) => i.url)]
-          .filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, 5);
+          .filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, MAX_SOURCE_URLS);
         return {
           rep,
           images,
@@ -303,6 +315,9 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         sources: pick.sources,
         corr: pick.corr,
         category: slot.key,
+        // RECENCY signal for ranking downstream (hours since publish; lower = fresher).
+        publishedAt: pick.rep.publishedAt || null,
+        freshH: pick.freshH,
       });
     }
     if (bucket.length) buckets.set(slot.key, bucket);
@@ -391,13 +406,16 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
         images: [],
         // Every trend-backing outlet's article → harvest each one's OWN photos (this
         // event's real images), so trending Shorts also get a genuine photo sequence.
-        sourceUrls: [...new Set(newsItems.map((n) => n.url).filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, 5),
+        sourceUrls: [...new Set(newsItems.map((n) => n.url).filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, MAX_SOURCE_URLS),
         sourceName: cleanSource(new URL(rep.url).hostname),
         sources: [...new Set(newsItems.map((n) => n.source).filter(Boolean))],
         corr: newsItems.length,
         category: 'offbeat',
         trend: term,
         traffic,
+        // Google-Trends "trending now" is current by construction → treat as fresh so it
+        // ranks alongside the freshest editorial/X stories.
+        freshH: 1,
         geo,
       });
     }
@@ -609,11 +627,11 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
         if (src && seenSrc.has(src)) continue; // one article per outlet
         if (src) seenSrc.add(src);
         others.push(it);
-        if (others.length >= Number(process.env.WORLD_X_MULTI || 5)) break;
+        if (others.length >= MULTI_OUTLETS) break;
       }
       const resolvedOthers = (await Promise.all(others.map((it) => resolveGoogleNewsUrl(it.url).catch(() => null))))
         .filter((u) => u && u !== real && !isThinUrl(u));
-      const sourceUrls = [...new Set([real, ...resolvedOthers])].slice(0, 6);
+      const sourceUrls = [...new Set([real, ...resolvedOthers])].slice(0, MAX_SOURCE_URLS);
       // Distinct outlet names actually on this story (rep + resolved others).
       const sourceNames = [...new Set([
         hit.source || cleanSource(new URL(real).hostname),
@@ -643,6 +661,10 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
         // Heat ∝ trend rank on the board (no reliable tweet-count in the markup): a small
         // deterministic score so the hottest X trend can lead a single Short.
         traffic: Math.max(0, 100000 - rank * 1000),
+        // RECENCY: the freshness window that produced the hit (1h/3h/12h). The tighter the
+        // window, the more current the story — a proxy for "how recent" for ranking.
+        whenWindow: when,
+        freshH: when === '1h' ? 0.5 : when === '3h' ? 2 : 8,
         geo,
         viral: true,
       });
@@ -703,14 +725,18 @@ export async function enrichSummary(story) {
 
     // 2) RESEARCH ACROSS OUTLETS — pull clean prose + images from every OTHER source that
     //    covered this event (story.sourceUrls). More angles → a fuller, corroborated brief
-    //    and more genuine photos OF THIS STORY. Best-effort, parallel, skips the rep.
-    const others = (story.sourceUrls || []).filter((u) => u && u !== story.url).slice(0, 4);
+    //    and MAXIMUM genuine photos OF THIS STORY (user: "if you find 60 sources then fetch
+    //    60 images / get maximum images for the story"). Best-effort, parallel, skips the rep.
+    const others = (story.sourceUrls || []).filter((u) => u && u !== story.url).slice(0, ENRICH_OUTLETS);
     const bodies = [{ src: story.sourceName || cleanSource(new URL(story.url).hostname), text: rep.text }];
     if (others.length) {
       const extracted = await Promise.all(others.map((u) => fetchAndExtract(u, { ua: UA, timeoutMs: 10000 })));
       for (let i = 0; i < extracted.length; i++) {
         const e = extracted[i];
         if (!e) continue;
+        // Every outlet's OWN photos of this event → the multi-image sequence. Keep them all
+        // (deduped); only the final MAX_STORY_IMAGES cap trims, so a big story with many
+        // outlets yields many real photos instead of stopping at the first few.
         if (e.images.length) story.images = [...new Set([...(story.images || []), ...e.images].filter(Boolean))];
         if (e.text && e.text.length > 200) {
           let src = 'source';
@@ -719,21 +745,22 @@ export async function enrichSummary(story) {
         }
       }
     }
-    if (story.images?.length) story.images = story.images.slice(0, 10);
+    if (story.images?.length) story.images = story.images.slice(0, MAX_STORY_IMAGES);
 
     // Combine the outlets' clean prose into ONE research corpus (labelled by outlet so the
-    // model can corroborate), capped so the prompt stays fast.
+    // model can corroborate across ALL of them → a single, well-sourced summary), capped so
+    // the prompt stays within the model's context + fast.
     const corpus = bodies
       .filter((b) => b.text && b.text.length > 120)
-      .map((b) => `[${b.src}] ${b.text.slice(0, 1200)}`)
+      .map((b) => `[${b.src}] ${b.text.slice(0, SYNTH_PER_OUTLET_CHARS)}`)
       .join('\n\n')
-      .slice(0, 4200);
+      .slice(0, SYNTH_CORPUS_CHARS);
     if (!corpus) return;
 
     // 3) LLM SYNTHESIS across all sources — the NVIDIA-first ladder (shorts/llm.mjs). A
     //    tight, factual brief a viewer learns from; corroborate across outlets, no repeats.
     if (haveLlmKey()) {
-      const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 5).join(', ');
+      const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 8).join(', ');
       const prompt =
         'You are a sharp broadcast news writer. Below are excerpts from MULTIPLE outlets ' +
         'reporting the SAME event. Cross-check them and write ONE punchy, informative ' +

@@ -591,7 +591,10 @@ async function main() {
       // enrichSummary), then tops up with category stock. SINGLE stories get more images
       // (the whole video is one story) than a 10-up roundup where each story is brief.
       const perImgSec = Number(process.env.SHORTS_SEC_PER_IMG || (SINGLE ? 5 : 7));
-      const imgCap = SINGLE ? 10 : 4;
+      // Cap of DISTINCT photos per story. Stories now carry many real outlet photos (a big
+      // event yields 20+), so allow a longer honest sequence — 1 image / perImgSec of narration,
+      // bounded by how many the story actually has (resolveBackgrounds never pads with stock).
+      const imgCap = Number(process.env.SHORTS_IMG_CAP || (SINGLE ? 16 : LONGFORM ? 6 : 4));
       const imgCount = Math.max(SINGLE ? 5 : 1, Math.min(imgCap, Math.round(timing.duration / perImgSec)));
       const bg = await resolveBackgrounds(story, join(work, `s${i}`), seenImages, imgCount);
       // Persistent on-screen headline (single/long-form): the viewer READS the title while
