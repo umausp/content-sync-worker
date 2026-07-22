@@ -84,6 +84,24 @@ export function acceptImage(u, pubDomain = '') {
   return s;
 }
 
+// Resolution-agnostic identity for ONE image URL, so the SAME photo served at several
+// sizes/crops collapses to one (publishers emit e.g. …/1600x900/foo_123.jpg AND
+// …/2048x1152/foo_123.jpg, or foo.jpg?width=1200 AND foo.jpg?width=1200&auto=webp — the
+// benchmark showed these inflating a story's photo count with duplicates). Fingerprint =
+// host + pathname with any WxH directory/segment folded to a placeholder + query dropped.
+export function imageFingerprint(u) {
+  try {
+    const { hostname, pathname } = new URL(String(u));
+    const path = pathname
+      .replace(/\/\d{2,4}x\d{2,4}\//g, '/_RES_/') // /1600x900/ → /_RES_/
+      .replace(/[-_.]\d{2,4}x\d{2,4}(?=\.\w+$)/g, '') // foo-1600x900.jpg → foo.jpg
+      .toLowerCase();
+    return `${hostname.replace(/^www\./, '')}${path}`;
+  } catch {
+    return String(u);
+  }
+}
+
 // ── og:image / twitter:image (the editorial hero) ─────────────────────────────
 export function ogImage(html) {
   const h = String(html || '');
@@ -202,9 +220,14 @@ export async function extractArticle(url, html) {
   // Deduped, capped. Empty is acceptable (caller falls back to brand card).
   const raw = [hero, ...(ld?.images || []), ...(read?.images || [])];
   const images = [];
+  const seenFp = new Set(); // collapse the SAME photo served at multiple sizes/crops
   for (const u of raw) {
     const ok = acceptImage(u, pubDomain);
-    if (ok && !images.includes(ok)) images.push(ok);
+    if (!ok) continue;
+    const fp = imageFingerprint(ok);
+    if (seenFp.has(fp)) continue;
+    seenFp.add(fp);
+    images.push(ok);
     if (images.length >= 10) break;
   }
 
