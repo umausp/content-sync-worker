@@ -341,35 +341,13 @@ async function gatherStories(cfg) {
   return picked;
 }
 
-// The opening HOOK — a short, punchy line to grab attention in the first seconds.
-// SINGLE mode has ONE story, so "top 1 stories" reads wrong — use a curiosity hook that
-// teases the story instead. `lead` is the lead story (for the single-story tease).
-function hookLine(cfg, count, lead) {
-  if (SINGLE) {
-    // Curiosity tease built from the story itself — no bogus count.
-    if (cfg.scriptLang === 'hi') return `ये है आज की बड़ी खबर — पूरा जानिए।`;
-    return `Here's the big story you need to know right now.`;
-  }
-  if (cfg.scriptLang === 'hi') {
-    return LONGFORM
-      ? `आज की ${count} सबसे बड़ी खबरें — शुरू करते हैं।`
-      : `आज की टॉप ${count} खबरें — देखिए।`;
-  }
-  return LONGFORM
-    ? `Here are the ${count} biggest world stories today.`
-    : `Today's top ${count} world stories — let's go.`;
-}
+// (Opening hook clip removed — the video starts directly on the first story now.)
 
-// The closing CTA — subscribe + drive to the site. Short + long variants.
+// The closing CTA — SHORT + snappy (user: "outro should be small for subscribe for more").
+// Just a quick "subscribe for more", no site URL recital, so the video ends cleanly.
 function outroLine(cfg) {
-  if (cfg.scriptLang === 'hi') {
-    return LONGFORM
-      ? 'ऐसी और खबरों के लिए चैनल को Subscribe करें, और पूरी खबरें पढ़िए agyata.com पर।'
-      : 'Subscribe करें और पूरी खबरें पढ़िए agyata dot com पर।';
-  }
-  return LONGFORM
-    ? 'For more world news every day, subscribe to the channel — and read the full stories at agyata dot com.'
-    : 'Subscribe for daily world news, and read more at agyata dot com.';
+  if (cfg.scriptLang === 'hi') return 'और खबरों के लिए Subscribe करें।';
+  return 'Subscribe for more.';
 }
 
 // Split a single spoken LINE into short clause chunks so Kokoro synthesises each in its
@@ -548,34 +526,10 @@ async function main() {
   // the same photo (user: "always use a different image for different story").
   const seenImages = new Set();
 
-  // 1-5s HOOK clip: the video opens with a punchy spoken+captioned hook (top-creator
-  // pattern — grab attention in the first seconds) before the stories start.
-  try {
-    const hookText = hookLine(cfg, stories.length, stories[0]);
-    // Split into clause chunks so Kokoro doesn't clip the hook's final words.
-    const hookTiming = await ttsForStory(splitForTTS(hookText), cfg, work, 'hook');
-    if (hookTiming.duration && hookTiming.segments?.length) {
-      // Hook is a TITLE card — branded gradient, NOT a story photo (reusing story 1's
-      // image here made it appear 3x / look like a repeated story). No story badge/tag.
-      const hbg = await brandBackground(join(work, 'hook'));
-      const hchrome = await buildChrome(
-        { hashtag: 'agyata', category: '', badge: cfg.scriptLang === 'hi' ? 'आज की खबरें' : "TODAY'S TOP" },
-        cfg,
-        join(work, 'hook'),
-      );
-      const hcaps = [];
-      for (let j = 0; j < hookTiming.segments.length; j++) {
-        const sg = hookTiming.segments[j];
-        hcaps.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `hook-${j}`, cfg, join(work, 'hook'))));
-      }
-      const hclip = join(work, 'clip-hook.mp4');
-      await renderSegment({ bgPath: hbg.path, chromePath: hchrome, captions: hcaps, narrationWav: join(work, 'nar-hook.wav'), dur: hookTiming.duration, outPath: hclip });
-      segmentPaths.push(hclip);
-      console.log(`[shorts:${cfg.id}]   ✓ hook clip (${hookTiming.duration.toFixed(1)}s)`);
-    }
-  } catch (e) {
-    console.log(`[shorts:${cfg.id}]   (hook skipped: ${e.message})`);
-  }
+  // NO INTRO CLIP — the video opens DIRECTLY on the first news story (user: "intro looks
+  // bad now, delete that, directly start with the news"). The old branded hook title card
+  // ("TODAY'S TOP / Here's the big story…") is gone; retention is better when the news
+  // starts immediately rather than after a generic gradient card.
 
   // Render each story as its own clip.
   for (let i = 0; i < stories.length; i++) {
