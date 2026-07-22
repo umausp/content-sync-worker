@@ -1,91 +1,260 @@
 {
-  "generatedAt": "2026-07-22T22:52:26.858Z",
+  "generatedAt": "2026-07-22T23:52:30.334Z",
   "region": "usa",
-  "count": 25,
+  "count": 28,
   "categoryCounts": {
-    "offbeat": 5,
+    "offbeat": 8,
     "breaking": 3,
-    "tech": 3,
-    "sports": 3,
-    "entertainment": 3,
-    "politics": 2,
-    "crisis": 2,
     "facts": 2,
-    "health": 2
+    "health": 2,
+    "crisis": 2,
+    "tech": 3,
+    "entertainment": 3,
+    "sports": 3,
+    "politics": 2
   },
   "stories": [
     {
-      "title": "Tripoli ARG, 31st MEU return from U.S. 5th, 7th Fleet deployment",
-      "summary": "The USS Tripoli and its accompanying amphibious ready group have completed a six-month deployment to the U.S. 5th and 7th Fleet areas of operations, offloading in Okinawa on July 22, 2026. The deployment spanned the Indo-Pacific and the Middle East, with the group supporting the U.S. blockade of Iranian ports and carrying out precision strikes. The 31st Marine Expeditionary Unit, part of the deployment, is now back in Okinawa. The forward-deployed naval expeditionary forces are built to pivot to wherever the nation needs them most.",
-      "hashtag": "Marines",
+      "title": "Red Sox's Eduardo Rivera: Drawing another start",
+      "summary": "Red Sox's Eduardo Rivera will start the second game of Wednesday's doubleheader against the Orioles. Rivera has allowed three runs with a 9:4 K:BB over 9.1 frames this season. He's unlikely to offer much length Wednesday, having not lasted more than 3.2 innings in either of his previous starts. The Red Sox had considered Ranger Suarez for the start, but will hold Suarez back for now.",
+      "hashtag": "EduardoRivera",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.c7f.navy.mil/Media/News/Display/Article/4551984/tripoli-arg-31st-meu-return-from-us-5th-7th-fleet-deployment/",
-      "imageUrl": "https://media.defense.gov/2026/Jul/21/2003963960/1460/1280/0/260722-N-VO895-1006.JPG",
+      "url": "https://www.cbssports.com/fantasy/baseball/news/red-soxs-eduardo-rivera-drawing-another-start/",
+      "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
       "images": [
-        "https://media.defense.gov/2026/Jul/21/2003963960/1460/1280/0/260722-N-VO895-1006.JPG",
-        "https://www.stripes.com/incoming/b60td1-230726tripoli-returnphoto01.jpg/alternates/LANDSCAPE_480/230726TRIPOLI-RETURNphoto01.jpg",
-        "https://www.stripes.com/incoming/b60td1-230726tripoli-returnphoto01.jpg/alternates/LANDSCAPE_910/230726TRIPOLI-RETURNphoto01.jpg",
-        "https://www.stripes.com/incoming/yco2ku-230726tripoli-returnphoto02.jpg/alternates/LANDSCAPE_910/230726TRIPOLI-RETURNphoto02.jpg"
+        "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png"
       ],
       "sourceUrls": [
-        "https://www.c7f.navy.mil/Media/News/Display/Article/4551984/tripoli-arg-31st-meu-return-from-us-5th-7th-fleet-deployment/",
-        "https://www.stripes.com/branches/marine_corps/2026-07-22/uss-tripoli-japan-return-iran-war-22334768.html"
+        "https://www.cbssports.com/fantasy/baseball/news/red-soxs-eduardo-rivera-drawing-another-start/",
+        "https://www.fantasypros.com/mlb/news/597295/eduardo-rivera-to-start-tuesday-.php"
       ],
-      "sourceName": "c7f.navy.mil",
+      "sourceName": "cbssports.com",
       "sources": [
-        "C7F (.mil)",
-        "Stars and Stripes"
+        "CBS Sports",
+        "FantasyPros"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "marines",
-      "traffic": 500,
+      "trend": "eduardo rivera",
+      "traffic": 2000,
       "freshH": 1,
-      "score": 0.624,
-      "popularity": 0.218,
+      "score": 0.674,
+      "popularity": 0.443,
       "recency": 0.891,
-      "relevancy": 0.9,
+      "relevancy": 0.74,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Trump greets the fallen as he faces a decision point on Iran",
-      "summary": "President Donald Trump attended the solemn transfer of four American service members' bodies at Dover Air Force Base in Delaware, marking a somber moment as he faces a decision point on escalating the Iran conflict. The bodies were returned in flag-draped cases, with Trump saluting and the transfer taking just under 20 minutes. This event comes as thousands of American troops are arrayed across the Middle East, risking retaliation and further danger. Trump's visit to Dover highlights the weight of responsibility for a president in times of war.",
-      "hashtag": "PresidentTrump",
+      "title": "Montana state Sen. Jason Ellsworth found guilty in official misconduct trial",
+      "summary": "Montana state Sen. Jason Ellsworth has been found guilty of official misconduct in a trial in Helena. A jury convicted Ellsworth of circumventing the state's contracting process to steer over $100,000 in work to a close associate. He faces up to six months in jail and a $500 fine. Sentencing is set for September 10, where Judge Chris Abbott will determine Ellsworth's punishment.",
+      "hashtag": "JasonEllsworth",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/22/politics/dignified-transfer-trump-iran-war",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22t155353z-1774036431-rc23jma80mij-rtrmadp-3-iran-crisis-transfer-usa.jpg?c=16x9&q=w_800,c_fill",
+      "url": "https://www.ktvh.com/news/montana-state-sen-jason-ellsworth-found-guilty-in-official-misconduct-trial",
+      "imageUrl": "https://ewscripps.brightspotcdn.com/dims4/default/f7ad2ef/2147483647/strip/true/crop/1920x1008+0+36/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbc%2F00%2F480a507f43b39fc235d64765524b%2Fwhip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
       "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22t155353z-1774036431-rc23jma80mij-rtrmadp-3-iran-crisis-transfer-usa.jpg?c=16x9&q=w_800,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2287199937.jpg?c=original&q=w_860,c_fill"
+        "https://ewscripps.brightspotcdn.com/dims4/default/f7ad2ef/2147483647/strip/true/crop/1920x1008+0+36/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbc%2F00%2F480a507f43b39fc235d64765524b%2Fwhip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
+        "https://ewscripps.brightspotcdn.com/bc/00/480a507f43b39fc235d64765524b/whip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
+        "https://bloximages.chicago2.vip.townnews.com/helenair.com/content/tncms/assets/v3/editorial/a/2f/a2f0523d-72ec-40fe-9857-592ba5e3ea77/6a60294828d72.preview.jpg?crop=1716%2C901%2C0%2C153&resize=1200%2C630&order=crop%2Cresize",
+        "https://dailymontanan.com/wp-content/uploads/2026/07/EllsworthVertic5-2048x1365.jpg",
+        "https://dailymontanan.com/wp-content/uploads/2026/07/EllsworthVerdict2-300x200.jpg"
       ],
       "sourceUrls": [
-        "https://www.cnn.com/2026/07/22/politics/dignified-transfer-trump-iran-war"
+        "https://www.ktvh.com/news/montana-state-sen-jason-ellsworth-found-guilty-in-official-misconduct-trial",
+        "https://helenair.com/news/state-regional/crime-courts/article_a2f0523d-72ec-40fe-9857-592ba5e3ea77.html",
+        "https://dailymontanan.com/2026/07/21/ellsworth-found-guilty-of-official-misconduct-in-criminal-trial/"
       ],
-      "sourceName": "cnn.com",
+      "sourceName": "ktvh.com",
       "sources": [
-        "CNN"
+        "KTVH",
+        "The Independent Record",
+        "Daily Montanan"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "jason ellsworth montana contracts verdict",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.666,
+      "popularity": 0.301,
+      "recency": 0.891,
+      "relevancy": 0.936,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Inter Miami - Chicago Fire [RELACJA NA ŻYWO]",
+      "summary": "Robert Lewandowski makes his debut in the MLS for Chicago Fire against Inter Miami on Thursday, July 23, at 1:30 am. The match will be streamed online for free on the websites of three Polish bookmakers. This is Lewandowski's first game in his new team after transferring from a previous club.",
+      "hashtag": "RobertLewandowski",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://przegladsportowy.onet.pl/pilka-nozna/inter-miami-chicago-fire-na-zywo-lewandowski-z-debiutem-w-mls/wyf1ltq",
+      "imageUrl": "https://cdn.przegladsportowy.onet.pl/1/O7Lk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy85NjQyMDNkNjAzMWViN2ExY2E5OTNmZTQyZjVmMjBhMC5qcGeTlQPNBJsdzQYHzQNkkwXNCWDNBOyVB9maaHR0cHM6Ly9jZG4ucHJ6ZWdsYWRzcG9ydG93eS5vbmV0LnBsLzEvTmQ3azlsQmFIUjBjSE02THk5dlkyUnVMbVYxTDNCMWJITmpiWE12VFVSQlh5ODBPR016TUdFNE9Ua3hOalExWWpRM09Ea3dZV001TTJWallqTTRORFl6TkM1d2JtZVJsUUlBWk1QRDNnQUNvVEFIb1RFRQjCAN4AAqEwB6ExBA",
+      "images": [
+        "https://cdn.przegladsportowy.onet.pl/1/O7Lk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy85NjQyMDNkNjAzMWViN2ExY2E5OTNmZTQyZjVmMjBhMC5qcGeTlQPNBJsdzQYHzQNkkwXNCWDNBOyVB9maaHR0cHM6Ly9jZG4ucHJ6ZWdsYWRzcG9ydG93eS5vbmV0LnBsLzEvTmQ3azlsQmFIUjBjSE02THk5dlkyUnVMbVYxTDNCMWJITmpiWE12VFVSQlh5ODBPR016TUdFNE9Ua3hOalExWWpRM09Ea3dZV001TTJWallqTTRORFl6TkM1d2JtZVJsUUlBWk1QRDNnQUNvVEFIb1RFRQjCAN4AAqEwB6ExBA",
+        "https://pliki.meczyki.pl/amp32/639/6a5680bccfc02.jpg",
+        "https://pliki.meczyki.pl/original/639/6a5680bccfc02.jpg"
+      ],
+      "sourceUrls": [
+        "https://przegladsportowy.onet.pl/pilka-nozna/inter-miami-chicago-fire-na-zywo-lewandowski-z-debiutem-w-mls/wyf1ltq",
+        "https://www.meczyki.pl/newsy/pilka-nozna/debiut-lewandowskiego-gdzie-ogladac-stream-online-i-transmisja-na-zywo-z-meczu-inter-chicago-23-07-2026/308447"
+      ],
+      "sourceName": "przegladsportowy.onet.pl",
+      "sources": [
+        "Przegląd Sportowy",
+        "Meczyki.pl"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "robert lewandowski",
+      "traffic": 1000,
+      "freshH": 1,
+      "score": 0.621,
+      "popularity": 0.293,
+      "recency": 0.891,
+      "relevancy": 0.77,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
+      "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camel populations, with herders reporting increased heat-related deaths and suffering among the animals. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where temperatures are becoming increasingly unbearable for both humans and animals. As temperatures continue to rise, camel herders are struggling to cope with the changing climate.",
+      "hashtag": "Africa",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cqlxvvw06pqo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/80e0/live/3fac42b0-85fd-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1280/cpsprodpb/c4ab/live/7bd22e50-838f-11f1-a4c3-dfd0ee4be073.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/1bb0/live/fd6c79b0-8601-11f1-b3d1-d772829dc047.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/d082/live/c8ffb800-8600-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/713/cpsprodpb/548b/live/6ef96250-8602-11f1-bee8-53ce494e1abc.png",
+        "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/a743/live/681bd460-6ee0-11f1-8e1d-bbbb1017d210.png"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cqlxvvw06pqo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
-      "trend": "president trump dover dignified transfer",
-      "traffic": 2000,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.49,
+      "score": 0.511,
+      "popularity": 0,
+      "recency": 0.945,
+      "relevancy": 0.72,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Most sewage spills in England may be illegal, new research suggests",
+      "summary": "New research suggests that most sewage spills in England may be illegal, with 86% of raw sewage spilling hours occurring without heavy rain. This analysis, based on data from over 350 storm overflow outlets, implies that water companies may be exceeding permitted limits. The study's findings have significant implications for England's nine water companies, which serve over 30 million people. The water companies will now face scrutiny over their compliance with environmental regulations.",
+      "hashtag": "England",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.08,
+      "score": 0.477,
+      "popularity": 0,
+      "recency": 0.99,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Power Rankings: Son Heung-Min & LAFC get El Tráfico boost",
+      "summary": "Nashville SC is on pace to break the league record for regular season points with 81, after earning 19 wins with 19 games remaining. The team secured a 1-0 win over Atlanta United, with Shakur Mohammed scoring the winning goal in the second half. Nashville's ability to win despite struggling performances has been a key factor in their success. The team will look to continue their winning streak in their next match against Cincinnati on July 22.",
+      "hashtag": "MlsStandings",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlssoccer.com/news/power-rankings-son-heung-min-lafc-get",
+      "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/ntmenyrmuojr4bdlr8r6.png",
+      "images": [
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/ntmenyrmuojr4bdlr8r6.png",
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/ntmenyrmuojr4bdlr8r6.png"
+      ],
+      "sourceUrls": [
+        "https://www.mlssoccer.com/news/power-rankings-son-heung-min-lafc-get"
+      ],
+      "sourceName": "mlssoccer.com",
+      "sources": [
+        "MLSsoccer.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "mls standings",
+      "traffic": 500,
       "freshH": 1,
-      "score": 0.562,
-      "popularity": 0.3,
+      "score": 0.472,
+      "popularity": 0.075,
       "recency": 0.891,
       "relevancy": 0.52,
       "region": "usa",
       "geo": "US"
     },
     {
+      "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
+      "summary": "The National Health Service in England has made the life-changing drug fampridine available to thousands of multiple sclerosis patients, potentially benefiting up to 5,000 people each year. The medication, known as a \"signal booster,\" helps nerve signals to improve walking speed and distance for some patients. This decision comes after clinical trials showed around four in 10 people taking the drug experienced improvements. Patients can now access this treatment alongside existing NHS support, including physiotherapy and walking aids.",
+      "hashtag": "England",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.bbc.co.uk/news/articles/cgmkygjk9g2o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cgmkygjk9g2o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.23,
+      "score": 0.471,
+      "popularity": 0,
+      "recency": 0.974,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Indian police cracked down on 'cockroach' protesters. They went home and made memes about it",
-      "summary": "Indian police cracked down on tens of thousands of protesters in Delhi, firing tear gas and charging demonstrators with batons on Monday. The protesters, supporters of the Cockroach Janta Party, demanded the resignation of Education Minister Dharmendra Pradhan over exam paper leaks and recruitment scandals. The crackdown marked a violent turn in the largest anti-government demonstrations against Prime Minister Narendra Modi's government in the Indian capital in recent years. The protesters have since taken to social media to mock the police response with memes.",
+      "summary": "Indian police cracked down on tens of thousands of protesters in Delhi on Monday, using tear gas and batons to disperse the crowd. The protesters, supporters of the Cockroach Janta Party, were demanding the resignation of Education Minister Dharmendra Pradhan over exam paper leaks and recruitment scandals. The crackdown resulted in no reported fatalities, but the incident has sparked widespread criticism. As the protesters return home, they are taking to social media to mock the police response with humorous memes.",
       "hashtag": "IndianPolice",
-      "badge": "BREAKING",
-      "category": "breaking",
+      "badge": "TRENDING",
+      "category": "offbeat",
       "url": "https://www.bbc.co.uk/news/articles/c3ek3l9gp7go?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f49c/live/4294bd70-85cd-11f1-85bd-254f6de05e48.jpg",
       "images": [
@@ -108,17 +277,141 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.65,
-      "score": 0.505,
+      "freshH": 1.65,
+      "score": 0.469,
       "popularity": 0,
-      "recency": 0.928,
+      "recency": 0.826,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Strike 2: An old-school way to fix what’s wrong with baseball",
+      "summary": "Major League Baseball has implemented rule changes to boost offense, including banning the shift and limiting mid-inning pitching changes. As a result, fewer than a dozen players currently hit .300 or above. The changes aim to counter the dominance of pitchers, who now face hitters only once per night. The next test of these changes will come in the upcoming regular season.",
+      "hashtag": "AlecBohm",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://milehighsports.com/strike-2-an-old-school-way-to-fix-whats-wrong-with-baseball/",
+      "imageUrl": "https://milehighsports.com/wp-content/uploads/2026/07/USATSI_29164237_168401013_lowres.jpg",
+      "images": [
+        "https://milehighsports.com/wp-content/uploads/2026/07/USATSI_29164237_168401013_lowres.jpg",
+        "https://milehighsports.com/wp-content/uploads/2025/02/Natl-Ballpark-Museum.jpg"
+      ],
+      "sourceUrls": [
+        "https://milehighsports.com/strike-2-an-old-school-way-to-fix-whats-wrong-with-baseball/"
+      ],
+      "sourceName": "milehighsports.com",
+      "sources": [
+        "Mile High Sports"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "alec bohm",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.467,
+      "popularity": 0.075,
+      "recency": 0.891,
+      "relevancy": 0.502,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Airport drop-off fees up by a third - here are the priciest",
+      "summary": "Drop-off fees at the UK's major airports have increased by a third on average since last summer, with two London airports, Gatwick and Stansted, charging the highest fees at £10. This rise comes as Gatwick aims to encourage more passengers to arrive by trains and buses. The fees are part of airports' business models and climate change objectives. The airport's goal to reduce reliance on cars is being tested as it pursues a second runway.",
+      "hashtag": "AirportDrop",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.51,
+      "score": 0.46,
+      "popularity": 0,
+      "recency": 0.942,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "US signs landmark nuclear deal with Saudi Arabia",
+      "summary": "US Secretary of Energy Chris Wright announced a landmark nuclear deal with Saudi Arabia, allowing the country to enrich uranium on its soil at a US-built facility. The deal, worth billions of dollars, will be built with US companies and is expected to advance both US and regional security. The agreement upholds high standards of nuclear safety and nonproliferation. The US energy department will now work with Saudi Arabia to implement the deal.",
+      "hashtag": "SaudiArabia",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.52,
+      "score": 0.46,
+      "popularity": 0,
+      "recency": 0.942,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
+      "summary": "Ukrainian drones have hit two warehouses belonging to Russia's online retailer Wildberries, killing seven workers and injuring dozens, in attacks that have disrupted supplies to the Russian army and frustrated hundreds of Russian sellers. The strikes targeted warehouses in Elektrostal east of Moscow and Kotovsk in the Tambov region, causing estimated damages of £750m. This marks a new phase in Ukraine's attacks on Russia's logistics hubs, used to buy military equipment. The impact on small and medium-sized businesses will be closely watched.",
+      "hashtag": "UkraineWildberries",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.77,
+      "score": 0.45,
+      "popularity": 0,
+      "recency": 0.915,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Google burning through cash with spiralling AI costs",
-      "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to increasing spending on artificial intelligence infrastructure. The company's AI spending is expected to reach $205 billion this year, a 7.9% increase from last year. This surge in costs comes as major tech companies invest heavily in AI technology. Alphabet's stock fell 4% in after-hours trading following the release of its financial results.",
+      "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to increasing spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This surge in spending comes as major tech companies invest heavily in AI technology. Alphabet's stock fell 4% in after-hours trading following the announcement.",
       "hashtag": "GoogleBurning",
       "badge": "TECH",
       "category": "tech",
@@ -139,17 +432,79 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.19,
-      "score": 0.472,
+      "freshH": 0.83,
+      "score": 0.448,
       "popularity": 0,
-      "recency": 0.978,
+      "recency": 0.908,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
+      "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who developed the project and co-wrote the script with Ryu Yong-jae. This is Yeon's second project with Netflix, following \"Hellbound.\" The series is expected to premiere next year.",
+      "hashtag": "SangReturns",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.88,
+      "score": 0.446,
+      "popularity": 0,
+      "recency": 0.904,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "McInnes glad of Rangers backing in appeal against ban",
+      "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for criticizing a late penalty decision in May. The ban is an immediate three-game suspension with one game suspended until the end of the season. McInnes disputes the decision, saying it was directed at the specific call, not officials in general. The club will now appeal the ruling.",
+      "hashtag": "Rangers",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.8,
+      "score": 0.445,
+      "popularity": 0,
+      "recency": 0.912,
+      "relevancy": 0.502,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-      "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. The 59-year-old Marshall and 39-year-old Adlington will lead the procession into the opening ceremony. Marshall, a bowls player, and Adlington, a judo athlete, have been sworn to secrecy for weeks, making the announcement a surprise to many. They will officially take on their new roles at the Games in the coming days.",
+      "summary": "Scotland's Marshall and Adlington have been chosen to carry the country's flag at the Commonwealth Games. The honor will be shared by the 59-year-old bowls player and 39-year-old judo athlete, who have been keeping the news secret for weeks. They will lead the Scottish team into the opening ceremony on July 27. The flag will be returned to its rightful owners after the event, but not before a possible battle between the two for the first photo opportunity.",
       "hashtag": "MarshallAdlington",
       "badge": "SPORTS",
       "category": "sports",
@@ -170,141 +525,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.38,
-      "score": 0.465,
+      "freshH": 1.38,
+      "score": 0.429,
       "popularity": 0,
-      "recency": 0.958,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-      "summary": "A 4DX screening of Christopher Nolan's \"The Odyssey\" in Los Angeles resulted in 12 people being treated for seasickness. The three-hour film's intense visuals and motion effects caused the issue. Theaters are now offering wristbands to help viewers cope with the experience. Those who have already seen the film in 70mm and Imax formats are now trying out the 4DX version.",
-      "hashtag": "SoakedSeasick",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.37,
-      "score": 0.46,
-      "popularity": 0,
-      "recency": 0.958,
-      "relevancy": 0.499,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Joshua not ready for death of friends to 'sink in'",
-      "summary": "Heavyweight boxer Anthony Joshua returns to the ring on Saturday for his first fight since a fatal car crash killed two close friends and team members, Sina Ghami and Latif Ayodele, on December 29, 2025. Joshua, who sustained minor injuries, will face Kristian Prenga in his first contest since knocking out Jake Paul. Joshua's friends were a sport and exercise rehabilitation coach and a personal trainer, respectively. He will attempt to focus on his fight despite the emotional weight of their loss.",
-      "hashtag": "JoshuaReady",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/boxing/articles/czjl3em4g74o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/boxing/articles/czjl3em4g74o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.53,
-      "score": 0.459,
-      "popularity": 0,
-      "recency": 0.941,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "House Passes Defense Bill Amid Iran War Divide",
-      "summary": "The US House of Representatives has passed a $1.15 trillion defense policy bill in a near party-line vote of 216-212, with most Democrats opposing the measure due to concerns over President Trump's ability to wage war in Iran without congressional authorization. The bill now heads to the Senate, where Democrats have already blocked a similar measure. Senate Republicans lack the votes to overcome Democratic opposition. The bill's fate remains uncertain as the two parties clash over the annual defense policy bill.",
-      "hashtag": "PassesDefense",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-facebookJumbo.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.54,
-      "score": 0.459,
-      "popularity": 0,
-      "recency": 0.939,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist",
-      "summary": "US President Donald Trump has threatened to destroy Iranian bridges and power plants if attacks on ships in the Strait of Hormuz continue. The potential targets include structures in or near the capital Tehran. This warning comes after 11 consecutive nights of US strikes on Iran, with Tehran warning against targeting its nuclear facilities. The situation remains volatile with Iran's air defences activated in Tehran and reports of explosions in several cities.",
-      "hashtag": "IranHormuz",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.58,
-      "score": 0.457,
-      "popularity": 0,
-      "recency": 0.936,
+      "recency": 0.853,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-      "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The Reds aim to beat Arsenal and Bayern Munich to the signature. Barcola's World Cup performance has boosted Liverpool's chances of securing the young forward. A deal could be finalized in the coming weeks.",
+      "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The deal would reportedly beat out Arsenal and Bayern Munich. Barcola's World Cup performance has sparked interest from multiple top clubs. Liverpool is now in a strong position to secure the signing.",
       "hashtag": "BarcolaThursday",
       "badge": "SPORTS",
       "category": "sports",
@@ -325,17 +556,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.5,
-      "score": 0.456,
+      "freshH": 1.5,
+      "score": 0.42,
       "popularity": 0,
-      "recency": 0.944,
-      "relevancy": 0.504,
+      "recency": 0.841,
+      "relevancy": 0.501,
       "region": "usa",
       "geo": null
     },
     {
       "title": "‘Doctor Strange’ Director Says Elon Musk ‘Doesn’t Know S— About Cinema’ After Musk Vows to Make AI ‘Odyssey’: ‘His Opinions on Art Are Worthless’",
-      "summary": "Elon Musk has vowed to create an AI-generated film adaptation of Homer's \"The Odyssey\" by the end of the year, using his tool Grok. The project has drawn criticism from film director Scott Derrickson, who called Musk's opinions on art \"worthless\" due to his lack of understanding of cinema. Musk has been a vocal critic of director Christopher Nolan's \"The Odyssey\" since its release, citing \"woke\" casting decisions. The outcome of Musk's AI project remains to be seen, but it is expected to be a major test of the technology's capabilities.",
+      "summary": "Elon Musk has vowed to create an AI-generated film adaptation of Homer's \"The Odyssey\" by the end of the year, sparking controversy in the film industry. Director Scott Derrickson has publicly criticized Musk, stating he \"doesn't know shit about cinema\" and that his opinions on art are worthless. Musk's AI tool Grok has already generated a three-minute clip of an AI-adapted scene from the poem. The feud between Musk and filmmakers continues, with no clear resolution in sight.",
       "hashtag": "StrangeDirector",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -356,48 +587,48 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.71,
-      "score": 0.453,
+      "freshH": 1.71,
+      "score": 0.417,
       "popularity": 0,
-      "recency": 0.922,
+      "recency": 0.821,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Star Trek: Strange New Worlds’ Cast, Co-Showrunner Talk Playing With Genres in Season 4, ‘Joyful Curiosity,’ and That Puppet Episode",
-      "summary": "The cast and co-showrunner of \"Star Trek: Strange New Worlds\" discussed the upcoming Season 4, which features episodes blending multiple genres, including sci-fi thriller and musical elements. The series will continue to experiment with storytelling, offering a unique take on the \"Star Trek\" franchise. Anson Mount praised the experience of working with co-showrunners who asked the cast to suggest genres they wanted to act in. Season 4 premieres on Paramount+.",
-      "hashtag": "TrekStrange",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/star-trek-strange-new-worlds-season-4-92ny-1236818484/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg",
+      "title": "Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist",
+      "summary": "US President Donald Trump has threatened to destroy an Iranian bridge or power plant if attacks on ships in the Strait of Hormuz continue. The potential targets include those located near or in the capital Tehran. This warning comes after the US launched strikes on Iran for the 11th consecutive night. Iran has activated air defences in Tehran and warned of reprisals.",
+      "hashtag": "IranHormuz",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg?w=1000&h=563&crop=1"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/tv/news/star-trek-strange-new-worlds-season-4-92ny-1236818484/"
+        "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "Variety",
+      "sourceName": "BBC",
       "sources": [
-        "Variety"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.72,
-      "score": 0.452,
+      "freshH": 1.58,
+      "score": 0.416,
       "popularity": 0,
-      "recency": 0.92,
-      "relevancy": 0.52,
+      "recency": 0.833,
+      "relevancy": 0.497,
       "region": "usa",
       "geo": null
     },
     {
       "title": "A year after deadly jet crash at Bangladesh school, families demand answers",
-      "summary": "A year after a Bangladeshi air force jet crashed into a school in Dhaka, killing 36 people, mostly children, families and survivors are still seeking answers. The deadly incident on July 30, 2022, injured over 160 people, including students who are now struggling to return to normal life. Families of some victims gathered at a hospital in Dhaka on Tuesday to mark the anniversary, demanding justice and accountability. The investigation into the crash is ongoing.",
+      "summary": "A year after a Bangladeshi air force jet crashed into a school in Dhaka, killing 36 people, mostly children, families and survivors are still seeking answers. The deadly incident injured over 160 people and left many students struggling to return to normal life. Families of some victims gathered at a hospital in Dhaka to mark the anniversary, demanding justice and closure. The investigation into the crash is ongoing, with many questions still unanswered.",
       "hashtag": "Bangladesh",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -418,17 +649,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.81,
-      "score": 0.449,
+      "freshH": 1.81,
+      "score": 0.414,
       "popularity": 0,
-      "recency": 0.911,
+      "recency": 0.812,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Meta won’t have to face the next planned social media addiction trial",
-      "summary": "A 15-year-old plaintiff from Florida has dropped a lawsuit against Meta, just days before a planned trial in a Los Angeles courtroom. The case, which was set to be the second in a series of bellwether trials, accused Meta of creating features that harmed and hooked teens. Meta will avoid a potential settlement, following similar settlements by TikTok, Snap, and YouTube. The plaintiff's lawyers cited a successful overall result of the litigation and a desire to focus on recovery and therapy.",
+      "summary": "A 15-year-old plaintiff from Florida has dropped a lawsuit against Meta, just days before a planned trial in a Los Angeles courtroom. The case, brought by R.K.C., was one of several bellwether trials testing claims that social media companies broke the law by creating addictive features. Meta will not have to face a settlement or trial as a result of the dropped case. The plaintiff's lawyers say he will focus on recovery and therapy instead.",
       "hashtag": "MetaFace",
       "badge": "TECH",
       "category": "tech",
@@ -449,89 +680,58 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.81,
-      "score": 0.449,
+      "freshH": 1.81,
+      "score": 0.414,
       "popularity": 0,
-      "recency": 0.911,
+      "recency": 0.811,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Blocked by censors, China's animal lovers take fight against abuse offline and overseas",
-      "summary": "Thousands of Chinese animal lovers are outraged over the killing of a stray dog and her puppies, sparking a wave of online protests that have been met with censorship. Authorities have scrubbed social media posts and urged people to withhold comments, citing the age of the four boys involved. The restrictions have only fueled the outcry, with animal lovers taking their fight offline and abroad, including putting up billboards in New York. The incident has drawn thousands of comments across social media in China three weeks after the event.",
-      "hashtag": "China",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png",
+      "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
+      "summary": "A 3-hour film, \"The Odyssey,\" starring Matt Damon, is being screened in 4DX format at select theaters. This immersive experience features seat-rumbling and water-spritzing technology. Over 100 theaters worldwide have adopted this format. Audiences are bracing themselves for a unique cinematic experience.",
+      "hashtag": "SoakedSeasick",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png"
+        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&at_campaign=rss"
+        "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
       ],
-      "sourceName": "BBC",
+      "sourceName": "Variety",
       "sources": [
-        "BBC"
+        "Variety"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.81,
-      "score": 0.449,
+      "freshH": 1.38,
+      "score": 0.411,
       "popularity": 0,
-      "recency": 0.91,
-      "relevancy": 0.52,
+      "recency": 0.853,
+      "relevancy": 0.449,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "US signs landmark nuclear deal with Saudi Arabia",
-      "summary": "The US has signed a landmark nuclear deal with Saudi Arabia, allowing the country to enrich uranium on its soil for the first time. The deal, worth billions of dollars, will be implemented at a US-built enrichment facility and is expected to advance US and regional security. The agreement upholds high standards of nuclear safety, security, and nonproliferation. The deal is set to strengthen the US competitive edge in civil nuclear technology.",
-      "hashtag": "SaudiArabia",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.35,
-      "score": 0.429,
-      "popularity": 0,
-      "recency": 0.856,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Trump’s Plan for Science: More Money for A.I., Less for Universities",
-      "summary": "Michael Kratsios, President Trump’s science adviser, proposed overhauling how the government funds research. Democrats said Mr. Trump’s actions had weakened science.",
-      "hashtag": "ScienceMoney",
+      "title": "With Saudi Deal, Trump Loosens Nuclear Standards for One Close Ally",
+      "summary": "Nuclear experts say it throws fuel on the smoldering fire of atomic proliferation, creating a destabilizing situation that could raise the risk of nuclear war.",
+      "hashtag": "SaudiTrump",
       "badge": "POLITICS",
       "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/trump-research-funding-artificial-intelligence.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-research-Kratsios-tfmc/22dc-trump-research-Kratsios-tfmc-mediumSquareAt3X.jpg",
+      "url": "https://www.nytimes.com/2026/07/22/us/politics/trump-saudi-nuclear-standards.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-nuclear-photo-fclj/22dc-trump-nuclear-photo-fclj-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-research-Kratsios-tfmc/22dc-trump-research-Kratsios-tfmc-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-nuclear-photo-fclj/22dc-trump-nuclear-photo-fclj-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/trump-research-funding-artificial-intelligence.html"
+        "https://www.nytimes.com/2026/07/22/us/politics/trump-saudi-nuclear-standards.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -541,27 +741,27 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.36,
-      "score": 0.409,
+      "freshH": 0.78,
+      "score": 0.392,
       "popularity": 0,
-      "recency": 0.959,
-      "relevancy": 0.294,
+      "recency": 0.914,
+      "relevancy": 0.289,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Why Are Young People in India Protesting?",
-      "summary": "A youth-led movement angry over the education system and a lack of jobs is posing a rare challenge to a government that has ruled for more than a decade with a firm hand.",
-      "hashtag": "YoungPeople",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/world/asia/india-youth-protest-modi-cockroach-janta-party.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-india-protests-wtk-05-lcqm/22int-india-protests-wtk-05-lcqm-mediumSquareAt3X.jpg",
+      "title": "Clarity Act Mired In Debate Over Whether to Bar President From Selling Crypto",
+      "summary": "Democrats and Republicans are haggling about the Clarity Act, a major bill pushed by the crypto industry, as it moves closer to a Senate vote.",
+      "hashtag": "ActMired",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-india-protests-wtk-05-lcqm/22int-india-protests-wtk-05-lcqm-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/world/asia/india-youth-protest-modi-cockroach-janta-party.html"
+        "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -571,11 +771,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.63,
-      "score": 0.4,
+      "freshH": 0.85,
+      "score": 0.387,
       "popularity": 0,
-      "recency": 0.93,
-      "relevancy": 0.297,
+      "recency": 0.907,
+      "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
@@ -601,10 +801,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.56,
-      "score": 0.399,
+      "freshH": 1.56,
+      "score": 0.363,
       "popularity": 0,
-      "recency": 0.937,
+      "recency": 0.835,
       "relevancy": 0.283,
       "region": "usa",
       "geo": null
@@ -631,42 +831,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.77,
-      "score": 0.36,
+      "freshH": 2.77,
+      "score": 0.329,
       "popularity": 0,
-      "recency": 0.815,
+      "recency": 0.726,
       "relevancy": 0.299,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "NASA to Showcase Agency’s Newest Wind Tunnel in Virginia",
-      "summary": "NASA is set to unveil its first new wind tunnel in over 40 years at the Langley Research Center in Hampton, Virginia, on July 31. The Flight Dynamics Research Facility will be showcased in a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and center director Dr. Trina Dyal will be available for media questions. The event is open to US citizens and lawful permanent residents, with RSVPs due by July 29.",
-      "hashtag": "ShowcaseAgency",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/",
-      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
-      "images": [
-        "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
-        "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026-ba2289.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/"
-      ],
-      "sourceName": "NASA",
-      "sources": [
-        "NASA"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.09,
-      "score": 0.348,
-      "popularity": 0,
-      "recency": 0.623,
-      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -692,47 +861,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.64,
-      "score": 0.332,
+      "freshH": 3.65,
+      "score": 0.304,
       "popularity": 0,
-      "recency": 0.737,
+      "recency": 0.656,
       "relevancy": 0.295,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Donald Trump Jr.’s Investment Firm Posts Staggering Returns of 200%",
-      "summary": "The fledgling firm, run by the president’s oldest son and his partner Omeed Malik, has made investments in A.I. and defense technology that have tripled in value in just months.",
-      "hashtag": "TrumpInvestment",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/22/business/donald-trump-jr-1789-capital.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/06/25/business/25Biz-Maga-Dealmakers/25Biz-Maga-Dealmakers-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/06/25/business/25Biz-Maga-Dealmakers/25Biz-Maga-Dealmakers-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/business/donald-trump-jr-1789-capital.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.8,
-      "score": 0.329,
-      "popularity": 0,
-      "recency": 0.723,
-      "relevancy": 0.303,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-      "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower. The report recommends targeting ultra-processed foods, which are high in sugar and refined carbohydrates, as the primary drivers of weight gain and type 2 diabetes. This shift in focus away from fat and salt is expected to lead to more effective public health policies. Manufacturers will now be held accountable for reformulating products to reduce sugar content.",
+      "summary": "A British health select committee report has found that ultra-processed foods are a primary driver of obesity and type 2 diabetes in the country. The report recommends targeting sugar and refined carbohydrates, rather than fat, in food labeling and reformulation efforts. The committee's findings are based on evidence showing that sugar and refined carbohydrates are the main contributors to weight gain. The UK government is now expected to implement new policies to reduce the consumption of these unhealthy ingredients.",
       "hashtag": "BritainLetter",
       "badge": "HEALTH",
       "category": "health",
@@ -753,41 +892,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.02,
-      "score": 0.305,
+      "freshH": 7.02,
+      "score": 0.285,
       "popularity": 0,
-      "recency": 0.499,
+      "recency": 0.444,
       "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
-      "summary": "The administration canceled federal grants to organizations across the country, accusing them of encouraging premarital sex. New criteria say programs should stress abstinence.",
-      "hashtag": "OverhaulsTeen",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 6.53,
-      "score": 0.24,
-      "popularity": 0,
-      "recency": 0.47,
-      "relevancy": 0.302,
       "region": "usa",
       "geo": null
     }
@@ -795,62 +904,28 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Tripoli ARG, 31st MEU return from U.S. 5th, 7th Fleet deployment",
-        "summary": "The USS Tripoli and its accompanying amphibious ready group have completed a six-month deployment to the U.S. 5th and 7th Fleet areas of operations, offloading in Okinawa on July 22, 2026. The deployment spanned the Indo-Pacific and the Middle East, with the group supporting the U.S. blockade of Iranian ports and carrying out precision strikes. The 31st Marine Expeditionary Unit, part of the deployment, is now back in Okinawa. The forward-deployed naval expeditionary forces are built to pivot to wherever the nation needs them most.",
-        "hashtag": "Marines",
+        "title": "Red Sox's Eduardo Rivera: Drawing another start",
+        "summary": "Red Sox's Eduardo Rivera will start the second game of Wednesday's doubleheader against the Orioles. Rivera has allowed three runs with a 9:4 K:BB over 9.1 frames this season. He's unlikely to offer much length Wednesday, having not lasted more than 3.2 innings in either of his previous starts. The Red Sox had considered Ranger Suarez for the start, but will hold Suarez back for now.",
+        "hashtag": "EduardoRivera",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.c7f.navy.mil/Media/News/Display/Article/4551984/tripoli-arg-31st-meu-return-from-us-5th-7th-fleet-deployment/",
-        "imageUrl": "https://media.defense.gov/2026/Jul/21/2003963960/1460/1280/0/260722-N-VO895-1006.JPG",
+        "url": "https://www.cbssports.com/fantasy/baseball/news/red-soxs-eduardo-rivera-drawing-another-start/",
+        "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
         "images": [
-          "https://media.defense.gov/2026/Jul/21/2003963960/1460/1280/0/260722-N-VO895-1006.JPG",
-          "https://www.stripes.com/incoming/b60td1-230726tripoli-returnphoto01.jpg/alternates/LANDSCAPE_480/230726TRIPOLI-RETURNphoto01.jpg",
-          "https://www.stripes.com/incoming/b60td1-230726tripoli-returnphoto01.jpg/alternates/LANDSCAPE_910/230726TRIPOLI-RETURNphoto01.jpg",
-          "https://www.stripes.com/incoming/yco2ku-230726tripoli-returnphoto02.jpg/alternates/LANDSCAPE_910/230726TRIPOLI-RETURNphoto02.jpg"
+          "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png"
         ],
         "sourceUrls": [
-          "https://www.c7f.navy.mil/Media/News/Display/Article/4551984/tripoli-arg-31st-meu-return-from-us-5th-7th-fleet-deployment/",
-          "https://www.stripes.com/branches/marine_corps/2026-07-22/uss-tripoli-japan-return-iran-war-22334768.html"
+          "https://www.cbssports.com/fantasy/baseball/news/red-soxs-eduardo-rivera-drawing-another-start/",
+          "https://www.fantasypros.com/mlb/news/597295/eduardo-rivera-to-start-tuesday-.php"
         ],
-        "sourceName": "c7f.navy.mil",
+        "sourceName": "cbssports.com",
         "sources": [
-          "C7F (.mil)",
-          "Stars and Stripes"
+          "CBS Sports",
+          "FantasyPros"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "marines",
-        "traffic": 500,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Trump greets the fallen as he faces a decision point on Iran",
-        "summary": "President Donald Trump attended the solemn transfer of four American service members' bodies at Dover Air Force Base in Delaware, marking a somber moment as he faces a decision point on escalating the Iran conflict. The bodies were returned in flag-draped cases, with Trump saluting and the transfer taking just under 20 minutes. This event comes as thousands of American troops are arrayed across the Middle East, risking retaliation and further danger. Trump's visit to Dover highlights the weight of responsibility for a president in times of war.",
-        "hashtag": "PresidentTrump",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/22/politics/dignified-transfer-trump-iran-war",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22t155353z-1774036431-rc23jma80mij-rtrmadp-3-iran-crisis-transfer-usa.jpg?c=16x9&q=w_800,c_fill",
-        "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22t155353z-1774036431-rc23jma80mij-rtrmadp-3-iran-crisis-transfer-usa.jpg?c=16x9&q=w_800,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2287199937.jpg?c=original&q=w_860,c_fill"
-        ],
-        "sourceUrls": [
-          "https://www.cnn.com/2026/07/22/politics/dignified-transfer-trump-iran-war"
-        ],
-        "sourceName": "cnn.com",
-        "sources": [
-          "CNN"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "president trump dover dignified transfer",
+        "trend": "eduardo rivera",
         "traffic": 2000,
         "freshH": 1,
         "score": null,
@@ -861,106 +936,114 @@
         "geo": "US"
       },
       {
-        "title": "A year after deadly jet crash at Bangladesh school, families demand answers",
-        "summary": "A year after a Bangladeshi air force jet crashed into a school in Dhaka, killing 36 people, mostly children, families and survivors are still seeking answers. The deadly incident on July 30, 2022, injured over 160 people, including students who are now struggling to return to normal life. Families of some victims gathered at a hospital in Dhaka on Tuesday to mark the anniversary, demanding justice and accountability. The investigation into the crash is ongoing.",
-        "hashtag": "Bangladesh",
+        "title": "Montana state Sen. Jason Ellsworth found guilty in official misconduct trial",
+        "summary": "Montana state Sen. Jason Ellsworth has been found guilty of official misconduct in a trial in Helena. A jury convicted Ellsworth of circumventing the state's contracting process to steer over $100,000 in work to a close associate. He faces up to six months in jail and a $500 fine. Sentencing is set for September 10, where Judge Chris Abbott will determine Ellsworth's punishment.",
+        "hashtag": "JasonEllsworth",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg",
+        "url": "https://www.ktvh.com/news/montana-state-sen-jason-ellsworth-found-guilty-in-official-misconduct-trial",
+        "imageUrl": "https://ewscripps.brightspotcdn.com/dims4/default/f7ad2ef/2147483647/strip/true/crop/1920x1008+0+36/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbc%2F00%2F480a507f43b39fc235d64765524b%2Fwhip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg"
+          "https://ewscripps.brightspotcdn.com/dims4/default/f7ad2ef/2147483647/strip/true/crop/1920x1008+0+36/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbc%2F00%2F480a507f43b39fc235d64765524b%2Fwhip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
+          "https://ewscripps.brightspotcdn.com/bc/00/480a507f43b39fc235d64765524b/whip-ktvh-ellsworth-trial-day-4-072026-mp4-00-00-35-25-still001.png",
+          "https://bloximages.chicago2.vip.townnews.com/helenair.com/content/tncms/assets/v3/editorial/a/2f/a2f0523d-72ec-40fe-9857-592ba5e3ea77/6a60294828d72.preview.jpg?crop=1716%2C901%2C0%2C153&resize=1200%2C630&order=crop%2Cresize",
+          "https://dailymontanan.com/wp-content/uploads/2026/07/EllsworthVertic5-2048x1365.jpg",
+          "https://dailymontanan.com/wp-content/uploads/2026/07/EllsworthVerdict2-300x200.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&at_campaign=rss"
+          "https://www.ktvh.com/news/montana-state-sen-jason-ellsworth-found-guilty-in-official-misconduct-trial",
+          "https://helenair.com/news/state-regional/crime-courts/article_a2f0523d-72ec-40fe-9857-592ba5e3ea77.html",
+          "https://dailymontanan.com/2026/07/21/ellsworth-found-guilty-of-official-misconduct-in-criminal-trial/"
         ],
-        "sourceName": "BBC",
+        "sourceName": "ktvh.com",
         "sources": [
-          "BBC"
+          "KTVH",
+          "The Independent Record",
+          "Daily Montanan"
         ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.81,
+        "corr": 3,
+        "verified": true,
+        "trend": "jason ellsworth montana contracts verdict",
+        "traffic": 500,
+        "freshH": 1,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
-        "geo": null
+        "geo": "US"
       },
       {
-        "title": "Blocked by censors, China's animal lovers take fight against abuse offline and overseas",
-        "summary": "Thousands of Chinese animal lovers are outraged over the killing of a stray dog and her puppies, sparking a wave of online protests that have been met with censorship. Authorities have scrubbed social media posts and urged people to withhold comments, citing the age of the four boys involved. The restrictions have only fueled the outcry, with animal lovers taking their fight offline and abroad, including putting up billboards in New York. The incident has drawn thousands of comments across social media in China three weeks after the event.",
-        "hashtag": "China",
+        "title": "Inter Miami - Chicago Fire [RELACJA NA ŻYWO]",
+        "summary": "Robert Lewandowski makes his debut in the MLS for Chicago Fire against Inter Miami on Thursday, July 23, at 1:30 am. The match will be streamed online for free on the websites of three Polish bookmakers. This is Lewandowski's first game in his new team after transferring from a previous club.",
+        "hashtag": "RobertLewandowski",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png",
+        "url": "https://przegladsportowy.onet.pl/pilka-nozna/inter-miami-chicago-fire-na-zywo-lewandowski-z-debiutem-w-mls/wyf1ltq",
+        "imageUrl": "https://cdn.przegladsportowy.onet.pl/1/O7Lk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy85NjQyMDNkNjAzMWViN2ExY2E5OTNmZTQyZjVmMjBhMC5qcGeTlQPNBJsdzQYHzQNkkwXNCWDNBOyVB9maaHR0cHM6Ly9jZG4ucHJ6ZWdsYWRzcG9ydG93eS5vbmV0LnBsLzEvTmQ3azlsQmFIUjBjSE02THk5dlkyUnVMbVYxTDNCMWJITmpiWE12VFVSQlh5ODBPR016TUdFNE9Ua3hOalExWWpRM09Ea3dZV001TTJWallqTTRORFl6TkM1d2JtZVJsUUlBWk1QRDNnQUNvVEFIb1RFRQjCAN4AAqEwB6ExBA",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5395/live/0daae1a0-840d-11f1-b3ec-1d7f0502d196.png"
+          "https://cdn.przegladsportowy.onet.pl/1/O7Lk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy85NjQyMDNkNjAzMWViN2ExY2E5OTNmZTQyZjVmMjBhMC5qcGeTlQPNBJsdzQYHzQNkkwXNCWDNBOyVB9maaHR0cHM6Ly9jZG4ucHJ6ZWdsYWRzcG9ydG93eS5vbmV0LnBsLzEvTmQ3azlsQmFIUjBjSE02THk5dlkyUnVMbVYxTDNCMWJITmpiWE12VFVSQlh5ODBPR016TUdFNE9Ua3hOalExWWpRM09Ea3dZV001TTJWallqTTRORFl6TkM1d2JtZVJsUUlBWk1QRDNnQUNvVEFIb1RFRQjCAN4AAqEwB6ExBA",
+          "https://pliki.meczyki.pl/amp32/639/6a5680bccfc02.jpg",
+          "https://pliki.meczyki.pl/original/639/6a5680bccfc02.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&at_campaign=rss"
+          "https://przegladsportowy.onet.pl/pilka-nozna/inter-miami-chicago-fire-na-zywo-lewandowski-z-debiutem-w-mls/wyf1ltq",
+          "https://www.meczyki.pl/newsy/pilka-nozna/debiut-lewandowskiego-gdzie-ogladac-stream-online-i-transmisja-na-zywo-z-meczu-inter-chicago-23-07-2026/308447"
         ],
-        "sourceName": "BBC",
+        "sourceName": "przegladsportowy.onet.pl",
         "sources": [
-          "BBC"
+          "Przegląd Sportowy",
+          "Meczyki.pl"
         ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.81,
+        "corr": 2,
+        "verified": true,
+        "trend": "robert lewandowski",
+        "traffic": 1000,
+        "freshH": 1,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
-        "geo": null
+        "geo": "US"
       },
       {
-        "title": "US signs landmark nuclear deal with Saudi Arabia",
-        "summary": "The US has signed a landmark nuclear deal with Saudi Arabia, allowing the country to enrich uranium on its soil for the first time. The deal, worth billions of dollars, will be implemented at a US-built enrichment facility and is expected to advance US and regional security. The agreement upholds high standards of nuclear safety, security, and nonproliferation. The deal is set to strengthen the US competitive edge in civil nuclear technology.",
-        "hashtag": "SaudiArabia",
+        "title": "Power Rankings: Son Heung-Min & LAFC get El Tráfico boost",
+        "summary": "Nashville SC is on pace to break the league record for regular season points with 81, after earning 19 wins with 19 games remaining. The team secured a 1-0 win over Atlanta United, with Shakur Mohammed scoring the winning goal in the second half. Nashville's ability to win despite struggling performances has been a key factor in their success. The team will look to continue their winning streak in their next match against Cincinnati on July 22.",
+        "hashtag": "MlsStandings",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+        "url": "https://www.mlssoccer.com/news/power-rankings-son-heung-min-lafc-get",
+        "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/ntmenyrmuojr4bdlr8r6.png",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/ntmenyrmuojr4bdlr8r6.png",
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/ntmenyrmuojr4bdlr8r6.png"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
+          "https://www.mlssoccer.com/news/power-rankings-son-heung-min-lafc-get"
         ],
-        "sourceName": "BBC",
+        "sourceName": "mlssoccer.com",
         "sources": [
-          "BBC"
+          "MLSsoccer.com"
         ],
         "corr": 1,
         "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.35,
+        "trend": "mls standings",
+        "traffic": 500,
+        "freshH": 1,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
+        "geo": "US"
+      },
       {
         "title": "Indian police cracked down on 'cockroach' protesters. They went home and made memes about it",
-        "summary": "Indian police cracked down on tens of thousands of protesters in Delhi, firing tear gas and charging demonstrators with batons on Monday. The protesters, supporters of the Cockroach Janta Party, demanded the resignation of Education Minister Dharmendra Pradhan over exam paper leaks and recruitment scandals. The crackdown marked a violent turn in the largest anti-government demonstrations against Prime Minister Narendra Modi's government in the Indian capital in recent years. The protesters have since taken to social media to mock the police response with memes.",
+        "summary": "Indian police cracked down on tens of thousands of protesters in Delhi on Monday, using tear gas and batons to disperse the crowd. The protesters, supporters of the Cockroach Janta Party, were demanding the resignation of Education Minister Dharmendra Pradhan over exam paper leaks and recruitment scandals. The crackdown resulted in no reported fatalities, but the incident has sparked widespread criticism. As the protesters return home, they are taking to social media to mock the police response with humorous memes.",
         "hashtag": "IndianPolice",
-        "badge": "BREAKING",
-        "category": "breaking",
+        "badge": "TRENDING",
+        "category": "offbeat",
         "url": "https://www.bbc.co.uk/news/articles/c3ek3l9gp7go?at_medium=RSS&at_campaign=rss",
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f49c/live/4294bd70-85cd-11f1-85bd-254f6de05e48.jpg",
         "images": [
@@ -983,7 +1066,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.65,
+        "freshH": 1.65,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -992,11 +1075,42 @@
         "geo": null
       },
       {
+        "title": "Strike 2: An old-school way to fix what’s wrong with baseball",
+        "summary": "Major League Baseball has implemented rule changes to boost offense, including banning the shift and limiting mid-inning pitching changes. As a result, fewer than a dozen players currently hit .300 or above. The changes aim to counter the dominance of pitchers, who now face hitters only once per night. The next test of these changes will come in the upcoming regular season.",
+        "hashtag": "AlecBohm",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://milehighsports.com/strike-2-an-old-school-way-to-fix-whats-wrong-with-baseball/",
+        "imageUrl": "https://milehighsports.com/wp-content/uploads/2026/07/USATSI_29164237_168401013_lowres.jpg",
+        "images": [
+          "https://milehighsports.com/wp-content/uploads/2026/07/USATSI_29164237_168401013_lowres.jpg",
+          "https://milehighsports.com/wp-content/uploads/2025/02/Natl-Ballpark-Museum.jpg"
+        ],
+        "sourceUrls": [
+          "https://milehighsports.com/strike-2-an-old-school-way-to-fix-whats-wrong-with-baseball/"
+        ],
+        "sourceName": "milehighsports.com",
+        "sources": [
+          "Mile High Sports"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "alec bohm",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
         "title": "Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist",
-        "summary": "US President Donald Trump has threatened to destroy Iranian bridges and power plants if attacks on ships in the Strait of Hormuz continue. The potential targets include structures in or near the capital Tehran. This warning comes after 11 consecutive nights of US strikes on Iran, with Tehran warning against targeting its nuclear facilities. The situation remains volatile with Iran's air defences activated in Tehran and reports of explosions in several cities.",
+        "summary": "US President Donald Trump has threatened to destroy an Iranian bridge or power plant if attacks on ships in the Strait of Hormuz continue. The potential targets include those located near or in the capital Tehran. This warning comes after the US launched strikes on Iran for the 11th consecutive night. Iran has activated air defences in Tehran and warned of reprisals.",
         "hashtag": "IranHormuz",
-        "badge": "BREAKING",
-        "category": "breaking",
+        "badge": "TRENDING",
+        "category": "offbeat",
         "url": "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss",
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
         "images": [
@@ -1014,7 +1128,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.58,
+        "freshH": 1.58,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1023,51 +1137,59 @@
         "geo": null
       },
       {
-        "title": "Why Are Young People in India Protesting?",
-        "summary": "A youth-led movement angry over the education system and a lack of jobs is posing a rare challenge to a government that has ruled for more than a decade with a firm hand.",
-        "hashtag": "YoungPeople",
+        "title": "A year after deadly jet crash at Bangladesh school, families demand answers",
+        "summary": "A year after a Bangladeshi air force jet crashed into a school in Dhaka, killing 36 people, mostly children, families and survivors are still seeking answers. The deadly incident injured over 160 people and left many students struggling to return to normal life. Families of some victims gathered at a hospital in Dhaka to mark the anniversary, demanding justice and closure. The investigation into the crash is ongoing, with many questions still unanswered.",
+        "hashtag": "Bangladesh",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f3d8/live/ebe69aa0-85a6-11f1-a300-4537eea2be58.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.81,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
+        "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camel populations, with herders reporting increased heat-related deaths and suffering among the animals. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where temperatures are becoming increasingly unbearable for both humans and animals. As temperatures continue to rise, camel herders are struggling to cope with the changing climate.",
+        "hashtag": "Africa",
         "badge": "BREAKING",
         "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/asia/india-youth-protest-modi-cockroach-janta-party.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-india-protests-wtk-05-lcqm/22int-india-protests-wtk-05-lcqm-mediumSquareAt3X.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/cqlxvvw06pqo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-india-protests-wtk-05-lcqm/22int-india-protests-wtk-05-lcqm-mediumSquareAt3X.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/0d00/live/a41b6b40-85f8-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/80e0/live/3fac42b0-85fd-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1280/cpsprodpb/c4ab/live/7bd22e50-838f-11f1-a4c3-dfd0ee4be073.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/1bb0/live/fd6c79b0-8601-11f1-b3d1-d772829dc047.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/d082/live/c8ffb800-8600-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/713/cpsprodpb/548b/live/6ef96250-8602-11f1-bee8-53ce494e1abc.png",
+          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/a743/live/681bd460-6ee0-11f1-8e1d-bbbb1017d210.png"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/asia/india-youth-protest-modi-cockroach-janta-party.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.63,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "tech": [
-      {
-        "title": "Google burning through cash with spiralling AI costs",
-        "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to increasing spending on artificial intelligence infrastructure. The company's AI spending is expected to reach $205 billion this year, a 7.9% increase from last year. This surge in costs comes as major tech companies invest heavily in AI technology. Alphabet's stock fell 4% in after-hours trading following the release of its financial results.",
-        "hashtag": "GoogleBurning",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cqlxvvw06pqo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1077,7 +1199,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.19,
+        "freshH": 0.49,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1086,82 +1208,19 @@
         "geo": null
       },
       {
-        "title": "Meta won’t have to face the next planned social media addiction trial",
-        "summary": "A 15-year-old plaintiff from Florida has dropped a lawsuit against Meta, just days before a planned trial in a Los Angeles courtroom. The case, which was set to be the second in a series of bellwether trials, accused Meta of creating features that harmed and hooked teens. Meta will avoid a potential settlement, following similar settlements by TikTok, Snap, and YouTube. The plaintiff's lawyers cited a successful overall result of the litigation and a desire to focus on recovery and therapy.",
-        "hashtag": "MetaFace",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.theverge.com/policy/969644/meta-social-media-addiction-trial-dropped",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "US signs landmark nuclear deal with Saudi Arabia",
+        "summary": "US Secretary of Energy Chris Wright announced a landmark nuclear deal with Saudi Arabia, allowing the country to enrich uranium on its soil at a US-built facility. The deal, worth billions of dollars, will be built with US companies and is expected to advance both US and regional security. The agreement upholds high standards of nuclear safety and nonproliferation. The US energy department will now work with Saudi Arabia to implement the deal.",
+        "hashtag": "SaudiArabia",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
         "images": [
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
         ],
         "sourceUrls": [
-          "https://www.theverge.com/policy/969644/meta-social-media-addiction-trial-dropped"
-        ],
-        "sourceName": "theverge.com",
-        "sources": [
-          "theverge.com"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.81,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Alphabet Quadruples Profit to $112 Billion, Fueled by A.I. Investments",
-        "summary": "Google’s parent company, which has spent heavily on artificial intelligence, also showed growth across its businesses, particularly in cloud computing.",
-        "hashtag": "QuadruplesProfit",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/22/technology/alphabet-google-earnings-profit.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-google-earnings-qpgz/22biz-google-earnings-qpgz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-google-earnings-qpgz/22biz-google-earnings-qpgz-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/technology/alphabet-google-earnings-profit.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.56,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "sports": [
-      {
-        "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-        "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. The 59-year-old Marshall and 39-year-old Adlington will lead the procession into the opening ceremony. Marshall, a bowls player, and Adlington, a judo athlete, have been sworn to secrecy for weeks, making the announcement a surprise to many. They will officially take on their new roles at the Games in the coming days.",
-        "hashtag": "MarshallAdlington",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1171,7 +1230,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.38,
+        "freshH": 0.52,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1180,19 +1239,19 @@
         "geo": null
       },
       {
-        "title": "Joshua not ready for death of friends to 'sink in'",
-        "summary": "Heavyweight boxer Anthony Joshua returns to the ring on Saturday for his first fight since a fatal car crash killed two close friends and team members, Sina Ghami and Latif Ayodele, on December 29, 2025. Joshua, who sustained minor injuries, will face Kristian Prenga in his first contest since knocking out Jake Paul. Joshua's friends were a sport and exercise rehabilitation coach and a personal trainer, respectively. He will attempt to focus on his fight despite the emotional weight of their loss.",
-        "hashtag": "JoshuaReady",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/boxing/articles/czjl3em4g74o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg",
+        "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
+        "summary": "Ukrainian drones have hit two warehouses belonging to Russia's online retailer Wildberries, killing seven workers and injuring dozens, in attacks that have disrupted supplies to the Russian army and frustrated hundreds of Russian sellers. The strikes targeted warehouses in Elektrostal east of Moscow and Kotovsk in the Tambov region, causing estimated damages of £750m. This marks a new phase in Ukraine's attacks on Russia's logistics hubs, used to buy military equipment. The impact on small and medium-sized businesses will be closely watched.",
+        "hashtag": "UkraineWildberries",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ec97/live/a7141d90-8613-11f1-8e8c-eb6617e7b8b5.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/boxing/articles/czjl3em4g74o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1202,258 +1261,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.53,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-        "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The Reds aim to beat Arsenal and Bayern Munich to the signature. Barcola's World Cup performance has boosted Liverpool's chances of securing the young forward. A deal could be finalized in the coming weeks.",
-        "hashtag": "BarcolaThursday",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-        "summary": "A 4DX screening of Christopher Nolan's \"The Odyssey\" in Los Angeles resulted in 12 people being treated for seasickness. The three-hour film's intense visuals and motion effects caused the issue. Theaters are now offering wristbands to help viewers cope with the experience. Those who have already seen the film in 70mm and Imax formats are now trying out the 4DX version.",
-        "hashtag": "SoakedSeasick",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.37,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘Doctor Strange’ Director Says Elon Musk ‘Doesn’t Know S— About Cinema’ After Musk Vows to Make AI ‘Odyssey’: ‘His Opinions on Art Are Worthless’",
-        "summary": "Elon Musk has vowed to create an AI-generated film adaptation of Homer's \"The Odyssey\" by the end of the year, using his tool Grok. The project has drawn criticism from film director Scott Derrickson, who called Musk's opinions on art \"worthless\" due to his lack of understanding of cinema. Musk has been a vocal critic of director Christopher Nolan's \"The Odyssey\" since its release, citing \"woke\" casting decisions. The outcome of Musk's AI project remains to be seen, but it is expected to be a major test of the technology's capabilities.",
-        "hashtag": "StrangeDirector",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/doctor-strange-director-slams-elon-musk-ai-odyssey-1236818552/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg?w=1000&h=563&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/news/doctor-strange-director-slams-elon-musk-ai-odyssey-1236818552/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.71,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘Star Trek: Strange New Worlds’ Cast, Co-Showrunner Talk Playing With Genres in Season 4, ‘Joyful Curiosity,’ and That Puppet Episode",
-        "summary": "The cast and co-showrunner of \"Star Trek: Strange New Worlds\" discussed the upcoming Season 4, which features episodes blending multiple genres, including sci-fi thriller and musical elements. The series will continue to experiment with storytelling, offering a unique take on the \"Star Trek\" franchise. Anson Mount praised the experience of working with co-showrunners who asked the cast to suggest genres they wanted to act in. Season 4 premieres on Paramount+.",
-        "hashtag": "TrekStrange",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/star-trek-strange-new-worlds-season-4-92ny-1236818484/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/92NY_072126_0315.jpg?w=1000&h=563&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/star-trek-strange-new-worlds-season-4-92ny-1236818484/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.72,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "politics": [
-      {
-        "title": "House Passes Defense Bill Amid Iran War Divide",
-        "summary": "The US House of Representatives has passed a $1.15 trillion defense policy bill in a near party-line vote of 216-212, with most Democrats opposing the measure due to concerns over President Trump's ability to wage war in Iran without congressional authorization. The bill now heads to the Senate, where Democrats have already blocked a similar measure. Senate Republicans lack the votes to overcome Democratic opposition. The bill's fate remains uncertain as the two parties clash over the annual defense policy bill.",
-        "hashtag": "PassesDefense",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-facebookJumbo.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.54,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Trump’s Plan for Science: More Money for A.I., Less for Universities",
-        "summary": "Michael Kratsios, President Trump’s science adviser, proposed overhauling how the government funds research. Democrats said Mr. Trump’s actions had weakened science.",
-        "hashtag": "ScienceMoney",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/trump-research-funding-artificial-intelligence.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-research-Kratsios-tfmc/22dc-trump-research-Kratsios-tfmc-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-research-Kratsios-tfmc/22dc-trump-research-Kratsios-tfmc-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/trump-research-funding-artificial-intelligence.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "crisis": [
-      {
-        "title": "Three Airports Plan to Ditch T.S.A. Amid Push for Private Security",
-        "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
-        "hashtag": "AirportsDitch",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.77,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Donald Trump Jr.’s Investment Firm Posts Staggering Returns of 200%",
-        "summary": "The fledgling firm, run by the president’s oldest son and his partner Omeed Malik, has made investments in A.I. and defense technology that have tripled in value in just months.",
-        "hashtag": "TrumpInvestment",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/22/business/donald-trump-jr-1789-capital.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/06/25/business/25Biz-Maga-Dealmakers/25Biz-Maga-Dealmakers-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/06/25/business/25Biz-Maga-Dealmakers/25Biz-Maga-Dealmakers-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/business/donald-trump-jr-1789-capital.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.8,
+        "freshH": 0.77,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1464,29 +1272,29 @@
     ],
     "facts": [
       {
-        "title": "NASA to Showcase Agency’s Newest Wind Tunnel in Virginia",
-        "summary": "NASA is set to unveil its first new wind tunnel in over 40 years at the Langley Research Center in Hampton, Virginia, on July 31. The Flight Dynamics Research Facility will be showcased in a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and center director Dr. Trina Dyal will be available for media questions. The event is open to US citizens and lawful permanent residents, with RSVPs due by July 29.",
-        "hashtag": "ShowcaseAgency",
+        "title": "Most sewage spills in England may be illegal, new research suggests",
+        "summary": "New research suggests that most sewage spills in England may be illegal, with 86% of raw sewage spilling hours occurring without heavy rain. This analysis, based on data from over 350 storm overflow outlets, implies that water companies may be exceeding permitted limits. The study's findings have significant implications for England's nine water companies, which serve over 30 million people. The water companies will now face scrutiny over their compliance with environmental regulations.",
+        "hashtag": "England",
         "badge": "SCIENCE",
         "category": "facts",
-        "url": "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/",
-        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
+        "url": "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
         "images": [
-          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
-          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026-ba2289.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg"
         ],
         "sourceUrls": [
-          "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/"
+          "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "NASA",
+        "sourceName": "BBC",
         "sources": [
-          "NASA"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.09,
+        "freshH": 0.08,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1516,7 +1324,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.64,
+        "freshH": 3.65,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1527,8 +1335,39 @@
     ],
     "health": [
       {
+        "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
+        "summary": "The National Health Service in England has made the life-changing drug fampridine available to thousands of multiple sclerosis patients, potentially benefiting up to 5,000 people each year. The medication, known as a \"signal booster,\" helps nerve signals to improve walking speed and distance for some patients. This decision comes after clinical trials showed around four in 10 people taking the drug experienced improvements. Patients can now access this treatment alongside existing NHS support, including physiotherapy and walking aids.",
+        "hashtag": "England",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.bbc.co.uk/news/articles/cgmkygjk9g2o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cgmkygjk9g2o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.23,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-        "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower. The report recommends targeting ultra-processed foods, which are high in sugar and refined carbohydrates, as the primary drivers of weight gain and type 2 diabetes. This shift in focus away from fat and salt is expected to lead to more effective public health policies. Manufacturers will now be held accountable for reformulating products to reduce sugar content.",
+        "summary": "A British health select committee report has found that ultra-processed foods are a primary driver of obesity and type 2 diabetes in the country. The report recommends targeting sugar and refined carbohydrates, rather than fat, in food labeling and reformulation efforts. The committee's findings are based on evidence showing that sugar and refined carbohydrates are the main contributors to weight gain. The UK government is now expected to implement new policies to reduce the consumption of these unhealthy ingredients.",
         "hashtag": "BritainLetter",
         "badge": "HEALTH",
         "category": "health",
@@ -1549,7 +1388,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.02,
+        "freshH": 7.02,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "crisis": [
+      {
+        "title": "Airport drop-off fees up by a third - here are the priciest",
+        "summary": "Drop-off fees at the UK's major airports have increased by a third on average since last summer, with two London airports, Gatwick and Stansted, charging the highest fees at £10. This rise comes as Gatwick aims to encourage more passengers to arrive by trains and buses. The fees are part of airports' business models and climate change objectives. The airport's goal to reduce reliance on cars is being tested as it pursues a second runway.",
+        "hashtag": "AirportDrop",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.51,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1558,18 +1430,18 @@
         "geo": null
       },
       {
-        "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
-        "summary": "The administration canceled federal grants to organizations across the country, accusing them of encouraging premarital sex. New criteria say programs should stress abstinence.",
-        "hashtag": "OverhaulsTeen",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
+        "title": "Three Airports Plan to Ditch T.S.A. Amid Push for Private Security",
+        "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
+        "hashtag": "AirportsDitch",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
+          "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1579,7 +1451,353 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.53,
+        "freshH": 2.77,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "tech": [
+      {
+        "title": "Google burning through cash with spiralling AI costs",
+        "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to increasing spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This surge in spending comes as major tech companies invest heavily in AI technology. Alphabet's stock fell 4% in after-hours trading following the announcement.",
+        "hashtag": "GoogleBurning",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.83,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Meta won’t have to face the next planned social media addiction trial",
+        "summary": "A 15-year-old plaintiff from Florida has dropped a lawsuit against Meta, just days before a planned trial in a Los Angeles courtroom. The case, brought by R.K.C., was one of several bellwether trials testing claims that social media companies broke the law by creating addictive features. Meta will not have to face a settlement or trial as a result of the dropped case. The plaintiff's lawyers say he will focus on recovery and therapy instead.",
+        "hashtag": "MetaFace",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/policy/969644/meta-social-media-addiction-trial-dropped",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "images": [
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKS507_FTCxMETA_ANTITRUST_CVIRGINIA_4_E.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
+        ],
+        "sourceUrls": [
+          "https://www.theverge.com/policy/969644/meta-social-media-addiction-trial-dropped"
+        ],
+        "sourceName": "theverge.com",
+        "sources": [
+          "theverge.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.81,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Alphabet Quadruples Profit to $112 Billion, Fueled by A.I. Investments",
+        "summary": "Google’s parent company, which has spent heavily on artificial intelligence, also showed growth across its businesses, particularly in cloud computing.",
+        "hashtag": "QuadruplesProfit",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/22/technology/alphabet-google-earnings-profit.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-google-earnings-qpgz/22biz-google-earnings-qpgz-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-google-earnings-qpgz/22biz-google-earnings-qpgz-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/technology/alphabet-google-earnings-profit.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.56,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
+        "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who developed the project and co-wrote the script with Ryu Yong-jae. This is Yeon's second project with Netflix, following \"Hellbound.\" The series is expected to premiere next year.",
+        "hashtag": "SangReturns",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.88,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "‘Doctor Strange’ Director Says Elon Musk ‘Doesn’t Know S— About Cinema’ After Musk Vows to Make AI ‘Odyssey’: ‘His Opinions on Art Are Worthless’",
+        "summary": "Elon Musk has vowed to create an AI-generated film adaptation of Homer's \"The Odyssey\" by the end of the year, sparking controversy in the film industry. Director Scott Derrickson has publicly criticized Musk, stating he \"doesn't know shit about cinema\" and that his opinions on art are worthless. Musk's AI tool Grok has already generated a three-minute clip of an AI-adapted scene from the poem. The feud between Musk and filmmakers continues, with no clear resolution in sight.",
+        "hashtag": "StrangeDirector",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/doctor-strange-director-slams-elon-musk-ai-odyssey-1236818552/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/MixCollage-22-Jul-2026-05-17-PM-1047-e1784755072689.jpg?w=1000&h=563&crop=1"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/doctor-strange-director-slams-elon-musk-ai-odyssey-1236818552/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.71,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
+        "summary": "A 3-hour film, \"The Odyssey,\" starring Matt Damon, is being screened in 4DX format at select theaters. This immersive experience features seat-rumbling and water-spritzing technology. Over 100 theaters worldwide have adopted this format. Audiences are bracing themselves for a unique cinematic experience.",
+        "hashtag": "SoakedSeasick",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.38,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "McInnes glad of Rangers backing in appeal against ban",
+        "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for criticizing a late penalty decision in May. The ban is an immediate three-game suspension with one game suspended until the end of the season. McInnes disputes the decision, saying it was directed at the specific call, not officials in general. The club will now appeal the ruling.",
+        "hashtag": "Rangers",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.8,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
+        "summary": "Scotland's Marshall and Adlington have been chosen to carry the country's flag at the Commonwealth Games. The honor will be shared by the 59-year-old bowls player and 39-year-old judo athlete, who have been keeping the news secret for weeks. They will lead the Scottish team into the opening ceremony on July 27. The flag will be returned to its rightful owners after the event, but not before a possible battle between the two for the first photo opportunity.",
+        "hashtag": "MarshallAdlington",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.38,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Liverpool confident of signing Barcola - Thursday's gossip",
+        "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The deal would reportedly beat out Arsenal and Bayern Munich. Barcola's World Cup performance has sparked interest from multiple top clubs. Liverpool is now in a strong position to secure the signing.",
+        "hashtag": "BarcolaThursday",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "With Saudi Deal, Trump Loosens Nuclear Standards for One Close Ally",
+        "summary": "Nuclear experts say it throws fuel on the smoldering fire of atomic proliferation, creating a destabilizing situation that could raise the risk of nuclear war.",
+        "hashtag": "SaudiTrump",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/22/us/politics/trump-saudi-nuclear-standards.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-nuclear-photo-fclj/22dc-trump-nuclear-photo-fclj-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-trump-nuclear-photo-fclj/22dc-trump-nuclear-photo-fclj-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/us/politics/trump-saudi-nuclear-standards.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.78,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Clarity Act Mired In Debate Over Whether to Bar President From Selling Crypto",
+        "summary": "Democrats and Republicans are haggling about the Clarity Act, a major bill pushed by the crypto industry, as it moves closer to a Senate vote.",
+        "hashtag": "ActMired",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.85,
         "score": null,
         "popularity": null,
         "recency": null,
