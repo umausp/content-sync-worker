@@ -38,9 +38,12 @@ env:
   # RSS story can't duplicate one Pipeline 1 already published (and vice-versa).
   NEWS_DEDUP_CLAIM: '1'
   CLAIM_WINDOW_H: '2'
-  # ── LLM PROVIDER LADDER — FREE fast providers first, PAID OpenAI last (tight cap),
-  #    local Ollama last-resort. A provider is skipped if its key secret is absent. ──
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
+  # ── LLM PROVIDER LADDER — NVIDIA FIRST (user: "make nvidia primary … fallback to
+  #    ollama with fail fast"): NVIDIA NIM has generous free credits and stayed up when
+  #    the others 429'd. Then the rest of the free tier, PAID OpenAI (tight cap), local
+  #    Ollama last-resort. A provider is skipped if its key is absent. Fail-fast: one
+  #    try per provider, bench on failure, never retry. ──
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,openai,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}

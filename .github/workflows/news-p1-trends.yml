@@ -42,8 +42,11 @@ env:
   # from INGEST_URL (/ingest → /dedup/claim); off via NEWS_DEDUP_CLAIM=0.
   NEWS_DEDUP_CLAIM: '1'
   CLAIM_WINDOW_H: '2'
-  # Same free-first provider ladder + strict fail-fast router as Pipeline 2.
-  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
+  # NVIDIA-FIRST provider ladder (user: "make nvidia primary … fallback to ollama with
+  # fail fast"). NVIDIA NIM has generous free credits and was the ONLY hosted provider
+  # still answering when gemini/sambanova/cohere all 429'd — so it leads. Others follow,
+  # slow CPU Ollama is the last-resort. Router is fail-fast (one try/provider, no retry).
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,openai,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}

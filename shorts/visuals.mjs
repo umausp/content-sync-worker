@@ -295,10 +295,18 @@ export async function brandBackground(outDir) {
 
 // Resolve UP TO `count` DISTINCT canvas-sized background images for ONE story, so a
 // single-story Short plays as a photo SEQUENCE (Ken-Burns + crossfade) instead of one
-// static image (user ask). Order of preference:
-//   1. the story's OWN images — story.imageUrl + any story.images[] / source images
-//   2. top up with category stock (Pexels → Pixabay → Unsplash), each a fresh photo
-// De-duped via `seen`. Always returns ≥1 (gradient fallback). Returns { paths[], kinds[] }.
+// static image. ORIGINAL IMAGES ONLY (user: "fetch original story related images only
+// not unrelated pexel or other images"):
+//   1. the story's OWN images — story.imageUrl + story.images[] (harvested by
+//      enrichSummary from EVERY outlet that covered this event, so a story yields
+//      several genuine photos OF THIS STORY).
+//   2. NO generic stock padding. If a story has 1-2 real photos we render with just
+//      those (the renderer Ken-Burns / crossfades whatever it's given) — a shorter,
+//      HONEST sequence beats real+unrelated-stock. Stock is off by default; set
+//      SHORTS_ALLOW_STOCK=1 to re-enable the old category-stock top-up.
+//   3. Only a story with ZERO real photos falls to the branded gradient (never a
+//      random stock photo of an unrelated subject).
+// De-duped via `seen`. Always returns ≥1. Returns { paths[], kinds[] }.
 export async function resolveBackgrounds(story, outDir, seen = new Set(), count = 3) {
   await mkdir(outDir, { recursive: true });
   const paths = [];
@@ -311,23 +319,28 @@ export async function resolveBackgrounds(story, outDir, seen = new Set(), count 
     const p = await tryStoryImage(story, outDir, seen, file, u);
     if (p) { paths.push(p); kinds.push('story'); }
   }
-  // 2) top up with stock — try each provider, each writing a fresh file.
-  const queries = stockQueries(story);
-  const providers = [
-    [!!PEXELS_KEY, pexelsCandidates, 'src-pexels'],
-    [!!PIXABAY_KEY, pixabayCandidates, 'src-pixabay'],
-    [!!UNSPLASH_KEY, unsplashCandidates, 'src-unsplash'],
-  ];
-  let pi = 0;
-  while (paths.length < count && pi < providers.length * 2) {
-    const [hasKey, fn, nm] = providers[pi % providers.length];
-    pi++;
-    if (!hasKey) continue;
-    const file = `bg-${paths.length}.png`;
-    const p = await tryProvider(hasKey, fn, queries, seen, outDir, `${nm}-${paths.length}`, file);
-    if (p) { paths.push(p); kinds.push(nm.replace('src-', '')); }
+  // 2) OPT-IN stock top-up only (default OFF). Kept behind a flag so the pipeline can
+  //    fall back to on-theme stock if a future channel wants it, but by default we
+  //    NEVER show an image that isn't of this story.
+  if (paths.length < count && process.env.SHORTS_ALLOW_STOCK === '1') {
+    const queries = stockQueries(story);
+    const providers = [
+      [!!PEXELS_KEY, pexelsCandidates, 'src-pexels'],
+      [!!PIXABAY_KEY, pixabayCandidates, 'src-pixabay'],
+      [!!UNSPLASH_KEY, unsplashCandidates, 'src-unsplash'],
+    ];
+    let pi = 0;
+    while (paths.length < count && pi < providers.length * 2) {
+      const [hasKey, fn, nm] = providers[pi % providers.length];
+      pi++;
+      if (!hasKey) continue;
+      const file = `bg-${paths.length}.png`;
+      const p = await tryProvider(hasKey, fn, queries, seen, outDir, `${nm}-${paths.length}`, file);
+      if (p) { paths.push(p); kinds.push(nm.replace('src-', '')); }
+    }
   }
-  // 3) guarantee at least one background.
+  // 3) guarantee at least one background — a story with NO real photo gets the branded
+  //    gradient (on-brand), never a random unrelated stock image.
   if (!paths.length) {
     paths.push(await brandFallback(outDir));
     kinds.push('brand');

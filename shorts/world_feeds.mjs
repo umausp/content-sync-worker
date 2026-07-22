@@ -304,9 +304,16 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         // ALL distinct images across the cluster's outlets → feeds the multi-image
         // sequence so a story shows several real photos of the SAME event.
         const images = [...new Set(c.items.map((i) => i.imageUrl).filter(Boolean))];
+        // Every distinct REAL ARTICLE url in the cluster (rep first, then the other
+        // outlets that covered the SAME event). enrichSummary harvests each page's OWN
+        // photos, so a story yields several genuine event images (user: "fetch original
+        // story related images only") instead of one + generic stock padding.
+        const sourceUrls = [...new Set([rep.url, ...c.items.map((i) => i.url)]
+          .filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, 5);
         return {
           rep,
           images,
+          sourceUrls,
           corr: c.sources.size,
           hasImg: !!rep.imageUrl,
           thin: isThinUrl(rep.url),
@@ -343,6 +350,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
         url: pick.rep.url,
         imageUrl: pick.rep.imageUrl,
         images: pick.images, // all distinct source images → multi-image sequence
+        sourceUrls: pick.sourceUrls, // all outlet article URLs → harvest each one's own photos
         sourceName: pick.rep.sourceName,
         sources: pick.sources,
         corr: pick.corr,
@@ -433,6 +441,9 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
         url: rep.url,
         imageUrl: null,
         images: [],
+        // Every trend-backing outlet's article → harvest each one's OWN photos (this
+        // event's real images), so trending Shorts also get a genuine photo sequence.
+        sourceUrls: [...new Set(newsItems.map((n) => n.url).filter((u) => u && /^https?:\/\//i.test(u) && !isThinUrl(u)))].slice(0, 5),
         sourceName: cleanSource(new URL(rep.url).hostname),
         sources: [...new Set(newsItems.map((n) => n.source).filter(Boolean))],
         corr: newsItems.length,
@@ -727,6 +738,27 @@ export async function enrichSummary(story) {
     if (arts.length) {
       if (!story.imageUrl) story.imageUrl = arts[0];
       story.images = [...new Set([story.imageUrl, ...(story.images || []), ...arts].filter(Boolean))];
+    }
+    // HARVEST ACROSS OUTLETS (user: "fetch original story-related images only"): the rep
+    // page alone usually yields 1-2 photos, so the sequence used to pad with unrelated
+    // stock. Instead pull the OWN photos from every OTHER outlet that covered the same
+    // event (story.sourceUrls) — all genuine images OF THIS STORY. Best-effort, parallel,
+    // skips the rep (already fetched). Stops once we have enough real photos.
+    const others = (story.sourceUrls || []).filter((u) => u && u !== story.url).slice(0, 4);
+    if (others.length && (story.images || []).length < 8) {
+      const harvested = await Promise.all(
+        others.map(async (u) => {
+          try {
+            const rr = await fetch(u, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(10000) });
+            if (!rr.ok) return [];
+            return articleImages(await rr.text());
+          } catch {
+            return [];
+          }
+        }),
+      );
+      const more = harvested.flat();
+      if (more.length) story.images = [...new Set([...(story.images || []), ...more].filter(Boolean))];
     }
     const paras = articleProse(html);
     if (!paras.length) return;
