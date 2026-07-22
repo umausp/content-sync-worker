@@ -1,240 +1,161 @@
 {
-  "generatedAt": "2026-07-22T18:51:33.120Z",
+  "generatedAt": "2026-07-22T19:51:41.346Z",
   "region": "usa",
-  "count": 31,
+  "count": 29,
   "categoryCounts": {
-    "offbeat": 9,
+    "offbeat": 7,
     "entertainment": 3,
-    "politics": 3,
-    "facts": 2,
-    "sports": 3,
-    "breaking": 3,
-    "crisis": 2,
     "tech": 3,
+    "politics": 3,
+    "sports": 3,
+    "facts": 1,
+    "breaking": 3,
+    "crisis": 3,
     "health": 3
   },
   "stories": [
     {
-      "title": "'Love Island USA' star Olandria Carthen's best red carpet looks",
-      "summary": "Love Island USA star Olandria Carthen and her boyfriend Nic Vansteenberghe, also known as Nicolandria, have broken up after nearly a year together. The couple, who met on the reality show's season 7, cited their busy schedules as the reason for their split. They remain close friends and will continue to support each other. This news comes as Love Island USA season 8 has recently concluded.",
-      "hashtag": "Olandria",
-      "badge": "VIRAL",
+      "title": "A Legendary Grand Canyon Explorer Vanished in 2012. Authorities Just Found His Remains.",
+      "summary": "Human remains found on the Hualapai Indian Reservation in December 2025 have been confirmed as those of 65-year-old Oregon hiker Bill Ott, who vanished during a solo Grand Canyon trek in April 2012. Ott, a legendary wilderness figure and experienced hiker, had spent years exploring the Grand Canyon and documenting ancient rock art. His remains were discovered near a trail at the base of a 15-foot cliff, with a small daypack containing his wallet, cash, camera, and GPS. The cause of death remains unknown.",
+      "hashtag": "BillOtt",
+      "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.usatoday.com/picture-gallery/entertainment/celebrities/2026/07/22/olandria-love-island-usa-red-carpet-photos-fashion/91010045007/",
-      "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?crop=4454,2506,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+      "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/bill-ott-remains-found-grand-canyon/",
+      "imageUrl": "https://cdn.outsideonline.com/wp-content/uploads/2026/07/bill-ott-.png",
       "images": [
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?crop=4454,2506,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?width=660&height=440&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/10/31/USAT/87014722007-2234198038.jpg?width=660&height=441&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/09/08/PWES/86037937007-getty-images-2234197890.jpg?width=450&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/09/13/USAT/86130090007-2235129506.jpg?width=454&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/10/24/USAT/86878382007-getty-images-2242904666.jpg?width=441&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/11/04/USAT/87076786007-2244396161.jpg?width=660&height=441&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/11/05/USAT/87096670007-2245042761.jpg?width=472&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010129007-getty-images-2247883563.jpg?width=440&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010131007-getty-images-2255763391.jpg?width=440&height=660&fit=crop&format=pjpg&auto=webp",
-        "https://s3.amazonaws.com/syndication.abcaudio.com/files/2026-07-22/Getty_OlandriaCarthenNicVansteenberghe_072326.png",
-        "https://tasteofreality.com/wp-content/uploads/2026/07/857f346f-bfd1-421b-a396-60d46da27ec0.jpeg",
-        "https://www.bollywoodshaadis.com/img/article-l-2026720223593186371000-xl.webp",
-        "https://www.bollywoodshaadis.com/img/article-l-2026720223593186371000.webp",
-        "https://www.bollywoodshaadis.com/img/article-2026720223331584795000.webp",
-        "https://www.bollywoodshaadis.com/img/article-2026720223335084830000.webp",
-        "https://www.newsbreak.com/api/share-og-image/2tHjrn_1DXlK54t00.jpg"
+        "https://cdn.outsideonline.com/wp-content/uploads/2026/07/bill-ott-.png",
+        "https://cdn.outsideonline.com/wp-content/uploads/2026/07/rock-panels.png?width=3840&auto=webp&quality=75&fit=cover",
+        "https://cdn.outsideonline.com/wp-content/uploads/2026/07/search-and-rescue.png?width=3840&auto=webp&quality=75&fit=cover",
+        "https://cdn.outsideonline.com/wp-content/uploads/2026/07/grand-canyon.png?width=3840&auto=webp&quality=75&fit=cover",
+        "https://cdn.newser.com/image/1700350-12-20260722141847.jpeg",
+        "https://cdn.newser.com/image/1700350-17-20260722133508-remains-long-missing-grand-canyon-hiker-identified.jpeg",
+        "https://ewscripps.brightspotcdn.com/dims4/default/d11829a/2147483647/strip/true/crop/150x79+0+61/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbf%2F9e%2Ff17f865d4f5994da08bb3370b8f9%2Foriginal.jpg",
+        "https://ewscripps.brightspotcdn.com/bf/9e/f17f865d4f5994da08bb3370b8f9/original.jpg",
+        "https://ewscripps.brightspotcdn.com/dims4/default/8432a0b/2147483647/strip/false/crop/1280x714+0+3/resize/95x53!/quality/90/?url=https%3A%2F%2Fcf.cdn.uplynk.com%2Fause1%2Fslices%2Fd26%2F5c3d34b8b29a45469a86c02775b7a2cf%2Fd26a1086171c427aa7c4a4af6f35eb21%2Fposter_bc0e537142b7428a8ab9d133df32e3e2.jpg",
+        "https://ewscripps.brightspotcdn.com/dims4/default/ae12b1f/2147483647/strip/true/crop/150x84+0+58/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbf%2F9e%2Ff17f865d4f5994da08bb3370b8f9%2Foriginal.jpg",
+        "https://ewscripps.brightspotcdn.com/50/db/53bb5e05407d810216c6b9c64f8e/google-preferred-source-badge-light-en.png"
       ],
       "sourceUrls": [
-        "https://www.usatoday.com/picture-gallery/entertainment/celebrities/2026/07/22/olandria-love-island-usa-red-carpet-photos-fashion/91010045007/",
-        "https://sandhillsexpress.com/abc_entertainment/love-island-usa-stars-olandria-carthen-nic-vansteenberghe-break-up-after-one-year-together-abcid65e76491/",
-        "https://www.tvinsider.com/1277083/love-island-usa-why-did-nic-olandria-break-up-split-reason/",
-        "https://tasteofreality.com/olandria-nic-split-love-island-usa-season-7/",
-        "https://www.bollywoodshaadis.com/articles/olandria-carthen-and-nic-vansteenberghe-breakup-after-a-year-82387",
-        "https://www.newsbreak.com/e-news-510067/4785281984062-love-island-usa-s-olandria-nic-break-up-after-one-year-of-dating"
+        "https://www.outsideonline.com/outdoor-adventure/exploration-survival/bill-ott-remains-found-grand-canyon/",
+        "https://www.newser.com/story/393313/remains-of-long-missing-grand-canyon-hiker-identified.html",
+        "https://www.abc15.com/news/local-news/remains-found-in-northern-arizona-identified-as-grand-canyon-area-hiker-reported-missing-in-2012"
       ],
-      "sourceName": "USA Today",
+      "sourceName": "outsideonline.com",
       "sources": [
-        "USA Today",
-        "Sandhills Express",
-        "Access Hollywood",
-        "TV Insider",
-        "E! News",
-        "Taste of Reality",
-        "BollywoodShaadis",
-        "NewsBreak: Local News & Alerts"
+        "Outside Magazine",
+        "Newser",
+        "ABC15 Arizona"
       ],
-      "corr": 8,
+      "corr": 3,
       "verified": true,
-      "trend": "Olandria",
-      "traffic": 99000,
-      "freshH": 0.5,
-      "score": 0.87,
-      "popularity": 0.728,
-      "recency": 0.944,
-      "relevancy": 0.994,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "How Pete Golding described relationship with Lane Kiffin after leaving Ole Miss for LSU - The Clarion-Ledger",
-      "summary": "Ole Miss coach Pete Golding said he and former coach Lane Kiffin are on good terms despite Kiffin's dramatic exit for LSU last season. Golding, who took over as head coach after Kiffin's departure, signed a five-year deal with the Rebels and led them to two College Football Playoff victories. The two will face off in a highly anticipated Week 3 matchup on September 19 at Vaught-Hemingway Stadium. Golding also addressed the college football transfer portal system, suggesting it can put players in bad positions.",
-      "hashtag": "PeteGolding",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-lane-kiffin-ole-miss-football-lsu/90982972007/",
-      "imageUrl": "https://www.clarionledger.com/gcdn/authoring/authoring-images/2025/12/01/PJAM/87552421007-75331984007-usatsi-24294511.jpg?crop=3742,2106,x0,y124&width=1600&height=800&format=pjpg&auto=webp",
-      "images": [
-        "https://www.clarionledger.com/gcdn/authoring/authoring-images/2025/12/01/PJAM/87552421007-75331984007-usatsi-24294511.jpg?crop=3742,2106,x0,y124&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.saturdaydownsouth.com/app/uploads/2025/12/USATSI_24294511-scaled-e1766281992769.jpg",
-        "https://s3media.247sports.com/Uploads/Assets/409/152/14152409.JPG?width=1200&height=628&crop=1.91:1&fit=cover",
-        "https://s3media.247sports.com/Uploads/Assets/409/152/14152409.JPG?width=1200&height=600&crop=2:1&fit=cover"
-      ],
-      "sourceUrls": [
-        "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-lane-kiffin-ole-miss-football-lsu/90982972007/",
-        "https://www.al.com/sports/2026/07/ole-miss-pete-golding-on-his-relationship-lane-kiffin-i-get-this-everywhere-we-go.html",
-        "https://www.saturdaydownsouth.com/news/college-football/pete-golding-talks-current-relationship-with-lane-kiffin-says-he-was-dumb-to-leave/",
-        "https://247sports.com/college/georgia/article/lsu-tigers-football-ole-miss-head-coach-pete-golding-opens-up-on-relationship-with-lane-kiffin-heading-into-season-288461275/",
-        "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-tampering-ole-miss-football-sec-media-days/90961973007/",
-        "https://clutchpoints.com/ncaa-football/ole-miss-football-news-pete-golding-gets-100-real-relationship-with-lane-kiffin"
-      ],
-      "sourceName": "The Clarion-Ledger",
-      "sources": [
-        "The Clarion-Ledger",
-        "AL.com",
-        "Southeastern Conference",
-        "Saturday Down South",
-        "247Sports",
-        "ClutchPoints"
-      ],
-      "corr": 6,
-      "verified": true,
-      "trend": "Pete Golding",
-      "traffic": 94000,
-      "freshH": 0.5,
-      "score": 0.817,
-      "popularity": 0.654,
-      "recency": 0.944,
-      "relevancy": 0.9,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Xbox Backward Compatibility on PC launches today with Blinx, Conker and more",
-      "summary": "Microsoft launches Xbox Backward Compatibility on PC today, allowing original Xbox games to be played on PC and handheld devices. Four classic games, including Blinx: The Time Sweeper, Conker: Live and Reloaded, Crimson Skies: High Road to Revenge, and Fuzion Frenzy, are available to play at no extra charge for those with digital Xbox versions. The PC versions feature up to 4x resolution upscaling and other graphics enhancements. This marks the start of a wider preservation effort, with more classic Xbox games headed to PC.",
-      "hashtag": "Conker",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.thesixthaxis.com/2026/07/22/xbox-backward-compatibility-on-pc-launches-today-with-blinx-conker-and-more/",
-      "imageUrl": "https://www.thesixthaxis.com/wp-content/uploads/2026/07/XboxBConPC-hero500.jpg",
-      "images": [
-        "https://www.thesixthaxis.com/wp-content/uploads/2026/07/XboxBConPC-hero500.jpg",
-        "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
-        "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp",
-        "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=570&quality=85&format=jpg&dpr=3&auto=webp",
-        "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/xbox-app-now-brings-original-xbox-games-to-pc-blinx-conker-a-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/netflix-announces-a-new-lego-version-of-one-piece-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/elon-musk-says-he-s-going-to-create-his-own-historically-acc-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-open-beta-for-call-of-duty-modern-warfare-4-already-has-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/tiktok-s-u-s-security-chief-testifies-september-15-first-pub-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/human-vapor-on-netflix-is-already-a-hit-24-3-million-hours-i-20260722.jpg",
-        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/google-releases-gemini-3-5-flash-cyber-a-lighter-ai-to-fix-f-20260722.jpg",
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?w=1600&h=900&fit=crop",
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?q=70&fit=crop&w=1200&h=628&dpr=1",
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?&fit=crop&w=1600&h=900",
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/07/xbox-rog-crimson-skies.jpg?q=49&fit=crop&w=825&dpr=2"
-      ],
-      "sourceUrls": [
-        "https://www.thesixthaxis.com/2026/07/22/xbox-backward-compatibility-on-pc-launches-today-with-blinx-conker-and-more/",
-        "https://www.eurogamer.net/xbox-backward-compatibility-on-pc-announced",
-        "https://en.softonic.com/articles/xbox-app-now-brings-original-xbox-games-to-pc-blinx-conker-and-more",
-        "https://gamerant.com/xbox-backward-compatibility-on-pc/"
-      ],
-      "sourceName": "TheSixthAxis",
-      "sources": [
-        "TheSixthAxis",
-        "Eurogamer.net",
-        "en.softonic.com",
-        "GameRant"
-      ],
-      "corr": 4,
-      "verified": true,
-      "trend": "Conker",
-      "traffic": 90000,
-      "freshH": 2,
-      "score": 0.751,
-      "popularity": 0.558,
-      "recency": 0.794,
+      "trend": "bill ott grand canyon discovery",
+      "traffic": 1000,
+      "freshH": 1,
+      "score": 0.712,
+      "popularity": 0.376,
+      "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Hiker injured in ‘surprise encounter’ with bear on brushy South Anchorage trail",
-      "summary": "A woman was hospitalized after being attacked by a brown bear while hiking in the Bear Valley area of South Anchorage on July 18. The bear, which emerged from a dense stand of alder trees, made brief contact with one of the hikers before moving on. The hiker sustained non-life-threatening injuries and was transported to a local hospital. Authorities believe the encounter was likely a surprise due to high winds and inclement weather conditions.",
-      "hashtag": "BrownBear",
+      "title": "McDonald’s new Caesar menu arrives in NY. See what’s included",
+      "summary": "McDonald's has launched its new Caesar menu nationwide, including in New York, on Tuesday, July 21. The menu features a new Caesar sauce, a creamy garlic and parmesan blend, and includes items such as the Caesar Snack Wrap, a Bacon Caesar McCrispy Sandwich, and crispy McCrispy Strips. The new menu items will be available for a limited time at participating McDonald's restaurants. Customers can try the new menu for $2.99, starting today.",
+      "hashtag": "McdonaldMenu",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
-      "imageUrl": "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630",
+      "url": "https://www.democratandchronicle.com/story/news/2026/07/21/mcdonalds-caesar-menu-snack-wrap-new-york/90995743007/",
+      "imageUrl": "https://www.democratandchronicle.com/gcdn/authoring/authoring-images/2026/07/21/PNJM/90992534007-mcdonalds-caesar.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
       "images": [
-        "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630",
-        "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=800&height=535",
-        "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
-        "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg"
+        "https://www.democratandchronicle.com/gcdn/authoring/authoring-images/2026/07/21/PNJM/90992534007-mcdonalds-caesar.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp"
       ],
       "sourceUrls": [
-        "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
-        "https://people.com/woman-injured-in-bear-attack-while-hiking-with-friend-and-dogs-12024465",
-        "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562"
+        "https://www.democratandchronicle.com/story/news/2026/07/21/mcdonalds-caesar-menu-snack-wrap-new-york/90995743007/"
       ],
-      "sourceName": "adn.com",
+      "sourceName": "democratandchronicle.com",
       "sources": [
-        "Anchorage Daily News",
-        "People.com",
-        "ABC News - Breaking News, Latest News and Videos"
+        "Fox News",
+        "Democrat and Chronicle"
       ],
-      "corr": 3,
+      "corr": 2,
       "verified": true,
-      "trend": "brown bear",
-      "traffic": 500,
+      "trend": "mcdonald's menu",
+      "traffic": 2000,
       "freshH": 1,
-      "score": 0.628,
-      "popularity": 0.228,
+      "score": 0.676,
+      "popularity": 0.443,
       "recency": 0.891,
-      "relevancy": 0.9,
+      "relevancy": 0.75,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Arrowhead Drug Shows Strong Efficacy In Cutting Blood Fat",
-      "summary": "Arrowhead Pharmaceuticals reports successful results from its late-stage trials for the treatment of severe hypertriglyceridemia, with patients receiving the drug experiencing a median triglyceride decrease of 79-81% after 12 months, compared to 27% in the placebo group. The trials, SHASTA-3 and SHASTA-4, achieved their primary milestone and all secondary objectives. This breakthrough could significantly reduce the risk of acute pancreatitis in patients with high blood fat levels. The company's stock is trading higher following the announcement.",
-      "hashtag": "Arrowhead",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.benzinga.com/news/health-care/26/07/60619285/arrowhead-drug-shows-strong-efficacy-in-cutting-blood-fat",
-      "imageUrl": "https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/22/Stuttgart--Germany---09-14-2022-Person-H.jpg",
+      "title": "‘Disney Worldbuilders’ Documentary by Leslie Iwerks, Featuring James Cameron, Kevin Feige and Jon Favreau, Set to Premiere on Disney+",
+      "summary": "A new documentary \"Disney Worldbuilders\" by Leslie Iwerks is set to premiere on Disney+ on August 20. The film takes viewers behind the scenes of how Disney movies and franchises like \"Frozen\" and \"Zootopia\" are transformed into immersive experiences at the Disney parks. Featuring insights from James Cameron, Kevin Feige, and Jon Favreau, the documentary showcases the creative process behind Disney's theme park attractions. The result is a unique look at the intersection of film and fantasy.",
+      "hashtag": "WorldbuildersDocumentary",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/artisans/news/disney-worldbuilders-disney-plus-august-1236818262/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg",
       "images": [
-        "https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/22/Stuttgart--Germany---09-14-2022-Person-H.jpg"
+        "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg",
+        "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg?crop=0px%2C156px%2C1920px%2C1080px&resize=1000%2C563"
       ],
       "sourceUrls": [
-        "https://www.benzinga.com/news/health-care/26/07/60619285/arrowhead-drug-shows-strong-efficacy-in-cutting-blood-fat"
+        "https://variety.com/2026/artisans/news/disney-worldbuilders-disney-plus-august-1236818262/"
       ],
-      "sourceName": "Benzinga",
+      "sourceName": "Variety",
       "sources": [
-        "Benzinga"
+        "Variety"
       ],
       "corr": 1,
       "verified": false,
-      "trend": "Arrowhead",
-      "traffic": 97000,
-      "freshH": 0.5,
-      "score": 0.565,
-      "popularity": 0.294,
-      "recency": 0.944,
-      "relevancy": 0.47,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.16,
+      "score": 0.474,
+      "popularity": 0,
+      "recency": 0.982,
+      "relevancy": 0.52,
       "region": "usa",
-      "geo": "US"
+      "geo": null
+    },
+    {
+      "title": "Price-hiked iPads are a little cheaper right now",
+      "summary": "Apple's high-end 13-inch iPad Pro M5 with 512GB of storage is currently discounted by $150 at Amazon and $100 at Best Buy, now priced at $1,549.99. This premium iPad features an M5 processor, OLED screen, and support for the Apple Pencil Pro and Magic Keyboard. The 11-inch iPad Air M3 with 1TB of storage is also on sale, marked down by $500 to $749.",
+      "hashtag": "PriceHiked",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/gadgets/969003/apple-ipad-air-pro-airtag-deal-sale",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/M5-iPad-Pro-2.jpg?quality=90&strip=all&crop=9.7745953495034%2C0%2C66.653934300993%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/257606_iPad_air_ADiBenedetto_0002.jpg?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/gadgets/969003/apple-ipad-air-pro-airtag-deal-sale"
+      ],
+      "sourceName": "theverge.com",
+      "sources": [
+        "theverge.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.62,
+      "score": 0.472,
+      "popularity": 0,
+      "recency": 0.931,
+      "relevancy": 0.583,
+      "region": "usa",
+      "geo": null
     },
     {
       "title": "Hollywood’s Favorite Ugg Slippers (To Never Wear on a Christopher Nolan Set)",
-      "summary": "Christopher Nolan has banned Ugg slippers from his film sets, citing them as a \"signifier of modernity\" that can disrupt the on-screen reality. This policy was evident in his recent film \"The Odyssey,\" where actors wore traditional Ancient Greek attire. The ban applies to all his productions, including future projects. The decision aims to maintain the authenticity of his historical dramas.",
+      "summary": "Christopher Nolan has banned Ugg slippers from his film sets, citing they can \"weirdly take you out of reality.\" This policy was evident in his recent film \"The Odyssey,\" where actors wore sandals instead of Uggs to maintain historical accuracy. The ban applies to all sets, including the upcoming film. The decision aims to keep actors immersed in their characters' ancient Greek world.",
       "hashtag": "FavoriteUgg",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -258,31 +179,150 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.31,
-      "score": 0.504,
+      "freshH": 1.31,
+      "score": 0.466,
       "popularity": 0,
-      "recency": 0.965,
-      "relevancy": 0.665,
+      "recency": 0.859,
+      "relevancy": 0.66,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Sophie Thatcher Is Ready to Move Beyond ‘Yellowjackets’ and Step Out of the Darkness",
-      "summary": "Actress Sophie Thatcher is stepping out of the darkness after being typecast as a troubled character in her recent roles, including Natalie in the hit series \"Yellowjackets.\" The 23-year-old actress has appeared in several films and TV shows, showcasing her versatility in complex and often dark characters. Thatcher is now looking to move beyond these portrayals and explore new roles. Her next project remains undisclosed, but fans are eager to see her take on fresh challenges.",
-      "hashtag": "ThatcherReady",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/features/sophie-thatcher-yellowjackets-ending-trump-gaza-her-private-hell-inde-navarrette-1236817823/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg",
+      "title": "Burnham stirs up political row with review of release plans for violent criminals",
+      "summary": "British Prime Minister Andy Burnham has ordered a review of plans to release thousands of violent criminals from prison early, affecting around 6,000 offenders. The move follows outrage from the family of PC Andrew Harper, whose killers may be eligible for release. The review aims to address concerns over public safety and the potential collapse of the criminal justice system. The outcome of the review is expected to be announced in the coming months.",
+      "hashtag": "BurnhamStirs",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/society/2026/jul/22/andy-burnham-announces-review-of-prisoner-early-release-scheme",
+      "imageUrl": "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1bafd320f3474b8f8b7998834f7f697b",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg?w=1000&h=563&crop=1",
-        "https://variety.com/wp-content/uploads/2026/07/YellowjacketsSophie.jpg?w=1024",
-        "https://variety.com/wp-content/uploads/2026/07/HerPrivateHell.jpg?w=1024",
-        "https://variety.com/wp-content/uploads/2026/07/HerPrivateHell_SophieThatcher_01.jpg?w=1024"
+        "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1bafd320f3474b8f8b7998834f7f697b",
+        "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f5fa50af3325eb1c15a43248edd70841",
+        "https://i.guim.co.uk/img/media/9ba00ee0d93292a84adacd7826fff3c57ff956cf/0_0_3560_2468/master/3560.jpg?width=445&dpr=1&s=none&crop=none"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/features/sophie-thatcher-yellowjackets-ending-trump-gaza-her-private-hell-inde-navarrette-1236817823/"
+        "https://www.theguardian.com/society/2026/jul/22/andy-burnham-announces-review-of-prisoner-early-release-scheme"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.82,
+      "score": 0.461,
+      "popularity": 0,
+      "recency": 0.91,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Wood Brothers Racing – Race Report: North Wilkesboro Speedway",
+      "summary": "At North Wilkesboro Speedway in North Carolina, Josh Berry finished 36th in the Window World 450 on Sunday, July 19, 2026, after a promising start that saw him climb from 28th to 12th before a caution flag trapped him multiple laps down. Berry's team had made a clean green-flag pit stop, but the timing proved costly. The result marked another stroke of misfortune for the No. 21 Motorcraft/Quick Lane Ford Mustang Dark Horse.",
+      "hashtag": "DaleEarnhardt",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://speedwaymedia.com/2026/07/20/wood-brothers-racing-race-report-north-wilkesboro-speedway/",
+      "imageUrl": "https://speedwaymedia.com/wp-content/uploads/2026/07/window-world-450.png",
+      "images": [
+        "https://speedwaymedia.com/wp-content/uploads/2026/07/window-world-450.png"
+      ],
+      "sourceUrls": [
+        "https://speedwaymedia.com/2026/07/20/wood-brothers-racing-race-report-north-wilkesboro-speedway/"
+      ],
+      "sourceName": "speedwaymedia.com",
+      "sources": [
+        "SpeedwayMedia.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "dale earnhardt jr.",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.459,
+      "popularity": 0.075,
+      "recency": 0.891,
+      "relevancy": 0.47,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Baltimore Orioles at Boston Red Sox Game Story, Scores/Highlights - 07/20/2026",
+      "summary": "The Baltimore Orioles took the lead in the top of the 5th inning with Christian Encarnacion-Strand's first home run as an Oriole, giving the Orioles a 2-3 advantage over the Boston Red Sox. The Orioles' Tyler O'Neill had an RBI ground-rule double in the top of the 1st inning. The Red Sox responded with a 3-run 3rd inning, capped by Willson Contreras' RBI single. The Orioles look to build on their momentum in the second half of the game.",
+      "hashtag": "ChristianEncarnacion",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlb.com/stories/game/824736",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/o8nduh4d0rquw3rtjkeu",
+      "images": [
+        "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/o8nduh4d0rquw3rtjkeu"
+      ],
+      "sourceUrls": [
+        "https://www.mlb.com/stories/game/824736"
+      ],
+      "sourceName": "mlb.com",
+      "sources": [
+        "MLB"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "christian encarnacion-strand",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.459,
+      "popularity": 0.075,
+      "recency": 0.891,
+      "relevancy": 0.47,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "iOS code could reportedly let Apple cut off apps when users miss iPhone payments",
+      "summary": "Apple is reportedly planning to introduce a new financing program for leasing iPhones, with a feature that would allow the company to restrict access to nearly all apps on a device if payments are missed. The \"Restricted Mode\" would be triggered by a new \"App Managed Features\" system that continuously checks the device's payment status. This feature is part of iOS 27, currently in beta, and would affect users who participate in the \"Apple Upgrade\" program. If implemented, users would lose access to most apps, except for basic functions.",
+      "hashtag": "Apple",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/tech/969596/apple-restricted-mode-ios-27",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&strip=all&crop=0%2C10.723165084465%2C100%2C78.55366983107&w=1200"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/tech/969596/apple-restricted-mode-ios-27"
+      ],
+      "sourceName": "theverge.com",
+      "sources": [
+        "theverge.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.64,
+      "score": 0.455,
+      "popularity": 0,
+      "recency": 0.929,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Bose Wants to Be the Centerpiece of Your Living Room Again With the Lifestyle Ultra Speaker",
+      "summary": "Bose has launched the Lifestyle Ultra Speaker, a flagship wireless speaker now available at Best Buy for $299. The speaker is part of the reimagined Lifestyle Collection and is currently a bestseller at the retailer. It can be expanded into a multi-room setup or full home theater over time. The company's proprietary CleanBass technology delivers fuller low-end performance in the speaker.",
+      "hashtag": "WantsCenterpiece",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/shopping/news/bose-lifestyle-ultra-speaker-buy-online-1236818444/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-3.18.43-PM.png",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-3.18.43-PM.png"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/shopping/news/bose-lifestyle-ultra-speaker-buy-online-1236818444/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -293,16 +333,140 @@
       "trend": null,
       "traffic": 0,
       "freshH": 0.36,
-      "score": 0.503,
+      "score": 0.451,
       "popularity": 0,
       "recency": 0.959,
-      "relevancy": 0.67,
+      "relevancy": 0.462,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Teenager drops social media addiction lawsuit against Meta",
+      "summary": "A Florida teenager, 15-year-old R.K.C., has dropped his lawsuit against Meta, citing concerns about a lengthy jury trial, after previously settling similar claims against TikTok, Snapchat, and YouTube. The case, which aimed to hold social media companies accountable for addictive platforms harming children, will no longer proceed. R.K.C.'s lawyers say he is now focusing on his recovery and therapy. A Meta spokesperson claims the lawsuit was baseless.",
+      "hashtag": "Meta",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.78,
+      "score": 0.45,
+      "popularity": 0,
+      "recency": 0.914,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Police formally investigate woman after Brit stabbed to death in French village",
+      "summary": "A 70-year-old woman has been formally investigated in connection with the 2023 stabbing death of 65-year-old British-South African mother Karen Carter in Trémolat, France. Carter was found with stab wounds near her car by a friend in the Dordogne village where she lived. Prosecutors say the woman was originally taken into custody in 2025 as part of preliminary inquiries before being released. The case will now proceed to trial if the investigating judge finds sufficient evidence.",
+      "hashtag": "BritFrench",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.81,
+      "score": 0.449,
+      "popularity": 0,
+      "recency": 0.911,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Villa agree loan deal for Chelsea winger Garnacho",
+      "summary": "Aston Villa has agreed a loan deal for Chelsea winger Alejandro Garnacho until the end of the 2026-27 season, with an obligation to buy for £43m. The 22-year-old has completed a medical in Birmingham and pre-agreed a four-year contract at Villa Park. Garnacho's departure from Chelsea follows the club's signing of Morgan Rogers for a record £117m fee from Villa. The winger becomes Villa's fourth signing this summer, following a series of player sales that have totalled nearly £200m.",
+      "hashtag": "ChelseaGarnacho",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cly9nrel0pyo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cly9nrel0pyo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.88,
+      "score": 0.446,
+      "popularity": 0,
+      "recency": 0.903,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist",
+      "summary": "US President Donald Trump has threatened to destroy Iranian bridges and power plants if attacks on ships in the Strait of Hormuz continue. The potential targets include those located near the Iranian capital Tehran. This warning comes after the US launched strikes on Iran for the 11th consecutive night. Iran's air defences were activated in Tehran following the US strikes.",
+      "hashtag": "IranHormuz",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.9,
+      "score": 0.441,
+      "popularity": 0,
+      "recency": 0.901,
+      "relevancy": 0.501,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Tories ask HMRC to investigate whether Nigel Farage owes tax on £5m gift",
-      "summary": "The UK's Conservative Party has asked HMRC to investigate a £5m gift to Nigel Farage, questioning whether it constitutes taxable income. The gift was given by crypto billionaire Christopher Harborne, who claims it was a personal and unconditional donation. Farage has previously stated the money would cover personal security costs and compensate him for campaigning for Brexit. HMRC will now review the matter to determine if Farage owes tax on the gift.",
+      "summary": "Tories have asked HMRC to investigate whether Nigel Farage should have paid tax on a £5m gift from crypto billionaire Christopher Harborne. The gift was reportedly given with no expectation of return, but Farage has previously stated he would require £1m per year in compensation to offset loss of earnings if he ran for office. HMRC will now review the matter. The outcome of this investigation remains to be seen.",
       "hashtag": "NigelFarage",
       "badge": "POLITICS",
       "category": "politics",
@@ -311,7 +475,6 @@
       "images": [
         "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=b87226e14f50480484b2ef97dec7c706",
         "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=7039ef716fb08677c32a90d75a199416",
-        "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=34b7597396d0e482a45e8cb06e232b7e",
         "https://i.guim.co.uk/img/media/d3c54c07374bfd102da39690af5e0d66e87eb84a/1120_0_6990_5592/master/6990.jpg?width=445&dpr=1&s=none&crop=none"
       ],
       "sourceUrls": [
@@ -325,85 +488,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.41,
-      "score": 0.489,
+      "freshH": 1.41,
+      "score": 0.44,
       "popularity": 0,
-      "recency": 0.954,
-      "relevancy": 0.62,
+      "recency": 0.85,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
-    },
-    {
-      "title": "Scottish Labour’s rivals decry ‘chancer’ Anas Sarwar for resigning to join Andy Burnham’s government",
-      "summary": "Scottish Labour leader Anas Sarwar has resigned to join Andy Burnham's government, becoming the first senior Labour figure to be appointed to a ministerial post in the Department for Business, Innovation, Science and Trade. He will also be made a peer. The move has been met with criticism from Scottish rivals, who accuse Sarwar of hypocrisy and lying to voters. The SNP is calling for Sarwar to donate his new salary to charity.",
-      "hashtag": "LabourAnas",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/politics/2026/jul/22/scottish-labours-rivals-decry-chancer-anas-sarwar-for-resigning-to-join-andy-burnhams-government",
-      "imageUrl": "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2db37f99370614d8bf110915f160ddfb",
-      "images": [
-        "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2db37f99370614d8bf110915f160ddfb",
-        "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=ddeb44f0b4ee8c8b319916c251552557",
-        "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=e602f417b7da0bb2023851748d751e8d",
-        "https://i.guim.co.uk/img/media/c4ab941e0607571bab03090395b34203b45a04b3/0_0_5088_3392/master/5088.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/8de8714d9c418570c049e7126b11c08c5d91f129/0_912_3700_2960/master/3700.jpg?width=445&dpr=1&s=none&crop=none"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/politics/2026/jul/22/scottish-labours-rivals-decry-chancer-anas-sarwar-for-resigning-to-join-andy-burnhams-government"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.94,
-      "score": 0.481,
-      "popularity": 0,
-      "recency": 0.897,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Isco se queda fuera de la lista de Pellegrini para el Colombino",
-      "summary": "Betis captain Isco has been left out of Manuel Pellegrini's squad for the team's second pre-season friendly against Recreativo in Huelva's LVII Tropeo Colombino. The match takes place today at 8:30 PM local time. Isco missed the team's training session in Germany and only rejoined his teammates two days ago. He will not participate in today's game, along with Brazilian player Antony and Abde, who are still getting back into shape.",
-      "hashtag": "RecreativoHuelva",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.marca.com/futbol/betis/2026/07/22/isco-queda-fuera-lista-pellegrini-colombino.html",
-      "imageUrl": "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a0d795d99.jpeg",
-      "images": [
-        "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a0d795d99.jpeg",
-        "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat_4_3/uploads/2026/07/22/6a60a0d795d99.jpeg",
-        "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat_1_1/uploads/2026/07/22/6a60a0d795d99.jpeg",
-        "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a13a639ff.jpeg",
-        "https://objetos-xlk.estaticos-marca.com/uploads/2026/07/22/6a60a13a639ff.jpeg"
-      ],
-      "sourceUrls": [
-        "https://www.marca.com/futbol/betis/2026/07/22/isco-queda-fuera-lista-pellegrini-colombino.html"
-      ],
-      "sourceName": "marca.com",
-      "sources": [
-        "MARCA"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "recreativo huelva - real betis",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.48,
-      "popularity": 0.002,
-      "recency": 0.891,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": "US"
     },
     {
       "title": "NASA to Showcase Agency’s Newest Wind Tunnel in Virginia",
-      "summary": "NASA will showcase its newest wind tunnel, the Flight Dynamics Research Facility, at the Langley Research Center in Hampton, Virginia, on July 31. The facility, the agency's first new wind tunnel in over 40 years, will be open to a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and other officials will be available for a brief media availability. The event is in person only and open to US citizens or lawful permanent residents.",
+      "summary": "NASA is set to unveil its first new wind tunnel in over 40 years at the Langley Research Center in Hampton, Virginia, on July 31. The Flight Dynamics Research Facility will be showcased in a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and center director Dr. Trina Dyal will be available for media questions. The event marks a significant milestone in NASA's evolution.",
       "hashtag": "ShowcaseAgency",
       "badge": "SCIENCE",
       "category": "facts",
@@ -424,81 +519,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.07,
-      "score": 0.477,
+      "freshH": 1.08,
+      "score": 0.439,
       "popularity": 0,
-      "recency": 0.991,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘He knows what he’s doing’: Burnham’s off-the-cuff remarks inspire headlines and headaches",
-      "summary": "British Prime Minister Andy Burnham is facing controversy over his handling of policy decisions, including a potential income tax threshold increase, just three days into his tenure. He has been accused of performing U-turns on key issues, sparking speculation and criticism. The prime minister's off-the-cuff remarks have raised questions about his approach to governance. His office is now working to clarify his stance on these policies.",
-      "hashtag": "Burnham",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/politics/2026/jul/22/andy-burnham-off-the-cuff-remarks-inspire-headlines-and-headaches",
-      "imageUrl": "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f1548214bd2a48d948547d880aef6c7",
-      "images": [
-        "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f1548214bd2a48d948547d880aef6c7",
-        "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=44db91aaed258810714faa3eab256a01",
-        "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=ef21d9572562a6e9bc55be963e3e6183",
-        "https://i.guim.co.uk/img/media/5c2ad1a83048c3ea1d268fb91b41e3b5bbcbf0c7/0_0_4753_3169/master/4753.jpg?width=445&dpr=1&s=none&crop=none"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/politics/2026/jul/22/andy-burnham-off-the-cuff-remarks-inspire-headlines-and-headaches"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.89,
-      "score": 0.471,
-      "popularity": 0,
-      "recency": 0.902,
-      "relevancy": 0.62,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "FCC Chair Says ABC’s Decision to Not Broadcast Trump Speech Live Will Be Part of Agency’s Review of Station Licenses",
-      "summary": "FCC Chair Brendan Carr announced the agency will review the licenses of eight ABC-owned stations after ABC chose not to broadcast President Donald Trump's July 16 speech on US election security live. The decision comes after Trump threatened to revoke the licenses of ABC and NBC for not carrying his remarks live. The review is expected to consider ABC's decision as part of the agency's routine license renewal process. The outcome of the review remains uncertain.",
-      "hashtag": "ChairDecision",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/fcc-abc-trump-speech-review-station-licenses-1236818342/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg",
-        "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg?w=1000&h=563&crop=1"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/fcc-abc-trump-speech-review-station-licenses-1236818342/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.46,
-      "score": 0.462,
-      "popularity": 0,
-      "recency": 0.949,
-      "relevancy": 0.52,
+      "recency": 0.883,
+      "relevancy": 0.519,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Rangers to fight McInnes ban for 'disgusting' penalty remark",
-      "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for calling a late penalty decision \"disgusting\" in May. The penalty, awarded to Celtic's Kelechi Iheanacho, helped Celtic stay one point behind Hearts, who ultimately won the title. McInnes will serve three games immediately and one suspended until the end of the season. He will be in the stands as Rangers open their Scottish Premiership campaign.",
+      "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for calling a late penalty decision \"disgusting\" in May. The comments were made after Celtic were awarded a stoppage-time spot-kick in a 3-2 victory at Motherwell, which kept them one point behind Hearts. McInnes is due to serve the ban, with one game suspended until the end of the season. He will be in the stands as Rangers open the Scottish Premiership campaign.",
       "hashtag": "RangersFight",
       "badge": "SPORTS",
       "category": "sports",
@@ -519,51 +550,20 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.47,
-      "score": 0.462,
+      "freshH": 1.47,
+      "score": 0.425,
       "popularity": 0,
-      "recency": 0.948,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "McInnes given four-match ban for 'disgusting' Celtic penalty remark",
-      "summary": "Rangers manager Derek McInnes has been given a four-match ban by the Scottish FA for calling a late penalty decision in a May match \"disgusting\". The incident occurred at Motherwell on May 13, when Celtic was awarded a stoppage-time spot-kick that sealed a 3-2 victory. McInnes will serve the ban, which includes one suspended match, and will be in the stands for Rangers' next Scottish Premiership match. He will contest the decision, arguing his comments were directed at the specific decision rather than a broader criticism of officials.",
-      "hashtag": "Celtic",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.47,
-      "score": 0.462,
-      "popularity": 0,
-      "recency": 0.948,
+      "recency": 0.844,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Modelling scout linked to Epstein found dead in Paris",
-      "summary": "A modelling scout linked to Jeffrey Epstein, Daniel Siad, has been found dead at his home in Colombes, a north-west suburb of Paris. He was 69 years old. An investigation into his death has been opened, with a post-mortem examination to be carried out. The probe into Siad's alleged involvement in organised human trafficking and conspiracy is continuing, despite his death.",
+      "summary": "A modelling scout linked to Jeffrey Epstein, Daniel Siad, 69, has been found dead at his home in Colombes, a north-west suburb of Paris. An investigation into his death was opened on Monday evening, with a post-mortem examination to be carried out. Siad was previously investigated by the Paris prosecutor's office for organised human trafficking and conspiracy charges, but was not arrested due to lack of evidence. The investigation into his death will likely shed light on the circumstances surrounding his death.",
       "hashtag": "EpsteinParis",
-      "badge": "BREAKING",
-      "category": "breaking",
+      "badge": "TRENDING",
+      "category": "offbeat",
       "url": "https://www.bbc.co.uk/news/articles/cp8en38vpd3o?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg",
       "images": [
@@ -581,17 +581,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.49,
-      "score": 0.456,
+      "freshH": 1.5,
+      "score": 0.424,
       "popularity": 0,
-      "recency": 0.945,
-      "relevancy": 0.501,
+      "recency": 0.841,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Inter Miami under investigation after signing Casemiro",
-      "summary": "Major League Soccer is investigating Inter Miami for alleged tampering after the club signed Brazilian midfielder Casemiro on a deal through 2027 with an option to extend until 2029. The investigation centers on Casemiro's discovery rights, which the LA Galaxy held before Inter Miami acquired them. The league is reviewing the situation and will release more information once the investigation is complete. The outcome may impact the terms of Casemiro's contract and Inter Miami's roster.",
+      "summary": "Inter Miami is under investigation by Major League Soccer for alleged tampering after signing Brazil midfielder Casemiro. The investigation concerns the club's acquisition of Casemiro's discovery rights from the LA Galaxy. Casemiro signed a deal with Inter Miami that runs until the end of the 2027 MLS campaign. The league will review all relevant information before making a decision.",
       "hashtag": "MiamiCasemiro",
       "badge": "SPORTS",
       "category": "sports",
@@ -612,212 +612,27 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.72,
-      "score": 0.452,
+      "freshH": 1.72,
+      "score": 0.414,
       "popularity": 0,
-      "recency": 0.92,
-      "relevancy": 0.52,
+      "recency": 0.819,
+      "relevancy": 0.509,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Robotic Servicing Mission Launches with NASA Support",
-      "summary": "A robotic spacecraft, the Robotic Servicing of Geosynchronous Satellites, has launched from Cape Canaveral on July 21, supported by NASA, and is now en route to geosynchronous Earth orbit. The mission, funded by DARPA, will use twin robotic arms to inspect and upgrade satellites by installing propulsion modules, extending their operational life. This is the first multi-mission robotic in-space servicer in the US. The spacecraft is expected to demonstrate advanced in-space servicing capabilities.",
-      "hashtag": "ServicingMission",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nasa.gov/technology/robotic-servicing-mission-launches-with-nasa-support/",
-      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg?w=2048",
-      "images": [
-        "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg?w=2048",
-        "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nasa.gov/technology/robotic-servicing-mission-launches-with-nasa-support/"
-      ],
-      "sourceName": "NASA",
-      "sources": [
-        "NASA"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.79,
-      "score": 0.45,
-      "popularity": 0,
-      "recency": 0.913,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Aston Martin secures £550m loan deal",
-      "summary": "Aston Martin has secured a £550m loan deal to bolster its finances. The luxury car maker has been struggling with net losses of £493.2m last year, a 50% increase from the previous year. The loan is expected to fund future product plans and bolster its balance sheet. The company will publish its half-year results on July 29, providing further insight into its financial situation.",
-      "hashtag": "Martin",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/cjejx083jkeo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjejx083jkeo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.82,
-      "score": 0.445,
-      "popularity": 0,
-      "recency": 0.909,
-      "relevancy": 0.506,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Mamdani backs off pledge to arrest Netanyahu citing lack of authority",
-      "summary": "New York City Mayor Zohran Mamdani has reversed his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing lack of authority to do so. Mamdani had previously called for US officials to act on the International Criminal Court's arrest warrant for Netanyahu over alleged war crimes. The US is not a member of the ICC, making it unlikely Netanyahu would be arrested in the country. Mamdani's reversal comes after President Donald Trump stated Netanyahu would not be arrested while in the US.",
-      "hashtag": "Netanyahu",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/c204p64pqzno?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c204p64pqzno?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.94,
-      "score": 0.444,
-      "popularity": 0,
-      "recency": 0.897,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Trump’s Trade Negotiator Doubles Down on Tariffs Before Global Duties Expire",
-      "summary": "Jamieson Greer, the president’s top trade negotiator, told the Senate that the United States remained intent on tariffs as it prepared to replace duties the Supreme Court struck down.",
-      "hashtag": "TradeNegotiator",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-jamieson-greer.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/DC-GREER-02-bqgf/DC-GREER-02-bqgf-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/DC-GREER-02-bqgf/DC-GREER-02-bqgf-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-jamieson-greer.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.04,
-      "score": 0.425,
-      "popularity": 0,
-      "recency": 0.995,
-      "relevancy": 0.307,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Lawsuit Against Meta Over Social Media Addiction Is Dropped",
-      "summary": "For Meta, the move was a reprieve after it and YouTube were found guilty in another case in March of negligence and personal injury for their platforms’ addictive features.",
-      "hashtag": "AgainstMeta",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.nytimes.com/2026/07/22/technology/meta-social-media-lawsuit.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-meta-lawsuit-fmkh/22biz-meta-lawsuit-fmkh-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-meta-lawsuit-fmkh/22biz-meta-lawsuit-fmkh-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/technology/meta-social-media-lawsuit.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.07,
-      "score": 0.422,
-      "popularity": 0,
-      "recency": 0.992,
-      "relevancy": 0.299,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-      "summary": "A British health select committee report finds that ultra-processed foods contribute to obesity, with sugar and refined carbohydrates identified as primary drivers of weight gain and type 2 diabetes. The report recommends targeting supermarkets and manufacturers to reduce obesity in Britain. The committee's findings are based on evidence that the current \"high in fat, salt or sugar\" framework is flawed. The government is expected to consider the report's recommendations in its efforts to address the obesity crisis.",
-      "hashtag": "BritainLetter",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain",
-      "imageUrl": "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
-      "images": [
-        "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
-        "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e",
-        "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=2f28a91f88399c8c49e03bf23458c92c"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.01,
-      "score": 0.42,
-      "popularity": 0,
-      "recency": 0.793,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Daniel Siad, Model Scout Who Connected Women to Epstein, Is Found Dead in France",
-      "summary": "Daniel Siad, who was found dead on Monday, repeatedly introduced Jeffrey Epstein to young women, according to messages he exchanged with Mr. Epstein. Mr. Siad had denied wrongdoing.",
-      "hashtag": "SiadModel",
+      "title": "Dubai Firm Cuts Deal for New Port to Bypass Strait of Hormuz",
+      "summary": "A Dubai-based logistics giant unveiled a deal with the United Arab Emirates on Wednesday to develop a new port system that would bypass the Strait of Hormuz.",
+      "hashtag": "FirmCuts",
       "badge": "BREAKING",
       "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/world/europe/epstein-daniel-siad-dead-model-scout.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-France-Epstein/22int-France-Epstein-mediumSquareAt3X-v4.png",
+      "url": "https://www.nytimes.com/2026/07/22/world/dubai-cuts-deal-for-new-port-to-bypass-strait-of-hormuz.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-uae-port-2-qpwh/22int-uae-port-2-qpwh-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/22/world/22int-France-Epstein/22int-France-Epstein-mediumSquareAt3X-v4.png"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-uae-port-2-qpwh/22int-uae-port-2-qpwh-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/world/europe/epstein-daniel-siad-dead-model-scout.html"
+        "https://www.nytimes.com/2026/07/22/world/dubai-cuts-deal-for-new-port-to-bypass-strait-of-hormuz.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -827,11 +642,71 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.41,
-      "score": 0.41,
+      "freshH": 0.22,
+      "score": 0.413,
       "popularity": 0,
-      "recency": 0.953,
-      "relevancy": 0.306,
+      "recency": 0.974,
+      "relevancy": 0.288,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Laredo’s Future Rides on Trump’s Next Trade Move",
+      "summary": "The economy of Laredo, Texas, has boomed under the president’s global tariffs. Now, his demands may threaten its success.",
+      "hashtag": "FutureRides",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-laredo-trade-mexico.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21dc-laredo-trade-vid-cover-2-zpmj/21dc-laredo-trade-vid-cover-2-zpmj-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/21/multimedia/21dc-laredo-trade-vid-cover-2-zpmj/21dc-laredo-trade-vid-cover-2-zpmj-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-laredo-trade-mexico.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.52,
+      "score": 0.395,
+      "popularity": 0,
+      "recency": 0.942,
+      "relevancy": 0.261,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Israeli Banks Threaten to Cut Off Palestinian Economy",
+      "summary": "Two Israeli financial firms have long served as partners to Palestinian banks, handling transactions that make possible the West Bank’s imports and exports.",
+      "hashtag": "BanksThreaten",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/22/world/middleeast/israeli-banks-palestinian-economy.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-israel-palestine-banks-02-pchf/22int-israel-palestine-banks-02-pchf-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-israel-palestine-banks-02-pchf/22int-israel-palestine-banks-02-pchf-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/world/middleeast/israeli-banks-palestinian-economy.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.77,
+      "score": 0.392,
+      "popularity": 0,
+      "recency": 0.915,
+      "relevancy": 0.287,
       "region": "usa",
       "geo": null
     },
@@ -857,89 +732,27 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.35,
-      "score": 0.404,
+      "freshH": 0.74,
+      "score": 0.389,
       "popularity": 0,
-      "recency": 0.96,
+      "recency": 0.918,
       "relevancy": 0.271,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Two Russians handed down jail terms for terrorism and spying in Angola",
-      "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola's capital, Luanda. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The case marks a significant blow to a Russian political influence operation in Angola.",
-      "hashtag": "RussiansAngola",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/c935qpz64xpo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg",
+      "title": "Sony Revives Cinerama Dome in Los Angeles as Box Office Sales Rebound",
+      "summary": "The iconic Cinerama Dome and adjacent 14-screen theater complex will reopen in 2028 after a renovation. The venue closed in 2020 because of the pandemic.",
+      "hashtag": "RevivesCinerama",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c935qpz64xpo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.28,
-      "score": 0.399,
-      "popularity": 0,
-      "recency": 0.768,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Police formally investigate woman after Brit stabbed to death in French village",
-      "summary": "A 70-year-old woman has been formally investigated in connection with the stabbing death of a 65-year-old British-South African woman, Karen Carter, in Trémolat, France, last year. Carter was found with stab wounds near her car in April 2023. The woman was initially taken into custody in 2025 as part of preliminary inquiries before being released. She is now formally charged in connection with Carter's death.",
-      "hashtag": "BritFrench",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/35aa/live/922bad20-26d9-11f0-85de-91766b10dcb6.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.88,
-      "score": 0.381,
-      "popularity": 0,
-      "recency": 0.717,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Politicians Are Trying to Change What Chatbots Say About Them",
-      "summary": "Political campaigns have something new to worry about these days: unflattering or incomplete information produced by A.I. programs when voters ask questions about candidates.",
-      "hashtag": "TryingChange",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.nytimes.com/2026/07/19/us/politics/chatbots-political-campaigns.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/19/multimedia/19pol-chatbots-fqcp/19pol-chatbots-fqcp-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/19/multimedia/19pol-chatbots-fqcp/19pol-chatbots-fqcp-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/19/us/politics/chatbots-political-campaigns.html"
+        "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -949,27 +762,27 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.84,
-      "score": 0.358,
+      "freshH": 0.89,
+      "score": 0.387,
       "popularity": 0,
-      "recency": 0.809,
-      "relevancy": 0.3,
+      "recency": 0.902,
+      "relevancy": 0.285,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "OpenAI Says Its A.I. Models Hacked Into Hugging Face, a Digital Library",
-      "summary": "The incident, which targeted the computer systems of another company called Hugging Face, happened while OpenAI was testing the systems.",
-      "hashtag": "ModelsHacked",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.nytimes.com/2026/07/21/technology/openai-attack-hugging-face.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21biz-openai-security-gwch/21biz-openai-security-gwch-mediumSquareAt3X.jpg",
+      "title": "Trump’s Trade Negotiator Doubles Down on Tariffs Before Global Duties Expire",
+      "summary": "Jamieson Greer, the president’s top trade negotiator, told the Senate that the United States remained intent on tariffs as it prepared to replace duties the Supreme Court struck down.",
+      "hashtag": "TradeNegotiator",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-jamieson-greer.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/DC-GREER-02-bqgf/DC-GREER-02-bqgf-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/21/multimedia/21biz-openai-security-gwch/21biz-openai-security-gwch-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/DC-GREER-02-bqgf/DC-GREER-02-bqgf-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/21/technology/openai-attack-hugging-face.html"
+        "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-jamieson-greer.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -979,17 +792,78 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.85,
-      "score": 0.351,
+      "freshH": 1.05,
+      "score": 0.387,
       "popularity": 0,
-      "recency": 0.807,
-      "relevancy": 0.272,
+      "recency": 0.886,
+      "relevancy": 0.307,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Global Oil Price Jumps as War Threats Intensify",
+      "summary": "But stock investors shrug off Iran developments as they await crucial earnings reports from tech firms including Alphabet and Tesla.",
+      "hashtag": "OilPrice",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/22/business/oil-prices-iran-war.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/biz-osg-hormuz-tfhm/biz-osg-hormuz-tfhm-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/biz-osg-hormuz-tfhm/biz-osg-hormuz-tfhm-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/business/oil-prices-iran-war.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.85,
+      "score": 0.384,
+      "popularity": 0,
+      "recency": 0.906,
+      "relevancy": 0.269,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
+      "summary": "A British health select committee report finds that obesity is an engineered outcome, not a result of individual willpower. The report highlights that ultra-processed foods, particularly those high in sugar and refined carbohydrates, are primary drivers of weight gain and type 2 diabetes. The committee recommends targeting these foods to reduce obesity in Britain. The government is expected to implement new policies to hold supermarkets and manufacturers accountable for healthier food options.",
+      "hashtag": "BritainLetter",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain",
+      "imageUrl": "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
+      "images": [
+        "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
+        "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.01,
+      "score": 0.377,
+      "popularity": 0,
+      "recency": 0.706,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Fifth person dies in New York City amid legionnaires’ disease outbreak",
-      "summary": "A fifth person has died in New York City due to legionnaires' disease, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to cooling towers on Manhattan's Upper East Side, where 34 of 33 buildings tested positive for live legionella bacteria. The city's health department is continuing to test the remaining 140 cooling tower systems. Further testing is expected to reveal whether the outbreak is contained.",
+      "summary": "A fifth person has died in New York City's legionnaires' disease outbreak, with 82 cases now identified on Manhattan's Upper East Side. The outbreak is linked to 34 cooling towers across 33 buildings, where live legionella bacteria were detected. Eight people remain hospitalized, while 56 have been discharged. The city's health department will continue testing the remaining 140 cooling tower systems.",
       "hashtag": "NewYork",
       "badge": "HEALTH",
       "category": "health",
@@ -997,8 +871,7 @@
       "imageUrl": "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
       "images": [
         "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
-        "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d",
-        "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=4881759d811b3f9e5c7fe4de73ff97b9"
+        "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d"
       ],
       "sourceUrls": [
         "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city"
@@ -1011,11 +884,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.63,
-      "score": 0.347,
+      "freshH": 5.63,
+      "score": 0.313,
       "popularity": 0,
-      "recency": 0.586,
-      "relevancy": 0.57,
+      "recency": 0.522,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -1041,10 +914,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.52,
-      "score": 0.337,
+      "freshH": 3.52,
+      "score": 0.309,
       "popularity": 0,
-      "recency": 0.748,
+      "recency": 0.666,
       "relevancy": 0.302,
       "region": "usa",
       "geo": null
@@ -1053,184 +926,101 @@
   "categories": {
     "offbeat": [
       {
-        "title": "'Love Island USA' star Olandria Carthen's best red carpet looks",
-        "summary": "Love Island USA star Olandria Carthen and her boyfriend Nic Vansteenberghe, also known as Nicolandria, have broken up after nearly a year together. The couple, who met on the reality show's season 7, cited their busy schedules as the reason for their split. They remain close friends and will continue to support each other. This news comes as Love Island USA season 8 has recently concluded.",
-        "hashtag": "Olandria",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.usatoday.com/picture-gallery/entertainment/celebrities/2026/07/22/olandria-love-island-usa-red-carpet-photos-fashion/91010045007/",
-        "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?crop=4454,2506,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-        "images": [
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?crop=4454,2506,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010135007-getty-images-2266756583.jpg?width=660&height=440&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/10/31/USAT/87014722007-2234198038.jpg?width=660&height=441&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/09/08/PWES/86037937007-getty-images-2234197890.jpg?width=450&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/09/13/USAT/86130090007-2235129506.jpg?width=454&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/10/24/USAT/86878382007-getty-images-2242904666.jpg?width=441&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/11/04/USAT/87076786007-2244396161.jpg?width=660&height=441&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2025/11/05/USAT/87096670007-2245042761.jpg?width=472&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010129007-getty-images-2247883563.jpg?width=440&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91010131007-getty-images-2255763391.jpg?width=440&height=660&fit=crop&format=pjpg&auto=webp",
-          "https://s3.amazonaws.com/syndication.abcaudio.com/files/2026-07-22/Getty_OlandriaCarthenNicVansteenberghe_072326.png",
-          "https://tasteofreality.com/wp-content/uploads/2026/07/857f346f-bfd1-421b-a396-60d46da27ec0.jpeg",
-          "https://www.bollywoodshaadis.com/img/article-l-2026720223593186371000-xl.webp",
-          "https://www.bollywoodshaadis.com/img/article-l-2026720223593186371000.webp",
-          "https://www.bollywoodshaadis.com/img/article-2026720223331584795000.webp",
-          "https://www.bollywoodshaadis.com/img/article-2026720223335084830000.webp",
-          "https://www.newsbreak.com/api/share-og-image/2tHjrn_1DXlK54t00.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.usatoday.com/picture-gallery/entertainment/celebrities/2026/07/22/olandria-love-island-usa-red-carpet-photos-fashion/91010045007/",
-          "https://sandhillsexpress.com/abc_entertainment/love-island-usa-stars-olandria-carthen-nic-vansteenberghe-break-up-after-one-year-together-abcid65e76491/",
-          "https://www.tvinsider.com/1277083/love-island-usa-why-did-nic-olandria-break-up-split-reason/",
-          "https://tasteofreality.com/olandria-nic-split-love-island-usa-season-7/",
-          "https://www.bollywoodshaadis.com/articles/olandria-carthen-and-nic-vansteenberghe-breakup-after-a-year-82387",
-          "https://www.newsbreak.com/e-news-510067/4785281984062-love-island-usa-s-olandria-nic-break-up-after-one-year-of-dating"
-        ],
-        "sourceName": "USA Today",
-        "sources": [
-          "USA Today",
-          "Sandhills Express",
-          "Access Hollywood",
-          "TV Insider",
-          "E! News",
-          "Taste of Reality",
-          "BollywoodShaadis",
-          "NewsBreak: Local News & Alerts"
-        ],
-        "corr": 8,
-        "verified": true,
-        "trend": "Olandria",
-        "traffic": 99000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "How Pete Golding described relationship with Lane Kiffin after leaving Ole Miss for LSU - The Clarion-Ledger",
-        "summary": "Ole Miss coach Pete Golding said he and former coach Lane Kiffin are on good terms despite Kiffin's dramatic exit for LSU last season. Golding, who took over as head coach after Kiffin's departure, signed a five-year deal with the Rebels and led them to two College Football Playoff victories. The two will face off in a highly anticipated Week 3 matchup on September 19 at Vaught-Hemingway Stadium. Golding also addressed the college football transfer portal system, suggesting it can put players in bad positions.",
-        "hashtag": "PeteGolding",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-lane-kiffin-ole-miss-football-lsu/90982972007/",
-        "imageUrl": "https://www.clarionledger.com/gcdn/authoring/authoring-images/2025/12/01/PJAM/87552421007-75331984007-usatsi-24294511.jpg?crop=3742,2106,x0,y124&width=1600&height=800&format=pjpg&auto=webp",
-        "images": [
-          "https://www.clarionledger.com/gcdn/authoring/authoring-images/2025/12/01/PJAM/87552421007-75331984007-usatsi-24294511.jpg?crop=3742,2106,x0,y124&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.saturdaydownsouth.com/app/uploads/2025/12/USATSI_24294511-scaled-e1766281992769.jpg",
-          "https://s3media.247sports.com/Uploads/Assets/409/152/14152409.JPG?width=1200&height=628&crop=1.91:1&fit=cover",
-          "https://s3media.247sports.com/Uploads/Assets/409/152/14152409.JPG?width=1200&height=600&crop=2:1&fit=cover"
-        ],
-        "sourceUrls": [
-          "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-lane-kiffin-ole-miss-football-lsu/90982972007/",
-          "https://www.al.com/sports/2026/07/ole-miss-pete-golding-on-his-relationship-lane-kiffin-i-get-this-everywhere-we-go.html",
-          "https://www.saturdaydownsouth.com/news/college-football/pete-golding-talks-current-relationship-with-lane-kiffin-says-he-was-dumb-to-leave/",
-          "https://247sports.com/college/georgia/article/lsu-tigers-football-ole-miss-head-coach-pete-golding-opens-up-on-relationship-with-lane-kiffin-heading-into-season-288461275/",
-          "https://www.clarionledger.com/story/sports/college/ole-miss/2026/07/22/pete-golding-tampering-ole-miss-football-sec-media-days/90961973007/",
-          "https://clutchpoints.com/ncaa-football/ole-miss-football-news-pete-golding-gets-100-real-relationship-with-lane-kiffin"
-        ],
-        "sourceName": "The Clarion-Ledger",
-        "sources": [
-          "The Clarion-Ledger",
-          "AL.com",
-          "Southeastern Conference",
-          "Saturday Down South",
-          "247Sports",
-          "ClutchPoints"
-        ],
-        "corr": 6,
-        "verified": true,
-        "trend": "Pete Golding",
-        "traffic": 94000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Xbox Backward Compatibility on PC launches today with Blinx, Conker and more",
-        "summary": "Microsoft launches Xbox Backward Compatibility on PC today, allowing original Xbox games to be played on PC and handheld devices. Four classic games, including Blinx: The Time Sweeper, Conker: Live and Reloaded, Crimson Skies: High Road to Revenge, and Fuzion Frenzy, are available to play at no extra charge for those with digital Xbox versions. The PC versions feature up to 4x resolution upscaling and other graphics enhancements. This marks the start of a wider preservation effort, with more classic Xbox games headed to PC.",
-        "hashtag": "Conker",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.thesixthaxis.com/2026/07/22/xbox-backward-compatibility-on-pc-launches-today-with-blinx-conker-and-more/",
-        "imageUrl": "https://www.thesixthaxis.com/wp-content/uploads/2026/07/XboxBConPC-hero500.jpg",
-        "images": [
-          "https://www.thesixthaxis.com/wp-content/uploads/2026/07/XboxBConPC-hero500.jpg",
-          "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
-          "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp",
-          "https://assetsio.gnwcdn.com/Blinx-The-Time-Sweeper.jpg?width=570&quality=85&format=jpg&dpr=3&auto=webp",
-          "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/xbox-app-now-brings-original-xbox-games-to-pc-blinx-conker-a-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/netflix-announces-a-new-lego-version-of-one-piece-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/elon-musk-says-he-s-going-to-create-his-own-historically-acc-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-open-beta-for-call-of-duty-modern-warfare-4-already-has-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/tiktok-s-u-s-security-chief-testifies-september-15-first-pub-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/human-vapor-on-netflix-is-already-a-hit-24-3-million-hours-i-20260722.jpg",
-          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/google-releases-gemini-3-5-flash-cyber-a-lighter-ai-to-fix-f-20260722.jpg",
-          "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?w=1600&h=900&fit=crop",
-          "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?q=70&fit=crop&w=1200&h=628&dpr=1",
-          "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/07/xbox-conker-blinx-backward-compatibility.jpg?&fit=crop&w=1600&h=900",
-          "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/07/xbox-rog-crimson-skies.jpg?q=49&fit=crop&w=825&dpr=2"
-        ],
-        "sourceUrls": [
-          "https://www.thesixthaxis.com/2026/07/22/xbox-backward-compatibility-on-pc-launches-today-with-blinx-conker-and-more/",
-          "https://www.eurogamer.net/xbox-backward-compatibility-on-pc-announced",
-          "https://en.softonic.com/articles/xbox-app-now-brings-original-xbox-games-to-pc-blinx-conker-and-more",
-          "https://gamerant.com/xbox-backward-compatibility-on-pc/"
-        ],
-        "sourceName": "TheSixthAxis",
-        "sources": [
-          "TheSixthAxis",
-          "Eurogamer.net",
-          "en.softonic.com",
-          "GameRant"
-        ],
-        "corr": 4,
-        "verified": true,
-        "trend": "Conker",
-        "traffic": 90000,
-        "freshH": 2,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Hiker injured in ‘surprise encounter’ with bear on brushy South Anchorage trail",
-        "summary": "A woman was hospitalized after being attacked by a brown bear while hiking in the Bear Valley area of South Anchorage on July 18. The bear, which emerged from a dense stand of alder trees, made brief contact with one of the hikers before moving on. The hiker sustained non-life-threatening injuries and was transported to a local hospital. Authorities believe the encounter was likely a surprise due to high winds and inclement weather conditions.",
-        "hashtag": "BrownBear",
+        "title": "A Legendary Grand Canyon Explorer Vanished in 2012. Authorities Just Found His Remains.",
+        "summary": "Human remains found on the Hualapai Indian Reservation in December 2025 have been confirmed as those of 65-year-old Oregon hiker Bill Ott, who vanished during a solo Grand Canyon trek in April 2012. Ott, a legendary wilderness figure and experienced hiker, had spent years exploring the Grand Canyon and documenting ancient rock art. His remains were discovered near a trail at the base of a 15-foot cliff, with a small daypack containing his wallet, cash, camera, and GPS. The cause of death remains unknown.",
+        "hashtag": "BillOtt",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
-        "imageUrl": "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630",
+        "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/bill-ott-remains-found-grand-canyon/",
+        "imageUrl": "https://cdn.outsideonline.com/wp-content/uploads/2026/07/bill-ott-.png",
         "images": [
-          "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630",
-          "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=800&height=535",
-          "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
-          "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg"
+          "https://cdn.outsideonline.com/wp-content/uploads/2026/07/bill-ott-.png",
+          "https://cdn.outsideonline.com/wp-content/uploads/2026/07/rock-panels.png?width=3840&auto=webp&quality=75&fit=cover",
+          "https://cdn.outsideonline.com/wp-content/uploads/2026/07/search-and-rescue.png?width=3840&auto=webp&quality=75&fit=cover",
+          "https://cdn.outsideonline.com/wp-content/uploads/2026/07/grand-canyon.png?width=3840&auto=webp&quality=75&fit=cover",
+          "https://cdn.newser.com/image/1700350-12-20260722141847.jpeg",
+          "https://cdn.newser.com/image/1700350-17-20260722133508-remains-long-missing-grand-canyon-hiker-identified.jpeg",
+          "https://ewscripps.brightspotcdn.com/dims4/default/d11829a/2147483647/strip/true/crop/150x79+0+61/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbf%2F9e%2Ff17f865d4f5994da08bb3370b8f9%2Foriginal.jpg",
+          "https://ewscripps.brightspotcdn.com/bf/9e/f17f865d4f5994da08bb3370b8f9/original.jpg",
+          "https://ewscripps.brightspotcdn.com/dims4/default/8432a0b/2147483647/strip/false/crop/1280x714+0+3/resize/95x53!/quality/90/?url=https%3A%2F%2Fcf.cdn.uplynk.com%2Fause1%2Fslices%2Fd26%2F5c3d34b8b29a45469a86c02775b7a2cf%2Fd26a1086171c427aa7c4a4af6f35eb21%2Fposter_bc0e537142b7428a8ab9d133df32e3e2.jpg",
+          "https://ewscripps.brightspotcdn.com/dims4/default/ae12b1f/2147483647/strip/true/crop/150x84+0+58/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fbf%2F9e%2Ff17f865d4f5994da08bb3370b8f9%2Foriginal.jpg",
+          "https://ewscripps.brightspotcdn.com/50/db/53bb5e05407d810216c6b9c64f8e/google-preferred-source-badge-light-en.png"
         ],
         "sourceUrls": [
-          "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
-          "https://people.com/woman-injured-in-bear-attack-while-hiking-with-friend-and-dogs-12024465",
-          "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562"
+          "https://www.outsideonline.com/outdoor-adventure/exploration-survival/bill-ott-remains-found-grand-canyon/",
+          "https://www.newser.com/story/393313/remains-of-long-missing-grand-canyon-hiker-identified.html",
+          "https://www.abc15.com/news/local-news/remains-found-in-northern-arizona-identified-as-grand-canyon-area-hiker-reported-missing-in-2012"
         ],
-        "sourceName": "adn.com",
+        "sourceName": "outsideonline.com",
         "sources": [
-          "Anchorage Daily News",
-          "People.com",
-          "ABC News - Breaking News, Latest News and Videos"
+          "Outside Magazine",
+          "Newser",
+          "ABC15 Arizona"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "brown bear",
+        "trend": "bill ott grand canyon discovery",
+        "traffic": 1000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "McDonald’s new Caesar menu arrives in NY. See what’s included",
+        "summary": "McDonald's has launched its new Caesar menu nationwide, including in New York, on Tuesday, July 21. The menu features a new Caesar sauce, a creamy garlic and parmesan blend, and includes items such as the Caesar Snack Wrap, a Bacon Caesar McCrispy Sandwich, and crispy McCrispy Strips. The new menu items will be available for a limited time at participating McDonald's restaurants. Customers can try the new menu for $2.99, starting today.",
+        "hashtag": "McdonaldMenu",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.democratandchronicle.com/story/news/2026/07/21/mcdonalds-caesar-menu-snack-wrap-new-york/90995743007/",
+        "imageUrl": "https://www.democratandchronicle.com/gcdn/authoring/authoring-images/2026/07/21/PNJM/90992534007-mcdonalds-caesar.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "images": [
+          "https://www.democratandchronicle.com/gcdn/authoring/authoring-images/2026/07/21/PNJM/90992534007-mcdonalds-caesar.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp"
+        ],
+        "sourceUrls": [
+          "https://www.democratandchronicle.com/story/news/2026/07/21/mcdonalds-caesar-menu-snack-wrap-new-york/90995743007/"
+        ],
+        "sourceName": "democratandchronicle.com",
+        "sources": [
+          "Fox News",
+          "Democrat and Chronicle"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "mcdonald's menu",
+        "traffic": 2000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Wood Brothers Racing – Race Report: North Wilkesboro Speedway",
+        "summary": "At North Wilkesboro Speedway in North Carolina, Josh Berry finished 36th in the Window World 450 on Sunday, July 19, 2026, after a promising start that saw him climb from 28th to 12th before a caution flag trapped him multiple laps down. Berry's team had made a clean green-flag pit stop, but the timing proved costly. The result marked another stroke of misfortune for the No. 21 Motorcraft/Quick Lane Ford Mustang Dark Horse.",
+        "hashtag": "DaleEarnhardt",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://speedwaymedia.com/2026/07/20/wood-brothers-racing-race-report-north-wilkesboro-speedway/",
+        "imageUrl": "https://speedwaymedia.com/wp-content/uploads/2026/07/window-world-450.png",
+        "images": [
+          "https://speedwaymedia.com/wp-content/uploads/2026/07/window-world-450.png"
+        ],
+        "sourceUrls": [
+          "https://speedwaymedia.com/2026/07/20/wood-brothers-racing-race-report-north-wilkesboro-speedway/"
+        ],
+        "sourceName": "speedwaymedia.com",
+        "sources": [
+          "SpeedwayMedia.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "dale earnhardt jr.",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1241,60 +1031,26 @@
         "geo": "US"
       },
       {
-        "title": "Arrowhead Drug Shows Strong Efficacy In Cutting Blood Fat",
-        "summary": "Arrowhead Pharmaceuticals reports successful results from its late-stage trials for the treatment of severe hypertriglyceridemia, with patients receiving the drug experiencing a median triglyceride decrease of 79-81% after 12 months, compared to 27% in the placebo group. The trials, SHASTA-3 and SHASTA-4, achieved their primary milestone and all secondary objectives. This breakthrough could significantly reduce the risk of acute pancreatitis in patients with high blood fat levels. The company's stock is trading higher following the announcement.",
-        "hashtag": "Arrowhead",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.benzinga.com/news/health-care/26/07/60619285/arrowhead-drug-shows-strong-efficacy-in-cutting-blood-fat",
-        "imageUrl": "https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/22/Stuttgart--Germany---09-14-2022-Person-H.jpg",
-        "images": [
-          "https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/22/Stuttgart--Germany---09-14-2022-Person-H.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.benzinga.com/news/health-care/26/07/60619285/arrowhead-drug-shows-strong-efficacy-in-cutting-blood-fat"
-        ],
-        "sourceName": "Benzinga",
-        "sources": [
-          "Benzinga"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "Arrowhead",
-        "traffic": 97000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Isco se queda fuera de la lista de Pellegrini para el Colombino",
-        "summary": "Betis captain Isco has been left out of Manuel Pellegrini's squad for the team's second pre-season friendly against Recreativo in Huelva's LVII Tropeo Colombino. The match takes place today at 8:30 PM local time. Isco missed the team's training session in Germany and only rejoined his teammates two days ago. He will not participate in today's game, along with Brazilian player Antony and Abde, who are still getting back into shape.",
-        "hashtag": "RecreativoHuelva",
+        "title": "Baltimore Orioles at Boston Red Sox Game Story, Scores/Highlights - 07/20/2026",
+        "summary": "The Baltimore Orioles took the lead in the top of the 5th inning with Christian Encarnacion-Strand's first home run as an Oriole, giving the Orioles a 2-3 advantage over the Boston Red Sox. The Orioles' Tyler O'Neill had an RBI ground-rule double in the top of the 1st inning. The Red Sox responded with a 3-run 3rd inning, capped by Willson Contreras' RBI single. The Orioles look to build on their momentum in the second half of the game.",
+        "hashtag": "ChristianEncarnacion",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.marca.com/futbol/betis/2026/07/22/isco-queda-fuera-lista-pellegrini-colombino.html",
-        "imageUrl": "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a0d795d99.jpeg",
+        "url": "https://www.mlb.com/stories/game/824736",
+        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/o8nduh4d0rquw3rtjkeu",
         "images": [
-          "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a0d795d99.jpeg",
-          "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat_4_3/uploads/2026/07/22/6a60a0d795d99.jpeg",
-          "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat_1_1/uploads/2026/07/22/6a60a0d795d99.jpeg",
-          "https://objetos-xlk.estaticos-marca.com/files/article_main_microformat/uploads/2026/07/22/6a60a13a639ff.jpeg",
-          "https://objetos-xlk.estaticos-marca.com/uploads/2026/07/22/6a60a13a639ff.jpeg"
+          "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/o8nduh4d0rquw3rtjkeu"
         ],
         "sourceUrls": [
-          "https://www.marca.com/futbol/betis/2026/07/22/isco-queda-fuera-lista-pellegrini-colombino.html"
+          "https://www.mlb.com/stories/game/824736"
         ],
-        "sourceName": "marca.com",
+        "sourceName": "mlb.com",
         "sources": [
-          "MARCA"
+          "MLB"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "recreativo huelva - real betis",
+        "trend": "christian encarnacion-strand",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1303,72 +1059,10 @@
         "relevancy": null,
         "region": "usa",
         "geo": "US"
-      },
-      {
-        "title": "Mamdani backs off pledge to arrest Netanyahu citing lack of authority",
-        "summary": "New York City Mayor Zohran Mamdani has reversed his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing lack of authority to do so. Mamdani had previously called for US officials to act on the International Criminal Court's arrest warrant for Netanyahu over alleged war crimes. The US is not a member of the ICC, making it unlikely Netanyahu would be arrested in the country. Mamdani's reversal comes after President Donald Trump stated Netanyahu would not be arrested while in the US.",
-        "hashtag": "Netanyahu",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/c204p64pqzno?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/04f8/live/f3ffae50-85e9-11f1-8ade-a7a676c613b9.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c204p64pqzno?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.94,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Two Russians handed down jail terms for terrorism and spying in Angola",
-        "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola's capital, Luanda. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The case marks a significant blow to a Russian political influence operation in Angola.",
-        "hashtag": "RussiansAngola",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/c935qpz64xpo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/01f2/live/87f6aa00-26bd-11f1-be99-cb4fcea31c93.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c935qpz64xpo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.28,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
       },
       {
         "title": "Police formally investigate woman after Brit stabbed to death in French village",
-        "summary": "A 70-year-old woman has been formally investigated in connection with the stabbing death of a 65-year-old British-South African woman, Karen Carter, in Trémolat, France, last year. Carter was found with stab wounds near her car in April 2023. The woman was initially taken into custody in 2025 as part of preliminary inquiries before being released. She is now formally charged in connection with Carter's death.",
+        "summary": "A 70-year-old woman has been formally investigated in connection with the 2023 stabbing death of 65-year-old British-South African mother Karen Carter in Trémolat, France. Carter was found with stab wounds near her car by a friend in the Dordogne village where she lived. Prosecutors say the woman was originally taken into custody in 2025 as part of preliminary inquiries before being released. The case will now proceed to trial if the investigating judge finds sufficient evidence.",
         "hashtag": "BritFrench",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1389,7 +1083,69 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.88,
+        "freshH": 0.81,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist",
+        "summary": "US President Donald Trump has threatened to destroy Iranian bridges and power plants if attacks on ships in the Strait of Hormuz continue. The potential targets include those located near the Iranian capital Tehran. This warning comes after the US launched strikes on Iran for the 11th consecutive night. Iran's air defences were activated in Tehran following the US strikes.",
+        "hashtag": "IranHormuz",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/9a13/live/5d582620-8572-11f1-bee8-53ce494e1abc.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.9,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Modelling scout linked to Epstein found dead in Paris",
+        "summary": "A modelling scout linked to Jeffrey Epstein, Daniel Siad, 69, has been found dead at his home in Colombes, a north-west suburb of Paris. An investigation into his death was opened on Monday evening, with a post-mortem examination to be carried out. Siad was previously investigated by the Paris prosecutor's office for organised human trafficking and conspiracy charges, but was not arrested due to lack of evidence. The investigation into his death will likely shed light on the circumstances surrounding his death.",
+        "hashtag": "EpsteinParis",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cp8en38vpd3o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cp8en38vpd3o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1400,8 +1156,39 @@
     ],
     "entertainment": [
       {
+        "title": "‘Disney Worldbuilders’ Documentary by Leslie Iwerks, Featuring James Cameron, Kevin Feige and Jon Favreau, Set to Premiere on Disney+",
+        "summary": "A new documentary \"Disney Worldbuilders\" by Leslie Iwerks is set to premiere on Disney+ on August 20. The film takes viewers behind the scenes of how Disney movies and franchises like \"Frozen\" and \"Zootopia\" are transformed into immersive experiences at the Disney parks. Featuring insights from James Cameron, Kevin Feige, and Jon Favreau, the documentary showcases the creative process behind Disney's theme park attractions. The result is a unique look at the intersection of film and fantasy.",
+        "hashtag": "WorldbuildersDocumentary",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/artisans/news/disney-worldbuilders-disney-plus-august-1236818262/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg",
+          "https://variety.com/wp-content/uploads/2026/03/2025-WDI-Olaf-Robotic-Character-Header.jpg?crop=0px%2C156px%2C1920px%2C1080px&resize=1000%2C563"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/artisans/news/disney-worldbuilders-disney-plus-august-1236818262/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.16,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Hollywood’s Favorite Ugg Slippers (To Never Wear on a Christopher Nolan Set)",
-        "summary": "Christopher Nolan has banned Ugg slippers from his film sets, citing them as a \"signifier of modernity\" that can disrupt the on-screen reality. This policy was evident in his recent film \"The Odyssey,\" where actors wore traditional Ancient Greek attire. The ban applies to all his productions, including future projects. The decision aims to maintain the authenticity of his historical dramas.",
+        "summary": "Christopher Nolan has banned Ugg slippers from his film sets, citing they can \"weirdly take you out of reality.\" This policy was evident in his recent film \"The Odyssey,\" where actors wore sandals instead of Uggs to maintain historical accuracy. The ban applies to all sets, including the upcoming film. The decision aims to keep actors immersed in their characters' ancient Greek world.",
         "hashtag": "FavoriteUgg",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1425,7 +1212,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.31,
+        "freshH": 1.31,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1434,22 +1221,18 @@
         "geo": null
       },
       {
-        "title": "Sophie Thatcher Is Ready to Move Beyond ‘Yellowjackets’ and Step Out of the Darkness",
-        "summary": "Actress Sophie Thatcher is stepping out of the darkness after being typecast as a troubled character in her recent roles, including Natalie in the hit series \"Yellowjackets.\" The 23-year-old actress has appeared in several films and TV shows, showcasing her versatility in complex and often dark characters. Thatcher is now looking to move beyond these portrayals and explore new roles. Her next project remains undisclosed, but fans are eager to see her take on fresh challenges.",
-        "hashtag": "ThatcherReady",
+        "title": "Bose Wants to Be the Centerpiece of Your Living Room Again With the Lifestyle Ultra Speaker",
+        "summary": "Bose has launched the Lifestyle Ultra Speaker, a flagship wireless speaker now available at Best Buy for $299. The speaker is part of the reimagined Lifestyle Collection and is currently a bestseller at the retailer. It can be expanded into a multi-room setup or full home theater over time. The company's proprietary CleanBass technology delivers fuller low-end performance in the speaker.",
+        "hashtag": "WantsCenterpiece",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
-        "url": "https://variety.com/2026/film/features/sophie-thatcher-yellowjackets-ending-trump-gaza-her-private-hell-inde-navarrette-1236817823/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg",
+        "url": "https://variety.com/2026/shopping/news/bose-lifestyle-ultra-speaker-buy-online-1236818444/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-3.18.43-PM.png",
         "images": [
-          "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/GettyImages-2204170751.jpg?w=1000&h=563&crop=1",
-          "https://variety.com/wp-content/uploads/2026/07/YellowjacketsSophie.jpg?w=1024",
-          "https://variety.com/wp-content/uploads/2026/07/HerPrivateHell.jpg?w=1024",
-          "https://variety.com/wp-content/uploads/2026/07/HerPrivateHell_SophieThatcher_01.jpg?w=1024"
+          "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-3.18.43-PM.png"
         ],
         "sourceUrls": [
-          "https://variety.com/2026/film/features/sophie-thatcher-yellowjackets-ending-trump-gaza-her-private-hell-inde-navarrette-1236817823/"
+          "https://variety.com/2026/shopping/news/bose-lifestyle-ultra-speaker-buy-online-1236818444/"
         ],
         "sourceName": "Variety",
         "sources": [
@@ -1466,31 +1249,97 @@
         "relevancy": null,
         "region": "usa",
         "geo": null
-      },
+      }
+    ],
+    "tech": [
       {
-        "title": "FCC Chair Says ABC’s Decision to Not Broadcast Trump Speech Live Will Be Part of Agency’s Review of Station Licenses",
-        "summary": "FCC Chair Brendan Carr announced the agency will review the licenses of eight ABC-owned stations after ABC chose not to broadcast President Donald Trump's July 16 speech on US election security live. The decision comes after Trump threatened to revoke the licenses of ABC and NBC for not carrying his remarks live. The review is expected to consider ABC's decision as part of the agency's routine license renewal process. The outcome of the review remains uncertain.",
-        "hashtag": "ChairDecision",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/fcc-abc-trump-speech-review-station-licenses-1236818342/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg",
+        "title": "Price-hiked iPads are a little cheaper right now",
+        "summary": "Apple's high-end 13-inch iPad Pro M5 with 512GB of storage is currently discounted by $150 at Amazon and $100 at Best Buy, now priced at $1,549.99. This premium iPad features an M5 processor, OLED screen, and support for the Apple Pencil Pro and Magic Keyboard. The 11-inch iPad Air M3 with 1TB of storage is also on sale, marked down by $500 to $749.",
+        "hashtag": "PriceHiked",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/gadgets/969003/apple-ipad-air-pro-airtag-deal-sale",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "images": [
-          "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg",
-          "https://variety.com/wp-content/uploads/2025/08/Brendan-Carr-FCC.jpg?w=1000&h=563&crop=1"
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/apple-ipad-pro-m5-roundup-deal.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/M5-iPad-Pro-2.jpg?quality=90&strip=all&crop=9.7745953495034%2C0%2C66.653934300993%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/257606_iPad_air_ADiBenedetto_0002.jpg?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400"
         ],
         "sourceUrls": [
-          "https://variety.com/2026/tv/news/fcc-abc-trump-speech-review-station-licenses-1236818342/"
+          "https://www.theverge.com/gadgets/969003/apple-ipad-air-pro-airtag-deal-sale"
         ],
-        "sourceName": "Variety",
+        "sourceName": "theverge.com",
         "sources": [
-          "Variety"
+          "theverge.com"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.46,
+        "freshH": 0.62,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "iOS code could reportedly let Apple cut off apps when users miss iPhone payments",
+        "summary": "Apple is reportedly planning to introduce a new financing program for leasing iPhones, with a feature that would allow the company to restrict access to nearly all apps on a device if payments are missed. The \"Restricted Mode\" would be triggered by a new \"App Managed Features\" system that continuously checks the device's payment status. This feature is part of iOS 27, currently in beta, and would affect users who participate in the \"Apple Upgrade\" program. If implemented, users would lose access to most apps, except for basic functions.",
+        "hashtag": "Apple",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/tech/969596/apple-restricted-mode-ios-27",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "images": [
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/DSC03775_processed.jpg?quality=90&strip=all&crop=0%2C10.723165084465%2C100%2C78.55366983107&w=1200"
+        ],
+        "sourceUrls": [
+          "https://www.theverge.com/tech/969596/apple-restricted-mode-ios-27"
+        ],
+        "sourceName": "theverge.com",
+        "sources": [
+          "theverge.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.64,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Teenager drops social media addiction lawsuit against Meta",
+        "summary": "A Florida teenager, 15-year-old R.K.C., has dropped his lawsuit against Meta, citing concerns about a lengthy jury trial, after previously settling similar claims against TikTok, Snapchat, and YouTube. The case, which aimed to hold social media companies accountable for addictive platforms harming children, will no longer proceed. R.K.C.'s lawyers say he is now focusing on his recovery and therapy. A Meta spokesperson claims the lawsuit was baseless.",
+        "hashtag": "Meta",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.78,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1501,8 +1350,40 @@
     ],
     "politics": [
       {
+        "title": "Burnham stirs up political row with review of release plans for violent criminals",
+        "summary": "British Prime Minister Andy Burnham has ordered a review of plans to release thousands of violent criminals from prison early, affecting around 6,000 offenders. The move follows outrage from the family of PC Andrew Harper, whose killers may be eligible for release. The review aims to address concerns over public safety and the potential collapse of the criminal justice system. The outcome of the review is expected to be announced in the coming months.",
+        "hashtag": "BurnhamStirs",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/society/2026/jul/22/andy-burnham-announces-review-of-prisoner-early-release-scheme",
+        "imageUrl": "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1bafd320f3474b8f8b7998834f7f697b",
+        "images": [
+          "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1bafd320f3474b8f8b7998834f7f697b",
+          "https://i.guim.co.uk/img/media/0075f08f63b261a32f1d6cc8140cb8046da95365/0_13_640_512/master/640.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f5fa50af3325eb1c15a43248edd70841",
+          "https://i.guim.co.uk/img/media/9ba00ee0d93292a84adacd7826fff3c57ff956cf/0_0_3560_2468/master/3560.jpg?width=445&dpr=1&s=none&crop=none"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/society/2026/jul/22/andy-burnham-announces-review-of-prisoner-early-release-scheme"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.82,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Tories ask HMRC to investigate whether Nigel Farage owes tax on £5m gift",
-        "summary": "The UK's Conservative Party has asked HMRC to investigate a £5m gift to Nigel Farage, questioning whether it constitutes taxable income. The gift was given by crypto billionaire Christopher Harborne, who claims it was a personal and unconditional donation. Farage has previously stated the money would cover personal security costs and compensate him for campaigning for Brexit. HMRC will now review the matter to determine if Farage owes tax on the gift.",
+        "summary": "Tories have asked HMRC to investigate whether Nigel Farage should have paid tax on a £5m gift from crypto billionaire Christopher Harborne. The gift was reportedly given with no expectation of return, but Farage has previously stated he would require £1m per year in compensation to offset loss of earnings if he ran for office. HMRC will now review the matter. The outcome of this investigation remains to be seen.",
         "hashtag": "NigelFarage",
         "badge": "POLITICS",
         "category": "politics",
@@ -1511,7 +1392,6 @@
         "images": [
           "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=b87226e14f50480484b2ef97dec7c706",
           "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=7039ef716fb08677c32a90d75a199416",
-          "https://i.guim.co.uk/img/media/fbe1f883cd6109d27bbef9a10298ce5ef5daa3e4/2139_111_3314_2651/master/3314.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=34b7597396d0e482a45e8cb06e232b7e",
           "https://i.guim.co.uk/img/media/d3c54c07374bfd102da39690af5e0d66e87eb84a/1120_0_6990_5592/master/6990.jpg?width=445&dpr=1&s=none&crop=none"
         ],
         "sourceUrls": [
@@ -1525,7 +1405,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.41,
+        "freshH": 1.41,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1534,129 +1414,28 @@
         "geo": null
       },
       {
-        "title": "Scottish Labour’s rivals decry ‘chancer’ Anas Sarwar for resigning to join Andy Burnham’s government",
-        "summary": "Scottish Labour leader Anas Sarwar has resigned to join Andy Burnham's government, becoming the first senior Labour figure to be appointed to a ministerial post in the Department for Business, Innovation, Science and Trade. He will also be made a peer. The move has been met with criticism from Scottish rivals, who accuse Sarwar of hypocrisy and lying to voters. The SNP is calling for Sarwar to donate his new salary to charity.",
-        "hashtag": "LabourAnas",
+        "title": "Laredo’s Future Rides on Trump’s Next Trade Move",
+        "summary": "The economy of Laredo, Texas, has boomed under the president’s global tariffs. Now, his demands may threaten its success.",
+        "hashtag": "FutureRides",
         "badge": "POLITICS",
         "category": "politics",
-        "url": "https://www.theguardian.com/politics/2026/jul/22/scottish-labours-rivals-decry-chancer-anas-sarwar-for-resigning-to-join-andy-burnhams-government",
-        "imageUrl": "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2db37f99370614d8bf110915f160ddfb",
+        "url": "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-laredo-trade-mexico.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21dc-laredo-trade-vid-cover-2-zpmj/21dc-laredo-trade-vid-cover-2-zpmj-mediumSquareAt3X.jpg",
         "images": [
-          "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2db37f99370614d8bf110915f160ddfb",
-          "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=ddeb44f0b4ee8c8b319916c251552557",
-          "https://i.guim.co.uk/img/media/577c3011840fe08baf58d4df77284e8d1b19f67d/511_554_4172_3337/master/4172.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=e602f417b7da0bb2023851748d751e8d",
-          "https://i.guim.co.uk/img/media/c4ab941e0607571bab03090395b34203b45a04b3/0_0_5088_3392/master/5088.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/8de8714d9c418570c049e7126b11c08c5d91f129/0_912_3700_2960/master/3700.jpg?width=445&dpr=1&s=none&crop=none"
+          "https://static01.nyt.com/images/2026/07/21/multimedia/21dc-laredo-trade-vid-cover-2-zpmj/21dc-laredo-trade-vid-cover-2-zpmj-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.theguardian.com/politics/2026/jul/22/scottish-labours-rivals-decry-chancer-anas-sarwar-for-resigning-to-join-andy-burnhams-government"
+          "https://www.nytimes.com/2026/07/22/business/economy/trump-tariffs-laredo-trade-mexico.html"
         ],
-        "sourceName": "The Guardian",
+        "sourceName": "The New York Times",
         "sources": [
-          "The Guardian"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.94,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘He knows what he’s doing’: Burnham’s off-the-cuff remarks inspire headlines and headaches",
-        "summary": "British Prime Minister Andy Burnham is facing controversy over his handling of policy decisions, including a potential income tax threshold increase, just three days into his tenure. He has been accused of performing U-turns on key issues, sparking speculation and criticism. The prime minister's off-the-cuff remarks have raised questions about his approach to governance. His office is now working to clarify his stance on these policies.",
-        "hashtag": "Burnham",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/politics/2026/jul/22/andy-burnham-off-the-cuff-remarks-inspire-headlines-and-headaches",
-        "imageUrl": "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f1548214bd2a48d948547d880aef6c7",
-        "images": [
-          "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f1548214bd2a48d948547d880aef6c7",
-          "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=44db91aaed258810714faa3eab256a01",
-          "https://i.guim.co.uk/img/media/525c95f091ebdf1202fdfc4d063f3da13bf8e0b0/69_0_4299_3440/master/4299.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=ef21d9572562a6e9bc55be963e3e6183",
-          "https://i.guim.co.uk/img/media/5c2ad1a83048c3ea1d268fb91b41e3b5bbcbf0c7/0_0_4753_3169/master/4753.jpg?width=445&dpr=1&s=none&crop=none"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/politics/2026/jul/22/andy-burnham-off-the-cuff-remarks-inspire-headlines-and-headaches"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.89,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "facts": [
-      {
-        "title": "NASA to Showcase Agency’s Newest Wind Tunnel in Virginia",
-        "summary": "NASA will showcase its newest wind tunnel, the Flight Dynamics Research Facility, at the Langley Research Center in Hampton, Virginia, on July 31. The facility, the agency's first new wind tunnel in over 40 years, will be open to a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and other officials will be available for a brief media availability. The event is in person only and open to US citizens or lawful permanent residents.",
-        "hashtag": "ShowcaseAgency",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/",
-        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
-        "images": [
-          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
-          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026-ba2289.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/"
-        ],
-        "sourceName": "NASA",
-        "sources": [
-          "NASA"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.07,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Robotic Servicing Mission Launches with NASA Support",
-        "summary": "A robotic spacecraft, the Robotic Servicing of Geosynchronous Satellites, has launched from Cape Canaveral on July 21, supported by NASA, and is now en route to geosynchronous Earth orbit. The mission, funded by DARPA, will use twin robotic arms to inspect and upgrade satellites by installing propulsion modules, extending their operational life. This is the first multi-mission robotic in-space servicer in the US. The spacecraft is expected to demonstrate advanced in-space servicing capabilities.",
-        "hashtag": "ServicingMission",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nasa.gov/technology/robotic-servicing-mission-launches-with-nasa-support/",
-        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg?w=2048",
-        "images": [
-          "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg?w=2048",
-          "https://www.nasa.gov/wp-content/uploads/2026/07/20260721-cc-mrv-mep-curbh-img-0499.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nasa.gov/technology/robotic-servicing-mission-launches-with-nasa-support/"
-        ],
-        "sourceName": "NASA",
-        "sources": [
-          "NASA"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.79,
+        "freshH": 0.52,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1667,8 +1446,39 @@
     ],
     "sports": [
       {
+        "title": "Villa agree loan deal for Chelsea winger Garnacho",
+        "summary": "Aston Villa has agreed a loan deal for Chelsea winger Alejandro Garnacho until the end of the 2026-27 season, with an obligation to buy for £43m. The 22-year-old has completed a medical in Birmingham and pre-agreed a four-year contract at Villa Park. Garnacho's departure from Chelsea follows the club's signing of Morgan Rogers for a record £117m fee from Villa. The winger becomes Villa's fourth signing this summer, following a series of player sales that have totalled nearly £200m.",
+        "hashtag": "ChelseaGarnacho",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cly9nrel0pyo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/738e/live/b2bbd8e0-85eb-11f1-8ade-a7a676c613b9.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cly9nrel0pyo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.88,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Rangers to fight McInnes ban for 'disgusting' penalty remark",
-        "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for calling a late penalty decision \"disgusting\" in May. The penalty, awarded to Celtic's Kelechi Iheanacho, helped Celtic stay one point behind Hearts, who ultimately won the title. McInnes will serve three games immediately and one suspended until the end of the season. He will be in the stands as Rangers open their Scottish Premiership campaign.",
+        "summary": "Rangers manager Derek McInnes has been given a four-match touchline ban by the Scottish FA for calling a late penalty decision \"disgusting\" in May. The comments were made after Celtic were awarded a stoppage-time spot-kick in a 3-2 victory at Motherwell, which kept them one point behind Hearts. McInnes is due to serve the ban, with one game suspended until the end of the season. He will be in the stands as Rangers open the Scottish Premiership campaign.",
         "hashtag": "RangersFight",
         "badge": "SPORTS",
         "category": "sports",
@@ -1689,38 +1499,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.47,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "McInnes given four-match ban for 'disgusting' Celtic penalty remark",
-        "summary": "Rangers manager Derek McInnes has been given a four-match ban by the Scottish FA for calling a late penalty decision in a May match \"disgusting\". The incident occurred at Motherwell on May 13, when Celtic was awarded a stoppage-time spot-kick that sealed a 3-2 victory. McInnes will serve the ban, which includes one suspended match, and will be in the stands for Rangers' next Scottish Premiership match. He will contest the decision, arguing his comments were directed at the specific decision rather than a broader criticism of officials.",
-        "hashtag": "Celtic",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a94f/live/e7608860-85c9-11f1-8aff-e16fe8f2ba64.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.47,
+        "freshH": 1.47,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1730,7 +1509,7 @@
       },
       {
         "title": "Inter Miami under investigation after signing Casemiro",
-        "summary": "Major League Soccer is investigating Inter Miami for alleged tampering after the club signed Brazilian midfielder Casemiro on a deal through 2027 with an option to extend until 2029. The investigation centers on Casemiro's discovery rights, which the LA Galaxy held before Inter Miami acquired them. The league is reviewing the situation and will release more information once the investigation is complete. The outcome may impact the terms of Casemiro's contract and Inter Miami's roster.",
+        "summary": "Inter Miami is under investigation by Major League Soccer for alleged tampering after signing Brazil midfielder Casemiro. The investigation concerns the club's acquisition of Casemiro's discovery rights from the LA Galaxy. Casemiro signed a deal with Inter Miami that runs until the end of the 2027 MLS campaign. The league will review all relevant information before making a decision.",
         "hashtag": "MiamiCasemiro",
         "badge": "SPORTS",
         "category": "sports",
@@ -1751,7 +1530,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.72,
+        "freshH": 1.72,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "NASA to Showcase Agency’s Newest Wind Tunnel in Virginia",
+        "summary": "NASA is set to unveil its first new wind tunnel in over 40 years at the Langley Research Center in Hampton, Virginia, on July 31. The Flight Dynamics Research Facility will be showcased in a media tour and ribbon-cutting ceremony. NASA Administrator Jared Isaacman and center director Dr. Trina Dyal will be available for media questions. The event marks a significant milestone in NASA's evolution.",
+        "hashtag": "ShowcaseAgency",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/",
+        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
+        "images": [
+          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026.jpg?w=2048",
+          "https://www.nasa.gov/wp-content/uploads/2026/07/langleyfdrfjune2026-ba2289.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nasa.gov/news-release/nasa-to-showcase-agencys-newest-wind-tunnel-in-virginia/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.08,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1762,49 +1574,18 @@
     ],
     "breaking": [
       {
-        "title": "Modelling scout linked to Epstein found dead in Paris",
-        "summary": "A modelling scout linked to Jeffrey Epstein, Daniel Siad, has been found dead at his home in Colombes, a north-west suburb of Paris. He was 69 years old. An investigation into his death has been opened, with a post-mortem examination to be carried out. The probe into Siad's alleged involvement in organised human trafficking and conspiracy is continuing, despite his death.",
-        "hashtag": "EpsteinParis",
+        "title": "Dubai Firm Cuts Deal for New Port to Bypass Strait of Hormuz",
+        "summary": "A Dubai-based logistics giant unveiled a deal with the United Arab Emirates on Wednesday to develop a new port system that would bypass the Strait of Hormuz.",
+        "hashtag": "FirmCuts",
         "badge": "BREAKING",
         "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cp8en38vpd3o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg",
+        "url": "https://www.nytimes.com/2026/07/22/world/dubai-cuts-deal-for-new-port-to-bypass-strait-of-hormuz.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-uae-port-2-qpwh/22int-uae-port-2-qpwh-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/a6bd/live/3c1a6c30-85b7-11f1-bd07-3b1b1452001a.jpg"
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-uae-port-2-qpwh/22int-uae-port-2-qpwh-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cp8en38vpd3o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.49,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Daniel Siad, Model Scout Who Connected Women to Epstein, Is Found Dead in France",
-        "summary": "Daniel Siad, who was found dead on Monday, repeatedly introduced Jeffrey Epstein to young women, according to messages he exchanged with Mr. Epstein. Mr. Siad had denied wrongdoing.",
-        "hashtag": "SiadModel",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/europe/epstein-daniel-siad-dead-model-scout.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-France-Epstein/22int-France-Epstein-mediumSquareAt3X-v4.png",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/world/22int-France-Epstein/22int-France-Epstein-mediumSquareAt3X-v4.png"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/europe/epstein-daniel-siad-dead-model-scout.html"
+          "https://www.nytimes.com/2026/07/22/world/dubai-cuts-deal-for-new-port-to-bypass-strait-of-hormuz.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1814,7 +1595,37 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.41,
+        "freshH": 0.22,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Israeli Banks Threaten to Cut Off Palestinian Economy",
+        "summary": "Two Israeli financial firms have long served as partners to Palestinian banks, handling transactions that make possible the West Bank’s imports and exports.",
+        "hashtag": "BanksThreaten",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/israeli-banks-palestinian-economy.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-israel-palestine-banks-02-pchf/22int-israel-palestine-banks-02-pchf-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-israel-palestine-banks-02-pchf/22int-israel-palestine-banks-02-pchf-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/world/middleeast/israeli-banks-palestinian-economy.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.77,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1844,7 +1655,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.35,
+        "freshH": 0.74,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1855,29 +1666,28 @@
     ],
     "crisis": [
       {
-        "title": "Aston Martin secures £550m loan deal",
-        "summary": "Aston Martin has secured a £550m loan deal to bolster its finances. The luxury car maker has been struggling with net losses of £493.2m last year, a 50% increase from the previous year. The loan is expected to fund future product plans and bolster its balance sheet. The company will publish its half-year results on July 29, providing further insight into its financial situation.",
-        "hashtag": "Martin",
+        "title": "Sony Revives Cinerama Dome in Los Angeles as Box Office Sales Rebound",
+        "summary": "The iconic Cinerama Dome and adjacent 14-screen theater complex will reopen in 2028 after a renovation. The venue closed in 2020 because of the pandemic.",
+        "hashtag": "RevivesCinerama",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/cjejx083jkeo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png",
+        "url": "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/67d9/live/56b2dbc0-85f5-11f1-b976-0b9c15b0ccfc.png"
+          "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cjejx083jkeo?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.82,
+        "freshH": 0.89,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1907,39 +1717,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.04,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "tech": [
-      {
-        "title": "Lawsuit Against Meta Over Social Media Addiction Is Dropped",
-        "summary": "For Meta, the move was a reprieve after it and YouTube were found guilty in another case in March of negligence and personal injury for their platforms’ addictive features.",
-        "hashtag": "AgainstMeta",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/22/technology/meta-social-media-lawsuit.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-meta-lawsuit-fmkh/22biz-meta-lawsuit-fmkh-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-meta-lawsuit-fmkh/22biz-meta-lawsuit-fmkh-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/technology/meta-social-media-lawsuit.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.07,
+        "freshH": 1.05,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1948,18 +1726,18 @@
         "geo": null
       },
       {
-        "title": "Politicians Are Trying to Change What Chatbots Say About Them",
-        "summary": "Political campaigns have something new to worry about these days: unflattering or incomplete information produced by A.I. programs when voters ask questions about candidates.",
-        "hashtag": "TryingChange",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/19/us/politics/chatbots-political-campaigns.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/19/multimedia/19pol-chatbots-fqcp/19pol-chatbots-fqcp-mediumSquareAt3X.jpg",
+        "title": "Global Oil Price Jumps as War Threats Intensify",
+        "summary": "But stock investors shrug off Iran developments as they await crucial earnings reports from tech firms including Alphabet and Tesla.",
+        "hashtag": "OilPrice",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/22/business/oil-prices-iran-war.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/biz-osg-hormuz-tfhm/biz-osg-hormuz-tfhm-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/19/multimedia/19pol-chatbots-fqcp/19pol-chatbots-fqcp-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/22/multimedia/biz-osg-hormuz-tfhm/biz-osg-hormuz-tfhm-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/19/us/politics/chatbots-political-campaigns.html"
+          "https://www.nytimes.com/2026/07/22/business/oil-prices-iran-war.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1969,37 +1747,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "OpenAI Says Its A.I. Models Hacked Into Hugging Face, a Digital Library",
-        "summary": "The incident, which targeted the computer systems of another company called Hugging Face, happened while OpenAI was testing the systems.",
-        "hashtag": "ModelsHacked",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/21/technology/openai-attack-hugging-face.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21biz-openai-security-gwch/21biz-openai-security-gwch-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/21/multimedia/21biz-openai-security-gwch/21biz-openai-security-gwch-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/21/technology/openai-attack-hugging-face.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.85,
+        "freshH": 0.85,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2011,7 +1759,7 @@
     "health": [
       {
         "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-        "summary": "A British health select committee report finds that ultra-processed foods contribute to obesity, with sugar and refined carbohydrates identified as primary drivers of weight gain and type 2 diabetes. The report recommends targeting supermarkets and manufacturers to reduce obesity in Britain. The committee's findings are based on evidence that the current \"high in fat, salt or sugar\" framework is flawed. The government is expected to consider the report's recommendations in its efforts to address the obesity crisis.",
+        "summary": "A British health select committee report finds that obesity is an engineered outcome, not a result of individual willpower. The report highlights that ultra-processed foods, particularly those high in sugar and refined carbohydrates, are primary drivers of weight gain and type 2 diabetes. The committee recommends targeting these foods to reduce obesity in Britain. The government is expected to implement new policies to hold supermarkets and manufacturers accountable for healthier food options.",
         "hashtag": "BritainLetter",
         "badge": "HEALTH",
         "category": "health",
@@ -2019,8 +1767,7 @@
         "imageUrl": "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
         "images": [
           "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
-          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e",
-          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=2f28a91f88399c8c49e03bf23458c92c"
+          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e"
         ],
         "sourceUrls": [
           "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain"
@@ -2033,7 +1780,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.01,
+        "freshH": 3.01,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2043,7 +1790,7 @@
       },
       {
         "title": "Fifth person dies in New York City amid legionnaires’ disease outbreak",
-        "summary": "A fifth person has died in New York City due to legionnaires' disease, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to cooling towers on Manhattan's Upper East Side, where 34 of 33 buildings tested positive for live legionella bacteria. The city's health department is continuing to test the remaining 140 cooling tower systems. Further testing is expected to reveal whether the outbreak is contained.",
+        "summary": "A fifth person has died in New York City's legionnaires' disease outbreak, with 82 cases now identified on Manhattan's Upper East Side. The outbreak is linked to 34 cooling towers across 33 buildings, where live legionella bacteria were detected. Eight people remain hospitalized, while 56 have been discharged. The city's health department will continue testing the remaining 140 cooling tower systems.",
         "hashtag": "NewYork",
         "badge": "HEALTH",
         "category": "health",
@@ -2051,8 +1798,7 @@
         "imageUrl": "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
         "images": [
           "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
-          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d",
-          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=4881759d811b3f9e5c7fe4de73ff97b9"
+          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d"
         ],
         "sourceUrls": [
           "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city"
@@ -2065,7 +1811,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.63,
+        "freshH": 5.63,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2095,7 +1841,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.52,
+        "freshH": 3.52,
         "score": null,
         "popularity": null,
         "recency": null,
