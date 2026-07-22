@@ -403,6 +403,12 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
       if (taken >= perGeo) break;
       const term = decode((item.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || '').trim();
       if (!term) continue;
+      // Search heat: "20000+" → 20000. Lets the caller lead a single Short with the
+      // genuinely HOTTEST story instead of always the same editorial politics slot.
+      const traffic = Number(
+        (decode((item.match(/<ht:approx_traffic>([\s\S]*?)<\/ht:approx_traffic>/i) || [])[1] || '')
+          .replace(/[^0-9]/g, '')) || 0,
+      );
       // Each trend lists the articles that made it trend. Pick the first REAL article
       // (skip video/gallery/live pages that carry no prose) as the story's source.
       const newsItems = [...item.matchAll(/<ht:news_item>([\s\S]*?)<\/ht:news_item>/gi)].map(([, ni]) => ({
@@ -432,14 +438,27 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
         corr: newsItems.length,
         category: 'offbeat',
         trend: term,
+        traffic,
         geo,
       });
     }
   }
+  // Hottest trends first (highest search volume), then MORE-corroborated (covered by more
+  // outlets = a bigger, more real story) so a single Short leads with the genuinely
+  // biggest story of the moment — and ties (many trends read "200+") break on substance,
+  // not RSS order, so the lead varies with the news cycle instead of sticking on one item.
+  out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
   if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
-  // Drop trends we couldn't enrich into a real photo + brief (thin/paywalled): a Short
-  // needs a real image and body. Keep only stories that gained a publisher image.
-  return out.filter((s) => s.imageUrl && s.summary && s.summary.length > 60);
+  // Drop trends we couldn't turn into a REAL story. A single Short leads with a trend, so
+  // it must have (1) a publisher image AND (2) a brief that actually gained body beyond
+  // the headline — many trends point at JS-rendered pages (CNN) with 0 extractable prose,
+  // where the "summary" is just the title echoed back. Require ≥40 chars of NEW text over
+  // the title so we never narrate a bare headline (or a scraped share-widget) as a story.
+  return out.filter((s) => {
+    if (!s.imageUrl || !s.summary) return false;
+    const grew = s.summary.trim().length - (s.title || '').trim().length;
+    return s.summary.length > 120 && grew > 40 && /[.!?]$/.test(s.summary.trim());
+  });
 }
 
 // Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
@@ -450,13 +469,22 @@ function articleProse(html) {
   html = html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<(nav|header|footer|aside|form)[\s\S]*?<\/\1>/gi, ' ');
+    // Drop non-body chrome: nav/header/footer/aside/form AND figure/figcaption (photo
+    // captions like "Roger Rogoff talks with CNN affiliate KING…" are NOT article prose)
+    // and buttons (share widgets: "Facebook Tweet Email Link Copied!"). These leaked into
+    // narration when there was no LLM and the extractive path scraped them as a "sentence".
+    .replace(/<(nav|header|footer|aside|form|figure|figcaption|button)[\s\S]*?<\/\1>/gi, ' ');
   const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
-  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|reuters\/|associated press/i;
+  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|reuters\/|associated press|see all topics|related (?:topics|articles)|facebook|tweet|whatsapp|link copied|copy link|share this|most viewed|sign in|log ?in|talks with .* affili/i;
+  // Byline / timestamp / engagement-metadata lines that sit ABOVE the body on many sites
+  // ("Manchester United reporter Published 2 hours ago", "Matt Oliver is The Telegraph's
+  // Industry Editor…", "17 comments"). They're grammatical so they survive the BP filter,
+  // but they're not story prose — drop them so narration is pure article body.
+  const META = /^\s*(?:by |published |updated |\d+ comments?\b|\d+ min read|last modified)|\b(?:is|was) (?:the |a |an )?[A-Z][\w'’]* (?:[A-Z][\w'’]* )*(?:editor|reporter|correspondent|columnist|writer)\b|\bpublished \d|\b\d+ hours? ago\b|\bBST\b|\bGMT\b|\bEDT\b/i;
   return [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
     .map((m) => stripHtml(m[1]))
     .filter((t) => {
-      if (t.length < 60 || BP.test(t)) return false;
+      if (t.length < 60 || BP.test(t) || META.test(t)) return false;
       const w = t.split(/\s+/);
       if (w.length < 10 || !/[.!?]/.test(t)) return false;
       const cap = w.filter((x) => /^[A-Z][a-z]*$/.test(x)).length;
@@ -520,8 +548,12 @@ export async function enrichSummary(story) {
     // Extractive fallback: RSS lead + distinct body paragraphs, then trimmed to WHOLE
     // sentences (never chopped mid-word — that produced narration ending on half a
     // sentence). We take complete sentences up to ~700 chars.
+    // Only seed with the RSS lead if it's a REAL sentence — a bare HEADLINE (no ending
+    // punctuation, as Google-Trends stories carry) would glue onto the first body
+    // sentence and echo the title into the narration. In that case start from the body.
+    const seed = /[.!?]$/.test(String(story.summary || '').trim()) ? story.summary : null;
     const seen = new Set();
-    const parts = [story.summary, ...paras].filter((p) => {
+    const parts = [seed, ...paras].filter((p) => {
       const k = (p || '').slice(0, 40).toLowerCase();
       if (!p || seen.has(k)) return false;
       seen.add(k);

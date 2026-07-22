@@ -129,13 +129,22 @@ async function gatherStories(cfg) {
       }),
       // GOOGLE TRENDS (US + GB): what's actually being searched right now, resolved to a
       // real publisher article + the outlet's OWN og:image (never the gstatic thumbnail).
-      // Adds genuine "trending now" stories the editorial slots miss.
-      buildTrendingStories({ perGeo: LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+      // Adds genuine "trending now" stories the editorial slots miss. SINGLE mode pulls a
+      // DEEPER pool per geo (many trends are thin/paywalled and get filtered) so there's a
+      // real set to rank by heat and lead the Short with the hottest survivor.
+      buildTrendingStories({ perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
     ]);
-    // MERGE: interleave the roundup with trending (cross-deduped by normalized title) so
-    // both editorial coverage AND live search trends make the cut. Roundup leads (curated
-    // categories), then a trending story, alternating — slice keeps the mix balanced.
-    const merged = mergeByTitle(round, trending);
+    // MERGE — mode-aware ordering (fixes "why is it always Andy Burnham?": a single Short
+    // was always merged[0] = the curated POLITICS slot #1, so Google-Trends stories never
+    // led):
+    //   • SINGLE  → lead with the HOTTEST genuinely-trending story (Google Trends, sorted
+    //     by search volume). That's literally "what USA/UK is searching right now" — the
+    //     highest-retention pick, and it changes every couple of hours so the channel
+    //     isn't stuck on one topic. Curated stories back it up if trends are unavailable.
+    //   • LONGFORM/roundup → curated categories lead (so all 9 are covered), trends fill.
+    const merged = SINGLE
+      ? mergeByTitle(trending, round)
+      : mergeByTitle(round, trending);
     return merged.slice(0, STORY_COUNT);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
