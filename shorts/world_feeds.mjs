@@ -13,7 +13,7 @@
 // we get a real image + clean headline. Pure RSS, $0, no keys.
 
 import { llmChat, haveLlmKey } from './llm.mjs';
-import { extractArticle, fetchAndExtract } from '../src/extract.mjs';
+import { extractArticle, fetchAndExtract, isAggregatorUrl } from '../src/extract.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
@@ -530,8 +530,15 @@ async function newsSearch(term, geo, hl, when = '1h') {
   for (const [, block] of xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)) {
     const rawTitle = decode((block.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || '');
     const link = decode((block.match(/<link>([\s\S]*?)<\/link>/i) || [])[1] || '').trim();
-    const source = decode((block.match(/<source[^>]*>([\s\S]*?)<\/source>/i) || [])[1] || '').trim();
+    const sourceTag = block.match(/<source([^>]*)>([\s\S]*?)<\/source>/i);
+    const source = decode((sourceTag || [])[2] || '').trim();
+    const sourceUrl = decode(((sourceTag || [])[1] || '').match(/url=["']([^"']+)["']/i)?.[1] || '');
     const title = rawTitle.replace(/\s+-\s+[^-]+$/, '').trim(); // drop trailing " - Source"
+    // Drop syndication aggregators (AOL/MSN/Yahoo/…) — they re-host other outlets' photos,
+    // so their image isn't original story art (user: "avoid aol.com"). The Google-News
+    // `link` still points at news.google before resolve, so gate on the <source url=…>
+    // attribute (the real domain) and, as a belt, the display name.
+    if (isAggregatorUrl(link) || isAggregatorUrl(sourceUrl) || isAggregatorUrl(source)) continue;
     if (title && /^https?:\/\//i.test(link) && !isThinUrl(link)) items.push({ title, url: link, source });
   }
   return items;
@@ -617,7 +624,9 @@ async function resolveGoogleNewsUrl(gnewsUrl) {
     if (!r.ok) return null;
     const txt = await r.text();
     const real = txt.match(/https?:\/\/(?!news\.google)[^\\"\s]+/);
-    return real ? real[0] : null;
+    if (!real) return null;
+    if (isAggregatorUrl(real[0])) return null; // resolved to an aggregator (AOL/MSN/Yahoo) → skip
+    return real[0];
   } catch {
     return null;
   }

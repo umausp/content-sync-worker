@@ -60,6 +60,22 @@ export function baseDomain(host) {
   const useThree = /^(co|com|org|net|gov|ac|edu|or|go|ne)$/.test(sld) && p[p.length - 1].length <= 3;
   return p.slice(useThree ? -3 : -2).join('.');
 }
+// AGGREGATOR / SYNDICATOR hosts → NOT an original publisher. AOL, MSN, Yahoo, Flipboard,
+// SmartNews, Apple News, Google News etc. REPUBLISH other outlets' articles and photos —
+// often re-hosting the image under their OWN domain with wire framing / a channel-branding
+// watermark, so their "own" og:image is not an original story photo (user report: an AOL
+// image leaked onto a Short — "this video had aol.com, avoid that"). We never resolve to
+// them, never enrich them, and never accept an image served from their domain. The real
+// publisher is always reachable directly, so dropping aggregators loses no genuine photo.
+export const AGGREGATOR_HOST =
+  /(^|\.)aol\.|(^|\.)msn\.|(^|\.)yahoo\.|(^|\.)news\.google\.|(^|\.)flipboard\.|(^|\.)smartnews\.|(^|\.)apple\.news|(^|\.)upday\.|(^|\.)inshorts\.|(^|\.)newsbreak\.|(^|\.)dailyhunt\.|(^|\.)microsoftstart\.|(^|\.)start\.gg|(^|\.)news\.yahoo\.|(^|\.)finance\.yahoo\.|(^|\.)sports\.yahoo\.|(^|\.)ground\.news|(^|\.)pocket\.|(^|\.)feedly\./i;
+// True if a URL/host belongs to a syndication aggregator (see AGGREGATOR_HOST).
+export function isAggregatorUrl(u) {
+  if (!u) return false;
+  let host = String(u);
+  try { host = new URL(/^https?:\/\//i.test(u) ? u : `https://${u}`).hostname; } catch { /* treat raw string as host */ }
+  return AGGREGATOR_HOST.test(host);
+}
 // Third-party ad / tracking / analytics / social-widget image hosts → never story art.
 export const AD_HOST =
   /doubleclick|googlesyndication|googleadservices|google-?analytics|googletagmanager|gstatic|adservice|adsystem|adnxs|amazon-adsystem|taboola|outbrain|criteo|scorecardresearch|quantserve|2mdn|zedo|pubmatic|rubiconproject|\bopenx\b|smartadserver|teads|sharethrough|indexww|casalemedia|moatads|adsafeprotected|bidswitch|360yield|mgid|revcontent|zergnet|gravatar|fbcdn|facebook\.com\/tr|connect\.facebook|analytics\.|\bpixel\.|\bads?\d*\.|\btrack(?:er|ing)?\./i;
@@ -78,6 +94,7 @@ export function acceptImage(u, pubDomain = '') {
   let host = '';
   try { host = new URL(s).hostname; } catch { return null; }
   if (AD_HOST.test(host) || AD_HOST.test(s)) return null;
+  if (AGGREGATOR_HOST.test(host)) return null; // aggregator-rehosted photo (AOL/MSN/Yahoo) — not original art
   if (pubDomain && baseDomain(host) !== pubDomain) return null;
   if (BAD_PATH.test(s)) return null;
   if (/[?&](?:w|width)=(?:\d{1,2}|1\d\d|2\d\d)\b/i.test(s)) return null; // tiny ≤299px
