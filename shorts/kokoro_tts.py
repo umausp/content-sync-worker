@@ -49,10 +49,23 @@ SAY_AS = [
 ]
 
 
+# Characters that must NEVER be voiced (markup/JSON/markdown leaking into the text).
+# espeak reads '#' as "hash", '{' as "left brace", etc. — strip them so only real words
+# are spoken. Applied to the SPOKEN text only; the on-screen caption is sanitized
+# separately in the renderer.
+_TTS_STRIP = _re.compile(r"[#*_~`|<>{}\[\]\\^=]+")
+_URL_RE = _re.compile(r"https?://\S+")
+
+
 def spoken_form(text):
-    out = text
+    out = str(text or "")
+    out = _URL_RE.sub(" ", out)  # don't read raw URLs aloud
+    out = _TTS_STRIP.sub(" ", out)  # kill markup/JSON/markdown chars
     for pat, rep in SAY_AS:
         out = pat.sub(rep, out)
+    # Collapse whitespace + stray punctuation runs left behind.
+    out = _re.sub(r"\s+([.,!?;:])", r"\1", out)
+    out = _re.sub(r"\s+", " ", out).strip()
     return out
 
 
@@ -103,7 +116,7 @@ def main() -> int:
     voice = job.get("voice") or ("hf_alpha" if lang == "h" else "am_michael")
     espeak_lang = job.get("espeakLang") or ESPEAK_LANG.get(lang, "en-us")
     speed = float(job.get("speed", 0.94))
-    gap = float(job.get("gap", 0.18))
+    gap = float(job.get("gap", 0.32))  # inter-sentence breath (was 0.18 = too rushed)
     out = job["out"]
     if not chunks:
         print("kokoro_tts: no chunks", file=sys.stderr)
@@ -124,7 +137,6 @@ def main() -> int:
     except Exception as e:
         print(f"kokoro_tts: phonemizer unavailable ({e}); using Kokoro text G2P", file=sys.stderr)
 
-    gap_samples = np.zeros(int(gap * SR), dtype=np.float32)
     audio_parts = []
     segments = []
     t = 0.0
@@ -158,8 +170,11 @@ def main() -> int:
             continue  # one bad chunk shouldn't kill the run
         segments.append({"start": round(t, 3), "end": round(t + dur, 3), "text": text})
         audio_parts.append(a)
-        audio_parts.append(gap_samples)
-        t += dur + gap
+        # Natural pacing: a LONGER beat after the headline (first chunk) so it lands,
+        # then normal sentence gaps. This is the "pause in the right place" fix.
+        this_gap = gap * 2.0 if len(segments) == 1 else gap
+        audio_parts.append(np.zeros(int(this_gap * SR), dtype=np.float32))
+        t += dur + this_gap
 
     if not audio_parts:
         print("kokoro_tts: produced no audio", file=sys.stderr)

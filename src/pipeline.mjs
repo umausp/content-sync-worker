@@ -302,7 +302,24 @@ async function fetchFeed(f) { try { const r = await fetch(f.url, { headers: { 'u
 const ENRICH_MIN_SNIPPET = Number(process.env.ENRICH_MIN_SNIPPET || 320); // already-rich? skip
 const ENRICH_TARGET = Number(process.env.ENRICH_TARGET || 900); // cap the enriched snippet
 const ENRICH_CONCURRENCY = Number(process.env.ENRICH_CONCURRENCY || 8);
-const BOILERPLATE = /cookie|subscri|sign ?up|newsletter|advertisement|©|\ball rights reserved\b|accept .*terms|privacy policy/i;
+// Boilerplate / navigation / chrome that must NOT enter the snippet (this was leaking
+// "BBC Homepage Skip to content Accessibility Help…" into synth + TTS).
+const BOILERPLATE =
+  /cookie|subscri|sign ?up|newsletter|advertisement|©|\ball rights reserved\b|accept .*terms|privacy policy|skip to content|accessibility help|your account|more menu|follow us|share this|read more|related (stories|articles)|most read|homepage|^menu$/i;
+
+// A real article sentence looks like prose: has spaces, ends in sentence punctuation,
+// and isn't a run of short Capitalised nav words ("Home News Sport Earth Reel …").
+function looksLikeProse(t) {
+  if (t.length < 60) return false;
+  if (BOILERPLATE.test(t)) return false;
+  const words = t.split(/\s+/);
+  if (words.length < 10) return false;
+  // Nav strips are mostly Capitalised single words with almost no lowercase/punctuation.
+  const capWords = words.filter((w) => /^[A-Z][a-z]*$/.test(w)).length;
+  if (capWords / words.length > 0.6) return false; // looks like a menu
+  if (!/[.!?]/.test(t)) return false; // no sentence-ending punctuation → not prose
+  return true;
+}
 
 async function enrichOne(a) {
   const url = a?.url;
@@ -311,14 +328,21 @@ async function enrichOne(a) {
   try {
     const r = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
     if (!r.ok) return;
-    const html = await r.text();
+    let html = await r.text();
     const og = (html.match(/<meta[^>]+(?:property|name)=["'](?:og:description|description)["'][^>]+content=["']([^"']+)/i) || [])[1] || '';
-    const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+    // Strip non-content regions BEFORE extracting <p> (kills nav/menus/scripts).
+    html = html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<(nav|header|footer|aside|form)[\s\S]*?<\/\1>/gi, ' ');
+    // Prefer paragraphs INSIDE the <article>/<main> container if the page has one.
+    const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
+    const paras = [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
       .map((m) => strip(m[1]))
-      .filter((t) => t.length > 60 && !BOILERPLATE.test(t));
-    // Build fuller snippet: RSS snippet + og + distinct body paragraphs, deduped.
+      .filter(looksLikeProse);
+    // Build fuller snippet: RSS snippet + og + distinct PROSE paragraphs, deduped.
     const seen = new Set();
-    const parts = [a.snippet, og, ...paras].filter((p) => {
+    const parts = [a.snippet, looksLikeProse(og) || og.length > 80 ? og : '', ...paras].filter((p) => {
       const k = (p || '').slice(0, 40).toLowerCase();
       if (!p || seen.has(k)) return false;
       seen.add(k);
