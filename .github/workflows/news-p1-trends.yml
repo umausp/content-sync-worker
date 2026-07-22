@@ -51,7 +51,7 @@ env:
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
   COHERE_MODEL: 'command-r-08-2024'
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  OPENROUTER_MODEL: 'openrouter/free' # auto-router to a free model — immune to model-ID rot (old llama-3.3:free 404'd)
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct'
   MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}

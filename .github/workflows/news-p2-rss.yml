@@ -48,7 +48,7 @@ env:
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
   COHERE_MODEL: 'command-r-08-2024'
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  OPENROUTER_MODEL: 'openrouter/free' # auto-router to a free model — immune to model-ID rot (old llama-3.3:free 404'd)
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
   MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
@@ -66,7 +66,11 @@ env:
   SYNTH_MIN_IMPORTANCE: '3' # notable+ to earn the expensive LLM rewrite
   SYNTH_BATCH: '8'
   SYNTH_TIMEOUT_MS: '150000'
-  SYNTH_BUDGET_MS: '1200000' # 20-min budget
+  # 13-min synth budget (was 20). When all hosted providers 429 and only slow CPU
+  # Ollama survives, synth grinds ~5-6 min/batch and ate 17 min → left no time for
+  # verify+publish inside the job box, so the run published NOTHING. Yielding synth
+  # earlier guarantees the fast extractive tail + review + publish always run.
+  SYNTH_BUDGET_MS: '780000'
   MIN_IMPORTANCE: '3'
   # PUBLISH — corroboration-first (deep news): a NEW story needs ≥2 outlets unless it's
   # a strong single-source scoop.
@@ -90,7 +94,11 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # 40-min ceiling (was 25). The 25-min box KILLED a run mid-verify at 25m0s — it
+    # published NOTHING (all hosted LLMs 429'd, slow Ollama carried synth to 17m,
+    # leaving no room for verify+publish). SYNTH_BUDGET_MS (13m) yields synth early;
+    # this ceiling only guards against a genuine hang. cancel-in-progress is false.
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -134,5 +142,5 @@ jobs:
           echo "$RESP" | grep -qi '"response"' && echo "ollama warm OK" || echo "ollama warm skipped (hosted providers carry the run)"
 
       - name: Run PIPELINE 2 (RSS → cluster → corroborate → synth → gate → publish)
-        timeout-minutes: 24
+        timeout-minutes: 38
         run: node src/review.mjs
