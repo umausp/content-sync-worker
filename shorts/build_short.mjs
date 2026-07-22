@@ -395,8 +395,13 @@ function storySentences(story, cfg, index) {
     .replace(/\s+/g, ' ')
     .trim();
   const summary = String(story.summary).replace(/\s+/g, ' ').trim();
-  // Start DIRECTLY with the news headline — no "Story N." prefix (spoken or captioned).
-  const out = [title];
+  // NARRATION vs ON-SCREEN TITLE (user: "TTS is saying first title and then description"):
+  //   • SINGLE / LONG-FORM → the synthesised brief already leads with the headline fact,
+  //     so speaking the raw wire title first just repeats it. Speak the brief DIRECTLY;
+  //     the headline is shown persistently on screen instead (story.headline → buildChrome).
+  //   • ROUNDUP (5-up) → each story gets ~9s, so the headline IS the content: keep it
+  //     spoken (with at most one short context sentence).
+  const out = SINGLE || LONGFORM ? [] : [title];
   // Split into sentences, keeping ONLY complete ones (must end in terminal punctuation)
   // — a trailing fragment with no ./!/? is dropped so narration never ends mid-thought.
   const sents = summary
@@ -425,7 +430,11 @@ function storySentences(story, cfg, index) {
       if (ctx) out.push(ctx);
     }
   }
-  return out.map((s) => s.trim()).filter(Boolean);
+  const spoken = out.map((s) => s.trim()).filter(Boolean);
+  // SAFETY: if the brief yielded no complete sentence (thin/paywalled source) and we
+  // dropped the spoken title, fall back to speaking the headline so the clip isn't silent.
+  if (!spoken.length) spoken.push(title);
+  return spoken;
 }
 
 async function ttsForStory(sentences, cfg, work, id) {
@@ -544,7 +553,14 @@ async function main() {
       const imgCap = SINGLE ? 10 : 4;
       const imgCount = Math.max(SINGLE ? 5 : 1, Math.min(imgCap, Math.round(timing.duration / perImgSec)));
       const bg = await resolveBackgrounds(story, join(work, `s${i}`), seenImages, imgCount);
-      const chrome = await buildChrome(story, cfg, join(work, `s${i}`));
+      // Persistent on-screen headline (single/long-form): the viewer READS the title while
+      // narration speaks only the brief — so the headline isn't lost by dropping it from
+      // the spoken script. Roundup keeps the title spoken, so no on-screen headline there.
+      const headline =
+        SINGLE || LONGFORM
+          ? String(story.title).replace(/\s+[–—|]\s+.*$/, '').replace(/\s+/g, ' ').trim()
+          : '';
+      const chrome = await buildChrome({ ...story, headline }, cfg, join(work, `s${i}`));
       const captions = [];
       for (let j = 0; j < timing.segments.length; j++) {
         const sg = timing.segments[j];

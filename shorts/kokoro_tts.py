@@ -71,17 +71,45 @@ ABBREV = [
 ]
 
 # CURRENCY — "$5 billion" is read "dollar five billion"; reorder to "5 billion dollars".
+# The magnitude may be a WORD (billion) or a single-letter suffix ($3B, $2K, €5M) — both
+# must expand to the full word ("billion"), never be read as a bare letter ("3 dollarsB").
+_MAG = {
+    "k": "thousand", "m": "million", "bn": "billion", "b": "billion",
+    "tn": "trillion", "t": "trillion", "thousand": "thousand", "million": "million",
+    "billion": "billion", "trillion": "trillion", "lakh": "lakh", "crore": "crore",
+}
+
+
+def _money(unit):
+    def repl(m):
+        num = m.group(1)
+        mag = _MAG.get((m.group(2) or "").lower(), "")
+        return " ".join(p for p in (num, mag, unit) if p)
+    return repl
+
+
+# Uppercase single-letter magnitudes (B/M/K/T) are case-SENSITIVE so a lowercase "3m"
+# (metres) is never turned into money; word forms + "bn"/"tn" are case-insensitive.
 _CUR = [
-    (_re.compile(r"\$\s?([\d.,]+)\s?(billion|million|trillion|thousand|lakh|crore|bn|m|k)\b", _re.I),
-     lambda m: f"{m.group(1)} {m.group(2)} dollars"),
+    (_re.compile(r"\$\s?([\d.,]+)\s?(trillion|billion|million|thousand|lakh|crore|bn|tn|[TBMK])\b"),
+     _money("dollars")),
     (_re.compile(r"\$\s?([\d.,]+)"), lambda m: f"{m.group(1)} dollars"),
-    (_re.compile(r"£\s?([\d.,]+)\s?(billion|million|trillion|thousand|bn|m|k)\b", _re.I),
-     lambda m: f"{m.group(1)} {m.group(2)} pounds"),
+    (_re.compile(r"£\s?([\d.,]+)\s?(trillion|billion|million|thousand|bn|tn|[TBMK])\b"),
+     _money("pounds")),
     (_re.compile(r"£\s?([\d.,]+)"), lambda m: f"{m.group(1)} pounds"),
-    (_re.compile(r"₹\s?([\d.,]+)\s?(crore|lakh|billion|million)\b", _re.I),
-     lambda m: f"{m.group(1)} {m.group(2)} rupees"),
+    (_re.compile(r"€\s?([\d.,]+)\s?(trillion|billion|million|thousand|bn|tn|[TBMK])\b"),
+     _money("euros")),
+    (_re.compile(r"€\s?([\d.,]+)"), lambda m: f"{m.group(1)} euros"),
+    (_re.compile(r"₹\s?([\d.,]+)\s?(crore|lakh|billion|million|thousand)\b", _re.I),
+     _money("rupees")),
     (_re.compile(r"₹\s?([\d.,]+)"), lambda m: f"{m.group(1)} rupees"),
 ]
+
+# THOUSANDS SEPARATORS — espeak/phonemizer preserve the comma as a PAUSE, so "2,000" is
+# read "two … zero zero zero". Strip a comma sitting BETWEEN digits so the whole number is
+# read as one value ("2,000" → "2000" → "two thousand"; "1,234,567" → the full number).
+# A comma NOT between digits (list/clause separator) is left untouched.
+_THOUSANDS = _re.compile(r"(?<=\d),(?=\d)")
 
 # Characters that must NEVER be voiced (markup/JSON/markdown leaking into the text).
 _TTS_STRIP = _re.compile(r"[#*_~`|<>{}\[\]\\^=]+")
@@ -91,6 +119,7 @@ _URL_RE = _re.compile(r"https?://\S+")
 def spoken_form(text, lang="a"):
     out = str(text or "")
     out = _URL_RE.sub(" ", out)  # don't read raw URLs aloud
+    out = _THOUSANDS.sub("", out)  # "2,000" → "2000" so it reads as one number, not digits
     for pat, rep in _CUR:  # currency BEFORE stripping '$'/'£'
         out = pat.sub(rep, out)
     out = _TTS_STRIP.sub(" ", out)  # kill markup/JSON/markdown chars

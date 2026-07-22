@@ -131,8 +131,11 @@ jobs:
 
       # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus in the meta). Runs only when
       # the channel's refresh token secret is set — until then the render just produces
-      # the artifact below. Never fails the run if upload errors (best-effort).
+      # the artifact below. Never fails the run if upload errors (best-effort). On success
+      # it sets uploaded=true so the steps below DON'T publish the video as a public
+      # artifact (user: "don't keep the results on public github, delete after upload").
       - name: Auto-upload to YouTube (unlisted)
+        id: yt
         continue-on-error: true
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -145,13 +148,23 @@ jobs:
         run: |
           if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
           node shorts/upload.mjs world "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
-      # Also keep the MP4 as a short-lived ARTIFACT (download from the Actions run page)
-      # — a review copy without committing binaries to the repo.
-      - name: Upload staged Short artifact
+      # ARTIFACT is a REVIEW COPY only — kept solely when the YouTube upload did NOT happen
+      # (no token yet, or upload errored). On a PUBLIC repo an artifact is publicly
+      # downloadable, so once the video is safely on YouTube (unlisted) we never publish it
+      # here. 1-day retention even then (user: delete the results, don't keep them around).
+      - name: Upload staged Short artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: short-world-${{ env.SHORTS_STAMP }}
           path: docs/shorts/world/
-          retention-days: 7
+          retention-days: 1
           if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner workspace after upload — nothing
+      # rendered ever lingers on GitHub (repo or artifact). Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/world/* || true

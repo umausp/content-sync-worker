@@ -126,7 +126,10 @@ jobs:
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs world
 
+      # AUTO-UPLOAD to YouTube (unlisted). On success sets uploaded=true so the video is
+      # NOT also published as a public artifact (user: delete results after upload).
       - name: Auto-upload to YouTube (unlisted)
+        id: yt
         continue-on-error: true
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -138,11 +141,22 @@ jobs:
         run: |
           if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
           node shorts/upload.mjs world "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
-      - name: Upload staged long-form artifact
+      # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC
+      # repo an artifact is publicly downloadable, so once the video is on YouTube we never
+      # publish it here. 1-day retention even then.
+      - name: Upload staged long-form artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: longform-world-${{ env.SHORTS_STAMP }}
           path: docs/shorts/world/
-          retention-days: 7
+          retention-days: 1
           if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner after upload — nothing rendered
+      # lingers on GitHub. Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/world/* || true

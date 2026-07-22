@@ -98,6 +98,9 @@ function brandMark(x, y, s) {
 }
 
 // STATIC chrome overlay: top brand + badge/category chip, bottom scrim + CTA + source.
+// `story.headline` (optional): a PERSISTENT on-screen title shown under the brand bar for
+// the whole clip. Set for single-story Shorts + long-form so the viewer SEES the headline
+// while the narration speaks only the brief (no spoken "title then description" repeat).
 export async function buildChrome(story, cfg, outDir) {
   await mkdir(outDir, { recursive: true });
   const W = VIDEO.width;
@@ -116,6 +119,28 @@ export async function buildChrome(story, cfg, outDir) {
   const chip = `#${esc(story.hashtag || 'news')}`;
   const source = story.sourceName ? `Source: ${esc(story.sourceName)}` : '';
 
+  // PERSISTENT HEADLINE — shown top-left under the brand bar so the viewer reads the
+  // story title throughout while narration speaks only the brief. Wrapped to the canvas
+  // width; a heavy top scrim behind it keeps it legible over any photo. Off for the
+  // hook/outro cards (they pass no headline) and the roundup (title is spoken there).
+  const land = VIDEO.landscape;
+  let headlineSvg = '';
+  if (story.headline) {
+    const hlFont = land ? 44 : 52;
+    const hlChars = land ? 46 : 26;
+    const hlLines = wrap(String(story.headline), hlChars).slice(0, 3);
+    const hlLineH = hlFont * 1.16;
+    const hlTop = 190; // just below the brand bar / badge chip
+    const bandH = hlLines.length * hlLineH + 36;
+    const tspans = hlLines
+      .map((ln, i) => `<tspan x="60" y="${Math.round(hlTop + 8 + (i + 1) * hlLineH)}">${esc(ln)}</tspan>`)
+      .join('');
+    headlineSvg = `
+    <rect x="0" y="${hlTop}" width="${W}" height="${Math.round(bandH)}" fill="#000000" opacity="0.42"/>
+    <text font-family="${cfg.font}" font-size="${hlFont}" font-weight="900" fill="${BRAND.text}"
+          filter="url(#ds)" style="paint-order:stroke">${tspans}</text>`;
+  }
+
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
     ${defs()}
     <!-- bottom scrim so captions/CTA stay legible over any photo -->
@@ -126,6 +151,8 @@ export async function buildChrome(story, cfg, outDir) {
     <!-- badge chip -->
     <rect x="${W - 340}" y="66" width="292" height="72" rx="36" fill="${badgeColor}"/>
     <text x="${W - 194}" y="115" font-family="${cfg.font}" font-size="38" font-weight="900" fill="#fff" text-anchor="middle">${esc(badge)}</text>
+    <!-- persistent headline (single/long-form only) -->
+    ${headlineSvg}
     <!-- source credit (bottom, above CTA) -->
     ${source ? `<text x="60" y="${H - 190}" font-family="${cfg.font}" font-size="30" fill="${BRAND.muted}">${source}</text>` : ''}
     <!-- hashtag chip + CTA -->
