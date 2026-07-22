@@ -21,7 +21,44 @@
 // Env: BUZZ_ENABLED, BUZZ_GEO (IN), BUZZ_HL (en-IN), BUZZ_MAX_TERMS (10),
 //      BUZZ_PER_TERM (5), BUZZ_EXTRA_QUERIES (comma list of always-on searches).
 
+import { readFileSync } from 'node:fs';
+
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36';
+
+// USER-CURATED KEYWORDS (keywords.txt at repo root). The user maintains this
+// file; every run each line is searched on Google News EQUAL-WEIGHT with the
+// auto Google-Trends terms (user's call: "both, equal weight"). This is the
+// reliable steering lever — a curated topic returns real events, whereas raw
+// Trends terms are noisy regional single-words. Format per line:
+//   "keyword"            → generic (triage categorises)
+//   "category: keyword"  → forces that desk
+//   "# comment" / blank  → ignored
+// Returns [{ q, category|null }]. Missing/empty file → [] (Trends still drives).
+// Disable with BUZZ_KEYWORDS_FILE= (empty).
+const VALID_CATS = new Set(['top', 'politics', 'business', 'world', 'sports', 'science', 'tech', 'entertainment', 'health', 'local']);
+function loadKeywordProbes(log = () => {}) {
+  const path = process.env.BUZZ_KEYWORDS_FILE ?? new URL('../../keywords.txt', import.meta.url).pathname;
+  if (!path) return [];
+  let text;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch {
+    return []; // no file → Trends-only, silently
+  }
+  const out = [];
+  for (const rawLine of text.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const m = line.match(/^([a-z]+):\s*(.+)$/i);
+    if (m && VALID_CATS.has(m[1].toLowerCase())) {
+      out.push({ q: m[2].trim(), category: m[1].toLowerCase() });
+    } else {
+      out.push({ q: line, category: null });
+    }
+  }
+  log('buzz.keywords', { file: path, probes: out.length });
+  return out;
+}
 
 // Channel-BRANDING/promo YouTube IDs some publishers declare in og:video /
 // twitter:player on EVERY article page — they're not the story's video and mismatch
@@ -90,20 +127,62 @@ async function resolveGoogleNewsUrl(gnewsUrl, timeoutMs = 8000) {
 // The trending SEARCH TERMS in a geo, right now. Google's newer /trending/rss path
 // (the older /trends/trendingsearches/daily/rss 404s — verified). Returns [] on
 // failure so the caller degrades to BUZZ_EXTRA_QUERIES only.
+// Generic/noise trend terms that pull junk (homepages/social links, not events).
+const TREND_GENERIC = /^(video|वीडियो|photos|images|wealth|news|live|today|watch|game|movie|result|results|score|scores)$/i;
+// UTILITY-SEARCH trends — people googling a tool/how-to, NOT a news event. These
+// spike constantly ("aadhaar download", "pan card", "ration card status", exam
+// results) and returned no real story → filter them out. (Live IN Trends is full
+// of these.) Matches the whole term OR an obvious utility phrase within it.
+const TREND_UTILITY = /\b(aadhaar|pan card|ration card|voter (id|list)|download|apply online|status check|admit card|answer key|hall ticket|result 20\d\d|scholarship|e-?shram|umang|digilocker|ipo gmp|login|password)\b/i;
+// LANGUAGE gate. Agyata's editions are World (English) and Bharat (Hindi). There is
+// NO Malayalam/Tamil/Kannada/Telugu/Bengali/Gujarati/Punjabi edition — yet raw IN
+// Google Trends is dominated by bare regional-script search terms (actor names, TV
+// serials, astrology in those scripts) whose searches return regional-language junk
+// this feed can't publish and the English editor mis-judges. So we KEEP only text
+// that is mostly Latin/English OR mostly Devanagari (Hindi/Marathi) and DROP other
+// Indic scripts. Devanagari range ऀ-ॿ; the dropped scripts are enumerated.
+// Bengali/Gurmukhi/Gujarati/Odia/Tamil/Telugu/Kannada/Malayalam letter ranges.
+const OTHER_INDIC_SRC = '[\\u0980-\\u09FF\\u0A00-\\u0A7F\\u0A80-\\u0AFF\\u0B00-\\u0B7F\\u0B80-\\u0BFF\\u0C00-\\u0C7F\\u0C80-\\u0CFF\\u0D00-\\u0D7F]';
+const OTHER_INDIC_G = new RegExp(OTHER_INDIC_SRC, 'g');
+function languageUsable(text) {
+  const t = (text || '').trim();
+  if (!t) return false;
+  const letters = t.replace(/[^\p{L}]/gu, ''); // count only letters (ignore digits/punct)
+  if (!letters) return true; // all digits/punct (e.g. a scoreline) — let other gates decide
+  const otherIndic = (letters.match(OTHER_INDIC_G) || []).length;
+  return otherIndic / letters.length < 0.3; // <30% non-Hindi-Indic script → usable
+}
+// A trend term is USABLE as a search seed only if it isn't generic/utility noise and
+// is in a language we publish (English or Hindi). This is why "ജോജു ജോര്ജ്" /
+// "மஹாஷனிமாற்றம்"-style regional trends — the bulk of raw IN Trends — stop leaking in.
+function trendUsable(term) {
+  const t = (term || '').trim();
+  if (t.length <= 2) return false;
+  if (TREND_GENERIC.test(t)) return false;
+  if (TREND_UTILITY.test(t)) return false;
+  if (!languageUsable(t)) return false;
+  return true;
+}
+// ARTICLE-level junk beyond the term filters: astrology/prediction (in EN or Hindi
+// transliteration — the term filter can't see these until the article title is back)
+// and TV-serial episode pages (soap-opera episodes, not news). Applied to every buzz
+// article title regardless of source.
+const ARTICLE_JUNK = /\b(horoscope|rashifal|rashi|zodiac|kundli|kundali|astrolog|shani|numerolog|tarot|panchang|lucky (number|colour|color))\b|\b(ep\.?\s*#?\d+|episode\s*\d+|full episode|written update|season\s*\d+\s*(launch|promo)?)\b/i;
+
 async function fetchTrendingTerms(opts) {
   const geo = opts.geo || 'IN';
   const xml = await getXml(`https://trends.google.com/trending/rss?geo=${encodeURIComponent(geo)}`).catch(() => null);
   if (!xml) { opts.log('buzz.trends_failed', { geo }); return []; }
   const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
-  // Drop generic/noise trending terms that pull junk (e.g. "video"/"वीडियो",
-  // "wealth", bare numbers) — they return homepages/social links, not news events.
-  const GENERIC = /^(video|वीडियो|photos|images|wealth|news|live|today|watch|game|movie|result|results|score|scores)$/i;
   const terms = [];
+  let dropped = 0;
   for (const [, block] of items) {
     const t = tag(block, 'title');
-    if (t && t.length > 2 && !GENERIC.test(t.trim())) terms.push(t);
+    if (!t) continue;
+    if (trendUsable(t)) terms.push(t);
+    else dropped++;
   }
-  opts.log('buzz.trends', { geo, terms: terms.length });
+  opts.log('buzz.trends', { geo, terms: terms.length, dropped });
   return terms;
 }
 
@@ -115,7 +194,7 @@ async function fetchTrendingTerms(opts) {
 // freshest, most-searched India stories with media attached. Junk/ad-ish trends
 // (lottery/jackpot/result/horoscope/exam-result/betting — user: "some ads, filter
 // out") are dropped. Returns Article[] tagged via='buzz'.
-const TREND_JUNK = /\b(lottery|jackpot|satta|matka|result today|results? today|admit card|answer key|hall ticket|horoscope|rashifal|betting|casino|coupon|promo code|sarkari result|recruitment|vacancy)\b/i;
+const TREND_JUNK = /\b(lottery|jackpot|satta|matka|result today|results? today|admit card|answer key|hall ticket|horoscope|rashifal|betting|casino|coupon|promo code|sarkari result|recruitment|vacancy|aadhaar download|pan card|ration card|voter (id|list)|apply online|status check|scholarship|digilocker)\b/i;
 
 // STALE-TEMPLATE URL filter — the fix for "Cricbuzz always shows very old
 // updates". Sports sites expose PERPETUAL template pages (live-scores, scorecards,
@@ -147,7 +226,7 @@ async function fetchTrendingArticles(opts) {
   const out = [];
   for (const [, block] of [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)]) {
     const term = tag(block, 'title');
-    if (!term || TREND_JUNK.test(term)) continue; // drop junk/ad trends up front
+    if (!term || TREND_JUNK.test(term) || !trendUsable(term)) continue; // drop junk/ad/regional trends up front
     const traffic = tag(block, 'ht:approx_traffic'); // e.g. "10000+"
     const trafficN = Number((traffic || '').replace(/[^\d]/g, '')) || 0;
     const newsItems = [...block.matchAll(/<ht:news_item>([\s\S]*?)<\/ht:news_item>/gi)];
@@ -159,7 +238,8 @@ async function fetchTrendingArticles(opts) {
       const img = tag(ni, 'ht:news_item_picture');
       const src = tag(ni, 'ht:news_item_source');
       if (!title || !url || !/^https?:\/\//i.test(url)) continue;
-      if (TREND_JUNK.test(title)) continue; // article-level junk filter
+      if (TREND_JUNK.test(title) || ARTICLE_JUNK.test(title)) continue; // article-level junk filter
+      if (!languageUsable(title)) continue; // non-EN/HI regional-script article
       if (isStaleTemplate(url, title)) continue; // drop perpetual scorecard/live-score pages
       out.push({
         title,
@@ -197,6 +277,12 @@ function parseNewsItems(xml, { category = 'top', buzzTerm = null, limit = 20 } =
     const sourceName = srcMatch ? decode(srcMatch[2]) : 'Google News';
     if (!title || !link) continue;
     if (isStaleTemplate(link, title)) continue; // drop perpetual scorecard/live-score pages
+    // Article-level junk: astrology/horoscope + TV-serial episode pages ("… EP #610",
+    // "written update") — a search term like a serial's actor pulls these; not news.
+    if (ARTICLE_JUNK.test(title) || TREND_JUNK.test(title)) continue;
+    // LANGUAGE: drop non-English/Hindi regional-script articles (no such edition).
+    // A regional term/serial returns Malayalam/Tamil headlines our feed can't use.
+    if (!languageUsable(title)) continue;
     // Skip non-article sources: social platforms + org homepages Google sometimes
     // surfaces (facebook/x/instagram/party sites) — not news events, pollute the pool.
     if (/(facebook|twitter|x|instagram|threads|tiktok|reddit)\.com|\.org$|bjp\.|inc\.in/i.test(sourceUrl)) continue;
@@ -433,6 +519,14 @@ export async function fetchBuzz(opts = {}) {
   const termCat = new Map();
   for (const t of [...trending.slice(0, maxTerms), ...extra]) termCat.set(t, null);
   if (withCategories) for (const p of DEFAULT_CATEGORY_PROBES) if (!termCat.has(p.q)) termCat.set(p.q, p.category);
+  // (2b) USER-CURATED KEYWORDS (keywords.txt) — searched EQUAL-WEIGHT with Trends
+  // (user: "both, equal weight"). Each carries its own desk when the line prefixed
+  // one (else null → triage categorises). This is the primary steering lever; the
+  // curated topic set is far cleaner than raw IN Trends terms. Off via
+  // BUZZ_KEYWORDS_FILE= (empty). A curated term overrides a same-string trend's
+  // null desk so the user's category wins.
+  const keywordProbes = process.env.BUZZ_KEYWORDS === '0' ? [] : loadKeywordProbes(log);
+  for (const p of keywordProbes) if (!termCat.has(p.q) || p.category) termCat.set(p.q, p.category);
   const terms = [...termCat.keys()];
 
   const CONC = Number(process.env.BUZZ_CONCURRENCY || 6);

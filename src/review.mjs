@@ -56,18 +56,39 @@ const NOVELTY_CHECK = process.env.VERIFY_NOVELTY !== '0';
 const VERIFY_MIN_SOURCE = Number(process.env.VERIFY_MIN_SOURCE || 160);
 if (!INGEST_URL || !INGEST_TOKEN) { console.error('missing INGEST_URL / NEWS_INGEST_TOKEN'); process.exit(1); }
 
+// The dedup REFERENCE SET — the already-published stories a new candidate is checked
+// against so we don't republish the same event. This was a SINGLE page/mode (the API
+// caps a page at 20 rows regardless of &limit, so ~40 total after cross-mode dedup);
+// a story that scrolled past that tiny window re-published as "new" (user: "same news
+// is repeating"). Now PAGINATED via the API's nextCursor for DEDUP_LOOKBACK_PAGES
+// pages/mode. At ~20 rows/page and the live publish rate (~100/30min across all
+// editions), 12 pages/mode ≈ the last ~1.5–2h — several buzz-cron cycles, so a story
+// that re-surfaces reworded within a couple hours is now caught by title-dedup, not
+// just the server's same-hashtag upsert. Bounded (2×pages calls) + best-effort: a
+// failed/empty page stops that mode's paging (keeps what it already has). The server
+// hashtag-upsert remains the deeper backstop for older re-surfacings.
 async function fetchPublished() {
   const out = [];
+  const pages = Number(process.env.DEDUP_LOOKBACK_PAGES || 12);
   try {
     for (const mode of ['latest', 'updated']) {
-      const r = await fetch(`${STORIES_URL}?mode=${mode}&limit=50`, { signal: AbortSignal.timeout(15000) });
-      if (!r.ok) continue;
-      const j = await r.json();
-      for (const s of j.items || []) out.push({ hashtag: s.hashtag, title: s.title, summary: s.summary || '' });
+      let cursor = '';
+      for (let page = 0; page < pages; page++) {
+        const url = `${STORIES_URL}?mode=${mode}&limit=50${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`;
+        const r = await fetch(url, { signal: AbortSignal.timeout(15000) });
+        if (!r.ok) break;
+        const j = await r.json();
+        const items = j.items || [];
+        for (const s of items) out.push({ hashtag: s.hashtag, title: s.title, summary: s.summary || '' });
+        cursor = j.nextCursor || '';
+        if (!cursor || items.length === 0) break; // no more pages
+      }
     }
   } catch (e) { console.log('warn: dedup reference fetch failed:', e.message); }
   const seen = new Set();
-  return out.filter((s) => (seen.has(s.hashtag) ? false : (seen.add(s.hashtag), true)));
+  const deduped = out.filter((s) => (seen.has(s.hashtag) ? false : (seen.add(s.hashtag), true)));
+  console.log(`dedup reference: ${deduped.length} published stories (${pages} pages/mode)`);
+  return deduped;
 }
 
 async function post(body) {

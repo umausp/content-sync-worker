@@ -1,0 +1,63 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  AGYATA BUZZ KEYWORDS  —  you edit this; the pipeline fetches the news.
+# ─────────────────────────────────────────────────────────────────────────
+#
+#  Every run, each line here is searched on Google News (en-IN) and the
+#  freshest, corroborated articles are pulled in — EQUAL WEIGHT with whatever
+#  Google Trends is showing. This is how you steer the feed toward the topics
+#  you actually care about, instead of relying on Trends' noisy auto terms.
+#
+#  FORMAT (one topic per line):
+#     keyword or phrase                  → generic (auto-categorised by triage)
+#     category: keyword or phrase        → force a desk (see categories below)
+#     # a comment                        → ignored
+#     (blank line)                       → ignored
+#
+#  You can use Google-News search operators: OR, quotes, minus.
+#     entertainment: "box office" India -prediction -"advance booking"
+#
+#  VALID CATEGORIES: top politics business world sports science tech
+#                    entertainment health local
+#
+#  TIP: prefer SPECIFIC topics/entities over vague single words. "Supreme
+#  Court verdict" beats "court"; "ISRO launch" beats "space". Specific
+#  phrases return real events; vague words return junk.
+#
+#  Changes take effect on the next buzz run (no redeploy needed — the file
+#  is read at runtime). Disable this file entirely with BUZZ_KEYWORDS_FILE=.
+# ─────────────────────────────────────────────────────────────────────────
+
+# ── Politics / governance ──────────────────────────────────────────────
+politics: India Parliament OR Lok Sabha OR Rajya Sabha session
+politics: Supreme Court India verdict OR judgment
+politics: India election OR poll results
+politics: Modi government policy OR cabinet decision
+
+# ── Business / markets ─────────────────────────────────────────────────
+business: Sensex Nifty India stock market
+business: India IPO OR quarterly results OR earnings
+business: RBI OR India economy OR GDP OR inflation
+
+# ── World ──────────────────────────────────────────────────────────────
+world: world news today major
+world: US OR China OR Russia OR Ukraine India relations
+
+# ── Sports ─────────────────────────────────────────────────────────────
+sports: India cricket match result OR series
+sports: IPL OR ICC OR BCCI
+sports: India football OR badminton OR olympics
+
+# ── Science / space ────────────────────────────────────────────────────
+science: ISRO launch OR mission OR satellite
+science: India science OR research breakthrough
+
+# ── Tech ───────────────────────────────────────────────────────────────
+tech: iPhone OR Android OR smartphone launch India
+tech: AI OR OpenAI OR Google OR startup India
+
+# ── Entertainment (confirmed releases/reviews — not pure hype) ──────────
+entertainment: OTT release this week India Netflix OR "Prime Video" OR JioHotstar
+entertainment: Bollywood OR "South film" release OR review
+
+# ── Health ─────────────────────────────────────────────────────────────
+health: India health OR disease OR vaccine OR hospital
