@@ -185,14 +185,22 @@ export async function extractArticle(url, html) {
   let pubDomain = '';
   if (hero) { try { pubDomain = baseDomain(new URL(hero).hostname); } catch { /* keep '' */ } }
 
-  // Body: JSON-LD → Readability → og:description floor.
-  const primary = jsonLdArticle(h) || (await readabilityArticle(h, url));
+  // Body: JSON-LD is the cleanest PROSE, so prefer it for text. But JSON-LD often carries
+  // 0-1 images (e.g. FOX Sports exposes articleBody but an empty `image`), so we DON'T let
+  // it short-circuit the IMAGE harvest — we ALSO run Readability for the in-body <img> set.
+  // That's why a JSON-LD page used to yield only its og:image: Readability never ran. Now
+  // text = JSON-LD (if good) else Readability else og:description; images = the UNION of
+  // both extractors' figures, still gated to the publisher's domain.
+  const ld = jsonLdArticle(h);
+  const read = await readabilityArticle(h, url); // run REGARDLESS so we get its in-body images
+  const primary = ld || read;
   const text = primary?.text || ogDescription(h);
   if (!text) return null;
 
-  // Images: hero first, then the winner's images, gated to the publisher's own domain +
-  // ad-filtered. Deduped, capped. Empty is acceptable (caller falls back to brand card).
-  const raw = [hero, ...(primary?.images || [])];
+  // Images: hero first, then EVERY figure both extractors found (JSON-LD `image` + the
+  // Readability in-body <img> set), gated to the publisher's own domain + ad-filtered.
+  // Deduped, capped. Empty is acceptable (caller falls back to brand card).
+  const raw = [hero, ...(ld?.images || []), ...(read?.images || [])];
   const images = [];
   for (const u of raw) {
     const ok = acceptImage(u, pubDomain);
