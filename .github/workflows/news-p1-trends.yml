@@ -1,0 +1,158 @@
+name: news-p1-trends
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PIPELINE 1 of 2 — TRENDS. (User: "pick the trending topic from X ... and publish
+# with google news etc.") The fast engagement feed:
+#   X (Twitter) trending board (trends24.in) — the PRIMARY signal — merged with
+#   Google Trends "searched right now" + always-on watch terms, each hot TERM
+#   resolved to its freshest real PUBLISHER article via Google News search, then
+#   run through the SAME synth → gate → publish path as Pipeline 2.
+# We NEVER show X/Twitter content itself — only the professionally-reported news a
+# trend points at (outlet's own text + image), which is monetization-safe. This is
+# SOURCE_MODE=buzz (skips RSS+GDELT entirely, so it's quick). Pipeline 2 (news-p2-rss)
+# carries the deep RSS coverage on an offset clock. Both share the cross-run dedup
+# ledger (/news/dedup/claim, web: namespace) so the same event never publishes twice.
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker
+# (workflow_dispatch, every 30 min at :00/:30 UTC). GitHub's `schedule:` was REMOVED
+# (best-effort, dropped ticks). To change cadence edit WORKFLOWS in
+# agyata/services/cron-pinger/src/index.ts — NOT here. workflow_dispatch only; never
+# on pull_request (a fork PR must not read secrets).
+# ─────────────────────────────────────────────────────────────────────────────
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: news-p1-trends
+  cancel-in-progress: false # never kill mid-publish; idempotent (dedup vs already-published + claim ledger) → overlap safe
+
+permissions:
+  contents: read
+
+env:
+  SOURCE_MODE: buzz # ← the switch: ONLY the trend engine (X trends + Google Trends → Google News); no RSS/GDELT
+  INGEST_URL: ${{ secrets.INGEST_URL }}
+  STORIES_URL: ${{ secrets.STORIES_URL }}
+  NEWS_PUSH: '1' # fire a breaking-news lockscreen push on breaking new-story publish
+  NEWS_PUSH_MAX: '3' # at most 3 alerts per run so a burst can't spam users
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  # CROSS-RUN DEDUP CLAIM — atomically claim each NEW story's key (web: namespace) in
+  # the shared D1 ledger before publishing, so Pipeline 1 + Pipeline 2 (offset crons,
+  # no shared memory) can never publish the same event as two cards. Endpoint derived
+  # from INGEST_URL (/ingest → /dedup/claim); off via NEWS_DEDUP_CLAIM=0.
+  NEWS_DEDUP_CLAIM: '1'
+  CLAIM_WINDOW_H: '2'
+  # Same free-first provider ladder + strict fail-fast router as Pipeline 2.
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: qwen2.5:3b
+  # TREND ENGINE config.
+  # X (Twitter) trending board — the PRIMARY Pipeline-1 signal. trends24.in mirror, no
+  # auth. BUZZ_X_TRENDS=1 (on), BUZZ_X_GEO picks the country board, BUZZ_X_MAX_TERMS
+  # caps how many X terms we expand into Google News searches.
+  BUZZ_X_TRENDS: '1'
+  BUZZ_X_GEO: 'IN'
+  BUZZ_X_MAX_TERMS: '12'
+  # Google Trends + watch terms fill behind X (user: "keep google trends rss step").
+  BUZZ_GEO: 'IN'
+  BUZZ_HL: 'en-IN'
+  BUZZ_MAX_TERMS: '12' # top-N Google-Trends terms
+  BUZZ_PER_TERM: '5' # articles per term/probe
+  BUZZ_CATEGORIES: '1' # per-category trend probes (keeps every desk fresh)
+  # IMAGES: resolve each GNews link → real publisher URL → og:image (GNews serves none).
+  BUZZ_RESOLVE: '1'
+  BUZZ_RESOLVE_MAX: '220'
+  BUZZ_RESOLVE_CONCURRENCY: '10'
+  # RECENCY-FIRST ranking (trends are an engagement feed): amplify freshness, cap the
+  # corroboration bonus so a 1h story beats a 22h one.
+  FRESH_WEIGHT: '3'
+  CORR_CAP: '2'
+  # SYNTH — the trend pool is small (~60-80 articles), so synth all of it.
+  SYNTH_MIN_SCORE: '5'
+  SYNTH_HARD_MAX: '40'
+  SYNTH_HOSTED_MAX: '80'
+  SYNTH_MIN_IMPORTANCE: '2' # trending items are inherently interesting; lower the synth bar
+  SYNTH_BATCH: '8'
+  SYNTH_TIMEOUT_MS: '150000'
+  SYNTH_BUDGET_MS: '900000' # 15-min budget
+  MIN_IMPORTANCE: '2'
+  # PUBLISH — a trending item is engagement-worthy even single-source (the trend IS the
+  # signal), so the bar is looser than the corroboration-heavy RSS pipeline.
+  PUBLISH_MIN_SCORE: '6'
+  PUBLISH_MIN_IMPORTANCE: '2'
+  PUBLISH_MIN_CORROBORATION: '1'
+  PUBLISH_SOLO_IMPORTANCE: '3'
+  MAX_AGE_H: '12' # trends must be FRESH — recent news only
+  VERIFY_FAITHFUL: '1'
+  VERIFY_BUDGET_MS: '180000'
+  # Semantic dedup (embedding model) — collapse the same trend's reworded coverage into
+  # one card + accurate multi-source attribution.
+  EMBED_DEDUP: '1'
+  EMBED_MODEL: 'Xenova/bge-base-en-v1.5'
+  EMBED_SIM_THRESHOLD: '0.80'
+  EMBED_VERIFY: '1'
+  EMBED_VERIFY_MIN: '0.4'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm deps (transformers.js for semantic dedup)
+        run: npm install --no-audit --no-fund
+
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-embed-${{ env.EMBED_MODEL || 'bge-base-en-v1.5' }}-v1
+
+      - name: Install Ollama
+        timeout-minutes: 3
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL }}-v2
+
+      - name: Start Ollama + pull model
+        timeout-minutes: 8
+        run: |
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "$OLLAMA_MODEL"
+
+      - name: Warm Ollama (best-effort, NON-fatal)
+        timeout-minutes: 4
+        continue-on-error: true
+        run: |
+          curl -sf http://127.0.0.1:11434/api/generate \
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}" >/dev/null || true
+          echo "ollama warm attempted (hosted providers carry the run)"
+
+      - name: Run PIPELINE 1 (X trends + Google Trends → Google News → synth → gate → publish)
+        timeout-minutes: 18
+        run: node src/review.mjs

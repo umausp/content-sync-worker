@@ -1,0 +1,138 @@
+name: news-p2-rss
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PIPELINE 2 of 2 — RSS. (User: "pipeline 2, fetch from latest RSS and GkG list.")
+# The DEEP, corroborated coverage feed: curated publisher RSS (12 India outlets, clean
+# titles + images + categories) → cluster → corroboration → LLM synth → editorial gate
+# → publish. SOURCE_MODE=rss (RSS ONLY for now — GDELT/GKG is DEFERRED per the plan;
+# re-enable later by adding GDELT_ENABLED=1 + SOURCE_MODE=both). Pipeline 1
+# (news-p1-trends) carries the fast X/Google-Trends engagement feed on an offset clock.
+# Both share the cross-run dedup ledger (/news/dedup/claim, web: namespace) so the same
+# event never publishes twice across the two pipelines.
+#
+# CADENCE: driven EXTERNALLY by the agyata-cron-pinger Cloudflare Worker
+# (workflow_dispatch, every 30 min at :20/:50 UTC — OFFSET from Pipeline 1's :00/:30 so
+# the two don't collide and the claim window covers both). GitHub's `schedule:` was
+# REMOVED (best-effort, dropped ticks). To change cadence edit WORKFLOWS in
+# agyata/services/cron-pinger/src/index.ts — NOT here. workflow_dispatch only; never on
+# pull_request (a fork PR must not read secrets).
+# ─────────────────────────────────────────────────────────────────────────────
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: news-p2-rss
+  cancel-in-progress: false # never kill mid-publish; idempotent (dedup vs already-published + claim ledger) → overlap safe
+
+permissions:
+  contents: read
+
+env:
+  SOURCE_MODE: rss # ← the switch: curated publisher RSS only (GDELT/GKG deferred)
+  INGEST_URL: ${{ secrets.INGEST_URL }}
+  STORIES_URL: ${{ secrets.STORIES_URL }}
+  NEWS_PUSH: '1' # fire a breaking-news lockscreen push on breaking new-story publish
+  NEWS_PUSH_MAX: '2' # deep pipeline: max 2 alerts/run
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  # CROSS-RUN DEDUP CLAIM — see Pipeline 1. Same shared ledger + web: namespace so an
+  # RSS story can't duplicate one Pipeline 1 already published (and vice-versa).
+  NEWS_DEDUP_CLAIM: '1'
+  CLAIM_WINDOW_H: '2'
+  # ── LLM PROVIDER LADDER — FREE fast providers first, PAID OpenAI last (tight cap),
+  #    local Ollama last-resort. A provider is skipped if its key secret is absent. ──
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '80'
+  OLLAMA_MODEL: qwen2.5:3b
+  # SYNTH — synth the top events by score; the tail gets extractive (no-LLM) treatment.
+  SYNTH_MIN_SCORE: '6'
+  SYNTH_HARD_MAX: '48'
+  SYNTH_HOSTED_MAX: '90'
+  SYNTH_MIN_IMPORTANCE: '3' # notable+ to earn the expensive LLM rewrite
+  SYNTH_BATCH: '8'
+  SYNTH_TIMEOUT_MS: '150000'
+  SYNTH_BUDGET_MS: '1200000' # 20-min budget
+  MIN_IMPORTANCE: '3'
+  # PUBLISH — corroboration-first (deep news): a NEW story needs ≥2 outlets unless it's
+  # a strong single-source scoop.
+  PUBLISH_MIN_SCORE: '11'
+  PUBLISH_MIN_IMPORTANCE: '4'
+  PUBLISH_MIN_CORROBORATION: '2'
+  MAX_AGE_H: '36'
+  VERIFY_FAITHFUL: '1'
+  VERIFY_BUDGET_MS: '240000'
+  PER_FEED: '15'
+  # GDELT/GKG DEFERRED (plan: "RSS now, GKG next"). Left OFF; re-enable with
+  # GDELT_ENABLED=1 + SOURCE_MODE=both when the GKG source is added back.
+  GDELT_ENABLED: '0'
+  # SEMANTIC DEDUP — catches "same event, different words" the word-overlap pass misses.
+  EMBED_DEDUP: '1'
+  EMBED_MODEL: 'Xenova/bge-base-en-v1.5'
+  EMBED_SIM_THRESHOLD: '0.80'
+  EMBED_VERIFY: '1'
+  EMBED_VERIFY_MIN: '0.4'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm deps (transformers.js for semantic dedup)
+        run: npm install --no-audit --no-fund
+
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-embed-${{ env.EMBED_MODEL || 'bge-base-en-v1.5' }}-v1
+
+      - name: Install Ollama
+        timeout-minutes: 3
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL }}-v2
+
+      - name: Start Ollama + pull model
+        timeout-minutes: 8
+        run: |
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          echo "pulling $OLLAMA_MODEL ..."
+          ollama pull "$OLLAMA_MODEL"
+          echo "installed models:"; ollama list
+
+      - name: Warm Ollama (best-effort, NON-fatal)
+        timeout-minutes: 4
+        continue-on-error: true
+        run: |
+          RESP=$(curl -sf http://127.0.0.1:11434/api/generate \
+            -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Write one sentence of news.\",\"stream\":false,\"keep_alive\":\"30m\",\"options\":{\"num_predict\":40}}") || true
+          echo "$RESP" | grep -qi '"response"' && echo "ollama warm OK" || echo "ollama warm skipped (hosted providers carry the run)"
+
+      - name: Run PIPELINE 2 (RSS → cluster → corroborate → synth → gate → publish)
+        timeout-minutes: 24
+        run: node src/review.mjs

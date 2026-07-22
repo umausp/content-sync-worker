@@ -186,6 +186,55 @@ async function fetchTrendingTerms(opts) {
   return terms;
 }
 
+// X (TWITTER) TRENDING TERMS — Pipeline 1's PRIMARY signal (user: "pick the trending
+// topic from X ... and publish with google news etc"). trends24.in is a long-running
+// free mirror of X's own "Trending" panel (no key, no auth). Each X trend is just a
+// TERM/hashtag ("Netanyahu", "#Budget2026") — NOT a story — so, exactly like the
+// Google-Trends path, we DON'T show any X/Twitter content. We hand each hot term to
+// the SAME term→GoogleNews-search→resolve→og-image chain the rest of buzz uses, so a
+// trend surfaces as the professionally-reported publisher article it points at
+// (monetization-safe: outlet's OWN text + image, never a tweet/avatar/screenshot).
+// trends24 uses country SLUGS; map the buzz geo. Returns [term, …]; [] on any failure
+// so Pipeline 1 degrades to Google Trends + watch terms. Off via BUZZ_X_TRENDS=0.
+const X_GEO_SLUG = {
+  IN: 'india', US: 'united-states', GB: 'united-kingdom', worldwide: 'worldwide',
+};
+// Reuse the trend-term quality gate (generic/utility/regional-script) — an X board is
+// also full of fandom/meme/utility tags a Google-News lookup would waste a call on.
+async function fetchXTrendingTerms(opts) {
+  const geo = (process.env.BUZZ_X_GEO || opts.geo || 'IN').trim();
+  const slug = X_GEO_SLUG[geo] || geo.toLowerCase();
+  let html = '';
+  try {
+    const r = await fetch(`https://trends24.in/${slug}/`, {
+      headers: { 'user-agent': UA, accept: 'text/html,*/*' },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!r.ok) { opts.log('buzz.x_trends_failed', { slug, status: r.status }); return []; }
+    html = await r.text();
+  } catch (e) {
+    opts.log('buzz.x_trends_failed', { slug, err: e.message });
+    return [];
+  }
+  // The FIRST <ol class=trend-card__list> is the most-recent snapshot (served attrs are
+  // unquoted, so the class match tolerates optional quotes). Fall back to whole doc.
+  const card = html.match(/<ol class="?trend-card__list"?>([\s\S]*?)<\/ol>/i);
+  const scope = card ? card[1] : html;
+  const out = [];
+  const seen = new Set();
+  let dropped = 0;
+  for (const m of scope.matchAll(/<a href="https:\/\/twitter\.com\/search\?q=[^"]*"\s+class="?trend-link"?>([^<]+)<\/a>/gi)) {
+    const term = decode(m[1]).replace(/^#/, '').trim(); // drop the leading # so GNews searches the phrase
+    const k = term.toLowerCase();
+    if (!term || seen.has(k)) continue;
+    if (!trendUsable(term)) { dropped++; continue; } // same generic/utility/regional gate as Google Trends
+    seen.add(k);
+    out.push(term);
+  }
+  opts.log('buzz.x_trends', { slug, terms: out.length, dropped });
+  return out;
+}
+
 // Trends RSS carries FAR more than the term string: each <item> has 1-3
 // <ht:news_item> blocks with a REAL publisher URL + title + source + a real IMAGE
 // (<ht:news_item_picture>), plus the term's <ht:approx_traffic> (search volume).
@@ -513,11 +562,16 @@ export async function fetchBuzz(opts = {}) {
   // the Trends RSS (fresher + images FREE, no search/resolve). Off via BUZZ_TREND_ARTICLES=0.
   const trendArtP = process.env.BUZZ_TREND_ARTICLES === '0' ? Promise.resolve([]) : fetchTrendingArticles(o).catch(() => []);
 
-  // (2) Trend-driven: Google Trends "searched now" terms + always-on extras +
-  // per-category probes → News search each. termCat maps term→desk.
+  // (2) Trend-driven: X (Twitter) trending terms + Google Trends "searched now" terms +
+  // always-on extras + per-category probes → News search each. termCat maps term→desk.
+  // X TRENDS LEAD (user: Pipeline 1 = "pick the trending topic from X"): we prepend the
+  // live X board so its hottest terms are searched first; Google Trends + watch terms
+  // fill behind it. Off via BUZZ_X_TRENDS=0. Both are the SAME free term→GNews chain.
+  const xTrends = process.env.BUZZ_X_TRENDS === '0' ? [] : await fetchXTrendingTerms(o).catch(() => []);
+  const maxXTerms = Number(process.env.BUZZ_X_MAX_TERMS || 12);
   const trending = await fetchTrendingTerms(o);
   const termCat = new Map();
-  for (const t of [...trending.slice(0, maxTerms), ...extra]) termCat.set(t, null);
+  for (const t of [...xTrends.slice(0, maxXTerms), ...trending.slice(0, maxTerms), ...extra]) termCat.set(t, null);
   if (withCategories) for (const p of DEFAULT_CATEGORY_PROBES) if (!termCat.has(p.q)) termCat.set(p.q, p.category);
   // (2b) USER-CURATED KEYWORDS (keywords.txt) — searched EQUAL-WEIGHT with Trends
   // (user: "both, equal weight"). Each carries its own desk when the line prefixed
@@ -586,7 +640,7 @@ export async function fetchBuzz(opts = {}) {
     log('buzz.resolve', { attempted: targets.length, resolved, withImage: withImg, withVideo: withVid });
   }
 
-  log('buzz.done', { terms: terms.length, trending: trending.length, extra: extra.length, articles: deduped.length, withImage: deduped.filter((a) => a.imageUrl).length, ms: Date.now() - t0 });
+  log('buzz.done', { terms: terms.length, xTrends: xTrends.length, trending: trending.length, extra: extra.length, articles: deduped.length, withImage: deduped.filter((a) => a.imageUrl).length, ms: Date.now() - t0 });
   return deduped;
 }
 

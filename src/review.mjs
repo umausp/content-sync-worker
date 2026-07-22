@@ -24,6 +24,46 @@ import { normalizeCandidate, runGates } from './gates.mjs';
 const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
 const STORIES_URL = process.env.STORIES_URL || INGEST_URL.replace(/\/ingest$/, '/stories');
+// CROSS-RUN DEDUP CLAIM — the atomic duplicate-killer (user: "same kinds of news are
+// publishing"). Pipeline 1 (X-trends+GNews) and Pipeline 2 (RSS) run as SEPARATE,
+// offset GitHub Actions jobs with ZERO shared memory, so both can independently pick
+// the same hot event and publish it twice. Before posting a NEW story we atomically
+// CLAIM its normalised key in a shared D1 ledger (INSERT … ON CONFLICT DO NOTHING via
+// /news/dedup/claim); granted → we publish, taken → another run already did, so we
+// skip. This is the SAME ledger + endpoint the YouTube renderers use — but the website
+// namespaces its keys `web:` so the two domains never cross-block (a website publish
+// must NOT stop a Short from covering the same event, and vice-versa). Off by omitting
+// the token; window via CLAIM_WINDOW_H (default 2h — covers both offset crons + a slow
+// overlapping run). The server hashtag-upsert + fetchPublished remain deeper backstops.
+const CLAIM_URL = process.env.CLAIM_URL || INGEST_URL.replace(/\/ingest$/, '/dedup/claim');
+const CLAIM_WINDOW_H = Number(process.env.CLAIM_WINDOW_H || 2);
+const CLAIM_ENABLED = process.env.NEWS_DEDUP_CLAIM !== '0' && !!CLAIM_URL && !!INGEST_TOKEN;
+const CLAIM_RUN_ID = `${process.env.EDITION || 'world'}-${process.env.SOURCE_MODE || 'both'}`;
+// Word-overlap normalisation — MUST match the shorts' normKey (build_short.mjs) so the
+// two domains key the same event identically inside their own namespaces.
+function normKey(t) {
+  return String(t || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+}
+// Atomically claim a NEW story's key. Returns true if THIS run may publish it, false if
+// another run within the window already claimed it. Fail-OPEN (true) on any error/no
+// key — the claim is a de-dup optimisation, never a publish blocker (fetchPublished +
+// the server's hashtag-upsert still guard correctness if the ledger is unavailable).
+async function claimNewStory(title) {
+  if (!CLAIM_ENABLED) return true;
+  const key = normKey(title);
+  if (!key) return true; // non-Latin (Hindi) or too-short title → nothing to key on
+  try {
+    const r = await fetch(CLAIM_URL, {
+      method: 'POST',
+      headers: { authorization: `Bearer ${INGEST_TOKEN}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ keys: [`web:${key}`], runId: CLAIM_RUN_ID, windowHours: CLAIM_WINDOW_H }),
+      signal: AbortSignal.timeout(12000),
+    });
+    if (!r.ok) return true; // endpoint down → don't block publishing
+    const j = await r.json();
+    return Array.isArray(j.granted) && j.granted.includes(`web:${key}`);
+  } catch { return true; }
+}
 // Objective significance floor — the PRIMARY publish signal (score = source-rank
 // + freshness + corroboration×3). ~11 = a fresh mid-rank story with 1 corroborator
 // or a top desk alone; well-corroborated events score much higher. Tune per feed.
@@ -280,9 +320,19 @@ async function main() {
     const body = toIngestBody(c);
     if (match) {
       // (Novelty already checked above — a matched story here is a real development.)
+      // Updates to a LIVE thread bypass the claim ledger: appending a development to an
+      // existing story is idempotent (same hashtag) and never spawns a duplicate card.
       body.hashtag = match.hashtag;
       const r = await post(body);
       if (r.ok) { updated++; acceptedTitles.push(c.title); console.log(`  ↑ update #${match.hashtag} ← ${c.title.slice(0, 44)}`); }
+      continue;
+    }
+    // CROSS-RUN CLAIM — this is a genuinely NEW story. Atomically claim its key so an
+    // overlapping/offset pipeline run can't publish the same event as a second card.
+    // Last gate before the POST (cheap kills already ran); fail-open if the ledger is down.
+    if (!(await claimNewStory(c.title))) {
+      batchDup++; bump(reasons, 'cross_run_claimed');
+      console.log(`  ⊘ claimed-by-other-run ${c.title.slice(0, 44)}`);
       continue;
     }
     const r = await post(body);
