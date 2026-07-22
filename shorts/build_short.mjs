@@ -23,7 +23,7 @@ import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
 import { resolveBackground, resolveBackgrounds, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
-import { buildWorldRoundup, buildTrendingStories } from './world_feeds.mjs';
+import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -121,7 +121,7 @@ async function gatherStories(cfg) {
     // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
     // brief (was gated to single/long-form, leaving the roundup thin → "content is very
     // less"). Applies to all formats now.
-    const [round, trending] = await Promise.all([
+    const [round, gtrends, xtrends] = await Promise.all([
       buildWorldRoundup({
         maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
         perSlot,
@@ -133,14 +133,24 @@ async function gatherStories(cfg) {
       // DEEPER pool per geo (many trends are thin/paywalled and get filtered) so there's a
       // real set to rank by heat and lead the Short with the hottest survivor.
       buildTrendingStories({ perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+      // X / TWITTER (US + GB): what's trending on X right now (user: "latest trending
+      // topics from X: Desktop"). Read from the live public X trend board, each hot term
+      // resolved to its freshest matching publisher article + the outlet's OWN image — we
+      // never surface X posts/avatars themselves (monetization/copyright). Off via
+      // WORLD_X_TRENDS=0. SINGLE mode probes a deeper pool to find a lead-worthy survivor.
+      process.env.WORLD_X_TRENDS === '0'
+        ? Promise.resolve([])
+        : buildXTrendingStories({ perGeo: SINGLE ? 4 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
     ]);
+    // Merge the two live-buzz sources (X first — it's the freshest social pulse), deduped
+    // by title so the SAME event trending on both X and Google Trends counts once.
+    const trending = mergeByTitle(xtrends, gtrends);
     // MERGE — mode-aware ordering (fixes "why is it always Andy Burnham?": a single Short
-    // was always merged[0] = the curated POLITICS slot #1, so Google-Trends stories never
-    // led):
-    //   • SINGLE  → lead with the HOTTEST genuinely-trending story (Google Trends, sorted
-    //     by search volume). That's literally "what USA/UK is searching right now" — the
-    //     highest-retention pick, and it changes every couple of hours so the channel
-    //     isn't stuck on one topic. Curated stories back it up if trends are unavailable.
+    // was always merged[0] = the curated POLITICS slot #1, so trending stories never led):
+    //   • SINGLE  → lead with the HOTTEST genuinely-trending story (X + Google Trends,
+    //     ranked by heat). That's literally "what's trending right now" — the highest-
+    //     retention pick, and it rotates every couple of hours so the channel isn't stuck
+    //     on one topic. Curated stories back it up if the trend sources are unavailable.
     //   • LONGFORM/roundup → curated categories lead (so all 9 are covered), trends fill.
     const merged = SINGLE
       ? mergeByTitle(trending, round)

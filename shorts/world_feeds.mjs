@@ -461,6 +461,198 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
   });
 }
 
+// ─── X / TWITTER trending topics (user: "latest trending topics from X: Desktop") ───
+// X killed its free trends API, so we read the LIVE public X trend board for a geo from
+// trends24.in (a long-running free mirror of X's own "Trending" panel — no key, no auth).
+// Each X trend is just a TERM/hashtag (#XMen97, "Netanyahu"), NOT a story — so, exactly
+// like the Google-Trends path, we resolve each hot term to a REAL, fresh publisher
+// article via Google News search, then enrichSummary pulls the OUTLET'S OWN og:image +
+// body prose. We NEVER show X/Twitter content itself (no embeds, no user photos) — only
+// the professionally-reported news the trend points at, which is monetization-safe.
+const X_GEOS = (process.env.WORLD_X_GEOS || 'US,GB').split(',').map((g) => g.trim()).filter(Boolean);
+// trends24 uses country SLUGS, not ISO codes. Map the geos we use; unknown → lowercased.
+const X_GEO_SLUG = { US: 'united-states', GB: 'united-kingdom', IN: 'india', CA: 'canada', AU: 'australia' };
+const X_GEO_HL = { US: 'en-US', GB: 'en-GB', IN: 'en-IN', CA: 'en-CA', AU: 'en-AU' };
+// Fandom/meme/utility trends that never resolve to a real news event — X's board is full
+// of them (stan armies, K-pop tags, "Good Morning", game titles). Skip so we don't waste
+// a Google-News lookup and never lead a Short with noise.
+const X_JUNK = /^(good (morning|night|wednesday|monday|tuesday|thursday|friday|saturday|sunday)|happy \w+|gm|gn|rip|lmao|tbt|fyp|day\s?\d+)$/i;
+// Keep mostly-Latin trends (World channel is English); drop CJK/other-script fandom spam.
+function xTermUsable(term) {
+  const s = String(term || '').replace(/^#/, '').trim();
+  if (s.length < 3 || X_JUNK.test(s)) return false;
+  const letters = s.replace(/[^\p{L}]/gu, '');
+  if (letters) {
+    const latin = (letters.match(/\p{Script=Latin}/gu) || []).length;
+    if (latin / letters.length < 0.7) return false; // <70% Latin → not our language
+  }
+  return true;
+}
+// The live X "Trending" board for a geo, in trend-rank order (hottest first). Parses the
+// newest snapshot card. Returns [term, term, …]; [] on any failure (source degrades to
+// the Google-Trends + editorial roundup).
+async function fetchXTrends(geo) {
+  const slug = X_GEO_SLUG[geo] || geo.toLowerCase();
+  let html = '';
+  try {
+    const r = await fetch(`https://trends24.in/${slug}/`, {
+      headers: { 'user-agent': UA, accept: 'text/html,*/*' },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!r.ok) return [];
+    html = await r.text();
+  } catch {
+    return [];
+  }
+  // The FIRST <ol class=trend-card__list> is the most-recent snapshot (attrs are unquoted
+  // in the served HTML, so the class match tolerates optional quotes).
+  const card = html.match(/<ol class="?trend-card__list"?>([\s\S]*?)<\/ol>/i);
+  const scope = card ? card[1] : html;
+  const out = [];
+  const seen = new Set();
+  for (const m of scope.matchAll(/<a href="https:\/\/twitter\.com\/search\?q=[^"]*"\s+class="?trend-link"?>([^<]+)<\/a>/gi)) {
+    const term = decode(m[1]).trim();
+    const k = term.toLowerCase();
+    if (!term || seen.has(k) || !xTermUsable(term)) continue;
+    seen.add(k);
+    out.push(term);
+  }
+  return out;
+}
+
+// Search Google News for a term's freshest real articles (last 2 days), strip the
+// " - Publisher" suffix, drop thin (video/live) pages. Returns [{title,url,source}].
+async function newsSearch(term, geo, hl) {
+  const ceid = `${geo}:${hl.split('-')[0]}`;
+  const url =
+    `https://news.google.com/rss/search?q=${encodeURIComponent(`${term} when:2d`)}` +
+    `&hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(geo)}&ceid=${encodeURIComponent(ceid)}`;
+  let xml = '';
+  try {
+    const r = await fetch(url, {
+      headers: { 'user-agent': UA, accept: 'application/rss+xml,application/xml,*/*' },
+      signal: AbortSignal.timeout(12000),
+    });
+    if (!r.ok) return [];
+    xml = await r.text();
+  } catch {
+    return [];
+  }
+  const items = [];
+  for (const [, block] of xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)) {
+    const rawTitle = decode((block.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || '');
+    const link = decode((block.match(/<link>([\s\S]*?)<\/link>/i) || [])[1] || '').trim();
+    const source = decode((block.match(/<source[^>]*>([\s\S]*?)<\/source>/i) || [])[1] || '').trim();
+    const title = rawTitle.replace(/\s+-\s+[^-]+$/, '').trim(); // drop trailing " - Source"
+    if (title && /^https?:\/\//i.test(link) && !isThinUrl(link)) items.push({ title, url: link, source });
+  }
+  return items;
+}
+// An article is on-topic for a trend only if the trend term (minus '#') actually appears
+// in the headline — kills the "Thor → unrelated Bachelor story" mismatch where a bare
+// word matched a coincidental article.
+function titleMatchesTerm(term, title) {
+  const t = term.replace(/^#/, '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const T = String(title).toLowerCase();
+  if (!t) return false;
+  if (t.includes(' ')) return T.includes(t); // multi-word phrase → substring
+  return new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(T); // whole word
+}
+// Resolve a Google News RSS redirect (news.google.com/rss/articles/<id>) to the REAL
+// publisher URL — the article page carries a signature the batchexecute endpoint needs.
+// enrichSummary then pulls the outlet's og:image + prose from the real page. Best-effort.
+async function resolveGoogleNewsUrl(gnewsUrl) {
+  try {
+    const m = gnewsUrl.match(/\/articles\/([^?]+)/);
+    if (!m) return /^https?:\/\/(?!news\.google)/i.test(gnewsUrl) ? gnewsUrl : null;
+    const id = m[1];
+    const page = await fetch(gnewsUrl, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(8000) });
+    if (!page.ok) return null;
+    const html = await page.text();
+    const sg = html.match(/data-n-a-sg="([^"]+)"/);
+    const ts = html.match(/data-n-a-ts="([^"]+)"/);
+    if (!sg || !ts) return null;
+    const inner = JSON.stringify(['garturlreq', [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1], 'X', 'X', 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0], id, ts[1], sg[1]]);
+    const body = 'f.req=' + encodeURIComponent(JSON.stringify([[['Fbv4je', inner, null, 'generic']]]));
+    const r = await fetch('https://news.google.com/_/DotsSplashUi/data/batchexecute', {
+      method: 'POST',
+      headers: { 'user-agent': UA, 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body,
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!r.ok) return null;
+    const txt = await r.text();
+    const real = txt.match(/https?:\/\/(?!news\.google)[^\\"\s]+/);
+    return real ? real[0] : null;
+  } catch {
+    return null;
+  }
+}
+
+// Build "what's trending on X right now" stories for the World channel. Reads the live X
+// trend board per geo (rank = heat), resolves each hot term to its freshest matching
+// publisher article, then enriches to the outlet's own image + prose. Same monetization-
+// safe shape as buildTrendingStories. `perGeo` = how many trends to CONVERT per geo (we
+// probe a deeper pool because many trends are fandom/meme noise). Fail-open → [].
+export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe = 16, enrich = true } = {}) {
+  const usedTitles = new Set();
+  const out = [];
+  for (const geo of geos) {
+    const hl = X_GEO_HL[geo] || 'en-US';
+    const trends = await fetchXTrends(geo);
+    if (!trends.length) continue;
+    let rank = 0;
+    let taken = 0;
+    for (const term of trends.slice(0, probe)) {
+      rank++;
+      if (taken >= perGeo) break;
+      const items = await newsSearch(term, geo, hl);
+      if (!items.length) continue;
+      // First article whose HEADLINE actually contains the trend term (on-topic).
+      const hit = items.find((i) => titleMatchesTerm(term, i.title));
+      if (!hit) continue;
+      const key = normTitle(hit.title);
+      if (!key || usedTitles.has(key)) continue;
+      usedTitles.add(key);
+      const real = await resolveGoogleNewsUrl(hit.url);
+      if (!real) continue;
+      taken++;
+      out.push({
+        slot: 'trending',
+        badge: 'VIRAL', // distinct from Google-Trends' TRENDING chip — this is X buzz
+        hashtag: trendTag(term),
+        // NO imageUrl yet — enrichSummary pulls the publisher's OWN og:image (never an X
+        // avatar/screenshot: copyright/monetization). summary seeded from the headline;
+        // the strict gate below drops it unless enrichment grows a real brief.
+        title: hit.title,
+        summary: hit.title,
+        url: real,
+        imageUrl: null,
+        images: [],
+        sourceName: hit.source || cleanSource(new URL(real).hostname),
+        sources: [hit.source].filter(Boolean),
+        corr: items.length,
+        category: 'offbeat',
+        trend: term,
+        // Heat ∝ trend rank on the board (no reliable tweet-count in the markup): a small
+        // deterministic score so the hottest X trend can lead a single Short.
+        traffic: Math.max(0, 100000 - rank * 1000),
+        geo,
+        viral: true,
+      });
+    }
+  }
+  out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
+  // Same strict gate as Google-Trends: a real publisher image AND a brief that genuinely
+  // grew past the headline (JS-rendered pages that echo the title back are dropped).
+  return out.filter((s) => {
+    if (!s.imageUrl || !s.summary) return false;
+    const grew = s.summary.trim().length - (s.title || '').trim().length;
+    return s.summary.length > 120 && grew > 40 && /[.!?]$/.test(s.summary.trim());
+  });
+}
+
 // Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
 // the story on-topic + factual; strips boilerplate (cookie/subscribe/newsletter lines).
 // Article prose only (scoped to <article>/<main>, boilerplate + nav stripped) — same
@@ -475,12 +667,17 @@ function articleProse(html) {
     // narration when there was no LLM and the extractive path scraped them as a "sentence".
     .replace(/<(nav|header|footer|aside|form|figure|figcaption|button)[\s\S]*?<\/\1>/gi, ' ');
   const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
-  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|reuters\/|associated press|see all topics|related (?:topics|articles)|facebook|tweet|whatsapp|link copied|copy link|share this|most viewed|sign in|log ?in|talks with .* affili/i;
+  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|hide caption|\bpool\b.*\bcaption\b|reuters\/|associated press|see all topics|related (?:topics|articles)|facebook|tweet|whatsapp|link copied|copy link|share this|most viewed|sign in|log ?in|talks with .* affili/i;
   // Byline / timestamp / engagement-metadata lines that sit ABOVE the body on many sites
   // ("Manchester United reporter Published 2 hours ago", "Matt Oliver is The Telegraph's
   // Industry Editor…", "17 comments"). They're grammatical so they survive the BP filter,
-  // but they're not story prose — drop them so narration is pure article body.
-  const META = /^\s*(?:by |published |updated |\d+ comments?\b|\d+ min read|last modified)|\b(?:is|was) (?:the |a |an )?[A-Z][\w'’]* (?:[A-Z][\w'’]* )*(?:editor|reporter|correspondent|columnist|writer)\b|\bpublished \d|\b\d+ hours? ago\b|\bBST\b|\bGMT\b|\bEDT\b/i;
+  // but they're not story prose — drop them so narration is pure article body. Also:
+  //   • AUTHOR BIOS ("Dominic covers the biggest stories… winners at the MHP 30 To Watch
+  //     Awards") — a first-name-led "X covers/writes/reports…" or "…Awards in 20NN" bio;
+  //   • VIDEO-PLAYER labels the extractive path scraped as a paragraph ("Video Dan Dakich
+  //     reacts to… | Don't @ Me w/Dan Dakich") — a leading "Video "/"Watch:" or a "| show"
+  //     divider from an embedded-clip caption.
+  const META = /^\s*(?:by |published |updated |\d+ comments?\b|\d+ min read|last modified|video\b|watch:?\s)|\b(?:is|was) (?:the |a |an )?[A-Z][\w'’]* (?:[A-Z][\w'’]* )*(?:editor|reporter|correspondent|columnist|writer)\b|^[A-Z][a-z]+ (?:covers|writes|reports on|is a|has (?:broken|covered)) |\bTo Watch Awards\b| \| (?:Don'?t @|[A-Z][\w'’]* w\/)|\bpublished \d|\b\d+ hours? ago\b|\bBST\b|\bGMT\b|\bEDT\b/i;
   return [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
     .map((m) => stripHtml(m[1]))
     .filter((t) => {
