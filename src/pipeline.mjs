@@ -45,8 +45,9 @@ const DEFAULT_GDELT_QUERY = IS_LOCAL ? 'sourcecountry:IN sourcelang:hindi' : 'so
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36';
 const INGEST_URL = process.env.INGEST_URL || '';
 const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
-const OLLAMA = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
-const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:3b';
+// NOTE: Ollama host/model are owned by providers.mjs (the last-resort provider in the
+// generate() ladder). pipeline.mjs no longer talks to Ollama directly — every LLM
+// call (synth/triage/verify/novelty) goes through generate() so it honours failover.
 // SCORE-GATE (not a fixed story cap): synth every cluster scoring >= this. On a
 // big news hour that's 50-100 stories; a quiet hour fewer. SYNTH_HARD_MAX only
 // bounds runtime so a runner can't run away.
@@ -1134,9 +1135,34 @@ export async function healthCheck() {
 // on the same event. Schema-constrained boolean so it can't waffle. Runs only on
 // candidates that already passed the cheap algorithmic gates (review.mjs), so the
 // extra call is spent only on plausibles. Returns { faithful, reason } or null on error.
+//
+// ROUTED THROUGH THE PROVIDER LADDER (generate()), deterministically. This is the
+// critical fix over the old implementation, which POSTed straight to a local Ollama
+// at 127.0.0.1:11434: on the hosted-provider deployment (GitHub Actions, no Ollama
+// running) EVERY verify call threw ECONNREFUSED → returned null → the caller treated
+// null as "pass", so this "gold gate" was silently a NO-OP. Now it verifies on
+// whatever provider is live, honouring caps/failover like every other call.
+//
+// FAIL-OPEN by contract: null means "couldn't get a confident verdict" (provider
+// down/capped, or unparseable/ambiguous output) → the caller (review.mjs) lets the
+// story through, still guarded by the algorithmic gFactShape. We only ever return a
+// REJECTING verdict (faithful=false / sameEvent=false) when the model answered with
+// explicit, parseable booleans — never on a model hiccup.
 const VERIFY_SCHEMA = { type: 'object', properties: { faithful: { type: 'boolean' }, sameEvent: { type: 'boolean' }, reason: { type: 'string' } }, required: ['faithful', 'sameEvent', 'reason'] };
+const VERIFY_MAX_TOKENS = Number(process.env.VERIFY_MAX_TOKENS || 120);
+const VERIFY_TIMEOUT_MS = Number(process.env.VERIFY_TIMEOUT_MS || 30000);
+// Coerce a model's boolean-ish field → true/false, or null when genuinely ambiguous
+// (so an ambiguous verdict fails OPEN rather than falsely rejecting a good story).
+function asBool(v) {
+  if (v === true || v === false) return v;
+  const s = String(v).trim().toLowerCase();
+  if (s === 'true' || s === 'yes' || s === '1') return true;
+  if (s === 'false' || s === 'no' || s === '0') return false;
+  return null;
+}
 export async function verifyFaithful(c) {
-  const a = c.article;
+  const a = c?.article;
+  if (!a) return null;
   // Judge FABRICATION, not completeness. The synthesis may legitimately name
   // people/places the terse source only implies — that is NOT hallucination. Flag
   // faithful=false ONLY for INVENTED specifics: a NUMBER/STATISTIC/QUOTE/DATE with
@@ -1144,11 +1170,13 @@ export async function verifyFaithful(c) {
   // synthesis merely for containing a name the short source didn't spell out.
   const prompt = `You are a fact-checker. Compare SOURCE to SYNTHESIS. Answer JSON:\n{"faithful": false ONLY if the synthesis INVENTS a specific number/statistic/quote/date with no basis in the source, or states something that CONTRADICTS the source; otherwise true. Adding a reasonable name/place/context the source implies is FINE — do not flag it., "sameEvent": true if they are about the same event, "reason":"short"}\n\nSOURCE:\nTITLE: ${sanitizeForPrompt(a.title)}\nSNIPPET: ${sanitizeForPrompt(a.snippet)}\n\nSYNTHESIS:\nTITLE: ${sanitizeForPrompt(c.title)}\nBODY: ${sanitizeForPrompt(c.body)}`;
   try {
-    const r = await fetch(`${OLLAMA}/api/generate`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: MODEL, prompt, stream: false, format: VERIFY_SCHEMA, options: { temperature: 0, num_predict: 120 } }), signal: AbortSignal.timeout(90000) });
-    if (!r.ok) return null;
-    const j = safeJson((await r.json()).response || '');
-    if (!j) return null;
-    let sameEvent = j.sameEvent === true;
+    const { text } = await generate(prompt, { json: true, temperature: 0, maxTokens: VERIFY_MAX_TOKENS, timeoutMs: VERIFY_TIMEOUT_MS });
+    if (text == null) return null; // all providers down/capped → fail-open
+    const j = safeJson(text);
+    if (!j) return null; // unparseable → fail-open
+    const faithful = asBool(j.faithful);
+    let sameEvent = asBool(j.sameEvent);
+    if (faithful === null || sameEvent === null) return null; // ambiguous → fail-open
     let reason = String(j.reason || '').slice(0, 120);
     // SEMANTIC same-event guard (opt-in EMBED_VERIFY=1): a cheap embedding cross-
     // check on the LLM's sameEvent call. If synth and source are semantically FAR
@@ -1161,7 +1189,7 @@ export async function verifyFaithful(c) {
       const sim = cosine(sv, cv);
       if (sv && cv && sim < floor) { sameEvent = false; reason = `semantic drift (cos ${sim.toFixed(2)}<${floor}); ${reason}`.slice(0, 120); }
     }
-    return { faithful: j.faithful === true, sameEvent, reason };
+    return { faithful, sameEvent, reason };
   } catch { return null; }
 }
 
