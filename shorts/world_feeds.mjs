@@ -386,7 +386,12 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
         title: decode((ni.match(/<ht:news_item_title>([\s\S]*?)<\/ht:news_item_title>/i) || [])[1] || '').replace(/\s+/g, ' ').trim(),
         url: decode((ni.match(/<ht:news_item_url>([\s\S]*?)<\/ht:news_item_url>/i) || [])[1] || '').trim(),
         source: decode((ni.match(/<ht:news_item_source>([\s\S]*?)<\/ht:news_item_source>/i) || [])[1] || '').trim(),
-      })).filter((n) => n.title && /^https?:\/\//i.test(n.url));
+      // Drop syndication aggregators (AOL/MSN/Yahoo/…): Google-Trends `<ht:news_item_url>`
+      // is a DIRECT publisher URL, so an aggregator that covered the trend lands here as
+      // both the rep and a corroborating sourceUrl — and its re-hosted photo isn't original
+      // story art (user: "avoid aol.com"). Filter at the source so neither rep nor sourceUrls
+      // can be an aggregator.
+      })).filter((n) => n.title && /^https?:\/\//i.test(n.url) && !isAggregatorUrl(n.url) && !isAggregatorUrl(n.source));
       if (!newsItems.length) continue;
       const rep = newsItems.find((n) => !isThinUrl(n.url)) || newsItems[0];
       const key = normTitle(rep.title);
