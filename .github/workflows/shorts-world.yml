@@ -33,7 +33,7 @@ env:
   #    turns the raw article body into a clean, non-repetitive brief per story. ──
   PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct' # fast NIM model (70b free-tier consistently timed out >30s → NVIDIA never won its primary slot; matches the proven news-p1 pipeline)
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}

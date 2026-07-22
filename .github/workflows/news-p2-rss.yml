@@ -53,7 +53,7 @@ env:
   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
   OPENROUTER_MODEL: 'openrouter/free' # auto-router to a free model — immune to model-ID rot (old llama-3.3:free 404'd)
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct' # fast NIM model (70b free-tier consistently timed out >30s → NVIDIA never won its primary slot; matches the proven news-p1 pipeline)
   MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
   MISTRAL_MODEL: 'mistral-small-latest'
   GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}

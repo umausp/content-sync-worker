@@ -32,6 +32,8 @@
 
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { argv } from 'node:process';
 import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
 import { availableProviders } from '../src/providers.mjs';
 
@@ -62,6 +64,36 @@ function normKey(t) {
     .sort()
     .slice(0, 8)
     .join(' ');
+}
+
+// Count the DISTINCT outlets that covered a story — the true corroboration signal (upstream
+// `corr` is not it; see VERIFY). Union of cleaned source names + article-URL hostnames so we
+// don't over- or under-count when only one of the two fields is populated.
+function hostOf(u) {
+  try { return new URL(u).hostname.replace(/^www\./, '').toLowerCase(); } catch { return ''; }
+}
+function distinctOutlets(s) {
+  // `sources` (outlet names) and `sourceUrls` (article URLs) are PARALLEL representations of
+  // the SAME set of outlets upstream, so unioning them double-counts ("reuters" +
+  // "reuters.com"). Count each independently and take the larger — the better estimate of
+  // how many distinct outlets actually covered the story. Rep article guarantees ≥1.
+  const names = new Set((s.sources || []).map((n) => String(n || '').toLowerCase().trim()).filter(Boolean));
+  const hosts = new Set((s.sourceUrls || []).map(hostOf).filter(Boolean));
+  const repHost = hostOf(s.url);
+  if (repHost) hosts.add(repHost);
+  return Math.max(names.size, hosts.size, 1);
+}
+
+// Reject a "summary" that's actually a leaked photo caption / agency dateline rather than a
+// synthesised brief — e.g. "EAST RUTHERFORD, NEW JERSEY - JULY 19: Rodri #16 of Spain lifts
+// …". These slip in when LLM synth didn't fire and the extractor grabbed a figure caption.
+function looksLikeCaption(text) {
+  const t = String(text || '');
+  // ALL-CAPS dateline opener ("CITY, STATE - MONTH DD:") or a getty-style "#NN of" jersey tag.
+  if (/^[A-Z][A-Z .'-]{3,},?\s+[A-Z][A-Z .'-]{2,}\s*[-–—]\s*[A-Z]/.test(t)) return true;
+  if (/#\d{1,3}\s+of\b/.test(t)) return true; // getty-style jersey tag "#16 of Spain"
+  if (/\b(getty images|reuters|afp|photo by|pictured|file photo)\b/i.test(t)) return true;
+  return false;
 }
 
 // Deep-research ONE region: gather from all three sources (each already enriches = the
@@ -120,24 +152,30 @@ async function researchRegion(region) {
   const merged = [...byKey.values()];
 
   // VERIFY — a researched story must have a real image AND a brief that genuinely grew
-  // past the headline (kills JS-rendered pages that echo the title back / thin sources).
-  // verified = corroborated by ≥2 distinct outlets (the render can prefer these).
+  // past the headline (kills JS-rendered pages that echo the title back / thin sources)
+  // AND read like prose, not a leaked photo caption. verified = corroborated by ≥2 DISTINCT
+  // OUTLETS. NOTE: upstream `corr` is overloaded — it's `sources.size` in the editorial
+  // roundup but the raw Google-News RESULT COUNT (often 20-60) in the trend builders, so it
+  // is NOT a distinct-outlet count. The real corroboration signal is the number of distinct
+  // outlet names / article URLs, so we compute `outlets` from those and verify on THAT.
   const verified = merged
     .map((s) => {
-      const grew = (s.summary || '').trim().length - (s.title || '').trim().length;
+      const brief = (s.summary || '').trim();
+      const grew = brief.length - (s.title || '').trim().length;
       const hasImg = !!(s.imageUrl || (s.images && s.images.length));
-      const realBrief = (s.summary || '').length > 120 && grew > 40 && /[.!?]$/.test((s.summary || '').trim());
-      const corr = s.corr || (s.sources ? s.sources.length : 0);
-      return { ...s, verified: corr >= 2, _ok: hasImg && realBrief, _corr: corr };
+      const realBrief = brief.length > 120 && grew > 40 && /[.!?]$/.test(brief) && !looksLikeCaption(brief);
+      // Distinct outlets that actually covered this event (deduped names ∪ article hosts).
+      const outlets = distinctOutlets(s);
+      return { ...s, verified: outlets >= 2, _ok: hasImg && realBrief, _outlets: outlets, _corr: s.corr || 0 };
     })
     .filter((s) => s._ok);
 
-  // RANK — corroborated + more images + more source outlets first (a bigger, more real
-  // story with more genuine photos leads). Trend heat breaks ties.
+  // RANK — corroborated (more distinct outlets) + more genuine photos first (a bigger, more
+  // real story with more angles leads). Trend heat breaks ties.
   verified.sort((a, b) => {
     const score = (x) =>
-      (x.verified ? 3 : 0) + (x._corr || 0) + Math.min(6, (x.images?.length || 0)) + (x.traffic ? 1 : 0);
-    return score(b) - score(a) || (b.traffic || 0) - (a.traffic || 0);
+      (x.verified ? 4 : 0) + Math.min(6, x._outlets || 0) + Math.min(6, x.images?.length || 0) + (x.traffic ? 1 : 0);
+    return score(b) - score(a) || (b._outlets || 0) - (a._outlets || 0) || (b.traffic || 0) - (a.traffic || 0);
   });
 
   console.log(`[research:${region}] verified ${verified.length}/${merged.length} stories (${verified.filter((s) => s.verified).length} corroborated ≥2 outlets)`);
@@ -170,7 +208,9 @@ function slimStory(s) {
     sourceUrls: (s.sourceUrls || []).slice(0, 8),
     sourceName: s.sourceName || null,
     sources: s.sources || [],
-    corr: s._corr || s.corr || 0,
+    // corr = DISTINCT OUTLETS that covered this story (the real corroboration signal), not
+    // the raw Google-News result count that upstream `corr` sometimes carries.
+    corr: s._outlets != null ? s._outlets : distinctOutlets(s),
     verified: !!s.verified,
     trend: s.trend || null,
     traffic: s.traffic || 0,
@@ -214,7 +254,14 @@ async function main() {
   console.log('[research] pool done');
 }
 
-main().catch((e) => {
-  console.error(`[research] FAILED: ${e.stack || e.message}`);
-  process.exit(1);
-});
+// Export the pure helpers so they can be unit-tested without triggering a network gather.
+export { distinctOutlets, looksLikeCaption, normKey };
+
+// Run the pool only when invoked directly (node shorts/research.mjs …) — importing the
+// module (e.g. a test) must NOT kick off a live gather.
+if (fileURLToPath(import.meta.url) === (argv[1] || '')) {
+  main().catch((e) => {
+    console.error(`[research] FAILED: ${e.stack || e.message}`);
+    process.exit(1);
+  });
+}

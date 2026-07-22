@@ -52,7 +52,7 @@ env:
   #    This synthesises each story's clean, corroborated, non-repetitive brief. ──
   PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct' # fast NIM model (70b free-tier consistently timed out >30s → NVIDIA never won its primary slot; matches the proven news-p1 pipeline)
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
@@ -132,5 +132,11 @@ jobs:
             echo "no bundle change — nothing to commit"
           else
             git commit -m "research(world): refresh trend+multi-source bundle [skip ci]"
-            git push
+            # The pool runs for up to ~2h; a commit may land on main meanwhile. Rebase-retry
+            # so a concurrent push never loses the refreshed bundle (only docs/research/ moves).
+            for attempt in 1 2 3; do
+              if git push; then break; fi
+              echo "push rejected (attempt $attempt) — rebasing onto latest main…"
+              git pull --rebase --autostash origin main || true
+            done
           fi
