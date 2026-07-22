@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-07-22T17:44:09.431Z",
+  "generatedAt": "2026-07-22T17:52:50.467Z",
   "region": "usa",
   "count": 34,
   "categoryCounts": {
-    "offbeat": 12,
-    "entertainment": 2,
+    "offbeat": 11,
     "politics": 3,
-    "tech": 3,
+    "entertainment": 3,
     "sports": 3,
-    "health": 3,
+    "tech": 3,
     "facts": 3,
+    "health": 3,
     "breaking": 3,
     "crisis": 2
   },
   "stories": [
     {
       "title": "Nolan Wells' cause and manner of death undetermined, attorney says, citing family's autopsy",
-      "summary": "Nolan Wells, an 18-year-old Mississippi teen, died under undetermined circumstances, according to a preliminary independent autopsy. The autopsy found red discoloration on the back of his head, but the cause remains unknown. Wells' body was found on July 6, six days after he went missing on a Fourth of July trip to Horn Island. The official autopsy results from the state medical examiner's office have not yet been released, pending further investigation.",
+      "summary": "Nolan Wells, an 18-year-old Mississippi teen, died under undetermined circumstances, according to preliminary findings from an independent autopsy. The cause and manner of death remain unknown, pending further investigation. Wells' body was found on July 6 on Horn Island, where he had been on a Fourth of July outing with friends. The investigation continues, with the official autopsy results still pending.",
       "hashtag": "NolanWells",
       "badge": "VIRAL",
       "category": "offbeat",
@@ -24,109 +24,64 @@
       "imageUrl": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/07/20/0eedb417-4f87-4e6e-ae3e-747554b0701a/thumbnail/1200x630/b7c9acb28abfa86c54045bbb8fb3304d/cbsn-fusion-nolan-wells-funeral-to-be-held-as-questions-swirl-around-18-year-olds-death-thumbnail.jpg",
       "images": [
         "https://assets2.cbsnewsstatic.com/hub/i/r/2026/07/20/0eedb417-4f87-4e6e-ae3e-747554b0701a/thumbnail/1200x630/b7c9acb28abfa86c54045bbb8fb3304d/cbsn-fusion-nolan-wells-funeral-to-be-held-as-questions-swirl-around-18-year-olds-death-thumbnail.jpg",
-        "https://ichef.bbci.co.uk/news/1024/branded_news/b74b/live/2e1ddcb0-85e5-11f1-b976-0b9c15b0ccfc.png",
         "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/nolan-wells.jpg",
         "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/20/USAT/90989230007-usatsi-29418524.jpg?crop=6452,3629,x0,y336&width=1600&height=800&format=pjpg&auto=webp",
         "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/20/USAT/90989230007-usatsi-29418524.jpg?width=660&height=440&fit=crop&format=pjpg&auto=webp",
         "https://cdn.abcotvs.com/dip/images/19543150_072026-cc-abcn-nolan-wells-img.jpg?w=1600",
-        "https://wsvn.com/wp-content/uploads/sites/2/2026/07/260722_Nolan_Wells.jpg?quality=60&strip=color",
         "https://nypost.com/wp-content/uploads/sites/2/2026/07/135187499.jpg?quality=75&strip=all&w=1200",
         "https://nypost.com/wp-content/uploads/sites/2/2026/07/nolan-wells-second-right-friends-133483582_6e67b5.jpg?w=768",
         "https://nypost.com/wp-content/uploads/sites/2/2026/07/officer-tatum-interviews-nolan-wells-135186039.jpg?w=1024",
         "https://nypost.com/wp-content/uploads/sites/2/2026/07/officer-tatum-interviews-nolan-wells-135186037.jpg?w=1024",
         "https://nypost.com/wp-content/uploads/sites/2/2026/07/nolan-wells-july-4-search-133483580_57b2cd.jpg?w=371",
+        "https://bloximages.newyork1.vip.townnews.com/wkow.com/content/tncms/assets/v3/editorial/c/02/c0282533-fd37-5f1c-9552-01fc54d1cf89/6a60f5ef45f4d.image.jpg?crop=1763%2C926%2C0%2C124&resize=1200%2C630&order=crop%2Cresize",
+        "https://bloximages.newyork1.vip.townnews.com/wkow.com/content/tncms/assets/v3/editorial/c/02/c0282533-fd37-5f1c-9552-01fc54d1cf89/6a60f5ef45f4d.image.jpg?crop=1763%2C926%2C0%2C124&resize=438%2C230&order=crop%2Cresize",
         "https://newsone.com/wp-content/uploads/sites/22/2026/07/17835451440201.png?strip=all&quality=80&w=1200&crop=0,0,100,675px",
         "https://newsone.com/wp-content/uploads/sites/22/2026/07/17835451440201.png?strip=all&quality=80&w=1024&crop=0,0,100,576px"
       ],
       "sourceUrls": [
         "https://www.cbsnews.com/news/nolan-wells-independent-autopsy-results/",
-        "https://www.bbc.com/news/articles/cgr7njdxxp9o",
+        "https://news.wttw.com/2026/07/22/independent-autopsy-nolan-wells-finds-undetermined-cause-death-attorney-says-chicago",
         "https://www.foxnews.com/us/nolan-wells-independent-autopsy-doesnt-point-foul-play-fmr-medical-examiner-says",
         "https://www.usatoday.com/story/news/nation/2026/07/22/nolan-wells-independent-autopsy-update/90987476007/",
         "https://abc13.com/story/nolan-wells-family-announce-independent-autopsy-findings-wednesday/19555733/",
-        "https://wsvn.com/news/us-world/independent-autopsy-of-nolan-wells-finds-undetermined-cause-of-death/",
         "https://nypost.com/2026/07/22/us-news/nolan-wells-had-been-drinking-alcohol-but-seemed-fine-on-day-he-vanished-best-friend-says/",
         "https://www.lehighvalleylive.com/news/2026/07/nolan-wells-independent-autopsy-results-in-further-investigation-into-cause-of-death.html",
+        "https://www.wkow.com/news/preliminary-independent-autopsy-results-for-nolan-wells-leave-questions-unanswered/article_395c840c-68f7-51c7-ae95-acd20ddcd7e1.html",
         "https://newsone.com/6867021/nolan-wells-independent-autopsy-findings-heres-what-we-know/"
       ],
       "sourceName": "CBS News",
       "sources": [
         "CBS News",
-        "BBC",
+        "WTTW News",
         "Fox News",
         "USA Today",
+        "WTVA",
         "ABC13 Houston",
-        "WSVN",
         "New York Post",
         "Lehighvalleylive.com",
-        "WTVA",
+        "WKOW",
         "KPAX News",
         "10News.com",
         "NewsOne",
         "News 5 Cleveland WEWS",
         "KHOU",
-        "AppleValleyNewsNow.com",
+        "Post Register",
         "The Herald Journal",
         "CBC",
         "GazetteXtra",
         "Modern Ghana",
         "AOL.com",
         "the-sun.com",
-        "AllHipHop",
         "Globe Magazine",
-        "Rolling Out",
-        "TotalProSports"
+        "AllHipHop"
       ],
-      "corr": 25,
+      "corr": 23,
       "verified": true,
       "trend": "Nolan Wells",
       "traffic": 95000,
       "freshH": 0.5,
-      "score": 0.96,
-      "popularity": 0.95,
-      "recency": 0.944,
-      "relevancy": 1,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Arrowhead: Stock Up On SHTG Data - No Ceiling On Valuation Growth Potential (NASDAQ:ARWR)",
-      "summary": "Arrowhead Pharmaceuticals stock surged nearly 20% after strong Phase 3 results for its lipid-lowering agent, plozasiran, showing significant triglyceride reductions and risk reduction for acute pancreatitis. The company's quarterly dosing and favorable safety profile position it to challenge Ionis in the lucrative sHTG market. Regulatory filings are planned before year-end. The stock reached a value of $88.6 per share.",
-      "hashtag": "Arrowhead",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://seekingalpha.com/article/4924293-arrowhead-stock-up-on-shtg-data-no-ceiling-on-valuation-growth-potential",
-      "imageUrl": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1536",
-      "images": [
-        "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1536",
-        "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1280",
-        "https://seekingalpha.com/images/users_profile/049/171/940/big_pic.png?io=w36",
-        "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w630",
-        "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_0,w_2559,h_1439/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/130/01ky5ca0cy9meagsgwsw.webp",
-        "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/962267088/image_962267088.jpg?io=getty-c-w630",
-        "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/962267088/image_962267088.jpg?io=getty-c-w1280"
-      ],
-      "sourceUrls": [
-        "https://seekingalpha.com/article/4924293-arrowhead-stock-up-on-shtg-data-no-ceiling-on-valuation-growth-potential",
-        "https://www.gurufocus.com/news/8972113/arrowhead-arwr-sees-significant-stock-surge",
-        "https://arrowheadaddict.com/chiefs-reveal-stunning-new-stadium-renderings-that-should-reassure-arrowhead-fans-01ky5a91fw0k",
-        "https://seekingalpha.com/news/4616798-arrowhead-stock-jumps-late-stage-trial-win",
-        "https://www.tipranks.com/news/arrowhead-pharmaceuticals-arwr-stock-soars-on-strong-phase-3-trial-results"
-      ],
-      "sourceName": "Seeking Alpha",
-      "sources": [
-        "Seeking Alpha",
-        "GuruFocus",
-        "Arrowhead Addict",
-        "TipRanks"
-      ],
-      "corr": 4,
-      "verified": true,
-      "trend": "Arrowhead",
-      "traffic": 99000,
-      "freshH": 0.5,
-      "score": 0.814,
-      "popularity": 0.585,
+      "score": 0.956,
+      "popularity": 0.939,
       "recency": 0.944,
       "relevancy": 1,
       "region": "usa",
@@ -134,7 +89,7 @@
     },
     {
       "title": "Live updates: Trump attends dignified transfer of U.S. service members",
-      "summary": "Four US service members killed in an Iranian attack on a US air base in Jordan on July 17 were honored in a dignified transfer at Dover Air Force Base in Delaware. President Trump met with the families of the fallen service members, including Sgt. Angel Rampersad, Sgt. Michael Emmanuel Swinton, 1st Lt. Tyler James Feehan, and Pvt. Isabella Gonzales. The four were assigned to air defense units, risking their lives to protect others from incoming attacks. The transfer comes as tensions with Iran remain high.",
+      "summary": "Former President Trump attended a dignified transfer of four US service members killed in an Iranian attack on July 17 at the Dover Air Force Base in Delaware. The transfer involved the repatriation of the remains of the service members who died in the attack. Trump met with the families of the deceased service members during the ceremony. The US is still investigating the circumstances of the attack.",
       "hashtag": "DoverAir",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -146,18 +101,16 @@
         "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2500,h_1667/rockcms/2026-07/260722-dignified-transfer-mn-1205-b314aa.jpg",
         "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2500,h_1667/rockcms/2026-07/260722-dignified-transfer-mn-1255-ffb295.jpg",
         "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_1800,h_1200/rockcms/2026-07/260722-donald-trump-dignified-transfer-mn-1100-0eacfe.jpg",
-        "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2000,h_1333/rockcms/2026-07/260720-Alex-Kolodin-vl-1223p-4f3902.jpg",
-        "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/SPSI6ZCFGYQWQTVJE3ENOVY6MU.jpg&w=1440"
+        "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2000,h_1333/rockcms/2026-07/260720-Alex-Kolodin-vl-1223p-4f3902.jpg"
       ],
       "sourceUrls": [
         "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-dignified-transfer-service-members-iran-congress-election-rcna588638",
-        "https://www.washingtonpost.com/national-security/2026/07/21/troops-killed-iranian-attacks-were-tasked-with-defending-bases-incoming-strikes/",
         "https://www.reuters.com/world/us/trump-witness-return-us-soldiers-killed-iran-war-2026-07-22/"
       ],
       "sourceName": "nbcnews.com",
       "sources": [
         "NBC News",
-        "The Washington Post",
+        "FOX 4 News Dallas-Fort Worth",
         "Reuters"
       ],
       "corr": 3,
@@ -174,7 +127,7 @@
     },
     {
       "title": "It's Officially the End of an Era for Marvel's 'Wonder Man'",
-      "summary": "Marvel's Wonder Man, Simon Williams, faces embezzlement and murder charges, marking a significant turn in his career. The charges come as Wonder Man's career takes a nosedive, with preview pages showing him confronting his agent over the allegations. The consequences of these charges are unclear, but they signal a major shift in Wonder Man's public image. The next development in this story is expected to unfold in the comic book series, with the latest issue hitting stores this Wednesday.",
+      "summary": "Marvel's Wonder Man, Simon Williams, faces embezzlement and murder charges, marking a significant turn in his career. The charges are revealed in the latest issue of Wonder Man 5, set to hit stores on July 22nd. This development comes as a major setback for the character, who has been a prominent figure in the Marvel Cinematic Universe. The consequences of these charges will likely have a lasting impact on Wonder Man's future.",
       "hashtag": "WonderMan",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -213,7 +166,7 @@
     },
     {
       "title": "Sestao River - Athletic Club: horario y dónde ver hoy en TV el partido amistoso de pretemporada",
-      "summary": "The Athletic Club is set to face off against Sestao River in a pre-season friendly match at Las Llanas on Wednesday, July 22, at 19:30 hours. The match will be a test of the team's physical and tactical progression, following a 0-11 victory over SD Leioa in their previous friendly. The Sestao River presents a challenge with a higher level of competition, but the Athletic Club's coach, Edin Terzic, aims to continue accumulating kilometers of training and implementing new tactics. The match will be broadcast live on the Athletic Club's official streaming channel.",
+      "summary": "The Athletic Club will face Sestao River in an exhibition match at Las Llanas on Wednesday, July 22, at 19:30 hours. This match is part of the team's pre-season training, following a 0-11 victory over SD Leioa in their previous friendly. The game will be streamed live through the Athletic Club's official channel and platform. The match marks a step up in intensity for the team as they continue to build their physical and tactical progression.",
       "hashtag": "SestaoRiver",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -250,43 +203,8 @@
       "geo": "US"
     },
     {
-      "title": "Pittsburgh Pirates at New York Yankees Preview - 07/21/2026",
-      "summary": "The Pittsburgh Pirates face the New York Yankees at Yankee Stadium on July 22, 2026, at 1:35 p.m. ET. Pirates' Mitch Keller returns to the mound after a nearly two-week absence, seeking to bounce back from a poor performance against the Atlanta Braves. Yankees' Garrett Cole pitches against the Pirates for the third time in his career, looking to end a two-start losing streak. Cole's last win came on July 3.",
-      "hashtag": "GerritCole",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.mlb.com/stories/game-preview/823519",
-      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/eeriqixwvyjq3uzxdebl",
-      "images": [
-        "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/eeriqixwvyjq3uzxdebl",
-        "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19"
-      ],
-      "sourceUrls": [
-        "https://www.mlb.com/stories/game-preview/823519",
-        "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
-        "https://www.dkpittsburghsports.com/team/pirates/feed/topic/a9161204-d1ad-4bfa-94f9-555a7bf818e5"
-      ],
-      "sourceName": "mlb.com",
-      "sources": [
-        "MLB",
-        "Yahoo Sports",
-        "DK Pittsburgh Sports"
-      ],
-      "corr": 3,
-      "verified": true,
-      "trend": "gerrit cole",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.603,
-      "popularity": 0.228,
-      "recency": 0.891,
-      "relevancy": 0.8,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
       "title": "World Cup 2026: Argentina react to final defeat and Messi questions",
-      "summary": "Argentina's World Cup campaign ended in defeat to Spain, 1-0 in extra time, on Sunday in New Jersey. Midfielder Enzo Fernandez was sent off late in normal time for two yellow cards. Fernandez has since praised the team's effort, saying they represented Argentina \"in the best possible way.\" The team's performance will be scrutinized following reports of incidents prior to the match.",
+      "summary": "Argentina's World Cup campaign ended in a 1-0 defeat to Spain in extra time on Sunday in New Jersey, with midfielder Enzo Fernandez being sent off for two yellow cards. Fernandez's statement on social media praised the team's commitment and humility, despite the loss. The match was marred by ugly scenes, including Fernandez's red card and dissent towards the referee. The team's performance will be scrutinized in the aftermath of the loss.",
       "hashtag": "ArgentinaRed",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -311,16 +229,51 @@
       "trend": "argentina red card",
       "traffic": 1000,
       "freshH": 1,
-      "score": 0.588,
+      "score": 0.591,
       "popularity": 0.229,
       "recency": 0.891,
-      "relevancy": 0.738,
+      "relevancy": 0.75,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Pittsburgh Pirates vs. New York Yankees: Mitch Keller vs. Gerrit Cole",
+      "summary": "The Pittsburgh Pirates face the New York Yankees in the series finale at Yankee Stadium on July 22, with Mitch Keller making his first start since July 9. Keller aims to bounce back from a poor performance against the Atlanta Braves, while Gerrit Cole looks to secure his first win since July 3. The Pirates are seeking to end a two-week drought without Keller's start. The Yankees aim to win an interleague series for the third time in six tries.",
+      "hashtag": "GerritCole",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
+      "imageUrl": "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19",
+      "images": [
+        "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19",
+        "https://s.yimg.com/ny/api/res/1.2/z4AqcnK0aFHhItRpOi.9.w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/846a3774132878c246295f24818da84f",
+        "https://s.yimg.com/ny/api/res/1.2/WG2RnJ9p1rtt295EKVzd0Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://media.zenfs.com/en/sb_nation_articles_115/846a3774132878c246295f24818da84f"
+      ],
+      "sourceUrls": [
+        "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
+        "https://sports.yahoo.com/articles/york-yankees-vs-pittsburgh-pirates-163500329.html",
+        "https://www.dkpittsburghsports.com/team/pirates/feed/topic/a9161204-d1ad-4bfa-94f9-555a7bf818e5"
+      ],
+      "sourceName": "sports.yahoo.com",
+      "sources": [
+        "Yahoo Sports",
+        "DK Pittsburgh Sports"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "gerrit cole",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.582,
+      "popularity": 0.144,
+      "recency": 0.891,
+      "relevancy": 0.85,
       "region": "usa",
       "geo": "US"
     },
     {
       "title": "Why Jalen Brunson wasn't chosen as the NBA2K27 cover athlete over Victor Wembanyama",
-      "summary": "Victor Wembanyama has been chosen as the main cover athlete for NBA2K27. The 19-year-old Spurs center was selected despite the Knicks' recent NBA championship win, led by Jalen Brunson who was awarded the NBA Finals MVP award. Brunson's team defeated the Spurs in the NBA Finals, winning more clutch games. The NBA2K27 video game is set to release with Wembanyama as its cover athlete.",
+      "summary": "Victor Wembanyama has been chosen as the cover athlete for NBA2K27. The 19-year-old Spurs center was selected despite the Knicks' Jalen Brunson leading his team to an NBA championship and earning the NBA Finals MVP award. Brunson's recent postseason success did not secure him the cover spot. Wembanyama's selection will be featured in the upcoming video game.",
       "hashtag": "Brunson",
       "badge": "VIRAL",
       "category": "offbeat",
@@ -342,16 +295,16 @@
       "trend": "Brunson",
       "traffic": 97000,
       "freshH": 0.5,
-      "score": 0.575,
-      "popularity": 0.294,
+      "score": 0.573,
+      "popularity": 0.3,
       "recency": 0.944,
-      "relevancy": 0.509,
+      "relevancy": 0.49,
       "region": "usa",
       "geo": "US"
     },
     {
       "title": "Wemby, Rose, Clark are NBA 2k27 Cover Athletes",
-      "summary": "NBA 2K27 will feature Victor Wembanyama, Caitlin Clark, and Derrick Rose as cover athletes, with Wembanyama on the Standard Edition. The game is set to release on September 4. Wembanyama, a 22-year-old dominant player, led the San Antonio Spurs to the 2026 NBA Finals. The trio will be available on various editions of the game.",
+      "summary": "NBA 2K27 cover athletes announced, featuring Victor Wembanyama, Caitlin Clark, and Derrick Rose. The trio will be on different editions of the game, available on September 4. Wembanyama, a 22-year-old NBA star, will be on the Standard Edition cover, following his 2026 NBA Finals appearance and Kia Defensive Player of the Year award. The game's release will mark the beginning of the NBA 2K27 season.",
       "hashtag": "Wemby",
       "badge": "VIRAL",
       "category": "offbeat",
@@ -372,28 +325,59 @@
       "trend": "Wemby",
       "traffic": 96000,
       "freshH": 0.5,
-      "score": 0.551,
-      "popularity": 0.291,
+      "score": 0.567,
+      "popularity": 0.297,
       "recency": 0.944,
-      "relevancy": 0.416,
+      "relevancy": 0.47,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Sacha Baron Cohen’s ‘Ali G: Who Iz I?’ Sets October Release From Amazon MGM",
-      "summary": "Sacha Baron Cohen's \"Ali G: Who Iz I?\" is set to release in theaters on October 23. The film marks Cohen's feature directorial debut, in which he also stars as the character Ali G. Cohen originated the role in 1998 for Channel 4's \"The 11 O'Clock Show\" and reprised it in his own \"Da Ali G Show\" in the early 2000s. The movie will be released by Amazon MGM Studios.",
-      "hashtag": "BaronCohen",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
+      "title": "The Guardian view on Andy Burnham and devolution: it takes a powerful centre to decentralise power | Editorial",
+      "summary": "New Prime Minister Andy Burnham has signaled his intent to bolster the power of Downing Street, despite citing overcentralization of power as a cause of Britain's social and economic issues. This move comes as he aims to decentralize power, a goal that has been hindered by the Treasury's reluctance to grant fiscal control to lower tiers of government. The UK's devolved administrations have historically struggled with genuine control, often shifting blame to national government when things go wrong. The prime minister's office is also under-resourced compared to equivalent institutions in similar democracies.",
+      "hashtag": "GuardianAndy",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/commentisfree/2026/jul/22/the-guardian-view-on-andy-burnham-and-devolution-it-takes-a-powerful-centre-to-decentralise-power",
+      "imageUrl": "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2bad75650b2ce3a745c76453e7d986ee",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=563&crop=1",
-        "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=627&crop=1"
+        "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2bad75650b2ce3a745c76453e7d986ee",
+        "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=a79e03092e0e18d4d196af27e3f30c5e",
+        "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&s=3b1f12a3a1cf4a4f76da75f082c33400"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/"
+        "https://www.theguardian.com/commentisfree/2026/jul/22/the-guardian-view-on-andy-burnham-and-devolution-it-takes-a-powerful-centre-to-decentralise-power"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.38,
+      "score": 0.478,
+      "popularity": 0,
+      "recency": 0.958,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "How Long Can ‘The Odyssey’ Stay on Imax 70mm Screens? Nolan Fans Scramble as New Showtimes Sell Out 7 Weeks in Advance",
+      "summary": "Christopher Nolan's \"The Odyssey\" has sold out Imax 70mm screenings in New York and Los Angeles through August 19, and in London through September 10, due to intense demand. The film's premium large format showings are available in 25 US theaters and 41 globally. Imax has committed to \"Dune: Part Three\" for its next 70mm release, meaning \"The Odyssey\" will not have to vacate screens until then. The next Imax releases include \"The End of Oak Street\" and \"Resident Evil,\" but it's unclear if they will also be shown in 70mm.",
+      "hashtag": "LongCan",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/the-odyssey-imax-70mm-showtimes-will-there-be-more-tickets-1236816709/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
+        "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png?crop=0px%2C4px%2C1102px%2C620px&resize=1000%2C563"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/the-odyssey-imax-70mm-showtimes-will-there-be-more-tickets-1236816709/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -404,27 +388,27 @@
       "trend": null,
       "traffic": 0,
       "freshH": 0.13,
-      "score": 0.481,
+      "score": 0.475,
       "popularity": 0,
       "recency": 0.985,
-      "relevancy": 0.544,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Natalie Fleet leaves 'triggering' safeguarding minister role",
-      "summary": "Natalie Fleet has stepped down as safeguarding minister, citing the role as \"overwhelmingly triggering\" and affecting her health. She was appointed to the position on May 12 this year. Fleet, a Labour MP who was groomed and raped as a teenager, described her decision as the \"bravest thing I've ever done.\" Her successor will now take on the responsibility of supporting victims and addressing the worst of humanity.",
-      "hashtag": "Fleet",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/cq56g2n083do?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg",
+      "title": "Ex-Man Utd midfielder Casemiro joins Inter Miami",
+      "summary": "Former Manchester United midfielder Casemiro has signed with Inter Miami on a deal running to the end of the 2027 season, with an option to extend until June 2029. The 34-year-old Brazilian international joins the Major League Soccer side after making 160 appearances for United, scoring 26 goals and providing 14 assists. Casemiro's signing comes as United prioritize midfield reinforcements, acquiring Andrey Santos and Youri Tielemans. He is expected to bolster Inter Miami's roster ahead of the new season.",
+      "hashtag": "ManUtd",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/c3304ex7n7xo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cq56g2n083do?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/football/articles/c3304ex7n7xo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -434,17 +418,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.17,
-      "score": 0.473,
+      "freshH": 0.22,
+      "score": 0.471,
       "popularity": 0,
-      "recency": 0.981,
+      "recency": 0.975,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Apple is reportedly testing a MacBook Neo with more RAM",
-      "summary": "Apple is reportedly developing an updated MacBook Neo with a new A19 Pro processor, which will likely include 12GB of RAM, an upgrade from the original 8GB. The new processor currently powers the iPhone 17 Pro and Pro Max. The updated Neo may also come in new colors. The next model is expected to be more expensive due to ongoing component shortages.",
+      "summary": "Apple is reportedly developing an updated MacBook Neo with a new A19 Pro processor, which will likely feature 12GB of RAM, an upgrade from the original 8GB. The new model is expected to retain the same price point as the current Neo, but ongoing component shortages may impact availability. The updated Neo is also expected to be released alongside new iMacs with OLED screens. Apple has not confirmed the release date or pricing for the updated models.",
       "hashtag": "Neo",
       "badge": "TECH",
       "category": "tech",
@@ -468,17 +452,110 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.14,
-      "score": 0.465,
+      "freshH": 1.28,
+      "score": 0.469,
       "popularity": 0,
-      "recency": 0.877,
-      "relevancy": 0.633,
+      "recency": 0.862,
+      "relevancy": 0.67,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Sacha Baron Cohen’s ‘Ali G: Who Iz I?’ Sets October Release From Amazon MGM",
+      "summary": "Sacha Baron Cohen's \"Ali G: Who Iz I?\" is set to release in theaters on October 23. The film marks Cohen's feature directorial debut, in which he plays the character Ali G, interviewing people on the street and getting into humorous and cringe-worthy situations. Cohen originated the character in 1998 for Channel 4's \"The 11 O'Clock Show\" and reprised it in his own \"Da Ali G Show\" in the early 2000s. The movie will be available on the same date, with no further details on its distribution.",
+      "hashtag": "BaronCohen",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=563&crop=1"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.28,
+      "score": 0.469,
+      "popularity": 0,
+      "recency": 0.969,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Philipsen sprints to stage 17 win",
+      "summary": "Jasper Philipsen won stage 17 of the Tour de France, crossing the finish line with a significant gap over his rivals. The 28-year-old Alpecin-Premier Tech rider secured his first stage victory in a three-week race marked by frustration. Philipsen's win came after a powerful lead-out from teammate Mathieu van der Poel on the 174.7km stage from Chambery to Voiron. He now looks to build momentum heading into the final stages of the Tour.",
+      "hashtag": "PhilipsenSprints",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/cycling/articles/cvg0mxnp20mo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/cycling/articles/cvg0mxnp20mo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.31,
+      "score": 0.468,
+      "popularity": 0,
+      "recency": 0.965,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Natalie Fleet leaves 'triggering' safeguarding minister role",
+      "summary": "Natalie Fleet has stepped down as safeguarding minister, citing the role as \"overwhelmingly triggering\" due to her own experiences as a victim of grooming and rape. She was appointed to the role on May 12 this year. Fleet says she cannot perform the job effectively and is offering her support to her successor. The new Prime Minister Andy Burnham has been informed of her departure.",
+      "hashtag": "Fleet",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cq56g2n083do?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/6205/live/855a90c0-46d8-11ef-aa8f-11c2617bbc1c.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cq56g2n083do?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.32,
+      "score": 0.464,
+      "popularity": 0,
+      "recency": 0.964,
+      "relevancy": 0.507,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Brave fightback against Fire to make winning start",
-      "summary": "Southern Brave secured an eight-run win over Welsh Fire in the Hundred women's competition, reaching 126-7 in 100 balls. Welsh Fire replied with 118-8 in 100 balls, led by Georgia Voll's 52. The Brave's fightback was sparked by 18-year-old spinner Tilly Corteen-Coleman and Lauren Bell, who picked up key wickets. The win marks a strong start for the Brave in the competition.",
+      "summary": "Southern Brave secured an eight-run win over Welsh Fire in the Hundred women's competition, with Welsh Fire reaching 118-8 in their chase of 126-7. The Brave's fightback was sparked by 18-year-old spinner Tilly Corteen-Coleman, who dismissed Georgia Voll for 52. Lauren Bell and captain Sophie Molineux also contributed to the win with key wickets. The Brave will look to build on this momentum in their next match.",
       "hashtag": "Fire",
       "badge": "SPORTS",
       "category": "sports",
@@ -499,17 +576,48 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.37,
-      "score": 0.461,
+      "freshH": 0.52,
+      "score": 0.46,
       "popularity": 0,
-      "recency": 0.958,
-      "relevancy": 0.502,
+      "recency": 0.942,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "NASA Sets Coverage for Astronaut Chris Williams, Crewmates Return",
+      "summary": "NASA astronaut Chris Williams and his crewmates are set to return to Earth after a 241-day mission aboard the International Space Station. The crew, consisting of Williams, Roscosmos cosmonauts Sergey Kud-Sverchkov and Sergei Mikaev, will undock from the space station at 3:02 a.m. EDT on July 26. They will land in Kazakhstan at 6:26 a.m. EDT, completing 3,856 orbits and traveling over 102 million miles. The crew will then be flown to recovery teams in Karaganda, Kazakhstan.",
+      "hashtag": "CoverageAstronaut",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-astronaut-chris-williams-crewmates-return/",
+      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg?w=2048",
+      "images": [
+        "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg?w=2048",
+        "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nasa.gov/news-release/nasa-sets-coverage-for-astronaut-chris-williams-crewmates-return/"
+      ],
+      "sourceName": "NASA",
+      "sources": [
+        "NASA"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.59,
+      "score": 0.457,
+      "popularity": 0,
+      "recency": 0.935,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-      "summary": "A British health select committee report has found that obesity is an engineered outcome, not a result of personal willpower. The report recommends targeting ultra-processed foods high in sugar and refined carbohydrates to reduce obesity in Britain. According to the report, these foods are the primary drivers of weight gain and type 2 diabetes. The committee is urging supermarkets and manufacturers to reformulate their products to reduce sugar content.",
+      "summary": "A British health select committee report finds that obesity is an engineered outcome, not a result of individual willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The evidence suggests sugar and refined carbohydrates are the main culprits, not fat. The committee recommends targeting ultra-processed foods to reduce obesity in Britain.",
       "hashtag": "BritainLetter",
       "badge": "HEALTH",
       "category": "health",
@@ -531,79 +639,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.88,
-      "score": 0.459,
+      "freshH": 1.03,
+      "score": 0.453,
       "popularity": 0,
-      "recency": 0.903,
+      "recency": 0.888,
       "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Why are cycling's anti-doping tests being carried out at night?",
-      "summary": "Anti-doping tests at the Tour de France are being conducted at night for the first time, with five teams having riders tested between 11pm and 6am. This unusual approach is being justified as an exceptional measure to prevent doping, particularly peptide and testosterone micro dosing. The tests have already affected the race, with Dane Jonas Vingegaard crashing out after being tested in the middle of the night. The sport's efforts to move away from a chequered doping past are being closely watched.",
-      "hashtag": "CyclingAnti",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/cycling/articles/c7vge10vnm8o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/cycling/articles/c7vge10vnm8o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.62,
-      "score": 0.456,
-      "popularity": 0,
-      "recency": 0.93,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Eccles and Salmon given Team Wales honour in Glasgow",
-      "summary": "Reigning Commonwealth Games champions Rosie Eccles and Daniel Salmon have been chosen as Team Wales' flag and baton bearers for the opening ceremony in Glasgow. Eccles, a 30-year-old boxer from Caldicot, will carry the flag and lead Wales out at the Hydro on Thursday night. This is her third and final Games, having won gold in Birmingham and silver on the Gold Coast in 2018. Eccles will now lead a procession of athletes into the venue.",
-      "hashtag": "SalmonTeam",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/cr596z7d1ejo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/cr596z7d1ejo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.91,
-      "score": 0.445,
-      "popularity": 0,
-      "recency": 0.901,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "A New Look – and Sound – for Messier 94",
-      "summary": "NASA's Chandra X-ray Observatory has unveiled a new look at the spiral galaxy Messier 94, also known as NGC 4736, on June 30, 2026. The galaxy features a bright inner ring where new stars are forming, fueled by gas driven in its unique oval-shaped structure. This image combines X-rays of different wavelengths with a visible light image from ground-based telescopes. The new look at Messier 94 is now available to experience through sound.",
+      "summary": "NASA's Chandra X-ray Observatory has unveiled a new image of the spiral galaxy Messier 94, also known as NGC 4736, on June 30, 2026. The galaxy features a bright inner ring where new stars are forming, fueled by gas driven in its unique oval-shaped structure. This layered image combines X-rays of different wavelengths with a visible light image from ground-based telescopes. The image is now accompanied by a unique sound experience.",
       "hashtag": "NewLook",
       "badge": "SCIENCE",
       "category": "facts",
@@ -624,17 +670,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.97,
-      "score": 0.443,
+      "freshH": 1.12,
+      "score": 0.438,
       "popularity": 0,
-      "recency": 0.894,
+      "recency": 0.879,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Benicio Del Toro Joins Ben Stiller in Apple TV Comedy ‘Protective Custody’",
-      "summary": "Benicio Del Toro joins Ben Stiller in the Apple TV comedy series \"Protective Custody,\" marking Del Toro's first lead series comedy role. The show follows a disgraced financier accused of massive fraud, navigating prison politics and awaiting trial. Del Toro and Stiller previously collaborated on the Showtime limited series \"Escape at Dannemora.\" Del Toro's character details remain under wraps.",
+      "summary": "Benicio Del Toro is set to star in the Apple TV comedy series \"Protective Custody\" alongside Ben Stiller, marking Del Toro's first lead series comedy role. The show follows a disgraced financier accused of massive fraud, navigating prison politics and consequences. Del Toro is a three-time Oscar nominee, including a win for best supporting actor in 2001 for \"Traffic\". The series is set to premiere on Apple TV.",
       "hashtag": "DelToro",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -654,17 +700,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.74,
-      "score": 0.438,
+      "freshH": 0.88,
+      "score": 0.434,
       "popularity": 0,
-      "recency": 0.918,
-      "relevancy": 0.467,
+      "recency": 0.903,
+      "relevancy": 0.47,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Two Russians handed down jail terms for terrorism and spying in Angola",
-      "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola's capital, Luanda. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The Angolan authorities will now monitor the influence of Africa Politology, a Russian political network linked to the defendants, ahead of the election.",
+      "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The case is linked to Africa Politology, a Russian political network accused of spreading anti-Western narratives in Angola.",
       "hashtag": "RussiansAngola",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -685,17 +731,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.16,
-      "score": 0.436,
+      "freshH": 1.3,
+      "score": 0.431,
       "popularity": 0,
-      "recency": 0.875,
+      "recency": 0.86,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Mamdani backs off on pledge to arrest Netanyahu citing lack of authority",
-      "summary": "New York City Mayor Zohran Mamdani has backed off on his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing a lack of authority to do so. Mamdani had previously called for Netanyahu's arrest over an International Criminal Court arrest warrant for alleged war crimes. The US is not an ICC member state, rendering the warrant unenforceable domestically. Mamdani now urges US officials to act on the warrant, as Netanyahu continues to visit the country.",
+      "summary": "New York City Mayor Zohran Mamdani has backed off on his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing lack of authority to do so. Mamdani had previously called for Netanyahu's arrest over alleged war crimes, but now says US officials must act on the International Criminal Court's arrest warrant. The US is not an ICC member state, making it unlikely Netanyahu will be arrested. Mamdani's reversal comes after President Donald Trump stated Netanyahu would not be arrested in the US.",
       "hashtag": "Netanyahu",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -716,10 +762,41 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.24,
-      "score": 0.433,
+      "freshH": 1.39,
+      "score": 0.428,
       "popularity": 0,
-      "recency": 0.866,
+      "recency": 0.852,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
+      "summary": "The US government has terminated 53 out of 67 grants for a $100 million teen pregnancy prevention program, effective immediately, citing a lack of alignment with the administration's priorities. The program, which aimed to reduce teen pregnancies, will now focus on promoting marriage and starting families. The move follows a similar effort in 2018 that was blocked by courts. The program's remaining grants are expected to be re-evaluated in the coming weeks.",
+      "hashtag": "OverhaulsTeen",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
+        "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-facebookJumbo.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.54,
+      "score": 0.423,
+      "popularity": 0,
+      "recency": 0.837,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -746,10 +823,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.08,
-      "score": 0.421,
+      "freshH": 0.22,
+      "score": 0.415,
       "popularity": 0,
-      "recency": 0.991,
+      "recency": 0.974,
       "relevancy": 0.297,
       "region": "usa",
       "geo": null
@@ -776,17 +853,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.22,
-      "score": 0.418,
+      "freshH": 0.37,
+      "score": 0.412,
       "popularity": 0,
-      "recency": 0.974,
+      "recency": 0.958,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Police formally investigate woman after Brit stabbed to death in French village",
-      "summary": "A 70-year-old woman has been formally charged in connection with the 2024 stabbing death of 65-year-old Karen Carter in Trémolat, France. Carter, a British-South African mother of four, was found with stab wounds near her car by a friend. The woman, who was originally taken into custody in 2025, is now under formal investigation. A judicial inquiry was opened on May 7, 2025, leading to the formal charge.",
+      "summary": "A 70-year-old woman has been formally investigated in connection with the stabbing death of 65-year-old Karen Carter, a British-South African mother of four, in the French village of Trémolat last year. Carter was found with stab wounds near her car in April 2023. The woman was initially taken into custody in 2025 as part of preliminary inquiries before being released. She is now formally charged following judicial investigations that began on May 7, 2025.",
       "hashtag": "BritFrench",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -807,10 +884,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.75,
-      "score": 0.416,
+      "freshH": 1.9,
+      "score": 0.411,
       "popularity": 0,
-      "recency": 0.817,
+      "recency": 0.803,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -837,10 +914,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.35,
-      "score": 0.413,
+      "freshH": 0.5,
+      "score": 0.407,
       "popularity": 0,
-      "recency": 0.96,
+      "recency": 0.944,
       "relevancy": 0.307,
       "region": "usa",
       "geo": null
@@ -867,10 +944,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.45,
-      "score": 0.409,
+      "freshH": 0.6,
+      "score": 0.404,
       "popularity": 0,
-      "recency": 0.949,
+      "recency": 0.934,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
@@ -897,41 +974,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.48,
-      "score": 0.407,
+      "freshH": 0.62,
+      "score": 0.401,
       "popularity": 0,
-      "recency": 0.946,
+      "recency": 0.931,
       "relevancy": 0.303,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Arizona Elections: 6 Takeaways From the Trump-Dominated Primaries",
-      "summary": "Republicans nominated a former N.F.L. kicker in a top House battleground, a Trump loyalist for governor and an election denier for the state’s top election post.",
-      "hashtag": "ElectionsTakeaways",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/arizona-primary-takeaways.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21pol-arizona-takeaways-tbvj/21pol-arizona-takeaways-tbvj-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/21/multimedia/21pol-arizona-takeaways-tbvj/21pol-arizona-takeaways-tbvj-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/arizona-primary-takeaways.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.5,
-      "score": 0.403,
-      "popularity": 0,
-      "recency": 0.944,
-      "relevancy": 0.291,
       "region": "usa",
       "geo": null
     },
@@ -957,10 +1004,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.48,
-      "score": 0.398,
+      "freshH": 0.62,
+      "score": 0.392,
       "popularity": 0,
-      "recency": 0.946,
+      "recency": 0.931,
       "relevancy": 0.266,
       "region": "usa",
       "geo": null
@@ -987,10 +1034,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.72,
-      "score": 0.397,
+      "freshH": 0.86,
+      "score": 0.392,
       "popularity": 0,
-      "recency": 0.921,
+      "recency": 0.905,
       "relevancy": 0.3,
       "region": "usa",
       "geo": null
@@ -1017,10 +1064,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.64,
-      "score": 0.397,
+      "freshH": 0.79,
+      "score": 0.391,
       "popularity": 0,
-      "recency": 0.929,
+      "recency": 0.913,
       "relevancy": 0.286,
       "region": "usa",
       "geo": null
@@ -1047,17 +1094,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.73,
-      "score": 0.39,
+      "freshH": 0.87,
+      "score": 0.384,
       "popularity": 0,
-      "recency": 0.919,
+      "recency": 0.904,
       "relevancy": 0.272,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Fifth person dies in New York City amid legionnaires’ disease outbreak",
-      "summary": "A fifth person has died in New York City's legionnaires' disease outbreak, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to cooling towers on Manhattan's Upper East Side, where 34 out of 183 tested towers have tested positive for live legionella bacteria. Health officials are continuing to test the remaining towers, with results expected in the coming week. The city's health department will continue to monitor the situation and take further action as necessary.",
+      "summary": "A fifth person has died in New York City's legionnaires' disease outbreak on Manhattan's Upper East Side, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to 34 cooling towers across 33 buildings, where live legionella bacteria were detected. The city's health department is continuing to test the remaining 140 cooling tower systems. Further cases may be confirmed as testing is completed.",
       "hashtag": "NewYork",
       "badge": "HEALTH",
       "category": "health",
@@ -1079,71 +1126,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.51,
-      "score": 0.376,
+      "freshH": 3.65,
+      "score": 0.372,
       "popularity": 0,
-      "recency": 0.667,
+      "recency": 0.656,
       "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
-      "summary": "The administration canceled federal grants to organizations across the country, accusing them of encouraging premarital sex. New criteria say programs should stress abstinence.",
-      "hashtag": "OverhaulsTeen",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.39,
-      "score": 0.373,
-      "popularity": 0,
-      "recency": 0.851,
-      "relevancy": 0.302,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Susumu Tonegawa Dies at 86; Nobel Laureate Showed How Antibodies Fight Infection",
-      "summary": "The first Japanese scientist to win the Nobel Prize in Physiology or Medicine, he went on to discover how memories are stored, advancing understanding of how the brain works.",
-      "hashtag": "TonegawaDies",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nytimes.com/2026/07/21/science/susumu-tonegawa-dead.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/17/multimedia/17Tonegawa--pvgz/17Tonegawa--pvgz-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/17/multimedia/17Tonegawa--pvgz/17Tonegawa--pvgz-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/21/science/susumu-tonegawa-dead.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.71,
-      "score": 0.362,
-      "popularity": 0,
-      "recency": 0.821,
-      "relevancy": 0.3,
       "region": "usa",
       "geo": null
     }
@@ -1152,7 +1139,7 @@
     "offbeat": [
       {
         "title": "Nolan Wells' cause and manner of death undetermined, attorney says, citing family's autopsy",
-        "summary": "Nolan Wells, an 18-year-old Mississippi teen, died under undetermined circumstances, according to a preliminary independent autopsy. The autopsy found red discoloration on the back of his head, but the cause remains unknown. Wells' body was found on July 6, six days after he went missing on a Fourth of July trip to Horn Island. The official autopsy results from the state medical examiner's office have not yet been released, pending further investigation.",
+        "summary": "Nolan Wells, an 18-year-old Mississippi teen, died under undetermined circumstances, according to preliminary findings from an independent autopsy. The cause and manner of death remain unknown, pending further investigation. Wells' body was found on July 6 on Horn Island, where he had been on a Fourth of July outing with friends. The investigation continues, with the official autopsy results still pending.",
         "hashtag": "NolanWells",
         "badge": "VIRAL",
         "category": "offbeat",
@@ -1160,60 +1147,58 @@
         "imageUrl": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/07/20/0eedb417-4f87-4e6e-ae3e-747554b0701a/thumbnail/1200x630/b7c9acb28abfa86c54045bbb8fb3304d/cbsn-fusion-nolan-wells-funeral-to-be-held-as-questions-swirl-around-18-year-olds-death-thumbnail.jpg",
         "images": [
           "https://assets2.cbsnewsstatic.com/hub/i/r/2026/07/20/0eedb417-4f87-4e6e-ae3e-747554b0701a/thumbnail/1200x630/b7c9acb28abfa86c54045bbb8fb3304d/cbsn-fusion-nolan-wells-funeral-to-be-held-as-questions-swirl-around-18-year-olds-death-thumbnail.jpg",
-          "https://ichef.bbci.co.uk/news/1024/branded_news/b74b/live/2e1ddcb0-85e5-11f1-b976-0b9c15b0ccfc.png",
           "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/nolan-wells.jpg",
           "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/20/USAT/90989230007-usatsi-29418524.jpg?crop=6452,3629,x0,y336&width=1600&height=800&format=pjpg&auto=webp",
           "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/20/USAT/90989230007-usatsi-29418524.jpg?width=660&height=440&fit=crop&format=pjpg&auto=webp",
           "https://cdn.abcotvs.com/dip/images/19543150_072026-cc-abcn-nolan-wells-img.jpg?w=1600",
-          "https://wsvn.com/wp-content/uploads/sites/2/2026/07/260722_Nolan_Wells.jpg?quality=60&strip=color",
           "https://nypost.com/wp-content/uploads/sites/2/2026/07/135187499.jpg?quality=75&strip=all&w=1200",
           "https://nypost.com/wp-content/uploads/sites/2/2026/07/nolan-wells-second-right-friends-133483582_6e67b5.jpg?w=768",
           "https://nypost.com/wp-content/uploads/sites/2/2026/07/officer-tatum-interviews-nolan-wells-135186039.jpg?w=1024",
           "https://nypost.com/wp-content/uploads/sites/2/2026/07/officer-tatum-interviews-nolan-wells-135186037.jpg?w=1024",
           "https://nypost.com/wp-content/uploads/sites/2/2026/07/nolan-wells-july-4-search-133483580_57b2cd.jpg?w=371",
+          "https://bloximages.newyork1.vip.townnews.com/wkow.com/content/tncms/assets/v3/editorial/c/02/c0282533-fd37-5f1c-9552-01fc54d1cf89/6a60f5ef45f4d.image.jpg?crop=1763%2C926%2C0%2C124&resize=1200%2C630&order=crop%2Cresize",
+          "https://bloximages.newyork1.vip.townnews.com/wkow.com/content/tncms/assets/v3/editorial/c/02/c0282533-fd37-5f1c-9552-01fc54d1cf89/6a60f5ef45f4d.image.jpg?crop=1763%2C926%2C0%2C124&resize=438%2C230&order=crop%2Cresize",
           "https://newsone.com/wp-content/uploads/sites/22/2026/07/17835451440201.png?strip=all&quality=80&w=1200&crop=0,0,100,675px",
           "https://newsone.com/wp-content/uploads/sites/22/2026/07/17835451440201.png?strip=all&quality=80&w=1024&crop=0,0,100,576px"
         ],
         "sourceUrls": [
           "https://www.cbsnews.com/news/nolan-wells-independent-autopsy-results/",
-          "https://www.bbc.com/news/articles/cgr7njdxxp9o",
+          "https://news.wttw.com/2026/07/22/independent-autopsy-nolan-wells-finds-undetermined-cause-death-attorney-says-chicago",
           "https://www.foxnews.com/us/nolan-wells-independent-autopsy-doesnt-point-foul-play-fmr-medical-examiner-says",
           "https://www.usatoday.com/story/news/nation/2026/07/22/nolan-wells-independent-autopsy-update/90987476007/",
           "https://abc13.com/story/nolan-wells-family-announce-independent-autopsy-findings-wednesday/19555733/",
-          "https://wsvn.com/news/us-world/independent-autopsy-of-nolan-wells-finds-undetermined-cause-of-death/",
           "https://nypost.com/2026/07/22/us-news/nolan-wells-had-been-drinking-alcohol-but-seemed-fine-on-day-he-vanished-best-friend-says/",
           "https://www.lehighvalleylive.com/news/2026/07/nolan-wells-independent-autopsy-results-in-further-investigation-into-cause-of-death.html",
+          "https://www.wkow.com/news/preliminary-independent-autopsy-results-for-nolan-wells-leave-questions-unanswered/article_395c840c-68f7-51c7-ae95-acd20ddcd7e1.html",
           "https://newsone.com/6867021/nolan-wells-independent-autopsy-findings-heres-what-we-know/"
         ],
         "sourceName": "CBS News",
         "sources": [
           "CBS News",
-          "BBC",
+          "WTTW News",
           "Fox News",
           "USA Today",
+          "WTVA",
           "ABC13 Houston",
-          "WSVN",
           "New York Post",
           "Lehighvalleylive.com",
-          "WTVA",
+          "WKOW",
           "KPAX News",
           "10News.com",
           "NewsOne",
           "News 5 Cleveland WEWS",
           "KHOU",
-          "AppleValleyNewsNow.com",
+          "Post Register",
           "The Herald Journal",
           "CBC",
           "GazetteXtra",
           "Modern Ghana",
           "AOL.com",
           "the-sun.com",
-          "AllHipHop",
           "Globe Magazine",
-          "Rolling Out",
-          "TotalProSports"
+          "AllHipHop"
         ],
-        "corr": 25,
+        "corr": 23,
         "verified": true,
         "trend": "Nolan Wells",
         "traffic": 95000,
@@ -1226,51 +1211,8 @@
         "geo": "US"
       },
       {
-        "title": "Arrowhead: Stock Up On SHTG Data - No Ceiling On Valuation Growth Potential (NASDAQ:ARWR)",
-        "summary": "Arrowhead Pharmaceuticals stock surged nearly 20% after strong Phase 3 results for its lipid-lowering agent, plozasiran, showing significant triglyceride reductions and risk reduction for acute pancreatitis. The company's quarterly dosing and favorable safety profile position it to challenge Ionis in the lucrative sHTG market. Regulatory filings are planned before year-end. The stock reached a value of $88.6 per share.",
-        "hashtag": "Arrowhead",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://seekingalpha.com/article/4924293-arrowhead-stock-up-on-shtg-data-no-ceiling-on-valuation-growth-potential",
-        "imageUrl": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1536",
-        "images": [
-          "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1536",
-          "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w1280",
-          "https://seekingalpha.com/images/users_profile/049/171/940/big_pic.png?io=w36",
-          "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2274129795/image_2274129795.jpg?io=getty-c-w630",
-          "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_0,w_2559,h_1439/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/130/01ky5ca0cy9meagsgwsw.webp",
-          "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/962267088/image_962267088.jpg?io=getty-c-w630",
-          "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/962267088/image_962267088.jpg?io=getty-c-w1280"
-        ],
-        "sourceUrls": [
-          "https://seekingalpha.com/article/4924293-arrowhead-stock-up-on-shtg-data-no-ceiling-on-valuation-growth-potential",
-          "https://www.gurufocus.com/news/8972113/arrowhead-arwr-sees-significant-stock-surge",
-          "https://arrowheadaddict.com/chiefs-reveal-stunning-new-stadium-renderings-that-should-reassure-arrowhead-fans-01ky5a91fw0k",
-          "https://seekingalpha.com/news/4616798-arrowhead-stock-jumps-late-stage-trial-win",
-          "https://www.tipranks.com/news/arrowhead-pharmaceuticals-arwr-stock-soars-on-strong-phase-3-trial-results"
-        ],
-        "sourceName": "Seeking Alpha",
-        "sources": [
-          "Seeking Alpha",
-          "GuruFocus",
-          "Arrowhead Addict",
-          "TipRanks"
-        ],
-        "corr": 4,
-        "verified": true,
-        "trend": "Arrowhead",
-        "traffic": 99000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
         "title": "Live updates: Trump attends dignified transfer of U.S. service members",
-        "summary": "Four US service members killed in an Iranian attack on a US air base in Jordan on July 17 were honored in a dignified transfer at Dover Air Force Base in Delaware. President Trump met with the families of the fallen service members, including Sgt. Angel Rampersad, Sgt. Michael Emmanuel Swinton, 1st Lt. Tyler James Feehan, and Pvt. Isabella Gonzales. The four were assigned to air defense units, risking their lives to protect others from incoming attacks. The transfer comes as tensions with Iran remain high.",
+        "summary": "Former President Trump attended a dignified transfer of four US service members killed in an Iranian attack on July 17 at the Dover Air Force Base in Delaware. The transfer involved the repatriation of the remains of the service members who died in the attack. Trump met with the families of the deceased service members during the ceremony. The US is still investigating the circumstances of the attack.",
         "hashtag": "DoverAir",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1282,18 +1224,16 @@
           "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2500,h_1667/rockcms/2026-07/260722-dignified-transfer-mn-1205-b314aa.jpg",
           "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2500,h_1667/rockcms/2026-07/260722-dignified-transfer-mn-1255-ffb295.jpg",
           "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_1800,h_1200/rockcms/2026-07/260722-donald-trump-dignified-transfer-mn-1100-0eacfe.jpg",
-          "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2000,h_1333/rockcms/2026-07/260720-Alex-Kolodin-vl-1223p-4f3902.jpg",
-          "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/SPSI6ZCFGYQWQTVJE3ENOVY6MU.jpg&w=1440"
+          "https://media-cldnry.s-nbcnews.com/image/upload/c_fill,g_auto,w_2000,h_1333/rockcms/2026-07/260720-Alex-Kolodin-vl-1223p-4f3902.jpg"
         ],
         "sourceUrls": [
           "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-dignified-transfer-service-members-iran-congress-election-rcna588638",
-          "https://www.washingtonpost.com/national-security/2026/07/21/troops-killed-iranian-attacks-were-tasked-with-defending-bases-incoming-strikes/",
           "https://www.reuters.com/world/us/trump-witness-return-us-soldiers-killed-iran-war-2026-07-22/"
         ],
         "sourceName": "nbcnews.com",
         "sources": [
           "NBC News",
-          "The Washington Post",
+          "FOX 4 News Dallas-Fort Worth",
           "Reuters"
         ],
         "corr": 3,
@@ -1310,7 +1250,7 @@
       },
       {
         "title": "It's Officially the End of an Era for Marvel's 'Wonder Man'",
-        "summary": "Marvel's Wonder Man, Simon Williams, faces embezzlement and murder charges, marking a significant turn in his career. The charges come as Wonder Man's career takes a nosedive, with preview pages showing him confronting his agent over the allegations. The consequences of these charges are unclear, but they signal a major shift in Wonder Man's public image. The next development in this story is expected to unfold in the comic book series, with the latest issue hitting stores this Wednesday.",
+        "summary": "Marvel's Wonder Man, Simon Williams, faces embezzlement and murder charges, marking a significant turn in his career. The charges are revealed in the latest issue of Wonder Man 5, set to hit stores on July 22nd. This development comes as a major setback for the character, who has been a prominent figure in the Marvel Cinematic Universe. The consequences of these charges will likely have a lasting impact on Wonder Man's future.",
         "hashtag": "WonderMan",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1349,7 +1289,7 @@
       },
       {
         "title": "Sestao River - Athletic Club: horario y dónde ver hoy en TV el partido amistoso de pretemporada",
-        "summary": "The Athletic Club is set to face off against Sestao River in a pre-season friendly match at Las Llanas on Wednesday, July 22, at 19:30 hours. The match will be a test of the team's physical and tactical progression, following a 0-11 victory over SD Leioa in their previous friendly. The Sestao River presents a challenge with a higher level of competition, but the Athletic Club's coach, Edin Terzic, aims to continue accumulating kilometers of training and implementing new tactics. The match will be broadcast live on the Athletic Club's official streaming channel.",
+        "summary": "The Athletic Club will face Sestao River in an exhibition match at Las Llanas on Wednesday, July 22, at 19:30 hours. This match is part of the team's pre-season training, following a 0-11 victory over SD Leioa in their previous friendly. The game will be streamed live through the Athletic Club's official channel and platform. The match marks a step up in intensity for the team as they continue to build their physical and tactical progression.",
         "hashtag": "SestaoRiver",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1386,43 +1326,8 @@
         "geo": "US"
       },
       {
-        "title": "Pittsburgh Pirates at New York Yankees Preview - 07/21/2026",
-        "summary": "The Pittsburgh Pirates face the New York Yankees at Yankee Stadium on July 22, 2026, at 1:35 p.m. ET. Pirates' Mitch Keller returns to the mound after a nearly two-week absence, seeking to bounce back from a poor performance against the Atlanta Braves. Yankees' Garrett Cole pitches against the Pirates for the third time in his career, looking to end a two-start losing streak. Cole's last win came on July 3.",
-        "hashtag": "GerritCole",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.mlb.com/stories/game-preview/823519",
-        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/eeriqixwvyjq3uzxdebl",
-        "images": [
-          "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/eeriqixwvyjq3uzxdebl",
-          "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19"
-        ],
-        "sourceUrls": [
-          "https://www.mlb.com/stories/game-preview/823519",
-          "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
-          "https://www.dkpittsburghsports.com/team/pirates/feed/topic/a9161204-d1ad-4bfa-94f9-555a7bf818e5"
-        ],
-        "sourceName": "mlb.com",
-        "sources": [
-          "MLB",
-          "Yahoo Sports",
-          "DK Pittsburgh Sports"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "gerrit cole",
-        "traffic": 500,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
         "title": "World Cup 2026: Argentina react to final defeat and Messi questions",
-        "summary": "Argentina's World Cup campaign ended in defeat to Spain, 1-0 in extra time, on Sunday in New Jersey. Midfielder Enzo Fernandez was sent off late in normal time for two yellow cards. Fernandez has since praised the team's effort, saying they represented Argentina \"in the best possible way.\" The team's performance will be scrutinized following reports of incidents prior to the match.",
+        "summary": "Argentina's World Cup campaign ended in a 1-0 defeat to Spain in extra time on Sunday in New Jersey, with midfielder Enzo Fernandez being sent off for two yellow cards. Fernandez's statement on social media praised the team's commitment and humility, despite the loss. The match was marred by ugly scenes, including Fernandez's red card and dissent towards the referee. The team's performance will be scrutinized in the aftermath of the loss.",
         "hashtag": "ArgentinaRed",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1455,8 +1360,43 @@
         "geo": "US"
       },
       {
+        "title": "Pittsburgh Pirates vs. New York Yankees: Mitch Keller vs. Gerrit Cole",
+        "summary": "The Pittsburgh Pirates face the New York Yankees in the series finale at Yankee Stadium on July 22, with Mitch Keller making his first start since July 9. Keller aims to bounce back from a poor performance against the Atlanta Braves, while Gerrit Cole looks to secure his first win since July 3. The Pirates are seeking to end a two-week drought without Keller's start. The Yankees aim to win an interleague series for the third time in six tries.",
+        "hashtag": "GerritCole",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
+        "imageUrl": "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19",
+        "images": [
+          "https://s.yimg.com/ny/api/res/1.2/lM412quYSgB8f5RASPQXTw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTU7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/1e3193843ccc49e0e5d3de5a21e3fa19",
+          "https://s.yimg.com/ny/api/res/1.2/z4AqcnK0aFHhItRpOi.9.w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/sb_nation_articles_115/846a3774132878c246295f24818da84f",
+          "https://s.yimg.com/ny/api/res/1.2/WG2RnJ9p1rtt295EKVzd0Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://media.zenfs.com/en/sb_nation_articles_115/846a3774132878c246295f24818da84f"
+        ],
+        "sourceUrls": [
+          "https://sports.yahoo.com/articles/pittsburgh-pirates-vs-york-yankees-163500305.html",
+          "https://sports.yahoo.com/articles/york-yankees-vs-pittsburgh-pirates-163500329.html",
+          "https://www.dkpittsburghsports.com/team/pirates/feed/topic/a9161204-d1ad-4bfa-94f9-555a7bf818e5"
+        ],
+        "sourceName": "sports.yahoo.com",
+        "sources": [
+          "Yahoo Sports",
+          "DK Pittsburgh Sports"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "gerrit cole",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
         "title": "Why Jalen Brunson wasn't chosen as the NBA2K27 cover athlete over Victor Wembanyama",
-        "summary": "Victor Wembanyama has been chosen as the main cover athlete for NBA2K27. The 19-year-old Spurs center was selected despite the Knicks' recent NBA championship win, led by Jalen Brunson who was awarded the NBA Finals MVP award. Brunson's team defeated the Spurs in the NBA Finals, winning more clutch games. The NBA2K27 video game is set to release with Wembanyama as its cover athlete.",
+        "summary": "Victor Wembanyama has been chosen as the cover athlete for NBA2K27. The 19-year-old Spurs center was selected despite the Knicks' Jalen Brunson leading his team to an NBA championship and earning the NBA Finals MVP award. Brunson's recent postseason success did not secure him the cover spot. Wembanyama's selection will be featured in the upcoming video game.",
         "hashtag": "Brunson",
         "badge": "VIRAL",
         "category": "offbeat",
@@ -1487,7 +1427,7 @@
       },
       {
         "title": "Wemby, Rose, Clark are NBA 2k27 Cover Athletes",
-        "summary": "NBA 2K27 will feature Victor Wembanyama, Caitlin Clark, and Derrick Rose as cover athletes, with Wembanyama on the Standard Edition. The game is set to release on September 4. Wembanyama, a 22-year-old dominant player, led the San Antonio Spurs to the 2026 NBA Finals. The trio will be available on various editions of the game.",
+        "summary": "NBA 2K27 cover athletes announced, featuring Victor Wembanyama, Caitlin Clark, and Derrick Rose. The trio will be on different editions of the game, available on September 4. Wembanyama, a 22-year-old NBA star, will be on the Standard Edition cover, following his 2026 NBA Finals appearance and Kia Defensive Player of the Year award. The game's release will mark the beginning of the NBA 2K27 season.",
         "hashtag": "Wemby",
         "badge": "VIRAL",
         "category": "offbeat",
@@ -1517,7 +1457,7 @@
       },
       {
         "title": "Two Russians handed down jail terms for terrorism and spying in Angola",
-        "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola's capital, Luanda. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The Angolan authorities will now monitor the influence of Africa Politology, a Russian political network linked to the defendants, ahead of the election.",
+        "summary": "Two Russians, Igor Ratchin and Lev Lakshtanov, have been sentenced to 11 and 8 years in prison respectively for terrorism and spying in Angola. They were found guilty of stirring up anti-government protests, conducting disinformation campaigns, and attempting to interfere in next year's presidential election. The court's decision comes after the defendants denied the charges and their lawyers requested extradition to Russia. The case is linked to Africa Politology, a Russian political network accused of spreading anti-Western narratives in Angola.",
         "hashtag": "RussiansAngola",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1538,7 +1478,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.16,
+        "freshH": 1.3,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1548,7 +1488,7 @@
       },
       {
         "title": "Mamdani backs off on pledge to arrest Netanyahu citing lack of authority",
-        "summary": "New York City Mayor Zohran Mamdani has backed off on his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing a lack of authority to do so. Mamdani had previously called for Netanyahu's arrest over an International Criminal Court arrest warrant for alleged war crimes. The US is not an ICC member state, rendering the warrant unenforceable domestically. Mamdani now urges US officials to act on the warrant, as Netanyahu continues to visit the country.",
+        "summary": "New York City Mayor Zohran Mamdani has backed off on his pledge to arrest Israeli Prime Minister Benjamin Netanyahu, citing lack of authority to do so. Mamdani had previously called for Netanyahu's arrest over alleged war crimes, but now says US officials must act on the International Criminal Court's arrest warrant. The US is not an ICC member state, making it unlikely Netanyahu will be arrested. Mamdani's reversal comes after President Donald Trump stated Netanyahu would not be arrested in the US.",
         "hashtag": "Netanyahu",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1569,7 +1509,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.24,
+        "freshH": 1.39,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1579,7 +1519,7 @@
       },
       {
         "title": "Police formally investigate woman after Brit stabbed to death in French village",
-        "summary": "A 70-year-old woman has been formally charged in connection with the 2024 stabbing death of 65-year-old Karen Carter in Trémolat, France. Carter, a British-South African mother of four, was found with stab wounds near her car by a friend. The woman, who was originally taken into custody in 2025, is now under formal investigation. A judicial inquiry was opened on May 7, 2025, leading to the formal charge.",
+        "summary": "A 70-year-old woman has been formally investigated in connection with the stabbing death of 65-year-old Karen Carter, a British-South African mother of four, in the French village of Trémolat last year. Carter was found with stab wounds near her car in April 2023. The woman was initially taken into custody in 2025 as part of preliminary inquiries before being released. She is now formally charged following judicial investigations that began on May 7, 2025.",
         "hashtag": "BritFrench",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1600,71 +1540,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.75,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "Sacha Baron Cohen’s ‘Ali G: Who Iz I?’ Sets October Release From Amazon MGM",
-        "summary": "Sacha Baron Cohen's \"Ali G: Who Iz I?\" is set to release in theaters on October 23. The film marks Cohen's feature directorial debut, in which he also stars as the character Ali G. Cohen originated the role in 1998 for Channel 4's \"The 11 O'Clock Show\" and reprised it in his own \"Da Ali G Show\" in the early 2000s. The movie will be released by Amazon MGM Studios.",
-        "hashtag": "BaronCohen",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=563&crop=1",
-          "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=627&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.13,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Benicio Del Toro Joins Ben Stiller in Apple TV Comedy ‘Protective Custody’",
-        "summary": "Benicio Del Toro joins Ben Stiller in the Apple TV comedy series \"Protective Custody,\" marking Del Toro's first lead series comedy role. The show follows a disgraced financier accused of massive fraud, navigating prison politics and awaiting trial. Del Toro and Stiller previously collaborated on the Showtime limited series \"Escape at Dannemora.\" Del Toro's character details remain under wraps.",
-        "hashtag": "DelToro",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/benicio-del-toro-ben-stiller-apple-protective-custody-1236818184/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/BDT-Headshot-photo-by-GREG-WILLIAMS-e1784735155821.jpeg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/BDT-Headshot-photo-by-GREG-WILLIAMS-e1784735155821.jpeg"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/benicio-del-toro-ben-stiller-apple-protective-custody-1236818184/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.74,
+        "freshH": 1.9,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1675,8 +1551,40 @@
     ],
     "politics": [
       {
+        "title": "The Guardian view on Andy Burnham and devolution: it takes a powerful centre to decentralise power | Editorial",
+        "summary": "New Prime Minister Andy Burnham has signaled his intent to bolster the power of Downing Street, despite citing overcentralization of power as a cause of Britain's social and economic issues. This move comes as he aims to decentralize power, a goal that has been hindered by the Treasury's reluctance to grant fiscal control to lower tiers of government. The UK's devolved administrations have historically struggled with genuine control, often shifting blame to national government when things go wrong. The prime minister's office is also under-resourced compared to equivalent institutions in similar democracies.",
+        "hashtag": "GuardianAndy",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/commentisfree/2026/jul/22/the-guardian-view-on-andy-burnham-and-devolution-it-takes-a-powerful-centre-to-decentralise-power",
+        "imageUrl": "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2bad75650b2ce3a745c76453e7d986ee",
+        "images": [
+          "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2bad75650b2ce3a745c76453e7d986ee",
+          "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=a79e03092e0e18d4d196af27e3f30c5e",
+          "https://i.guim.co.uk/img/media/ead54440caecbb2c3898102de76ac53bc64b6ce1/388_0_3880_3104/master/3880.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&s=3b1f12a3a1cf4a4f76da75f082c33400"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/commentisfree/2026/jul/22/the-guardian-view-on-andy-burnham-and-devolution-it-takes-a-powerful-centre-to-decentralise-power"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.38,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Natalie Fleet leaves 'triggering' safeguarding minister role",
-        "summary": "Natalie Fleet has stepped down as safeguarding minister, citing the role as \"overwhelmingly triggering\" and affecting her health. She was appointed to the position on May 12 this year. Fleet, a Labour MP who was groomed and raped as a teenager, described her decision as the \"bravest thing I've ever done.\" Her successor will now take on the responsibility of supporting victims and addressing the worst of humanity.",
+        "summary": "Natalie Fleet has stepped down as safeguarding minister, citing the role as \"overwhelmingly triggering\" due to her own experiences as a victim of grooming and rape. She was appointed to the role on May 12 this year. Fleet says she cannot perform the job effectively and is offering her support to her successor. The new Prime Minister Andy Burnham has been informed of her departure.",
         "hashtag": "Fleet",
         "badge": "POLITICS",
         "category": "politics",
@@ -1697,37 +1605,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.17,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Arizona Elections: 6 Takeaways From the Trump-Dominated Primaries",
-        "summary": "Republicans nominated a former N.F.L. kicker in a top House battleground, a Trump loyalist for governor and an election denier for the state’s top election post.",
-        "hashtag": "ElectionsTakeaways",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/arizona-primary-takeaways.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/21pol-arizona-takeaways-tbvj/21pol-arizona-takeaways-tbvj-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/21/multimedia/21pol-arizona-takeaways-tbvj/21pol-arizona-takeaways-tbvj-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/arizona-primary-takeaways.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.5,
+        "freshH": 0.32,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1757,7 +1635,196 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.48,
+        "freshH": 0.62,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "How Long Can ‘The Odyssey’ Stay on Imax 70mm Screens? Nolan Fans Scramble as New Showtimes Sell Out 7 Weeks in Advance",
+        "summary": "Christopher Nolan's \"The Odyssey\" has sold out Imax 70mm screenings in New York and Los Angeles through August 19, and in London through September 10, due to intense demand. The film's premium large format showings are available in 25 US theaters and 41 globally. Imax has committed to \"Dune: Part Three\" for its next 70mm release, meaning \"The Odyssey\" will not have to vacate screens until then. The next Imax releases include \"The End of Oak Street\" and \"Resident Evil,\" but it's unclear if they will also be shown in 70mm.",
+        "hashtag": "LongCan",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/the-odyssey-imax-70mm-showtimes-will-there-be-more-tickets-1236816709/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
+          "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png?crop=0px%2C4px%2C1102px%2C620px&resize=1000%2C563"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/the-odyssey-imax-70mm-showtimes-will-there-be-more-tickets-1236816709/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.13,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Sacha Baron Cohen’s ‘Ali G: Who Iz I?’ Sets October Release From Amazon MGM",
+        "summary": "Sacha Baron Cohen's \"Ali G: Who Iz I?\" is set to release in theaters on October 23. The film marks Cohen's feature directorial debut, in which he plays the character Ali G, interviewing people on the street and getting into humorous and cringe-worthy situations. Cohen originated the character in 1998 for Channel 4's \"The 11 O'Clock Show\" and reprised it in his own \"Da Ali G Show\" in the early 2000s. The movie will be available on the same date, with no further details on its distribution.",
+        "hashtag": "BaronCohen",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/MCDALGI_EC003.jpg?w=941&h=563&crop=1"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/sacha-baron-cohen-ali-g-movie-release-date-1236818332/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.28,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Benicio Del Toro Joins Ben Stiller in Apple TV Comedy ‘Protective Custody’",
+        "summary": "Benicio Del Toro is set to star in the Apple TV comedy series \"Protective Custody\" alongside Ben Stiller, marking Del Toro's first lead series comedy role. The show follows a disgraced financier accused of massive fraud, navigating prison politics and consequences. Del Toro is a three-time Oscar nominee, including a win for best supporting actor in 2001 for \"Traffic\". The series is set to premiere on Apple TV.",
+        "hashtag": "DelToro",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/news/benicio-del-toro-ben-stiller-apple-protective-custody-1236818184/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/BDT-Headshot-photo-by-GREG-WILLIAMS-e1784735155821.jpeg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/BDT-Headshot-photo-by-GREG-WILLIAMS-e1784735155821.jpeg"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/tv/news/benicio-del-toro-ben-stiller-apple-protective-custody-1236818184/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.88,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Ex-Man Utd midfielder Casemiro joins Inter Miami",
+        "summary": "Former Manchester United midfielder Casemiro has signed with Inter Miami on a deal running to the end of the 2027 season, with an option to extend until June 2029. The 34-year-old Brazilian international joins the Major League Soccer side after making 160 appearances for United, scoring 26 goals and providing 14 assists. Casemiro's signing comes as United prioritize midfield reinforcements, acquiring Andrey Santos and Youri Tielemans. He is expected to bolster Inter Miami's roster ahead of the new season.",
+        "hashtag": "ManUtd",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/c3304ex7n7xo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7168/live/714cd7f0-85f1-11f1-8ade-a7a676c613b9.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/c3304ex7n7xo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.22,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Philipsen sprints to stage 17 win",
+        "summary": "Jasper Philipsen won stage 17 of the Tour de France, crossing the finish line with a significant gap over his rivals. The 28-year-old Alpecin-Premier Tech rider secured his first stage victory in a three-week race marked by frustration. Philipsen's win came after a powerful lead-out from teammate Mathieu van der Poel on the 174.7km stage from Chambery to Voiron. He now looks to build momentum heading into the final stages of the Tour.",
+        "hashtag": "PhilipsenSprints",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/cycling/articles/cvg0mxnp20mo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5c1c/live/763065f0-85ee-11f1-8ade-a7a676c613b9.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/cycling/articles/cvg0mxnp20mo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.31,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Brave fightback against Fire to make winning start",
+        "summary": "Southern Brave secured an eight-run win over Welsh Fire in the Hundred women's competition, with Welsh Fire reaching 118-8 in their chase of 126-7. The Brave's fightback was sparked by 18-year-old spinner Tilly Corteen-Coleman, who dismissed Georgia Voll for 52. Lauren Bell and captain Sophie Molineux also contributed to the win with key wickets. The Brave will look to build on this momentum in their next match.",
+        "hashtag": "Fire",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/cricket/articles/cp8e210n4ydo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/cricket/articles/cp8e210n4ydo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.52,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1769,7 +1836,7 @@
     "tech": [
       {
         "title": "Apple is reportedly testing a MacBook Neo with more RAM",
-        "summary": "Apple is reportedly developing an updated MacBook Neo with a new A19 Pro processor, which will likely include 12GB of RAM, an upgrade from the original 8GB. The new processor currently powers the iPhone 17 Pro and Pro Max. The updated Neo may also come in new colors. The next model is expected to be more expensive due to ongoing component shortages.",
+        "summary": "Apple is reportedly developing an updated MacBook Neo with a new A19 Pro processor, which will likely feature 12GB of RAM, an upgrade from the original 8GB. The new model is expected to retain the same price point as the current Neo, but ongoing component shortages may impact availability. The updated Neo is also expected to be released alongside new iMacs with OLED screens. Apple has not confirmed the release date or pricing for the updated models.",
         "hashtag": "Neo",
         "badge": "TECH",
         "category": "tech",
@@ -1793,7 +1860,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.14,
+        "freshH": 1.28,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1823,7 +1890,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.72,
+        "freshH": 0.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1853,198 +1920,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.73,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "sports": [
-      {
-        "title": "Brave fightback against Fire to make winning start",
-        "summary": "Southern Brave secured an eight-run win over Welsh Fire in the Hundred women's competition, reaching 126-7 in 100 balls. Welsh Fire replied with 118-8 in 100 balls, led by Georgia Voll's 52. The Brave's fightback was sparked by 18-year-old spinner Tilly Corteen-Coleman and Lauren Bell, who picked up key wickets. The win marks a strong start for the Brave in the competition.",
-        "hashtag": "Fire",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/cricket/articles/cp8e210n4ydo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f0d1/live/a3c02ce0-85ed-11f1-b976-0b9c15b0ccfc.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/cricket/articles/cp8e210n4ydo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.37,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Why are cycling's anti-doping tests being carried out at night?",
-        "summary": "Anti-doping tests at the Tour de France are being conducted at night for the first time, with five teams having riders tested between 11pm and 6am. This unusual approach is being justified as an exceptional measure to prevent doping, particularly peptide and testosterone micro dosing. The tests have already affected the race, with Dane Jonas Vingegaard crashing out after being tested in the middle of the night. The sport's efforts to move away from a chequered doping past are being closely watched.",
-        "hashtag": "CyclingAnti",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/cycling/articles/c7vge10vnm8o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0b07/live/c71345a0-8521-11f1-97e8-4f50dea2b016.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/cycling/articles/c7vge10vnm8o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.62,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Eccles and Salmon given Team Wales honour in Glasgow",
-        "summary": "Reigning Commonwealth Games champions Rosie Eccles and Daniel Salmon have been chosen as Team Wales' flag and baton bearers for the opening ceremony in Glasgow. Eccles, a 30-year-old boxer from Caldicot, will carry the flag and lead Wales out at the Hydro on Thursday night. This is her third and final Games, having won gold in Birmingham and silver on the Gold Coast in 2018. Eccles will now lead a procession of athletes into the venue.",
-        "hashtag": "SalmonTeam",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/articles/cr596z7d1ejo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/8183/live/72cbcc40-85f0-11f1-8ade-a7a676c613b9.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/articles/cr596z7d1ejo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.91,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "health": [
-      {
-        "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-        "summary": "A British health select committee report has found that obesity is an engineered outcome, not a result of personal willpower. The report recommends targeting ultra-processed foods high in sugar and refined carbohydrates to reduce obesity in Britain. According to the report, these foods are the primary drivers of weight gain and type 2 diabetes. The committee is urging supermarkets and manufacturers to reformulate their products to reduce sugar content.",
-        "hashtag": "BritainLetter",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain",
-        "imageUrl": "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
-        "images": [
-          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
-          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e",
-          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=2f28a91f88399c8c49e03bf23458c92c"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.88,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Fifth person dies in New York City amid legionnaires’ disease outbreak",
-        "summary": "A fifth person has died in New York City's legionnaires' disease outbreak, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to cooling towers on Manhattan's Upper East Side, where 34 out of 183 tested towers have tested positive for live legionella bacteria. Health officials are continuing to test the remaining towers, with results expected in the coming week. The city's health department will continue to monitor the situation and take further action as necessary.",
-        "hashtag": "NewYork",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city",
-        "imageUrl": "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
-        "images": [
-          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
-          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d",
-          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=4881759d811b3f9e5c7fe4de73ff97b9"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.51,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
-        "summary": "The administration canceled federal grants to organizations across the country, accusing them of encouraging premarital sex. New criteria say programs should stress abstinence.",
-        "hashtag": "OverhaulsTeen",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.39,
+        "freshH": 0.87,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2055,8 +1931,39 @@
     ],
     "facts": [
       {
+        "title": "NASA Sets Coverage for Astronaut Chris Williams, Crewmates Return",
+        "summary": "NASA astronaut Chris Williams and his crewmates are set to return to Earth after a 241-day mission aboard the International Space Station. The crew, consisting of Williams, Roscosmos cosmonauts Sergey Kud-Sverchkov and Sergei Mikaev, will undock from the space station at 3:02 a.m. EDT on July 26. They will land in Kazakhstan at 6:26 a.m. EDT, completing 3,856 orbits and traveling over 102 million miles. The crew will then be flown to recovery teams in Karaganda, Kazakhstan.",
+        "hashtag": "CoverageAstronaut",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-astronaut-chris-williams-crewmates-return/",
+        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg?w=2048",
+        "images": [
+          "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg?w=2048",
+          "https://www.nasa.gov/wp-content/uploads/2026/07/williams.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nasa.gov/news-release/nasa-sets-coverage-for-astronaut-chris-williams-crewmates-return/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.59,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "A New Look – and Sound – for Messier 94",
-        "summary": "NASA's Chandra X-ray Observatory has unveiled a new look at the spiral galaxy Messier 94, also known as NGC 4736, on June 30, 2026. The galaxy features a bright inner ring where new stars are forming, fueled by gas driven in its unique oval-shaped structure. This image combines X-rays of different wavelengths with a visible light image from ground-based telescopes. The new look at Messier 94 is now available to experience through sound.",
+        "summary": "NASA's Chandra X-ray Observatory has unveiled a new image of the spiral galaxy Messier 94, also known as NGC 4736, on June 30, 2026. The galaxy features a bright inner ring where new stars are forming, fueled by gas driven in its unique oval-shaped structure. This layered image combines X-rays of different wavelengths with a visible light image from ground-based telescopes. The image is now accompanied by a unique sound experience.",
         "hashtag": "NewLook",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2077,7 +1984,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.97,
+        "freshH": 1.12,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2107,7 +2014,41 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.64,
+        "freshH": 0.79,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "health": [
+      {
+        "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
+        "summary": "A British health select committee report finds that obesity is an engineered outcome, not a result of individual willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The evidence suggests sugar and refined carbohydrates are the main culprits, not fat. The committee recommends targeting ultra-processed foods to reduce obesity in Britain.",
+        "hashtag": "BritainLetter",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain",
+        "imageUrl": "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
+        "images": [
+          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6a054af20ae4020d3b223dae8d913975",
+          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=99ec259cee5d6bba3195a3e3b998165e",
+          "https://i.guim.co.uk/img/media/3b6878e7abe8ca236e36456d6c5f5b84105d58d0/845_0_6138_4912/master/6138.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=2f28a91f88399c8c49e03bf23458c92c"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/society/2026/jul/22/target-ultra-processed-food-to-reduce-obesity-in-britain"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.03,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2116,18 +2057,19 @@
         "geo": null
       },
       {
-        "title": "Susumu Tonegawa Dies at 86; Nobel Laureate Showed How Antibodies Fight Infection",
-        "summary": "The first Japanese scientist to win the Nobel Prize in Physiology or Medicine, he went on to discover how memories are stored, advancing understanding of how the brain works.",
-        "hashtag": "TonegawaDies",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nytimes.com/2026/07/21/science/susumu-tonegawa-dead.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/17/multimedia/17Tonegawa--pvgz/17Tonegawa--pvgz-mediumSquareAt3X.jpg",
+        "title": "Government Overhauls Teen Pregnancy Program to Focus on Marriage and Starting Families",
+        "summary": "The US government has terminated 53 out of 67 grants for a $100 million teen pregnancy prevention program, effective immediately, citing a lack of alignment with the administration's priorities. The program, which aimed to reduce teen pregnancies, will now focus on promoting marriage and starting families. The move follows a similar effort in 2018 that was blocked by courts. The program's remaining grants are expected to be re-evaluated in the coming weeks.",
+        "hashtag": "OverhaulsTeen",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/17/multimedia/17Tonegawa--pvgz/17Tonegawa--pvgz-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-mediumSquareAt3X.jpg",
+          "https://static01.nyt.com/images/2026/07/15/us/dc-teen-pregnancy/dc-teen-pregnancy-facebookJumbo.jpg"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/21/science/susumu-tonegawa-dead.html"
+          "https://www.nytimes.com/2026/07/22/us/politics/teen-pregnancy-prevention-trump.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2137,7 +2079,39 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.71,
+        "freshH": 1.54,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Fifth person dies in New York City amid legionnaires’ disease outbreak",
+        "summary": "A fifth person has died in New York City's legionnaires' disease outbreak on Manhattan's Upper East Side, with 82 cases identified and 8 people still hospitalized. The outbreak is linked to 34 cooling towers across 33 buildings, where live legionella bacteria were detected. The city's health department is continuing to test the remaining 140 cooling tower systems. Further cases may be confirmed as testing is completed.",
+        "hashtag": "NewYork",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city",
+        "imageUrl": "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
+        "images": [
+          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=cbad560abed4e622e64f78ee5a9c3be9",
+          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=171088b10716b790c7fa4e779fbf446d",
+          "https://i.guim.co.uk/img/media/38346ab9c906c47a614f9b13d88880c243cd8695/409_137_5183_4146/master/5183.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=4881759d811b3f9e5c7fe4de73ff97b9"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/us-news/2026/jul/22/fifth-legionnaires-death-new-york-city"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.65,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2169,7 +2143,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.08,
+        "freshH": 0.22,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2199,7 +2173,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.22,
+        "freshH": 0.37,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2229,7 +2203,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.45,
+        "freshH": 0.6,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2261,7 +2235,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.35,
+        "freshH": 0.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2291,7 +2265,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.48,
+        "freshH": 0.62,
         "score": null,
         "popularity": null,
         "recency": null,
