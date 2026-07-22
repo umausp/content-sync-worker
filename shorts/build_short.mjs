@@ -93,12 +93,13 @@ async function gatherStories(cfg) {
     // slot (→10 stories); Shorts pull 1 per slot (→5).
     const perSlot = LONGFORM ? 2 : 1;
     // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
-    // Enrich summaries (fetch article body for a fuller 20-35s script) when we're doing
-    // a single deep story or the long-form recap — not needed for the 5-story roundup.
+    // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
+    // brief (was gated to single/long-form, leaving the roundup thin → "content is very
+    // less"). Applies to all formats now.
     const round = await buildWorldRoundup({
       maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
       perSlot,
-      enrich: SINGLE || LONGFORM,
+      enrich: true,
     });
     return round.slice(0, STORY_COUNT);
   }
@@ -398,13 +399,21 @@ function buildUploadMeta(stories, cfg, dur) {
   // UTC date label (Date is unavailable in workflow scripts but this runs in Node/CI).
   const date = new Date().toISOString().slice(0, 10);
 
-  // TITLE — hooky, front-loaded, emoji, under YouTube's 100-char cap. Shorts append
-  // #Shorts (aids Shorts classification); long-form must NOT. Build with a budget so the
-  // lead title is trimmed (not the suffix) — never chop the #Shorts tag mid-word.
+  // TITLE — hooky, front-loaded, emoji, under YouTube's 100-char cap. Format-aware:
+  // a SINGLE story gets a punchy standalone headline (no "Top 5" — there's one story);
+  // a roundup gets the "Top N" framing. Shorts append #Shorts; long-form must NOT.
   const flag = isWorld ? '🌍' : '🇮🇳';
-  const suffix = isWorld
-    ? LONGFORM ? ` | Top ${n} World News Today (${date})` : ` | Top ${n} World News${LONGFORM ? '' : ' #Shorts'}`
-    : LONGFORM ? ` | आज की टॉप ${n} खबरें (${date})` : ` | आज की टॉप खबरें${LONGFORM ? '' : ' #Shorts'}`;
+  const shortsSuffix = LONGFORM ? '' : ' #Shorts';
+  let suffix;
+  if (SINGLE) {
+    // Standalone: a light category/urgency tag + #Shorts, no roundup framing.
+    const tag = (lead.badge || lead.category || 'News').toString().toUpperCase();
+    suffix = isWorld ? ` | ${tag}${shortsSuffix}` : ` | ${tag}${shortsSuffix}`;
+  } else if (isWorld) {
+    suffix = LONGFORM ? ` | Top ${n} World News Today (${date})` : ` | Top ${n} World News${shortsSuffix}`;
+  } else {
+    suffix = LONGFORM ? ` | आज की टॉप ${n} खबरें (${date})` : ` | आज की टॉप खबरें${shortsSuffix}`;
+  }
   const budget = 99 - flag.length - 1 - suffix.length;
   let leadT = lead.title;
   if (leadT.length > budget) leadT = `${leadT.slice(0, Math.max(0, budget - 1)).replace(/\s+\S*$/, '')}…`;
@@ -415,10 +424,14 @@ function buildUploadMeta(stories, cfg, dur) {
   const sub = isWorld
     ? 'https://www.youtube.com/@AgyataWorld?sub_confirmation=1'
     : 'https://www.youtube.com/@agyata_dot_com?sub_confirmation=1';
-  const hook = isWorld
-    ? `The ${n} biggest world news stories today, ${date} — fast, neutral, sourced. Politics, breaking, business, tech, entertainment, sports & science in one quick recap.`
-    : `आज की ${n} सबसे बड़ी खबरें (${date}) — तेज़, निष्पक्ष और भरोसेमंद। राजनीति, बिज़नेस, मनोरंजन, खेल और टेक — एक साथ।`;
-  const storyList = stories.map((s, i) => `${i + 1}. ${s.title}${s.sourceName ? ` — ${s.sourceName}` : ''}`);
+  const hook = SINGLE
+    ? // Single story: lead the description with the story's own synthesized summary +
+      // the outlets that reported it — a genuinely informative blurb, not boilerplate.
+      `${lead.summary || lead.title}${lead.sources?.length ? `\n\nReported by: ${lead.sources.slice(0, 5).join(', ')}.` : ''}`
+    : isWorld
+      ? `The ${n} biggest world news stories today, ${date} — fast, neutral, sourced. Politics, breaking, business, tech, entertainment, sports & science in one quick recap.`
+      : `आज की ${n} सबसे बड़ी खबरें (${date}) — तेज़, निष्पक्ष और भरोसेमंद। राजनीति, बिज़नेस, मनोरंजन, खेल और टेक — एक साथ।`;
+  const storyList = SINGLE ? [] : stories.map((s, i) => `${i + 1}. ${s.title}${s.sourceName ? ` — ${s.sourceName}` : ''}`);
   const seoTail = isWorld
     ? ['📲 Full stories & live updates: https://agyata.com', `🔔 Subscribe for daily world news: ${sub}`]
     : ['📲 पूरी खबरें: https://agyata.com', `🔔 रोज़ की खबरों के लिए Subscribe करें: ${sub}`];
@@ -432,9 +445,7 @@ function buildUploadMeta(stories, cfg, dur) {
   const description = [
     hook,
     '',
-    isWorld ? "🗞️ In this recap:" : '🗞️ इस बुलेटिन में:',
-    ...storyList,
-    '',
+    ...(storyList.length ? [isWorld ? '🗞️ In this recap:' : '🗞️ इस बुलेटिन में:', ...storyList, ''] : []),
     ...seoTail,
     '',
     hashtags.map((h) => `#${h}`).join(' '),

@@ -48,22 +48,60 @@ SAY_AS = [
     (_re.compile(r"\bagyata\b", _re.I), "ag-yaa-ta"),
 ]
 
+# ABBREVIATION expansion — espeak mangles dotted initialisms ("U.S." → "you. ess." with
+# awkward pauses). Expand the common news ones to full words so they read naturally.
+# Order matters (dotted forms before bare). English only (skipped for Hindi lang='h').
+ABBREV = [
+    (_re.compile(r"\bU\.?\s?S\.?\s?A\.?\b"), "United States"),
+    (_re.compile(r"\bU\.?\s?S\.?(?=[\s,.\)]|$)"), "United States"),
+    (_re.compile(r"\bU\.?\s?K\.?(?=[\s,.\)]|$)"), "United Kingdom"),
+    (_re.compile(r"\bU\.?\s?N\.?(?=[\s,.\)]|$)"), "United Nations"),
+    (_re.compile(r"\bU\.?\s?A\.?\s?E\.?\b"), "U A E"),
+    (_re.compile(r"\bE\.?\s?U\.?(?=[\s,.\)]|$)"), "European Union"),
+    (_re.compile(r"\bU\.?\s?P\.?(?=[\s,.\)]|$)"), "U P"),  # Uttar Pradesh state code
+    (_re.compile(r"\bD\.?\s?C\.?(?=[\s,.\)]|$)"), "D C"),
+    (_re.compile(r"\bPM\b"), "Prime Minister"),
+    (_re.compile(r"\bCM\b"), "Chief Minister"),
+    (_re.compile(r"\bGDP\b"), "G D P"),
+    (_re.compile(r"\bCEO\b"), "C E O"),
+    (_re.compile(r"\bAI\b"), "A I"),
+    (_re.compile(r"\bvs\.?\b", _re.I), "versus"),
+    (_re.compile(r"&"), " and "),
+    (_re.compile(r"%"), " percent"),
+]
+
+# CURRENCY — "$5 billion" is read "dollar five billion"; reorder to "5 billion dollars".
+_CUR = [
+    (_re.compile(r"\$\s?([\d.,]+)\s?(billion|million|trillion|thousand|lakh|crore|bn|m|k)\b", _re.I),
+     lambda m: f"{m.group(1)} {m.group(2)} dollars"),
+    (_re.compile(r"\$\s?([\d.,]+)"), lambda m: f"{m.group(1)} dollars"),
+    (_re.compile(r"£\s?([\d.,]+)\s?(billion|million|trillion|thousand|bn|m|k)\b", _re.I),
+     lambda m: f"{m.group(1)} {m.group(2)} pounds"),
+    (_re.compile(r"£\s?([\d.,]+)"), lambda m: f"{m.group(1)} pounds"),
+    (_re.compile(r"₹\s?([\d.,]+)\s?(crore|lakh|billion|million)\b", _re.I),
+     lambda m: f"{m.group(1)} {m.group(2)} rupees"),
+    (_re.compile(r"₹\s?([\d.,]+)"), lambda m: f"{m.group(1)} rupees"),
+]
 
 # Characters that must NEVER be voiced (markup/JSON/markdown leaking into the text).
-# espeak reads '#' as "hash", '{' as "left brace", etc. — strip them so only real words
-# are spoken. Applied to the SPOKEN text only; the on-screen caption is sanitized
-# separately in the renderer.
 _TTS_STRIP = _re.compile(r"[#*_~`|<>{}\[\]\\^=]+")
 _URL_RE = _re.compile(r"https?://\S+")
 
 
-def spoken_form(text):
+def spoken_form(text, lang="a"):
     out = str(text or "")
     out = _URL_RE.sub(" ", out)  # don't read raw URLs aloud
+    for pat, rep in _CUR:  # currency BEFORE stripping '$'/'£'
+        out = pat.sub(rep, out)
     out = _TTS_STRIP.sub(" ", out)  # kill markup/JSON/markdown chars
+    if lang != "h":  # abbreviation expansion is English-only
+        for pat, rep in ABBREV:
+            out = pat.sub(rep, out)
     for pat, rep in SAY_AS:
         out = pat.sub(rep, out)
-    # Collapse whitespace + stray punctuation runs left behind.
+    # Collapse whitespace + stray punctuation runs left behind (incl. a period stranded
+    # before a hyphen by abbrev expansion, e.g. "United States.-India").
+    out = _re.sub(r"\.(?=[-–—])", "", out)
     out = _re.sub(r"\s+([.,!?;:])", r"\1", out)
     out = _re.sub(r"\s+", " ", out).strip()
     return out
@@ -143,7 +181,7 @@ def main() -> int:
     phonemized = 0
     for text in chunks:
         a = np.zeros(0, dtype=np.float32)
-        spoken = spoken_form(text)  # voice-only respelling; caption keeps `text`
+        spoken = spoken_form(text, lang)  # voice-only respelling; caption keeps `text`
         # Preferred path: espeak phonemes → Kokoro tokens.
         if backend is not None:
             try:

@@ -20,7 +20,12 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python # the workflow's venv python (set on PATH below)
-  # LLM key(s) not needed for the English channel (no translation).
+  # Free LLM keys — used to SYNTHESISE a useful multi-source summary per story
+  # (enrichSummary → llm.mjs). Any one being set is enough; all optional (falls back
+  # to extractive body text).
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
 
 jobs:
   render:

@@ -12,6 +12,8 @@
 // Each slot has several sources so the SAME story is corroborated across outlets and
 // we get a real image + clean headline. Pure RSS, $0, no keys.
 
+import { llmChat, haveLlmKey } from './llm.mjs';
+
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
 // Clean display names for the "Source:" credit (raw RSS hosts read badly, e.g.
@@ -273,18 +275,62 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
 
 // Fetch an article and extend its summary with real body paragraphs (no LLM, $0). Keeps
 // the story on-topic + factual; strips boilerplate (cookie/subscribe/newsletter lines).
+// Article prose only (scoped to <article>/<main>, boilerplate + nav stripped) — same
+// hardening as the main pipeline so we never scrape "Skip to content / Home News Sport".
+function articleProse(html) {
+  html = html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<(nav|header|footer|aside|form)[\s\S]*?<\/\1>/gi, ' ');
+  const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
+  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage/i;
+  return [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+    .map((m) => stripHtml(m[1]))
+    .filter((t) => {
+      if (t.length < 60 || BP.test(t)) return false;
+      const w = t.split(/\s+/);
+      if (w.length < 10 || !/[.!?]/.test(t)) return false;
+      const cap = w.filter((x) => /^[A-Z][a-z]*$/.test(x)).length;
+      return cap / w.length <= 0.6; // not a Capitalised nav strip
+    });
+}
+
+// Fetch the article body and build a genuinely USEFUL summary. Preferred path: LLM
+// SYNTHESIS across the story's sources into a clean, factual 2-3 sentence brief (the
+// "research from multiple sources, make useful content" ask). Fallback: extractive body
+// paragraphs. $0, fail-open (keeps the RSS lead on any failure).
 async function enrichSummary(story) {
   if (!story.url || !/^https?:\/\//i.test(story.url)) return;
   try {
     const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
     if (!r.ok) return;
-    const html = await r.text();
-    const paras = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
-      .map((m) => stripHtml(m[1]))
-      .filter((t) => t.length > 60 && !/cookie|subscri|sign ?up|newsletter|advertisement|©|\ball rights reserved\b/i.test(t));
+    const paras = articleProse(await r.text());
     if (!paras.length) return;
-    // Build a fuller summary: the RSS lead + the first distinct body paragraphs, capped
-    // so the script stays ~20-35s (~90 words ≈ 30s at ~170 WPM → ~600 chars).
+    const body = paras.join(' ').replace(/\s+/g, ' ').trim().slice(0, 2200);
+
+    // LLM synthesis (free providers). Turns raw body into a tight, informative brief a
+    // viewer actually learns from — who/what/where/why/impact — no fluff, no markup.
+    if (haveLlmKey()) {
+      const outlets = (story.sources || []).slice(0, 4).join(', ');
+      const prompt =
+        'You are a sharp broadcast news writer. Using ONLY the facts in the source text ' +
+        'below, write a punchy, informative 2-3 sentence brief (about 45-70 words) for a ' +
+        'short news video. Lead with the most important fact; include the key who/what/' +
+        'where and the number, date or consequence that matters. Neutral, factual, no ' +
+        'hype, no opinion, no fabrication. Plain text only — NO markdown, hashtags, ' +
+        'brackets, quotes or emoji. Do not mention "the article".\n\n' +
+        `HEADLINE: ${story.title}\n` +
+        (outlets ? `REPORTED BY: ${outlets}\n` : '') +
+        `SOURCE TEXT: ${body}`;
+      const synth = await llmChat(prompt, { maxTokens: 260, temperature: 0.3 });
+      const clean = (synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim();
+      if (clean.length >= 120) {
+        story.summary = clean;
+        return;
+      }
+    }
+
+    // Extractive fallback: RSS lead + distinct body paragraphs, capped ~620 chars.
     const seen = new Set();
     const parts = [story.summary, ...paras].filter((p) => {
       const k = (p || '').slice(0, 40).toLowerCase();

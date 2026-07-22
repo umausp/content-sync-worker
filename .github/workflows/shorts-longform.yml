@@ -20,6 +20,10 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
+  # Free LLM keys for multi-source summary synthesis (enrichSummary → llm.mjs).
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
 
 jobs:
   render:
