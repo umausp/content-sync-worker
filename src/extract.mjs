@@ -141,7 +141,26 @@ async function readabilityArticle(html, url) {
     if (!a || !a.content) return null;
     const text = stripTags(a.content);
     if (text.length < 120) return null; // stub / paywall interstitial
-    const inline = [...a.content.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)].map((m) => m[1]);
+    // Inline images: capture the WHOLE <img> tag so we can reject author/byline avatars —
+    // their giveaway (class="author-thumb", a /profile/ wrapper, alt="Profile Image of …",
+    // a square 1:1 headshot) lives in the MARKUP, not the URL, so the URL-only BAD_PATH gate
+    // can't catch them. A reporter's headshot is not a photo OF the story (user: images must
+    // be story-related). Square images on a news page are near-always avatars/logos → drop.
+    const inline = [];
+    for (const m of a.content.matchAll(/<img\b[^>]*>/gi)) {
+      const tag = m[0];
+      if (/\b(?:author|byline|contributor|profile|avatar|headshot|thumb)\b/i.test(tag)) continue;
+      if (/alt=["'][^"']*\bprofile\b[^"']*["']/i.test(tag)) continue;
+      const wm = tag.match(/\bwidth=["']?(\d+)/i);
+      const hm = tag.match(/\bheight=["']?(\d+)/i);
+      if (wm && hm) {
+        const w = +wm[1];
+        const h = +hm[1];
+        if (w && h && Math.abs(w - h) / Math.max(w, h) < 0.06) continue; // ~square → avatar/logo
+      }
+      const src = (tag.match(/\bsrc=["']([^"']+)["']/i) || [])[1];
+      if (src) inline.push(src);
+    }
     return {
       title: stripTags(a.title || ''),
       text,
