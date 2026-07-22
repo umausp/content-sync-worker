@@ -152,7 +152,14 @@ async function gatherStories(cfg) {
 }
 
 // The opening HOOK — a short, punchy line to grab attention in the first seconds.
-function hookLine(cfg, count) {
+// SINGLE mode has ONE story, so "top 1 stories" reads wrong — use a curiosity hook that
+// teases the story instead. `lead` is the lead story (for the single-story tease).
+function hookLine(cfg, count, lead) {
+  if (SINGLE) {
+    // Curiosity tease built from the story itself — no bogus count.
+    if (cfg.scriptLang === 'hi') return `ये है आज की बड़ी खबर — पूरा जानिए।`;
+    return `Here's the big story you need to know right now.`;
+  }
   if (cfg.scriptLang === 'hi') {
     return LONGFORM
       ? `आज की ${count} सबसे बड़ी खबरें — शुरू करते हैं।`
@@ -277,7 +284,7 @@ async function main() {
   // 1-5s HOOK clip: the video opens with a punchy spoken+captioned hook (top-creator
   // pattern — grab attention in the first seconds) before the stories start.
   try {
-    const hookText = hookLine(cfg, stories.length);
+    const hookText = hookLine(cfg, stories.length, stories[0]);
     const hookTiming = await ttsForStory([hookText], cfg, work, 'hook');
     if (hookTiming.duration && hookTiming.segments?.length) {
       // Hook is a TITLE card — branded gradient, NOT a story photo (reusing story 1's

@@ -179,15 +179,24 @@ export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, out
   const H = VIDEO.height;
   const isDeva = cfg.scriptLang === 'hi';
   const land = VIDEO.landscape;
-  // Bigger than the old block captions (fewer words on screen). Centered/lower-center,
-  // OUT of the bottom 20% (mobile UI covers it) per the research spec.
-  const fontSize = land ? (isDeva ? 62 : 68) : isDeva ? 68 : 78;
   const perGroup = isDeva ? 4 : 3; // words visible at once
   const words = String(text || '').split(/\s+/).filter(Boolean);
   if (!words.length) return [];
   // Build word-groups.
   const groups = [];
   for (let i = 0; i < words.length; i += perGroup) groups.push(words.slice(i, i + perGroup));
+
+  // WIDTH-FIT (the fix for captions clipping horizontally, e.g. "January, Prime
+  // Minister" ran edge-to-edge). Arial Black at font size F is ~0.62·F per char wide.
+  // Find the widest group and pick the largest font that keeps it within the safe
+  // width (frame minus generous side margins), capped at an ideal size.
+  const SIDE_MARGIN = land ? 120 : 90;
+  const safeW = W - 2 * SIDE_MARGIN;
+  const idealFont = land ? (isDeva ? 62 : 66) : isDeva ? 64 : 72;
+  const CHAR_W = isDeva ? 0.72 : 0.62; // width-per-char as a fraction of font size
+  const widestChars = Math.max(...groups.map((g) => g.join(' ').length), 1);
+  const fitFont = Math.floor(safeW / (widestChars * CHAR_W));
+  const fontSize = Math.max(land ? 40 : 46, Math.min(idealFont, fitFont));
   // Distribute the segment duration across groups, weighted by group char-length so a
   // longer group stays on screen a touch longer (feels naturally synced).
   const dur = Math.max(0.4, segEnd - segStart);
@@ -211,8 +220,20 @@ export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, out
           `${wi ? '<tspan> </tspan>' : ''}<tspan fill="${wi === activeWord ? KARAOKE_HIGHLIGHT : BRAND.text}">${esc(w)}</tspan>`,
       )
       .join('');
+    // LEGIBILITY BAND: a rounded, semi-transparent dark pill behind the words so the
+    // caption stays crisp over bright photos (sky, white shirts) — the drop shadow alone
+    // washes out. Sized from the estimated text width; centered on the caption baseline.
+    const textW = Math.min(safeW, g.join(' ').length * fontSize * CHAR_W);
+    const padX = Math.round(fontSize * 0.5);
+    const padY = Math.round(fontSize * 0.28);
+    const bandW = Math.round(textW + padX * 2);
+    const bandH = Math.round(fontSize + padY * 2);
+    const bandX = Math.round(W / 2 - bandW / 2);
+    const bandY = Math.round(cy - fontSize * 0.82 - padY);
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
       ${defs()}
+      <rect x="${bandX}" y="${bandY}" width="${bandW}" height="${bandH}" rx="${Math.round(bandH * 0.28)}"
+            fill="#000000" fill-opacity="0.42"/>
       <text x="${W / 2}" y="${Math.round(cy)}" font-family="${cfg.font}" font-size="${fontSize}"
             font-weight="900" text-anchor="middle" filter="url(#ds)" xml:space="preserve"
             style="paint-order:stroke">${tspans}</text>

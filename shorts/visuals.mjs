@@ -84,8 +84,35 @@ async function imageWidth(path) {
   }
 }
 
+// Upgrade a news-CDN thumbnail URL to a full-resolution variant. Most wires expose only
+// a tiny thumbnail in RSS (BBC ichef serves a 240px crop; NYT serves mediumSquareAt3X),
+// which the MIN_IMG_WIDTH gate rejects → the Short falls to the flat gradient. These
+// CDNs render ANY size from the same path, so we rewrite the size token to get a real,
+// full-frame news photo. Unknown hosts pass through untouched.
+function upgradeImageUrl(url) {
+  let u = String(url || '');
+  // RSS sometimes leaves HTML entities in the URL (&amp; → &). Decode so query params
+  // (and signatures) aren't broken.
+  u = u.replace(/&amp;/g, '&');
+  // BBC ichef: .../ace/standard/240/cpsprodpb/…  →  …/1536/cpsprodpb/…
+  u = u.replace(/(ichef\.bbci\.co\.uk\/[^\s]*?\/)(\d{2,4})(\/cpsprodpb\/)/i, '$11536$3');
+  // NYT static01: …-mediumSquareAt3X.jpg / -articleLarge / -mediumThreeByTwoNNN / -thumb…
+  u = u.replace(
+    /(static01\.nyt\.com\/[^\s]+)-(?:mediumSquareAt3X|articleLarge|jumbo|mediumThreeByTwo\d+|square\w*|thumb\w*|videoThumb\w*)(\.(?:jpg|jpeg|png|webp))/i,
+    '$1-superJumbo$2',
+  );
+  // Guardian: the i.guim.co.uk CDN URL is SIGNED (?s=…), so changing ?width= gives a 401.
+  // The ORIGINAL master lives unsigned at media.guim.co.uk/<hash> at full resolution —
+  // rewrite to that (verified full-res, no signature needed).
+  const guim = u.match(/i\.guim\.co\.uk\/img\/media\/([^?]+)/i);
+  if (guim) u = `https://media.guim.co.uk/${guim[1]}`;
+  // WordPress (Variety / Hollywood Reporter): strip ?resize=/?w=/?h= downscale params.
+  u = u.replace(/(\/wp-content\/[^\s?]+)\?[^\s]*/i, '$1');
+  return u;
+}
+
 async function tryStoryImage(story, outDir, seen, outFile = 'bg.png', imgUrl = null) {
-  const url = imgUrl || story.imageUrl;
+  const url = upgradeImageUrl(imgUrl || story.imageUrl);
   if (!url || !/^https:\/\//i.test(url)) return null;
   if (seen.has(`url:${url}`)) return null; // same photo already used by another story
   try {

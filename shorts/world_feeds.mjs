@@ -191,6 +191,13 @@ async function fetchFeed(url) {
   }
 }
 
+// Video/gallery/live-blog pages have NO article prose (BBC /news/videos/… is just a
+// player + an "enable JavaScript" notice), so a story that lands on one can't be
+// enriched and ships thin. Detect them so ranking can prefer a real article URL.
+function isThinUrl(url) {
+  return /\/(?:videos?|av|gallery|galleries|in-pictures|live)\//i.test(String(url || ''));
+}
+
 // Word-overlap dedup key (so the same event from 2 outlets counts once).
 function normTitle(t) {
   return String(t).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
@@ -222,20 +229,36 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
     }
     const ranked = [...clusters.values()]
       .map((c) => {
-        // rep = the cluster item that has an image (preferred) else the first
-        const rep = c.items.find((i) => i.imageUrl) || c.items[0];
+        // rep = a REAL ARTICLE (not a video/gallery page) with an image, preferred; then
+        // any article; then any item with an image; else the first. This keeps the story
+        // on a page that actually HAS body prose so enrichSummary can build a real brief.
+        const rep =
+          c.items.find((i) => i.imageUrl && !isThinUrl(i.url)) ||
+          c.items.find((i) => !isThinUrl(i.url)) ||
+          c.items.find((i) => i.imageUrl) ||
+          c.items[0];
         const freshH = rep.publishedAt ? (now - Date.parse(rep.publishedAt)) / 3.6e6 : 99;
         // ALL distinct images across the cluster's outlets → feeds the multi-image
         // sequence so a story shows several real photos of the SAME event.
         const images = [...new Set(c.items.map((i) => i.imageUrl).filter(Boolean))];
-        return { rep, images, corr: c.sources.size, hasImg: !!rep.imageUrl, freshH, sources: [...c.sources] };
+        return {
+          rep,
+          images,
+          corr: c.sources.size,
+          hasImg: !!rep.imageUrl,
+          thin: isThinUrl(rep.url),
+          freshH,
+          sources: [...c.sources],
+        };
       })
       .sort((a, b) => {
         // AUTHENTICITY ranking: a real, current story with a photo beats an old/imageless
         // one. Score = corroboration + has-image + recency (all favour a genuine event).
         // Weight RECENCY more so the feed feels current: fresher (lower freshH) scores
-        // higher, plus corroboration + a real image.
-        const score = (x) => x.corr * 2 + (x.hasImg ? 2 : 0) + Math.max(0, 10 - x.freshH / 2);
+        // higher, plus corroboration + a real image. A thin (video/gallery) page is
+        // penalised so an enrichable ARTICLE wins when the event is on both.
+        const score = (x) =>
+          x.corr * 2 + (x.hasImg ? 2 : 0) + (x.thin ? -4 : 0) + Math.max(0, 10 - x.freshH / 2);
         const d = score(b) - score(a);
         if (d !== 0) return d;
         return a.freshH - b.freshH;
@@ -283,7 +306,7 @@ function articleProse(html) {
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<(nav|header|footer|aside|form)[\s\S]*?<\/\1>/gi, ' ');
   const container = (html.match(/<article[\s\S]*?<\/article>/i) || html.match(/<main[\s\S]*?<\/main>/i) || [html])[0];
-  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage/i;
+  const BP = /cookie|subscri|sign ?up|newsletter|advertisement|©|all rights reserved|skip to content|accessibility help|your account|more menu|follow us|read more|most read|homepage|enable ?javascript|to play this video|video can ?(?:'?t|not) be played|this content is not available|your browser (?:does|is)|playback|please (?:enable|update|upgrade)|we(?:'| ha)ve sent|check your (?:inbox|email)|getty images|photograph:|image (?:source|caption)|reuters\/|associated press/i;
   return [...container.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
     .map((m) => stripHtml(m[1]))
     .filter((t) => {
@@ -346,13 +369,39 @@ async function enrichSummary(story) {
   }
 }
 
+// A clean, category-level fallback tag so a story ALWAYS has a sensible hashtag even
+// when the headline yields no strong keyword (killed the "#WillBurnhamFund" nonsense —
+// gluing the first 3 headline words made junk). Prefer a real proper-noun/keyword from
+// the title; else use the slot's evergreen tag.
+const SLOT_TAGS = {
+  politics: 'Politics',
+  breaking: 'BreakingNews',
+  crisis: 'Economy',
+  entertainment: 'Entertainment',
+  tech: 'Tech',
+  facts: 'Science',
+  sports: 'Sports',
+  health: 'Health',
+  offbeat: 'Trending',
+};
+// Stopwords that make bad tags (verbs/fillers/glue words a headline leads with).
+const TAG_STOP = new Set(
+  ('will would could should says say said after before amid over into from with that this ' +
+    'their there here what when where which while about among across your ours have been being ' +
+    'more most many much some such than then they them here news video watch live latest update ' +
+    'first last next best worst plan plans deal talks warns urges calls faces sets gets')
+    .split(/\s+/),
+);
 function slotHashtag(slotKey, title) {
-  const words = String(title)
-    .replace(/[^\p{L}\p{N} ]+/gu, ' ')
-    .split(/\s+/)
-    .filter((w) => w.length > 3)
-    .slice(0, 3)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join('');
-  return (words || slotKey).slice(0, 40);
+  // Prefer PROPER NOUNS (capitalised words mid-sentence, e.g. names/places/orgs) — the
+  // most tag-worthy tokens — then any other strong keyword. Skip leading fillers.
+  const raw = String(title).replace(/[^\p{L}\p{N} ]+/gu, ' ').split(/\s+/).filter(Boolean);
+  const proper = raw.filter(
+    (w, i) => i > 0 && /^[A-Z][a-z]{2,}$/.test(w) && !TAG_STOP.has(w.toLowerCase()),
+  );
+  const keywords = raw.filter((w) => w.length > 3 && !TAG_STOP.has(w.toLowerCase()));
+  const pick = (proper.length ? proper : keywords).slice(0, 2);
+  if (!pick.length) return SLOT_TAGS[slotKey] || 'News';
+  const tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+  return tag.slice(0, 24);
 }
