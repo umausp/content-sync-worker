@@ -173,20 +173,63 @@ function ogImage(html) {
   return /^https:\/\//i.test(url) ? url : null;
 }
 
+// Registrable-ish base domain of a hostname (eTLD+1 heuristic): last 2 labels, or last 3
+// when the SLD is a public suffix like co/com/org (…bbci.co.uk → bbci.co.uk). Good enough
+// to tell "publisher's own image CDN" from a third-party ad host.
+function baseDomain(host) {
+  const p = String(host || '').toLowerCase().split('.').filter(Boolean);
+  if (p.length <= 2) return p.join('.');
+  const sld = p[p.length - 2];
+  const useThree = /^(co|com|org|net|gov|ac|edu|or|go|ne)$/.test(sld) && p[p.length - 1].length <= 3;
+  return p.slice(useThree ? -3 : -2).join('.');
+}
+
+// Third-party ad / tracking / analytics / social-widget image hosts. An <img> from any of
+// these is an AD or a pixel, NEVER story art — reject on sight (user: "I can see you have
+// added google Ads image as well"). This is the belt; the same-publisher-domain gate below
+// is the braces (kills third-party hosts we haven't named).
+const AD_HOST =
+  /doubleclick|googlesyndication|googleadservices|google-?analytics|googletagmanager|gstatic|adservice|adsystem|adnxs|amazon-adsystem|taboola|outbrain|criteo|scorecardresearch|quantserve|2mdn|zedo|pubmatic|rubiconproject|\bopenx\b|smartadserver|teads|sharethrough|indexww|casalemedia|moatads|adsafeprotected|bidswitch|360yield|mgid|revcontent|zergnet|gravatar|fbcdn|facebook\.com\/tr|connect\.facebook|analytics\.|\bpixel\.|\bads?\d*\.|\btrack(?:er|ing)?\./i;
+
 // Collect SEVERAL real photos from an article so a Short can play a proper photo
 // SEQUENCE (user: "at least 5-10 images for a 50s video") instead of one static image.
-// Pulls the og:image, then every reasonably-sized <img>/<figure> photo inside the
-// article body — all the OUTLET'S OWN photos (monetization-safe, credited). Skips
-// logos/sprites/tracking-pixels/icons/avatars by URL heuristics. Returns an ordered,
-// deduped list of https image URLs.
+// Pulls the og:image (the editorial hero — never an ad), then every reasonably-sized
+// in-body <img>/<figure> photo THAT IS SERVED FROM THE PUBLISHER'S OWN DOMAIN — all the
+// OUTLET'S OWN photos (monetization-safe, credited). Ad/widget/tracking images come from
+// THIRD-PARTY hosts, so keying acceptance off the og:image's domain excludes them
+// automatically (far more robust than chasing every ad network by name). Returns an
+// ordered, deduped list of https image URLs.
 function articleImages(html) {
   const h = String(html || '');
   const found = [];
+  // The publisher's editorial image domain, learned from og:image — the trusted host set.
+  const og = ogImage(h);
+  let pubDomain = '';
+  if (og) {
+    try {
+      pubDomain = baseDomain(new URL(og).hostname);
+    } catch {
+      /* leave empty → fall back to path-blocklist only */
+    }
+  }
   const push = (u) => {
     if (!u) return;
     let s = decode(u).trim();
     if (s.startsWith('//')) s = `https:${s}`;
     if (!/^https:\/\//i.test(s)) return;
+    let host = '';
+    try {
+      host = new URL(s).hostname;
+    } catch {
+      return;
+    }
+    // Belt: reject known ad/tracking/analytics/widget hosts outright.
+    if (AD_HOST.test(host) || AD_HOST.test(s)) return;
+    // Braces: once we know the publisher's own image domain (from og:image), accept ONLY
+    // images served from it. Ads/widgets live on third-party hosts → dropped. Skipped when
+    // there's no og:image (pubDomain empty) so we don't over-filter — the path blocklist
+    // below still guards those.
+    if (pubDomain && baseDomain(host) !== pubDomain) return;
     // Skip non-photo assets (logos, icons, sprites, tracking pixels, avatars) AND the
     // things that read as ADS in a news video (user: "long build added Ads in it"):
     //   • press-kit / product screenshots (vendor promo graphics with logos),
@@ -194,14 +237,13 @@ function articleImages(html) {
     //   • author/contributor headshots & "-copy" byline avatars,
     //   • generic promo/banner/sponsor/newsletter creatives.
     if (
-      /\.svg(?:$|\?)|sprite|logo|icon|favicon|avatar|placeholder|pixel|1x1|blank|doubleclick|analytics/i.test(s) ||
+      /\.svg(?:$|\?)|sprite|logo|icon|favicon|avatar|placeholder|pixel|1x1|blank/i.test(s) ||
       /press.?kit|product[-_]|screenshot|-copy|_copy|contributor|headshot|byline|disrupt|promo|banner|sponsor|newsletter|subscribe|advert|\bad[-_s]?\b/i.test(s) ||
       /[?&](?:w|width)=(?:\d{1,2}|1\d\d|2\d\d)\b/i.test(s) // tiny requested widths (≤299px) = thumbs/avatars
     )
       return;
     if (!found.includes(s)) found.push(s);
   };
-  const og = ogImage(h);
   if (og) push(og);
   // Scope to the article body so we don't pull site-wide promo images.
   const container = (h.match(/<article[\s\S]*?<\/article>/i) || h.match(/<main[\s\S]*?<\/main>/i) || [h])[0];

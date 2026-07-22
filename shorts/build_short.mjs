@@ -81,6 +81,17 @@ async function claimStories(candidates, want, stamp) {
   // in-run dedup agree. Keep a candidate→key map to filter by the grant result.
   const keyed = candidates.map((s) => ({ s, key: normKey(s.title) })).filter((x) => x.key);
   if (!keyed.length) return candidates.slice(0, want);
+  // LONG-FORM is a RECAP (user: "long form is generating less than 3 min"): it SHOULD be
+  // allowed to revisit the day's biggest stories even if a Short already covered them —
+  // that's what a recap is. The shared claim ledger was starving it (18 gathered → only 4
+  // granted → 114s video) because the 15-min Shorts consume the hot keys first. So a
+  // long-form run does NOT consult the ledger: it dedups only WITHIN its own set (already
+  // done by mergeByTitle upstream) and renders the full STORY_COUNT. Override with
+  // SHORTS_LONGFORM_CLAIM=1 to restore the old cross-run behaviour.
+  if (LONGFORM && process.env.SHORTS_LONGFORM_CLAIM !== '1') {
+    console.log(`[shorts] long-form recap — skipping cross-run claim, keeping top ${want} (recap may revisit Short stories by design)`);
+    return candidates.slice(0, want);
+  }
   if (!INGEST_TOKEN) {
     console.log('[shorts] NEWS_INGEST_TOKEN unset — skipping cross-run dedup claim (local pick only)');
     return candidates.slice(0, want);
@@ -320,6 +331,22 @@ function outroLine(cfg) {
     : 'Subscribe for daily world news, and read more at agyata dot com.';
 }
 
+// Split a single spoken LINE into short clause chunks so Kokoro synthesises each in its
+// own pass. A long one-shot generation DROPS its last few words (the "outro doesn't
+// speak the last 3-5 words" bug — "…at agyata dot com" got cut). Stories never had this
+// because they're already fed sentence-by-sentence; the hook + outro were passed whole.
+// We break on sentence terminals AND clause boundaries (em-dash / comma), keeping each
+// chunk a real fragment. Falls back to the whole line if it doesn't split.
+function splitForTTS(line) {
+  const clean = String(line || '').replace(/\s+/g, ' ').trim();
+  if (!clean) return [];
+  const chunks = clean
+    .split(/(?<=[.!?।])\s+|\s+—\s+|\s+–\s+|,\s+(?=and\b|but\b)/i)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return chunks.length ? chunks : [clean];
+}
+
 // Select COMPLETE sentences that fit a budget — NEVER truncate a sentence mid-word (the
 // "every story ends with half a sentence" bug came from slicing a long sentence and
 // tacking on "…"). We keep whole sentences up to `maxSentences` and a soft `maxWords`
@@ -475,7 +502,8 @@ async function main() {
   // pattern — grab attention in the first seconds) before the stories start.
   try {
     const hookText = hookLine(cfg, stories.length, stories[0]);
-    const hookTiming = await ttsForStory([hookText], cfg, work, 'hook');
+    // Split into clause chunks so Kokoro doesn't clip the hook's final words.
+    const hookTiming = await ttsForStory(splitForTTS(hookText), cfg, work, 'hook');
     if (hookTiming.duration && hookTiming.segments?.length) {
       // Hook is a TITLE card — branded gradient, NOT a story photo (reusing story 1's
       // image here made it appear 3x / look like a repeated story). No story badge/tag.
@@ -543,7 +571,8 @@ async function main() {
   // (subscribe + agyata.com). Standard top-creator pattern; boosts subs + site traffic.
   try {
     const outroText = outroLine(cfg);
-    const oTiming = await ttsForStory([outroText], cfg, work, 'outro');
+    // Split into clause chunks so Kokoro doesn't drop the last words (the CTA + site URL).
+    const oTiming = await ttsForStory(splitForTTS(outroText), cfg, work, 'outro');
     if (oTiming.duration && oTiming.segments?.length) {
       const obg = await brandBackground(join(work, 'outro'));
       const ochrome = await buildChrome(
