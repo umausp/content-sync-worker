@@ -33,7 +33,12 @@ env:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Long-form is the heavy render (10-story, ~3 min video, Kokoro TTS + ffmpeg). The
+    # 30-min ceiling was KILLING near-complete runs at 30m15s (user: "it was almost
+    # completing"). Give it room: once it starts it must finish. cancel-in-progress is
+    # false, so a run is never pre-empted by a newer dispatch — only this ceiling can
+    # cancel it, so it's the real deadline.
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

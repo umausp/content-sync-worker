@@ -204,9 +204,10 @@ function extractiveCandidate(a, rankedSnippets, corr = 1) {
   for (const m of source) {
     const s = (m.snippet || '').trim();
     if (s.length > 30 && !looksSlug(s) && !seen.has(s.slice(0, 40))) { seen.add(s.slice(0, 40)); parts.push(s); }
-    if (parts.length >= 2) break;
+    if (parts.length >= 5) break; // was 2 — gather more prose (enrichSnippets fed real article body in)
   }
-  let body = parts.join(' ').slice(0, 600);
+  // Body = the full gathered prose (enriched from the real article), not a 2-line clip.
+  let body = parts.join(' ').slice(0, 1400);
   // VIDEO-NATIVE (YouTube-trending): the VIDEO is the content — there's no article
   // body. So we don't require a substantial body; if the description is thin, build
   // a minimal caption from the video title + channel. Never return null here — a
@@ -219,7 +220,9 @@ function extractiveCandidate(a, rankedSnippets, corr = 1) {
     return null; // too thin to publish (non-video news needs a real body)
   }
   if (!/[.!?।॥]\s*$/.test(body)) body += '.';
-  const summary = (parts[0] || title).slice(0, 200);
+  // Card summary: a fuller who/what/why, not a single clipped clause. Prefer the
+  // first 1-2 prose parts (enriched from the real article), trimmed at a word boundary.
+  const summary = (parts.slice(0, 2).join(' ') || title).slice(0, 320).replace(/\s+\S*$/, '') || title.slice(0, 200);
   // Heuristic breaking/live so the extractive path (buzz's main path) can populate
   // the Live/Breaking tabs. Freshness from the article's publish date; corr passed in.
   const freshH = a.publishedAt ? (Date.now() - Date.parse(a.publishedAt)) / 3.6e6 : 99;
@@ -300,8 +303,8 @@ async function fetchFeed(f) { try { const r = await fetch(f.url, { headers: { 'u
 // paragraphs (og:description + first substantive <p> blocks, boilerplate stripped).
 // Fail-open (keeps the RSS snippet on any error), bounded concurrency, and only touches
 // articles whose snippet is short + that have a real URL. $0, no LLM. ─────────────────
-const ENRICH_MIN_SNIPPET = Number(process.env.ENRICH_MIN_SNIPPET || 320); // already-rich? skip
-const ENRICH_TARGET = Number(process.env.ENRICH_TARGET || 900); // cap the enriched snippet
+const ENRICH_MIN_SNIPPET = Number(process.env.ENRICH_MIN_SNIPPET || 600); // already-rich? skip (raised: cards were "very less data")
+const ENRICH_TARGET = Number(process.env.ENRICH_TARGET || 1800); // cap the enriched snippet — more real article prose for synth/extractive body
 const ENRICH_CONCURRENCY = Number(process.env.ENRICH_CONCURRENCY || 8);
 // Boilerplate / navigation / chrome that must NOT enter the snippet (this was leaking
 // "BBC Homepage Skip to content Accessibility Help…" into synth + TTS).
@@ -522,14 +525,14 @@ async function synth(a) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite the article below into ONE news card. Reply with ONLY this JSON object, ALL keys present:\n` +
-    `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
+    `{"skip": false, "title": "<complete headline, <=90 chars>", "summary": "<200-320 char description: who/what/why + the key facts>", "body": "<a complete, self-contained article body of 5-8 factual sentences — the full context, key details, numbers, names, and what happens next; NOT a one-liner>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag with the key proper noun, e.g. IsroChandrayaan4>", "importance": <integer 1-5, 5=major breaking>, "signal": "<breaking|live|none>"}\n` +
     `Set "skip": true if it fails the SKIP rules. Write body/summary in your OWN words, synthesising ACROSS the sources below; never leave them empty. NEVER output a URL slug or underscores as the title — write a real, capitalised headline sentence.\n` +
     `The "hashtag" MUST be English/Latin letters and digits ONLY (ASCII, CamelCase, no spaces, no '#'). If the article is in Hindi or another non-Latin script, TRANSLATE/ROMANISE the key proper noun into English (e.g. "पुणे सुरंग हत्या" → "PuneTunnelMurder", "इसरो चंद्रयान" → "IsroChandrayaan", "दिल्ली प्रदर्शन" → "DelhiProtest"). NEVER put Devanagari or other non-Latin characters in the hashtag — it becomes the shareable URL.\n\n` +
     `ARTICLE:\nTITLE: ${sanitizeForPrompt(cleaned.title)}\nOUTLET: ${sanitizeForPrompt(a.sourceName)}\nPUBLISHED: ${a.publishedAt ?? 'unknown'}\nSNIPPET: ${sanitizeForPrompt(cleaned.snippet)}${sourceBlock(a)}`;
   try {
     // Route through the multi-provider ladder (Groq/Gemini/Cloudflare/Ollama).
     // JSON mode requested; enum leaks are re-caught by gStructure + normalizeCategory.
-    const { text } = await generate(prompt, { json: true, maxTokens: 320, timeoutMs: SYNTH_ITEM_TIMEOUT_MS });
+    const { text } = await generate(prompt, { json: true, maxTokens: 640, timeoutMs: SYNTH_ITEM_TIMEOUT_MS });
     if (text == null) return null;
     return normalizeSynth(safeJson(text), a);
   } catch { return null; }
@@ -547,7 +550,7 @@ function normalizeSynth(j, a) {
     skip: j.skip === true,
     hashtag: resolveHashtag(String(j.hashtag || ''), title),
     title,
-    summary: String(j.summary || '').slice(0, 240),
+    summary: String(j.summary || '').slice(0, 340),
     category: normalizeCategory(j.category, a.category),
     body: String(j.body || '').slice(0, 5000),
     importance: Math.max(1, Math.min(5, Math.round(Number(j.importance) || 3))),
@@ -581,13 +584,13 @@ async function synthBatch(articles) {
   const prompt =
     `${CHARTER}\n\n` +
     `Rewrite EACH numbered article below into a news card. Reply with ONLY a JSON object of the form {"stories": [ ... ]}, with one array element per article, in the SAME ORDER, each element having ALL keys:\n` +
-    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<160-260 char description: who/what/why + key fact>", "body": "<2-4 factual sentences>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun, English/Latin ASCII ONLY — romanise Hindi, e.g. पुणे सुरंग हत्या→PuneTunnelMurder; never Devanagari>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
+    `{"stories": [{"i": <the [n] index>, "skip": false, "title": "<real capitalised headline sentence, NEVER a URL slug or underscores>", "summary": "<200-320 char description: who/what/why + the key facts>", "body": "<a complete, self-contained article body of 5-8 factual sentences — the full context, key details, numbers, names, and what happens next; NOT a one-liner>", "category": "<one of: ${CATEGORIES.join(', ')}>", "hashtag": "<CamelCase event tag w/ key proper noun, English/Latin ASCII ONLY — romanise Hindi, e.g. पुणे सुरंग हत्या→PuneTunnelMurder; never Devanagari>", "importance": <1-5>, "signal": "<breaking|live|none>"}]}\n` +
     `Include ALL ${articles.length} articles in the array. Set "skip": true for any that fail the SKIP rules (still include it). Write body/summary in your OWN words; never empty.\n\n` +
     `ARTICLES:\n${list}`;
   try {
     // Route through the provider ladder. Hosted providers are fast, so a big batch
     // is fine; num_predict scales with batch size for the local-Ollama fallback.
-    const { text } = await generate(prompt, { json: true, maxTokens: 220 * articles.length, timeoutMs: SYNTH_TIMEOUT_MS });
+    const { text } = await generate(prompt, { json: true, maxTokens: 420 * articles.length, timeoutMs: SYNTH_TIMEOUT_MS });
     if (text == null) return null;
     const arr = safeJsonArray(text);
     if (!arr) return null;
