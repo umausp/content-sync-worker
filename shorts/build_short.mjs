@@ -26,7 +26,12 @@ import { renderSegment, concatWithMusic } from './render.mjs';
 import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
 // Durable "already made a video of this story?" ledger (Upstash Redis) — separate from the
 // website's CF news_dedup_claims. Locks a published story until it has a genuine update.
-import { filterAlreadyMade, ledgerRecords } from './video_ledger.mjs';
+import {
+  filterAlreadyMade,
+  ledgerRecords,
+  recentTopics,
+  deprioritizeRecentTopics,
+} from './video_ledger.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -517,6 +522,12 @@ async function main() {
   // don't spend claim slots on stories we'd skip anyway. Fail-open (never blanks the feed).
   const region0 = candidates.region;
   let pool = await filterAlreadyMade(candidates, { label: cfg.id });
+  // TOPIC DIVERSITY: stories whose topic (football/politics/crime/…) aired in the last few
+  // hours are pushed BEHIND fresh-topic ones so we don't post football after football after
+  // football (user: "don't create same category/topic every run; maintain on Redis").
+  // Re-order only — nothing dropped — so the channel never blanks if everything's on cooldown.
+  const hotTopics = await recentTopics({ label: cfg.id });
+  pool = deprioritizeRecentTopics(pool, hotTopics, { label: cfg.id });
   pool.region = region0;
   // CLAIM keys against the cross-run dedup ledger, then keep the first STORY_COUNT that
   // this run was granted — so 4 Shorts + 2 long-form in the same hour never share a story.

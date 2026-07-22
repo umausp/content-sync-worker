@@ -17,7 +17,7 @@
 // videos.insert = 1 quota unit, 100/day (2025 quota model) — volume is a non-issue.
 
 import { readFile, stat } from 'node:fs/promises';
-import { markPublished } from './video_ledger.mjs';
+import { markPublished, markTopicsPublished } from './video_ledger.mjs';
 import { basename, join } from 'node:path';
 import { STAGE_DIR, channel } from './config.mjs';
 
@@ -154,6 +154,8 @@ async function main() {
   // Best-effort: a ledger error never fails the run (the upload already succeeded).
   if (Array.isArray(meta.ledger) && meta.ledger.length) {
     await markPublished(meta.ledger, { label: cfg.id });
+    // Cool down the topics we just aired so the next runs prefer other topics.
+    await markTopicsPublished(meta.ledger, { label: cfg.id });
   }
 
   // Add to the region's playlist (USA / Europe) if we have a mapped playlist ID. Best-

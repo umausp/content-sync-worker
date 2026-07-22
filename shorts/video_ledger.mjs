@@ -57,6 +57,42 @@ function fingerprint(story) {
   return `u${upd}`;
 }
 
+// ── TOPIC DIVERSITY (user: "don't create same category/topic every run; track on Redis") ──
+// The trend builders tag almost everything `category:'offbeat'`, so `category` can't keep a
+// run from being football-after-football-after-football. Classify each story into a REAL
+// coarse topic from its title/summary keywords, remember the topics of recent videos in
+// Redis, and let the picker cool a topic down for a few runs after it airs. Deterministic,
+// keyword-based (no LLM): a wrong-ish bucket just nudges rotation, never blocks a story.
+const TOPIC_PREFIX = process.env.VIDEO_TOPIC_PREFIX || 'agyata:vidtopic:';
+const TOPIC_TTL_SEC = Math.max(
+  1800,
+  Math.round(Number(process.env.VIDEO_TOPIC_COOLDOWN_H || 6) * 3600),
+);
+// Ordered, so the FIRST match wins (sport before generic 'world'). Each topic → its tell-tale
+// words. Word-boundary matched against `${title} ${summary}` lowercased.
+const TOPIC_RULES = [
+  ['football', /\b(fc|transfer|loan|striker|midfielder|winger|goalkeeper|premier league|la liga|serie a|bundesliga|uefa|champions league|penalty|goal|matchday|deadline day|signing|manager|coach|squad|footballer|arsenal|chelsea|liverpool|tottenham|barcelona|madrid|juventus|villa)\b/],
+  ['cricket', /\b(cricket|wicket|batsman|bowler|innings|odi|test match|ipl|t20|century|run chase)\b/],
+  ['tennis', /\b(tennis|wimbledon|grand slam|atp|wta|us open|roland garros|australian open|set point|ace)\b/],
+  ['sports-other', /\b(nba|nfl|mlb|nhl|golf|f1|formula one|grand prix|boxing|ufc|mma|olympic|athletics|darts|rugby|cycling|motogp)\b/],
+  ['politics', /\b(election|parliament|senate|congress|president|prime minister|minister|policy|vote|campaign|govern|referendum|diplomat|sanction|treaty|tariff)\b/],
+  ['conflict', /\b(war|military|strike|missile|troops|ceasefire|invasion|attack|bombing|hostage|drone|airstrike|militant|border clash)\b/],
+  ['crime', /\b(murder|killed|arrest|police|court|trial|guilty|charged|verdict|prison|suspect|homicide|found dead|investigation|epstein)\b/],
+  ['business', /\b(stock|market|shares|earnings|revenue|profit|ipo|merger|acquisition|economy|inflation|interest rate|ceo|layoff|startup|nasdaq|dow)\b/],
+  ['tech', /\b(ai|artificial intelligence|iphone|android|google|apple|microsoft|openai|chip|semiconductor|app|software|cyber|robot|gadget|xbox|playstation|nintendo)\b/],
+  ['entertainment', /\b(film|movie|actor|actress|singer|album|song|celebrity|hollywood|netflix|box office|premiere|concert|tour|grammy|oscar|rosal)\b/],
+  ['science', /\b(nasa|space|rocket|satellite|study|research|scientist|climate|discovery|species|vaccine|dna|physics|astronomer|telescope)\b/],
+  ['health', /\b(health|disease|virus|outbreak|hospital|doctor|patient|medicine|drug|cancer|mental health|pandemic|surgery)\b/],
+  ['weather', /\b(storm|hurricane|flood|wildfire|heatwave|earthquake|tornado|drought|blizzard|typhoon|evacuat|weather)\b/],
+];
+export function classifyTopic(story) {
+  const hay = `${story?.title || ''} ${story?.summary || ''}`.toLowerCase();
+  for (const [topic, re] of TOPIC_RULES) if (re.test(hay)) return topic;
+  return 'general';
+}
+const TOPIC_NAMES = [...TOPIC_RULES.map(([t]) => t), 'general'];
+const topicKey = (t) => TOPIC_PREFIX + t;
+
 // Low-level Upstash REST call. Single command → POST body ["CMD","arg",…] → { result }.
 async function redis(cmd, { timeoutMs = 8000 } = {}) {
   const r = await fetch(URL_BASE, {
@@ -145,10 +181,63 @@ export async function markPublished(entries, { label = 'shorts' } = {}) {
   }
 }
 
-// Build the compact {key, fp} records to persist in meta.json so upload.mjs can mark them
-// after a successful upload (build_short → meta.json → upload.mjs).
+// ── RECENT-TOPIC COOLDOWN ─────────────────────────────────────────────────────
+// Read the set of topics aired in the last VIDEO_TOPIC_COOLDOWN_H hours. Each publish
+// writes one `agyata:vidtopic:<topic>` key with that TTL; presence = "on cooldown". We
+// MGET all buckets in one call. Fail-open → empty set (never blocks a render).
+export async function recentTopics({ label = 'shorts' } = {}) {
+  if (!ledgerEnabled()) return new Set();
+  try {
+    const vals = (await redis(['MGET', ...TOPIC_NAMES.map(topicKey)])) || [];
+    const hot = new Set();
+    TOPIC_NAMES.forEach((t, i) => { if (vals[i] != null) hot.add(t); });
+    if (hot.size) console.log(`[video-topic:${label}] on cooldown: ${[...hot].join(', ')}`);
+    return hot;
+  } catch (e) {
+    console.log(`[video-topic:${label}] recent-topics read failed (${e.message}) — no cooldown this run`);
+    return new Set();
+  }
+}
+
+// Re-order a candidate list so topics NOT recently aired come first, preserving the
+// original (score) order WITHIN each group. Nothing is dropped — a fresh-topic story just
+// outranks a repeat-topic one — so the channel never blanks even if every topic is hot.
+// Annotates each story with `.topic` for downstream logging/marking.
+export function deprioritizeRecentTopics(stories, hot, { label = 'shorts' } = {}) {
+  if (!Array.isArray(stories) || !stories.length) return stories;
+  const cool = [];
+  const warm = [];
+  for (const s of stories) {
+    s.topic = s.topic || classifyTopic(s);
+    (hot && hot.has(s.topic) ? warm : cool).push(s);
+  }
+  if (hot && hot.size && warm.length && cool.length) {
+    console.log(`[video-topic:${label}] ${cool.length} fresh-topic ahead of ${warm.length} recent-topic`);
+  }
+  return [...cool, ...warm];
+}
+
+// RECORD the topics of the stories we just published so they cool down. Call alongside
+// markPublished (after a successful upload). Best-effort, fail-open.
+export async function markTopicsPublished(entries, { label = 'shorts' } = {}) {
+  if (!ledgerEnabled() || !Array.isArray(entries) || !entries.length) return;
+  try {
+    const topics = new Set(
+      entries.map((e) => e.topic || classifyTopic(e)).filter(Boolean),
+    );
+    const cmds = [...topics].map((t) => ['SET', topicKey(t), '1', 'EX', TOPIC_TTL_SEC]);
+    if (!cmds.length) return;
+    await redisPipeline(cmds);
+    console.log(`[video-topic:${label}] cooled down topics: ${[...topics].join(', ')} (TTL ${Math.round(TOPIC_TTL_SEC / 3600)}h)`);
+  } catch (e) {
+    console.log(`[video-topic:${label}] mark-topics failed (${e.message}) — not fatal`);
+  }
+}
+
+// Build the compact {key, fp, topic} records to persist in meta.json so upload.mjs can mark
+// them after a successful upload (build_short → meta.json → upload.mjs).
 export function ledgerRecords(stories) {
   return (stories || [])
-    .map((s) => ({ key: ledgerKey(s.title), fp: fingerprint(s) }))
+    .map((s) => ({ key: ledgerKey(s.title), fp: fingerprint(s), topic: s.topic || classifyTopic(s) }))
     .filter((r) => r.key);
 }
