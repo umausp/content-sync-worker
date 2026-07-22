@@ -36,6 +36,77 @@ const LONGFORM = process.env.SHORTS_ORIENTATION === 'landscape';
 const SINGLE = !LONGFORM && process.env.SHORTS_SINGLE !== '0';
 const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || (LONGFORM ? 10 : SINGLE ? 1 : 5));
 
+// ── REGION alternation (World channel) ──────────────────────────────────────
+// User: "always create alternate with USA and Europe all countries" + "Europe-related
+// long/short news → Europe playlist only" (and USA → USA playlist). Each RUN targets ONE
+// region: a USA run pulls United-States trends; a Europe run rotates across European
+// countries so "all countries" get covered over the hour. The region is decided upstream
+// by the cron-pinger and passed in via WORLD_REGION (usa|europe); it also decides which
+// YouTube playlist the upload joins. If unset (a manual run), we fall back to a wall-clock
+// alternation so ad-hoc renders still alternate sensibly.
+const US_GEOS = (process.env.WORLD_US_GEOS || 'US').split(',').map((g) => g.trim()).filter(Boolean);
+const EU_GEOS = (process.env.WORLD_EU_GEOS || 'GB,IE,DE,FR,IT,ES,NL').split(',').map((g) => g.trim()).filter(Boolean);
+function resolveRegion() {
+  const r = (process.env.WORLD_REGION || '').toLowerCase().trim();
+  if (r === 'usa' || r === 'us') return 'usa';
+  if (r === 'europe' || r === 'eu') return 'europe';
+  // Fallback for manual runs: alternate by the 30-min half of the clock.
+  return new Date().getUTCMinutes() < 30 ? 'usa' : 'europe';
+}
+// Geos to fetch trends from for a region. Europe rotates its country list by the clock so
+// successive Europe runs lead with a DIFFERENT country (covering "all countries" across
+// the hour) while each run only queries a light fan-out.
+function regionGeos(region) {
+  if (region === 'usa') return US_GEOS;
+  const rot = Math.floor(new Date().getUTCMinutes() / 15) % EU_GEOS.length;
+  const rotated = [...EU_GEOS.slice(rot), ...EU_GEOS.slice(0, rot)];
+  return rotated.slice(0, Number(process.env.WORLD_EU_FANOUT || 3));
+}
+
+// ── Cross-run DEDUP claim ────────────────────────────────────────────────────
+// User (emphatic): in one hour we render 4 Shorts + 2 long-form, and "no news should
+// duplicate". Those are SEPARATE, OVERLAPPING GitHub runs with no shared memory, so
+// in-process dedup can't stop two runs picking the same hot story. Before rendering we
+// CLAIM each candidate's normalized key against a durable D1 ledger (POST
+// /news/dedup/claim, token-guarded): the ledger grants a key to exactly ONE run within
+// the window and reports the rest as taken. We render only the granted stories. The
+// claim is best-effort — if the API is unreachable we fall back to the local pick rather
+// than ship nothing (a rare duplicate beats an empty channel), and log loudly.
+// Extra candidates fetched beyond STORY_COUNT so a claimed-away lead has fallbacks.
+const CLAIM_BUFFER = Number(process.env.SHORTS_CLAIM_BUFFER || (LONGFORM ? 8 : 5));
+const CLAIM_WINDOW_H = Number(process.env.SHORTS_CLAIM_WINDOW_H || 2);
+const INGEST_TOKEN = process.env.NEWS_INGEST_TOKEN || '';
+async function claimStories(candidates, want, stamp) {
+  // Key each candidate the SAME way mergeByTitle dedups within a run, so cross-run and
+  // in-run dedup agree. Keep a candidate→key map to filter by the grant result.
+  const keyed = candidates.map((s) => ({ s, key: normKey(s.title) })).filter((x) => x.key);
+  if (!keyed.length) return candidates.slice(0, want);
+  if (!INGEST_TOKEN) {
+    console.log('[shorts] NEWS_INGEST_TOKEN unset — skipping cross-run dedup claim (local pick only)');
+    return candidates.slice(0, want);
+  }
+  const keys = [...new Set(keyed.map((x) => x.key))];
+  let granted = null;
+  try {
+    const r = await fetch(`${API_BASE}/news/dedup/claim`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${INGEST_TOKEN}`, 'user-agent': UA },
+      body: JSON.stringify({ keys, runId: stamp, windowHours: CLAIM_WINDOW_H }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!r.ok) throw new Error(`claim ${r.status}: ${(await r.text()).slice(0, 160)}`);
+    const j = await r.json();
+    granted = new Set(j.granted || []);
+    console.log(`[shorts] dedup: requested ${keys.length} keys, granted ${granted.size}, taken ${(j.taken || []).length}`);
+  } catch (e) {
+    console.log(`[shorts] dedup claim failed (${e.message}) — proceeding with local pick`);
+    return candidates.slice(0, want);
+  }
+  // Keep candidates whose key was granted to THIS run, in original (hotness) order.
+  const kept = keyed.filter((x) => granted.has(x.key)).map((x) => x.s);
+  return kept.slice(0, want);
+}
+
 async function getJson(path) {
   const r = await fetch(`${API_BASE}${path}`, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(20000) });
   if (!r.ok) throw new Error(`API ${r.status} for ${path}`);
@@ -117,6 +188,12 @@ async function gatherStories(cfg) {
     // slot; Shorts pull 1 per slot. The roundup is round-robin ordered (one per category
     // first) so slice(0, N) always spans ALL categories (politics…sports…science…).
     const perSlot = LONGFORM ? 2 : 1;
+    // REGION for this run (usa | europe): decides which trend geos we pull from, so a USA
+    // run leads with a US trend and a Europe run leads with a European one. The trend
+    // sources are the region signal (the editorial roundup stays global as a backstop).
+    const region = resolveRegion();
+    const geos = regionGeos(region);
+    console.log(`[shorts:world] region=${region} geos=${geos.join(',')}`);
     // Prefer FRESH news (18h window) so a 2-hourly channel feels current, not stale.
     // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
     // brief (was gated to single/long-form, leaving the roundup thin → "content is very
@@ -127,20 +204,21 @@ async function gatherStories(cfg) {
         perSlot,
         enrich: true,
       }),
-      // GOOGLE TRENDS (US + GB): what's actually being searched right now, resolved to a
-      // real publisher article + the outlet's OWN og:image (never the gstatic thumbnail).
+      // GOOGLE TRENDS (region geos): what's actually being searched right now, resolved to
+      // a real publisher article + the outlet's OWN og:image (never the gstatic thumbnail).
       // Adds genuine "trending now" stories the editorial slots miss. SINGLE mode pulls a
       // DEEPER pool per geo (many trends are thin/paywalled and get filtered) so there's a
       // real set to rank by heat and lead the Short with the hottest survivor.
-      buildTrendingStories({ perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
-      // X / TWITTER (US + GB): what's trending on X right now (user: "latest trending
+      buildTrendingStories({ geos, perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+      // X / TWITTER (region geos): what's trending on X right now (user: "latest trending
       // topics from X: Desktop"). Read from the live public X trend board, each hot term
-      // resolved to its freshest matching publisher article + the outlet's OWN image — we
-      // never surface X posts/avatars themselves (monetization/copyright). Off via
-      // WORLD_X_TRENDS=0. SINGLE mode probes a deeper pool to find a lead-worthy survivor.
+      // resolved to its freshest matching publisher article (last 1h first, per the
+      // trending mandate) + the outlet's OWN image — we never surface X posts/avatars
+      // themselves (monetization/copyright). Off via WORLD_X_TRENDS=0. SINGLE mode probes
+      // a deeper pool to find a lead-worthy survivor.
       process.env.WORLD_X_TRENDS === '0'
         ? Promise.resolve([])
-        : buildXTrendingStories({ perGeo: SINGLE ? 4 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+        : buildXTrendingStories({ geos, perGeo: SINGLE ? 4 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
     ]);
     // Merge the two live-buzz sources (X first — it's the freshest social pulse), deduped
     // by title so the SAME event trending on both X and Google Trends counts once.
@@ -155,7 +233,13 @@ async function gatherStories(cfg) {
     const merged = SINGLE
       ? mergeByTitle(trending, round)
       : mergeByTitle(round, trending);
-    return merged.slice(0, STORY_COUNT);
+    // Return a CANDIDATE POOL (not just STORY_COUNT) so main() can claim keys against the
+    // cross-run dedup ledger and fall back to the next-best story when the hottest was
+    // already taken by an overlapping run. Buffer generously — trends churn fast.
+    const picked = merged.slice(0, STORY_COUNT + CLAIM_BUFFER);
+    // Carry the run's region so main()/buildUploadMeta can tag meta.json → playlist.
+    picked.region = region;
+    return picked;
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
   // bulletin isn't all-politics (editor's mix: top/politics, business, entertainment,
@@ -368,8 +452,13 @@ async function main() {
   const stamp = slug(process.env.SHORTS_STAMP || 'local-run');
 
   console.log(`[shorts:${cfg.id}] gathering top ${STORY_COUNT} stories…`);
-  const stories = await gatherStories(cfg);
-  if (!stories.length) throw new Error('no usable stories found');
+  const candidates = await gatherStories(cfg);
+  if (!candidates.length) throw new Error('no usable stories found');
+  // CLAIM keys against the cross-run dedup ledger, then keep the first STORY_COUNT that
+  // this run was granted — so 4 Shorts + 2 long-form in the same hour never share a story.
+  const stories = await claimStories(candidates, STORY_COUNT, stamp);
+  stories.region = candidates.region; // preserve region across the claim filter
+  if (!stories.length) throw new Error('no usable stories left after cross-run dedup claim');
   console.log(`[shorts:${cfg.id}] ${stories.length} stories:`);
   for (const s of stories) console.log(`   [${(s.badge || s.category || '').padEnd(13)}] ${s.title.slice(0, 60)}`);
 
@@ -487,7 +576,7 @@ async function main() {
   const stageDir = join(STAGE_DIR, cfg.id, stamp);
   await mkdir(stageDir, { recursive: true });
   await cp(outMp4, join(stageDir, 'short.mp4'));
-  const meta = buildUploadMeta(stories, cfg, totalDur);
+  const meta = buildUploadMeta(stories, cfg, totalDur, stories.region);
   await writeFile(join(stageDir, 'meta.json'), JSON.stringify(meta, null, 2));
   console.log(`[shorts:${cfg.id}] ✓ staged → ${join(stageDir, 'short.mp4')} (${totalDur.toFixed(1)}s)`);
   console.log(`[shorts:${cfg.id}] title: ${meta.title}`);
@@ -518,7 +607,7 @@ function sourceLabels(sources) {
   ];
 }
 
-function buildUploadMeta(stories, cfg, dur) {
+function buildUploadMeta(stories, cfg, dur, region) {
   const isWorld = cfg.id === 'world';
   const n = stories.length;
   const lead = stories[0];
@@ -601,6 +690,9 @@ function buildUploadMeta(stories, cfg, dur) {
     durationSec: Math.round(dur),
     storyCount: n,
     uploadSecret: cfg.uploadSecret,
+    // REGION (usa | europe) → upload.mjs adds the video to that region's YouTube playlist
+    // (user: "Europe-related long/short news → Europe playlist only"). null for bharat.
+    region: isWorld ? region || null : null,
   };
 }
 

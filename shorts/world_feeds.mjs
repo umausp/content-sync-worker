@@ -471,8 +471,14 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
 // the professionally-reported news the trend points at, which is monetization-safe.
 const X_GEOS = (process.env.WORLD_X_GEOS || 'US,GB').split(',').map((g) => g.trim()).filter(Boolean);
 // trends24 uses country SLUGS, not ISO codes. Map the geos we use; unknown → lowercased.
-const X_GEO_SLUG = { US: 'united-states', GB: 'united-kingdom', IN: 'india', CA: 'canada', AU: 'australia' };
-const X_GEO_HL = { US: 'en-US', GB: 'en-GB', IN: 'en-IN', CA: 'en-CA', AU: 'en-AU' };
+const X_GEO_SLUG = {
+  US: 'united-states', GB: 'united-kingdom', IE: 'ireland', CA: 'canada', AU: 'australia',
+  DE: 'germany', FR: 'france', IT: 'italy', ES: 'spain', NL: 'netherlands', IN: 'india',
+};
+const X_GEO_HL = {
+  US: 'en-US', GB: 'en-GB', IE: 'en-IE', CA: 'en-CA', AU: 'en-AU',
+  DE: 'en-GB', FR: 'en-GB', IT: 'en-GB', ES: 'en-GB', NL: 'en-GB', IN: 'en-IN',
+};
 // Fandom/meme/utility trends that never resolve to a real news event — X's board is full
 // of them (stan armies, K-pop tags, "Good Morning", game titles). Skip so we don't waste
 // a Google-News lookup and never lead a Short with noise.
@@ -520,12 +526,13 @@ async function fetchXTrends(geo) {
   return out;
 }
 
-// Search Google News for a term's freshest real articles (last 2 days), strip the
+// Search Google News for a term's freshest real articles within a freshness `when`
+// window (default 1h — "last 1 hour or less" per the trending mandate), strip the
 // " - Publisher" suffix, drop thin (video/live) pages. Returns [{title,url,source}].
-async function newsSearch(term, geo, hl) {
+async function newsSearch(term, geo, hl, when = '1h') {
   const ceid = `${geo}:${hl.split('-')[0]}`;
   const url =
-    `https://news.google.com/rss/search?q=${encodeURIComponent(`${term} when:2d`)}` +
+    `https://news.google.com/rss/search?q=${encodeURIComponent(`${term} when:${when}`)}` +
     `&hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(geo)}&ceid=${encodeURIComponent(ceid)}`;
   let xml = '';
   try {
@@ -547,6 +554,18 @@ async function newsSearch(term, geo, hl) {
     if (title && /^https?:\/\//i.test(link) && !isThinUrl(link)) items.push({ title, url: link, source });
   }
   return items;
+}
+// Freshness ladder: X trends are meant to be VERY current, so try the tightest window
+// first (last 1 hour), only widening if that's empty. `WORLD_X_WINDOWS` overrides the
+// ladder (comma-list, e.g. "1h,3h"). Returns the first non-empty result set + the window
+// that produced it, so callers can favour truly-fresh hits.
+const X_WINDOWS = (process.env.WORLD_X_WINDOWS || '1h,3h,12h').split(',').map((w) => w.trim()).filter(Boolean);
+async function newsSearchFresh(term, geo, hl) {
+  for (const when of X_WINDOWS) {
+    const items = await newsSearch(term, geo, hl, when);
+    if (items.length) return { items, when };
+  }
+  return { items: [], when: null };
 }
 // An article is on-topic for a trend only if the trend term (minus '#') actually appears
 // in the headline — kills the "Thor → unrelated Bachelor story" mismatch where a bare
@@ -606,7 +625,7 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
     for (const term of trends.slice(0, probe)) {
       rank++;
       if (taken >= perGeo) break;
-      const items = await newsSearch(term, geo, hl);
+      const { items, when } = await newsSearchFresh(term, geo, hl);
       if (!items.length) continue;
       // First article whose HEADLINE actually contains the trend term (on-topic).
       const hit = items.find((i) => titleMatchesTerm(term, i.title));

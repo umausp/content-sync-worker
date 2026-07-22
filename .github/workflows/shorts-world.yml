@@ -8,7 +8,12 @@ name: shorts-world
 # same as the news pipeline. Add a line to the pinger's WORKFLOWS to schedule it.
 # Public repo = free minutes. Never on pull_request.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
+        required: false
+        default: ''
 
 concurrency:
   group: shorts-world
@@ -68,6 +73,12 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Region (usa | europe) chosen by the cron-pinger; blank on a manual run → the
+          # renderer falls back to wall-clock alternation.
+          WORLD_REGION: ${{ inputs.region }}
+          # Cross-run dedup: the renderer claims story keys via api.agyata.com before
+          # rendering so overlapping runs never publish the same story. Same token as ingest.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs world
 
       # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus in the meta). Runs only when
@@ -79,6 +90,9 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
+          YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
+          YT_PLAYLIST_EUROPE: ${{ secrets.YT_PLAYLIST_EUROPE }}
         # Skip cleanly if the token isn't set (env is allowed in `if`; `secrets` is not).
         run: |
           if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi

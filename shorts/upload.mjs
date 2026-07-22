@@ -23,6 +23,41 @@ import { STAGE_DIR, channel } from './config.mjs';
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const UPLOAD_URL =
   'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status';
+const PLAYLIST_ITEMS_URL =
+  'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet';
+
+// A region → YouTube playlist-ID map, from env (GitHub secrets — never hardcoded, IDs are
+// account-specific). User: "add Europe-related long/short news to the Europe playlist
+// only" (and USA → USA playlist). Set YT_PLAYLIST_USA / YT_PLAYLIST_EUROPE to the two
+// playlist IDs (they look like "PLxxxxxxxx…"). Absent → the add is skipped cleanly.
+function playlistForRegion(region) {
+  if (region === 'usa') return process.env.YT_PLAYLIST_USA || '';
+  if (region === 'europe') return process.env.YT_PLAYLIST_EUROPE || '';
+  return '';
+}
+
+// Add an uploaded video to a playlist. playlistItems.insert needs the broader `youtube`
+// (or youtube.force-ssl) scope — the upload-only token may lack it, so this is BEST-EFFORT:
+// a 403 insufficientPermissions logs a clear "regenerate the refresh token with the
+// youtube scope" hint and never fails the run (the upload already succeeded).
+async function addToPlaylist(token, playlistId, videoId) {
+  const res = await fetch(PLAYLIST_ITEMS_URL, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
+    body: JSON.stringify({ snippet: { playlistId, resourceId: { kind: 'youtube#video', videoId } } }),
+  });
+  if (res.ok) return true;
+  const detail = (await res.text().catch(() => '')).slice(0, 300);
+  if (res.status === 403 && /insufficient|scope|permission/i.test(detail)) {
+    console.log(
+      `[upload] playlist add skipped — token lacks the 'youtube' scope. Regenerate ` +
+        `YT_REFRESH_TOKEN_WORLD with scope https://www.googleapis.com/auth/youtube to enable playlists.`,
+    );
+  } else {
+    console.log(`[upload] playlist add failed (${res.status}): ${detail}`);
+  }
+  return false;
+}
 
 async function accessToken(refreshToken) {
   const clientId = process.env.YT_CLIENT_ID;
@@ -112,6 +147,17 @@ async function main() {
   const id = res?.id;
   if (!id) throw new Error(`upload returned no video id: ${JSON.stringify(res).slice(0, 200)}`);
   console.log(`[upload:${cfg.id}] ✓ https://youtube.com/watch?v=${id} (privacy=${meta.privacyStatus || 'private'})`);
+
+  // Add to the region's playlist (USA / Europe) if we have a mapped playlist ID. Best-
+  // effort: a scope/permission error is logged, not thrown — the video is already up.
+  const playlistId = playlistForRegion(meta.region);
+  if (playlistId) {
+    console.log(`[upload:${cfg.id}] adding to ${meta.region} playlist ${playlistId}…`);
+    const ok = await addToPlaylist(token, playlistId, id);
+    if (ok) console.log(`[upload:${cfg.id}] ✓ added to ${meta.region} playlist`);
+  } else if (meta.region) {
+    console.log(`[upload:${cfg.id}] no playlist ID set for region '${meta.region}' (set YT_PLAYLIST_${meta.region.toUpperCase()}) — skipping`);
+  }
 }
 
 main().catch((e) => {
