@@ -843,24 +843,30 @@ export async function enrichSummary(story) {
       const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 8).join(', ');
       const prompt =
         'You are a sharp broadcast news writer. Below are excerpts from MULTIPLE outlets ' +
-        'reporting the SAME event. Cross-check them and write ONE punchy, informative ' +
-        '3-4 sentence brief (about 60-90 words) for a short news video. Lead with the most ' +
-        'important fact; include the key who/what/where and the number, date or consequence ' +
-        'that matters; add one line of context or what happens next. Prefer facts that ' +
-        'AGREE across outlets; ignore any that contradict. Neutral, factual, no hype, no ' +
-        'opinion, no fabrication, NO repeated words or sentences. Plain text only — NO ' +
-        'markdown, hashtags, brackets, quotes or emoji. Do not mention "the article" or the ' +
-        'outlet names.\n\n' +
+        'reporting the SAME event. Cross-check them and write ONE punchy, informative brief ' +
+        'of 2 to 3 COMPLETE sentences (about 45-75 words) to be READ ALOUD in a short news ' +
+        'video. Lead with the most important fact; include the key who/what/where and the ' +
+        'number, date or consequence that matters; add one line of context or what happens ' +
+        'next. Each sentence MUST be complete and end with a full stop — NEVER stop mid-' +
+        'sentence or trail off. Fully cover the story in those 2-3 lines so a viewer needs no ' +
+        'more. Prefer facts that AGREE across outlets; ignore any that contradict. Neutral, ' +
+        'factual, no hype, no opinion, no fabrication, NO repeated words or sentences. Plain ' +
+        'text only — NO markdown, hashtags, brackets, quotes or emoji. Do not mention "the ' +
+        'article" or the outlet names.\n\n' +
         `HEADLINE: ${story.title}\n` +
         (outlets ? `REPORTED BY: ${outlets}\n` : '') +
         `SOURCES:\n${corpus}`;
-      const synth = await llmChat(prompt, { maxTokens: 360 });
+      // Roomy token budget so a 45-75 word brief is NEVER cut off mid-sentence by the cap
+      // (the real cause of "it stops in the middle") — the length is governed by the prompt.
+      const synth = await llmChat(prompt, { maxTokens: 500 });
       let clean = dedupeText((synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim());
-      // If the model stopped mid-sentence (hit the token cap), drop the trailing partial.
+      // COMPLETENESS GUARD: if it doesn't end on terminal punctuation, drop the trailing
+      // partial back to the last COMPLETE sentence. If there's no earlier sentence boundary
+      // at all (one run-on that got cut), reject the fragment rather than ship a half-thought.
       if (clean && !/[.!?]$/.test(clean)) {
         const cut = clean.replace(/\s+\S*$/, '');
         const lastEnd = Math.max(cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'));
-        if (lastEnd > 80) clean = cut.slice(0, lastEnd + 1).trim();
+        clean = lastEnd >= 40 ? cut.slice(0, lastEnd + 1).trim() : '';
       }
       if (clean.length >= 120) {
         story.summary = clean;
