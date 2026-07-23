@@ -125,22 +125,24 @@ export function nativeSpec(lang) {
 // governs every channel). `opts` mirrors the world call: { perSlot, perGeoTrends, perGeoX,
 //   maxAgeH, xTrends }.
 export async function gatherNativeSources(lang, {
-  perSlot = 1, perGeoTrends = 1, perGeoX = 1, maxAgeH = 18, xTrends = true,
+  perSlot = 1, perGeoTrends = 1, perGeoX = 1, maxAgeH = 18, xTrends = true, depth = 'normal',
 } = {}) {
   const spec = nativeSpec(lang);
   if (!spec) throw new Error(`native_feeds: no spec for lang "${lang}"`);
   const { slots, geos } = spec;
+  // `depth` = 'deep' for single-story Shorts → the multi-outlet synth writes a fuller 4-6
+  // sentence brief so a one-story clip fills 30-45s (see world_feeds DEPTH_SPEC).
   const [round, gtrends, xtrends] = await Promise.all([
-    buildWorldRoundup({ slots, lang, maxAgeH, perSlot, enrich: true }).catch((e) => {
+    buildWorldRoundup({ slots, lang, maxAgeH, perSlot, enrich: true, depth }).catch((e) => {
       console.log(`[native:${lang}] roundup failed: ${e.message}`);
       return [];
     }),
-    buildTrendingStories({ geos, lang, perGeo: perGeoTrends, enrich: true }).catch((e) => {
+    buildTrendingStories({ geos, lang, perGeo: perGeoTrends, enrich: true, depth }).catch((e) => {
       console.log(`[native:${lang}] google-trends failed: ${e.message}`);
       return [];
     }),
     xTrends
-      ? buildXTrendingStories({ geos, lang, perGeo: perGeoX, enrich: true }).catch((e) => {
+      ? buildXTrendingStories({ geos, lang, perGeo: perGeoX, enrich: true, depth }).catch((e) => {
           console.log(`[native:${lang}] x-trends failed: ${e.message}`);
           return [];
         })

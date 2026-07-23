@@ -20,6 +20,7 @@ import { join } from 'node:path';
 import { promisify } from 'node:util';
 import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.mjs';
 import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
+import { buildCaptionTrack } from './captions_fluid.mjs';
 import { resolveBackground, resolveBackgrounds, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
 import { wordTimings } from './word_timing.mjs';
@@ -264,6 +265,31 @@ function dedupeByTitle(stories) {
   return out;
 }
 
+// SINGLE-MODE IMAGE BIAS (user: "you are just showing 1 image … skipping deep research
+// with good content and images"). A single-story Short IS one story for the whole 30-45s,
+// so a lead with only 1 photo can't fill a lively image sequence. By the time the gather
+// returns, enrichSummary has populated story.images[] from every outlet that covered the
+// event — so the count of real photos is a direct proxy for "well-researched, well-
+// illustrated". STABLE-reorder the pool so image-rich stories lead, WITHOUT dropping any
+// (the channel must never blank): only promote a richer story ahead of a poorer one when it
+// clears a floor (≥ IMG_LEAD_FLOOR photos) and the incumbent is below it. Trend HEAT still
+// breaks ties among equally-illustrated stories, so "what's hot" wins when photos are equal.
+const IMG_LEAD_FLOOR = Number(process.env.SHORTS_IMG_LEAD_FLOOR || 3);
+function imageRichnessFirst(stories) {
+  const imgs = (s) => new Set([s?.imageUrl, ...(s?.images || [])].filter(Boolean)).size;
+  // Decorate-sort-undecorate on a COPY so the original heat order is the stable tiebreaker
+  // (Array.sort is stable in V8). A story clears the floor or it doesn't — we don't sort by
+  // raw count (that would let a 20-photo puff piece outrank a hot 4-photo lead); we only
+  // push stories BELOW the floor behind stories AT/above it.
+  const idx = new Map((stories || []).map((s, i) => [s, i]));
+  return [...(stories || [])].sort((a, b) => {
+    const ra = imgs(a) >= IMG_LEAD_FLOOR ? 1 : 0;
+    const rb = imgs(b) >= IMG_LEAD_FLOOR ? 1 : 0;
+    if (ra !== rb) return rb - ra; // above-floor stories lead
+    return idx.get(a) - idx.get(b); // else keep incoming (heat) order
+  });
+}
+
 // ── DEDICATED RESEARCH POOL (docs/research/world-<region>.json) ──────────────
 // The research-world.yml workflow does the SLOW, deep work on its own timeout-free
 // schedule (trend discovery → multi-outlet extract → LLM synth → verify) and commits a
@@ -342,18 +368,22 @@ async function gatherStories(cfg) {
     // Enrich EVERY story — fetch the article body + LLM-synthesise a useful 2-3 sentence
     // brief (was gated to single/long-form, leaving the roundup thin → "content is very
     // less"). Applies to all formats now.
+    // SINGLE Shorts are ONE story for the whole 30-45s, so synth a DEEPER (4-6 sentence)
+    // brief; roundup/long-form keep the tight 2-3 sentence brief per beat.
+    const depth = SINGLE ? 'deep' : 'normal';
     const [round, gtrends, xtrends] = await Promise.all([
       buildWorldRoundup({
         maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
         perSlot,
         enrich: true,
+        depth,
       }),
       // GOOGLE TRENDS (region geos): what's actually being searched right now, resolved to
       // a real publisher article + the outlet's OWN og:image (never the gstatic thumbnail).
       // Adds genuine "trending now" stories the editorial slots miss. SINGLE mode pulls a
       // DEEPER pool per geo (many trends are thin/paywalled and get filtered) so there's a
       // real set to rank by heat and lead the Short with the hottest survivor.
-      buildTrendingStories({ geos, perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+      buildTrendingStories({ geos, perGeo: SINGLE ? 6 : LONGFORM ? 2 : 1, enrich: true, depth }).catch(() => []),
       // X / TWITTER (region geos): what's trending on X right now (user: "latest trending
       // topics from X: Desktop"). Read from the live public X trend board, each hot term
       // resolved to its freshest matching publisher article (last 1h first, per the
@@ -362,7 +392,7 @@ async function gatherStories(cfg) {
       // a deeper pool to find a lead-worthy survivor.
       process.env.WORLD_X_TRENDS === '0'
         ? Promise.resolve([])
-        : buildXTrendingStories({ geos, perGeo: SINGLE ? 4 : LONGFORM ? 2 : 1, enrich: true }).catch(() => []),
+        : buildXTrendingStories({ geos, perGeo: SINGLE ? 4 : LONGFORM ? 2 : 1, enrich: true, depth }).catch(() => []),
     ]);
     // Merge the two live-buzz sources (X first — it's the freshest social pulse), deduped
     // by title so the SAME event trending on both X and Google Trends counts once.
@@ -383,7 +413,10 @@ async function gatherStories(cfg) {
     // ENGLISH GUARD — EU-geo trends can be German/French/Italian/etc.; translate to English
     // or drop (the "Italian title + garbled TTS" bug) before claim/render on this channel.
     const english = keepEnglish(merged);
-    const picked = english.slice(0, STORY_COUNT + CLAIM_BUFFER);
+    // SINGLE → prefer an image-rich lead so the one-story clip has a real photo sequence,
+    // not a single frame (stable reorder, drops nothing). Roundup/long-form keep heat order.
+    const ordered = SINGLE ? imageRichnessFirst(english) : english;
+    const picked = ordered.slice(0, STORY_COUNT + CLAIM_BUFFER);
     // Carry the run's region so main()/buildUploadMeta can tag meta.json → playlist.
     picked.region = region;
     return picked;
@@ -400,16 +433,21 @@ async function gatherStories(cfg) {
       perGeoX: SINGLE ? 4 : LONGFORM ? 2 : 1,
       maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
       xTrends: process.env.WORLD_X_TRENDS !== '0',
+      // SINGLE → deeper native synth (4-6 sentences) so a one-story clip fills 30-45s.
+      depth: SINGLE ? 'deep' : 'normal',
     });
     const trending = mergeByTitle(xtrends, gtrends);
     // SINGLE → lead with the hottest trend (highest retention); LONGFORM/roundup → curated
     // categories lead so all slots are covered, trends fill. Identical to the world policy.
     const merged = SINGLE ? mergeByTitle(trending, round) : mergeByTitle(round, trending);
+    // SINGLE → prefer an image-rich lead (same policy as World) so the native one-story clip
+    // has a real photo sequence instead of a single frame. Stable reorder, drops nothing.
+    const ordered = SINGLE ? imageRichnessFirst(merged) : merged;
     // Native channels have their OWN, non-overlapping playlists + audiences, so they don't
     // compete with world/bharat for the cross-run D1 claim; but two native runs of the SAME
     // language (a Short + a long-form in the same hour) still shouldn't dupe, so claimStories
     // in main() (keyed by normKey, now CJK-safe) still applies. Return the candidate pool.
-    return merged.slice(0, STORY_COUNT + CLAIM_BUFFER);
+    return ordered.slice(0, STORY_COUNT + CLAIM_BUFFER);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
   // bulletin isn't all-politics (editor's mix: top/politics, business, entertainment,
@@ -576,9 +614,11 @@ function storySentences(story, cfg, index) {
     // Long-form (16:9): 2-3 COMPLETE sentences per story (the higher-RPM format).
     out.push(...pickWholeSentences(sents, { maxSentences: 3, maxWords: 55 }));
   } else if (SINGLE) {
-    // Single-story Short: it's the ONLY story, so give real depth — up to 4 COMPLETE
-    // sentences within a word budget to fill ~30-45s and land the payoff.
-    out.push(...pickWholeSentences(sents, { maxSentences: 4, maxWords: 75 }));
+    // Single-story Short: it's the ONLY story for the whole 30-45s, so speak the full
+    // deep brief — up to 6 COMPLETE sentences / ~120 words (matches enrichSummary's 'deep'
+    // spec). At ~2.6 words/sec that's ~30-45s of narration; the length is bounded by whole
+    // sentences so it never ends mid-thought.
+    out.push(...pickWholeSentences(sents, { maxSentences: 6, maxWords: 120 }));
   } else {
     // 5-story roundup: budget ~9-10s/story so 5 land under 60s. Headline is the star;
     // add ONE short COMPLETE context sentence only when the title is brief.
@@ -725,10 +765,25 @@ async function main() {
           ? String(story.title).replace(/\s+[–—|]\s+.*$/, '').replace(/\s+/g, ' ').trim()
           : '';
       const chrome = await buildChrome({ ...story, headline }, cfg, join(work, `s${i}`));
-      const captions = [];
-      for (let j = 0; j < timing.segments.length; j++) {
-        const sg = timing.segments[j];
-        captions.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `${i}-${j}`, cfg, join(work, `s${i}`))));
+      // CAPTIONS — the premium FLUID style (big ≤2-line phrase, active word smoothly pops to
+      // brand-yellow, pill plate) rendered as one per-frame alpha track. This is the look the
+      // user picked (the fluidtest sample) for ALL channels. If the track ever fails to build
+      // (rare rsvg/ffmpeg hiccup) we fall back to the discrete per-word PNGs so a clip is never
+      // caption-less. captionTrack takes precedence in renderSegment when present.
+      let captionTrack = null;
+      let captions = [];
+      try {
+        captionTrack = await buildCaptionTrack(timing.segments, cfg, join(work, `s${i}`, 'caps'), {
+          dur: timing.duration,
+        });
+      } catch (e) {
+        console.log(`[shorts:${cfg.id}]   (fluid captions failed on story ${i + 1}: ${e.message}; per-word fallback)`);
+      }
+      if (!captionTrack) {
+        for (let j = 0; j < timing.segments.length; j++) {
+          const sg = timing.segments[j];
+          captions.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `${i}-${j}`, cfg, join(work, `s${i}`))));
+        }
       }
       // GAP 1 — image↔word sync: build the per-word timeline from the measured sentence
       // windows, then plan WHICH image is on screen WHEN so an entity photo appears the
@@ -750,6 +805,7 @@ async function main() {
       await renderSegment({
         bgWindows,
         chromePath: chrome,
+        captionTrack,
         captions,
         narrationWav: join(work, `nar-${i}.wav`),
         dur: timing.duration,
@@ -783,13 +839,23 @@ async function main() {
         cfg,
         join(work, 'outro'),
       );
-      const ocaps = [];
-      for (let j = 0; j < oTiming.segments.length; j++) {
-        const sg = oTiming.segments[j];
-        ocaps.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `outro-${j}`, cfg, join(work, 'outro'))));
+      let oTrack = null;
+      let ocaps = [];
+      try {
+        oTrack = await buildCaptionTrack(oTiming.segments, cfg, join(work, 'outro', 'caps'), {
+          dur: oTiming.duration,
+        });
+      } catch {
+        /* fall back to per-word PNGs below */
+      }
+      if (!oTrack) {
+        for (let j = 0; j < oTiming.segments.length; j++) {
+          const sg = oTiming.segments[j];
+          ocaps.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `outro-${j}`, cfg, join(work, 'outro'))));
+        }
       }
       const oclip = join(work, 'clip-outro.mp4');
-      await renderSegment({ bgPath: obg.path, chromePath: ochrome, captions: ocaps, narrationWav: join(work, 'nar-outro.wav'), dur: oTiming.duration, outPath: oclip });
+      await renderSegment({ bgPath: obg.path, chromePath: ochrome, captionTrack: oTrack, captions: ocaps, narrationWav: join(work, 'nar-outro.wav'), dur: oTiming.duration, outPath: oclip });
       segmentPaths.push(oclip);
       console.log(`[shorts:${cfg.id}]   ✓ outro clip (${oTiming.duration.toFixed(1)}s)`);
     }

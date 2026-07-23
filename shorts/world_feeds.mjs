@@ -246,7 +246,7 @@ function endsSentence(s) {
 // Fetch one representative, corroborated, recent story PER SLOT → 5 stories.
 // corroboration = how many of the slot's outlets ran a title-similar story (a light
 // quality signal). Prefers items WITH an image + more corroboration + freshness.
-export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false, slots = WORLD_SLOTS, lang = null } = {}) {
+export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false, slots = WORLD_SLOTS, lang = null, depth = 'normal' } = {}) {
   const now = Date.now();
   // Collect picks PER SLOT into buckets, then INTERLEAVE round-robin at the end so a
   // downstream slice(0, N) always spans EVERY category (was: fixed slot order meant a
@@ -359,7 +359,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
   // paragraphs so there's enough script. Parallel + best-effort (keeps the RSS summary
   // on any failure). Only bother when a fuller script is wanted (single/long-form). `lang`
   // (null = English) makes the synth write IN THAT LANGUAGE for the native channels.
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang, depth })));
   return out;
 }
 
@@ -373,7 +373,7 @@ const TRENDS_GEOS = (process.env.WORLD_TRENDS_GEOS || 'US,GB').split(',').map((g
 function trendTag(term) {
   return makeHashtag(term, 'Trending');
 }
-export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enrich = true, lang = null } = {}) {
+export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enrich = true, lang = null, depth = 'normal' } = {}) {
   const usedTitles = new Set();
   const out = [];
   for (const geo of geos) {
@@ -453,7 +453,7 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
   // biggest story of the moment — and ties (many trends read "200+") break on substance,
   // not RSS order, so the lead varies with the news cycle instead of sticking on one item.
   out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang, depth })));
   // Drop trends we couldn't turn into a REAL story. A single Short leads with a trend, so
   // it must have (1) a publisher image AND (2) a brief that actually gained body beyond
   // the headline — many trends point at JS-rendered pages (CNN) with 0 extractable prose,
@@ -686,7 +686,7 @@ async function resolveGoogleNewsUrl(gnewsUrl) {
 // probe a deeper pool because many trends are fandom/meme noise). Fail-open → [].
 // `lang` (null = English World channel) switches trend→news resolution to the geo's OWN
 // language (native channels) and relaxes the Latin-only trend filter for non-Latin scripts.
-export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe = 16, enrich = true, lang = null } = {}) {
+export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe = 16, enrich = true, lang = null, depth = 'normal' } = {}) {
   const usedTitles = new Set();
   const out = [];
   const nonLatinOk = lang === 'ja'; // Japanese trends are their own script — don't Latin-filter
@@ -776,7 +776,7 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
     }
   }
   out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang, depth })));
   // Same strict gate as Google-Trends: a real publisher image AND a brief that genuinely
   // grew past the headline (JS-rendered pages that echo the title back are dropped).
   return out.filter((s) => {
@@ -991,7 +991,15 @@ const LANG_NAME = {
   de: 'German', nl: 'Dutch', fr: 'French', ja: 'Japanese',
   sv: 'Swedish', no: 'Norwegian', da: 'Danish', it: 'Italian', es: 'Spanish', hi: 'Hindi',
 };
-export async function enrichSummary(story, { imagesOnly = false, lang = null } = {}) {
+// `depth` tunes how much brief the LLM writes. 'deep' (single-story Shorts, where the whole
+// ~30-45s video is ONE story) asks for 4-6 sentences / ~90-130 words so the clip has real
+// substance and runs long enough to sequence many images; the default (roundup/long-form,
+// where each story is one beat of many) keeps the tight 2-3 sentence / 45-75 word brief.
+const DEPTH_SPEC = {
+  deep: { sentences: '4 to 6', words: 'about 90-130 words', maxTokens: 800 },
+  normal: { sentences: '2 to 3', words: 'about 45-75 words', maxTokens: 500 },
+};
+export async function enrichSummary(story, { imagesOnly = false, lang = null, depth = 'normal' } = {}) {
   if (!story.url || !/^https?:\/\//i.test(story.url)) return;
   try {
     // 1) Extract the representative article — clean prose + publisher-own images (already
@@ -1074,6 +1082,16 @@ export async function enrichSummary(story, { imagesOnly = false, lang = null } =
     if (haveLlmKey()) {
       const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 8).join(', ');
       const langName = lang ? LANG_NAME[lang] : null;
+      // `spec` sets the brief's length. 'deep' (single-story Shorts) → 4-6 sentences / ~90-130
+      // words so the whole 30-45s clip has real substance; default → tight 2-3 sentence brief.
+      const spec = DEPTH_SPEC[depth] || DEPTH_SPEC.normal;
+      const lenClause = `${spec.sentences} COMPLETE sentences (${spec.words})`;
+      const coverClause =
+        depth === 'deep'
+          ? 'Fully develop the story: after the lead, add the key background, the specific ' +
+            'numbers/dates/names, and what happens next — enough that a viewer needs no other ' +
+            'source. '
+          : 'Fully cover the story in those sentences so a viewer needs no more. ';
       const prompt = langName
         // NATIVE channel: write the brief IN THAT LANGUAGE. The sources may already be in it
         // (native feeds) or in another language (a trend resolved to mixed coverage) — either
@@ -1081,14 +1099,15 @@ export async function enrichSummary(story, { imagesOnly = false, lang = null } =
         ? `You are a sharp broadcast news writer for a ${langName}-language news channel. Below are ` +
           'excerpts from MULTIPLE outlets reporting the SAME event (they may be in ' +
           `${langName} or another language). Cross-check them and write ONE punchy, informative ` +
-          'brief of 2 to 3 COMPLETE sentences (about 45-75 words) to be READ ALOUD in a short ' +
+          `brief of ${lenClause} to be READ ALOUD in a short ` +
           `news video. WRITE ENTIRELY IN ${langName.toUpperCase()} — natural, idiomatic, native ` +
           `${langName}; translate any foreign facts into ${langName}; NEVER output English (or any ` +
           'other language) words except unavoidable proper nouns. Lead with the most important ' +
           'fact; include the key who/what/where and the number, date or consequence that matters; ' +
           'add one line of context or what happens next. Each sentence MUST be complete and end ' +
-          'with proper terminal punctuation — NEVER stop mid-sentence or trail off. Fully cover ' +
-          'the story in those 2-3 lines. Prefer facts that AGREE across outlets; ignore any that ' +
+          'with proper terminal punctuation — NEVER stop mid-sentence or trail off. ' +
+          coverClause +
+          'Prefer facts that AGREE across outlets; ignore any that ' +
           'contradict. Neutral, factual, no hype, no opinion, no fabrication, NO repeated words ' +
           'or sentences. Plain text only — NO markdown, hashtags, brackets, quotes or emoji. Do ' +
           'not mention "the article" or the outlet names.\n\n' +
@@ -1098,22 +1117,23 @@ export async function enrichSummary(story, { imagesOnly = false, lang = null } =
         : 'You are a sharp broadcast news writer for an ENGLISH-language channel. Below are ' +
           'excerpts from MULTIPLE outlets reporting the SAME event; SOME MAY BE IN ANOTHER ' +
           'LANGUAGE (German, French, Italian, Spanish, Dutch, etc.). Cross-check them and write ' +
-          'ONE punchy, informative brief of 2 to 3 COMPLETE sentences (about 45-75 words) to be ' +
+          `ONE punchy, informative brief of ${lenClause} to be ` +
           'READ ALOUD in a short news video. WRITE ENTIRELY IN ENGLISH — translate any foreign ' +
           'facts into natural English; NEVER output any non-English words. Lead with the most ' +
           'important fact; include the key who/what/where and the number, date or consequence ' +
           'that matters; add one line of context or what happens next. Each sentence MUST be ' +
-          'complete and end with a full stop — NEVER stop mid-sentence or trail off. Fully cover ' +
-          'the story in those 2-3 lines so a viewer needs no more. Prefer facts that AGREE across ' +
+          'complete and end with a full stop — NEVER stop mid-sentence or trail off. ' +
+          coverClause +
+          'Prefer facts that AGREE across ' +
           'outlets; ignore any that contradict. Neutral, factual, no hype, no opinion, no ' +
           'fabrication, NO repeated words or sentences. Plain text only — NO markdown, hashtags, ' +
           'brackets, quotes or emoji. Do not mention "the article" or the outlet names.\n\n' +
           `HEADLINE: ${story.title}\n` +
           (outlets ? `REPORTED BY: ${outlets}\n` : '') +
           `SOURCES:\n${corpus}`;
-      // Roomy token budget so a 45-75 word brief is NEVER cut off mid-sentence by the cap
-      // (the real cause of "it stops in the middle") — the length is governed by the prompt.
-      const synth = await llmChat(prompt, { maxTokens: 500 });
+      // Roomy token budget so the brief is NEVER cut off mid-sentence by the cap (the real
+      // cause of "it stops in the middle") — the length is governed by the prompt/spec.
+      const synth = await llmChat(prompt, { maxTokens: spec.maxTokens });
       let clean = dedupeText((synth || '').replace(/[#*_`>\[\]{}]/g, '').replace(/\s+/g, ' ').trim());
       // COMPLETENESS GUARD: if it doesn't end on terminal punctuation, drop the trailing
       // partial back to the last COMPLETE sentence. If there's no earlier sentence boundary

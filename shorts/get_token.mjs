@@ -9,7 +9,7 @@
 // Steps it runs for you:
 //   1. starts a localhost callback server on http://localhost:8719
 //   2. prints a Google consent URL — open it, pick the CHANNEL's Google account,
-//      click Allow (scope: youtube.upload only)
+//      click Allow (scope: youtube — upload AND playlist management)
 //   3. captures the ?code, exchanges it for tokens, PRINTS the refresh_token
 //   4. paste that into the GitHub secret: YT_REFRESH_TOKEN_WORLD (or _BHARAT)
 //
@@ -22,7 +22,10 @@ const CLIENT_ID = process.env.YT_CLIENT_ID;
 const CLIENT_SECRET = process.env.YT_CLIENT_SECRET;
 const REDIRECT = process.env.YT_REDIRECT || 'http://localhost:8719';
 const PORT = Number(new URL(REDIRECT).port || 8719);
-const SCOPE = 'https://www.googleapis.com/auth/youtube.upload';
+// `youtube` (not just youtube.upload) so the SAME token can BOTH upload a video AND add it
+// to a playlist (playlistItems.insert needs the broader scope). Upload-only tokens make the
+// playlist add 403 — the reason World's USA/Europe playlist adds were silently skipping.
+const SCOPE = 'https://www.googleapis.com/auth/youtube';
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.error('Set YT_CLIENT_ID and YT_CLIENT_SECRET env vars first.');
