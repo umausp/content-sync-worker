@@ -17,8 +17,9 @@ import { execFile } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import { BRAND, VIDEO } from './config.mjs';
-import { wordsForSegment } from './word_timing.mjs';
+import { BRAND, VIDEO, FONTS } from './config.mjs';
+import { wordsForSegment, segmentWords, isCjk } from './word_timing.mjs';
+import { ensureFonts } from './fonts.mjs';
 
 const execFileP = promisify(execFile);
 
@@ -32,13 +33,17 @@ function esc(s) {
 }
 
 // Greedy word-wrap to a max chars-per-line budget (SVG has no wrapping). Devanagari
-// counts by code points; budget is chosen by the caller for the font size.
+// counts by code points; budget is chosen by the caller for the font size. CJK
+// (Japanese) has no inter-word spaces, so we segment with ICU (segmentWords) and JOIN
+// WITHOUT spaces — a space between every Japanese "word" would look broken.
 function wrap(text, maxChars) {
-  const words = String(text || '').split(/\s+/).filter(Boolean);
+  const cjk = isCjk(text);
+  const words = segmentWords(text);
+  const sep = cjk ? '' : ' ';
   const lines = [];
   let cur = '';
   for (const w of words) {
-    const cand = cur ? `${cur} ${w}` : w;
+    const cand = cur ? `${cur}${sep}${w}` : w;
     if ([...cand].length > maxChars && cur) {
       lines.push(cur);
       cur = w;
@@ -51,6 +56,7 @@ function wrap(text, maxChars) {
 }
 
 async function rasterize(svg, outPng) {
+  await ensureFonts(); // install bundled caption faces into the OS font dir (once per process)
   await writeFile(`${outPng}.svg`, svg);
   // rsvg-convert: SVG → PNG at exact canvas size, preserving alpha.
   await execFileP('rsvg-convert', [
@@ -172,12 +178,14 @@ export async function buildCaption(text, idx, cfg, outDir) {
   // heavy, so keep the Latin budget tight enough to stay inside the 1080px width with
   // the 60px side margins (measured: ~20 caps fit before the right edge clips).
   const isDeva = cfg.scriptLang === 'hi';
+  const isCjkChan = cfg.scriptLang === 'ja'; // Japanese — full-width square glyphs, no spaces
   const land = VIDEO.landscape;
   // AUTO-FIT: never truncate the caption (user: "does not write full text"). Start at
   // the ideal font size, and if the text needs more than maxLines, step the font DOWN
   // (which widens chars-per-line) until it fits — so the FULL sentence always shows.
-  const baseFont = land ? (isDeva ? 52 : 56) : isDeva ? 60 : 64;
-  const baseChars = land ? (isDeva ? 34 : 40) : isDeva ? 18 : 20;
+  // CJK glyphs are full-width squares → fewer per line than Devanagari; size ~ Deva.
+  const baseFont = land ? (isDeva || isCjkChan ? 52 : 56) : isDeva || isCjkChan ? 60 : 64;
+  const baseChars = land ? (isCjkChan ? 26 : isDeva ? 34 : 40) : isCjkChan ? 15 : isDeva ? 18 : 20;
   const maxLines = 4;
   let fontSize = baseFont;
   let lines = wrap(text, baseChars);
@@ -220,8 +228,9 @@ export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, out
   const W = VIDEO.width;
   const H = VIDEO.height;
   const isDeva = cfg.scriptLang === 'hi';
+  const isCjkChan = cfg.scriptLang === 'ja'; // Japanese — full-width glyphs, no Latin case
   const land = VIDEO.landscape;
-  const perGroup = isDeva ? 4 : 3; // words visible at once
+  const perGroup = 3; // words visible at once — 3 keeps the line tight + punchy (not a ticker)
   // REAL per-word timing: distribute the sentence's measured [start,end] across its words
   // by spoken length (syllables), so each word carries its own [start,end] — the focus
   // tracks the narration instead of an even split. `.word` keeps punctuation verbatim.
@@ -234,41 +243,47 @@ export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, out
   // WIDTH-FIT (fixes captions clipping horizontally). Arial Black at font size F is
   // ~0.62·F per char wide. Fit the widest group into the safe width, leaving headroom for
   // the active word's POP_SCALE swell so a popped word never runs off-frame. Capped at ideal.
-  const SIDE_MARGIN = land ? 120 : 90;
+  const SIDE_MARGIN = land ? 130 : 100;
   const safeW = (W - 2 * SIDE_MARGIN) / POP_SCALE; // reserve room for the swell
-  const idealFont = land ? (isDeva ? 62 : 66) : isDeva ? 64 : 72;
-  const CHAR_W = isDeva ? 0.72 : 0.62; // width-per-char as a fraction of font size
-  const widestChars = Math.max(...groups.map((g) => g.map((w) => w.word).join(' ').length), 1);
-  const fitFont = Math.floor(safeW / (widestChars * CHAR_W));
-  const fontSize = Math.max(land ? 40 : 46, Math.min(idealFont, fitFont));
-  const spaceW = fontSize * CHAR_W * 0.9; // width of the gap between words
-  const cy = land ? H * 0.68 : H * 0.62; // vertical centre of the caption band
+  const idealFont = land ? (isDeva || isCjkChan ? 66 : 72) : isDeva || isCjkChan ? 74 : 84;
+  // CJK glyphs are full-width squares (~1.0·F); Devanagari ~0.72; Latin ~0.62.
+  const CHAR_W = isCjkChan ? 1.0 : isDeva ? 0.72 : 0.62; // width-per-char as a fraction of font size
+  const wordChars = (g) => g.reduce((s, w) => s + Math.max(1, w.word.length), 0);
+  const widestChars = Math.max(...groups.map(wordChars), 1);
+  const fitFont = Math.floor(safeW / (widestChars * CHAR_W + Math.max(...groups.map((g) => g.length)) * 0.5));
+  const fontSize = Math.max(land ? 46 : 56, Math.min(idealFont, fitFont));
+  const spaceW = fontSize * 0.34; // TIGHT, CONSTANT gap between words (not proportional → no sprawl)
+  const cy = land ? H * 0.7 : H * 0.64; // vertical centre of the caption band
 
   const out = [];
   let wcount = 0;
   for (let gi = 0; gi < groups.length; gi++) {
     const g = groups[gi];
-    // Per-word x layout with STABLE centres — the active word swells around its OWN centre
-    // (text-anchor=middle) without shoving neighbours. We reserve each word's POPPED width
-    // as its slot so that whichever word is active never overlaps the one beside it (the
-    // swell grows symmetrically into its own reserved slot). Inactive words sit centred in
-    // their slightly oversized slots, keeping the gaps even.
-    const slots = g.map((w) => Math.max(1, w.word.length) * fontSize * CHAR_W * POP_SCALE);
-    const totalW = slots.reduce((a, b) => a + b, 0) + spaceW * (g.length - 1);
+    // Per-word x layout with STABLE centres. Each word's slot is its NATURAL width (NOT the
+    // popped width) so short words don't get huge gaps — the line stays tight + centred like
+    // a modern caption. The active word swells around its OWN centre (text-anchor=middle), so
+    // it grows POP_PAD·slot beyond each edge. The gap BETWEEN two words is therefore opened by
+    // the pop overflow of whichever neighbour is larger — enough that a popped word clears its
+    // neighbours (no "ISROsuccessfullylaunched" collision), while gaps between two short words
+    // stay at the tight base. Variable per-gap, computed once for the group.
+    const slots = g.map((w) => Math.max(1, w.word.length) * fontSize * CHAR_W);
+    const POP_PAD = (POP_SCALE - 1) / 2; // half the swell lands on each side of a word
+    const gaps = slots.slice(0, -1).map((sw, i) => spaceW + POP_PAD * Math.max(sw, slots[i + 1]));
+    const totalW = slots.reduce((a, b) => a + b, 0) + gaps.reduce((a, b) => a + b, 0);
     let x = W / 2 - totalW / 2;
-    const centres = slots.map((sw) => {
+    const centres = slots.map((sw, i) => {
       const cx = x + sw / 2;
-      x += sw + spaceW;
+      x += sw + (gaps[i] || 0);
       return cx;
     });
-    // LEGIBILITY BAND: a rounded semi-transparent pill behind the group so text stays
-    // crisp over bright photos (the drop shadow alone washes out on white).
-    const padX = Math.round(fontSize * 0.55);
-    const padY = Math.round(fontSize * 0.32);
+    // LEGIBILITY BAND: a rounded semi-transparent pill behind the group so text stays crisp
+    // over bright photos. Sized to the POPPED height so it never clips the swollen word.
+    const padX = Math.round(fontSize * 0.6);
+    const padY = Math.round(fontSize * 0.34);
     const bandW = Math.round(totalW + padX * 2);
     const bandH = Math.round(fontSize * POP_SCALE + padY * 2);
     const bandX = Math.round(W / 2 - bandW / 2);
-    const bandY = Math.round(cy - fontSize * 0.86 - padY);
+    const bandY = Math.round(cy - fontSize * 0.9 - padY);
     // Render ONE PNG per WORD in the group: the group is fully drawn each time, but a
     // different word is the popped/active one, shown only during THAT word's [start,end].
     for (let ai = 0; ai < g.length; ai++) {
@@ -277,15 +292,29 @@ export async function buildKaraokeCaptions(text, segStart, segEnd, idx, cfg, out
           const active = wi === ai;
           const fs = active ? Math.round(fontSize * POP_SCALE) : fontSize;
           const fill = active ? KARAOKE_HIGHLIGHT : BRAND.text;
-          const dy = active ? -Math.round(fontSize * 0.06) : 0; // lift the popped word
-          return `<text x="${Math.round(centres[wi])}" y="${Math.round(cy + dy)}" font-family="${cfg.font}" ` +
-            `font-size="${fs}" font-weight="900" text-anchor="middle" fill="${fill}">${esc(w.word)}</text>`;
+          const dy = active ? -Math.round(fontSize * 0.08) : 0; // lift the popped word
+          // FONT MIX (user pick): base words in Montserrat (clean); the ACTIVE word pops in
+          // Anton heavy CAPS (the punchy "CapCut/Premiere" focus word). Anton has NO
+          // Devanagari OR CJK glyphs, so the Hindi + Japanese channels keep their own font
+          // for the active word — just pop + colour it — and never switch face (would tofu).
+          // Uppercasing is Latin-only (no-op on Deva, and Japanese has no case).
+          const keepFace = isDeva || isCjkChan;
+          const activeFace = keepFace ? cfg.font : FONTS.display;
+          const family = active ? activeFace : cfg.font;
+          const label = active && !keepFace ? w.word.toUpperCase() : w.word;
+          // Anton is a single Regular weight; forcing 900 does nothing bad. Montserrat needs
+          // 900 for the Black instance. paint-order=stroke draws a heavy dark outline BEHIND
+          // the fill → the bold, premium "sticker" look (legible on any photo, never cheap).
+          const strokeW = Math.round(fs * 0.14);
+          return `<text x="${Math.round(centres[wi])}" y="${Math.round(cy + dy)}" font-family="${family}" ` +
+            `font-size="${fs}" font-weight="900" text-anchor="middle" paint-order="stroke" ` +
+            `stroke="#0a0118" stroke-width="${strokeW}" stroke-linejoin="round" fill="${fill}">${esc(label)}</text>`;
         })
         .join('');
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
       ${defs()}
-      <rect x="${bandX}" y="${bandY}" width="${bandW}" height="${bandH}" rx="${Math.round(bandH * 0.28)}"
-            fill="#000000" fill-opacity="0.42"/>
+      <rect x="${bandX}" y="${bandY}" width="${bandW}" height="${bandH}" rx="${Math.round(bandH * 0.32)}"
+            fill="#000000" fill-opacity="0.34"/>
       <g filter="url(#ds)">${texts}</g>
     </svg>`;
       const png = await rasterize(svg, join(outDir, `kcap-${idx}-${String(wcount).padStart(3, '0')}.png`));

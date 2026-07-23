@@ -34,7 +34,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { argv } from 'node:process';
-import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
+import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories, looksNonEnglish } from './world_feeds.mjs';
 import { availableProviders } from '../src/providers.mjs';
 
 // Region → trend geos (same env vars build_short.mjs uses, so the two agree). A USA run
@@ -156,6 +156,19 @@ async function researchRegion(region) {
   }
   const merged = [...byKey.values()];
 
+  // ENGLISH GUARD — the World research bundle is ENGLISH-ONLY. We NO LONGER translate
+  // foreign text (user: "short-world/longform will pick english only content"); the
+  // dedicated per-language channels (FR/IT/ES…) produce native clips instead. Any story
+  // whose title or summary isn't English is DROPPED. looksNonEnglish covers Latin-script
+  // foreign languages AND every non-Latin script, so no foreign clip can reach this channel.
+  const englishOnly = [];
+  let dropped = 0;
+  for (const s of merged) {
+    if (looksNonEnglish(s?.title) || looksNonEnglish(s?.summary)) dropped++;
+    else englishOnly.push(s);
+  }
+  if (dropped) console.log(`[research:${region}] english-guard: kept ${englishOnly.length}, dropped ${dropped} foreign stories (no translation)`);
+
   // VERIFY — a researched story must have a real image AND a brief that genuinely grew
   // past the headline (kills JS-rendered pages that echo the title back / thin sources)
   // AND read like prose, not a leaked photo caption. verified = corroborated by ≥2 DISTINCT
@@ -163,7 +176,7 @@ async function researchRegion(region) {
   // roundup but the raw Google-News RESULT COUNT (often 20-60) in the trend builders, so it
   // is NOT a distinct-outlet count. The real corroboration signal is the number of distinct
   // outlet names / article URLs, so we compute `outlets` from those and verify on THAT.
-  const verified = merged
+  const verified = englishOnly
     .map((s) => {
       const brief = (s.summary || '').trim();
       const grew = brief.length - (s.title || '').trim().length;

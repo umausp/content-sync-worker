@@ -13,9 +13,65 @@
 // those windows is free, deterministic, and plenty accurate for "show the image / focus the
 // word when it's spoken." This module is pure (no I/O) so it's fully unit-testable.
 
-// Rough English syllable count: vowel-groups minus a silent trailing 'e', floored at 1.
+// Devanagari syllable proxy: independent vowels + vowel signs (मात्रा) + inherent-vowel
+// consonants that aren't silenced by a virama (हलन्त). This is what makes Hindi per-word
+// timing REAL instead of uniform (every Devanagari word was falling to syllables=1 because
+// the old [a-z] strip removed all of it → pop distributed evenly, not synced to speech).
+function devaSyllables(word) {
+  const w = String(word || '');
+  const independentVowels = (w.match(/[अ-औ]/g) || []).length; // अ आ इ … औ
+  const vowelSigns = (w.match(/[ा-ौ]/g) || []).length; // matras ा ि ी …
+  const consonants = (w.match(/[क-ह]/g) || []).length; // base consonants (carry inherent 'a')
+  const viramas = (w.match(/्/g) || []).length; // halant kills the inherent vowel
+  // Each consonant sounds a syllable unless a following matra (counted separately) or a
+  // virama removes its inherent vowel; independent vowels always sound one.
+  const n = independentVowels + vowelSigns + Math.max(0, consonants - vowelSigns - viramas);
+  return Math.max(1, n);
+}
+
+// CJK (Japanese / Chinese) — scripts with NO inter-word spaces + no alphabetic vowels.
+// Hiragana, katakana (incl. half-width), CJK ideographs. These need dictionary word
+// segmentation (Intl.Segmenter) instead of whitespace splitting, and their "syllable"
+// proxy is the CHARACTER (≈ mora) count, not vowel groups.
+const CJK_RE = /[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/;
+const CJK_G = /[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g;
+export function isCjk(text) {
+  return CJK_RE.test(String(text || ''));
+}
+
+// Segment text into WORDS. CJK has no spaces, so use ICU dictionary segmentation
+// (Intl.Segmenter — bundled in Node, full-ICU, NO dependency / model download); everything
+// else splits on whitespace exactly as before. Trailing punctuation (。！？、) is glued to
+// the preceding word so it carries a beat instead of becoming its own tiny caption unit —
+// mirroring how the whitespace path keeps "word." as one token.
+let _jaSeg = null;
+function cjkTokens(text) {
+  if (!_jaSeg) _jaSeg = new Intl.Segmenter('ja', { granularity: 'word' });
+  const out = [];
+  for (const s of _jaSeg.segment(String(text || ''))) {
+    if (!s.segment.trim()) continue; // drop whitespace segments
+    if (!s.isWordLike && out.length) out[out.length - 1] += s.segment; // glue punctuation
+    else out.push(s.segment);
+  }
+  return out;
+}
+export function segmentWords(text) {
+  if (isCjk(text)) return cjkTokens(text);
+  return String(text || '').split(/\s+/).filter(Boolean);
+}
+
+// Rough syllable count. Devanagari-aware (Hindi) + CJK-aware (Japanese) — falls back to
+// English vowel-groups for Latin text. Floored at 1.
 export function syllables(word) {
-  const w = String(word || '').toLowerCase().replace(/[^a-z]/g, '');
+  const raw = String(word || '');
+  if (/[ऀ-ॿ]/.test(raw)) return devaSyllables(raw); // has Devanagari → count that
+  if (CJK_RE.test(raw)) {
+    // Each CJK character ≈ one mora/syllable (kana = 1 mora; a kanji is 1-2 but 1 is a fine
+    // proxy for relative spoken length). Count CJK chars so per-word timing is REAL, not
+    // uniform (the old [a-z] strip removed all of it → every Japanese token fell to 1).
+    return Math.max(1, (raw.match(CJK_G) || []).length);
+  }
+  const w = raw.toLowerCase().replace(/[^a-z]/g, '');
   if (!w) return 1;
   const groups = w.match(/[aeiouy]+/g);
   let n = groups ? groups.length : 1;
@@ -25,12 +81,13 @@ export function syllables(word) {
 }
 
 // A word's spoken WEIGHT: syllables, plus a small bump for length (long words take longer
-// even at equal syllables) and a beat for trailing punctuation (comma/period = a short pause
-// lands on that word). Tuned to feel synced, not to be phonetically exact.
+// even at equal syllables) and a beat for trailing punctuation (comma/period/danda = a short
+// pause lands on that word). Tuned to feel synced, not to be phonetically exact. Length
+// counts Devanagari too (was [A-Za-z0-9]-only → 0 for Hindi, killing the length nuance).
 function weight(token) {
   const syl = syllables(token);
-  const chars = String(token).replace(/[^A-Za-z0-9]/g, '').length;
-  const pause = /[,;:.!?—–]$/.test(token) ? 0.6 : 0; // trailing punctuation = a beat
+  const chars = String(token).replace(/[^A-Za-z0-9ऀ-ॿ぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g, '').length;
+  const pause = /[,;:.!?—–।。！？、]$/.test(token) ? 0.6 : 0; // trailing punctuation (Hindi danda + CJK) = a beat
   return syl + chars * 0.08 + pause;
 }
 
@@ -38,7 +95,7 @@ function weight(token) {
 // spoken length. Returns [{ word, start, end, wi }] (wi = index within the sentence).
 // `word` keeps the ORIGINAL token (punctuation intact) so callers can render it verbatim.
 export function wordsForSegment(text, start, end) {
-  const tokens = String(text || '').split(/\s+/).filter(Boolean);
+  const tokens = segmentWords(text); // whitespace for Latin/Deva; ICU word-break for CJK
   if (!tokens.length) return [];
   const span = Math.max(0.001, end - start);
   const weights = tokens.map(weight);

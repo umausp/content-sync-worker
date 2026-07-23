@@ -27,14 +27,23 @@ const UPLOAD_URL =
 const PLAYLIST_ITEMS_URL =
   'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet';
 
-// A region → YouTube playlist-ID map, from env (GitHub secrets — never hardcoded, IDs are
-// account-specific). User: "add Europe-related long/short news to the Europe playlist
-// only" (and USA → USA playlist). Set YT_PLAYLIST_USA / YT_PLAYLIST_EUROPE to the two
-// playlist IDs (they look like "PLxxxxxxxx…"). Absent → the add is skipped cleanly.
-function playlistForRegion(region) {
-  if (region === 'usa') return process.env.YT_PLAYLIST_USA || '';
-  if (region === 'europe') return process.env.YT_PLAYLIST_EUROPE || '';
-  return '';
+// Resolve the YouTube playlist a video belongs in, from env (GitHub secrets — never
+// hardcoded, IDs are account-specific & look like "PLxxxxxxxx…"). Two families:
+//   • NATIVE channels (de/nl/fr/jp/sv/no/da) carry meta.playlist = the uppercase language
+//     code; each maps to YT_PLAYLIST_<CODE> (YT_PLAYLIST_DE, YT_PLAYLIST_JP, …). Every
+//     native channel is a PLAYLIST on @AgyataWorld, so this is how a de/jp/… clip lands in
+//     its own language playlist rather than the World feed.
+//   • WORLD channel carries meta.region (usa|europe) → YT_PLAYLIST_USA / _EUROPE (user:
+//     "add Europe-related news to the Europe playlist only").
+// Absent env → the add is skipped cleanly (upload already succeeded). Returns { id, label }.
+function resolvePlaylist(meta) {
+  if (meta.playlist) {
+    const code = String(meta.playlist).toUpperCase();
+    return { id: process.env[`YT_PLAYLIST_${code}`] || '', label: code };
+  }
+  if (meta.region === 'usa') return { id: process.env.YT_PLAYLIST_USA || '', label: 'usa' };
+  if (meta.region === 'europe') return { id: process.env.YT_PLAYLIST_EUROPE || '', label: 'europe' };
+  return { id: '', label: meta.region || meta.playlist || '' };
 }
 
 // Add an uploaded video to a playlist. playlistItems.insert needs the broader `youtube`
@@ -130,7 +139,7 @@ async function main() {
   const channelId = process.argv[2];
   const stamp = process.argv[3];
   if (!channelId || !stamp) {
-    console.error('usage: node scripts/shorts/upload.mjs <world|bharat> <stamp>');
+    console.error('usage: node scripts/shorts/upload.mjs <world|bharat|de|nl|fr|jp|sv|no|da> <stamp>');
     process.exit(2);
   }
   const cfg = channel(channelId);
@@ -158,15 +167,16 @@ async function main() {
     await markTopicsPublished(meta.ledger, { label: cfg.id });
   }
 
-  // Add to the region's playlist (USA / Europe) if we have a mapped playlist ID. Best-
+  // Add to the resolved playlist — the native channel's language playlist (DE/JP/…) or the
+  // World channel's region playlist (USA/Europe) — if we have a mapped playlist ID. Best-
   // effort: a scope/permission error is logged, not thrown — the video is already up.
-  const playlistId = playlistForRegion(meta.region);
+  const { id: playlistId, label: plLabel } = resolvePlaylist(meta);
   if (playlistId) {
-    console.log(`[upload:${cfg.id}] adding to ${meta.region} playlist ${playlistId}…`);
+    console.log(`[upload:${cfg.id}] adding to ${plLabel} playlist ${playlistId}…`);
     const ok = await addToPlaylist(token, playlistId, id);
-    if (ok) console.log(`[upload:${cfg.id}] ✓ added to ${meta.region} playlist`);
-  } else if (meta.region) {
-    console.log(`[upload:${cfg.id}] no playlist ID set for region '${meta.region}' (set YT_PLAYLIST_${meta.region.toUpperCase()}) — skipping`);
+    if (ok) console.log(`[upload:${cfg.id}] ✓ added to ${plLabel} playlist`);
+  } else if (plLabel) {
+    console.log(`[upload:${cfg.id}] no playlist ID set for '${plLabel}' (set YT_PLAYLIST_${String(plLabel).toUpperCase()}) — skipping`);
   }
 }
 

@@ -25,7 +25,8 @@ import { renderSegment, concatWithMusic } from './render.mjs';
 import { wordTimings } from './word_timing.mjs';
 import { planShots } from './plan_shots.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
-import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
+import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories, looksNonEnglish } from './world_feeds.mjs';
+import { gatherNativeSources } from './native_feeds.mjs';
 // Durable "already made a video of this story?" ledger (Upstash Redis) — separate from the
 // website's CF news_dedup_claims. Locks a published story until it has a genuine update.
 import {
@@ -55,7 +56,10 @@ const STORY_COUNT = Number(process.env.SHORTS_STORY_COUNT || (LONGFORM ? 10 : SI
 // YouTube playlist the upload joins. If unset (a manual run), we fall back to a wall-clock
 // alternation so ad-hoc renders still alternate sensibly.
 const US_GEOS = (process.env.WORLD_US_GEOS || 'US').split(',').map((g) => g.trim()).filter(Boolean);
-const EU_GEOS = (process.env.WORLD_EU_GEOS || 'GB,IE,DE,FR,IT,ES,NL').split(',').map((g) => g.trim()).filter(Boolean);
+// English-native geos only: the World channel is English-only now (no translation), so the
+// "Europe" region pulls ENGLISH-language European sources (UK/Ireland). Non-English European
+// countries (DE/FR/IT/ES/NL) are served by their own dedicated per-language channels instead.
+const EU_GEOS = (process.env.WORLD_EU_GEOS || 'GB,IE').split(',').map((g) => g.trim()).filter(Boolean);
 function resolveRegion() {
   const r = (process.env.WORLD_REGION || '').toLowerCase().trim();
   if (r === 'usa' || r === 'us') return 'usa';
@@ -123,8 +127,16 @@ async function claimStories(candidates, want, stamp) {
     console.log(`[shorts] dedup claim failed (${e.message}) — proceeding with local pick`);
     return candidates.slice(0, want);
   }
-  // Keep candidates whose key was granted to THIS run, in original (hotness) order.
-  const kept = keyed.filter((x) => granted.has(x.key)).map((x) => x.s);
+  // Keep candidates whose key was granted to THIS run, in original (hotness) order — but at
+  // most ONE story per key, so a run that gathered two same-key variants (bundle path) can't
+  // render both even if the key was granted (the intra-video-dup guard at the claim layer).
+  const usedKeys = new Set();
+  const kept = [];
+  for (const x of keyed) {
+    if (!granted.has(x.key) || usedKeys.has(x.key)) continue;
+    usedKeys.add(x.key);
+    kept.push(x.s);
+  }
   return kept.slice(0, want);
 }
 
@@ -182,8 +194,15 @@ async function attachBackstory(story) {
 // Merge two story lists, interleaving them while dropping cross-list duplicates (the
 // same event can be both an editorial pick AND a Google trend). Word-overlap key so
 // near-identical headlines from two paths count once. `primary` leads each pair.
+// CJK-SAFE (native channels): the old `[^a-z0-9 ]` strip wiped every char of a space-less
+// non-Latin title (Japanese/Chinese) → EMPTY key → mergeByTitle/dedupeByTitle/claimStories
+// all treat "" as skip → ALL Japanese stories silently dropped. Keep Unicode letters/numbers;
+// when there are no ≥4-char Latin words to key on, fall back to the first 16 chars so the
+// story still gets a stable near-exact key instead of vanishing. Mirrors world_feeds normTitle.
 function normKey(t) {
-  return String(t || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+  const norm = String(t || '').toLowerCase().replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  const key = norm.split(' ').filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+  return key || norm.replace(/\s+/g, '').slice(0, 16);
 }
 function mergeByTitle(primary, secondary) {
   const out = [];
@@ -200,6 +219,48 @@ function mergeByTitle(primary, secondary) {
   // stories come AFTER, filling remaining slots — a curated-first, trend-topped mix.
   primary.forEach(add);
   secondary.forEach(add);
+  return out;
+}
+
+// Significant-word token SET for a title (words > 3 chars, lowercased) — the basis for both
+// the exact key and the fuzzy overlap check below.
+function titleTokenSet(t) {
+  return new Set(
+    String(t || '').toLowerCase().replace(/[^\p{L}\p{N} ]+/gu, ' ').split(/\s+/).filter((w) => w.length > 3),
+  );
+}
+// Jaccard overlap between two token sets (|∩| / |∪|), 0..1.
+function tokenOverlap(a, b) {
+  if (!a.size || !b.size) return 0;
+  let inter = 0;
+  for (const w of a) if (b.has(w)) inter++;
+  return inter / (a.size + b.size - inter);
+}
+
+// Collapse one list to a single story per event, keeping the FIRST (highest-ranked)
+// occurrence. The last-line-of-defence against "the same story appeared twice in one video":
+// the research-bundle path skips mergeByTitle, and two trend sources can surface the same
+// event with slightly different wording. Two passes:
+//   1. EXACT normalized-title key (fast, catches punctuation/word-order variants).
+//   2. FUZZY token overlap ≥ SAME_STORY_OVERLAP against stories already kept — catches
+//      near-dups that share most significant words but differ by a token or two ("Powerball
+//      jackpot climbs to $1.2B after no winner" vs "No winner: Powerball jackpot climbs to
+//      $1.2B"). Threshold is high (0.7) so genuinely distinct stories are never merged.
+// Applied at the candidate chokepoint in main() so it protects EVERY gather path. Preserves order.
+const SAME_STORY_OVERLAP = Number(process.env.SHORTS_SAME_STORY_OVERLAP || 0.7);
+function dedupeByTitle(stories) {
+  const seenKeys = new Set();
+  const keptSets = [];
+  const out = [];
+  for (const s of stories || []) {
+    const k = normKey(s?.title);
+    if (!k || seenKeys.has(k)) continue; // pass 1: exact
+    const set = titleTokenSet(s?.title);
+    if (keptSets.some((prev) => tokenOverlap(set, prev) >= SAME_STORY_OVERLAP)) continue; // pass 2: fuzzy
+    seenKeys.add(k);
+    keptSets.push(set);
+    out.push(s);
+  }
   return out;
 }
 
@@ -232,6 +293,23 @@ async function loadResearchBundle(region) {
   return stories;
 }
 
+// Keep ONLY stories that are already ENGLISH — the World channel is English-native and we
+// NO LONGER translate foreign text onto it (user: "short-world/longform will pick english
+// only content"). Non-English source stories (DE/FR/IT/ES/NL/CJK/…) are DROPPED here; the
+// dedicated per-language channels (short-FR/IT/ES etc.) produce native clips for those.
+// looksNonEnglish covers Latin-script foreign languages AND every non-Latin script, so a
+// foreign clip can never reach the English channel. Pure filter, no LLM cost.
+function keepEnglish(stories) {
+  const out = [];
+  let dropped = 0;
+  for (const s of stories || []) {
+    if (looksNonEnglish(s?.title) || looksNonEnglish(s?.summary)) dropped++;
+    else out.push(s);
+  }
+  if (dropped) console.log(`[shorts:world] english-guard dropped ${dropped} foreign stor${dropped === 1 ? 'y' : 'ies'} (no translation on the English channel)`);
+  return out;
+}
+
 async function gatherStories(cfg) {
   if (cfg.id === 'world') {
     // Dedicated world/US-UK 9-slot roundup — NOT the India feed. Long-form pulls 2 per
@@ -251,7 +329,11 @@ async function gatherStories(cfg) {
     if (process.env.SHORTS_RESEARCH_BUNDLE !== '0') {
       const bundled = await loadResearchBundle(region);
       if (bundled && bundled.length) {
-        const picked = bundled.slice(0, STORY_COUNT + CLAIM_BUFFER);
+        // ENGLISH GUARD — the bundle is normally already English (research.mjs guards it),
+        // but guard again here so an older bundle can't ship a foreign clip on this English
+        // channel. Drops any story we can't confidently make English.
+        const english = keepEnglish(bundled);
+        const picked = english.slice(0, STORY_COUNT + CLAIM_BUFFER);
         picked.region = region;
         return picked;
       }
@@ -298,10 +380,36 @@ async function gatherStories(cfg) {
     // Return a CANDIDATE POOL (not just STORY_COUNT) so main() can claim keys against the
     // cross-run dedup ledger and fall back to the next-best story when the hottest was
     // already taken by an overlapping run. Buffer generously — trends churn fast.
-    const picked = merged.slice(0, STORY_COUNT + CLAIM_BUFFER);
+    // ENGLISH GUARD — EU-geo trends can be German/French/Italian/etc.; translate to English
+    // or drop (the "Italian title + garbled TTS" bug) before claim/render on this channel.
+    const english = keepEnglish(merged);
+    const picked = english.slice(0, STORY_COUNT + CLAIM_BUFFER);
     // Carry the run's region so main()/buildUploadMeta can tag meta.json → playlist.
     picked.region = region;
     return picked;
+  }
+  // NATIVE-LANGUAGE channels (de/nl/fr/jp/sv/no/da): the native mirror of the world gather.
+  // Same three sources (native RSS roundup + native Google-Trends + native X-trends), same
+  // SINGLE-leads-with-trend / roundup-leads-for-longform merge policy — but sourced + synthed
+  // IN THE CHANNEL'S LANGUAGE (native_feeds), and with NO English guard (the whole point is
+  // native content). No India feed, no translation.
+  if (cfg.native) {
+    const { round, gtrends, xtrends } = await gatherNativeSources(cfg.nativeLang, {
+      perSlot: LONGFORM ? 2 : 1,
+      perGeoTrends: SINGLE ? 6 : LONGFORM ? 2 : 1,
+      perGeoX: SINGLE ? 4 : LONGFORM ? 2 : 1,
+      maxAgeH: Number(process.env.WORLD_MAX_AGE_H || 18),
+      xTrends: process.env.WORLD_X_TRENDS !== '0',
+    });
+    const trending = mergeByTitle(xtrends, gtrends);
+    // SINGLE → lead with the hottest trend (highest retention); LONGFORM/roundup → curated
+    // categories lead so all slots are covered, trends fill. Identical to the world policy.
+    const merged = SINGLE ? mergeByTitle(trending, round) : mergeByTitle(round, trending);
+    // Native channels have their OWN, non-overlapping playlists + audiences, so they don't
+    // compete with world/bharat for the cross-run D1 claim; but two native runs of the SAME
+    // language (a Short + a long-form in the same hour) still shouldn't dupe, so claimStories
+    // in main() (keyed by normKey, now CJK-safe) still applies. Return the candidate pool.
+    return merged.slice(0, STORY_COUNT + CLAIM_BUFFER);
   }
   // bharat: a DIVERSE India slate from the Agyata feed — one story per category so a
   // bulletin isn't all-politics (editor's mix: top/politics, business, entertainment,
@@ -357,6 +465,14 @@ async function gatherStories(cfg) {
 // Just a quick "subscribe for more", no site URL recital, so the video ends cleanly.
 function outroLine(cfg) {
   if (cfg.scriptLang === 'hi') return 'और खबरों के लिए Subscribe करें।';
+  // Native channels: a short native "subscribe" from the channel's own subCta (already
+  // written natively per language) so the spoken + on-screen outro matches the content.
+  const NATIVE_OUTRO = {
+    de: 'Abonnieren für mehr.', nl: 'Abonneer voor meer.', fr: 'Abonnez-vous pour plus.',
+    ja: 'チャンネル登録お願いします。', sv: 'Prenumerera för mer.',
+    no: 'Abonner for mer.', da: 'Abonner for mere.',
+  };
+  if (cfg.native) return NATIVE_OUTRO[cfg.scriptLang] || cfg.subCta || 'Subscribe.';
   return 'Subscribe for more.';
 }
 
@@ -370,7 +486,7 @@ function splitForTTS(line) {
   const clean = String(line || '').replace(/\s+/g, ' ').trim();
   if (!clean) return [];
   const chunks = clean
-    .split(/(?<=[.!?।])\s+|\s+—\s+|\s+–\s+|,\s+(?=and\b|but\b)/i)
+    .split(/(?<=[.!?।])\s+|(?<=[。！？])\s*|\s+—\s+|\s+–\s+|,\s+(?=and\b|but\b)/i)
     .map((s) => s.trim())
     .filter(Boolean);
   return chunks.length ? chunks : [clean];
@@ -383,7 +499,17 @@ function splitForTTS(line) {
 // only one — in which case we cut it back to its last COMPLETE clause (…, ; :) so the
 // spoken line still ends cleanly rather than dangling.
 function wordCount(s) {
-  return String(s).split(/\s+/).filter(Boolean).length;
+  const str = String(s);
+  // CJK (Japanese/Chinese) has no inter-word spaces, so a whitespace split counts a whole
+  // sentence as ONE word and the maxWords budget goes inert. Approximate word count by
+  // CJK-character span / 2 (Japanese averages ~2 chars per word) so the budget still bounds
+  // clip length; add any interspersed Latin words (proper nouns/numbers) on top.
+  const cjk = (str.match(/[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g) || []).length;
+  if (cjk) {
+    const latin = str.replace(/[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g, ' ').split(/\s+/).filter(Boolean).length;
+    return Math.ceil(cjk / 2) + latin;
+  }
+  return str.split(/\s+/).filter(Boolean).length;
 }
 function pickWholeSentences(sents, { maxSentences, maxWords }) {
   const out = [];
@@ -395,7 +521,7 @@ function pickWholeSentences(sents, { maxSentences, maxWords }) {
     // last complete clause boundary so it still ends on punctuation (never mid-word).
     if (w > maxWords) {
       if (out.length) break; // we already have enough; don't append a giant one
-      const clauses = s.split(/(?<=[,;:—–])\s+/);
+      const clauses = s.split(/(?<=[,;:—–])\s+|(?<=[、，；：])\s*/);
       let clip = '';
       for (const c of clauses) {
         if (wordCount(clip ? `${clip} ${c}` : c) > maxWords && clip) break;
@@ -403,7 +529,7 @@ function pickWholeSentences(sents, { maxSentences, maxWords }) {
       }
       // Drop a trailing dangling connector so it doesn't end on "and,"/"but,".
       clip = clip.replace(/[\s,;:—–]+$/, '').replace(/\s+(and|but|or|the|a|to|of|in|on|for|with)$/i, '');
-      out.push(/[.!?।]$/.test(clip) ? clip : `${clip}.`);
+      out.push(/[.!?।。！？]$/.test(clip) ? clip : `${clip}.`);
       break;
     }
     if (words + w > maxWords && out.length) break;
@@ -432,11 +558,13 @@ function storySentences(story, cfg, index) {
   //     spoken (with at most one short context sentence).
   const out = SINGLE || LONGFORM ? [] : [title];
   // Split into sentences, keeping ONLY complete ones (must end in terminal punctuation)
-  // — a trailing fragment with no ./!/? is dropped so narration never ends mid-thought.
+  // — a trailing fragment with no terminal is dropped so narration never ends mid-thought.
+  // CJK-aware: Japanese/Chinese end sentences with 。！？ and use NO trailing space, so we
+  // split AFTER those (optional following space) as well as after Latin/Devanagari terminals.
   const sents = summary
-    .split(/(?<=[.!?।])\s+/)
+    .split(/(?<=[.!?।])\s+|(?<=[。！？])\s*/)
     .map((s) => s.trim())
-    .filter((s) => s && /[.!?।]$/.test(s));
+    .filter((s) => s && /[.!?।。！？]$/.test(s));
   // BACKSTORY line for evolving threads — a short "here's how it started" recap so a
   // returning viewer connects the update to the arc. Placed after the headline, before
   // the latest development. Only in single/long-form (roundup has no room).
@@ -467,11 +595,16 @@ function storySentences(story, cfg, index) {
 }
 
 async function ttsForStory(sentences, cfg, work, id) {
+  // TTS ENGINE dispatch. Kokoro speaks English/Hindi/French/Japanese (world/bharat/fr/jp);
+  // the Piper channels (DE/NL/SV/NO/DA) go through piper_tts.py, which honours the EXACT
+  // same job/output-JSON contract, so everything downstream (segments → word_timing →
+  // captions) is engine-agnostic.
+  const engine = cfg.ttsEngine || 'kokoro';
   const job = {
     chunks: sentences,
     lang: cfg.lang,
     voice: cfg.voice,
-    espeakLang: cfg.espeakLang, // espeak-ng phonemization language (en-us / hi)
+    espeakLang: cfg.espeakLang, // espeak-ng phonemization language
     // PACE: faceless-news Shorts retain best at ~160-175 WPM. Measured end-to-end on
     // this build (per-sentence synth adds slight padding vs raw text): 1.22× ≈ 162 WPM
     // real (brisk energetic broadcast) — 1.02× read as sluggish (~150). Hindi Kokoro is
@@ -483,7 +616,8 @@ async function ttsForStory(sentences, cfg, work, id) {
     out: join(work, `nar-${id}`),
   };
   await writeFile(join(work, `tts-${id}.json`), JSON.stringify(job));
-  await execFileP(PY, [join(process.cwd(), 'shorts', 'kokoro_tts.py'), join(work, `tts-${id}.json`)], {
+  const script = engine === 'piper' ? 'piper_tts.py' : 'kokoro_tts.py';
+  await execFileP(PY, [join(process.cwd(), 'shorts', script), join(work, `tts-${id}.json`)], {
     timeout: 180000,
   });
   return JSON.parse(await readFile(join(work, `nar-${id}.json`), 'utf-8'));
@@ -517,8 +651,17 @@ async function main() {
   const stamp = slug(process.env.SHORTS_STAMP || 'local-run');
 
   console.log(`[shorts:${cfg.id}] gathering top ${STORY_COUNT} stories…`);
-  const candidates = await gatherStories(cfg);
-  if (!candidates.length) throw new Error('no usable stories found');
+  const gathered = await gatherStories(cfg);
+  if (!gathered.length) throw new Error('no usable stories found');
+  // INTRA-VIDEO DEDUP (fixes "same story appeared twice in one video"): collapse candidates
+  // sharing a normalized title BEFORE the ledger/claim, so one video never plays the same
+  // event twice. Needed because the research-bundle path skips mergeByTitle and two trend
+  // sources can carry the same event worded differently. Preserve the region tag.
+  const candidates = dedupeByTitle(gathered);
+  candidates.region = gathered.region;
+  if (candidates.length < gathered.length) {
+    console.log(`[shorts:${cfg.id}] intra-video dedup: ${gathered.length} → ${candidates.length} unique stories`);
+  }
   // VIDEO-DEDUP: drop candidates we've ALREADY made a video of (durable Upstash ledger),
   // unless the story gained a genuine update since. Runs BEFORE the cross-run claim so we
   // don't spend claim slots on stories we'd skip anyway. Fail-open (never blanks the feed).
@@ -629,8 +772,14 @@ async function main() {
     const oTiming = await ttsForStory(splitForTTS(outroText), cfg, work, 'outro');
     if (oTiming.duration && oTiming.segments?.length) {
       const obg = await brandBackground(join(work, 'outro'));
+      // FOLLOW badge, localized per channel (native channels get their own script's word).
+      const FOLLOW_BADGE = {
+        hi: 'देखते रहें', de: 'FOLGEN', nl: 'VOLG', fr: 'SUIVRE', ja: '登録',
+        sv: 'FÖLJ', no: 'FØLG', da: 'FØLG',
+      };
+      const followBadge = FOLLOW_BADGE[cfg.scriptLang] || 'FOLLOW';
       const ochrome = await buildChrome(
-        { hashtag: 'agyata', category: '', badge: cfg.scriptLang === 'hi' ? 'देखते रहें' : 'FOLLOW' },
+        { hashtag: 'agyata', category: '', badge: followBadge },
         cfg,
         join(work, 'outro'),
       );
@@ -694,7 +843,67 @@ function sourceLabels(sources) {
   ];
 }
 
+// NATIVE-language upload metadata (de/nl/fr/jp/sv/no/da). All user-facing strings come from
+// the channel config (label / ctaLine / subCta / hashtags) which are ALREADY written natively,
+// plus the story's own native title + summary — so nothing here is English. Native channels are
+// PLAYLISTS on @AgyataWorld, so they use the World subscribe link + go to `cfg.playlist`.
+function buildNativeUploadMeta(stories, cfg, dur) {
+  const n = stories.length;
+  const lead = stories[0];
+  const date = new Date().toISOString().slice(0, 10);
+  const shortsSuffix = LONGFORM ? '' : ' #Shorts';
+  const tag = String(lead.badge || lead.hashtag || '').replace(/^#/, '').toUpperCase();
+  const suffix = SINGLE ? `${tag ? ` | ${tag}` : ''}${shortsSuffix}`
+    : LONGFORM ? ` (${date})` : `${shortsSuffix}`;
+  // Title: 🌐 + native lead headline + native tag, trimmed to YouTube's 100-char cap.
+  const flag = '🌐';
+  const budget = 99 - flag.length - 1 - suffix.length;
+  let leadT = String(lead.title || '').replace(/\s+/g, ' ').trim();
+  if (leadT.length > budget) leadT = `${leadT.slice(0, Math.max(0, budget - 1)).replace(/\s+\S*$/, '')}…`;
+  const title = `${flag} ${leadT}${suffix}`.slice(0, 99);
+
+  const sub = 'https://www.youtube.com/@AgyataWorld?sub_confirmation=1';
+  // Hook = the native synthesized summary (SINGLE) or the native lead headline (roundup);
+  // followed by native CTA + subscribe. Story list uses native titles + source names.
+  const hook = SINGLE ? (lead.summary || lead.title) : leadT;
+  const storyList = SINGLE ? [] : stories.map((s, i) => `${i + 1}. ${s.title}${s.sourceName ? ` — ${s.sourceName}` : ''}`);
+  // Hashtag block: the channel's native tags + per-story category tags. cfg.hashtags already
+  // carry '#'; category tags are appended bare-then-hashed.
+  const catTags = [...new Set(stories.map((s) => (s.category || '').toLowerCase()).filter(Boolean))];
+  const cfgTags = (cfg.hashtags || []).map((h) => h.replace(/^#/, ''));
+  const hashtags = [...(LONGFORM ? cfgTags.filter((t) => t !== 'shorts') : cfgTags), ...catTags].slice(0, 15);
+  const description = [
+    hook,
+    '',
+    ...(storyList.length ? [...storyList, ''] : []),
+    `📲 agyata.com`,
+    `🔔 ${cfg.subCta}: ${sub}`,
+    '',
+    hashtags.map((h) => `#${h}`).join(' '),
+  ].join('\n');
+
+  return {
+    channel: cfg.id,
+    format: LONGFORM ? 'longform' : 'short',
+    title,
+    description: description.slice(0, 4900),
+    tags: [...cfgTags, ...catTags, 'agyata'].filter(Boolean).slice(0, 20),
+    categoryId: '25', // News & Politics
+    selfDeclaredMadeForKids: false,
+    containsSyntheticMedia: true,
+    privacyStatus: process.env.SHORTS_PRIVACY || 'unlisted',
+    durationSec: Math.round(dur),
+    storyCount: n,
+    uploadSecret: cfg.uploadSecret, // YT_REFRESH_TOKEN_WORLD (all native on @AgyataWorld)
+    // Native channels go to a per-language playlist (DE/NL/FR/JP/SV/NO/DA) by NAME, resolved
+    // in upload.mjs against the @AgyataWorld playlists. No region (that's the World USA/EU split).
+    playlist: cfg.playlist || null,
+    lang: cfg.scriptLang,
+  };
+}
+
 function buildUploadMeta(stories, cfg, dur, region) {
+  if (cfg.native) return buildNativeUploadMeta(stories, cfg, dur);
   const isWorld = cfg.id === 'world';
   const n = stories.length;
   const lead = stories[0];

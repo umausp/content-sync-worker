@@ -29,6 +29,9 @@ const ENRICH_OUTLETS = Number(process.env.WORLD_ENRICH_OUTLETS || 8); // outlets
 const MAX_STORY_IMAGES = Number(process.env.WORLD_MAX_STORY_IMAGES || 24); // story-own photos kept per story
 const SYNTH_CORPUS_CHARS = Number(process.env.WORLD_SYNTH_CORPUS || 6000); // total prose fed to the LLM synth
 const SYNTH_PER_OUTLET_CHARS = Number(process.env.WORLD_SYNTH_PER_OUTLET || 1200); // prose per outlet in the corpus
+// Freshness ladder for researchImagesForStory (external-audio flow): try tightest window
+// first so images come from the MOST RECENT coverage, widen only when a window is empty.
+const RESEARCH_WINDOWS = (process.env.SHORTS_RESEARCH_WINDOWS || '6h,24h,72h,7d').split(',').map((w) => w.trim()).filter(Boolean);
 
 // Clean display names for the "Source:" credit (raw RSS hosts read badly, e.g.
 // "feeds.bbci.co.uk"). Falls back to the bare domain for anything unlisted.
@@ -186,7 +189,11 @@ async function fetchFeed(url) {
     const xml = await r.text();
     const host = new URL(url).hostname.replace(/^www\./, '');
     const items = [];
-    for (const [, block] of xml.matchAll(/<(?:item|entry)>([\s\S]*?)<\/(?:item|entry)>/gi)) {
+    // Tolerate ATTRIBUTES on the item/entry tag — RDF/RSS-1.0 feeds (Deutsche Welle,
+    // Asahi Shimbun, many news.rdf feeds) open items as `<item rdf:about="…">`, which a
+    // bare `<item>` match skips entirely → 0 items (silently dropped a whole feed). The
+    // `(?:\s[^>]*)?` allows the attrs while still not matching `<items>`/`<itemList>`.
+    for (const [, block] of xml.matchAll(/<(?:item|entry)(?:\s[^>]*)?>([\s\S]*?)<\/(?:item|entry)>/gi)) {
       const title = tagOf(block, 'title');
       let link = tagOf(block, 'link');
       if (!link) {
@@ -218,15 +225,28 @@ function isThinUrl(url) {
   return /\/(?:videos?|av|gallery|galleries|in-pictures|live)\//i.test(String(url || ''));
 }
 
-// Word-overlap dedup key (so the same event from 2 outlets counts once).
+// Word-overlap dedup key (so the same event from 2 outlets counts once). CJK-SAFE: the old
+// `[^a-z0-9 ]` strip wiped every character of a space-less non-Latin title (Japanese/Chinese),
+// leaving an EMPTY key — which the callers treat as "skip", so ALL Japanese editorial stories
+// were silently dropped. Keep Unicode letters/numbers; when there are no ≥4-char Latin words to
+// key on (a CJK title), fall back to the first 16 chars of the normalized string so the story
+// still gets a stable (near-exact-match) cluster key instead of vanishing.
 function normTitle(t) {
-  return String(t).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+  const norm = String(t || '').toLowerCase().replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  const key = norm.split(' ').filter((w) => w.length > 3).sort().slice(0, 8).join(' ');
+  return key || norm.replace(/\s+/g, '').slice(0, 16);
+}
+// Shared "this text ends on a sentence boundary" test — accepts Latin (. ! ?), Devanagari (।)
+// AND CJK (。！？) terminators so the quality gates below don't reject a perfectly complete
+// Japanese/Chinese brief just because it ends in 。 instead of a full stop.
+function endsSentence(s) {
+  return /[.!?।。！？]$/.test(String(s || '').trim());
 }
 
 // Fetch one representative, corroborated, recent story PER SLOT → 5 stories.
 // corroboration = how many of the slot's outlets ran a title-similar story (a light
 // quality signal). Prefers items WITH an image + more corroboration + freshness.
-export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false } = {}) {
+export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = false, slots = WORLD_SLOTS, lang = null } = {}) {
   const now = Date.now();
   // Collect picks PER SLOT into buckets, then INTERLEAVE round-robin at the end so a
   // downstream slice(0, N) always spans EVERY category (was: fixed slot order meant a
@@ -237,7 +257,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
   // BREAKING and GLOBAL). Track normalized titles already taken so no story repeats
   // across slots — each slot picks the best story NOT already used.
   const usedTitles = new Set();
-  for (const slot of WORLD_SLOTS) {
+  for (const slot of slots) {
     const all = (await Promise.all(slot.feeds.map(fetchFeed))).flat();
     // cluster by normalized title to count corroboration + keep the best-imaged rep
     const clusters = new Map();
@@ -329,7 +349,7 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
   // spans EVERY category instead of filling up on the first few slots. Slot order in
   // WORLD_SLOTS sets the priority of the first pass.
   const out = [];
-  const cols = WORLD_SLOTS.map((s) => buckets.get(s.key) || []);
+  const cols = slots.map((s) => buckets.get(s.key) || []);
   const maxDepth = Math.max(0, ...cols.map((c) => c.length));
   for (let depth = 0; depth < maxDepth; depth++) {
     for (const col of cols) if (col[depth]) out.push(col[depth]);
@@ -337,8 +357,9 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
   // ENRICH the summaries: RSS gives only ~1 sentence (~120 chars) — too thin for a
   // 20-35s single-story Short. Fetch each picked article and append real body
   // paragraphs so there's enough script. Parallel + best-effort (keeps the RSS summary
-  // on any failure). Only bother when a fuller script is wanted (single/long-form).
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
+  // on any failure). Only bother when a fuller script is wanted (single/long-form). `lang`
+  // (null = English) makes the synth write IN THAT LANGUAGE for the native channels.
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
   return out;
 }
 
@@ -350,12 +371,9 @@ export async function buildWorldRoundup({ maxAgeH = 36, perSlot = 1, enrich = fa
 // og:image + body prose downstream — 100% monetization-safe.
 const TRENDS_GEOS = (process.env.WORLD_TRENDS_GEOS || 'US,GB').split(',').map((g) => g.trim()).filter(Boolean);
 function trendTag(term) {
-  const words = String(term).replace(/[^\p{L}\p{N} ]+/gu, ' ').split(/\s+/).filter((w) => w.length > 2 && !TAG_STOP.has(w.toLowerCase()));
-  const pick = words.slice(0, 2);
-  if (!pick.length) return 'Trending';
-  return pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('').slice(0, 24);
+  return makeHashtag(term, 'Trending');
 }
-export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enrich = true } = {}) {
+export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enrich = true, lang = null } = {}) {
   const usedTitles = new Set();
   const out = [];
   for (const geo of geos) {
@@ -435,7 +453,7 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
   // biggest story of the moment — and ties (many trends read "200+") break on substance,
   // not RSS order, so the lead varies with the news cycle instead of sticking on one item.
   out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
   // Drop trends we couldn't turn into a REAL story. A single Short leads with a trend, so
   // it must have (1) a publisher image AND (2) a brief that actually gained body beyond
   // the headline — many trends point at JS-rendered pages (CNN) with 0 extractable prose,
@@ -444,7 +462,7 @@ export async function buildTrendingStories({ geos = TRENDS_GEOS, perGeo = 3, enr
   return out.filter((s) => {
     if (!s.imageUrl || !s.summary) return false;
     const grew = s.summary.trim().length - (s.title || '').trim().length;
-    return s.summary.length > 120 && grew > 40 && /[.!?]$/.test(s.summary.trim());
+    return s.summary.length > 120 && grew > 40 && endsSentence(s.summary);
   });
 }
 
@@ -461,19 +479,34 @@ const X_GEOS = (process.env.WORLD_X_GEOS || 'US,GB').split(',').map((g) => g.tri
 const X_GEO_SLUG = {
   US: 'united-states', GB: 'united-kingdom', IE: 'ireland', CA: 'canada', AU: 'australia',
   DE: 'germany', FR: 'france', IT: 'italy', ES: 'spain', NL: 'netherlands', IN: 'india',
+  JP: 'japan', SE: 'sweden', NO: 'norway', DK: 'denmark',
 };
+// English channel: X trends are resolved to news via ENGLISH Google-News locales (the World
+// channel ships English only). The DE/FR/IT/ES/NL entries here are en-GB ON PURPOSE — the
+// World channel wants ENGLISH coverage of a German trend, not German articles.
 const X_GEO_HL = {
   US: 'en-US', GB: 'en-GB', IE: 'en-IE', CA: 'en-CA', AU: 'en-AU',
   DE: 'en-GB', FR: 'en-GB', IT: 'en-GB', ES: 'en-GB', NL: 'en-GB', IN: 'en-IN',
+  JP: 'en-US', SE: 'en-GB', NO: 'en-GB', DK: 'en-GB',
+};
+// NATIVE channels resolve a geo's X trends to news in the geo's OWN language (so a German
+// channel gets German articles about a German trend). native_feeds.mjs passes hl explicitly,
+// but this is the per-geo default. `no`→Norwegian Bokmål, `nb` also accepted by Google News.
+const X_GEO_HL_NATIVE = {
+  DE: 'de', FR: 'fr', IT: 'it', ES: 'es', NL: 'nl', JP: 'ja', SE: 'sv', NO: 'no', DK: 'da',
 };
 // Fandom/meme/utility trends that never resolve to a real news event — X's board is full
 // of them (stan armies, K-pop tags, "Good Morning", game titles). Skip so we don't waste
 // a Google-News lookup and never lead a Short with noise.
 const X_JUNK = /^(good (morning|night|wednesday|monday|tuesday|thursday|friday|saturday|sunday)|happy \w+|gm|gn|rip|lmao|tbt|fyp|day\s?\d+)$/i;
-// Keep mostly-Latin trends (World channel is English); drop CJK/other-script fandom spam.
-function xTermUsable(term) {
+// Keep on-language trends + drop meme/utility spam. The World channel is English, so it
+// requires mostly-Latin terms (`nonLatinOk=false`) to skip CJK/other-script fandom spam. A
+// NATIVE non-Latin channel (Japanese) passes `nonLatinOk=true` so its own-script trends —
+// which the 70%-Latin gate would wrongly reject — survive; the X_JUNK meme filter still runs.
+function xTermUsable(term, nonLatinOk = false) {
   const s = String(term || '').replace(/^#/, '').trim();
-  if (s.length < 3 || X_JUNK.test(s)) return false;
+  if (s.length < 2 || X_JUNK.test(s)) return false;
+  if (nonLatinOk) return true; // native non-Latin channel: accept its own script
   const letters = s.replace(/[^\p{L}]/gu, '');
   if (letters) {
     const latin = (letters.match(/\p{Script=Latin}/gu) || []).length;
@@ -483,8 +516,9 @@ function xTermUsable(term) {
 }
 // The live X "Trending" board for a geo, in trend-rank order (hottest first). Parses the
 // newest snapshot card. Returns [term, term, …]; [] on any failure (source degrades to
-// the Google-Trends + editorial roundup).
-async function fetchXTrends(geo) {
+// the Google-Trends + editorial roundup). `nonLatinOk` relaxes the Latin-only term filter
+// for native non-Latin (Japanese) channels.
+async function fetchXTrends(geo, nonLatinOk = false) {
   const slug = X_GEO_SLUG[geo] || geo.toLowerCase();
   let html = '';
   try {
@@ -506,7 +540,7 @@ async function fetchXTrends(geo) {
   for (const m of scope.matchAll(/<a href="https:\/\/twitter\.com\/search\?q=[^"]*"\s+class="?trend-link"?>([^<]+)<\/a>/gi)) {
     const term = decode(m[1]).trim();
     const k = term.toLowerCase();
-    if (!term || seen.has(k) || !xTermUsable(term)) continue;
+    if (!term || seen.has(k) || !xTermUsable(term, nonLatinOk)) continue;
     seen.add(k);
     out.push(term);
   }
@@ -542,9 +576,11 @@ async function newsSearch(term, geo, hl, when = '1h') {
     const title = rawTitle.replace(/\s+-\s+[^-]+$/, '').trim(); // drop trailing " - Source"
     // Drop syndication aggregators (AOL/MSN/Yahoo/…) — they re-host other outlets' photos,
     // so their image isn't original story art (user: "avoid aol.com"). The Google-News
-    // `link` still points at news.google before resolve, so gate on the <source url=…>
-    // attribute (the real domain) and, as a belt, the display name.
-    if (isAggregatorUrl(link) || isAggregatorUrl(sourceUrl) || isAggregatorUrl(source)) continue;
+    // `link` ALWAYS points at news.google before resolve (which itself matches the
+    // aggregator host!), so we must NOT gate on it here — that would drop every item.
+    // Gate on the <source url=…> attribute (the real publisher domain) and, as a belt, the
+    // display name. resolveGoogleNewsUrl() rejects any aggregator the redirect lands on.
+    if (isAggregatorUrl(sourceUrl) || isAggregatorUrl(source)) continue;
     if (title && /^https?:\/\//i.test(link) && !isThinUrl(link)) items.push({ title, url: link, source });
   }
   return items;
@@ -569,15 +605,20 @@ function titleMatchesTerm(term, title) {
   const T = String(title).toLowerCase();
   if (!t) return false;
   if (t.includes(' ')) return T.includes(t); // multi-word phrase → substring
+  // Latin `\b` word boundaries don't exist between CJK characters, so a whole-word regex on a
+  // Japanese/Chinese term never matches. For a term that ISN'T plain Latin (has CJK/other
+  // script), fall back to substring containment — the only meaningful test without word breaks.
+  if (!/^[\p{Script=Latin}\p{N}]+$/u.test(t)) return T.includes(t);
   return new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(T); // whole word
 }
 // Significant words of a headline (≥4 chars, minus filler/glue words) — the tokens that
-// identify WHICH event a headline is about.
+// identify WHICH event a headline is about. Unicode-aware (keep accented Latin + other
+// scripts so the sameEvent gate works on native-language headlines, not just ASCII).
 function titleTokens(title) {
   return new Set(
     String(title || '')
       .toLowerCase()
-      .replace(/[^a-z0-9 ]+/g, ' ')
+      .replace(/[^\p{L}\p{N} ]+/gu, ' ')
       .split(/\s+/)
       .filter((w) => w.length > 3 && !TAG_STOP.has(w)),
   );
@@ -643,12 +684,17 @@ async function resolveGoogleNewsUrl(gnewsUrl) {
 // publisher article, then enriches to the outlet's own image + prose. Same monetization-
 // safe shape as buildTrendingStories. `perGeo` = how many trends to CONVERT per geo (we
 // probe a deeper pool because many trends are fandom/meme noise). Fail-open → [].
-export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe = 16, enrich = true } = {}) {
+// `lang` (null = English World channel) switches trend→news resolution to the geo's OWN
+// language (native channels) and relaxes the Latin-only trend filter for non-Latin scripts.
+export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe = 16, enrich = true, lang = null } = {}) {
   const usedTitles = new Set();
   const out = [];
+  const nonLatinOk = lang === 'ja'; // Japanese trends are their own script — don't Latin-filter
   for (const geo of geos) {
-    const hl = X_GEO_HL[geo] || 'en-US';
-    const trends = await fetchXTrends(geo);
+    // NATIVE channel: resolve trends to news in the geo's own language (de/fr/ja/sv/no/da);
+    // World channel: resolve to English coverage of the trend.
+    const hl = lang ? (X_GEO_HL_NATIVE[geo] || lang) : (X_GEO_HL[geo] || 'en-US');
+    const trends = await fetchXTrends(geo, nonLatinOk);
     if (!trends.length) continue;
     let rank = 0;
     let taken = 0;
@@ -730,16 +776,181 @@ export async function buildXTrendingStories({ geos = X_GEOS, perGeo = 4, probe =
     }
   }
   out.sort((a, b) => (b.traffic || 0) - (a.traffic || 0) || (b.corr || 0) - (a.corr || 0));
-  if (enrich) await Promise.all(out.map((s) => enrichSummary(s)));
+  if (enrich) await Promise.all(out.map((s) => enrichSummary(s, { lang })));
   // Same strict gate as Google-Trends: a real publisher image AND a brief that genuinely
   // grew past the headline (JS-rendered pages that echo the title back are dropped).
   return out.filter((s) => {
     if (!s.imageUrl || !s.summary) return false;
     const grew = s.summary.trim().length - (s.title || '').trim().length;
-    return s.summary.length > 120 && grew > 40 && /[.!?]$/.test(s.summary.trim());
+    return s.summary.length > 120 && grew > 40 && endsSentence(s.summary);
   });
 }
 
+// ─── RESEARCH IMAGES FOR AN EXTERNALLY-SCRIPTED STORY (the Hindi / external-audio flow) ───
+// The user supplies audio + Hindi caption text; there is NO source URL. But the images must
+// still come from the RESEARCH PIPELINE, not Wikidata alone (user: "you will FIRST find the
+// news from those keywords and fetch the LATEST images from the latest articles with
+// multi-source, recency, relevancy score"). So: derive ENGLISH search keywords from the
+// story (Google News returns ~nothing for Devanagari queries but a full, dated result set
+// for the English phrasing — verified), search the freshest window that has hits, keep the
+// on-topic multi-source articles, RANK by recency + relevancy, then run enrichSummary in
+// imagesOnly mode to harvest every outlet's OWN photos + entity portraits. Returns
+// { images, entityShots, sources, sourceName } — never throws (fail-open to no images).
+//
+// `keywords` (optional) overrides the derived query; `geo`/`hl` localise the search
+// (defaults IN/en-IN for the India channel — India outlets, English text, monetization-safe).
+export async function researchImagesForStory(story, {
+  keywords = null, geo = 'IN', hl = 'en-IN', maxOutlets = MULTI_OUTLETS,
+} = {}) {
+  const result = { images: [], entityShots: [], sources: [], sourceName: null };
+  try {
+    // 1) ENGLISH search phrase. Prefer an explicit keyword string; else the English title
+    //    (title may be Hindi — the caller can pass keywords). Strip punctuation/quotes.
+    const query = String(keywords || story.searchKeywords || story.titleEn || story.title || '')
+      .replace(/["'#]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (query.length < 3) return result;
+
+    // 2) FRESHEST-FIRST search: try the tightest window that returns articles (recency).
+    //    Widen only when empty so we lead with the most current coverage.
+    let items = [];
+    let usedWindow = null;
+    for (const when of RESEARCH_WINDOWS) {
+      const found = await newsSearch(query, geo, hl, when);
+      if (found.length) { items = found; usedWindow = when; break; }
+    }
+    if (!items.length) return result;
+
+    // 3) RELEVANCY: keep only articles whose headline genuinely overlaps the query subject
+    //    (≥1 significant query word in the headline) so a broad keyword can't drag in an
+    //    unrelated story's photos. The first survivor is the representative.
+    const qTokens = titleTokens(query);
+    const onTopic = items.filter((it) => {
+      const h = titleTokens(it.title);
+      for (const w of qTokens) if (h.has(w)) return true;
+      return qTokens.size === 0; // no significant query tokens → accept (rare)
+    });
+    const ranked = onTopic.length ? onTopic : items;
+    const rep = ranked[0];
+    if (!rep) return result;
+
+    // 4) MULTI-SOURCE: resolve the TOP on-topic articles (one per outlet) to real publisher
+    //    URLs. For a broad research keyword ("ISRO satellite launch") each fresh article can
+    //    be a DIFFERENT recent story, so we do NOT hard-gate on same-event-as-the-rep (that
+    //    starves the pool to one outlet, and if that outlet is a slow govt site we get zero
+    //    photos — the exact blank-frame bug). Instead we take the freshest N distinct outlets
+    //    on the topic and harvest each one's OWN photos; enrichSummary dedupes + caps them.
+    const seenSrc = new Set();
+    const picks = [];
+    for (const it of ranked) {
+      const src = (it.source || '').toLowerCase().trim();
+      if (src && seenSrc.has(src)) continue;
+      if (src) seenSrc.add(src);
+      picks.push(it);
+      if (picks.length >= maxOutlets) break;
+    }
+    const resolved = (await Promise.all(picks.map((it) => resolveGoogleNewsUrl(it.url).catch(() => null))))
+      .map((u, i) => ({ url: u, src: picks[i].source }))
+      .filter((x) => x.url && !isThinUrl(x.url));
+    if (!resolved.length) return result;
+    result.sourceName = resolved[0].src || cleanSource(new URL(resolved[0].url).hostname);
+    const sourceUrls = [...new Set(resolved.map((x) => x.url))].slice(0, MAX_SOURCE_URLS);
+    result.sources = resolved.map((x) => (x.src || '').toLowerCase().trim()).filter(Boolean);
+
+    // 5) HARVEST the real photos + entity portraits — the research pipeline's own gather,
+    //    images-only so it never rewrites the user's Hindi script. lead url = first resolved;
+    //    if it fails to fetch, enrichSummary still pulls the OTHER outlets' photos (resilient).
+    const probe = {
+      url: sourceUrls[0], sourceUrls, sourceName: result.sourceName,
+      title: story.titleEn || picks[0].title, summary: story.titleEn || picks[0].title, images: [], imageUrl: null,
+    };
+    await enrichSummary(probe, { imagesOnly: true });
+    result.images = probe.images || [];
+    result.entityShots = probe.entityShots || [];
+    console.log(`[research-images] "${query}" → ${result.images.length} photos from ${resolved.length} outlet(s) (window=${usedWindow})`);
+  } catch (e) {
+    console.log(`[research-images] failed: ${e.message}`);
+  }
+  return result;
+}
+
+
+// ── ENGLISH GUARD (the "Italian title/content" bug) ────────────────────────────────
+// The World channel researches EU geos (DE/FR/IT/ES/NL), so a picked story's raw RSS
+// title or an extractive-fallback summary can be in another language — which then shows
+// on-screen AND is fed to English TTS (garbled speech, user report). We detect non-English
+// text and rewrite it to English with the LLM ladder. Fail-open: if we CAN'T confidently
+// make it English (no LLM key / call fails), the caller drops the story rather than ship a
+// foreign clip on an English channel.
+
+// Common non-English function words + diacritics. English almost never contains these, so
+// a hit is a strong signal the text is foreign (cheap, no dependency, no false-positive on
+// proper nouns which lack these grammatical markers).
+const FOREIGN_MARKERS = /\b(der|die|das|und|nicht|über|für|ich|wird|sich|auch|dass|dem|den|mit|von|ist|eine|einen|le|la|les|des|une|dans|pour|avec|est|sont|qui|que|sur|au|aux|du|il|elle|nous|vous|ils|el|los|las|una|con|por|para|como|más|pero|este|esta|het|een|van|voor|niet|zijn|met|dat|ook)\b/i;
+const DIACRITICS = /[àâäçéèêëîïôöùûüÿœßà-ÿĀ-ſ]/i; // includes ß + accents
+// NON-LATIN SCRIPTS — the biggest leak. A World (English) headline NEVER contains these, so
+// even ONE such character is a definitive "this is foreign" signal. The old detector only
+// knew Latin-script languages (German/French/Spanish function words + accents), so Chinese,
+// Japanese, Korean, Cyrillic, Arabic, Hebrew, Greek, Thai, Devanagari etc. sailed straight
+// through untranslated onto the English channel. Covers the major world scripts by block.
+const NON_LATIN =
+  /[Ͱ-ϿЀ-ӿԀ-ԯԱ-֏֐-׿؀-ۿ܀-ݏݐ-ݿऀ-ॿঀ-৿਀-૿଀-୿஀-௿ఀ-౿ಀ-೿ഀ-ൿ฀-๿ༀ-࿿က-႟ᄀ-ᇿ぀-ヿ㄀-ㄯ㄰-㆏㐀-䶿一-鿿ꀀ-꓏가-힯豈-﫿･-ￜ]/;
+// Latin letters (incl. accented) — used for the ratio catch-all below.
+const LATIN_LETTER = /[A-Za-zÀ-ɏ]/g;
+// Is this text likely NOT English? (used before we decide to translate/drop). Foreign if:
+//   1) it contains ANY non-Latin script character (Chinese/Cyrillic/Arabic/Devanagari/…), OR
+//   2) it hits a Latin-script foreign function word, OR
+//   3) it has a meaningful density of accented Latin characters, OR
+//   4) it has letters but almost none are Latin (a script this detector doesn't enumerate).
+export function looksNonEnglish(text) {
+  const t = String(text || '');
+  if (!t.trim()) return false;
+  if (NON_LATIN.test(t)) return true; // any non-Latin script → definitely foreign
+  if (FOREIGN_MARKERS.test(t)) return true;
+  const acc = (t.match(DIACRITICS) || []).length;
+  if (acc >= 2 && acc / t.length > 0.01) return true; // a couple of accents on a short headline
+  // Catch-all: a string with real letters but hardly any Latin ones is a non-enumerated
+  // foreign script. Guard on having some letters so digit/symbol-only strings stay English.
+  const letters = (t.match(/\p{L}/gu) || []).length;
+  const latin = (t.match(LATIN_LETTER) || []).length;
+  return letters >= 4 && latin / letters < 0.5;
+}
+// Translate a single field to natural English via the LLM ladder. Returns null on failure
+// (so the caller can decide to drop the story). Kept short + factual — headlines/briefs.
+async function toEnglish(text, kind = 'text') {
+  const t = String(text || '').trim();
+  if (!t || !haveLlmKey()) return null;
+  const prompt =
+    `Translate the following news ${kind} into natural, idiomatic ENGLISH. Output ONLY the ` +
+    `English translation — no quotes, no notes, no language label, nothing else. If it is ` +
+    `already English, return it unchanged. Keep proper nouns, numbers and dates. Neutral news ` +
+    `register.\n\n${t}`;
+  const out = (await llmChat(prompt, { maxTokens: 300, temperature: 0.2 }).catch(() => null) || '')
+    .replace(/[`*_>#\[\]{}"]/g, '').replace(/\s+/g, ' ').trim();
+  if (!out || looksNonEnglish(out)) return null; // translation failed / still foreign
+  return out;
+}
+// Ensure a story's on-screen + spoken text is ENGLISH (World channel). Mutates title +
+// summary in place. Returns true if the story is safe to ship, false if it must be dropped
+// (foreign text we couldn't translate). English stories pass through untouched + cost-free.
+export async function ensureEnglishStory(story) {
+  if (!story) return false;
+  const titleForeign = looksNonEnglish(story.title);
+  const summaryForeign = looksNonEnglish(story.summary);
+  if (!titleForeign && !summaryForeign) return true; // already English — no LLM call
+  if (titleForeign) {
+    const en = await toEnglish(story.title, 'headline');
+    if (!en) return false;
+    story.title = en;
+  }
+  if (summaryForeign) {
+    const en = await toEnglish(story.summary, 'summary');
+    if (!en) return false;
+    story.summary = en;
+  }
+  return true;
+}
 
 // Drop consecutive duplicate sentences + immediate word repeats ("the the", "said said")
 // from LLM/extractive output — the "repeated words" the user reported. Keeps meaning,
@@ -768,15 +979,31 @@ function dedupeText(s) {
 // articleBody → Readability → og), then SYNTHESISE a corroborated, non-repetitive brief
 // across ALL of them with the NVIDIA-first LLM ladder. Images come from the same extractor
 // (publisher-own, ad-filtered). Fallback: extractive from the clean prose. $0, fail-open.
-export async function enrichSummary(story) {
+// `imagesOnly` (used by the external-audio / Hindi flow): harvest the publisher photos +
+// entity portraits for a story whose SCRIPT is already supplied (the user's Hindi audio +
+// caption text). We must NOT run the LLM synth / extractive fallback in that mode — that
+// would overwrite the user's exact Hindi text with an English rewrite. So we return right
+// after the image-gathering steps, leaving story.summary untouched.
+// Human language name (for the synth prompt) keyed by our channel lang code. null/absent =
+// the English World channel. The NATIVE channels tell the LLM to write the brief IN THIS
+// LANGUAGE (no translation to English), matching the on-screen native title + native TTS.
+const LANG_NAME = {
+  de: 'German', nl: 'Dutch', fr: 'French', ja: 'Japanese',
+  sv: 'Swedish', no: 'Norwegian', da: 'Danish', it: 'Italian', es: 'Spanish', hi: 'Hindi',
+};
+export async function enrichSummary(story, { imagesOnly = false, lang = null } = {}) {
   if (!story.url || !/^https?:\/\//i.test(story.url)) return;
   try {
     // 1) Extract the representative article — clean prose + publisher-own images (already
-    //    ad-filtered + same-domain-gated inside extractArticle).
-    const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
-    if (!r.ok) return;
-    const repHtml = await r.text();
-    const rep = (await extractArticle(story.url, repHtml)) || { text: '', images: [] };
+    //    ad-filtered + same-domain-gated inside extractArticle). RESILIENT: a slow/broken rep
+    //    (e.g. a govt site that times out) must NOT abort the whole harvest — we still want the
+    //    OTHER outlets' photos. So fetch the rep in its own try/catch and fall through to the
+    //    multi-source gather with empty rep text/images if it fails.
+    let rep = { text: '', images: [] };
+    try {
+      const r = await fetch(story.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(12000) });
+      if (r.ok) rep = (await extractArticle(story.url, await r.text())) || rep;
+    } catch { /* rep fetch failed — the other outlets below can still supply photos */ }
     if (rep.images.length) {
       if (!story.imageUrl) story.imageUrl = rep.images[0];
       story.images = [...new Set([story.imageUrl, ...(story.images || []), ...rep.images].filter(Boolean))];
@@ -827,6 +1054,11 @@ export async function enrichSummary(story) {
       }
     } catch { /* entity images are a bonus — never block enrichment */ }
 
+    // IMAGES-ONLY: the external-audio flow supplied its own script (the user's Hindi text),
+    // so stop here — we've gathered the event photos + entity portraits and must NOT rewrite
+    // story.summary with an English synth.
+    if (imagesOnly) return;
+
     // Combine the outlets' clean prose into ONE research corpus (labelled by outlet so the
     // model can corroborate across ALL of them → a single, well-sourced summary), capped so
     // the prompt stays within the model's context + fast.
@@ -841,21 +1073,44 @@ export async function enrichSummary(story) {
     //    tight, factual brief a viewer learns from; corroborate across outlets, no repeats.
     if (haveLlmKey()) {
       const outlets = [...new Set(bodies.map((b) => b.src))].slice(0, 8).join(', ');
-      const prompt =
-        'You are a sharp broadcast news writer. Below are excerpts from MULTIPLE outlets ' +
-        'reporting the SAME event. Cross-check them and write ONE punchy, informative brief ' +
-        'of 2 to 3 COMPLETE sentences (about 45-75 words) to be READ ALOUD in a short news ' +
-        'video. Lead with the most important fact; include the key who/what/where and the ' +
-        'number, date or consequence that matters; add one line of context or what happens ' +
-        'next. Each sentence MUST be complete and end with a full stop — NEVER stop mid-' +
-        'sentence or trail off. Fully cover the story in those 2-3 lines so a viewer needs no ' +
-        'more. Prefer facts that AGREE across outlets; ignore any that contradict. Neutral, ' +
-        'factual, no hype, no opinion, no fabrication, NO repeated words or sentences. Plain ' +
-        'text only — NO markdown, hashtags, brackets, quotes or emoji. Do not mention "the ' +
-        'article" or the outlet names.\n\n' +
-        `HEADLINE: ${story.title}\n` +
-        (outlets ? `REPORTED BY: ${outlets}\n` : '') +
-        `SOURCES:\n${corpus}`;
+      const langName = lang ? LANG_NAME[lang] : null;
+      const prompt = langName
+        // NATIVE channel: write the brief IN THAT LANGUAGE. The sources may already be in it
+        // (native feeds) or in another language (a trend resolved to mixed coverage) — either
+        // way the OUTPUT must be idiomatic <langName>, matching the native title + native TTS.
+        ? `You are a sharp broadcast news writer for a ${langName}-language news channel. Below are ` +
+          'excerpts from MULTIPLE outlets reporting the SAME event (they may be in ' +
+          `${langName} or another language). Cross-check them and write ONE punchy, informative ` +
+          'brief of 2 to 3 COMPLETE sentences (about 45-75 words) to be READ ALOUD in a short ' +
+          `news video. WRITE ENTIRELY IN ${langName.toUpperCase()} — natural, idiomatic, native ` +
+          `${langName}; translate any foreign facts into ${langName}; NEVER output English (or any ` +
+          'other language) words except unavoidable proper nouns. Lead with the most important ' +
+          'fact; include the key who/what/where and the number, date or consequence that matters; ' +
+          'add one line of context or what happens next. Each sentence MUST be complete and end ' +
+          'with proper terminal punctuation — NEVER stop mid-sentence or trail off. Fully cover ' +
+          'the story in those 2-3 lines. Prefer facts that AGREE across outlets; ignore any that ' +
+          'contradict. Neutral, factual, no hype, no opinion, no fabrication, NO repeated words ' +
+          'or sentences. Plain text only — NO markdown, hashtags, brackets, quotes or emoji. Do ' +
+          'not mention "the article" or the outlet names.\n\n' +
+          `HEADLINE: ${story.title}\n` +
+          (outlets ? `REPORTED BY: ${outlets}\n` : '') +
+          `SOURCES:\n${corpus}`
+        : 'You are a sharp broadcast news writer for an ENGLISH-language channel. Below are ' +
+          'excerpts from MULTIPLE outlets reporting the SAME event; SOME MAY BE IN ANOTHER ' +
+          'LANGUAGE (German, French, Italian, Spanish, Dutch, etc.). Cross-check them and write ' +
+          'ONE punchy, informative brief of 2 to 3 COMPLETE sentences (about 45-75 words) to be ' +
+          'READ ALOUD in a short news video. WRITE ENTIRELY IN ENGLISH — translate any foreign ' +
+          'facts into natural English; NEVER output any non-English words. Lead with the most ' +
+          'important fact; include the key who/what/where and the number, date or consequence ' +
+          'that matters; add one line of context or what happens next. Each sentence MUST be ' +
+          'complete and end with a full stop — NEVER stop mid-sentence or trail off. Fully cover ' +
+          'the story in those 2-3 lines so a viewer needs no more. Prefer facts that AGREE across ' +
+          'outlets; ignore any that contradict. Neutral, factual, no hype, no opinion, no ' +
+          'fabrication, NO repeated words or sentences. Plain text only — NO markdown, hashtags, ' +
+          'brackets, quotes or emoji. Do not mention "the article" or the outlet names.\n\n' +
+          `HEADLINE: ${story.title}\n` +
+          (outlets ? `REPORTED BY: ${outlets}\n` : '') +
+          `SOURCES:\n${corpus}`;
       // Roomy token budget so a 45-75 word brief is NEVER cut off mid-sentence by the cap
       // (the real cause of "it stops in the middle") — the length is governed by the prompt.
       const synth = await llmChat(prompt, { maxTokens: 500 });
@@ -863,22 +1118,31 @@ export async function enrichSummary(story) {
       // COMPLETENESS GUARD: if it doesn't end on terminal punctuation, drop the trailing
       // partial back to the last COMPLETE sentence. If there's no earlier sentence boundary
       // at all (one run-on that got cut), reject the fragment rather than ship a half-thought.
-      if (clean && !/[.!?]$/.test(clean)) {
+      // CJK-aware: 。！？ and Devanagari । count as sentence ends too (native briefs).
+      if (clean && !endsSentence(clean)) {
         const cut = clean.replace(/\s+\S*$/, '');
-        const lastEnd = Math.max(cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'));
+        const lastEnd = Math.max(
+          cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'),
+          cut.lastIndexOf('。'), cut.lastIndexOf('！'), cut.lastIndexOf('？'), cut.lastIndexOf('।'),
+        );
         clean = lastEnd >= 40 ? cut.slice(0, lastEnd + 1).trim() : '';
       }
-      if (clean.length >= 120) {
+      // Japanese/Chinese have no spaces, so a complete 2-3 sentence brief is far SHORTER in
+      // characters than a 120-char Latin one. Use a lower floor for space-less scripts so a
+      // genuine native brief isn't rejected as "too thin".
+      const minLen = lang === 'ja' ? 40 : 120;
+      if (clean.length >= minLen) {
         story.summary = clean;
         return;
       }
     }
 
     // 4) Extractive fallback from the CLEAN corpus — RSS lead (only if a real sentence) +
-    //    distinct sentences, deduped, complete sentences only, up to ~700 chars.
-    const seed = /[.!?]$/.test(String(story.summary || '').trim()) ? story.summary : null;
+    //    distinct sentences, deduped, complete sentences only, up to ~700 chars. CJK-aware:
+    //    split on 。！？ too (space-less scripts) and accept them as sentence terminators.
+    const seed = endsSentence(String(story.summary || '').trim()) ? story.summary : null;
     const joined = dedupeText([seed, rep.text].filter(Boolean).join(' '));
-    const sentences = joined.split(/(?<=[.!?])\s+/).filter((s) => /[.!?]$/.test(s.trim()));
+    const sentences = joined.split(/(?<=[.!?。！？])\s*/).filter((s) => endsSentence(s.trim()) && s.trim().length > 1);
     let full = '';
     for (const s of sentences) {
       if (full.length + s.length > 700 && full) break;
@@ -912,19 +1176,50 @@ const TAG_STOP = new Set(
     'will would could should says say said after before amid over into from with that this ' +
     'their there here what when where which while about among across your ours have been being ' +
     'more most many much some such than then they them here news video watch live latest update ' +
-    'first last next best worst plan plans deal talks warns urges calls faces sets gets')
+    'first last next best worst plan plans deal talks warns urges calls faces sets gets ' +
+    // Common ROLE/DESCRIPTOR nouns that lead a headline and get title-cased by convention
+    // (not the entity itself) — so "Actor Jackie…" tags #Jackie, not #ActorJackie.
+    'actor actress star singer author writer director player captain coach president minister ' +
+    'governor senator mayor ceo chief officer report study poll video watch photos')
     .split(/\s+/),
 );
+// Build a clean #Hashtag from a headline/term. Picks the single most tag-worthy ENTITY: the
+// longest CONTIGUOUS run of capitalised words — a real name/place/org phrase like "Jackie
+// Chan", "New York", "Elon Musk" — capped at 2 words, stop-words stripped. Falls back to the
+// strongest keyword, then `fallback`.
+//
+// WHY CONTIGUOUS (the #JackieBald fix): the old code took the first two proper nouns found
+// ANYWHERE in the title and glued them, so "Actor Jackie goes Bald…" produced the nonsense
+// "#JackieBald" (Jackie + Bald aren't adjacent) and "Jackie Chan…" produced "#Chan" (a
+// mid-sentence-only filter dropped the lead name). A contiguous run only ever joins words that
+// actually sit together, so it yields "#JackieChan" and never invents a phrase.
+export function makeHashtag(text, fallback = 'News') {
+  const toks = String(text || '')
+    .replace(/[^\p{L}\p{N} ]+/gu, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+  // A proper-noun token: starts uppercase (incl. all-caps acronyms like ISRO/NASA), not a stop word.
+  const isProper = (w) => /^[\p{Lu}][\p{L}\p{N}]*$/u.test(w) && !TAG_STOP.has(w.toLowerCase());
+  // Longest contiguous run of proper-noun tokens (first wins on a tie).
+  let best = [];
+  let cur = [];
+  for (const w of toks) {
+    if (isProper(w)) {
+      cur.push(w);
+      if (cur.length > best.length) best = cur.slice();
+    } else {
+      cur = [];
+    }
+  }
+  let pick = best.slice(0, 2);
+  // No capitalised entity → strongest keywords (adjacent order preserved).
+  if (!pick.length) pick = toks.filter((w) => w.length > 3 && !TAG_STOP.has(w.toLowerCase())).slice(0, 2);
+  if (!pick.length) return fallback;
+  // Preserve all-caps acronyms (ISRO), title-case everything else, then glue.
+  const cap = (w) => (/^[\p{Lu}]{2,6}$/u.test(w) ? w : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  return pick.map(cap).join('').slice(0, 24);
+}
+
 function slotHashtag(slotKey, title) {
-  // Prefer PROPER NOUNS (capitalised words mid-sentence, e.g. names/places/orgs) — the
-  // most tag-worthy tokens — then any other strong keyword. Skip leading fillers.
-  const raw = String(title).replace(/[^\p{L}\p{N} ]+/gu, ' ').split(/\s+/).filter(Boolean);
-  const proper = raw.filter(
-    (w, i) => i > 0 && /^[A-Z][a-z]{2,}$/.test(w) && !TAG_STOP.has(w.toLowerCase()),
-  );
-  const keywords = raw.filter((w) => w.length > 3 && !TAG_STOP.has(w.toLowerCase()));
-  const pick = (proper.length ? proper : keywords).slice(0, 2);
-  if (!pick.length) return SLOT_TAGS[slotKey] || 'News';
-  const tag = pick.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-  return tag.slice(0, 24);
+  return makeHashtag(title, SLOT_TAGS[slotKey] || 'News');
 }

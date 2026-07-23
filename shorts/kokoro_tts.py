@@ -119,11 +119,19 @@ _URL_RE = _re.compile(r"https?://\S+")
 def spoken_form(text, lang="a"):
     out = str(text or "")
     out = _URL_RE.sub(" ", out)  # don't read raw URLs aloud
-    out = _THOUSANDS.sub("", out)  # "2,000" → "2000" so it reads as one number, not digits
-    for pat, rep in _CUR:  # currency BEFORE stripping '$'/'£'
-        out = pat.sub(rep, out)
+    # English-only number/abbrev normalization. These expand into ENGLISH WORDS ("billion",
+    # "percent", "United States") and strip the thousands comma — all CORRECT for English
+    # (lang a/b) but WRONG for the native-language Kokoro channels: French uses a DECIMAL
+    # comma ("2,5" must not become "25"), reads "%" as "pour cent", "&" as "et"; Japanese
+    # (lang 'j') needs none of it. So gate the whole block to English and let espeak read
+    # native numbers/currency in-language for fr/j (matches the Piper path's language-safety).
+    english = lang in ("a", "b")
+    if english:
+        out = _THOUSANDS.sub("", out)  # "2,000" → "2000" so it reads as one number, not digits
+        for pat, rep in _CUR:  # currency BEFORE stripping '$'/'£'
+            out = pat.sub(rep, out)
     out = _TTS_STRIP.sub(" ", out)  # kill markup/JSON/markdown chars
-    if lang != "h":  # abbreviation expansion is English-only
+    if english:  # abbreviation expansion is English-only
         for pat, rep in ABBREV:
             out = pat.sub(rep, out)
     for pat, rep in SAY_AS:
@@ -196,13 +204,24 @@ def main() -> int:
 
     pipe = KPipeline(lang_code=lang)
 
-    # Build the espeak phonemizer once. If it can't init, we degrade to Kokoro's own
-    # text G2P (still works, just without the explicit-espeak accuracy win).
+    # EXPLICIT-espeak phoneme path is ENGLISH/HINDI ONLY (lang a/b/h). For those, Kokoro's
+    # own G2P is espeak-based too, so phonemizing the WHOLE text with espeak-ng first fixes
+    # proper-noun/initialism mispronunciation (the reason this path exists). For the NATIVE
+    # channels it must NOT run:
+    #   • French (lang 'f') — Kokoro-fr's native G2P already IS EspeakG2P(fr), so the text
+    #     path gives the same phonemes without our extra step (and our English respelling
+    #     would corrupt it — already gated off in spoken_form).
+    #   • Japanese (lang 'j') — Kokoro-ja was trained on misaki/OpenJTalk MORA phonemes, NOT
+    #     espeak IPA; feeding it espeak-ja phonemes produces garbled audio. It MUST use
+    #     Kokoro's own JA G2P (misaki[ja]) via the text path.
+    # So build the espeak backend only for a/b/h; everything else uses Kokoro's text G2P.
+    use_espeak = lang in ("a", "b", "h")
     backend = None
-    try:
-        backend = make_phonemizer(espeak_lang)
-    except Exception as e:
-        print(f"kokoro_tts: phonemizer unavailable ({e}); using Kokoro text G2P", file=sys.stderr)
+    if use_espeak:
+        try:
+            backend = make_phonemizer(espeak_lang)
+        except Exception as e:
+            print(f"kokoro_tts: phonemizer unavailable ({e}); using Kokoro text G2P", file=sys.stderr)
 
     audio_parts = []
     segments = []

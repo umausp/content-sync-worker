@@ -30,7 +30,13 @@ async function exists(p) {
 // Render ONE story clip: bg (Ken-Burns) + chrome + captions + narration. No music
 // here (mixed once over the concatenated whole). `captions` = [{ png, start, end }]
 // with times RELATIVE to this clip. Returns outPath.
-export async function renderSegment({ bgPath, bgPaths, bgWindows, chromePath, captions, narrationWav, dur, outPath }) {
+//
+// `captionTrack` (optional) = { path, x, y } — a pre-rendered alpha .mov holding the FULL
+// caption animation (see captions_fluid.mjs). When present it is overlaid ONCE as a video
+// layer (smooth, per-frame) and takes precedence over the discrete `captions` PNGs (which
+// hard-cut). The supply-your-own-assets path uses this for premium fluid captions; the
+// automated channels still pass `captions`.
+export async function renderSegment({ bgPath, bgPaths, bgWindows, chromePath, captions, captionTrack, narrationWav, dur, outPath }) {
   const { width: W, height: H, fps } = VIDEO;
   // MULTI-IMAGE background: a story now carries several images from its sources; show
   // them in sequence across the segment (each with a Ken-Burns zoom, crossfaded) so the
@@ -90,25 +96,41 @@ export async function renderSegment({ bgPath, bgPaths, bgWindows, chromePath, ca
     }
   }
 
+  // A pre-rendered alpha caption TRACK (fluid path) replaces the discrete per-word PNGs.
+  const caps = captionTrack ? [] : captions;
+
   const nBg = bgs.length;
   parts.push(`[bg][${nBg}:v]overlay=0:0:format=auto[base]`); // chrome is input nBg
   let last = 'base';
-  captions.forEach((c, i) => {
-    const inIdx = nBg + 1 + i; // captions start after bgs + chrome
-    const out = i === captions.length - 1 ? 'vout' : `v${i}`;
+  if (captionTrack) {
+    // Single smooth overlay: the alpha .mov is one video input placed right after chrome.
+    // It's shorter/equal to the clip; eof_action=pass keeps the base after it ends.
+    const inIdx = nBg + 1;
     parts.push(
-      `[${last}][${inIdx}:v]overlay=0:0:enable='between(t,${c.start.toFixed(3)},${c.end.toFixed(3)})'[${out}]`,
+      `[${last}][${inIdx}:v]overlay=${Math.round(captionTrack.x || 0)}:${Math.round(captionTrack.y || 0)}:` +
+        `format=auto:eof_action=pass[vout]`,
     );
-    last = out;
-  });
-  if (captions.length === 0) parts.push(`[base]null[vout]`);
-  const idxNar = nBg + 1 + captions.length;
+    last = 'vout';
+  } else {
+    caps.forEach((c, i) => {
+      const inIdx = nBg + 1 + i; // captions start after bgs + chrome
+      const out = i === caps.length - 1 ? 'vout' : `v${i}`;
+      parts.push(
+        `[${last}][${inIdx}:v]overlay=0:0:enable='between(t,${c.start.toFixed(3)},${c.end.toFixed(3)})'[${out}]`,
+      );
+      last = out;
+    });
+    if (caps.length === 0) parts.push(`[base]null[vout]`);
+  }
+  // narration is the last input: bgs + chrome + (track | caption PNGs)
+  const idxNar = nBg + 1 + (captionTrack ? 1 : caps.length);
   parts.push(`[${idxNar}:a]aformat=sample_rates=48000:channel_layouts=stereo,apad[aout]`);
 
   const args = ['-y', '-loglevel', 'error'];
   for (const b of bgs) args.push('-loop', '1', '-i', b); // 0..nBg-1 backgrounds
   args.push('-loop', '1', '-i', chromePath); // nBg
-  for (const c of captions) args.push('-loop', '1', '-i', c.png); // nBg+1..
+  if (captionTrack) args.push('-i', captionTrack.path); // nBg+1 (a video, NOT looped)
+  else for (const c of caps) args.push('-loop', '1', '-i', c.png); // nBg+1..
   args.push('-i', narrationWav);
   args.push(
     '-filter_complex', parts.join(';'),

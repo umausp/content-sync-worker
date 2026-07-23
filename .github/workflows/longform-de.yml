@@ -1,0 +1,152 @@
+name: longform-de
+
+# Render a native-language German long-form recap for the @AgyataWorld channel — sourced,
+# synthesised, voiced and captioned ENTIRELY IN GERMAN (no translation),
+# then auto-uploaded UNLISTED to the DE playlist. TTS engine: piper. Nothing is
+# committed to the repo; the staged output is purged after upload.
+#
+# CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: longform-de
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+  SHORTS_ORIENTATION: landscape # 1920x1080, multi-story recap
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
+  # upload writes after a successful publish. Keyed by channel label so de is independent.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
+  #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama last.
+  #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body
+  #    into a clean, non-repetitive brief per story — synthesised IN THE CHANNEL'S LANGUAGE.
+  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-2.0-flash'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: qwen2.5:3b
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Node deps
+        run: npm install --no-audit --no-fund
+
+      - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Piper TTS deps
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet piper-tts numpy
+
+      - name: Cache Piper voices
+        uses: actions/cache@v4
+        with:
+          path: /tmp/piper-voices
+          key: piper-voices-de-v1
+
+      # OLLAMA — local last-resort LLM so a clean German brief is ALWAYS synthesised even
+      # when every hosted provider 429s. Best-effort (non-fatal): hosted providers carry the run.
+      - name: Install + start Ollama (last-resort LLM)
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=lf-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render German long-form recap
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          PIPER_VOICES_DIR: /tmp/piper-voices
+          # Cross-run dedup: claim story keys via api.agyata.com before rendering so two
+          # de runs (a Short + a long-form in the same window) never publish the same story.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/build_short.mjs de
+
+      # AUTO-UPLOAD to YouTube as UNLISTED. Native channels are PLAYLISTS on @AgyataWorld, so
+      # they authenticate with YT_REFRESH_TOKEN_WORLD and land in the DE playlist
+      # (YT_PLAYLIST_DE). On success sets uploaded=true so the video is NOT also published
+      # as a public artifact. Best-effort — never fails the run.
+      - name: Auto-upload to YouTube (unlisted)
+        id: yt
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_PLAYLIST_DE: ${{ secrets.YT_PLAYLIST_DE }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs de "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC repo
+      # an artifact is publicly downloadable, so once the video is on YouTube we never publish
+      # it here. 1-day retention even then.
+      - name: Upload staged artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-de-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/de/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner after upload — nothing rendered
+      # lingers on GitHub. Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/de/* || true

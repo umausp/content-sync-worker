@@ -9,8 +9,9 @@
 // never reveals an edge.
 
 import { execFile } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { join, isAbsolute, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { BRAND, PEXELS_KEY, PIXABAY_KEY, UNSPLASH_KEY, VIDEO } from './config.mjs';
 
@@ -115,18 +116,36 @@ function upgradeImageUrl(url) {
   return u;
 }
 
+// Read the bytes for an image reference: a remote https URL (fetched), a file:// URL, or a
+// LOCAL PATH (absolute or relative to cwd) — so a supplied-assets manifest can point at
+// photos already on disk (user: "I will provide … Image urls and you render it"), not only
+// remote CDNs. Returns { buf, key } where key uniquely identifies the source for de-dup.
+async function readImageRef(ref) {
+  const raw = String(ref || '').trim();
+  if (!raw) return null;
+  if (/^https?:\/\//i.test(raw)) {
+    return { buf: await fetchBuf(upgradeImageUrl(raw)), key: `url:${upgradeImageUrl(raw)}` };
+  }
+  // Local file: file:// URL or a bare path (absolute, or relative to the process cwd).
+  const path = raw.startsWith('file://') ? fileURLToPath(raw) : isAbsolute(raw) ? raw : resolve(process.cwd(), raw);
+  return { buf: await readFile(path), key: `file:${path}` };
+}
+
 async function tryStoryImage(story, outDir, seen, outFile = 'bg.png', imgUrl = null) {
-  const url = upgradeImageUrl(imgUrl || story.imageUrl);
-  if (!url || !/^https:\/\//i.test(url)) return null;
-  if (seen.has(`url:${url}`)) return null; // same photo already used by another story
+  const ref = imgUrl || story.imageUrl;
+  if (!ref) return null;
   try {
-    const buf = await fetchBuf(url);
+    const got = await readImageRef(ref);
+    if (!got) return null;
+    const { buf, key } = got;
+    if (seen.has(key)) return null; // same photo already used by another story
     if (buf.length < 2000) return null; // too small to be a real photo
     const raw = join(outDir, `src-story-${outFile}`);
     await writeFile(raw, buf);
-    // Reject low-res thumbnails so we don't ship a pixelated full-frame.
-    if ((await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
-    seen.add(`url:${url}`);
+    // Reject low-res thumbnails so we don't ship a pixelated full-frame. Local files the
+    // user supplied are trusted (they chose them) — only gate REMOTE thumbnails.
+    if (key.startsWith('url:') && (await imageWidth(raw)) < MIN_IMG_WIDTH) return null;
+    seen.add(key);
     return await coverTo(raw, join(outDir, outFile));
   } catch {
     return null;
