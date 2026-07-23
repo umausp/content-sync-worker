@@ -30,14 +30,22 @@ async function exists(p) {
 // Render ONE story clip: bg (Ken-Burns) + chrome + captions + narration. No music
 // here (mixed once over the concatenated whole). `captions` = [{ png, start, end }]
 // with times RELATIVE to this clip. Returns outPath.
-export async function renderSegment({ bgPath, bgPaths, chromePath, captions, narrationWav, dur, outPath }) {
+export async function renderSegment({ bgPath, bgPaths, bgWindows, chromePath, captions, narrationWav, dur, outPath }) {
   const { width: W, height: H, fps } = VIDEO;
   // MULTI-IMAGE background: a story now carries several images from its sources; show
   // them in sequence across the segment (each with a Ken-Burns zoom, crossfaded) so the
-  // clip isn't one static photo. Falls back to the single bgPath. `bgPaths` is an
-  // ordered list of canvas-sized PNGs; each gets an equal slice of `dur`.
-  const bgs = (bgPaths && bgPaths.length ? bgPaths : [bgPath]).filter(Boolean);
-  const XF = 0.5; // crossfade seconds between images
+  // clip isn't one static photo. `bgWindows` (Gap 1) is the shot-planner output —
+  // [{ path, start, end }] tiling [0,dur] — which times each image to the words being
+  // spoken (an entity photo appears when its name is said). If absent we fall back to
+  // `bgPaths` (equal slices) then the single `bgPath`.
+  let bgs, durs;
+  if (bgWindows && bgWindows.length) {
+    bgs = bgWindows.map((w) => w.path).filter(Boolean);
+    durs = bgWindows.map((w) => Math.max(0.05, w.end - w.start));
+  } else {
+    bgs = (bgPaths && bgPaths.length ? bgPaths : [bgPath]).filter(Boolean);
+    durs = bgs.map(() => dur / bgs.length); // equal slices (legacy behaviour)
+  }
   const parts = [];
 
   // Build the background track.
@@ -47,13 +55,17 @@ export async function renderSegment({ bgPath, bgPaths, chromePath, captions, nar
       `[0:v]zoompan=z='min(zoom+0.0009,1.12)':d=${frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${W}x${H}:fps=${fps},format=yuva420p[bg]`,
     );
   } else {
-    // Each image is a bounded `slice`-second clip with a Ken-Burns zoom; consecutive
-    // clips overlap by XF so the xfade chain lands them back-to-back and the whole
-    // thing runs exactly `dur`. Each clip is length = slice + XF (except the last),
-    // so after N-1 xfades of XF each the timeline = N*slice = dur.
-    const slice = dur / bgs.length;
+    // crossfade seconds — shrink it if the shortest on-screen window is brief so a quick
+    // cutaway never gets swallowed whole by the transition (keeps every image visible).
+    const minDur = Math.min(...durs);
+    const XF = Math.min(0.5, Math.max(0.12, minDur * 0.6));
+    // Each image is a bounded clip of its own on-screen duration `durs[i]` with a Ken-Burns
+    // zoom; consecutive clips overlap by XF so the xfade chain lands them back-to-back and
+    // the whole thing runs exactly `dur`. Non-last clips carry a +XF tail for the overlap;
+    // the running xfade offset is the CUMULATIVE on-screen duration (generalises the old
+    // uniform `i*slice` to arbitrary per-image windows from the planner).
     bgs.forEach((_p, i) => {
-      const clipLen = i < bgs.length - 1 ? slice + XF : slice; // last needs no tail overlap
+      const clipLen = i < bgs.length - 1 ? durs[i] + XF : durs[i]; // last needs no tail overlap
       const f = Math.max(1, Math.round(clipLen * fps));
       const z = i % 2 === 0 ? `min(zoom+0.0015,1.16)` : `if(lte(zoom,1.0),1.16,max(1.0,zoom-0.0015))`;
       // zoompan d=f gives the clip f frames; trim bounds it; setpts resets its clock so
@@ -64,16 +76,15 @@ export async function renderSegment({ bgPath, bgPaths, chromePath, captions, nar
         `trim=duration=${clipLen.toFixed(3)},setpts=PTS-STARTPTS,format=yuva420p[z${i}]`,
       );
     });
-    // Chain xfades: offset for step i = i*slice - XF... but on the GROWING track the
-    // running length after k merges = (k)*slice + XF, so each next xfade offset is the
-    // running length minus XF = k*slice. Track it explicitly.
+    // Chain xfades: the offset for merging clip i is the running track length minus XF,
+    // which equals the cumulative on-screen duration of clips 0..i-1. Track it explicitly.
     let prev = 'z0';
-    let running = slice + XF; // length of z0's clip
+    let running = durs[0] + XF; // length of z0's clip
     for (let i = 1; i < bgs.length; i++) {
       const off = running - XF; // start the crossfade XF before the current track ends
       const out = i === bgs.length - 1 ? 'bg' : `xf${i}`;
       parts.push(`[${prev}][z${i}]xfade=transition=fade:duration=${XF}:offset=${off.toFixed(3)}[${out}]`);
-      const thisLen = i < bgs.length - 1 ? slice + XF : slice;
+      const thisLen = i < bgs.length - 1 ? durs[i] + XF : durs[i];
       running = off + XF + (thisLen - XF); // new track length after this xfade
       prev = out;
     }

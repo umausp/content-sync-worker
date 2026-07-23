@@ -22,6 +22,8 @@ import { API_BASE, PY, STAGE_DIR, WORK_DIR, MUSIC_DIR, channel } from './config.
 import { buildChrome, buildKaraokeCaptions } from './frames.mjs';
 import { resolveBackground, resolveBackgrounds, brandBackground } from './visuals.mjs';
 import { renderSegment, concatWithMusic } from './render.mjs';
+import { wordTimings } from './word_timing.mjs';
+import { planShots } from './plan_shots.mjs';
 // EN→HI via the offline m2m100 model (translate_hi.py) — see translateHindi() below.
 import { buildWorldRoundup, buildTrendingStories, buildXTrendingStories } from './world_feeds.mjs';
 // Durable "already made a video of this story?" ledger (Upstash Redis) — separate from the
@@ -585,9 +587,25 @@ async function main() {
         const sg = timing.segments[j];
         captions.push(...(await buildKaraokeCaptions(sg.text, sg.start, sg.end, `${i}-${j}`, cfg, join(work, `s${i}`))));
       }
+      // GAP 1 — image↔word sync: build the per-word timeline from the measured sentence
+      // windows, then plan WHICH image is on screen WHEN so an entity photo appears the
+      // moment its name is spoken (user: "right image at right time when it spells out on
+      // TTS"). Falls back to even division when no entity name is spoken in this clip.
+      const timeline = wordTimings(timing.segments);
+      const shots = (bg.paths || []).map((p, k) => ({
+        path: p,
+        url: (bg.urls || [])[k] || null,
+        kind: (bg.kinds || [])[k] || 'event',
+      }));
+      const bgWindows = planShots({
+        shots,
+        entityShots: story.entityShots || [],
+        timeline,
+        duration: timing.duration,
+      });
       const clip = join(work, `clip-${i}.mp4`);
       await renderSegment({
-        bgPaths: bg.paths,
+        bgWindows,
         chromePath: chrome,
         captions,
         narrationWav: join(work, `nar-${i}.wav`),

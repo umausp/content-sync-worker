@@ -14,7 +14,7 @@
 
 import { llmChat, haveLlmKey } from './llm.mjs';
 import { extractArticle, fetchAndExtract, isAggregatorUrl } from '../src/extract.mjs';
-import { extractEntities, entityImages } from './entity_images.mjs';
+import { extractEntities, entityImageMap } from './entity_images.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
@@ -817,10 +817,13 @@ export async function enrichSummary(story) {
       story.entities = entities.slice(0, 6); // persisted in bundle for the render caption layer
       // Pass the story so each entity resolves to its IN-THE-NEWS sense (user: "Odyssey
       // should give the Odyssey MOVIE, not the poem") — context-scored Wikidata disambiguation.
-      const eimgs = await entityImages(entities, { story });
-      if (eimgs.length) {
-        story.entityImages = eimgs; // kept distinct so the renderer can time them to the name
-        story.images = [...new Set([...(story.images || []), ...eimgs].filter(Boolean))];
+      const emap = await entityImageMap(entities, { story });
+      if (emap.length) {
+        // NAME→IMAGE pairs so the renderer can show each photo the moment its name is spoken
+        // (Gap 1). Kept distinct from event photos; also merged into images[] as a fallback.
+        story.entityShots = emap; // [{ name, url }]
+        story.entityImages = emap.map((p) => p.url); // legacy flat list (still consumed downstream)
+        story.images = [...new Set([...(story.images || []), ...story.entityImages].filter(Boolean))];
       }
     } catch { /* entity images are a bonus — never block enrichment */ }
 

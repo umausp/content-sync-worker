@@ -311,13 +311,17 @@ export async function resolveBackgrounds(story, outDir, seen = new Set(), count 
   await mkdir(outDir, { recursive: true });
   const paths = [];
   const kinds = [];
+  const urls = []; // SOURCE url per path — lets the shot-planner match a photo to its entity.
+  // ENTITY photos (name→image) that WE resolved so the planner can time each to its spoken
+  // name — kept as a set so we can tag a path's kind as 'entity' vs 'event'.
+  const entityUrlSet = new Set((story.entityImages || []).filter(Boolean));
   // 1) the story's own images — dedupe the URL list (imageUrl + images[]).
   const ownUrls = [...new Set([story.imageUrl, ...(story.images || [])].filter(Boolean))];
   for (const u of ownUrls) {
     if (paths.length >= count) break;
     const file = `bg-${paths.length}.png`;
     const p = await tryStoryImage(story, outDir, seen, file, u);
-    if (p) { paths.push(p); kinds.push('story'); }
+    if (p) { paths.push(p); kinds.push(entityUrlSet.has(u) ? 'entity' : 'story'); urls.push(u); }
   }
   // 2) OPT-IN stock top-up only (default OFF). Kept behind a flag so the pipeline can
   //    fall back to on-theme stock if a future channel wants it, but by default we
@@ -336,7 +340,7 @@ export async function resolveBackgrounds(story, outDir, seen = new Set(), count 
       if (!hasKey) continue;
       const file = `bg-${paths.length}.png`;
       const p = await tryProvider(hasKey, fn, queries, seen, outDir, `${nm}-${paths.length}`, file);
-      if (p) { paths.push(p); kinds.push(nm.replace('src-', '')); }
+      if (p) { paths.push(p); kinds.push(nm.replace('src-', '')); urls.push(null); }
     }
   }
   // 3) guarantee at least one background — a story with NO real photo gets the branded
@@ -344,8 +348,9 @@ export async function resolveBackgrounds(story, outDir, seen = new Set(), count 
   if (!paths.length) {
     paths.push(await brandFallback(outDir));
     kinds.push('brand');
+    urls.push(null);
   }
-  return { paths, kinds };
+  return { paths, kinds, urls };
 }
 
 export { BW, BH };

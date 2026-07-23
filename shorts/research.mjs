@@ -247,6 +247,9 @@ function slimStory(s) {
     images: (s.images || []).slice(0, BUNDLE_MAX_IMAGES),
     // Entity photos (Wikipedia/Wikidata) + the entity names — kept DISTINCT so the render
     // can label/time them ("here's the person/film this is about") vs the event photos.
+    // entityShots = NAME→IMAGE pairs so the render can show each photo when its name is
+    // spoken (Gap 1); entityImages is the legacy flat URL list.
+    entityShots: (s.entityShots || []).slice(0, 4),
     entityImages: (s.entityImages || []).slice(0, 4),
     entities: (s.entities || []).slice(0, 6),
     sourceUrls: (s.sourceUrls || []).slice(0, BUNDLE_MAX_URLS),

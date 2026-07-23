@@ -195,13 +195,29 @@ export async function entityImage(name, ctx = null) {
 
 // Fetch photos for up to ENTITY_IMG_MAX entities in parallel, preserving priority order.
 // `entities` = ranked list of names (most important first). `story` (optional) provides the
-// disambiguation context so each entity resolves to its IN-THE-NEWS sense. Returns deduped URLs.
-export async function entityImages(entities, { max = ENTITY_IMG_MAX, story = null } = {}) {
+// disambiguation context so each entity resolves to its IN-THE-NEWS sense. Returns a deduped
+// list of { name, url } PAIRS — kept paired so the render layer can time each photo to the
+// moment ITS entity name is spoken (Gap 1: "right image at right time when it spells out").
+export async function entityImageMap(entities, { max = ENTITY_IMG_MAX, story = null } = {}) {
   if (!ENABLE || !Array.isArray(entities) || !entities.length) return [];
   const pick = entities.slice(0, max);
   const ctx = story ? buildContext(story, entities) : null;
-  const urls = await Promise.all(pick.map((e) => entityImage(e, ctx).catch(() => null)));
-  return [...new Set(urls.filter(Boolean))];
+  const pairs = await Promise.all(
+    pick.map(async (e) => ({ name: String(e || '').trim(), url: await entityImage(e, ctx).catch(() => null) })),
+  );
+  const seen = new Set();
+  const out = [];
+  for (const p of pairs) {
+    if (!p.url || !p.name || seen.has(p.url)) continue; // dedupe on URL (same photo, keep first name)
+    seen.add(p.url);
+    out.push(p);
+  }
+  return out;
+}
+
+// Back-compat: just the deduped URLs (drops the name pairing). Prefer entityImageMap.
+export async function entityImages(entities, opts = {}) {
+  return (await entityImageMap(entities, opts)).map((p) => p.url);
 }
 
 // ── ENTITY EXTRACTION — which names in the story are worth a picture? ──
