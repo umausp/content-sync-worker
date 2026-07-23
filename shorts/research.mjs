@@ -245,6 +245,10 @@ function slimStory(s) {
     url: s.url,
     imageUrl: s.imageUrl || (s.images && s.images[0]) || null,
     images: (s.images || []).slice(0, BUNDLE_MAX_IMAGES),
+    // Entity photos (Wikipedia/Wikidata) + the entity names — kept DISTINCT so the render
+    // can label/time them ("here's the person/film this is about") vs the event photos.
+    entityImages: (s.entityImages || []).slice(0, 4),
+    entities: (s.entities || []).slice(0, 6),
     sourceUrls: (s.sourceUrls || []).slice(0, BUNDLE_MAX_URLS),
     sourceName: s.sourceName || null,
     sources: s.sources || [],

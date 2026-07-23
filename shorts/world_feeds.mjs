@@ -14,6 +14,7 @@
 
 import { llmChat, haveLlmKey } from './llm.mjs';
 import { extractArticle, fetchAndExtract, isAggregatorUrl } from '../src/extract.mjs';
+import { extractEntities, entityImages } from './entity_images.mjs';
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
 
@@ -804,6 +805,22 @@ export async function enrichSummary(story) {
       }
     }
     if (story.images?.length) story.images = story.images.slice(0, MAX_STORY_IMAGES);
+
+    // ENTITY IMAGES (user: "if news is about an actress in a film, fetch the actress + the
+    // film image; research a related image when a keyword appears"). The outlet photos above
+    // cover the EVENT; now RESEARCH the key named entities (person/film/place/team/company)
+    // and fetch a real, license-safe photo OF each (Wikipedia lead image / Wikidata P18 —
+    // Commons CC/PD, monetization-safe). APPENDED after the event photos so the sequence
+    // still LEADS with the news image, then shows who/what it's about. Fail-open.
+    try {
+      const entities = await extractEntities(story, haveLlmKey() ? llmChat : null);
+      story.entities = entities.slice(0, 6); // persisted in bundle for the render caption layer
+      const eimgs = await entityImages(entities);
+      if (eimgs.length) {
+        story.entityImages = eimgs; // kept distinct so the renderer can time them to the name
+        story.images = [...new Set([...(story.images || []), ...eimgs].filter(Boolean))];
+      }
+    } catch { /* entity images are a bonus — never block enrichment */ }
 
     // Combine the outlets' clean prose into ONE research corpus (labelled by outlet so the
     // model can corroborate across ALL of them → a single, well-sourced summary), capped so
