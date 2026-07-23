@@ -1,69 +1,55 @@
 {
-  "generatedAt": "2026-07-23T07:51:39.478Z",
+  "generatedAt": "2026-07-23T08:51:35.636Z",
   "region": "usa",
-  "count": 30,
+  "count": 32,
   "categoryCounts": {
-    "offbeat": 7,
-    "politics": 3,
+    "offbeat": 8,
+    "entertainment": 3,
     "crisis": 3,
-    "breaking": 3,
+    "politics": 3,
     "sports": 3,
+    "breaking": 3,
     "facts": 3,
     "tech": 3,
-    "health": 2,
-    "entertainment": 3
+    "health": 3
   },
   "stories": [
     {
-      "title": "Live updates: US-Iran strikes; conflict widens with Houthis claiming Red Sea attacks",
-      "summary": "US President Donald Trump has threatened to destroy one bridge or power plant for every ship Iran hits in the Strait of Hormuz, amid escalating tensions between the two countries. Yemen's Iran-backed Houthi rebels have claimed to have struck two Saudi oil tankers in the Red Sea, widening the conflict. The US military has conducted its 12th night of strikes against Iran, aimed at degrading its ability to threaten civilian mariners and commercial vessels. The standoff in the Gulf shows no signs of progress in diplomatic efforts to end the conflict.",
-      "hashtag": "IranWar",
+      "title": "Vet teams believe Jackie was already sick before bald eagle fight captured on video near Big Bear nest",
+      "summary": "Veterinary teams treating Jackie, the Big Bear bald eagle, believe she was already ill before a fight with two younger eagles was captured on video last week. Now in critical condition at the Ojai Raptor Center, Jackie faces severe anemia and kidney inflammation while eating and remaining alert. Tests for lead, rodenticides and zinc are underway, with no metal objects found in X-rays. Further results will determine the next steps as wildlife experts monitor her progress.",
+      "hashtag": "JackieBald",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/23/world/live-news/iran-war-trump",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/snapshot-2026-07-22t00-00-00z-1.png?c=16x9&q=w_800,c_fill",
+      "url": "https://abc7.com/post/bald-eagle-jackie-critical-condition-rescue-big-bear-nest/19556921/",
+      "imageUrl": "https://cdn.abcotvs.com/dip/images/19558171_072226-kabc-big-bear-eagle-fight-tn.jpg?w=1600",
       "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/snapshot-2026-07-22t00-00-00z-1.png?c=16x9&q=w_800,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/uscentralcommand-20260722173643821.jpg?c=16x9&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22-00-00-2026-07-22.JPG?c=original&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/ap26204149864087.jpg?c=original&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/ebof-liptak-digi-still.jpg?c=16x9&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2269014014-20260722121002626.jpg?c=original&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/260722-n-vo895-1006.JPG?c=original&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/20260722-four-return-iran-0726.jpg?c=original&q=w_1280,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/22830234-trump-dignified-cln-00-00-33-25-still004.jpg?c=16x9&q=w_1280,c_fill",
-        "https://dims.apnews.com/dims4/default/49daae7/2147483647/strip/true/crop/7051x4698+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F20%2F53%2F68d9fb859b37e27e6ac70ffb1da1%2F63a3eb7f6d6f42fc9ccceb6240e3885d",
-        "https://dims.apnews.com/dims4/default/1a3f8e8/2147483647/strip/true/crop/6000x4000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F60%2F08%2F89ad922ab01133fb35e25ff5126b%2F60ef8be545664c55979a8f4b790dbdf6",
-        "https://dims.apnews.com/dims4/default/3a9e7f6/2147483647/strip/true/crop/8640x5760+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fa0%2Fa9%2Fdb2fd013494137c34e3056f38480%2F3202e31f6acb495da99bd4910265195b",
-        "https://dims.apnews.com/dims4/default/05f55e4/2147483647/strip/true/crop/8640x5760+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F02%2Feb%2Fc6aa797b60909ec819f097aecdcf%2F3cce04d9cdbd43368ed5189237bff359",
-        "https://www.aljazeera.com/wp-content/uploads/2026/07/2026-07-23T053028Z_1360469499_RC2FJMAQDHF7_RTRMADP_3_IRAN-CRISIS-1784785110.jpg?resize=1920%2C1440"
+        "https://cdn.abcotvs.com/dip/images/19558171_072226-kabc-big-bear-eagle-fight-tn.jpg?w=1600",
+        "https://cdn.abcotvs.com/dip/images/19543976_072026-kabc-big-bear-eagles.jpg"
       ],
       "sourceUrls": [
-        "https://www.cnn.com/2026/07/23/world/live-news/iran-war-trump",
-        "https://apnews.com/article/iran-us-hormuz-strait-war-60d46bf8c83c43a8f2268b7b87627c55",
-        "https://www.aljazeera.com/news/liveblog/2026/7/23/iran-war-live-us-launches-new-attacks-houthis-attack-2-saudi-oil-tankers"
+        "https://abc7.com/post/bald-eagle-jackie-critical-condition-rescue-big-bear-nest/19556921/",
+        "https://ktla.com/news/california/new-video-shows-jackie-locked-in-fight-with-2-other-bald-eagles/"
       ],
-      "sourceName": "cnn.com",
+      "sourceName": "abc7.com",
       "sources": [
-        "CNN",
-        "AP News",
-        "Al Jazeera"
+        "ABC7 Los Angeles",
+        "KTLA"
       ],
-      "corr": 3,
+      "corr": 2,
       "verified": true,
-      "trend": "iran war",
-      "traffic": 5000,
+      "trend": "jackie bald eagle critical condition",
+      "traffic": 10000,
       "freshH": 1,
-      "score": 0.772,
-      "popularity": 0.526,
+      "score": 0.689,
+      "popularity": 0.443,
       "recency": 0.891,
-      "relevancy": 1,
+      "relevancy": 0.8,
       "region": "usa",
       "geo": "US"
     },
     {
       "title": "Pit found by Quebecer confirmed to be a 390-million-years-old meteorite impact crater",
-      "summary": "A 390-million-year-old meteorite impact crater has been confirmed in Quebec, Canada. The crater, approximately 15 miles wide, was discovered by amateur astronomer Joël Lapointe on Google Maps in 2024. Researchers, led by planetary geologist Gordon Osinski, have verified the crater's existence, with findings set to be presented at the Annual Meeting of the Meteoritical Society in Germany. This significant discovery sheds new light on the region's geological history.",
+      "summary": "A Quebec amateur astronomer’s 2023 Google Maps discovery has been confirmed as a 390-million-year-old meteorite impact crater. The 25-kilometre-wide depression, located 100 kilometres north of Magpie, Que., is one of the largest recent finds of its kind. Researchers plan to present the findings at an upcoming conference in Germany. The find highlights the role of citizen science in uncovering geological history.",
       "hashtag": "MeteoriteCrater",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -94,47 +80,6 @@
       "trend": "meteorite crater",
       "traffic": 2000,
       "freshH": 1,
-      "score": 0.7,
-      "popularity": 0.346,
-      "recency": 0.891,
-      "relevancy": 1,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "JPO Rejects Nintendo Patent in Palworld Case",
-      "summary": "The Japan Patent Office has rejected Nintendo's patent application 2024-031879 for lack of inventive step, citing prior art from games including ARK, Monster Hunter 4, and Pokémon GO. The patent targeted an \"in-game monster-capturing system\" similar to Palworld's gameplay mechanics. This rejection does not directly impact Nintendo's ongoing lawsuit against Palworld, but it does undermine the company's patent claims. The decision highlights the existence of similar gameplay mechanics in older games, including a 2013 YouTube video of an unofficial Pokémon game.",
-      "hashtag": "NintendoPalworld",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://gameluster.com/nintendo-palworld-patent-rejected-jpo/",
-      "imageUrl": "https://gameluster.com/wp-content/uploads/2026/07/japan-patent-office-rejects-nintendo-filing-palworld.webp",
-      "images": [
-        "https://gameluster.com/wp-content/uploads/2026/07/japan-patent-office-rejects-nintendo-filing-palworld.webp",
-        "https://gameluster.com/wp-content/uploads/2026/07/nintendo-headquarters-kyoto-inline.webp",
-        "https://automaton-media.com/en/wp-content/uploads/2026/07/20260722-69903-header.jpg",
-        "https://automaton-media.com/en/wp-content/uploads/2026/07/20260612-449496-header-1.jpg",
-        "https://automaton-media.com/en/wp-content/uploads/2026/07/20260722-69903-001.jpg",
-        "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74-1920-80.jpg",
-        "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74-1200-80.jpg",
-        "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74.jpg"
-      ],
-      "sourceUrls": [
-        "https://gameluster.com/nintendo-palworld-patent-rejected-jpo/",
-        "https://automaton-media.com/en/news/nintendo-patent-central-to-palworld-lawsuit-stays-rejected-as-jpo-shuts-down-objections-in-unusually-sharp-tongued-notice/",
-        "https://www.gamesradar.com/games/pokemon/you-saved-the-entire-industry-the-13-year-old-video-of-a-pokemon-fan-game-now-cited-in-the-rejection-of-a-nintendo-patent-is-being-celebrated-by-fans-happy-to-see-creative-freedom-win/"
-      ],
-      "sourceName": "gameluster.com",
-      "sources": [
-        "GameLuster",
-        "AUTOMATON",
-        "GamesRadar+"
-      ],
-      "corr": 3,
-      "verified": true,
-      "trend": "nintendo palworld lawsuit",
-      "traffic": 1000,
-      "freshH": 1,
       "score": 0.676,
       "popularity": 0.286,
       "recency": 0.891,
@@ -143,58 +88,119 @@
       "geo": "US"
     },
     {
-      "title": "Before ‘Jana Nayagan’: When an 18-year-old Vijay walked the halls of Loyola College",
-      "summary": "Actor Vijay, now Tamil Nadu's Chief Minister, is releasing his last film as a solo hero, Jana Nayagan, on July 23, 2026. The movie marks a return to his acting career after 34 years, following his debut in 1992 with Naalaiya Theerpu at the age of 18 while studying at Loyola College in Chennai. Jana Nayagan is a celebration of Vijay's stardom and his evolution as a political personality. Fans are eagerly awaiting the film's release, with a unique promotional campaign featuring a flying LED display creating buzz on social media platforms.",
-      "hashtag": "JanaNayagan",
+      "title": "Woman attacked by brown bear while hiking Alaskan trail",
+      "summary": "A woman was attacked by a brown bear while hiking in Bear Valley, Alaska, on July 18, 2026, suffering non-life-threatening injuries. The bear, which emerged from dense alder trees, made brief contact with the hiker before moving on. High winds and inclement weather may have contributed to the surprise encounter. The woman was hospitalized and the bear was tracked and monitored by police using a drone.",
+      "hashtag": "AnchorageAlaska",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.thehindu.com/news/national/tamil-nadu/before-jana-nayagan-when-a-young-vijay-walked-the-halls-of-loyola/article71252283.ece",
-      "imageUrl": "https://th-i.thgim.com/public/incoming/3d29wu/article71252311.ece/alternates/LANDSCAPE_1200/DSC_1864A.JPG",
+      "url": "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562",
+      "imageUrl": "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
       "images": [
-        "https://th-i.thgim.com/public/incoming/3d29wu/article71252311.ece/alternates/LANDSCAPE_1200/DSC_1864A.JPG",
-        "https://c.ndtvimg.com/2026-07/r5o9r61g_vijay_625x300_23_July_26.jpg?im=FeatureCrop,algorithm=dnn,width=1600,height=900",
-        "https://static.toiimg.com/thumb/msid-132556733,width-1280,height-720,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
-        "https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-132556733/132556733.jpg"
+        "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
+        "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630"
       ],
       "sourceUrls": [
-        "https://www.thehindu.com/news/national/tamil-nadu/before-jana-nayagan-when-a-young-vijay-walked-the-halls-of-loyola/article71252283.ece",
-        "https://www.ndtv.com/entertainment/jana-nayagan-review-vijay-in-full-command-in-politically-charged-mass-entertainer-turns-farewell-film-into-fan-festival-3-stars-11809236",
-        "https://timesofindia.indiatimes.com/entertainment/tamil/movies/news/jana-nayagan-promotions-go-airborne-as-cm-vijays-film-unveils-stunning-flying-led-display-ahead-of-july-23-release-watch/articleshow/132556681.cms"
+        "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562",
+        "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
+        "https://people.com/woman-injured-in-bear-attack-while-hiking-with-friend-and-dogs-12024465"
       ],
-      "sourceName": "thehindu.com",
+      "sourceName": "abcnews.com",
       "sources": [
-        "The Hindu",
-        "NDTV",
-        "The Times of India"
+        "ABC News - Breaking News, Latest News and Videos",
+        "Anchorage Daily News",
+        "People.com"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "jana nayagan",
-      "traffic": 500,
+      "trend": "anchorage alaska hiking bear encounter",
+      "traffic": 5000,
       "freshH": 1,
-      "score": 0.639,
-      "popularity": 0.256,
+      "score": 0.662,
+      "popularity": 0.376,
       "recency": 0.891,
-      "relevancy": 0.9,
+      "relevancy": 0.8,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Scottish Labour leader Anas Sarwar 'delighted' to accept trade minister job",
-      "summary": "Scottish Labour leader Anas Sarwar is stepping down to become Minister of State for Trade in the UK government, a role he will take up alongside a peerage in the House of Lords. He will leave the Scottish Parliament and his leader role, having led the party since 2021. Sarwar's appointment comes after Scottish Labour won just 17 seats in the May Scottish Parliament elections, a record low for the party. He will work with his successor to serve people in Scotland.",
-      "hashtag": "LabourAnas",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/clyez682nevo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
+      "title": "'Other Mommy' trailer terrorizes moviegoers ahead of 'The Odyssey'",
+      "summary": "A trailer for the upcoming film \"Other Mommy\" has been causing distress among moviegoers ahead of Christopher Nolan's \"The Odyssey.\" The trailer, which features Jessica Chastain in a disturbing conversation with a young girl, played before screenings worldwide over the weekend. Some viewers took to social media to warn others about the trailer's unsettling content. The film is set to release later this year.",
+      "hashtag": "OtherMommy",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.washingtonpost.com/entertainment/movies/2026/07/21/trailer-before-odyssey-thats-terrorizing-moviegoers/",
+      "imageUrl": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/5SD5FVWY5UI6PISBBBEDCVSC2A.jpg&w=1440",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1248/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/ba34/live/2f5dbc80-8531-11f1-926f-c90d1bcfbc84.png"
+        "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/5SD5FVWY5UI6PISBBBEDCVSC2A.jpg&w=1440",
+        "https://i.abcnewsfe.com/a/bc986a1a-c258-479b-9e06-2a8dc465a3d9/othermommy-universal-ab-260721_1784655619449_hpMain_16x9.jpg?w=1600",
+        "https://i.abcnewsfe.com/a/bc986a1a-c258-479b-9e06-2a8dc465a3d9/othermommy-universal-ab-260721_1784655619449_hpMain.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/clyez682nevo?at_medium=RSS&at_campaign=rss"
+        "https://www.washingtonpost.com/entertainment/movies/2026/07/21/trailer-before-odyssey-thats-terrorizing-moviegoers/",
+        "https://abcnews.com/GMA/Culture/trailer-jessica-chastains-new-film-left-odyssey-audiences-terrified/story?id=134955295"
+      ],
+      "sourceName": "washingtonpost.com",
+      "sources": [
+        "The Washington Post",
+        "ABC News - Breaking News, Latest News and Videos"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "other mommy horror movie trailer",
+      "traffic": 200,
+      "freshH": 1,
+      "score": 0.584,
+      "popularity": 0.149,
+      "recency": 0.891,
+      "relevancy": 0.85,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Venice Film Festival Reveals 2026 Lineup (Updating Live)",
+      "summary": "The Venice Film Festival will unveil its 2026 lineup next year, featuring high-profile international titles. The festival opens with Danny Boyle’s biographical drama Ink, starring Guy Pearce as Rupert Murdoch, premiering September 2. Netflix holds U.S. rights to the film, which competes for the Golden Lion. Closing the event is Giovanni Veronesi’s Dio Ride, an out-of-competition Italian film starring Pierfrancesco Favino.",
+      "hashtag": "FilmFestival",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Ink.jpg?w=1000&h=563&crop=1"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.03,
+      "score": 0.479,
+      "popularity": 0,
+      "recency": 0.997,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Government to cut business rates for pubs, clubs and music venues",
+      "summary": "Government to slash business rates for pubs, clubs and music venues in England by 20% from April, saving firms around £1,100 each next year. The £100m package, announced by Andy Burnham, will fund the cut through a review of tax relief on less community-focused businesses. Nearly 32,000 venues are expected to benefit, though the largest live music venues are excluded. Details on eligibility will come at the autumn Budget.",
+      "hashtag": "GovernmentBusiness",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -204,17 +210,141 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.02,
-      "score": 0.504,
+      "freshH": 0.05,
+      "score": 0.478,
       "popularity": 0,
-      "recency": 0.998,
-      "relevancy": 0.62,
+      "recency": 0.994,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Daniel Wu on ‘Cold War 1994,’ ‘Twilight of the Warriors’ and Coming Home to Hong Kong: ‘The Craft Still Challenges Me’",
+      "summary": "Daniel Wu stars in Cold War 1994, the third installment of the prequel series set before Hong Kong’s 1997 handover. The film, part of the highest-grossing Hong Kong productions of 2012 and 2016, marks Wu’s return to the franchise alongside Terrance Lau. Wu received the Best from the East Award at the New York Asian Film Festival for his role. The production, praised for its scale and script, reunites three generations of Hong Kong actors.",
+      "hashtag": "ColdWar",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg?w=1000&h=563&crop=1"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.17,
+      "score": 0.473,
+      "popularity": 0,
+      "recency": 0.98,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Seinfeld actor apologises to reality star for 'inappropriate' sketch when she was 17",
+      "summary": "Jason Alexander, known for his role in Seinfeld, has apologized to reality star Courtney Stodden for an inappropriate 2012 comedy sketch where he simulated a phone signal on her body. The sketch, which aired on Funny or Die, included crude remarks about her age and consent. Stodden, who was 17 at the time, called the content exploitative and shared it online this week. Alexander acknowledged his actions were wrong and offered his sincere apologies.",
+      "hashtag": "SeinfeldActor",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://www.bbc.co.uk/news/articles/cz64pn37138o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cz64pn37138o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.24,
+      "score": 0.47,
+      "popularity": 0,
+      "recency": 0.973,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Andy Burnham's plan to collaborate with social media creators",
+      "summary": "Andy Burnham, now prime minister, plans to use social media more casually and collaborate with online creators to reach younger voters. His team will prioritize spontaneous, less polished content on platforms like X, Instagram, and TikTok. This approach mirrors a trend started under the previous government, which began inviting influencers to government events. The shift reflects a broader move away from traditional media toward digital engagement.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cy4k74xj9lyo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cy4k74xj9lyo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.38,
+      "score": 0.465,
+      "popularity": 0,
+      "recency": 0.957,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Ruiz and Gavi's reward for World Cup win... 150kg of tomatoes",
+      "summary": "Spain midfielders Fabian Ruiz and Gavi received 150kg of tomatoes combined as a reward for winning the World Cup, a tradition in their hometown of Los Palacios y Villafranca. Ruiz, 85kg, and Gavi, 68.5kg, were honored at a town hall reception Wednesday. Former teammate Jesus Navas, who won the 2010 World Cup, also attended. The town, home to fewer than 40,000 people, celebrates its athletes with this unique tribute.",
+      "hashtag": "GaviWorld",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cvg840jye74o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cvg840jye74o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.96,
+      "score": 0.443,
+      "popularity": 0,
+      "recency": 0.895,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Charity 'heartbroken' as food ruined in break-in",
-      "summary": "A charity warehouse in Middlesbrough was broken into on Tuesday, resulting in 16 tonnes of food being ruined, equivalent to 7,000 meals. Thieves smashed their way in, cutting power to the freezer and chiller units, forcing the charity to discard perishable items. FareShare North East, which distributes food to over 200 community groups, is \"heartbroken\" over the loss. The charity is now assessing the damage and working to recover from the break-in.",
+      "summary": "Charity FareShare North East lost 16 tonnes of food—enough for 7,000 meals—after thieves cut power to its Teesside warehouse freezers on Tuesday. The break-in in Middlesbrough destroyed perishables like milk and meat, forcing disposal of damaged supplies. The charity, which redistributes supermarket donations to over 200 groups, said the loss was heartbreaking for its volunteers. Staff discovered ransacked lockers and open freezer doors when arriving for work.",
       "hashtag": "CharityHeartbroken",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -235,17 +365,78 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.06,
-      "score": 0.478,
+      "freshH": 1.06,
+      "score": 0.44,
       "popularity": 0,
-      "recency": 0.993,
+      "recency": 0.885,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "cockroach janta party protest",
+      "summary": "Thousands of protesters gathered in New Delhi on Tuesday, demanding better living conditions and an end to the alleged harassment of cockroach vendors by local authorities. The protest, led by the Cockroach Janta Party, drew an estimated 5,000 people. The demonstration remained largely peaceful, with some minor clashes reported between protesters and police. The outcome of the protest remains to be seen, but it is expected to continue into the evening.",
+      "hashtag": "NedNep",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.news18.com/topics/cockroach-janta-party-protest/",
+      "imageUrl": "https://images.news18.com/static_news18/pix/ibnhome/news18/news18-main.png",
+      "images": [
+        "https://images.news18.com/static_news18/pix/ibnhome/news18/news18-main.png"
+      ],
+      "sourceUrls": [
+        "https://www.news18.com/topics/cockroach-janta-party-protest/"
+      ],
+      "sourceName": "news18.com",
+      "sources": [
+        "News18"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "ned vs nep",
+      "traffic": 200,
+      "freshH": 1,
+      "score": 0.432,
+      "popularity": 0.006,
+      "recency": 0.891,
+      "relevancy": 0.47,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Who am I? Guess The Hundred cricket star No 3",
+      "summary": "A new cricket quiz challenges fans to identify a star player in The Hundred tournament. The game, hosted by BBC Sport, drops clues daily, with correct guesses earning up to five points. Today’s featured cricketer remains unnamed until solved. More quizzes will follow throughout the tournament.",
+      "hashtag": "GuessHundred",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/cricket/articles/cqx7w5zqz0xo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/cricket/articles/cqx7w5zqz0xo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.75,
+      "score": 0.431,
+      "popularity": 0,
+      "recency": 0.917,
+      "relevancy": 0.441,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Google burning through cash with spiralling AI costs",
-      "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This surge in spending comes as Alphabet's combined quarterly revenue hit $119.8 billion, a 23% increase from last year. The company's stock fell 4% in after-hours trading following the announcement.",
+      "summary": "Google’s parent company Alphabet reported negative free cash flow of $5.9 billion in its latest quarter, the first time in over a decade, as AI infrastructure costs surged. Spending on AI is projected to reach $205 billion this year, up from $190 billion, driven by competition in the tech sector. Revenue rose 23% to $119.8 billion, but stock prices dropped 4% after hours. The company spent $45 billion in Q2, with 60% on servers and 40% on data centers.",
       "hashtag": "GoogleBurning",
       "badge": "BREAKING",
       "category": "breaking",
@@ -266,17 +457,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.59,
-      "score": 0.457,
+      "freshH": 1.59,
+      "score": 0.421,
       "popularity": 0,
-      "recency": 0.934,
+      "recency": 0.832,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "HNK Rijeka tie 'a great opportunity' for Derry",
-      "summary": "Derry City Football Club has been fined 20,000 euros and given a suspended partial stadium closure for two years after crowd trouble marred their Europa League qualifier against CSKA Sofia. The match was temporarily stopped and police deployed due to rival supporter disturbances. Derry's manager, Lynch, sees the tie as a great opportunity to build ahead of their opening Conference League qualifying game. The team will now focus on regrouping and preparing for their next match.",
+      "summary": "Derry City face HNK Rijeka in the Conference League second qualifying round after losing 5-3 on aggregate to CSKA Sofia in the Europa League opener. The tie at the Brandywell was halted by supporter clashes, leading to a 20,000 euro fine and a suspended partial stadium closure for two years. Manager Ryan Lynch called the home crowd’s support \"phenomenal\" despite the defeat. Derry aim to draw in the first leg to level the tie ahead of the return.",
       "hashtag": "RijekaDerry",
       "badge": "SPORTS",
       "category": "sports",
@@ -297,79 +488,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.76,
-      "score": 0.451,
+      "freshH": 1.76,
+      "score": 0.416,
       "popularity": 0,
-      "recency": 0.916,
+      "recency": 0.816,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Airport drop-off fees up by a third - here are the priciest",
-      "summary": "Airport drop-off fees have increased by a third on average since last summer, with London's Gatwick airport charging a £10 \"farewell fee\" for 10 minutes. The RAC analysis found 16 of the 20 busiest UK airports have raised their prices, with London City Airport now the most expensive at £8 for five minutes. Birmingham remains the cheapest at £7 for 15 minutes. Passengers can expect to pay more for drop-offs at UK airports as the fees are now a standard part of their business models.",
-      "hashtag": "AirportDrop",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.81,
-      "score": 0.449,
-      "popularity": 0,
-      "recency": 0.911,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Business rates to be cut by 20% for pubs, clubs and music venues in England",
-      "summary": "Business rates for nearly 32,000 pubs, clubs, and music venues in England will be cut by 20% from April, saving the typical pub £1,100 next year. The £100m package is fully funded, with some business reliefs being reviewed. This move is part of the new administration's efforts to ease living costs. The impact of other cost of living measures, including capping bus fares at £2, remains to be seen.",
-      "hashtag": "England",
+      "title": "House Adopts $95 Billion G.O.P. Budget for Iran War",
+      "summary": "Republican leaders muscled through resistance in their own ranks to approve the budget blueprint for the war and other measures, but its prospects were far dimmer in the Senate.",
+      "hashtag": "AdoptsBillion",
       "badge": "POLITICS",
       "category": "politics",
-      "url": "https://www.theguardian.com/business/2026/jul/23/business-rates-to-be-cut-by-20-for-england-pubs-clubs-and-music-venues",
-      "imageUrl": "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=be21b5680c5d972e7ccc40893d4bd0ad",
+      "url": "https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-budget01-photo-tmpw/22dc-budget01-photo-tmpw-mediumSquareAt3X.jpg",
       "images": [
-        "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=be21b5680c5d972e7ccc40893d4bd0ad",
-        "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=fef647ac0b3a7e342c7765969ff3f706"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-budget01-photo-tmpw/22dc-budget01-photo-tmpw-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.theguardian.com/business/2026/jul/23/business-rates-to-be-cut-by-20-for-england-pubs-clubs-and-music-venues"
+        "https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html"
       ],
-      "sourceName": "The Guardian",
+      "sourceName": "The New York Times",
       "sources": [
-        "The Guardian"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.09,
-      "score": 0.439,
+      "freshH": 0.36,
+      "score": 0.411,
       "popularity": 0,
-      "recency": 0.882,
-      "relevancy": 0.519,
+      "recency": 0.959,
+      "relevancy": 0.303,
       "region": "usa",
       "geo": null
     },
     {
       "title": "River levels approach all-time low as drought announcement looms",
-      "summary": "River levels in Wales are approaching all-time lows, with the country experiencing just 5% of its average July rainfall due to back-to-back heatwaves and a dry spring. This has led to significant problems, including fish and wildlife deaths, failing crops, and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, as the region moves towards an environmental drought. The prolonged dry weather is affecting north and south-east Wales.",
+      "summary": "River levels in Wales are nearing record lows as drought conditions intensify, with July rainfall at just 5% of average following prolonged dry weather. Natural Resources Wales is set to announce an official environmental drought for parts of the country later today. The crisis has already damaged crops, stressed livestock, and killed fish due to critically low river flows. Authorities warn the situation will worsen without significant rainfall.",
       "hashtag": "RiverLevels",
       "badge": "SCIENCE",
       "category": "facts",
@@ -396,17 +555,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.66,
-      "score": 0.437,
+      "freshH": 3.66,
+      "score": 0.409,
       "popularity": 0,
-      "recency": 0.736,
+      "recency": 0.655,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "House Passes Defense Bill Amid Iran War Divide",
+      "summary": "Republicans pushed through the $1.15 trillion bill over opposition from Democrats, who said backing it was akin to embracing the war.",
+      "hashtag": "PassesDefense",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23vid-dc-budget--cover-bzlm/23vid-dc-budget--cover-bzlm-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23vid-dc-budget--cover-bzlm/23vid-dc-budget--cover-bzlm-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.43,
+      "score": 0.401,
+      "popularity": 0,
+      "recency": 0.952,
+      "relevancy": 0.27,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "'I am still alive': Indian activist on hunger strike for 26 days loses 11kg",
-      "summary": "Indian activist Tenzin Wangchuk, on a 26-day hunger strike, has lost 11kg and was admitted to the ICU at Medanta Hospital in Gurugram. He remains stable, but refuses to call off his strike despite requests from opposition MPs, activists, and celebrities. Health Minister JP Nadda has also urged him to break his fast and join the mainstream. Wangchuk's health concerns have mounted as he endured 21 days in scorching summer heat on a diet of salt and water.",
+      "summary": "Indian activist Sonam Wangchuk, on a 26-day hunger strike protesting exam paper leaks in India, has lost 11kg. The protests have intensified pressure on Prime Minister Narendra Modi’s government, which announced fast-track courts for those responsible. Wangchuk, who ended his strike location presence, remains a symbol for demonstrators demanding systemic reforms. Opposition leaders continue rallying support amid ongoing unrest.",
       "hashtag": "Indian",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -427,79 +616,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.24,
-      "score": 0.433,
+      "freshH": 2.24,
+      "score": 0.4,
       "popularity": 0,
-      "recency": 0.867,
+      "recency": 0.772,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Ex-UFC champion Andrade working as delivery driver",
-      "summary": "Former UFC strawweight champion Jessica Andrade is working as a delivery driver to earn extra money while recovering from injury. The 34-year-old Brazilian has not competed since August, when she injured a shoulder. Andrade has fought 30 times in the UFC, winning 17 of her fights. She plans to use her new skills to supplement her income if needed.",
-      "hashtag": "Andrade",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/mixed-martial-arts/articles/crmr7e7r328o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg",
+      "title": "Global Oil Price Nears $100 a Barrel as Conflict With Iran Deepens",
+      "summary": "The Houthis claimed to have attacked two ships in the Red Sea, and Iran said a third caught fire near the Strait of Hormuz.",
+      "hashtag": "OilPrice",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/iran-crude-oil-gas-stock-prices.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-oil-stocks-gas-promo-cjth/23biz-oil-stocks-gas-promo-cjth-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-oil-stocks-gas-promo-cjth/23biz-oil-stocks-gas-promo-cjth-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/mixed-martial-arts/articles/crmr7e7r328o?at_medium=RSS&at_campaign=rss"
+        "https://www.nytimes.com/2026/07/23/business/iran-crude-oil-gas-stock-prices.html"
       ],
-      "sourceName": "BBC",
+      "sourceName": "The New York Times",
       "sources": [
-        "BBC"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.99,
-      "score": 0.433,
+      "freshH": 0.66,
+      "score": 0.39,
       "popularity": 0,
-      "recency": 0.892,
-      "relevancy": 0.482,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Weekly sports quiz: Glasgow 2026, The Open and The Hundred",
-      "summary": "A record number of teams, approximately 6%, achieved full marks in last week's sports quiz. The quiz focused on recent events including the Commonwealth Games build-up in Glasgow and the start of The Hundred. This week's quiz is now available, with notifications sent to devices for those who signed up.",
-      "hashtag": "GlasgowOpen",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/c4gv3pvyexlo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/c4gv3pvyexlo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.96,
-      "score": 0.425,
-      "popularity": 0,
-      "recency": 0.895,
-      "relevancy": 0.447,
+      "recency": 0.927,
+      "relevancy": 0.262,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-      "summary": "Ukrainian drones have hit two warehouses belonging to Russia's biggest online retailer, Wildberries, in the past weekend, killing seven workers and injuring dozens in the Tambov region. The attacks, which also damaged goods worth an estimated £750m, are part of Kyiv's strategy to disrupt supplies to the Russian army. Hundreds of Russian sellers who depend on online marketplaces for their livelihoods are now facing financial losses. The war is taking a toll on small and medium-sized businesses in Russia.",
+      "summary": "Ukraine’s drone strikes on Wildberries warehouses in Russia have killed eight workers and disrupted a key online marketplace relied on by thousands of small sellers. Two facilities in Elektrostal and Kotovsk were hit, with damages estimated at £750 million. Kyiv says the attacks target logistics supporting Russia’s military supply chain. Hundreds of Russian entrepreneurs now face lost income as the war’s economic strain spreads closer to home.",
       "hashtag": "UkraineWildberries",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -520,17 +677,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.6,
-      "score": 0.421,
+      "freshH": 2.6,
+      "score": 0.389,
       "popularity": 0,
-      "recency": 0.831,
+      "recency": 0.741,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Butterfly city blooms in shadow of office blocks",
-      "summary": "In Hull city centre, a \"butterfly city\" has been created with ten species of butterflies spotted in a mini meadow near St Stephen's Shopping Centre. The site, owned by the Land Registry, features grass and wild flowers that have been allowed to grow, providing a habitat for the butterflies. Small skipper butterflies have been breeding in the meadow, a rare occurrence in a city. The meadow was established in 2023 as part of a scheme to encourage city centre wildlife.",
+      "summary": "A mini meadow in Hull city centre has become a haven for ten butterfly species, including the rare small skipper. The project, launched in 2023 near St Stephen’s Shopping Centre, transformed a Land Registry site by allowing grass and wildflowers to grow undisturbed. Wildlife experts say the meadow supports breeding butterflies by providing essential caterpillar food plants. Officials plan to expand the scheme to boost urban biodiversity further.",
       "hashtag": "ButterflyCity",
       "badge": "SCIENCE",
       "category": "facts",
@@ -553,48 +710,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.8,
-      "score": 0.408,
+      "freshH": 3.8,
+      "score": 0.381,
       "popularity": 0,
-      "recency": 0.723,
+      "recency": 0.644,
       "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Ann Widdecombe public memorial to be held later this year, family says",
-      "summary": "A public memorial for Ann Widdecombe will be held later this year, following her private funeral for family and close friends in the coming weeks. The 78-year-old former Conservative minister and Reform UK spokeswoman was found dead with serious head injuries earlier this month. Her family thanked the public for condolences but asked to limit the initial service to those closest to her. The memorial details will be released in due course.",
-      "hashtag": "Widdecombe",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/cddj9edj76eo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cddj9edj76eo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.08,
-      "score": 0.405,
-      "popularity": 0,
-      "recency": 0.786,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Blocked by censors, China's animal lovers take fight against abuse offline and overseas",
-      "summary": "Thousands of Chinese animal lovers are taking to social media and billboards in New York to protest the horrific killing of a stray dog and her puppies, despite authorities urging them to withhold comments and scrubbing online posts. The incident sparked outrage in June, with authorities citing the age of four boys involved as a reason for the censorship. The restrictions have only fueled the outcry, with posts about the incident still drawing thousands of comments three weeks later. The movement is now going global, with supporters abroad joining the fight against animal abuse.",
+      "summary": "China’s censors blocked online outrage over the June killing of a stray dog and her puppies by four boys under 14, citing protection of minors. Authorities ordered social media scrubbed and urged silence, but animal rights activists took the fight offline and overseas, including New York billboards. Thousands still post reactions weeks later despite restrictions. Authorities have not disclosed further action on the case.",
       "hashtag": "China",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -615,17 +741,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.09,
-      "score": 0.405,
+      "freshH": 3.09,
+      "score": 0.375,
       "popularity": 0,
-      "recency": 0.785,
+      "recency": 0.7,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "ServiceNow bets $40 million on Indian banking software specialist to expand its financial services push",
-      "summary": "ServiceNow has invested $40 million in Indian banking software specialist BusinessNext, valuing the company at $700 million and taking a 5% stake. This deal expands their partnership in AI for financial services and gives BusinessNext access to ServiceNow's global sales network. BusinessNext serves over 70 banks across India, Southeast Asia, the Middle East, and the US, with half of its revenue coming from outside India. The partnership is expected to drive growth for BusinessNext in overseas markets.",
+      "summary": "ServiceNow invested $40 million in BusinessNext, an Indian banking software firm valued at $700 million, securing a 5% stake. The Noida-based company, serving over 70 banks globally, reported $32 million in revenue last year. ServiceNow’s deal expands its financial services push, leveraging BusinessNext’s AI solutions and global client base. The partnership aims to accelerate growth in overseas markets.",
       "hashtag": "Indian",
       "badge": "TECH",
       "category": "tech",
@@ -645,71 +771,45 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.71,
-      "score": 0.405,
+      "freshH": 2.71,
+      "score": 0.374,
       "popularity": 0,
-      "recency": 0.821,
+      "recency": 0.732,
       "relevancy": 0.47,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Global Oil Prices Rise as Conflict With Iran Deepens",
-      "summary": "The Houthis claimed to have attacked two ships in the Red Sea, and Iran said a third caught fire near the Strait of Hormuz.",
-      "hashtag": "OilPrices",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/23/business/iran-crude-oil-gas-stock-prices.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-oil-stocks-gas-promo-cjth/23biz-oil-stocks-gas-promo-cjth-mediumSquareAt3X.jpg",
+      "title": "Olympic Mountain Glory",
+      "summary": "NASA’s Earth Observatory captured a striking image on July 23, 2026, showing the rugged Olympic Mountains in northwestern Washington state from the International Space Station. The composite photo highlights the peninsula’s deep river valleys, alpine glaciers, and temperate rainforests surrounded by blue waters and islands. Olympic National Park covers much of the mountainous core, with the rest managed as national forest, state land, or tribal territory. The mountains formed from ancient undersea volcanic activity and sediment deposits between 55 and 15 million years ago.",
+      "hashtag": "MountainGlory",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-oil-stocks-gas-promo-cjth/23biz-oil-stocks-gas-promo-cjth-mediumSquareAt3X.jpg"
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/iran-crude-oil-gas-stock-prices.html"
+        "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
       ],
-      "sourceName": "The New York Times",
+      "sourceName": "NASA",
       "sources": [
-        "The New York Times"
+        "NASA"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.31,
-      "score": 0.403,
+      "freshH": 4.84,
+      "score": 0.368,
       "popularity": 0,
-      "recency": 0.964,
-      "relevancy": 0.262,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
-      "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
-      "hashtag": "MilitaryPresence",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.45,
-      "score": 0.403,
-      "popularity": 0,
-      "recency": 0.949,
-      "relevancy": 0.283,
+      "recency": 0.571,
+      "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
@@ -735,17 +835,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.63,
-      "score": 0.402,
+      "freshH": 1.63,
+      "score": 0.367,
       "popularity": 0,
-      "recency": 0.929,
+      "recency": 0.828,
       "relevancy": 0.309,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Alarm over hospital lung admissions for children in England’s poorest postcodes",
-      "summary": "In England's poorest postcodes, children are 40% more likely to be admitted to hospital for respiratory infections. According to NHS England data, 1,941 out of every 100,000 children in the most deprived areas were hospitalized for respiratory illnesses in 2024/25, a 41% higher rate than in the least deprived areas. Experts are raising concerns about the impact of air pollution on young people's health. Further analysis is needed to determine the exact cause of these hospital admissions.",
+      "summary": "Children in England’s poorest areas were 40% more likely to be hospitalized for respiratory infections in 2024/25, with 1,941 admissions per 100,000 compared to 1,380 in wealthier areas. The analysis, based on NHS England data, highlights a stark disparity linked to deprivation. Experts warn air pollution may play a role, though the data doesn’t confirm causes. Local health services are urged to address the gap amid rising concerns.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -753,7 +853,7 @@
       "imageUrl": "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=c5ecdd16bd0225a79dfafe65e80fc4a6",
       "images": [
         "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=c5ecdd16bd0225a79dfafe65e80fc4a6",
-        "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/403_0_4667_3733/master/4667.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c2793b195f621a9bc45d30ae836dc107",
+        "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=76352d08217fe5d473d272c6bbc0b30a",
         "https://i.guim.co.uk/img/media/e55baf801af0b61df884721b24bbf3ec5a23c848/0_0_3540_2832/master/3540.jpg?width=445&dpr=1&s=none&crop=none"
       ],
       "sourceUrls": [
@@ -767,146 +867,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.85,
-      "score": 0.394,
+      "freshH": 3.85,
+      "score": 0.367,
       "popularity": 0,
-      "recency": 0.719,
+      "recency": 0.641,
       "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Olympic Mountain Glory",
-      "summary": "The Olympic Mountains in northwestern Washington state stand at over 7,000 feet, their rugged terrain carved by deep river valleys. Located within Olympic National Park, the mountains' imposing presence is a result of layers of basalt from undersea eruptions that formed between 55 and 15 million years ago. The park's diverse landscape also includes temperate rainforests, wild coastlines, and blue waters. As the region remains a relatively remote bastion of wilderness, conservation efforts continue to protect its unique ecosystem.",
-      "hashtag": "MountainGlory",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
-      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+      "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
+      "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
+      "hashtag": "MilitaryPresence",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
       "images": [
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-        "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300"
+        "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
+        "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
       ],
-      "sourceName": "NASA",
+      "sourceName": "The New York Times",
       "sources": [
-        "NASA"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.84,
-      "score": 0.392,
+      "freshH": 1.45,
+      "score": 0.367,
       "popularity": 0,
-      "recency": 0.641,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Fatboy Slim helps to save 'lifeblood' music venue",
-      "summary": "Fatboy Slim's Maverick Ventures Partners has purchased its tenth music venue, making it the largest landlord of dedicated music venues in the country. This move comes as more than half of the UK's grassroots venues made no profit last year, with 30 closing and 6,000 jobs lost. The purchase secures the future of The Pipeline in Brighton, a key space for musicians to develop their craft. The venue's owner, Thomas Evrenos, is relieved, saying it will allow him to continue running the venue without fear of increased rent.",
-      "hashtag": "Slim",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://www.bbc.co.uk/news/articles/cevmgv9g77do?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cevmgv9g77do?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.65,
-      "score": 0.388,
-      "popularity": 0,
-      "recency": 0.736,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Courtney Stodden Is Fighting for Something Bigger Than Jason Alexander’s Apology",
-      "summary": "Jason Alexander has issued a public apology to Courtney Stodden, 14.5 years after a 2012 comedy sketch on Funny or Die's YouTube channel featured him fondling Stodden's breasts with a cell phone when she was 17. The sketch, a parody of \"Dr. Phil,\" has since been taken down. Alexander's apology comes as Stodden continues to advocate for greater accountability in the entertainment industry.",
-      "hashtag": "StoddenFighting",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/courtney-stodden-jason-alexander-apology-seinfeld-child-marriage-1236818847/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg?w=1000&h=563&crop=1"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/courtney-stodden-jason-alexander-apology-seinfeld-child-marriage-1236818847/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.73,
-      "score": 0.384,
-      "popularity": 0,
-      "recency": 0.73,
-      "relevancy": 0.513,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘The Wild Robot’ VFX Studio STIM Sets Canary Islands Operation, Planning to Create More Than 100 Jobs",
-      "summary": "French animation and visual effects company STIM is opening a production center in the Canary Islands, Spain, with plans to create over 100 jobs. The operation, STIM Tenerife, is set to begin in August and aims to employ 60 people by the end of 2026. Located in the Canary Islands Special Zone, a low-tax regime, the new base will increase STIM's production capacity without compromising artistic and technical excellence. Recruitment for high-skilled positions is already underway.",
-      "hashtag": "WildRobot",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
-        "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp?w=990&h=557&crop=1",
-        "https://variety.com/wp-content/uploads/2026/07/coyotevsacme.png?w=1024",
-        "https://variety.com/wp-content/uploads/2026/07/20250220-zec_pablo-hernandez-048.jpg?w=1024"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.86,
-      "score": 0.379,
-      "popularity": 0,
-      "recency": 0.64,
-      "relevancy": 0.62,
+      "recency": 0.846,
+      "relevancy": 0.283,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-      "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine does not play like the original Donkey Kong, but it contains a basic fully functional game. Shigeru Miyamoto, creator of Mario, is reportedly pleased with the design.",
+      "summary": "Lego’s new $200 Donkey Kong arcade machine set lets players guide Mario through endless barrel jumps, though he never reaches the top. The functional set includes a joystick and jump button, with a lever releasing barrels from the classic 1989 Lego design. Shigeru Miyamoto, Mario’s creator, reportedly approves of the nostalgic build. Next, Lego plans to expand its licensed video game sets.",
       "hashtag": "DonkeyKong",
       "badge": "TECH",
       "category": "tech",
@@ -931,17 +932,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 7.36,
-      "score": 0.33,
+      "freshH": 8.36,
+      "score": 0.312,
       "popularity": 0,
-      "recency": 0.427,
-      "relevancy": 0.72,
+      "recency": 0.381,
+      "relevancy": 0.714,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Life-changing MS drug to help people walk now on NHS in England",
-      "summary": "A life-changing multiple sclerosis treatment, fampridine, is now available on the NHS in England, benefiting up to 5,000 people annually. This \"signal booster\" drug helps nerve signals, allowing some individuals to walk independently. Clinical trials showed nearly 40% of users experienced improvements in walking speed and duration. The decision is expected to make a significant difference in the lives of those with multiple sclerosis.",
+      "summary": "Fampridine, the first drug to help some people with multiple sclerosis walk, is now available on the NHS in England. Up to 5,000 people could benefit annually. Clinical trials showed about 40% of users improved walking speed and endurance. The drug, already available in other UK nations, boosts nerve signals impaired by MS.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -962,11 +963,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 8.21,
-      "score": 0.266,
+      "freshH": 9.21,
+      "score": 0.237,
       "popularity": 0,
-      "recency": 0.387,
-      "relevancy": 0.52,
+      "recency": 0.345,
+      "relevancy": 0.464,
       "region": "usa",
       "geo": null
     },
@@ -992,11 +993,42 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 7.14,
-      "score": 0.223,
+      "freshH": 8.14,
+      "score": 0.206,
       "popularity": 0,
-      "recency": 0.438,
+      "recency": 0.39,
       "relevancy": 0.276,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Teenager drops social media addiction lawsuit against Meta",
+      "summary": "A Florida teenager dropped his lawsuit against Meta, claiming social media addiction harmed him, just days before his case was set to go before a Los Angeles jury. The 15-year-old, known as R.K.C., had previously settled similar claims against TikTok, Snapchat, and YouTube. His lawyers cited concerns over a lengthy trial and said he wanted to focus on recovery. Meta called the claims baseless and said it would continue defending against such lawsuits.",
+      "hashtag": "Meta",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 13.78,
+      "score": 0.201,
+      "popularity": 0,
+      "recency": 0.204,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     }
@@ -1004,44 +1036,30 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Live updates: US-Iran strikes; conflict widens with Houthis claiming Red Sea attacks",
-        "summary": "US President Donald Trump has threatened to destroy one bridge or power plant for every ship Iran hits in the Strait of Hormuz, amid escalating tensions between the two countries. Yemen's Iran-backed Houthi rebels have claimed to have struck two Saudi oil tankers in the Red Sea, widening the conflict. The US military has conducted its 12th night of strikes against Iran, aimed at degrading its ability to threaten civilian mariners and commercial vessels. The standoff in the Gulf shows no signs of progress in diplomatic efforts to end the conflict.",
-        "hashtag": "IranWar",
+        "title": "Vet teams believe Jackie was already sick before bald eagle fight captured on video near Big Bear nest",
+        "summary": "Veterinary teams treating Jackie, the Big Bear bald eagle, believe she was already ill before a fight with two younger eagles was captured on video last week. Now in critical condition at the Ojai Raptor Center, Jackie faces severe anemia and kidney inflammation while eating and remaining alert. Tests for lead, rodenticides and zinc are underway, with no metal objects found in X-rays. Further results will determine the next steps as wildlife experts monitor her progress.",
+        "hashtag": "JackieBald",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/23/world/live-news/iran-war-trump",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/snapshot-2026-07-22t00-00-00z-1.png?c=16x9&q=w_800,c_fill",
+        "url": "https://abc7.com/post/bald-eagle-jackie-critical-condition-rescue-big-bear-nest/19556921/",
+        "imageUrl": "https://cdn.abcotvs.com/dip/images/19558171_072226-kabc-big-bear-eagle-fight-tn.jpg?w=1600",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/snapshot-2026-07-22t00-00-00z-1.png?c=16x9&q=w_800,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/uscentralcommand-20260722173643821.jpg?c=16x9&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-22-00-00-2026-07-22.JPG?c=original&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/ap26204149864087.jpg?c=original&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/ebof-liptak-digi-still.jpg?c=16x9&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2269014014-20260722121002626.jpg?c=original&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/260722-n-vo895-1006.JPG?c=original&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/20260722-four-return-iran-0726.jpg?c=original&q=w_1280,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/22830234-trump-dignified-cln-00-00-33-25-still004.jpg?c=16x9&q=w_1280,c_fill",
-          "https://dims.apnews.com/dims4/default/49daae7/2147483647/strip/true/crop/7051x4698+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F20%2F53%2F68d9fb859b37e27e6ac70ffb1da1%2F63a3eb7f6d6f42fc9ccceb6240e3885d",
-          "https://dims.apnews.com/dims4/default/1a3f8e8/2147483647/strip/true/crop/6000x4000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F60%2F08%2F89ad922ab01133fb35e25ff5126b%2F60ef8be545664c55979a8f4b790dbdf6",
-          "https://dims.apnews.com/dims4/default/3a9e7f6/2147483647/strip/true/crop/8640x5760+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fa0%2Fa9%2Fdb2fd013494137c34e3056f38480%2F3202e31f6acb495da99bd4910265195b",
-          "https://dims.apnews.com/dims4/default/05f55e4/2147483647/strip/true/crop/8640x5760+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F02%2Feb%2Fc6aa797b60909ec819f097aecdcf%2F3cce04d9cdbd43368ed5189237bff359",
-          "https://www.aljazeera.com/wp-content/uploads/2026/07/2026-07-23T053028Z_1360469499_RC2FJMAQDHF7_RTRMADP_3_IRAN-CRISIS-1784785110.jpg?resize=1920%2C1440"
+          "https://cdn.abcotvs.com/dip/images/19558171_072226-kabc-big-bear-eagle-fight-tn.jpg?w=1600",
+          "https://cdn.abcotvs.com/dip/images/19543976_072026-kabc-big-bear-eagles.jpg"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/23/world/live-news/iran-war-trump",
-          "https://apnews.com/article/iran-us-hormuz-strait-war-60d46bf8c83c43a8f2268b7b87627c55",
-          "https://www.aljazeera.com/news/liveblog/2026/7/23/iran-war-live-us-launches-new-attacks-houthis-attack-2-saudi-oil-tankers"
+          "https://abc7.com/post/bald-eagle-jackie-critical-condition-rescue-big-bear-nest/19556921/",
+          "https://ktla.com/news/california/new-video-shows-jackie-locked-in-fight-with-2-other-bald-eagles/"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "abc7.com",
         "sources": [
-          "CNN",
-          "AP News",
-          "Al Jazeera"
+          "ABC7 Los Angeles",
+          "KTLA"
         ],
-        "corr": 3,
+        "corr": 2,
         "verified": true,
-        "trend": "iran war",
-        "traffic": 5000,
+        "trend": "jackie bald eagle critical condition",
+        "traffic": 10000,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1052,7 +1070,7 @@
       },
       {
         "title": "Pit found by Quebecer confirmed to be a 390-million-years-old meteorite impact crater",
-        "summary": "A 390-million-year-old meteorite impact crater has been confirmed in Quebec, Canada. The crater, approximately 15 miles wide, was discovered by amateur astronomer Joël Lapointe on Google Maps in 2024. Researchers, led by planetary geologist Gordon Osinski, have verified the crater's existence, with findings set to be presented at the Annual Meeting of the Meteoritical Society in Germany. This significant discovery sheds new light on the region's geological history.",
+        "summary": "A Quebec amateur astronomer’s 2023 Google Maps discovery has been confirmed as a 390-million-year-old meteorite impact crater. The 25-kilometre-wide depression, located 100 kilometres north of Magpie, Que., is one of the largest recent finds of its kind. Researchers plan to present the findings at an upcoming conference in Germany. The find highlights the role of citizen science in uncovering geological history.",
         "hashtag": "MeteoriteCrater",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1091,38 +1109,32 @@
         "geo": "US"
       },
       {
-        "title": "JPO Rejects Nintendo Patent in Palworld Case",
-        "summary": "The Japan Patent Office has rejected Nintendo's patent application 2024-031879 for lack of inventive step, citing prior art from games including ARK, Monster Hunter 4, and Pokémon GO. The patent targeted an \"in-game monster-capturing system\" similar to Palworld's gameplay mechanics. This rejection does not directly impact Nintendo's ongoing lawsuit against Palworld, but it does undermine the company's patent claims. The decision highlights the existence of similar gameplay mechanics in older games, including a 2013 YouTube video of an unofficial Pokémon game.",
-        "hashtag": "NintendoPalworld",
+        "title": "Woman attacked by brown bear while hiking Alaskan trail",
+        "summary": "A woman was attacked by a brown bear while hiking in Bear Valley, Alaska, on July 18, 2026, suffering non-life-threatening injuries. The bear, which emerged from dense alder trees, made brief contact with the hiker before moving on. High winds and inclement weather may have contributed to the surprise encounter. The woman was hospitalized and the bear was tracked and monitored by police using a drone.",
+        "hashtag": "AnchorageAlaska",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://gameluster.com/nintendo-palworld-patent-rejected-jpo/",
-        "imageUrl": "https://gameluster.com/wp-content/uploads/2026/07/japan-patent-office-rejects-nintendo-filing-palworld.webp",
+        "url": "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562",
+        "imageUrl": "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
         "images": [
-          "https://gameluster.com/wp-content/uploads/2026/07/japan-patent-office-rejects-nintendo-filing-palworld.webp",
-          "https://gameluster.com/wp-content/uploads/2026/07/nintendo-headquarters-kyoto-inline.webp",
-          "https://automaton-media.com/en/wp-content/uploads/2026/07/20260722-69903-header.jpg",
-          "https://automaton-media.com/en/wp-content/uploads/2026/07/20260612-449496-header-1.jpg",
-          "https://automaton-media.com/en/wp-content/uploads/2026/07/20260722-69903-001.jpg",
-          "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74-1920-80.jpg",
-          "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74-1200-80.jpg",
-          "https://cdn.mos.cms.futurecdn.net/RoqLfD6yadYYEDdYMP8r74.jpg"
+          "https://i.abcnewsfe.com/a/b2dfe117-72f9-429b-adbf-21257ead7d9a/bear-alaska-ht-jef-260721_1784640814639_hpMain_16x9.jpg?w=1600",
+          "https://www.adn.com/resizer/v2/U3L6AE5IBJBQDOL4C7MJEPHUFU.jpg?smart=true&auth=a5fad3d4fdae4beb53d97c313af0df01f58c1e93c69aa4fcfc69a34350d97b3d&width=1200&height=630"
         ],
         "sourceUrls": [
-          "https://gameluster.com/nintendo-palworld-patent-rejected-jpo/",
-          "https://automaton-media.com/en/news/nintendo-patent-central-to-palworld-lawsuit-stays-rejected-as-jpo-shuts-down-objections-in-unusually-sharp-tongued-notice/",
-          "https://www.gamesradar.com/games/pokemon/you-saved-the-entire-industry-the-13-year-old-video-of-a-pokemon-fan-game-now-cited-in-the-rejection-of-a-nintendo-patent-is-being-celebrated-by-fans-happy-to-see-creative-freedom-win/"
+          "https://abcnews.com/US/woman-attacked-brown-bear-hiking-alaskan-trail/story?id=134947562",
+          "https://www.adn.com/alaska-news/wildlife/2026/07/20/hiker-injured-in-bear-mauling-on-anchorage-trail/",
+          "https://people.com/woman-injured-in-bear-attack-while-hiking-with-friend-and-dogs-12024465"
         ],
-        "sourceName": "gameluster.com",
+        "sourceName": "abcnews.com",
         "sources": [
-          "GameLuster",
-          "AUTOMATON",
-          "GamesRadar+"
+          "ABC News - Breaking News, Latest News and Videos",
+          "Anchorage Daily News",
+          "People.com"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "nintendo palworld lawsuit",
-        "traffic": 1000,
+        "trend": "anchorage alaska hiking bear encounter",
+        "traffic": 5000,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1132,34 +1144,61 @@
         "geo": "US"
       },
       {
-        "title": "Before ‘Jana Nayagan’: When an 18-year-old Vijay walked the halls of Loyola College",
-        "summary": "Actor Vijay, now Tamil Nadu's Chief Minister, is releasing his last film as a solo hero, Jana Nayagan, on July 23, 2026. The movie marks a return to his acting career after 34 years, following his debut in 1992 with Naalaiya Theerpu at the age of 18 while studying at Loyola College in Chennai. Jana Nayagan is a celebration of Vijay's stardom and his evolution as a political personality. Fans are eagerly awaiting the film's release, with a unique promotional campaign featuring a flying LED display creating buzz on social media platforms.",
-        "hashtag": "JanaNayagan",
+        "title": "'Other Mommy' trailer terrorizes moviegoers ahead of 'The Odyssey'",
+        "summary": "A trailer for the upcoming film \"Other Mommy\" has been causing distress among moviegoers ahead of Christopher Nolan's \"The Odyssey.\" The trailer, which features Jessica Chastain in a disturbing conversation with a young girl, played before screenings worldwide over the weekend. Some viewers took to social media to warn others about the trailer's unsettling content. The film is set to release later this year.",
+        "hashtag": "OtherMommy",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.thehindu.com/news/national/tamil-nadu/before-jana-nayagan-when-a-young-vijay-walked-the-halls-of-loyola/article71252283.ece",
-        "imageUrl": "https://th-i.thgim.com/public/incoming/3d29wu/article71252311.ece/alternates/LANDSCAPE_1200/DSC_1864A.JPG",
+        "url": "https://www.washingtonpost.com/entertainment/movies/2026/07/21/trailer-before-odyssey-thats-terrorizing-moviegoers/",
+        "imageUrl": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/5SD5FVWY5UI6PISBBBEDCVSC2A.jpg&w=1440",
         "images": [
-          "https://th-i.thgim.com/public/incoming/3d29wu/article71252311.ece/alternates/LANDSCAPE_1200/DSC_1864A.JPG",
-          "https://c.ndtvimg.com/2026-07/r5o9r61g_vijay_625x300_23_July_26.jpg?im=FeatureCrop,algorithm=dnn,width=1600,height=900",
-          "https://static.toiimg.com/thumb/msid-132556733,width-1280,height-720,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
-          "https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-132556733/132556733.jpg"
+          "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/5SD5FVWY5UI6PISBBBEDCVSC2A.jpg&w=1440",
+          "https://i.abcnewsfe.com/a/bc986a1a-c258-479b-9e06-2a8dc465a3d9/othermommy-universal-ab-260721_1784655619449_hpMain_16x9.jpg?w=1600",
+          "https://i.abcnewsfe.com/a/bc986a1a-c258-479b-9e06-2a8dc465a3d9/othermommy-universal-ab-260721_1784655619449_hpMain.jpg"
         ],
         "sourceUrls": [
-          "https://www.thehindu.com/news/national/tamil-nadu/before-jana-nayagan-when-a-young-vijay-walked-the-halls-of-loyola/article71252283.ece",
-          "https://www.ndtv.com/entertainment/jana-nayagan-review-vijay-in-full-command-in-politically-charged-mass-entertainer-turns-farewell-film-into-fan-festival-3-stars-11809236",
-          "https://timesofindia.indiatimes.com/entertainment/tamil/movies/news/jana-nayagan-promotions-go-airborne-as-cm-vijays-film-unveils-stunning-flying-led-display-ahead-of-july-23-release-watch/articleshow/132556681.cms"
+          "https://www.washingtonpost.com/entertainment/movies/2026/07/21/trailer-before-odyssey-thats-terrorizing-moviegoers/",
+          "https://abcnews.com/GMA/Culture/trailer-jessica-chastains-new-film-left-odyssey-audiences-terrified/story?id=134955295"
         ],
-        "sourceName": "thehindu.com",
+        "sourceName": "washingtonpost.com",
         "sources": [
-          "The Hindu",
-          "NDTV",
-          "The Times of India"
+          "The Washington Post",
+          "ABC News - Breaking News, Latest News and Videos"
         ],
-        "corr": 3,
+        "corr": 2,
         "verified": true,
-        "trend": "jana nayagan",
-        "traffic": 500,
+        "trend": "other mommy horror movie trailer",
+        "traffic": 200,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "cockroach janta party protest",
+        "summary": "Thousands of protesters gathered in New Delhi on Tuesday, demanding better living conditions and an end to the alleged harassment of cockroach vendors by local authorities. The protest, led by the Cockroach Janta Party, drew an estimated 5,000 people. The demonstration remained largely peaceful, with some minor clashes reported between protesters and police. The outcome of the protest remains to be seen, but it is expected to continue into the evening.",
+        "hashtag": "NedNep",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.news18.com/topics/cockroach-janta-party-protest/",
+        "imageUrl": "https://images.news18.com/static_news18/pix/ibnhome/news18/news18-main.png",
+        "images": [
+          "https://images.news18.com/static_news18/pix/ibnhome/news18/news18-main.png"
+        ],
+        "sourceUrls": [
+          "https://www.news18.com/topics/cockroach-janta-party-protest/"
+        ],
+        "sourceName": "news18.com",
+        "sources": [
+          "News18"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "ned vs nep",
+        "traffic": 200,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1170,7 +1209,7 @@
       },
       {
         "title": "'I am still alive': Indian activist on hunger strike for 26 days loses 11kg",
-        "summary": "Indian activist Tenzin Wangchuk, on a 26-day hunger strike, has lost 11kg and was admitted to the ICU at Medanta Hospital in Gurugram. He remains stable, but refuses to call off his strike despite requests from opposition MPs, activists, and celebrities. Health Minister JP Nadda has also urged him to break his fast and join the mainstream. Wangchuk's health concerns have mounted as he endured 21 days in scorching summer heat on a diet of salt and water.",
+        "summary": "Indian activist Sonam Wangchuk, on a 26-day hunger strike protesting exam paper leaks in India, has lost 11kg. The protests have intensified pressure on Prime Minister Narendra Modi’s government, which announced fast-track courts for those responsible. Wangchuk, who ended his strike location presence, remains a symbol for demonstrators demanding systemic reforms. Opposition leaders continue rallying support amid ongoing unrest.",
         "hashtag": "Indian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1191,7 +1230,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.24,
+        "freshH": 2.24,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1201,7 +1240,7 @@
       },
       {
         "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-        "summary": "Ukrainian drones have hit two warehouses belonging to Russia's biggest online retailer, Wildberries, in the past weekend, killing seven workers and injuring dozens in the Tambov region. The attacks, which also damaged goods worth an estimated £750m, are part of Kyiv's strategy to disrupt supplies to the Russian army. Hundreds of Russian sellers who depend on online marketplaces for their livelihoods are now facing financial losses. The war is taking a toll on small and medium-sized businesses in Russia.",
+        "summary": "Ukraine’s drone strikes on Wildberries warehouses in Russia have killed eight workers and disrupted a key online marketplace relied on by thousands of small sellers. Two facilities in Elektrostal and Kotovsk were hit, with damages estimated at £750 million. Kyiv says the attacks target logistics supporting Russia’s military supply chain. Hundreds of Russian entrepreneurs now face lost income as the war’s economic strain spreads closer to home.",
         "hashtag": "UkraineWildberries",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1222,7 +1261,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.6,
+        "freshH": 2.6,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1232,7 +1271,7 @@
       },
       {
         "title": "Blocked by censors, China's animal lovers take fight against abuse offline and overseas",
-        "summary": "Thousands of Chinese animal lovers are taking to social media and billboards in New York to protest the horrific killing of a stray dog and her puppies, despite authorities urging them to withhold comments and scrubbing online posts. The incident sparked outrage in June, with authorities citing the age of four boys involved as a reason for the censorship. The restrictions have only fueled the outcry, with posts about the incident still drawing thousands of comments three weeks later. The movement is now going global, with supporters abroad joining the fight against animal abuse.",
+        "summary": "China’s censors blocked online outrage over the June killing of a stray dog and her puppies by four boys under 14, citing protection of minors. Authorities ordered social media scrubbed and urged silence, but animal rights activists took the fight offline and overseas, including New York billboards. Thousands still post reactions weeks later despite restrictions. Authorities have not disclosed further action on the case.",
         "hashtag": "China",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1253,7 +1292,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.09,
+        "freshH": 3.09,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1262,23 +1301,83 @@
         "geo": null
       }
     ],
-    "politics": [
+    "entertainment": [
       {
-        "title": "Scottish Labour leader Anas Sarwar 'delighted' to accept trade minister job",
-        "summary": "Scottish Labour leader Anas Sarwar is stepping down to become Minister of State for Trade in the UK government, a role he will take up alongside a peerage in the House of Lords. He will leave the Scottish Parliament and his leader role, having led the party since 2021. Sarwar's appointment comes after Scottish Labour won just 17 seats in the May Scottish Parliament elections, a record low for the party. He will work with his successor to serve people in Scotland.",
-        "hashtag": "LabourAnas",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/clyez682nevo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
+        "title": "Venice Film Festival Reveals 2026 Lineup (Updating Live)",
+        "summary": "The Venice Film Festival will unveil its 2026 lineup next year, featuring high-profile international titles. The festival opens with Danny Boyle’s biographical drama Ink, starring Guy Pearce as Rupert Murdoch, premiering September 2. Netflix holds U.S. rights to the film, which competes for the Golden Lion. Closing the event is Giovanni Veronesi’s Dio Ride, an out-of-competition Italian film starring Pierfrancesco Favino.",
+        "hashtag": "FilmFestival",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1248/cpsprodpb/0cc1/live/9a607e10-861b-11f1-8d31-6990a1f805a9.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/ba34/live/2f5dbc80-8531-11f1-926f-c90d1bcfbc84.png"
+          "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Ink.jpg?w=1000&h=563&crop=1"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/clyez682nevo?at_medium=RSS&at_campaign=rss"
+          "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.03,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Daniel Wu on ‘Cold War 1994,’ ‘Twilight of the Warriors’ and Coming Home to Hong Kong: ‘The Craft Still Challenges Me’",
+        "summary": "Daniel Wu stars in Cold War 1994, the third installment of the prequel series set before Hong Kong’s 1997 handover. The film, part of the highest-grossing Hong Kong productions of 2012 and 2016, marks Wu’s return to the franchise alongside Terrance Lau. Wu received the Best from the East Award at the New York Asian Film Festival for his role. The production, praised for its scale and script, reunites three generations of Hong Kong actors.",
+        "hashtag": "ColdWar",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg?w=1000&h=563&crop=1"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.17,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Seinfeld actor apologises to reality star for 'inappropriate' sketch when she was 17",
+        "summary": "Jason Alexander, known for his role in Seinfeld, has apologized to reality star Courtney Stodden for an inappropriate 2012 comedy sketch where he simulated a phone signal on her body. The sketch, which aired on Funny or Die, included crude remarks about her age and consent. Stodden, who was 17 at the time, called the content exploitative and shared it online this week. Alexander acknowledged his actions were wrong and offered his sincere apologies.",
+        "hashtag": "SeinfeldActor",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://www.bbc.co.uk/news/articles/cz64pn37138o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cz64pn37138o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1288,69 +1387,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.02,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Business rates to be cut by 20% for pubs, clubs and music venues in England",
-        "summary": "Business rates for nearly 32,000 pubs, clubs, and music venues in England will be cut by 20% from April, saving the typical pub £1,100 next year. The £100m package is fully funded, with some business reliefs being reviewed. This move is part of the new administration's efforts to ease living costs. The impact of other cost of living measures, including capping bus fares at £2, remains to be seen.",
-        "hashtag": "England",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/business/2026/jul/23/business-rates-to-be-cut-by-20-for-england-pubs-clubs-and-music-venues",
-        "imageUrl": "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=be21b5680c5d972e7ccc40893d4bd0ad",
-        "images": [
-          "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=be21b5680c5d972e7ccc40893d4bd0ad",
-          "https://i.guim.co.uk/img/media/b21e7a33e9753dd638cbf5d0c219ee1fd4a2e1cd/659_0_4269_3415/master/4269.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=fef647ac0b3a7e342c7765969ff3f706"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/business/2026/jul/23/business-rates-to-be-cut-by-20-for-england-pubs-clubs-and-music-venues"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.09,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Ann Widdecombe public memorial to be held later this year, family says",
-        "summary": "A public memorial for Ann Widdecombe will be held later this year, following her private funeral for family and close friends in the coming weeks. The 78-year-old former Conservative minister and Reform UK spokeswoman was found dead with serious head injuries earlier this month. Her family thanked the public for condolences but asked to limit the initial service to those closest to her. The memorial details will be released in due course.",
-        "hashtag": "Widdecombe",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/cddj9edj76eo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f063/live/3e0d49d0-862b-11f1-b47f-49d416ef5858.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cddj9edj76eo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.08,
+        "freshH": 0.24,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1361,8 +1398,39 @@
     ],
     "crisis": [
       {
+        "title": "Government to cut business rates for pubs, clubs and music venues",
+        "summary": "Government to slash business rates for pubs, clubs and music venues in England by 20% from April, saving firms around £1,100 each next year. The £100m package, announced by Andy Burnham, will fund the cut through a review of tax relief on less community-focused businesses. Nearly 32,000 venues are expected to benefit, though the largest live music venues are excluded. Details on eligibility will come at the autumn Budget.",
+        "hashtag": "GovernmentBusiness",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Charity 'heartbroken' as food ruined in break-in",
-        "summary": "A charity warehouse in Middlesbrough was broken into on Tuesday, resulting in 16 tonnes of food being ruined, equivalent to 7,000 meals. Thieves smashed their way in, cutting power to the freezer and chiller units, forcing the charity to discard perishable items. FareShare North East, which distributes food to over 200 community groups, is \"heartbroken\" over the loss. The charity is now assessing the damage and working to recover from the break-in.",
+        "summary": "Charity FareShare North East lost 16 tonnes of food—enough for 7,000 meals—after thieves cut power to its Teesside warehouse freezers on Tuesday. The break-in in Middlesbrough destroyed perishables like milk and meat, forcing disposal of damaged supplies. The charity, which redistributes supermarket donations to over 200 groups, said the loss was heartbreaking for its volunteers. Staff discovered ransacked lockers and open freezer doors when arriving for work.",
         "hashtag": "CharityHeartbroken",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1383,7 +1451,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.06,
+        "freshH": 1.06,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1392,40 +1460,9 @@
         "geo": null
       },
       {
-        "title": "Airport drop-off fees up by a third - here are the priciest",
-        "summary": "Airport drop-off fees have increased by a third on average since last summer, with London's Gatwick airport charging a £10 \"farewell fee\" for 10 minutes. The RAC analysis found 16 of the 20 busiest UK airports have raised their prices, with London City Airport now the most expensive at £8 for five minutes. Birmingham remains the cheapest at £7 for 15 minutes. Passengers can expect to pay more for drop-offs at UK airports as the fees are now a standard part of their business models.",
-        "hashtag": "AirportDrop",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7cb0/live/357c7500-865f-11f1-b976-0b9c15b0ccfc.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.81,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Global Oil Prices Rise as Conflict With Iran Deepens",
+        "title": "Global Oil Price Nears $100 a Barrel as Conflict With Iran Deepens",
         "summary": "The Houthis claimed to have attacked two ships in the Red Sea, and Iran said a third caught fire near the Strait of Hormuz.",
-        "hashtag": "OilPrices",
+        "hashtag": "OilPrice",
         "badge": "GLOBAL",
         "category": "crisis",
         "url": "https://www.nytimes.com/2026/07/23/business/iran-crude-oil-gas-stock-prices.html",
@@ -1444,7 +1481,195 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.31,
+        "freshH": 0.66,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Andy Burnham's plan to collaborate with social media creators",
+        "summary": "Andy Burnham, now prime minister, plans to use social media more casually and collaborate with online creators to reach younger voters. His team will prioritize spontaneous, less polished content on platforms like X, Instagram, and TikTok. This approach mirrors a trend started under the previous government, which began inviting influencers to government events. The shift reflects a broader move away from traditional media toward digital engagement.",
+        "hashtag": "Burnham",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/cy4k74xj9lyo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d8fd/live/e1b05e80-866f-11f1-93cb-95d7eb12ec49.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cy4k74xj9lyo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.38,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "House Adopts $95 Billion G.O.P. Budget for Iran War",
+        "summary": "Republican leaders muscled through resistance in their own ranks to approve the budget blueprint for the war and other measures, but its prospects were far dimmer in the Senate.",
+        "hashtag": "AdoptsBillion",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-budget01-photo-tmpw/22dc-budget01-photo-tmpw-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-budget01-photo-tmpw/22dc-budget01-photo-tmpw-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.36,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "House Passes Defense Bill Amid Iran War Divide",
+        "summary": "Republicans pushed through the $1.15 trillion bill over opposition from Democrats, who said backing it was akin to embracing the war.",
+        "hashtag": "PassesDefense",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23vid-dc-budget--cover-bzlm/23vid-dc-budget--cover-bzlm-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23vid-dc-budget--cover-bzlm/23vid-dc-budget--cover-bzlm-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.43,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Ruiz and Gavi's reward for World Cup win... 150kg of tomatoes",
+        "summary": "Spain midfielders Fabian Ruiz and Gavi received 150kg of tomatoes combined as a reward for winning the World Cup, a tradition in their hometown of Los Palacios y Villafranca. Ruiz, 85kg, and Gavi, 68.5kg, were honored at a town hall reception Wednesday. Former teammate Jesus Navas, who won the 2010 World Cup, also attended. The town, home to fewer than 40,000 people, celebrates its athletes with this unique tribute.",
+        "hashtag": "GaviWorld",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cvg840jye74o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b526/live/da1a9c10-8662-11f1-93cb-95d7eb12ec49.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cvg840jye74o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.96,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Who am I? Guess The Hundred cricket star No 3",
+        "summary": "A new cricket quiz challenges fans to identify a star player in The Hundred tournament. The game, hosted by BBC Sport, drops clues daily, with correct guesses earning up to five points. Today’s featured cricketer remains unnamed until solved. More quizzes will follow throughout the tournament.",
+        "hashtag": "GuessHundred",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/cricket/articles/cqx7w5zqz0xo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a5ea/live/6d6b8550-8510-11f1-926f-c90d1bcfbc84.png"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/cricket/articles/cqx7w5zqz0xo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.75,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "HNK Rijeka tie 'a great opportunity' for Derry",
+        "summary": "Derry City face HNK Rijeka in the Conference League second qualifying round after losing 5-3 on aggregate to CSKA Sofia in the Europa League opener. The tie at the Brandywell was halted by supporter clashes, leading to a 20,000 euro fine and a suspended partial stadium closure for two years. Manager Ryan Lynch called the home crowd’s support \"phenomenal\" despite the defeat. Derry aim to draw in the first leg to level the tie ahead of the return.",
+        "hashtag": "RijekaDerry",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cm2glmg28jqo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cm2glmg28jqo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.76,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1456,7 +1681,7 @@
     "breaking": [
       {
         "title": "Google burning through cash with spiralling AI costs",
-        "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This surge in spending comes as Alphabet's combined quarterly revenue hit $119.8 billion, a 23% increase from last year. The company's stock fell 4% in after-hours trading following the announcement.",
+        "summary": "Google’s parent company Alphabet reported negative free cash flow of $5.9 billion in its latest quarter, the first time in over a decade, as AI infrastructure costs surged. Spending on AI is projected to reach $205 billion this year, up from $190 billion, driven by competition in the tech sector. Revenue rose 23% to $119.8 billion, but stock prices dropped 4% after hours. The company spent $45 billion in Q2, with 60% on servers and 40% on data centers.",
         "hashtag": "GoogleBurning",
         "badge": "BREAKING",
         "category": "breaking",
@@ -1477,37 +1702,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.59,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
-        "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
-        "hashtag": "MilitaryPresence",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.45,
+        "freshH": 1.59,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1537,40 +1732,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.63,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "sports": [
-      {
-        "title": "HNK Rijeka tie 'a great opportunity' for Derry",
-        "summary": "Derry City Football Club has been fined 20,000 euros and given a suspended partial stadium closure for two years after crowd trouble marred their Europa League qualifier against CSKA Sofia. The match was temporarily stopped and police deployed due to rival supporter disturbances. Derry's manager, Lynch, sees the tie as a great opportunity to build ahead of their opening Conference League qualifying game. The team will now focus on regrouping and preparing for their next match.",
-        "hashtag": "RijekaDerry",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cm2glmg28jqo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ab3d/live/3f968250-85b1-11f1-9454-77c2271a5b4a.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cm2glmg28jqo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.76,
+        "freshH": 1.63,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1579,60 +1741,28 @@
         "geo": null
       },
       {
-        "title": "Ex-UFC champion Andrade working as delivery driver",
-        "summary": "Former UFC strawweight champion Jessica Andrade is working as a delivery driver to earn extra money while recovering from injury. The 34-year-old Brazilian has not competed since August, when she injured a shoulder. Andrade has fought 30 times in the UFC, winning 17 of her fights. She plans to use her new skills to supplement her income if needed.",
-        "hashtag": "Andrade",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/mixed-martial-arts/articles/crmr7e7r328o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg",
+        "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
+        "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
+        "hashtag": "MilitaryPresence",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/022e/live/0e190860-8660-11f1-93cb-95d7eb12ec49.jpg"
+          "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/mixed-martial-arts/articles/crmr7e7r328o?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.99,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Weekly sports quiz: Glasgow 2026, The Open and The Hundred",
-        "summary": "A record number of teams, approximately 6%, achieved full marks in last week's sports quiz. The quiz focused on recent events including the Commonwealth Games build-up in Glasgow and the start of The Hundred. This week's quiz is now available, with notifications sent to devices for those who signed up.",
-        "hashtag": "GlasgowOpen",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/articles/c4gv3pvyexlo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7cf0/live/bec36ad0-85ec-11f1-926f-c90d1bcfbc84.png"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/articles/c4gv3pvyexlo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.96,
+        "freshH": 1.45,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1644,7 +1774,7 @@
     "facts": [
       {
         "title": "River levels approach all-time low as drought announcement looms",
-        "summary": "River levels in Wales are approaching all-time lows, with the country experiencing just 5% of its average July rainfall due to back-to-back heatwaves and a dry spring. This has led to significant problems, including fish and wildlife deaths, failing crops, and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, as the region moves towards an environmental drought. The prolonged dry weather is affecting north and south-east Wales.",
+        "summary": "River levels in Wales are nearing record lows as drought conditions intensify, with July rainfall at just 5% of average following prolonged dry weather. Natural Resources Wales is set to announce an official environmental drought for parts of the country later today. The crisis has already damaged crops, stressed livestock, and killed fish due to critically low river flows. Authorities warn the situation will worsen without significant rainfall.",
         "hashtag": "RiverLevels",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1671,7 +1801,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.66,
+        "freshH": 3.66,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1681,7 +1811,7 @@
       },
       {
         "title": "Butterfly city blooms in shadow of office blocks",
-        "summary": "In Hull city centre, a \"butterfly city\" has been created with ten species of butterflies spotted in a mini meadow near St Stephen's Shopping Centre. The site, owned by the Land Registry, features grass and wild flowers that have been allowed to grow, providing a habitat for the butterflies. Small skipper butterflies have been breeding in the meadow, a rare occurrence in a city. The meadow was established in 2023 as part of a scheme to encourage city centre wildlife.",
+        "summary": "A mini meadow in Hull city centre has become a haven for ten butterfly species, including the rare small skipper. The project, launched in 2023 near St Stephen’s Shopping Centre, transformed a Land Registry site by allowing grass and wildflowers to grow undisturbed. Wildlife experts say the meadow supports breeding butterflies by providing essential caterpillar food plants. Officials plan to expand the scheme to boost urban biodiversity further.",
         "hashtag": "ButterflyCity",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1704,7 +1834,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.8,
+        "freshH": 3.8,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1714,7 +1844,7 @@
       },
       {
         "title": "Olympic Mountain Glory",
-        "summary": "The Olympic Mountains in northwestern Washington state stand at over 7,000 feet, their rugged terrain carved by deep river valleys. Located within Olympic National Park, the mountains' imposing presence is a result of layers of basalt from undersea eruptions that formed between 55 and 15 million years ago. The park's diverse landscape also includes temperate rainforests, wild coastlines, and blue waters. As the region remains a relatively remote bastion of wilderness, conservation efforts continue to protect its unique ecosystem.",
+        "summary": "NASA’s Earth Observatory captured a striking image on July 23, 2026, showing the rugged Olympic Mountains in northwestern Washington state from the International Space Station. The composite photo highlights the peninsula’s deep river valleys, alpine glaciers, and temperate rainforests surrounded by blue waters and islands. Olympic National Park covers much of the mountainous core, with the rest managed as national forest, state land, or tribal territory. The mountains formed from ancient undersea volcanic activity and sediment deposits between 55 and 15 million years ago.",
         "hashtag": "MountainGlory",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1738,7 +1868,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.84,
+        "freshH": 4.84,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1750,7 +1880,7 @@
     "tech": [
       {
         "title": "ServiceNow bets $40 million on Indian banking software specialist to expand its financial services push",
-        "summary": "ServiceNow has invested $40 million in Indian banking software specialist BusinessNext, valuing the company at $700 million and taking a 5% stake. This deal expands their partnership in AI for financial services and gives BusinessNext access to ServiceNow's global sales network. BusinessNext serves over 70 banks across India, Southeast Asia, the Middle East, and the US, with half of its revenue coming from outside India. The partnership is expected to drive growth for BusinessNext in overseas markets.",
+        "summary": "ServiceNow invested $40 million in BusinessNext, an Indian banking software firm valued at $700 million, securing a 5% stake. The Noida-based company, serving over 70 banks globally, reported $32 million in revenue last year. ServiceNow’s deal expands its financial services push, leveraging BusinessNext’s AI solutions and global client base. The partnership aims to accelerate growth in overseas markets.",
         "hashtag": "Indian",
         "badge": "TECH",
         "category": "tech",
@@ -1770,7 +1900,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.71,
+        "freshH": 2.71,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1780,7 +1910,7 @@
       },
       {
         "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-        "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine does not play like the original Donkey Kong, but it contains a basic fully functional game. Shigeru Miyamoto, creator of Mario, is reportedly pleased with the design.",
+        "summary": "Lego’s new $200 Donkey Kong arcade machine set lets players guide Mario through endless barrel jumps, though he never reaches the top. The functional set includes a joystick and jump button, with a lever releasing barrels from the classic 1989 Lego design. Shigeru Miyamoto, Mario’s creator, reportedly approves of the nostalgic build. Next, Lego plans to expand its licensed video game sets.",
         "hashtag": "DonkeyKong",
         "badge": "TECH",
         "category": "tech",
@@ -1805,7 +1935,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 7.36,
+        "freshH": 8.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1835,7 +1965,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 7.14,
+        "freshH": 8.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1847,7 +1977,7 @@
     "health": [
       {
         "title": "Alarm over hospital lung admissions for children in England’s poorest postcodes",
-        "summary": "In England's poorest postcodes, children are 40% more likely to be admitted to hospital for respiratory infections. According to NHS England data, 1,941 out of every 100,000 children in the most deprived areas were hospitalized for respiratory illnesses in 2024/25, a 41% higher rate than in the least deprived areas. Experts are raising concerns about the impact of air pollution on young people's health. Further analysis is needed to determine the exact cause of these hospital admissions.",
+        "summary": "Children in England’s poorest areas were 40% more likely to be hospitalized for respiratory infections in 2024/25, with 1,941 admissions per 100,000 compared to 1,380 in wealthier areas. The analysis, based on NHS England data, highlights a stark disparity linked to deprivation. Experts warn air pollution may play a role, though the data doesn’t confirm causes. Local health services are urged to address the gap amid rising concerns.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -1855,7 +1985,7 @@
         "imageUrl": "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=c5ecdd16bd0225a79dfafe65e80fc4a6",
         "images": [
           "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=c5ecdd16bd0225a79dfafe65e80fc4a6",
-          "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/403_0_4667_3733/master/4667.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c2793b195f621a9bc45d30ae836dc107",
+          "https://i.guim.co.uk/img/media/1255ecb854673b15bea0df6d0a85baa7dd7e2ee9/0_854_3600_2879/master/3600.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=76352d08217fe5d473d272c6bbc0b30a",
           "https://i.guim.co.uk/img/media/e55baf801af0b61df884721b24bbf3ec5a23c848/0_0_3540_2832/master/3540.jpg?width=445&dpr=1&s=none&crop=none"
         ],
         "sourceUrls": [
@@ -1869,7 +1999,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.85,
+        "freshH": 3.85,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1879,7 +2009,7 @@
       },
       {
         "title": "Life-changing MS drug to help people walk now on NHS in England",
-        "summary": "A life-changing multiple sclerosis treatment, fampridine, is now available on the NHS in England, benefiting up to 5,000 people annually. This \"signal booster\" drug helps nerve signals, allowing some individuals to walk independently. Clinical trials showed nearly 40% of users experienced improvements in walking speed and duration. The decision is expected to make a significant difference in the lives of those with multiple sclerosis.",
+        "summary": "Fampridine, the first drug to help some people with multiple sclerosis walk, is now available on the NHS in England. Up to 5,000 people could benefit annually. Clinical trials showed about 40% of users improved walking speed and endurance. The drug, already available in other UK nations, boosts nerve signals impaired by MS.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -1900,30 +2030,28 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 8.21,
+        "freshH": 9.21,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "entertainment": [
+      },
       {
-        "title": "Fatboy Slim helps to save 'lifeblood' music venue",
-        "summary": "Fatboy Slim's Maverick Ventures Partners has purchased its tenth music venue, making it the largest landlord of dedicated music venues in the country. This move comes as more than half of the UK's grassroots venues made no profit last year, with 30 closing and 6,000 jobs lost. The purchase secures the future of The Pipeline in Brighton, a key space for musicians to develop their craft. The venue's owner, Thomas Evrenos, is relieved, saying it will allow him to continue running the venue without fear of increased rent.",
-        "hashtag": "Slim",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://www.bbc.co.uk/news/articles/cevmgv9g77do?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg",
+        "title": "Teenager drops social media addiction lawsuit against Meta",
+        "summary": "A Florida teenager dropped his lawsuit against Meta, claiming social media addiction harmed him, just days before his case was set to go before a Los Angeles jury. The 15-year-old, known as R.K.C., had previously settled similar claims against TikTok, Snapchat, and YouTube. His lawyers cited concerns over a lengthy trial and said he wanted to focus on recovery. Meta called the claims baseless and said it would continue defending against such lawsuits.",
+        "hashtag": "Meta",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e93d/live/b1460240-7396-11f1-b38b-37f255239404.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c5b6/live/950bd730-85fc-11f1-b3ca-7f13da683e7e.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cevmgv9g77do?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/c5yrdg4q9vgo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1933,71 +2061,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.65,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Courtney Stodden Is Fighting for Something Bigger Than Jason Alexander’s Apology",
-        "summary": "Jason Alexander has issued a public apology to Courtney Stodden, 14.5 years after a 2012 comedy sketch on Funny or Die's YouTube channel featured him fondling Stodden's breasts with a cell phone when she was 17. The sketch, a parody of \"Dr. Phil,\" has since been taken down. Alexander's apology comes as Stodden continues to advocate for greater accountability in the entertainment industry.",
-        "hashtag": "StoddenFighting",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/courtney-stodden-jason-alexander-apology-seinfeld-child-marriage-1236818847/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/CourtneyStoddenLead.jpg?w=1000&h=563&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/courtney-stodden-jason-alexander-apology-seinfeld-child-marriage-1236818847/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.73,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘The Wild Robot’ VFX Studio STIM Sets Canary Islands Operation, Planning to Create More Than 100 Jobs",
-        "summary": "French animation and visual effects company STIM is opening a production center in the Canary Islands, Spain, with plans to create over 100 jobs. The operation, STIM Tenerife, is set to begin in August and aims to employ 60 people by the end of 2026. Located in the Canary Islands Special Zone, a low-tax regime, the new base will increase STIM's production capacity without compromising artistic and technical excellence. Recruitment for high-skilled positions is already underway.",
-        "hashtag": "WildRobot",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
-          "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp?w=990&h=557&crop=1",
-          "https://variety.com/wp-content/uploads/2026/07/coyotevsacme.png?w=1024",
-          "https://variety.com/wp-content/uploads/2026/07/20250220-zec_pablo-hernandez-048.jpg?w=1024"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.86,
+        "freshH": 13.78,
         "score": null,
         "popularity": null,
         "recency": null,
