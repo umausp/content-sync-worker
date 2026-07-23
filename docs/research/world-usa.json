@@ -1,245 +1,290 @@
 {
-  "generatedAt": "2026-07-23T18:52:32.780Z",
+  "generatedAt": "2026-07-23T19:51:30.758Z",
   "region": "usa",
-  "count": 28,
+  "count": 32,
   "categoryCounts": {
-    "offbeat": 6,
-    "tech": 2,
-    "politics": 3,
+    "offbeat": 8,
     "sports": 3,
-    "entertainment": 3,
-    "crisis": 2,
-    "breaking": 3,
+    "politics": 3,
     "facts": 3,
+    "crisis": 3,
+    "entertainment": 3,
+    "tech": 3,
+    "breaking": 3,
     "health": 3
   },
   "stories": [
     {
-      "title": "Kylie Kelce Calls Taylor Swift ‘Family’ After Wedding to Travis Kelce, and Says She’s Been ‘For Quite Some Time’",
-      "summary": "Kylie Kelce has referred to Taylor Swift as \"family\" after her brother-in-law Travis Kelce's wedding to the singer, stating she's been part of the family for quite some time. The ceremony took place on July 3 at New York's Madison Square Garden. Kelce expressed her happiness for the couple, urging fans to respect their privacy and seek details directly from Taylor and Travis.",
-      "hashtag": "KylieKelce",
+      "title": "Social Security payments will look a bit different in August 2026",
+      "summary": "Social Security recipients will receive two checks in July instead of one due to the August 1 payment date falling on a Saturday. As a result, no checks will be issued in August, with the next payment scheduled for September 1. This adjustment affects Supplemental Security Income recipients, while those receiving Social Security benefits based on their date of birth will follow a separate payment schedule.",
+      "hashtag": "SupplementalSecurity",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.today.com/popculture/news/kylie-kelce-calls-taylor-swift-family-after-travis-kelce-wedding-rcna588869",
-      "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1200x630_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
+      "url": "https://www.nbcchicago.com/news/local/social-security-payments-will-look-a-bit-different-in-august-2026/3964921/",
+      "imageUrl": "https://media.nbcchicago.com/2025/04/GettyImages-1059309942.jpg?quality=85&strip=all&resize=1200%2C675",
       "images": [
-        "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1200x630_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
-        "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
-        "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x512_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg"
+        "https://media.nbcchicago.com/2025/04/GettyImages-1059309942.jpg?quality=85&strip=all&resize=1200%2C675",
+        "https://media.nbcchicago.com/2019/09/OTT-Chicago.png?fit=1920%2C1080&quality=85&strip=all&w=400&h=44&crop=1",
+        "https://media.nbcchicago.com/2026/03/GettyImages-2235626532.jpg?quality=85&strip=all",
+        "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Social Security",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
+      ],
       "entities": [
-        "Kylie Kelce Calls Taylor",
-        "Swift",
-        "Family",
-        "Wedding",
-        "Travis Kelce",
-        "Been"
+        "Social Security",
+        "August"
       ],
       "sourceUrls": [
-        "https://www.today.com/popculture/news/kylie-kelce-calls-taylor-swift-family-after-travis-kelce-wedding-rcna588869",
-        "https://people.com/kylie-kelce-congratulates-taylor-swift-and-travis-kelce-on-their-wedding-12025137"
+        "https://www.nbcchicago.com/news/local/social-security-payments-will-look-a-bit-different-in-august-2026/3964921/",
+        "https://www.al.com/news/2026/07/social-security-payment-change-why-some-beneficiaries-will-get-2-checks-this-month.html",
+        "https://www.ctinsider.com/news/article/social-security-checks-july-2026-ct-22355780.php"
       ],
-      "sourceName": "today.com",
+      "sourceName": "nbcchicago.com",
       "sources": [
-        "TODAY.com",
-        "People.com"
+        "NBC 5 Chicago",
+        "AL.com",
+        "CT Insider"
       ],
-      "corr": 2,
+      "corr": 3,
       "verified": true,
-      "trend": "kylie kelce taylor swift relationship",
+      "trend": "supplemental security income",
       "traffic": 2000,
       "freshH": 1,
-      "score": 0.697,
-      "popularity": 0.443,
+      "score": 0.747,
+      "popularity": 0.526,
       "recency": 0.891,
-      "relevancy": 0.834,
+      "relevancy": 0.9,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "‘Resident Evil’ Trailer: Zach Cregger’s Take On Iconic Vidgame Is Coming For You (And Comic-Con)",
-      "summary": "A new trailer has been released for the upcoming Resident Evil film, directed by Zach Cregger, which is set to hit theaters on September 18. The movie follows medical courier Bryan, played by Austin Abrams, as he navigates a nightmarish situation after a series of unfortunate events, including a car accident and a delivery gone wrong. The film promises to deliver a fresh spin on the iconic video game franchise with Easter eggs and a survival horror tone.",
-      "hashtag": "ResidentEvil",
+      "title": "Appeals court blocks Trump administration from revoking TPS for Haitians until at least Monday",
+      "summary": "A federal appeals court has temporarily blocked the Trump administration from revoking deportation protections for over 300,000 Haitian migrants living in the US, at least until Monday, July 27. The court's decision comes after a lower court order postponed the TPS revocations while legal challenges continued. The administration's request to strip TPS was denied, allowing Haitian migrants to remain in the US for now.",
+      "hashtag": "TpsHaiti",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://deadline.com/2026/07/resident-evil-trailer-zach-cregger-austin-abrams-1236876910/",
-      "imageUrl": "https://deadline.com/wp-content/uploads/2026/04/DF-07602_r.jpg?w=1024",
+      "url": "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/",
+      "imageUrl": "https://thehill.com/wp-content/uploads/sites/2/2026/06/6a3ef380783c51.46873517-e1784816274370.jpeg?w=1280",
       "images": [
-        "https://deadline.com/wp-content/uploads/2026/04/DF-07602_r.jpg?w=1024",
-        "https://www.engadget.com/img/gallery/the-latest-resident-evil-movie-trailer-has-lots-of-fun-nods-to-the-games/l-intro-1784817880.jpg",
-        "https://www.engadget.com/img/gallery/the-latest-resident-evil-movie-trailer-has-lots-of-fun-nods-to-the-games/intro-1784817880.jpg",
-        "https://img.pastemagazine.com/wp-content/avuploads/2026/07/23095327/MixCollage-23-Jul-2026-09-51-AM-6587.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+        "https://thehill.com/wp-content/uploads/sites/2/2026/06/6a3ef380783c51.46873517-e1784816274370.jpeg?w=1280",
+        "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/People%20hold%20hands%20and%20a%20Haitian%20flag%20during%20a%20vigil%20at%20the%20Little%20Haiti%20Cultural%20Complex%20after%20a%20federal%20judge%20blocked%20the%20Trump%20administration%20from%20ending%20temporary%20immigration%20status,%20or%20TPS,%20for%20Haitians,%20Feb.%203,%202026,%20in%20North%20Miami.",
+        "https://i.cbc.ca/ais/4f60cb6c-cdf2-44a6-a087-dbb1d0f555dc,1784415506877/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C4032%2C2268%29%3BResize%3D620",
+        "https://i.cbc.ca/ais/b0d0d0e1-f81f-43fb-b70f-86621dbe8ef9,1784414035796/full/max/0/default.jpg?im=Crop%2Crect%3D%28216%2C145%2C5136%2C3067%29%3B",
+        "https://i.cbc.ca/ais/ab54a8d8-23f2-4caa-975e-4a6fe649f340,1784414595359/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1079%29%3B",
+        "https://i.cbc.ca/ais/3ace80ec-8159-421e-b1d1-dc0196ca053b,1784414566651/full/max/0/default.jpg?im=Crop%2Crect%3D%28354%2C184%2C3677%2C2060%29%3B",
+        "https://i.cbc.ca/ais/055cada1-c5e0-4f76-89a6-f4b9a35fa799,1781783017468/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3BResize%3D620",
+        "https://i.cbc.ca/ais/450a8fa4-99d3-45bc-86e5-8b991283f86b,1784414952268/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C5712%2C3213%29%3B",
+        "https://i.cbc.ca/ais/f6885df5-544b-4891-a270-24f731590bde,1784415258930/full/max/0/default.jpg?im=Crop%2Crect%3D%28313%2C95%2C5120%2C2997%29%3B",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
       ],
       "entityShots": [
         {
-          "name": "Trailer",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm"
-        },
-        {
-          "name": "Zach Cregger",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+          "name": "Appeals",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
       ],
       "entities": [
-        "Resident Evil",
-        "Trailer",
-        "Zach Cregger",
-        "Take On Iconic Vidgame",
-        "Is Coming For You",
-        "Comic-Con"
+        "Appeals",
+        "Trump",
+        "Haitians",
+        "Monday"
       ],
       "sourceUrls": [
-        "https://deadline.com/2026/07/resident-evil-trailer-zach-cregger-austin-abrams-1236876910/",
-        "https://www.engadget.com/2221678/new-resident-evil-movie-trailer-fun-nods-to-games/",
-        "https://www.avclub.com/resident-evil-trailer-zach-cregger-austin-abrams"
+        "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/",
+        "https://www.cbc.ca/news/world/haitians-temporary-protected-status-trump-supreme-court-9.7275579"
       ],
-      "sourceName": "deadline.com",
+      "sourceName": "thehill.com",
       "sources": [
-        "Deadline",
-        "Engadget",
-        "A.V. Club"
+        "The Hill",
+        "CBC"
       ],
-      "corr": 3,
+      "corr": 2,
       "verified": true,
-      "trend": "resident evil 2026",
-      "traffic": 500,
+      "trend": "tps haiti",
+      "traffic": 1000,
       "freshH": 1,
-      "score": 0.682,
-      "popularity": 0.301,
+      "score": 0.679,
+      "popularity": 0.293,
       "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Robin Williams defended Jumanji child stars Bradley Pierce and Kirsten Dunst on set",
-      "summary": "Robin Williams defended child stars Bradley Pierce and Kirsten Dunst on the set of Jumanji in 1995, intervening when producers attempted to make them work illegal overtime. The producers had demanded the children work beyond their permitted hours, despite Pierce struggling with a scene due to water and extensive makeup. Williams' actions ensured the children's safety and well-being, a testament to his protective nature and kindness.",
-      "hashtag": "BradleyPierce",
+      "title": "WATCH: Trump expands pledge aimed at shielding consumers from energy cost hikes due to data centers",
+      "summary": "President Donald Trump has expanded his pledge to shield US consumers from higher utility bills caused by data centers, with 23 governors signing on to the voluntary commitment. The pledge aims to protect households from absorbing costs tied to data centers, which are powering artificial intelligence and expanding rapidly across the country. Trump's Ratepayer Protection Pledge now includes nearly 200 stakeholders, with the goal of lowering electricity costs for consumers in the long term.",
+      "hashtag": "RatepayerProtection",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.the-independent.com/arts-entertainment/films/news/robin-williams-jumanji-children-kirsten-dunst-b3020105.html",
-      "imageUrl": "https://static.the-independent.com/2026/07/23/9/46/Jumanji-Movie.jpg?trim=85,0,85,0&width=1200&height=800&crop=1200:800",
+      "url": "https://www.pbs.org/newshour/politics/watch-trump-expands-pledge-aimed-at-shielding-consumers-from-energy-cost-hikes-due-to-data-centers",
+      "imageUrl": "https://d3i6fh83elv35t.cloudfront.net/static/2026/07/2026-07-23T185208Z_473769510_RC2UJMAX5S8O_RTRMADP_3_USA-TRUMP-1024x683.jpg",
       "images": [
-        "https://static.the-independent.com/2026/07/23/9/46/Jumanji-Movie.jpg?trim=85,0,85,0&width=1200&height=800&crop=1200:800",
-        "https://static.the-independent.com/2026/07/23/9/11/Bradley-Pierce-Robin-Williams.jpg",
-        "https://images.inkl.com/s3/article/lead_image/23614356/GettyImages-71616567.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Robin Williams",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg"
-        },
-        {
-          "name": "Bradley Pierce",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "Robin Williams",
-        "Jumanji",
-        "Bradley Pierce",
-        "Kirsten Dunst"
-      ],
-      "sourceUrls": [
-        "https://www.the-independent.com/arts-entertainment/films/news/robin-williams-jumanji-children-kirsten-dunst-b3020105.html",
-        "https://www.inkl.com/news/robin-williams-pulled-producers-aside-to-defend-jumanji-child-stars"
-      ],
-      "sourceName": "the-independent.com",
-      "sources": [
-        "The Independent",
-        "inkl"
-      ],
-      "corr": 2,
-      "verified": true,
-      "trend": "bradley pierce on robin williams",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.636,
-      "popularity": 0.218,
-      "recency": 0.891,
-      "relevancy": 0.95,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Patreon is laying off 20 percent of workers",
-      "summary": "Patreon is laying off 20 percent of its workers, approximately 93 employees, as the company adapts to the impact of artificial intelligence on its operations. This move follows a previous layoff of 17 percent in 2022 and the closure of offices in Dublin and Berlin. The company's CEO, Jack Conte, has emphasized Patreon's commitment to embracing AI tools to continue serving creators.",
-      "hashtag": "PatreonLaying",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.theverge.com/tech/970211/patreon-layoffs-ai",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-      "images": [
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-      ],
-      "entityShots": [
-        {
-          "name": "Media",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-      ],
-      "entities": [
-        "Patreon",
-        "Media",
-        "Patreon CEO Jack Conte"
-      ],
-      "sourceUrls": [
-        "https://www.theverge.com/tech/970211/patreon-layoffs-ai"
-      ],
-      "sourceName": "theverge.com",
-      "sources": [
-        "theverge.com"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.53,
-      "score": 0.469,
-      "popularity": 0,
-      "recency": 0.94,
-      "relevancy": 0.558,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Burnham pauses early prison release scheme",
-      "summary": "Andy Burnham has paused a plan to release thousands of prisoners early in England and Wales after strong criticism from victims' families. The scheme, set to start in September under the Sentencing Act, would have let some offenders out after serving a third of their sentence instead of half. The government now plans a review to address concerns and ensure public safety before any changes proceed.",
-      "hashtag": "BurnhamPauses",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/cx2lpjw516eo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg"
+        "https://d3i6fh83elv35t.cloudfront.net/static/2026/07/2026-07-23T185208Z_473769510_RC2UJMAX5S8O_RTRMADP_3_USA-TRUMP-1024x683.jpg",
+        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91026860007-2287356103.jpg?crop=3380,1901,x0,y176&width=1600&height=800&format=pjpg&auto=webp"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Burnham"
+        "Trump"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cx2lpjw516eo?at_medium=RSS&at_campaign=rss"
+        "https://www.pbs.org/newshour/politics/watch-trump-expands-pledge-aimed-at-shielding-consumers-from-energy-cost-hikes-due-to-data-centers",
+        "https://www.bloomberg.com/news/articles/2026-07-23/trump-expands-ai-data-center-pledge-in-bid-to-ease-power-costs",
+        "https://www.usatoday.com/story/news/politics/2026/07/23/trump-data-centers-governors-ratepayers-protection-pledge/91013327007/"
+      ],
+      "sourceName": "pbs.org",
+      "sources": [
+        "PBS",
+        "Bloomberg",
+        "USA Today"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "ratepayer protection pledge",
+      "traffic": 1000,
+      "freshH": 1,
+      "score": 0.662,
+      "popularity": 0.376,
+      "recency": 0.891,
+      "relevancy": 0.8,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Indiana Fever asked to 'keep quiet' about 2025 harassment firing, former player says",
+      "summary": "A former Indiana Fever player has alleged that the team fired a male employee for sexual harassment in 2025 and instructed players to keep quiet about the incident. The player, Brianna Turner, made the claim on social media, stating that sexism, misogyny, homophobia, and racism are all issues that need to be addressed. The Indiana Fever have since confirmed that protecting their players and employees is their top priority, but have not commented on the specific allegations.",
+      "hashtag": "BriannaTurner",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.usatoday.com/story/sports/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-firing-player-allegation/91021690007/",
+      "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/05/01/SVOL/89893257007-1500658754.jpeg?crop=5398,3037,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+      "images": [
+        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/05/01/SVOL/89893257007-1500658754.jpeg?crop=5398,3037,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "https://www.indystar.com/gcdn/authoring/authoring-images/2025/09/21/PIND/86284645007-usatsi-27140462.jpg?crop=8639,4860,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "https://www.indystar.com/gcdn/authoring/authoring-images/2026/07/23/PIND/91017599007-072226-fever-sun-gs-019.jpg?crop=3570,2008,x0,y600&width=660&height=372&format=pjpg&auto=webp",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Indiana Fever",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+      ],
+      "entities": [
+        "Indiana Fever"
+      ],
+      "sourceUrls": [
+        "https://www.usatoday.com/story/sports/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-firing-player-allegation/91021690007/",
+        "https://www.indystar.com/story/sports/basketball/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-claim-former-player-brianna-turner-allegedly-told-to-keep-quiet/91018905007/"
+      ],
+      "sourceName": "usatoday.com",
+      "sources": [
+        "USA Today",
+        "IndyStar"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "brianna turner",
+      "traffic": 1000,
+      "freshH": 1,
+      "score": 0.654,
+      "popularity": 0.293,
+      "recency": 0.891,
+      "relevancy": 0.9,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "'A Toxic Love Story' is the wildest true crime doc Netflix has released in years",
+      "summary": "A new Netflix true crime documentary, A Toxic Love Story, has been released, following a series of bizarre and shocking events. The documentary, directed by Alexandra Lacey, centers around Michelle Hadley, who shares her side of the story, and features three major reveals that challenge initial perceptions. The case, which does not result in any fatalities, is considered one of the most unusual in a string of recent Netflix true crime documentaries.",
+      "hashtag": "ToxicLove",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://mashable.com/entertainment/a-toxic-love-story-netflix",
+      "imageUrl": "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x675.v1784670025.jpg",
+      "images": [
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x675.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x900.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x1200.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/defaults/fallback-thumbnail.fill.size_1600x900.1.png",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1248x702.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-1.fill.size_2000x1125.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-2.fill.size_2000x1125.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-3.fill.size_2000x1125.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-4.fill.size_2000x1125.v1784670025.jpg",
+        "https://helios-i.mashable.com/imagery/defaults/fallback-thumbnail.fill.size_100x100.1.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Toxic Love Story",
+        "Netflix"
+      ],
+      "sourceUrls": [
+        "https://mashable.com/entertainment/a-toxic-love-story-netflix"
+      ],
+      "sourceName": "mashable.com",
+      "sources": [
+        "Mashable"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "a toxic love story netflix",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.522,
+      "popularity": 0.075,
+      "recency": 0.891,
+      "relevancy": 0.72,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Ready to 'conquer Earth' - Joshua embraces comeback spotlight",
+      "summary": "Anthony Joshua returns to the ring Saturday in Jeddah, Saudi Arabia, facing Albanian heavyweight Kristian Prenga in his first fight since a December car crash in Nigeria killed two team members. A win would set up an all-British heavyweight showdown with Tyson Fury, pending Fury’s own fight Friday in Thailand. Joshua called his comeback a step toward “conquering Earth” before a packed crowd in Jeddah.",
+      "hashtag": "EarthJoshua",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/boxing/articles/cqx79102n4xo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/953/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Joshua",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+      ],
+      "entities": [
+        "Ready",
+        "Earth",
+        "Joshua",
+        "Anthony Joshua",
+        "Albanian",
+        "Saturday"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/boxing/articles/cqx79102n4xo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -249,17 +294,437 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.58,
+      "freshH": 0.53,
+      "score": 0.484,
+      "popularity": 0,
+      "recency": 0.941,
+      "relevancy": 0.62,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "France evacuates 20,000 as wildfires spread in south-west",
+      "summary": "France evacuated 20,000 people in the Gironde region on Tuesday as wildfires scorched 3,400 hectares near the Bay of Arcachon. Authorities moved 8,800 residents and tourists from campsites and villages, with no injuries reported. Firefighters warned conditions would worsen by evening as temperatures rose and winds strengthened.",
+      "hashtag": "FranceEvacuates",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+      ],
+      "entityShots": [
+        {
+          "name": "France",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
+        },
+        {
+          "name": "Most",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200"
+        },
+        {
+          "name": "Arcachon Bay",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+      ],
+      "entities": [
+        "France",
+        "Most",
+        "Arcachon Bay",
+        "France's Gironde"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.56,
+      "score": 0.482,
+      "popularity": 0,
+      "recency": 0.937,
+      "relevancy": 0.617,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Burnham says 20% business rates cut for English pubs 'a first step'",
+      "summary": "New Prime Minister Andy Burnham has announced a 20% cut to business rates for English pubs, social clubs, and live music venues, set to take effect from April, with an estimated annual savings of £1,100 per firm, and a total cost of £100m. The move is expected to benefit nearly 32,000 venues, but will not apply to the very largest live music venues or nightclubs. The government will review tax relief on businesses like vape shops to fund the cut.",
+      "hashtag": "English",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
+        "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Burnham",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
+      ],
+      "entities": [
+        "Burnham",
+        "English",
+        "Some",
+        "April"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.31,
+      "score": 0.48,
+      "popularity": 0,
+      "recency": 0.965,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Look for NASA+ Now Streaming on Amazon Fire TV",
+      "summary": "NASA has expanded its streaming platform, NASA+, to Amazon Fire TV Channels, allowing customers to access its content through Fire TV devices and compatible Alexa-enabled devices. The platform, which remains available for free on the NASA app and website, will feature a range of programming including science mission launches and the first crewed mission to the Moon under the Artemis program. This move aligns with NASA's mission to share its story of space exploration with the broadest possible audience.",
+      "hashtag": "NowStreaming",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.nasa.gov/news-release/look-for-nasa-now-streaming-on-amazon-fire-tv/",
+      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg?w=785",
+      "images": [
+        "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg?w=785",
+        "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG",
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Look",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG"
+        },
+        {
+          "name": "NASA",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG",
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+      ],
+      "entities": [
+        "Look",
+        "NASA",
+        "Now Streaming",
+        "Amazon Fire TV",
+        "Continuing",
+        "On Thursday"
+      ],
+      "sourceUrls": [
+        "https://www.nasa.gov/news-release/look-for-nasa-now-streaming-on-amazon-fire-tv/"
+      ],
+      "sourceName": "NASA",
+      "sources": [
+        "NASA"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.67,
+      "score": 0.479,
+      "popularity": 0,
+      "recency": 0.926,
+      "relevancy": 0.62,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Help for electricity bills as crude oil hits $100",
+      "summary": "Alderney will apply £1.2 million in public funds directly to household and business electricity bills to offset rising costs after crude oil hit $100 a barrel. The temporary subsidy targets diesel-generated power, the island’s sole source since it lacks a French cable link. The committee stressed this measure supports, not replaces, ongoing efforts to secure cheaper fuel contracts.",
+      "hashtag": "HelpElectricity",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c4gd9kypkjlo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Help",
+        "States",
+        "Guernsey",
+        "Alderney Electricity"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c4gd9kypkjlo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.23,
+      "score": 0.468,
+      "popularity": 0,
+      "recency": 0.974,
+      "relevancy": 0.508,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "LISTEN: How Travis Scott is Ascending to Culture Moguldom Through Music, Movies, Retail, Business and More",
+      "summary": "Travis Scott is emerging as a culture mogul, following a record-setting music tour and a high-profile role in Christopher Nolan's film \"The Odyssey.\" He has also partnered with major brands like McDonald's and has a range of business ventures in his hometown of Houston. Scott is now set to produce his own movie and TV shows through a first-look deal with Paramount Pictures.",
+      "hashtag": "HowTravis",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/music/news/travis-scott-variety-the-odyssey-cactus-jack-utopia-1236819668/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg?crop=0px%2C38px%2C1920px%2C1080px&resize=1000%2C563"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "LISTEN",
+        "Travis Scott",
+        "Ascending",
+        "Culture Moguldom Through Music",
+        "Movies",
+        "Retail"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/music/news/travis-scott-variety-the-odyssey-cactus-jack-utopia-1236819668/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.47,
       "score": 0.457,
       "popularity": 0,
-      "recency": 0.935,
-      "relevancy": 0.52,
+      "recency": 0.947,
+      "relevancy": 0.502,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Claude’s voice mode is now available for Opus and Sonnet",
+      "summary": "Anthropic has expanded voice mode to its Opus and Sonnet AI models, enabling deeper problem-solving and task automation. Users can now switch between voice and text mid-conversation and toggle models as needed. The update follows last year’s launch of voice mode for Haiku, which focused on quick responses.",
+      "hashtag": "OpusSonnet",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Opus",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+      ],
+      "entities": [
+        "Claude",
+        "Opus",
+        "Sonnet",
+        "Until",
+        "Claude Haiku",
+        "Anthropic's"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai"
+      ],
+      "sourceName": "theverge.com",
+      "sources": [
+        "theverge.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.442,
+      "popularity": 0,
+      "recency": 0.906,
+      "relevancy": 0.5,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Patreon Lays Off 20% of Employees as Part of ‘Painful’ Restructuring",
+      "summary": "Patreon is cutting 20% of its workforce, laying off 93 employees with at least 16 weeks of severance. The restructuring aims to stabilize the platform amid market shifts affecting the creator economy. The company says its core business remains strong as it adjusts its cost structure.",
+      "hashtag": "LaysEmployees",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/biz/news/patreon-cuts-20-percent-of-employees-painful-restructuring-1236819665/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png",
+        "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Patreon Lays Off",
+        "Employees",
+        "Part",
+        "Painful",
+        "Restructuring",
+        "Patreon"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/biz/news/patreon-cuts-20-percent-of-employees-painful-restructuring-1236819665/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.44,
+      "score": 0.441,
+      "popularity": 0,
+      "recency": 0.951,
+      "relevancy": 0.433,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Italy confirm Ancelotti approach before Guardiola",
+      "summary": "Italy first approached Carlo Ancelotti to become their national team manager before considering Pep Guardiola. The Azzurri have been without a head coach since April after failing to qualify for a third straight World Cup. Ancelotti, currently Brazil’s manager, remains in charge until the 2030 World Cup.",
+      "hashtag": "AncelottiGuardiola",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/c36d0291z6no?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Italy",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
+      ],
+      "entities": [
+        "Italy",
+        "Ancelotti",
+        "Guardiola",
+        "Carlo Ancelotti",
+        "Pep Guardiola"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/c36d0291z6no?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.91,
+      "score": 0.44,
+      "popularity": 0,
+      "recency": 0.9,
+      "relevancy": 0.499,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "L.A. Production Volume Down Slightly, as Recovery Continues to Sputter",
+      "summary": "Los Angeles production volume slipped 3.1% in the second quarter of 2026 despite a state tax incentive boost. Film and commercial shoots led the decline while TV production edged up, though all remain below historic levels. Reality TV and dramas showed gains, signaling uneven recovery across the industry.",
+      "hashtag": "ProductionVolume",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/los-angeles-production-volume-down-slightly-filmla-1236819482/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg",
+        "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg?crop=0px%2C70px%2C1280px%2C720px&resize=1000%2C563"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Production Volume Down Slightly",
+        "Recovery Continues",
+        "Sputter",
+        "Los Angeles",
+        "Shoot",
+        "FilmLA"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/los-angeles-production-volume-down-slightly-filmla-1236819482/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.429,
+      "popularity": 0,
+      "recency": 0.906,
+      "relevancy": 0.449,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Modric, 40, signs new AC Milan deal",
-      "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan, following a season where the team finished fifth in Serie A. Modric joined Milan last summer on a one-year deal with an option to extend, after leaving Real Madrid where he spent 13 years. He will look to bounce back from a disappointing season with AC Milan in the upcoming campaign.",
+      "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan. The Croatian midfielder, who turns 41 in September, joins Milan last summer and scored two goals in 37 appearances last season. He expressed excitement to continue playing for the club and help them bounce back in the new campaign.",
       "hashtag": "Milan",
       "badge": "SPORTS",
       "category": "sports",
@@ -269,7 +734,8 @@
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
         "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
         "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
       ],
       "entityShots": [
         {
@@ -277,13 +743,18 @@
           "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg"
         },
         {
+          "name": "AC Milan",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200"
+        },
+        {
           "name": "Luka Modric",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
         }
       ],
       "entityImages": [
         "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
       ],
       "entities": [
         "Modric",
@@ -302,53 +773,109 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.06,
-      "score": 0.457,
+      "freshH": 2.04,
+      "score": 0.426,
       "popularity": 0,
-      "recency": 0.885,
-      "relevancy": 0.588,
+      "recency": 0.79,
+      "relevancy": 0.598,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Corsair’s PC case with a panoramic glass design is $70 off",
-      "summary": "Corsair's PC case, the Frame 4500X RS, is now available for $119.99, a $70 discount from its usual price, at Amazon, Best Buy, and Corsair's website. This mid-tower case features a panoramic glass design, supports large motherboards and GPUs, and includes three fans with reverse rotors. The case's Infinirail system allows for easy fan installation and cable management.",
-      "hashtag": "CorsairCase",
+      "title": "Trump Throws a Potential Wrench in the Saudi Nuclear Deal He Just Inked",
+      "summary": "Saudi Arabia has long said that a condition of normalizing relations with Israel would be a pathway toward Palestinian statehood, a prospect that Israel’s current government has rejected.",
+      "hashtag": "ThrowsPotential",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/trump-saudi-arabia-palestinian-state.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-TrumpTwist-SA--bvjz/23int-TrumpTwist-SA--bvjz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-TrumpTwist-SA--bvjz/23int-TrumpTwist-SA--bvjz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/middleeast/trump-saudi-arabia-palestinian-state.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.14,
+      "score": 0.422,
+      "popularity": 0,
+      "recency": 0.984,
+      "relevancy": 0.31,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "The Tate Brothers Are Losing Right-Wing Allies After Their Arrest",
+      "summary": "After Andrew and Tristan Tate, prominent leaders of the so-called manosphere, were arrested in Miami, many of their onetime allies on the American right pulled back support.",
+      "hashtag": "TateBrothers",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/us/tate-brothers-trump-tucker-carlson.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/00inv-tate-right-ktcw/00inv-tate-right-ktcw-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/00inv-tate-right-ktcw/00inv-tate-right-ktcw-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/us/tate-brothers-trump-tucker-carlson.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.19,
+      "score": 0.417,
+      "popularity": 0,
+      "recency": 0.978,
+      "relevancy": 0.3,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Patreon is laying off 20 percent of workers",
+      "summary": "Patreon is cutting 20 percent of its workforce, or about 93 jobs, the company confirmed today. CEO Jack Conte cited AI-driven industry changes as the reason for the layoffs, not job replacement. The company plans to continue using AI tools to support creators despite the staff reductions.",
+      "hashtag": "PatreonLaying",
       "badge": "TECH",
       "category": "tech",
-      "url": "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "url": "https://www.theverge.com/tech/970211/patreon-layoffs-ai",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
       "images": [
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Corsair-Frame-4500X-RS-deal-image.png?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Amazon",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200"
-        },
-        {
-          "name": "Best Buy",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+          "name": "Media",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
       ],
       "entities": [
-        "Corsair",
-        "Amazon",
-        "Best Buy",
-        "Corsair Frame",
-        "EATX",
-        "GPUs"
+        "Patreon",
+        "Media",
+        "Patreon CEO Jack Conte"
       ],
       "sourceUrls": [
-        "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale"
+        "https://www.theverge.com/tech/970211/patreon-layoffs-ai"
       ],
       "sourceName": "theverge.com",
       "sources": [
@@ -358,84 +885,144 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.54,
-      "score": 0.455,
+      "freshH": 1.52,
+      "score": 0.415,
       "popularity": 0,
-      "recency": 0.837,
-      "relevancy": 0.648,
+      "recency": 0.839,
+      "relevancy": 0.487,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Breaking Bad’ Star Giancarlo Esposito Signs With UTA for Representation (EXCLUSIVE)",
-      "summary": "Giancarlo Esposito, a six-time Emmy nominee, has signed with United Talent Agency for representation in all areas. The prolific actor will appear in several projects in the coming months, including the film \"The Only Living Pickpocket in New York\" and the Netflix series \"The Gentlemen.\" He will also be seen in the animated film \"The Cat in the Hat\" and several other projects, including \"Your Mother, Your Mother, Your Mother\" and \"All the Sinners Bleed,\" which are set to premiere in the coming months.",
-      "hashtag": "BadStar",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/breaking-bad-giancarlo-esposito-uta-representation-caa-1236818870/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg",
+      "title": "A Russian Spy, Suddenly Cast Into the Spotlight, Flees Japan",
+      "summary": "The military intelligence officer left the country after The Times reported that he was using the Aeroflot airline office in Tokyo to conduct espionage.",
+      "hashtag": "RussianSpy",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg?w=1000&h=563&crop=1"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
-      "entities": [
-        "Star Giancarlo Esposito Signs",
-        "Representation",
-        "EXCLUSIVE",
-        "Actor",
-        "Giancarlo Esposito",
-        "United Talent Agency"
-      ],
+      "entities": [],
       "sourceUrls": [
-        "https://variety.com/2026/tv/news/breaking-bad-giancarlo-esposito-uta-representation-caa-1236818870/"
+        "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html"
       ],
-      "sourceName": "Variety",
+      "sourceName": "The New York Times",
       "sources": [
-        "Variety"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.88,
-      "score": 0.446,
+      "freshH": 0.19,
+      "score": 0.413,
       "popularity": 0,
-      "recency": 0.904,
-      "relevancy": 0.52,
+      "recency": 0.978,
+      "relevancy": 0.284,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Ukraine's ousted defence minister insists on being reinstated",
-      "summary": "Ukraine's ousted defence minister Mykhailo Fedorov has refused to accept an alternative post, insisting he wants his job back as defence minister. President Volodymyr Zelensky had offered Fedorov several positions, including deputy prime minister, but he declined. Mass protests continue in Ukraine, with some protesters vowing to keep demonstrating until Fedorov is reinstated as defence minister.",
-      "hashtag": "UkraineOusted",
+      "title": "Sony Revives Cinerama Dome in Los Angeles as Box Office Sales Rebound",
+      "summary": "The iconic Cinerama Dome and adjacent 14-screen theater complex will reopen in 2028 after a renovation. The venue closed in 2020 because of the pandemic.",
+      "hashtag": "RevivesCinerama",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.21,
+      "score": 0.413,
+      "popularity": 0,
+      "recency": 0.977,
+      "relevancy": 0.285,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "U.S. to Withdraw Subpoenas Issued to New York Times Journalists",
+      "summary": "A federal judge raised questions about the government’s handling of the subpoenas, which The Times said were an attempt to intimidate the free press.",
+      "hashtag": "WithdrawSubpoenas",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.25,
+      "score": 0.41,
+      "popularity": 0,
+      "recency": 0.971,
+      "relevancy": 0.282,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Saudis must recognise Israel for nuclear deal, says Trump",
+      "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi officials have not yet responded to the condition.",
+      "hashtag": "IsraelTrump",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+      "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Mykhailo Fedorov",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+          "name": "Israel",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
       ],
       "entities": [
-        "Ukraine's",
-        "Mykhailo Fedorov",
-        "President Zelensky's"
+        "Saudis",
+        "Israel",
+        "Trump",
+        "Abraham Accords"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -445,20 +1032,20 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.24,
-      "score": 0.445,
+      "freshH": 1.89,
+      "score": 0.408,
       "popularity": 0,
-      "recency": 0.866,
-      "relevancy": 0.569,
+      "recency": 0.804,
+      "relevancy": 0.507,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Google and Tesla shares plunge as AI spending rattles markets",
-      "summary": "Google's parent company Alphabet saw its share price drop by over 7% on Thursday, while Tesla's stock fell 13.5%, as investors reacted to the companies' massive spending on artificial intelligence. Alphabet now expects to spend up to $205 billion this year, a $15 billion increase from its previous estimate, mainly on AI projects and infrastructure. This significant investment has raised concerns about when financial benefits will materialize from these costly AI endeavors.",
+      "summary": "Shares of Google and Tesla plummeted on Thursday, with Alphabet's parent company experiencing a 7% drop and Tesla's stock falling 13.5% after both companies reported negative free cash flow in financial results. Alphabet now expects to spend up to $205 billion this year on AI projects and infrastructure, a $15 billion increase from its previous estimate. This massive spending spree has left investors wondering when financial benefits will materialize from these investments.",
       "hashtag": "Tesla",
-      "badge": "GLOBAL",
-      "category": "crisis",
+      "badge": "TECH",
+      "category": "tech",
       "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
       "images": [
@@ -490,95 +1077,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.46,
-      "score": 0.438,
+      "freshH": 2.44,
+      "score": 0.407,
       "popularity": 0,
-      "recency": 0.845,
+      "recency": 0.754,
       "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Russell proud of resilience after string of problems",
-      "summary": "Mercedes driver George Russell has narrowed his deficit to 25 points after a series of challenges in recent races, including engine-related issues in Belgium. Despite setbacks, Russell remains optimistic about his progress, citing improvements from Monaco to Silverstone. He now looks to build on this momentum ahead of the Hungarian Grand Prix.",
-      "hashtag": "RussellProud",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "George Russell",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "Russell",
-        "George Russell",
-        "I've"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.18,
-      "score": 0.438,
-      "popularity": 0,
-      "recency": 0.873,
-      "relevancy": 0.529,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Wolves training cancelled after Arokodare refuses to leave pitch",
-      "summary": "Wolves striker Tolu Arokodare's training session was cancelled after he allegedly refused to leave the pitch, following a rejected bid from Fiorentina and an accepted offer from Turkish club Trabzonspor. Arokodare has denied the allegations, stating he was simply preparing for his role in the team. The incident marks the latest controversy in Arokodare's career at Molineux, following a disciplinary action in April.",
-      "hashtag": "Arokodare",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Wolves",
-        "Arokodare",
-        "Tolu Arokodare"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.15,
-      "score": 0.436,
-      "popularity": 0,
-      "recency": 0.875,
-      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -621,51 +1124,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.432,
+      "freshH": 1.83,
+      "score": 0.398,
       "popularity": 0,
-      "recency": 0.907,
+      "recency": 0.81,
       "relevancy": 0.459,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Saudis must recognise Israel for nuclear deal, says Trump",
-      "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi officials have not yet responded to the condition.",
-      "hashtag": "IsraelTrump",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Saudis",
-        "Israel",
-        "Trump",
-        "Abraham Accords"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.91,
-      "score": 0.429,
-      "popularity": 0,
-      "recency": 0.9,
-      "relevancy": 0.457,
       "region": "usa",
       "geo": null
     },
@@ -694,159 +1157,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.02,
-      "score": 0.427,
+      "freshH": 1.01,
+      "score": 0.39,
       "popularity": 0,
-      "recency": 0.997,
+      "recency": 0.89,
       "relevancy": 0.312,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘The Strange Architect,’ New Series by ‘Annihilation’ Author Jeff VanderMeer, Sells to Farrar, Straus and Giroux in Seven-Figure Deal (EXCLUSIVE)",
-      "summary": "Farrar, Straus and Giroux has acquired a new four-book series by bestselling author Jeff VanderMeer in a seven-figure deal. The first book, How to Be Free, will launch in winter 2029. The series follows Arthur Bream, who builds houses with a mysterious symbol after his daughter’s disappearance.",
-      "hashtag": "StrangeArchitect",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/biz/news/strange-architect-book-series-annihilation-author-jeff-vandermeer-1236818347/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Strange Architect",
-        "Series",
-        "Annihilation",
-        "Author Jeff VanderMeer",
-        "Sells",
-        "Farrar"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/biz/news/strange-architect-book-series-annihilation-author-jeff-vandermeer-1236818347/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.87,
-      "score": 0.427,
-      "popularity": 0,
-      "recency": 0.904,
-      "relevancy": 0.441,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘Myron Bolitar’ Series Adds 10 To Cast, Including Melissa Benoist, Bebe Neuwirth, Jamie Hector, Quincy Isaiah",
-      "summary": "Netflix’s “Myron Bolitar” series has added ten new cast members, including Melissa Benoist, Bebe Neuwirth, and Jamie Hector. Ra’Mya Latiah Aikens joins as a series regular while nine others will appear in recurring guest roles. Production is set to begin later this year.",
-      "hashtag": "BolitarSeries",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/myron-bolitar-series-cast-melissa-benoist-bebe-neuwirth-1236819436/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Myron Bolitar",
-        "Series Adds",
-        "To Cast",
-        "Including Melissa Benoist",
-        "Bebe Neuwirth",
-        "Jamie Hector"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/myron-bolitar-series-cast-melissa-benoist-bebe-neuwirth-1236819436/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.88,
-      "score": 0.422,
-      "popularity": 0,
-      "recency": 0.904,
-      "relevancy": 0.423,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘We Will All Die From Ebola Here’: Virus Stalks Crowded Camps in Congo",
-      "summary": "There are a million people displaced by violence in the epicenter. They live in dangerous conditions and are fighting the virus with very little clean water.",
-      "hashtag": "AllDie",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.36,
-      "score": 0.408,
-      "popularity": 0,
-      "recency": 0.959,
-      "relevancy": 0.288,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Chaos Breaks Out at Border Crossings With Iraq",
-      "summary": "Videos verified by The New York Times show border crossings in southern Iraq becoming the latest target in the hostilities in the Middle East.",
-      "hashtag": "BreaksBorder",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.35,
-      "score": 0.405,
-      "popularity": 0,
-      "recency": 0.96,
-      "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
@@ -875,83 +1190,53 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.77,
-      "score": 0.397,
+      "freshH": 1.76,
+      "score": 0.363,
       "popularity": 0,
-      "recency": 0.915,
+      "recency": 0.816,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "House Again Rebukes Trump on Iran War Powers Vote",
-      "summary": "For the second time, a few House Republicans joined Democrats to back a measure calling on the president to seek authorization for the war.",
-      "hashtag": "AgainRebukes",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/23/us/politics/house-iran-war-powers-vote-trump.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-warpowers-photo-blzg/23dc-warpowers-photo-blzg-mediumSquareAt3X.jpg",
+      "title": "BBC Inside Science",
+      "summary": "India's landmark Protection of Children from Sexual Offences Act, or Pocso, has seen reported cases surge into the tens of thousands each year since its introduction in 2012 following the Delhi gang rape. The law, aimed at exposing hidden abuse, trafficking, and child marriage, is now being applied to teenagers in consensual relationships, resulting in investigations, trials, and potential long prison terms. This has sparked controversy over the country's age of consent.",
+      "hashtag": "InsideScience",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.bbc.co.uk/sounds/play/live:bbc_world_service?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-warpowers-photo-blzg/23dc-warpowers-photo-blzg-mediumSquareAt3X.jpg"
+        "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
+        "https://sounds.files.bbci.co.uk/3.12.0/networks/bbc_world_service/blocks-colour_600x600.png"
       ],
       "entityShots": [],
       "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/us/politics/house-iran-war-powers-vote-trump.html"
+      "entities": [
+        "BBC Inside Science"
       ],
-      "sourceName": "The New York Times",
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sounds/play/live:bbc_world_service?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
       "sources": [
-        "The New York Times"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.58,
-      "score": 0.396,
+      "freshH": 3.86,
+      "score": 0.354,
       "popularity": 0,
-      "recency": 0.935,
-      "relevancy": 0.274,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "The Tate Brothers Are Losing Right-Wing Allies After Their Arrest",
-      "summary": "After Andrew and Tristan Tate, prominent leaders of the so-called manosphere, were arrested in Miami, many of their onetime allies on the American right pulled back support.",
-      "hashtag": "TateBrothers",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/us/tate-brothers-trump-tucker-carlson.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/00inv-tate-right-ktcw/00inv-tate-right-ktcw-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/00inv-tate-right-ktcw/00inv-tate-right-ktcw-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/us/tate-brothers-trump-tucker-carlson.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.8,
-      "score": 0.394,
-      "popularity": 0,
-      "recency": 0.911,
-      "relevancy": 0.3,
+      "recency": 0.64,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "The only way to stop petrol pump thieves | Brief letters",
-      "summary": "Petrol pump thieves are exploiting a loophole in the payment system, allowing them to fill up and flee without paying. In the UK, it's estimated that thousands of litres of fuel are stolen every year, with some garages reporting losses of up to £10,000. To combat this issue, some experts are advocating for a system where pumps are only activated once a payment method is confirmed.",
+      "summary": "A new UK-wide crackdown on petrol pump theft starts today, requiring drivers to pay upfront or leave a card deposit before fueling. Police report a 15% rise in drive-offs this year, costing forecourts £30 million annually. Forecourt owners warn pumps will lock until payment is confirmed.",
       "hashtag": "Brief",
       "badge": "HEALTH",
       "category": "health",
@@ -996,11 +1281,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.45,
-      "score": 0.387,
+      "freshH": 4.43,
+      "score": 0.344,
       "popularity": 0,
-      "recency": 0.671,
-      "relevancy": 0.607,
+      "recency": 0.599,
+      "relevancy": 0.536,
       "region": "usa",
       "geo": null
     },
@@ -1029,94 +1314,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.06,
-      "score": 0.377,
+      "freshH": 2.05,
+      "score": 0.344,
       "popularity": 0,
-      "recency": 0.884,
+      "recency": 0.789,
       "relevancy": 0.269,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "BBC Inside Science",
-      "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency, with those found to have low levels offered voluntary hormone replacement therapy. The move aims to maintain a \"healthy, capable, and decisively dominant fighting force\". The screenings are expected to impact thousands of service members.",
-      "hashtag": "InsideScience",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/sounds/play/w3ct977x?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
-        "https://ichef.bbci.co.uk/images/ic/1024x576/p0m1ww2j.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "BBC Inside Science"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sounds/play/w3ct977x?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.88,
-      "score": 0.37,
-      "popularity": 0,
-      "recency": 0.717,
-      "relevancy": 0.476,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Crews Move Artemis IV Liquid Hydrogen Tank",
-      "summary": "Crews at NASA's Michoud Assembly Facility in New Orleans have successfully transported the 130-foot-tall Artemis IV liquid hydrogen tank to a detached test building on May 15, 2026. This tank will form part of the core stage for the SLS rocket, providing thousands of gallons of super-cold propellant to one of four RS-25 engines. The Artemis IV mission is a crucial step towards NASA's plans for a sustainable presence on the lunar surface.",
-      "hashtag": "MoveArtemis",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nasa.gov/image-article/crews-move-artemis-iv-liquid-hydrogen-tank/",
-      "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg?w=2048",
-      "images": [
-        "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg?w=2048",
-        "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Crews Move Artemis IV",
-        "Liquid Hydrogen Tank",
-        "Crews",
-        "NASA",
-        "Michoud Assembly Facility",
-        "Orleans"
-      ],
-      "sourceUrls": [
-        "https://www.nasa.gov/image-article/crews-move-artemis-iv-liquid-hydrogen-tank/"
-      ],
-      "sourceName": "NASA",
-      "sources": [
-        "NASA"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.54,
-      "score": 0.363,
-      "popularity": 0,
-      "recency": 0.665,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Risk of Parkinson’s disease may increase with prolonged exposure to road traffic noise",
-      "summary": "A study of 3.1 million Danish participants has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease by 3% for every 11.5 decibel rise in noise level. The study, published in Jama Neurology, followed participants for 18 years and suggests that having a quiet part of the home may mitigate this risk. The findings highlight a potential link between noise exposure and the development of Parkinson's disease.",
+      "summary": "A new study has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease, with a 3% higher risk for every 11.5 decibel rise in noise level at the most exposed facade. The study, which included 3.1 million Danish participants aged 40 and over, followed them for 18 years and suggests that having a quiet part of the home may mitigate this risk.",
       "hashtag": "Parkinson",
       "badge": "HEALTH",
       "category": "health",
@@ -1161,17 +1369,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.47,
-      "score": 0.354,
+      "freshH": 6.45,
+      "score": 0.33,
       "popularity": 0,
-      "recency": 0.532,
-      "relevancy": 0.67,
+      "recency": 0.475,
+      "relevancy": 0.657,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Poorest children in England 40% more likely to be hospitalised for lung infections",
-      "summary": "Children in England’s poorest areas are 40% more likely to be hospitalised for lung infections than those in wealthier regions, new NHS data shows. In 2024-25, 1,941 out of every 100,000 children in the most deprived areas were admitted for respiratory illnesses compared to 1,380 in the least deprived. Experts warn air pollution and deprivation are key drivers, with calls for urgent public health action.",
+      "summary": "Children in England’s poorest areas are 40% more likely to be hospitalised for lung infections than those in wealthier regions, new NHS data shows. In 2024-25, 1,941 per 100,000 children from the most deprived fifth were admitted compared to 1,380 per 100,000 in the least deprived. Experts warn air pollution and deprivation are key drivers behind the disparity.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -1203,11 +1411,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.63,
-      "score": 0.305,
+      "freshH": 7.62,
+      "score": 0.281,
       "popularity": 0,
-      "recency": 0.465,
-      "relevancy": 0.57,
+      "recency": 0.415,
+      "relevancy": 0.542,
       "region": "usa",
       "geo": null
     }
@@ -1215,40 +1423,46 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Kylie Kelce Calls Taylor Swift ‘Family’ After Wedding to Travis Kelce, and Says She’s Been ‘For Quite Some Time’",
-        "summary": "Kylie Kelce has referred to Taylor Swift as \"family\" after her brother-in-law Travis Kelce's wedding to the singer, stating she's been part of the family for quite some time. The ceremony took place on July 3 at New York's Madison Square Garden. Kelce expressed her happiness for the couple, urging fans to respect their privacy and seek details directly from Taylor and Travis.",
-        "hashtag": "KylieKelce",
+        "title": "Social Security payments will look a bit different in August 2026",
+        "summary": "Social Security recipients will receive two checks in July instead of one due to the August 1 payment date falling on a Saturday. As a result, no checks will be issued in August, with the next payment scheduled for September 1. This adjustment affects Supplemental Security Income recipients, while those receiving Social Security benefits based on their date of birth will follow a separate payment schedule.",
+        "hashtag": "SupplementalSecurity",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.today.com/popculture/news/kylie-kelce-calls-taylor-swift-family-after-travis-kelce-wedding-rcna588869",
-        "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1200x630_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
+        "url": "https://www.nbcchicago.com/news/local/social-security-payments-will-look-a-bit-different-in-august-2026/3964921/",
+        "imageUrl": "https://media.nbcchicago.com/2025/04/GettyImages-1059309942.jpg?quality=85&strip=all&resize=1200%2C675",
         "images": [
-          "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1200x630_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
-          "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg",
-          "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x512_center,f_auto,q_auto:best/rockcms/2026-07/kylie-kelce-webby-ky-260723-a8a747.jpg"
+          "https://media.nbcchicago.com/2025/04/GettyImages-1059309942.jpg?quality=85&strip=all&resize=1200%2C675",
+          "https://media.nbcchicago.com/2019/09/OTT-Chicago.png?fit=1920%2C1080&quality=85&strip=all&w=400&h=44&crop=1",
+          "https://media.nbcchicago.com/2026/03/GettyImages-2235626532.jpg?quality=85&strip=all",
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Social Security",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Payroll_and_income_tax_by_country.png"
+        ],
         "entities": [
-          "Kylie Kelce Calls Taylor",
-          "Swift",
-          "Family",
-          "Wedding",
-          "Travis Kelce",
-          "Been"
+          "Social Security",
+          "August"
         ],
         "sourceUrls": [
-          "https://www.today.com/popculture/news/kylie-kelce-calls-taylor-swift-family-after-travis-kelce-wedding-rcna588869",
-          "https://people.com/kylie-kelce-congratulates-taylor-swift-and-travis-kelce-on-their-wedding-12025137"
+          "https://www.nbcchicago.com/news/local/social-security-payments-will-look-a-bit-different-in-august-2026/3964921/",
+          "https://www.al.com/news/2026/07/social-security-payment-change-why-some-beneficiaries-will-get-2-checks-this-month.html",
+          "https://www.ctinsider.com/news/article/social-security-checks-july-2026-ct-22355780.php"
         ],
-        "sourceName": "today.com",
+        "sourceName": "nbcchicago.com",
         "sources": [
-          "TODAY.com",
-          "People.com"
+          "NBC 5 Chicago",
+          "AL.com",
+          "CT Insider"
         ],
-        "corr": 2,
+        "corr": 3,
         "verified": true,
-        "trend": "kylie kelce taylor swift relationship",
+        "trend": "supplemental security income",
         "traffic": 2000,
         "freshH": 1,
         "score": null,
@@ -1259,113 +1473,184 @@
         "geo": "US"
       },
       {
-        "title": "‘Resident Evil’ Trailer: Zach Cregger’s Take On Iconic Vidgame Is Coming For You (And Comic-Con)",
-        "summary": "A new trailer has been released for the upcoming Resident Evil film, directed by Zach Cregger, which is set to hit theaters on September 18. The movie follows medical courier Bryan, played by Austin Abrams, as he navigates a nightmarish situation after a series of unfortunate events, including a car accident and a delivery gone wrong. The film promises to deliver a fresh spin on the iconic video game franchise with Easter eggs and a survival horror tone.",
-        "hashtag": "ResidentEvil",
+        "title": "Appeals court blocks Trump administration from revoking TPS for Haitians until at least Monday",
+        "summary": "A federal appeals court has temporarily blocked the Trump administration from revoking deportation protections for over 300,000 Haitian migrants living in the US, at least until Monday, July 27. The court's decision comes after a lower court order postponed the TPS revocations while legal challenges continued. The administration's request to strip TPS was denied, allowing Haitian migrants to remain in the US for now.",
+        "hashtag": "TpsHaiti",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://deadline.com/2026/07/resident-evil-trailer-zach-cregger-austin-abrams-1236876910/",
-        "imageUrl": "https://deadline.com/wp-content/uploads/2026/04/DF-07602_r.jpg?w=1024",
+        "url": "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/",
+        "imageUrl": "https://thehill.com/wp-content/uploads/sites/2/2026/06/6a3ef380783c51.46873517-e1784816274370.jpeg?w=1280",
         "images": [
-          "https://deadline.com/wp-content/uploads/2026/04/DF-07602_r.jpg?w=1024",
-          "https://www.engadget.com/img/gallery/the-latest-resident-evil-movie-trailer-has-lots-of-fun-nods-to-the-games/l-intro-1784817880.jpg",
-          "https://www.engadget.com/img/gallery/the-latest-resident-evil-movie-trailer-has-lots-of-fun-nods-to-the-games/intro-1784817880.jpg",
-          "https://img.pastemagazine.com/wp-content/avuploads/2026/07/23095327/MixCollage-23-Jul-2026-09-51-AM-6587.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+          "https://thehill.com/wp-content/uploads/sites/2/2026/06/6a3ef380783c51.46873517-e1784816274370.jpeg?w=1280",
+          "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/People%20hold%20hands%20and%20a%20Haitian%20flag%20during%20a%20vigil%20at%20the%20Little%20Haiti%20Cultural%20Complex%20after%20a%20federal%20judge%20blocked%20the%20Trump%20administration%20from%20ending%20temporary%20immigration%20status,%20or%20TPS,%20for%20Haitians,%20Feb.%203,%202026,%20in%20North%20Miami.",
+          "https://i.cbc.ca/ais/4f60cb6c-cdf2-44a6-a087-dbb1d0f555dc,1784415506877/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C4032%2C2268%29%3BResize%3D620",
+          "https://i.cbc.ca/ais/b0d0d0e1-f81f-43fb-b70f-86621dbe8ef9,1784414035796/full/max/0/default.jpg?im=Crop%2Crect%3D%28216%2C145%2C5136%2C3067%29%3B",
+          "https://i.cbc.ca/ais/ab54a8d8-23f2-4caa-975e-4a6fe649f340,1784414595359/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1079%29%3B",
+          "https://i.cbc.ca/ais/3ace80ec-8159-421e-b1d1-dc0196ca053b,1784414566651/full/max/0/default.jpg?im=Crop%2Crect%3D%28354%2C184%2C3677%2C2060%29%3B",
+          "https://i.cbc.ca/ais/055cada1-c5e0-4f76-89a6-f4b9a35fa799,1781783017468/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3BResize%3D620",
+          "https://i.cbc.ca/ais/450a8fa4-99d3-45bc-86e5-8b991283f86b,1784414952268/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C5712%2C3213%29%3B",
+          "https://i.cbc.ca/ais/f6885df5-544b-4891-a270-24f731590bde,1784415258930/full/max/0/default.jpg?im=Crop%2Crect%3D%28313%2C95%2C5120%2C2997%29%3B",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
         ],
         "entityShots": [
           {
-            "name": "Trailer",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm"
-          },
-          {
-            "name": "Zach Cregger",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+            "name": "Appeals",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d2/Frankenstein_trailer_%281931%29.webm",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zach_Cregger_2017.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg"
         ],
         "entities": [
-          "Resident Evil",
-          "Trailer",
-          "Zach Cregger",
-          "Take On Iconic Vidgame",
-          "Is Coming For You",
-          "Comic-Con"
+          "Appeals",
+          "Trump",
+          "Haitians",
+          "Monday"
         ],
         "sourceUrls": [
-          "https://deadline.com/2026/07/resident-evil-trailer-zach-cregger-austin-abrams-1236876910/",
-          "https://www.engadget.com/2221678/new-resident-evil-movie-trailer-fun-nods-to-games/",
-          "https://www.avclub.com/resident-evil-trailer-zach-cregger-austin-abrams"
+          "https://thehill.com/regulation/court-battles/5985571-dc-circuit-blocks-haitian-tps-revocation/",
+          "https://www.cbc.ca/news/world/haitians-temporary-protected-status-trump-supreme-court-9.7275579"
         ],
-        "sourceName": "deadline.com",
+        "sourceName": "thehill.com",
         "sources": [
-          "Deadline",
-          "Engadget",
-          "A.V. Club"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "resident evil 2026",
-        "traffic": 500,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Robin Williams defended Jumanji child stars Bradley Pierce and Kirsten Dunst on set",
-        "summary": "Robin Williams defended child stars Bradley Pierce and Kirsten Dunst on the set of Jumanji in 1995, intervening when producers attempted to make them work illegal overtime. The producers had demanded the children work beyond their permitted hours, despite Pierce struggling with a scene due to water and extensive makeup. Williams' actions ensured the children's safety and well-being, a testament to his protective nature and kindness.",
-        "hashtag": "BradleyPierce",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.the-independent.com/arts-entertainment/films/news/robin-williams-jumanji-children-kirsten-dunst-b3020105.html",
-        "imageUrl": "https://static.the-independent.com/2026/07/23/9/46/Jumanji-Movie.jpg?trim=85,0,85,0&width=1200&height=800&crop=1200:800",
-        "images": [
-          "https://static.the-independent.com/2026/07/23/9/46/Jumanji-Movie.jpg?trim=85,0,85,0&width=1200&height=800&crop=1200:800",
-          "https://static.the-independent.com/2026/07/23/9/11/Bradley-Pierce-Robin-Williams.jpg",
-          "https://images.inkl.com/s3/article/lead_image/23614356/GettyImages-71616567.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Robin Williams",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg"
-          },
-          {
-            "name": "Bradley Pierce",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/05/Robin_Williams_2011a_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/9e/Bradley_Pierce_at_Galaxy_Con_Richmond_-_55186465163_%28cropped%29.jpg"
-        ],
-        "entities": [
-          "Robin Williams",
-          "Jumanji",
-          "Bradley Pierce",
-          "Kirsten Dunst"
-        ],
-        "sourceUrls": [
-          "https://www.the-independent.com/arts-entertainment/films/news/robin-williams-jumanji-children-kirsten-dunst-b3020105.html",
-          "https://www.inkl.com/news/robin-williams-pulled-producers-aside-to-defend-jumanji-child-stars"
-        ],
-        "sourceName": "the-independent.com",
-        "sources": [
-          "The Independent",
-          "inkl"
+          "The Hill",
+          "CBC"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "bradley pierce on robin williams",
+        "trend": "tps haiti",
+        "traffic": 1000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "WATCH: Trump expands pledge aimed at shielding consumers from energy cost hikes due to data centers",
+        "summary": "President Donald Trump has expanded his pledge to shield US consumers from higher utility bills caused by data centers, with 23 governors signing on to the voluntary commitment. The pledge aims to protect households from absorbing costs tied to data centers, which are powering artificial intelligence and expanding rapidly across the country. Trump's Ratepayer Protection Pledge now includes nearly 200 stakeholders, with the goal of lowering electricity costs for consumers in the long term.",
+        "hashtag": "RatepayerProtection",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.pbs.org/newshour/politics/watch-trump-expands-pledge-aimed-at-shielding-consumers-from-energy-cost-hikes-due-to-data-centers",
+        "imageUrl": "https://d3i6fh83elv35t.cloudfront.net/static/2026/07/2026-07-23T185208Z_473769510_RC2UJMAX5S8O_RTRMADP_3_USA-TRUMP-1024x683.jpg",
+        "images": [
+          "https://d3i6fh83elv35t.cloudfront.net/static/2026/07/2026-07-23T185208Z_473769510_RC2UJMAX5S8O_RTRMADP_3_USA-TRUMP-1024x683.jpg",
+          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91026860007-2287356103.jpg?crop=3380,1901,x0,y176&width=1600&height=800&format=pjpg&auto=webp"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Trump"
+        ],
+        "sourceUrls": [
+          "https://www.pbs.org/newshour/politics/watch-trump-expands-pledge-aimed-at-shielding-consumers-from-energy-cost-hikes-due-to-data-centers",
+          "https://www.bloomberg.com/news/articles/2026-07-23/trump-expands-ai-data-center-pledge-in-bid-to-ease-power-costs",
+          "https://www.usatoday.com/story/news/politics/2026/07/23/trump-data-centers-governors-ratepayers-protection-pledge/91013327007/"
+        ],
+        "sourceName": "pbs.org",
+        "sources": [
+          "PBS",
+          "Bloomberg",
+          "USA Today"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "ratepayer protection pledge",
+        "traffic": 1000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Indiana Fever asked to 'keep quiet' about 2025 harassment firing, former player says",
+        "summary": "A former Indiana Fever player has alleged that the team fired a male employee for sexual harassment in 2025 and instructed players to keep quiet about the incident. The player, Brianna Turner, made the claim on social media, stating that sexism, misogyny, homophobia, and racism are all issues that need to be addressed. The Indiana Fever have since confirmed that protecting their players and employees is their top priority, but have not commented on the specific allegations.",
+        "hashtag": "BriannaTurner",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.usatoday.com/story/sports/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-firing-player-allegation/91021690007/",
+        "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/05/01/SVOL/89893257007-1500658754.jpeg?crop=5398,3037,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "images": [
+          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/05/01/SVOL/89893257007-1500658754.jpeg?crop=5398,3037,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+          "https://www.indystar.com/gcdn/authoring/authoring-images/2025/09/21/PIND/86284645007-usatsi-27140462.jpg?crop=8639,4860,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+          "https://www.indystar.com/gcdn/authoring/authoring-images/2026/07/23/PIND/91017599007-072226-fever-sun-gs-019.jpg?crop=3570,2008,x0,y600&width=660&height=372&format=pjpg&auto=webp",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Indiana Fever",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Indiana%20Fever%20at%20White%20House.png?width=1200"
+        ],
+        "entities": [
+          "Indiana Fever"
+        ],
+        "sourceUrls": [
+          "https://www.usatoday.com/story/sports/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-firing-player-allegation/91021690007/",
+          "https://www.indystar.com/story/sports/basketball/wnba/fever/2026/07/23/indiana-fever-sexual-harassment-claim-former-player-brianna-turner-allegedly-told-to-keep-quiet/91018905007/"
+        ],
+        "sourceName": "usatoday.com",
+        "sources": [
+          "USA Today",
+          "IndyStar"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "brianna turner",
+        "traffic": 1000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "'A Toxic Love Story' is the wildest true crime doc Netflix has released in years",
+        "summary": "A new Netflix true crime documentary, A Toxic Love Story, has been released, following a series of bizarre and shocking events. The documentary, directed by Alexandra Lacey, centers around Michelle Hadley, who shares her side of the story, and features three major reveals that challenge initial perceptions. The case, which does not result in any fatalities, is considered one of the most unusual in a string of recent Netflix true crime documentaries.",
+        "hashtag": "ToxicLove",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://mashable.com/entertainment/a-toxic-love-story-netflix",
+        "imageUrl": "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x675.v1784670025.jpg",
+        "images": [
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x675.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x900.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1200x1200.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/defaults/fallback-thumbnail.fill.size_1600x900.1.png",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/hero-image.fill.size_1248x702.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-1.fill.size_2000x1125.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-2.fill.size_2000x1125.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-3.fill.size_2000x1125.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/articles/06mc0G0A3ceDFzwQZIV7N3X/images-4.fill.size_2000x1125.v1784670025.jpg",
+          "https://helios-i.mashable.com/imagery/defaults/fallback-thumbnail.fill.size_100x100.1.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Toxic Love Story",
+          "Netflix"
+        ],
+        "sourceUrls": [
+          "https://mashable.com/entertainment/a-toxic-love-story-netflix"
+        ],
+        "sourceName": "mashable.com",
+        "sources": [
+          "Mashable"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "a toxic love story netflix",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1376,34 +1661,47 @@
         "geo": "US"
       },
       {
-        "title": "Ukraine's ousted defence minister insists on being reinstated",
-        "summary": "Ukraine's ousted defence minister Mykhailo Fedorov has refused to accept an alternative post, insisting he wants his job back as defence minister. President Volodymyr Zelensky had offered Fedorov several positions, including deputy prime minister, but he declined. Mass protests continue in Ukraine, with some protesters vowing to keep demonstrating until Fedorov is reinstated as defence minister.",
-        "hashtag": "UkraineOusted",
+        "title": "France evacuates 20,000 as wildfires spread in south-west",
+        "summary": "France evacuated 20,000 people in the Gironde region on Tuesday as wildfires scorched 3,400 hectares near the Bay of Arcachon. Authorities moved 8,800 residents and tourists from campsites and villages, with no injuries reported. Firefighters warned conditions would worsen by evening as temperatures rose and winds strengthened.",
+        "hashtag": "FranceEvacuates",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
         ],
         "entityShots": [
           {
-            "name": "Mykhailo Fedorov",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+            "name": "France",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
+          },
+          {
+            "name": "Most",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200"
+          },
+          {
+            "name": "Arcachon Bay",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Most%202015.JPG?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
         ],
         "entities": [
-          "Ukraine's",
-          "Mykhailo Fedorov",
-          "President Zelensky's"
+          "France",
+          "Most",
+          "Arcachon Bay",
+          "France's Gironde"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1413,7 +1711,55 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.24,
+        "freshH": 0.56,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Saudis must recognise Israel for nuclear deal, says Trump",
+        "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi officials have not yet responded to the condition.",
+        "hashtag": "IsraelTrump",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Israel",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Israel%20in%20January%202003.jpg?width=1200"
+        ],
+        "entities": [
+          "Saudis",
+          "Israel",
+          "Trump",
+          "Abraham Accords"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.89,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1460,7 +1806,59 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.85,
+        "freshH": 1.83,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Ready to 'conquer Earth' - Joshua embraces comeback spotlight",
+        "summary": "Anthony Joshua returns to the ring Saturday in Jeddah, Saudi Arabia, facing Albanian heavyweight Kristian Prenga in his first fight since a December car crash in Nigeria killed two team members. A win would set up an all-British heavyweight showdown with Tyson Fury, pending Fury’s own fight Friday in Thailand. Joshua called his comeback a step toward “conquering Earth” before a packed crowd in Jeddah.",
+        "hashtag": "EarthJoshua",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/boxing/articles/cqx79102n4xo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/953/cpsprodpb/5099/live/2ba6c680-86c7-11f1-bf7f-25405e28486d.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Joshua",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/61/Karolingischer_Buchmaler_um_840_001.jpg"
+        ],
+        "entities": [
+          "Ready",
+          "Earth",
+          "Joshua",
+          "Anthony Joshua",
+          "Albanian",
+          "Saturday"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/boxing/articles/cqx79102n4xo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1469,28 +1867,36 @@
         "geo": null
       },
       {
-        "title": "Saudis must recognise Israel for nuclear deal, says Trump",
-        "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi officials have not yet responded to the condition.",
-        "hashtag": "IsraelTrump",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
+        "title": "Italy confirm Ancelotti approach before Guardiola",
+        "summary": "Italy first approached Carlo Ancelotti to become their national team manager before considering Pep Guardiola. The Azzurri have been without a head coach since April after failing to qualify for a third straight World Cup. Ancelotti, currently Brazil’s manager, remains in charge until the 2030 World Cup.",
+        "hashtag": "AncelottiGuardiola",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/c36d0291z6no?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7165/live/7fa81240-86c0-11f1-9d73-41a48912c4b7.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Italy",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg?width=1200"
+        ],
         "entities": [
-          "Saudis",
-          "Israel",
-          "Trump",
-          "Abraham Accords"
+          "Italy",
+          "Ancelotti",
+          "Guardiola",
+          "Carlo Ancelotti",
+          "Pep Guardiola"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/sport/football/articles/c36d0291z6no?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1507,104 +1913,59 @@
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "tech": [
-      {
-        "title": "Patreon is laying off 20 percent of workers",
-        "summary": "Patreon is laying off 20 percent of its workers, approximately 93 employees, as the company adapts to the impact of artificial intelligence on its operations. This move follows a previous layoff of 17 percent in 2022 and the closure of offices in Dublin and Berlin. The company's CEO, Jack Conte, has emphasized Patreon's commitment to embracing AI tools to continue serving creators.",
-        "hashtag": "PatreonLaying",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.theverge.com/tech/970211/patreon-layoffs-ai",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "images": [
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-        ],
-        "entityShots": [
-          {
-            "name": "Media",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/45/State_Street_EB_past_Olive_Street_Media_PA.jpeg"
-        ],
-        "entities": [
-          "Patreon",
-          "Media",
-          "Patreon CEO Jack Conte"
-        ],
-        "sourceUrls": [
-          "https://www.theverge.com/tech/970211/patreon-layoffs-ai"
-        ],
-        "sourceName": "theverge.com",
-        "sources": [
-          "theverge.com"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.53,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
       },
       {
-        "title": "Corsair’s PC case with a panoramic glass design is $70 off",
-        "summary": "Corsair's PC case, the Frame 4500X RS, is now available for $119.99, a $70 discount from its usual price, at Amazon, Best Buy, and Corsair's website. This mid-tower case features a panoramic glass design, supports large motherboards and GPUs, and includes three fans with reverse rotors. The case's Infinirail system allows for easy fan installation and cable management.",
-        "hashtag": "CorsairCase",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "Modric, 40, signs new AC Milan deal",
+        "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan. The Croatian midfielder, who turns 41 in September, joins Milan last summer and scored two goals in 37 appearances last season. He expressed excitement to continue playing for the club and help them bounce back in the new campaign.",
+        "hashtag": "Milan",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
         "images": [
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Corsair-Frame-4500X-RS-deal-image.png?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
         ],
         "entityShots": [
           {
-            "name": "Amazon",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200"
+            "name": "Modric",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg"
           },
           {
-            "name": "Best Buy",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+            "name": "AC Milan",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200"
+          },
+          {
+            "name": "Luka Modric",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon%20Tower%20I%20topped%20out%2C%20June%202015.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bestbuystore.jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Luka%20Modric%20Croatia%20v%20Portugal%202%20July%202026-055.jpg?width=1200"
         ],
         "entities": [
-          "Corsair",
-          "Amazon",
-          "Best Buy",
-          "Corsair Frame",
-          "EATX",
-          "GPUs"
+          "Modric",
+          "AC Milan",
+          "Luka Modric",
+          "September"
         ],
         "sourceUrls": [
-          "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale"
+          "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "theverge.com",
+        "sourceName": "BBC",
         "sources": [
-          "theverge.com"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.54,
+        "freshH": 2.04,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1615,24 +1976,35 @@
     ],
     "politics": [
       {
-        "title": "Burnham pauses early prison release scheme",
-        "summary": "Andy Burnham has paused a plan to release thousands of prisoners early in England and Wales after strong criticism from victims' families. The scheme, set to start in September under the Sentencing Act, would have let some offenders out after serving a third of their sentence instead of half. The government now plans a review to address concerns and ensure public safety before any changes proceed.",
-        "hashtag": "BurnhamPauses",
+        "title": "Burnham says 20% business rates cut for English pubs 'a first step'",
+        "summary": "New Prime Minister Andy Burnham has announced a 20% cut to business rates for English pubs, social clubs, and live music venues, set to take effect from April, with an estimated annual savings of £1,100 per firm, and a total cost of £100m. The move is expected to benefit nearly 32,000 venues, but will not apply to the very largest live music venues or nightclubs. The government will review tax relief on businesses like vape shops to fund the cut.",
+        "hashtag": "English",
         "badge": "POLITICS",
         "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/cx2lpjw516eo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d3e5/live/0bdad990-869f-11f1-ae19-73b13bb6cb86.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ce25/live/79b699b0-86a2-11f1-a0b6-435e4178a497.png",
+          "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Burnham",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/60/Burnham-on-Sea_Wooden_Lighthouse.jpg"
+        ],
         "entities": [
-          "Burnham"
+          "Burnham",
+          "English",
+          "Some",
+          "April"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cx2lpjw516eo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1642,7 +2014,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.58,
+        "freshH": 0.31,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "U.S. to Withdraw Subpoenas Issued to New York Times Journalists",
+        "summary": "A federal judge raised questions about the government’s handling of the subpoenas, which The Times said were an attempt to intimidate the free press.",
+        "hashtag": "WithdrawSubpoenas",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.25,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1675,7 +2080,64 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.02,
+        "freshH": 1.01,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "Look for NASA+ Now Streaming on Amazon Fire TV",
+        "summary": "NASA has expanded its streaming platform, NASA+, to Amazon Fire TV Channels, allowing customers to access its content through Fire TV devices and compatible Alexa-enabled devices. The platform, which remains available for free on the NASA app and website, will feature a range of programming including science mission launches and the first crewed mission to the Moon under the Artemis program. This move aligns with NASA's mission to share its story of space exploration with the broadest possible audience.",
+        "hashtag": "NowStreaming",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nasa.gov/news-release/look-for-nasa-now-streaming-on-amazon-fire-tv/",
+        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg?w=785",
+        "images": [
+          "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg?w=785",
+          "https://www.nasa.gov/wp-content/uploads/2026/07/nasa-image.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Look",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG"
+          },
+          {
+            "name": "NASA",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/81/Beyaz%C4%B1tTower01.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+        ],
+        "entities": [
+          "Look",
+          "NASA",
+          "Now Streaming",
+          "Amazon Fire TV",
+          "Continuing",
+          "On Thursday"
+        ],
+        "sourceUrls": [
+          "https://www.nasa.gov/news-release/look-for-nasa-now-streaming-on-amazon-fire-tv/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.67,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1684,21 +2146,21 @@
         "geo": null
       },
       {
-        "title": "House Again Rebukes Trump on Iran War Powers Vote",
-        "summary": "For the second time, a few House Republicans joined Democrats to back a measure calling on the president to seek authorization for the war.",
-        "hashtag": "AgainRebukes",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/23/us/politics/house-iran-war-powers-vote-trump.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-warpowers-photo-blzg/23dc-warpowers-photo-blzg-mediumSquareAt3X.jpg",
+        "title": "A Peptide Showdown: F.D.A. Scientists May Clash With R.F.K.’s Agenda",
+        "summary": "Agency scientists are advising against allowing widespread use of several peptide injections. Robert F. Kennedy Jr., the health secretary, has said people should be free to experiment.",
+        "hashtag": "PeptideShowdown",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-warpowers-photo-blzg/23dc-warpowers-photo-blzg-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/us/politics/house-iran-war-powers-vote-trump.html"
+          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1708,52 +2170,33 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.58,
+        "freshH": 1.76,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "sports": [
+      },
       {
-        "title": "Modric, 40, signs new AC Milan deal",
-        "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan, following a season where the team finished fifth in Serie A. Modric joined Milan last summer on a one-year deal with an option to extend, after leaving Real Madrid where he spent 13 years. He will look to bounce back from a disappointing season with AC Milan in the upcoming campaign.",
-        "hashtag": "Milan",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+        "title": "BBC Inside Science",
+        "summary": "India's landmark Protection of Children from Sexual Offences Act, or Pocso, has seen reported cases surge into the tens of thousands each year since its introduction in 2012 following the Delhi gang rape. The law, aimed at exposing hidden abuse, trafficking, and child marriage, is now being applied to teenagers in consensual relationships, resulting in investigations, trials, and potential long prison terms. This has sparked controversy over the country's age of consent.",
+        "hashtag": "InsideScience",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/sounds/play/live:bbc_world_service?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
+          "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
+          "https://sounds.files.bbci.co.uk/3.12.0/networks/bbc_world_service/blocks-colour_600x600.png"
         ],
-        "entityShots": [
-          {
-            "name": "Modric",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg"
-          },
-          {
-            "name": "Luka Modric",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Modric",
-          "AC Milan",
-          "Luka Modric",
-          "September"
+          "BBC Inside Science"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/sounds/play/live:bbc_world_service?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1763,216 +2206,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.06,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Russell proud of resilience after string of problems",
-        "summary": "Mercedes driver George Russell has narrowed his deficit to 25 points after a series of challenges in recent races, including engine-related issues in Belgium. Despite setbacks, Russell remains optimistic about his progress, citing improvements from Monaco to Silverstone. He now looks to build on this momentum ahead of the Hungarian Grand Prix.",
-        "hashtag": "RussellProud",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "George Russell",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
-        ],
-        "entities": [
-          "Russell",
-          "George Russell",
-          "I've"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.18,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Wolves training cancelled after Arokodare refuses to leave pitch",
-        "summary": "Wolves striker Tolu Arokodare's training session was cancelled after he allegedly refused to leave the pitch, following a rejected bid from Fiorentina and an accepted offer from Turkish club Trabzonspor. Arokodare has denied the allegations, stating he was simply preparing for his role in the team. The incident marks the latest controversy in Arokodare's career at Molineux, following a disciplinary action in April.",
-        "hashtag": "Arokodare",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Wolves",
-          "Arokodare",
-          "Tolu Arokodare"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.15,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "‘Breaking Bad’ Star Giancarlo Esposito Signs With UTA for Representation (EXCLUSIVE)",
-        "summary": "Giancarlo Esposito, a six-time Emmy nominee, has signed with United Talent Agency for representation in all areas. The prolific actor will appear in several projects in the coming months, including the film \"The Only Living Pickpocket in New York\" and the Netflix series \"The Gentlemen.\" He will also be seen in the animated film \"The Cat in the Hat\" and several other projects, including \"Your Mother, Your Mother, Your Mother\" and \"All the Sinners Bleed,\" which are set to premiere in the coming months.",
-        "hashtag": "BadStar",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/breaking-bad-giancarlo-esposito-uta-representation-caa-1236818870/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/P10YO70.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Star Giancarlo Esposito Signs",
-          "Representation",
-          "EXCLUSIVE",
-          "Actor",
-          "Giancarlo Esposito",
-          "United Talent Agency"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/breaking-bad-giancarlo-esposito-uta-representation-caa-1236818870/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.88,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘The Strange Architect,’ New Series by ‘Annihilation’ Author Jeff VanderMeer, Sells to Farrar, Straus and Giroux in Seven-Figure Deal (EXCLUSIVE)",
-        "summary": "Farrar, Straus and Giroux has acquired a new four-book series by bestselling author Jeff VanderMeer in a seven-figure deal. The first book, How to Be Free, will launch in winter 2029. The series follows Arthur Bream, who builds houses with a mysterious symbol after his daughter’s disappearance.",
-        "hashtag": "StrangeArchitect",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/biz/news/strange-architect-book-series-annihilation-author-jeff-vandermeer-1236818347/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Jeff-VanderMeer-Photographer-Azhar-Khan-2024.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Strange Architect",
-          "Series",
-          "Annihilation",
-          "Author Jeff VanderMeer",
-          "Sells",
-          "Farrar"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/biz/news/strange-architect-book-series-annihilation-author-jeff-vandermeer-1236818347/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.87,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘Myron Bolitar’ Series Adds 10 To Cast, Including Melissa Benoist, Bebe Neuwirth, Jamie Hector, Quincy Isaiah",
-        "summary": "Netflix’s “Myron Bolitar” series has added ten new cast members, including Melissa Benoist, Bebe Neuwirth, and Jamie Hector. Ra’Mya Latiah Aikens joins as a series regular while nine others will appear in recurring guest roles. Production is set to begin later this year.",
-        "hashtag": "BolitarSeries",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/myron-bolitar-series-cast-melissa-benoist-bebe-neuwirth-1236819436/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Myron-Bolitar-cast-Netflix.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Myron Bolitar",
-          "Series Adds",
-          "To Cast",
-          "Including Melissa Benoist",
-          "Bebe Neuwirth",
-          "Jamie Hector"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/myron-bolitar-series-cast-melissa-benoist-bebe-neuwirth-1236819436/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.88,
+        "freshH": 3.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1983,33 +2217,27 @@
     ],
     "crisis": [
       {
-        "title": "Google and Tesla shares plunge as AI spending rattles markets",
-        "summary": "Google's parent company Alphabet saw its share price drop by over 7% on Thursday, while Tesla's stock fell 13.5%, as investors reacted to the companies' massive spending on artificial intelligence. Alphabet now expects to spend up to $205 billion this year, a $15 billion increase from its previous estimate, mainly on AI projects and infrastructure. This significant investment has raised concerns about when financial benefits will materialize from these costly AI endeavors.",
-        "hashtag": "Tesla",
+        "title": "Help for electricity bills as crude oil hits $100",
+        "summary": "Alderney will apply £1.2 million in public funds directly to household and business electricity bills to offset rising costs after crude oil hit $100 a barrel. The temporary subsidy targets diesel-generated power, the island’s sole source since it lacks a French cable link. The committee stressed this measure supports, not replaces, ongoing efforts to secure cheaper fuel contracts.",
+        "hashtag": "HelpElectricity",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/c4gd9kypkjlo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8b38/live/f440acb0-869e-11f1-ae19-73b13bb6cb86.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Google",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Google",
-          "Tesla"
+          "Help",
+          "States",
+          "Guernsey",
+          "Alderney Electricity"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/c4gd9kypkjlo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -2019,7 +2247,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.46,
+        "freshH": 0.23,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Sony Revives Cinerama Dome in Los Angeles as Box Office Sales Rebound",
+        "summary": "The iconic Cinerama Dome and adjacent 14-screen theater complex will reopen in 2028 after a renovation. The venue closed in 2020 because of the pandemic.",
+        "hashtag": "RevivesCinerama",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/BIZ-ARCLIGHT-1-zvkc/BIZ-ARCLIGHT-1-zvkc-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/business/media/cinerama-dome-sony-pictures-hollywood.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.21,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2052,7 +2313,274 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.06,
+        "freshH": 2.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "LISTEN: How Travis Scott is Ascending to Culture Moguldom Through Music, Movies, Retail, Business and More",
+        "summary": "Travis Scott is emerging as a culture mogul, following a record-setting music tour and a high-profile role in Christopher Nolan's film \"The Odyssey.\" He has also partnered with major brands like McDonald's and has a range of business ventures in his hometown of Houston. Scott is now set to produce his own movie and TV shows through a first-look deal with Paramount Pictures.",
+        "hashtag": "HowTravis",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/music/news/travis-scott-variety-the-odyssey-cactus-jack-utopia-1236819668/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Travis-Scott-Variety-Cover-Story-1.jpg?crop=0px%2C38px%2C1920px%2C1080px&resize=1000%2C563"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "LISTEN",
+          "Travis Scott",
+          "Ascending",
+          "Culture Moguldom Through Music",
+          "Movies",
+          "Retail"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/music/news/travis-scott-variety-the-odyssey-cactus-jack-utopia-1236819668/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.47,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Patreon Lays Off 20% of Employees as Part of ‘Painful’ Restructuring",
+        "summary": "Patreon is cutting 20% of its workforce, laying off 93 employees with at least 16 weeks of severance. The restructuring aims to stabilize the platform amid market shifts affecting the creator economy. The company says its core business remains strong as it adjusts its cost structure.",
+        "hashtag": "LaysEmployees",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/biz/news/patreon-cuts-20-percent-of-employees-painful-restructuring-1236819665/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png",
+          "https://variety.com/wp-content/uploads/2026/04/Patreon-Header-Image.png?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Patreon Lays Off",
+          "Employees",
+          "Part",
+          "Painful",
+          "Restructuring",
+          "Patreon"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/biz/news/patreon-cuts-20-percent-of-employees-painful-restructuring-1236819665/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.44,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "L.A. Production Volume Down Slightly, as Recovery Continues to Sputter",
+        "summary": "Los Angeles production volume slipped 3.1% in the second quarter of 2026 despite a state tax incentive boost. Film and commercial shoots led the decline while TV production edged up, though all remain below historic levels. Reality TV and dramas showed gains, signaling uneven recovery across the industry.",
+        "hashtag": "ProductionVolume",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/los-angeles-production-volume-down-slightly-filmla-1236819482/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg",
+          "https://variety.com/wp-content/uploads/2025/05/GettyImages-1971567915.jpg?crop=0px%2C70px%2C1280px%2C720px&resize=1000%2C563"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Production Volume Down Slightly",
+          "Recovery Continues",
+          "Sputter",
+          "Los Angeles",
+          "Shoot",
+          "FilmLA"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/los-angeles-production-volume-down-slightly-filmla-1236819482/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "tech": [
+      {
+        "title": "Claude’s voice mode is now available for Opus and Sonnet",
+        "summary": "Anthropic has expanded voice mode to its Opus and Sonnet AI models, enabling deeper problem-solving and task automation. Users can now switch between voice and text mid-conversation and toggle models as needed. The update follows last year’s launch of voice mode for Haiku, which focused on quick responses.",
+        "hashtag": "OpusSonnet",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "images": [
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Claude-Voice-2-3-up.png?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Opus",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/ce/Trnavsk%C3%A1_cesta_100_01.jpg"
+        ],
+        "entities": [
+          "Claude",
+          "Opus",
+          "Sonnet",
+          "Until",
+          "Claude Haiku",
+          "Anthropic's"
+        ],
+        "sourceUrls": [
+          "https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai"
+        ],
+        "sourceName": "theverge.com",
+        "sources": [
+          "theverge.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Patreon is laying off 20 percent of workers",
+        "summary": "Patreon is cutting 20 percent of its workforce, or about 93 jobs, the company confirmed today. CEO Jack Conte cited AI-driven industry changes as the reason for the layoffs, not job replacement. The company plans to continue using AI tools to support creators despite the staff reductions.",
+        "hashtag": "PatreonLaying",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/tech/970211/patreon-layoffs-ai",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "images": [
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STK326_PATREON_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Media",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Media%20PA%20old%20bank%20State%20St.JPG?width=1200"
+        ],
+        "entities": [
+          "Patreon",
+          "Media",
+          "Patreon CEO Jack Conte"
+        ],
+        "sourceUrls": [
+          "https://www.theverge.com/tech/970211/patreon-layoffs-ai"
+        ],
+        "sourceName": "theverge.com",
+        "sources": [
+          "theverge.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.52,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Google and Tesla shares plunge as AI spending rattles markets",
+        "summary": "Shares of Google and Tesla plummeted on Thursday, with Alphabet's parent company experiencing a 7% drop and Tesla's stock falling 13.5% after both companies reported negative free cash flow in financial results. Alphabet now expects to spend up to $205 billion this year on AI projects and infrastructure, a $15 billion increase from its previous estimate. This massive spending spree has left investors wondering when financial benefits will materialize from these investments.",
+        "hashtag": "Tesla",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Google",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        ],
+        "entities": [
+          "Google",
+          "Tesla"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.44,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2063,21 +2591,21 @@
     ],
     "breaking": [
       {
-        "title": "‘We Will All Die From Ebola Here’: Virus Stalks Crowded Camps in Congo",
-        "summary": "There are a million people displaced by violence in the epicenter. They live in dangerous conditions and are fighting the virus with very little clean water.",
-        "hashtag": "AllDie",
+        "title": "Trump Throws a Potential Wrench in the Saudi Nuclear Deal He Just Inked",
+        "summary": "Saudi Arabia has long said that a condition of normalizing relations with Israel would be a pathway toward Palestinian statehood, a prospect that Israel’s current government has rejected.",
+        "hashtag": "ThrowsPotential",
         "badge": "BREAKING",
         "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg",
+        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/trump-saudi-arabia-palestinian-state.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-TrumpTwist-SA--bvjz/23int-TrumpTwist-SA--bvjz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-TrumpTwist-SA--bvjz/23int-TrumpTwist-SA--bvjz-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html"
+          "https://www.nytimes.com/2026/07/23/world/middleeast/trump-saudi-arabia-palestinian-state.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2087,40 +2615,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Chaos Breaks Out at Border Crossings With Iraq",
-        "summary": "Videos verified by The New York Times show border crossings in southern Iraq becoming the latest target in the hostilities in the Middle East.",
-        "hashtag": "BreaksBorder",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.35,
+        "freshH": 0.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2153,32 +2648,30 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.8,
+        "freshH": 0.19,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "facts": [
+      },
       {
-        "title": "A Peptide Showdown: F.D.A. Scientists May Clash With R.F.K.’s Agenda",
-        "summary": "Agency scientists are advising against allowing widespread use of several peptide injections. Robert F. Kennedy Jr., the health secretary, has said people should be free to experiment.",
-        "hashtag": "PeptideShowdown",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
+        "title": "A Russian Spy, Suddenly Cast Into the Spotlight, Flees Japan",
+        "summary": "The military intelligence officer left the country after The Times reported that he was using the Aeroflot airline office in Tokyo to conduct espionage.",
+        "hashtag": "RussianSpy",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
+          "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2188,84 +2681,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.77,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "BBC Inside Science",
-        "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency, with those found to have low levels offered voluntary hormone replacement therapy. The move aims to maintain a \"healthy, capable, and decisively dominant fighting force\". The screenings are expected to impact thousands of service members.",
-        "hashtag": "InsideScience",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/sounds/play/w3ct977x?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/images/ic/240x135/p0m1ww2j.jpg",
-          "https://ichef.bbci.co.uk/images/ic/1024x576/p0m1ww2j.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "BBC Inside Science"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sounds/play/w3ct977x?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.88,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Crews Move Artemis IV Liquid Hydrogen Tank",
-        "summary": "Crews at NASA's Michoud Assembly Facility in New Orleans have successfully transported the 130-foot-tall Artemis IV liquid hydrogen tank to a detached test building on May 15, 2026. This tank will form part of the core stage for the SLS rocket, providing thousands of gallons of super-cold propellant to one of four RS-25 engines. The Artemis IV mission is a crucial step towards NASA's plans for a sustainable presence on the lunar surface.",
-        "hashtag": "MoveArtemis",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nasa.gov/image-article/crews-move-artemis-iv-liquid-hydrogen-tank/",
-        "imageUrl": "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg?w=2048",
-        "images": [
-          "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg?w=2048",
-          "https://www.nasa.gov/wp-content/uploads/2026/07/maf-20260515-cs4-lh2to451-08orig.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Crews Move Artemis IV",
-          "Liquid Hydrogen Tank",
-          "Crews",
-          "NASA",
-          "Michoud Assembly Facility",
-          "Orleans"
-        ],
-        "sourceUrls": [
-          "https://www.nasa.gov/image-article/crews-move-artemis-iv-liquid-hydrogen-tank/"
-        ],
-        "sourceName": "NASA",
-        "sources": [
-          "NASA"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.54,
+        "freshH": 0.19,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2277,7 +2693,7 @@
     "health": [
       {
         "title": "The only way to stop petrol pump thieves | Brief letters",
-        "summary": "Petrol pump thieves are exploiting a loophole in the payment system, allowing them to fill up and flee without paying. In the UK, it's estimated that thousands of litres of fuel are stolen every year, with some garages reporting losses of up to £10,000. To combat this issue, some experts are advocating for a system where pumps are only activated once a payment method is confirmed.",
+        "summary": "A new UK-wide crackdown on petrol pump theft starts today, requiring drivers to pay upfront or leave a card deposit before fueling. Police report a 15% rise in drive-offs this year, costing forecourts £30 million annually. Forecourt owners warn pumps will lock until payment is confirmed.",
         "hashtag": "Brief",
         "badge": "HEALTH",
         "category": "health",
@@ -2322,7 +2738,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.45,
+        "freshH": 4.43,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2332,7 +2748,7 @@
       },
       {
         "title": "Risk of Parkinson’s disease may increase with prolonged exposure to road traffic noise",
-        "summary": "A study of 3.1 million Danish participants has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease by 3% for every 11.5 decibel rise in noise level. The study, published in Jama Neurology, followed participants for 18 years and suggests that having a quiet part of the home may mitigate this risk. The findings highlight a potential link between noise exposure and the development of Parkinson's disease.",
+        "summary": "A new study has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease, with a 3% higher risk for every 11.5 decibel rise in noise level at the most exposed facade. The study, which included 3.1 million Danish participants aged 40 and over, followed them for 18 years and suggests that having a quiet part of the home may mitigate this risk.",
         "hashtag": "Parkinson",
         "badge": "HEALTH",
         "category": "health",
@@ -2377,7 +2793,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.47,
+        "freshH": 6.45,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2387,7 +2803,7 @@
       },
       {
         "title": "Poorest children in England 40% more likely to be hospitalised for lung infections",
-        "summary": "Children in England’s poorest areas are 40% more likely to be hospitalised for lung infections than those in wealthier regions, new NHS data shows. In 2024-25, 1,941 out of every 100,000 children in the most deprived areas were admitted for respiratory illnesses compared to 1,380 in the least deprived. Experts warn air pollution and deprivation are key drivers, with calls for urgent public health action.",
+        "summary": "Children in England’s poorest areas are 40% more likely to be hospitalised for lung infections than those in wealthier regions, new NHS data shows. In 2024-25, 1,941 per 100,000 children from the most deprived fifth were admitted compared to 1,380 per 100,000 in the least deprived. Experts warn air pollution and deprivation are key drivers behind the disparity.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -2419,7 +2835,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.63,
+        "freshH": 7.62,
         "score": null,
         "popularity": null,
         "recency": null,
