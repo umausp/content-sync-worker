@@ -1,205 +1,194 @@
 {
-  "generatedAt": "2026-07-23T02:51:38.776Z",
+  "generatedAt": "2026-07-23T03:51:43.923Z",
   "region": "usa",
-  "count": 30,
+  "count": 29,
   "categoryCounts": {
-    "offbeat": 8,
+    "offbeat": 7,
+    "breaking": 3,
     "facts": 3,
     "tech": 2,
     "crisis": 3,
     "entertainment": 3,
-    "breaking": 3,
     "politics": 3,
     "health": 2,
     "sports": 3
   },
   "stories": [
     {
-      "title": "Son vs. Luna: LAFC host Real Salt Lake in midweek showdown",
-      "summary": "LAFC hosts Real Salt Lake at BMO Stadium on Wednesday evening. The match is a midweek showdown between Western Conference contenders, with LAFC currently standing third in the standings with 27 points. Son Heung-Min and Denis Bouanga are key players to watch, having scored in LAFC's last game against LA Galaxy. The match will be broadcast on Apple TV, FS1, and FOX Deportes.",
-      "hashtag": "SaltLake",
+      "title": "GOP chair of House Judiciary Committee asks Justice Department to consider prosecuting Jack Smith",
+      "summary": "House Judiciary Committee Chairman Jim Jordan has asked the Justice Department to consider criminally charging special counsel Jack Smith, alleging Smith made false statements during closed-door testimony last year. The referral is based on concerns over Smith's team obtaining text messages between Trump administration officials and Congress members. The Justice Department has confirmed receiving the referral and will investigate all evidence of criminal conduct. A decision on Smith's potential prosecution is now pending.",
+      "hashtag": "JimJordan",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.mlssoccer.com/news/son-vs-luna-lafc-host-real-salt-lake-in-midweek-showdown",
-      "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
+      "url": "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
+      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
       "images": [
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-        "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/mls-lafc/btzuoo8ur7vqxqkhreiv.jpg",
-        "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_png/mls-lafc-prd/f1jbzuiiepm2j3dw0lqu.png",
-        "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/mls-lafc/p6ohmd8sfipq35zsmvvl.jpg",
-        "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/v1782406856/mls-lafc/gwjpaeqsdjb9t3njrap0.jpg",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/awsyc7o8kljqidvmcc3y",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc-prd/ppapxoxndwsq507r9vba",
-        "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/uasracvs6dffz2n0lalo"
+        "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
+        "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain_16x9.jpg?w=1600",
+        "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain.jpg"
       ],
       "sourceUrls": [
-        "https://www.mlssoccer.com/news/son-vs-luna-lafc-host-real-salt-lake-in-midweek-showdown",
-        "https://www.lafc.com/news/player-status-report-lafc-vs-real-salt-lake-2026-mls-season-july-22"
+        "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
+        "https://abcnews.com/Politics/house-judiciary-committee-chairman-jim-jordan-issues-criminal/story?id=135006808"
       ],
-      "sourceName": "mlssoccer.com",
+      "sourceName": "cnn.com",
       "sources": [
-        "MLSsoccer.com",
-        "LAFC"
+        "CNN",
+        "ABC News - Breaking News, Latest News and Videos"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "salt lake vs lafc",
-      "traffic": 5000,
+      "trend": "jim jordan jack smith doj referral",
+      "traffic": 1000,
       "freshH": 1,
-      "score": 0.734,
+      "score": 0.701,
       "popularity": 0.443,
       "recency": 0.891,
-      "relevancy": 0.982,
+      "relevancy": 0.85,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "2026 Kia WNBA Shooting Stars Participants",
-      "summary": "Four WNBA legends, including two-time MVP Elena Delle Donne and three-time MVP Lauren Jackson, will compete in the Kia WNBA Shooting Stars timed shooting competition on July 24 at 8 p.m. ET, live on ESPN from Wintrust Arena in Chicago. The event is part of the AT&T WNBA All-Star 2026, which will be followed by the 2026 AT&T WNBA All-Star Game on July 25. The competition features four teams representing the WNBA's Minnesota, Seattle, Washington, and Dallas/Detroit markets. The games will be broadcast on multiple platforms.",
-      "hashtag": "WnbaStandings",
+      "title": "Lil Wayne praises Trump's White House ballroom project, calls out critics who 'don't know nothing'",
+      "summary": "Rapper Lil Wayne praises President Trump's White House ballroom project, saying it will spare performers from being pushed outside for major events. The project aims to provide an indoor space for performances, events, and diplomatic ceremonies. Lil Wayne, who performed at a 2023 celebration marking the 50th anniversary of hip-hop, expressed support for the project after a memorable performance outside at Number One Observatory Circle. The ballroom is expected to accommodate guests and heightened security protocols.",
+      "hashtag": "LilWayne",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
-      "imageUrl": "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png",
+      "url": "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
+      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
       "images": [
-        "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png"
+        "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/lil-wayne-trump.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/lil-wayne-trump.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/11/1200/675/harris.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/05/1200/675/Lil-Wanye.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/04/1200/675/donald-trump-ballroom.jpg?ve=1&tl=1",
+        "https://thehill.com/wp-content/uploads/sites/2/2024/09/66e4bafb8981d0.63708843-e1784667235571.jpeg?w=1280",
+        "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/FILE%20-%20Lil%20Wayne%20performs%20during%20%22The%20Miseducation%20of%20Lauryn%20Hill%22%2025th%20anniversary%20tour,%20Nov.%205,%202023,%20at%20the%20Kia%20Forum%20in%20Inglewood,%20Calif.%20(Photo%20by%20Willy%20Sanjuan/Invision/AP,%20File)"
       ],
       "sourceUrls": [
-        "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
-        "https://www.espn.com/wnba/story/_/id/49427940/delle-donne-legends-wnba-shooting-stars-event",
-        "https://www.dallasnews.com/sports/wings/article/jessica-shepard-wings-wnba-shooting-stars-contest-22356430.php"
+        "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
+        "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/"
       ],
-      "sourceName": "wnba.com",
+      "sourceName": "foxnews.com",
       "sources": [
-        "WNBA",
-        "ESPN",
-        "Dallas News"
-      ],
-      "corr": 3,
-      "verified": true,
-      "trend": "wnba standings",
-      "traffic": 2000,
-      "freshH": 1,
-      "score": 0.638,
-      "popularity": 0.346,
-      "recency": 0.891,
-      "relevancy": 0.75,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Jordan accuses Smith of lying to Congress in criminal referral to DOJ",
-      "summary": "House Judiciary Chair Jim Jordan has referred former special counsel Jack Smith to the Justice Department for potential criminal prosecution, accusing Smith of lying to Congress about his investigation into President Trump. Jordan claims Smith made false statements about obtaining lawmakers' text messages, which were actually obtained through the White House. The referral was made in a letter to the acting Attorney General on Wednesday. The Justice Department will now review the allegations.",
-      "hashtag": "JackSmith",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/",
-      "imageUrl": "https://thehill.com/wp-content/uploads/sites/2/2026/01/smithjack_012226gn34_w.jpg?w=1280",
-      "images": [
-        "https://thehill.com/wp-content/uploads/sites/2/2026/01/smithjack_012226gn34_w.jpg?w=1280",
-        "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/Former%20special%20counsel%20Jack%20Smith%20leaves%20for%20a%20break%20in%20a%20House%20Judiciary%20Committee%20oversight%20hearing%20to%20discuss%20his%20investigations%20into%20President%20Trump%20on%20Thursday,%20January%2022,%202026.",
-        "https://static.foxnews.com/foxnews.com/content/uploads/2026/02/special-counsel-jack-smith.jpg",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/02/1024/512/special-counsel-jack-smith.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/02/1200/675/special-counsel-jack-smith.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/jim-jordan-june.png?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2025/10/1200/675/sen-chuck-grassley-september-2025.jpg?ve=1&tl=1"
-      ],
-      "sourceUrls": [
-        "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/",
-        "https://www.foxnews.com/politics/jack-smith-hit-criminal-referral-gop-moves-testimony-fight-toward-prosecution"
-      ],
-      "sourceName": "thehill.com",
-      "sources": [
-        "The Hill",
-        "Fox News"
+        "Fox News",
+        "The Hill"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "jack smith news",
+      "trend": "lil wayne",
       "traffic": 500,
       "freshH": 1,
-      "score": 0.631,
-      "popularity": 0.173,
+      "score": 0.679,
+      "popularity": 0.293,
       "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Cubs, Tigers face off in rubber match (LIVE on ESPN)",
-      "summary": "The Chicago Cubs face the Detroit Tigers in the rubber match of their series, with the Cubs looking to take the win after a 11-2 victory in the second game. The matchup is exclusively televised on ESPN at 8:10 p.m. ET. The Cubs have had a rollercoaster season, with two 10-game winning streaks and a 10-game losing streak. The team's success is largely due to the development of Pete Crow-Armstrong, who has 5.9 WAR and a .905 OPS.",
-      "hashtag": "CubsScore",
+      "title": "Tigers' Kenley Jansen: Extends scoreless streak Wednesday",
+      "summary": "Tigers' closer Kenley Jansen extended his scoreless streak to seven appearances, logging a clean inning of relief in Wednesday's 5-1 win over the Cubs. He walked one and struck out one. Jansen has now recorded a win and two saves during this streak, and leads Detroit with 11 saves this season. The Tigers are 1-1 in their series with the Cubs, with the final game scheduled for Thursday.",
+      "hashtag": "KenleyJansen",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.mlb.com/news/cubs-tigers-play-series-finale-on-espn",
-      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/lgwv2ynjnjgmu1iuhy2a.jpg",
+      "url": "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
+      "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
       "images": [
-        "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/lgwv2ynjnjgmu1iuhy2a.jpg",
-        "https://platform.bleedcubbieblue.com/wp-content/uploads/sites/35/2026/07/gettyimages-2272370840.jpg?quality=90&strip=all&crop=0%2C13.95280751953%2C100%2C78.540251402588&w=1200"
+        "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
+        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2281864524.jpg?quality=65&strip=all",
+        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2286985418.jpg?quality=65&strip=all",
+        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2273789063.jpg?quality=65&strip=all",
+        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2277880090.jpg?quality=65&strip=all",
+        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2270988527.jpg?quality=65&strip=all"
       ],
       "sourceUrls": [
-        "https://www.mlb.com/news/cubs-tigers-play-series-finale-on-espn",
-        "https://www.bleedcubbieblue.com/chicago-cubs-discussion/225616/cubs-tigers-wednesday-live"
+        "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
+        "https://heavy.com/sports/mlb/detroit-tigers/kenley-jansen-makes-heartfelt-post-during-cubs-series/"
+      ],
+      "sourceName": "cbssports.com",
+      "sources": [
+        "CBS Sports",
+        "Heavy.com"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "kenley jansen",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.677,
+      "popularity": 0.293,
+      "recency": 0.891,
+      "relevancy": 0.991,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Yordan continues MVP-caliber season with clutch go-ahead blast",
+      "summary": "Yordan Alvarez hit his Major League-leading 34th home run of the season, a two-run shot in the eighth inning, breaking a 2-2 tie and sending the Astros to a 5-2 win over the Marlins at Daikin Park. The Astros completed a three-game sweep of Miami on Wednesday night. Alvarez's 34 homers are three shy of his career high. The Astros' manager, Joe Espada, earned his 225th win with the team.",
+      "hashtag": "YordanAlvarez",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg",
+      "images": [
+        "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins"
       ],
       "sourceName": "mlb.com",
       "sources": [
         "MLB.com",
-        "Bleed Cubbie Blue"
+        "ESPN"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "cubs score",
-      "traffic": 2000,
+      "trend": "yordan alvarez",
+      "traffic": 500,
       "freshH": 1,
-      "score": 0.617,
-      "popularity": 0.263,
+      "score": 0.614,
+      "popularity": 0.293,
       "recency": 0.891,
-      "relevancy": 0.8,
+      "relevancy": 0.742,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Keider Montero unleashing inner bulldog in bullpen role with Tigers",
-      "summary": "Keider Montero is returning to the starting rotation for the Detroit Tigers, starting against the Chicago Cubs at Wrigley Field on July 22. Montero had previously excelled in a bullpen role, making 13 starts and five quality starts earlier in the season. He will join a temporary six-man rotation, with the team looking to give pitchers more rest time during a 13-game stretch. This move allows Montero to pitch every fifth day, a schedule he has grown accustomed to.",
-      "hashtag": "KeiderMontero",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/19/keider-montero-unleashing-inner-bulldog-in-bullpen-role-with-tigers/90974248007/",
-      "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/12/PDTN/90895667007-20260712-rbtigersphillies-531.jpg?crop=3397,1912,x0,y29&width=1600&height=800&format=pjpg&auto=webp",
+      "title": "Houthis claim attack on oil tankers as US launches more strikes on Iran",
+      "summary": "US launches 12th consecutive night of strikes on Iran, killing at least two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships, Encelia and Layla, with drones and missiles, allegedly for violating their naval blockade. The attack would be the first since the Houthis announced a \"maritime embargo\" against Saudi Arabia. The US has threatened to take action against the Houthis if they continue to block the Red Sea.",
+      "hashtag": "Iran",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
       "images": [
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/12/PDTN/90895667007-20260712-rbtigersphillies-531.jpg?crop=3397,1912,x0,y29&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/19/PDTN/90976957007-2286797773.jpg?crop=4543,2556,x0,y236&width=660&height=372&format=pjpg&auto=webp",
-        "https://www.freep.com/gcdn/authoring/authoring-images/2026/07/18/PDTF/90964847007-usatsi-29405108.jpg?crop=5216,2935,x0,y173&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.freep.com/gcdn/authoring/authoring-images/2026/07/18/PDTF/90964849007-usatsi-29405109.jpg?crop=8255,4645,x0,y429&width=660&height=372&format=pjpg&auto=webp"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg"
       ],
       "sourceUrls": [
-        "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/19/keider-montero-unleashing-inner-bulldog-in-bullpen-role-with-tigers/90974248007/",
-        "https://www.freep.com/story/sports/mlb/tigers/2026/07/19/detroit-tigers-keider-montero-starting-rotation/90975420007/"
+        "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "detroitnews.com",
+      "sourceName": "BBC",
       "sources": [
-        "The Detroit News",
-        "Detroit Free Press"
+        "BBC"
       ],
-      "corr": 2,
-      "verified": true,
-      "trend": "keider montero",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.606,
-      "popularity": 0.173,
-      "recency": 0.891,
-      "relevancy": 0.9,
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.05,
+      "score": 0.478,
+      "popularity": 0,
+      "recency": 0.994,
+      "relevancy": 0.52,
       "region": "usa",
-      "geo": "US"
+      "geo": null
     },
     {
       "title": "Hosepipe ban in force for millions of households - is your area affected?",
-      "summary": "A hosepipe ban has taken effect for over 20 million households in southern and eastern England and parts of Wales, restricting use for watering gardens, washing vehicles and windows, and filling pools. The ban is in place due to heatwaves straining water supplies. This measure affects a significant portion of the UK population. As the country faces drier summers with climate change, concerns are raised about water resource management.",
+      "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting non-essential water use due to successive heatwaves straining water supplies. The ban affects Thames Water customers and prohibits activities like watering gardens and washing vehicles. This measure is a result of below-average spring and early summer rainfall, despite a wetter-than-usual winter. Water management and preparedness for drier summers expected with climate change are now under scrutiny.",
       "hashtag": "HosepipeForce",
       "badge": "SCIENCE",
       "category": "facts",
@@ -223,17 +212,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.66,
-      "score": 0.492,
+      "freshH": 1.67,
+      "score": 0.456,
       "popularity": 0,
-      "recency": 0.926,
+      "recency": 0.825,
       "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-      "summary": "A Lego Donkey Kong arcade machine has been designed, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine is said to have won the favor of Mario creator Shigeru Miyamoto. The set is now available, offering a unique nostalgic gaming experience.",
+      "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine's design has reportedly won the approval of Mario creator Shigeru Miyamoto. The set is now available for purchase.",
       "hashtag": "DonkeyKong",
       "badge": "TECH",
       "category": "tech",
@@ -258,17 +247,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.36,
-      "score": 0.446,
+      "freshH": 3.36,
+      "score": 0.417,
       "popularity": 0,
-      "recency": 0.761,
+      "recency": 0.678,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
       "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-      "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from top US AI models, specifically Anthropic's Fable AI, through a process called distillation. The US government claims Moonshot AI accessed restricted Nvidia servers to train its K3 model, which was unveiled last week. The K3 model is said to rival top US technology. The US government is now investigating the allegations.",
+      "summary": "A US government adviser claims China's Moonshot AI stole capabilities from top US AI model Anthropic's Fable AI through a process called distillation, gaining access to restricted Nvidia servers to train its K3 model. The alleged theft occurred through a weaker AI model extracting answers from a stronger one. This incident is linked to Moonshot's unveiling of its K3 model, which rivals top US technology. The US government is now investigating the claims.",
       "hashtag": "MoonshotAnthropic",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -289,17 +278,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.99,
-      "score": 0.442,
+      "freshH": 1.99,
+      "score": 0.408,
       "popularity": 0,
-      "recency": 0.892,
+      "recency": 0.794,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
+      "summary": "The Saudi authorities confirmed a strike on one of the ships. These are the first claimed attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
+      "hashtag": "ClaimStrikes",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.87,
+      "score": 0.392,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.3,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
-      "summary": "Rising temperatures in Africa's Afar region are causing extreme heat stress in camels, with herder Ali Umer reporting eight camel calves lost in the past month due to blistering heat, watery eyes, and skin burns. The region is one of the hottest and driest places on Earth, where camels are used to carry salt through the desert. Temperatures are becoming increasingly intense, with even the wind now carrying heat. Herders are struggling to cope with the changing climate.",
+      "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camels, with herders reporting blistered feet, watery eyes, and skin burns. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where camels are often used to carry salt through the desert. As temperatures continue to rise, camel herders are facing unprecedented challenges.",
       "hashtag": "Africa",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -327,17 +346,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.48,
-      "score": 0.414,
+      "freshH": 4.48,
+      "score": 0.389,
       "popularity": 0,
-      "recency": 0.669,
+      "recency": 0.596,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Where to Find a Commonwealth Games 2026 Livestream in the U.S. to Watch the Event for Free",
-      "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will be livestreamed for free on CBC in Canada, accessible to North American viewers via a virtual private network like ExpressVPN. Viewers can set their location to Canada to stream the coverage online. The Games will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK.",
+      "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available to stream online from anywhere in the world.",
       "hashtag": "FindCommonwealth",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -358,10 +377,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.81,
-      "score": 0.414,
+      "freshH": 2.82,
+      "score": 0.383,
       "popularity": 0,
-      "recency": 0.811,
+      "recency": 0.722,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -388,11 +407,73 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.39,
-      "score": 0.411,
+      "freshH": 1.39,
+      "score": 0.374,
       "popularity": 0,
-      "recency": 0.956,
+      "recency": 0.852,
       "relevancy": 0.305,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "US signs landmark nuclear deal with Saudi Arabia",
+      "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement, providing great access for American companies in the Saudi nuclear energy program. The agreement is expected to be a multi-billion-dollar partnership spanning decades. This move marks a significant step in advancing nuclear nonproliferation in the region.",
+      "hashtag": "SaudiArabia",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.5,
+      "score": 0.364,
+      "popularity": 0,
+      "recency": 0.668,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Canada's 'powerful' dairy sector is in Trump's trade crosshairs",
+      "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20 billion worth of Canadian goods, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system, which includes production quotas and set pricing, is a cornerstone of Canada's economy and rural communities. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable. The move is likely to escalate trade tensions between the two nations.",
+      "hashtag": "Trump",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/ce8kvm84lxmo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ce8kvm84lxmo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.61,
+      "score": 0.361,
+      "popularity": 0,
+      "recency": 0.659,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -418,10 +499,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.7,
-      "score": 0.396,
+      "freshH": 1.7,
+      "score": 0.36,
       "popularity": 0,
-      "recency": 0.922,
+      "recency": 0.822,
       "relevancy": 0.291,
       "region": "usa",
       "geo": null
@@ -448,109 +529,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.71,
-      "score": 0.395,
+      "freshH": 1.72,
+      "score": 0.36,
       "popularity": 0,
-      "recency": 0.921,
+      "recency": 0.82,
       "relevancy": 0.291,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "US signs landmark nuclear deal with Saudi Arabia",
-      "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement and could provide great access for American companies. The US Department of Energy estimates the partnership could be worth billions of dollars over decades. The agreement's text remains undisclosed, but experts warn it may increase the risk of nuclear proliferation in the region.",
-      "hashtag": "SaudiArabia",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/63a6/live/6a9afff0-85af-11f1-9454-77c2271a5b4a.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.5,
-      "score": 0.392,
-      "popularity": 0,
-      "recency": 0.749,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Canada's 'powerful' dairy sector is in Trump's trade crosshairs",
-      "summary": "US President Donald Trump has announced a 50% tariff on $20 billion worth of Canadian goods, citing Canada's dairy supply management system as one of the main irritants. The system, which includes production quotas, set pricing, and import quotas, is seen as \"unreasonable\" by American farmers who want to sell their product in Canada. The tariff is set to take effect in August. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable.",
-      "hashtag": "Trump",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/ce8kvm84lxmo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e5eb/live/f92abbb0-85dd-11f1-9837-c51febdbeb82.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ce8kvm84lxmo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.61,
-      "score": 0.389,
-      "popularity": 0,
-      "recency": 0.74,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Three Airports Plan to Ditch T.S.A. Agents Amid Push for Private Security",
-      "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
-      "hashtag": "AirportsDitch",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.29,
-      "score": 0.376,
-      "popularity": 0,
-      "recency": 0.861,
-      "relevancy": 0.299,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Most sewage spills in England may be illegal, new research suggests",
-      "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during non-heavy rain conditions. The analysis, covering over 350 storm overflow outlets, found that water companies serving more than 30 million people failed to meet regulations. This raises concerns about the effectiveness of current sewage management practices. The findings may lead to increased scrutiny of England's water companies and potential enforcement action.",
+      "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during normal weather conditions, not heavy rain. The analysis, based on data from over 350 storm overflow outlets, found that none of the country's water companies performed well. This raises concerns about the legitimacy of sewage spills, which affect over 30 million people. The findings are set to be presented to Parliament, potentially leading to increased scrutiny of water companies' practices.",
       "hashtag": "England",
       "badge": "SCIENCE",
       "category": "facts",
@@ -571,47 +560,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.07,
-      "score": 0.375,
+      "freshH": 4.07,
+      "score": 0.349,
       "popularity": 0,
-      "recency": 0.701,
+      "recency": 0.625,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
-      "summary": "The Saudi authorities had yet to confirm the hits, which would be the first attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
-      "hashtag": "ClaimStrikes",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.26,
-      "score": 0.375,
-      "popularity": 0,
-      "recency": 0.864,
-      "relevancy": 0.289,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
-      "summary": "A life-changing treatment for thousands of multiple sclerosis patients in England is now available on the NHS. Up to 5,000 people could benefit each year from the drug fampridine, which boosts nerve signals to help people walk and live independently. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed and endurance. This development is expected to significantly improve the quality of life for those affected by the debilitating disease.",
+      "summary": "Up to 5,000 people in England with multiple sclerosis will now have access to the life-changing drug fampridine, which boosts nerve signals to help them walk independently. The drug, already available elsewhere in the UK, is being made available on the NHS in England. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed. This decision could significantly improve the lives of thousands of patients.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -632,28 +591,58 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.21,
-      "score": 0.372,
+      "freshH": 4.21,
+      "score": 0.345,
       "popularity": 0,
-      "recency": 0.69,
+      "recency": 0.615,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Airport drop-off fees up by a third - here are the priciest",
-      "summary": "Drop-off fees at the UK's major airports have increased by a third on average since last summer, with two London airports, Gatwick and Stansted, charging the highest fees at £10. The fees are part of airports' business models and climate change objectives. London City Airport now charges the highest per-minute rate at £1.60 per minute. The UK's airports are adopting these fees as they aim to reduce car usage and encourage passengers to use trains and buses.",
-      "hashtag": "AirportDrop",
+      "title": "Three Airports Plan to Ditch T.S.A. Agents Amid Push for Private Security",
+      "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
+      "hashtag": "AirportsDitch",
       "badge": "GLOBAL",
       "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+      "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg"
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
+        "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 2.29,
+      "score": 0.343,
+      "popularity": 0,
+      "recency": 0.767,
+      "relevancy": 0.299,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Google burning through cash with spiralling AI costs",
+      "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to growing spending on artificial intelligence infrastructure. This comes as Alphabet's AI spending is expected to reach $205 billion this year, a significant increase from $190 billion. The company's combined quarterly revenue rose 23% to $119.8 billion, but its stock fell 4% in after-hours trading. Alphabet's AI spending is now a major focus, with $45 billion spent in the second quarter, mostly on servers and data centers.",
+      "hashtag": "GoogleBurning",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -663,41 +652,41 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.5,
-      "score": 0.364,
+      "freshH": 4.82,
+      "score": 0.331,
       "popularity": 0,
-      "recency": 0.667,
+      "recency": 0.573,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "McInnes glad of Rangers backing in appeal against ban",
-      "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The comments were made when McInnes was in charge of Hearts, and Rangers are now appealing the Scottish FA's decision. McInnes has stated he disagrees with the ban and is glad the club is contesting it. The appeal will likely be a key focus for the club in the coming weeks.",
-      "hashtag": "Rangers",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+      "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
+      "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who previously worked on \"Hellbound\" and \"Parasyte: The Grey.\" Yeon developed and co-wrote the script with Ryu Yong-jae. The series is expected to premiere next year.",
+      "hashtag": "SangReturns",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg"
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
+        "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
       ],
-      "sourceName": "BBC",
+      "sourceName": "Variety",
       "sources": [
-        "BBC"
+        "Variety"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.78,
-      "score": 0.356,
+      "freshH": 4.86,
+      "score": 0.33,
       "popularity": 0,
-      "recency": 0.646,
+      "recency": 0.57,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -724,28 +713,28 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.69,
-      "score": 0.355,
+      "freshH": 2.69,
+      "score": 0.324,
       "popularity": 0,
-      "recency": 0.823,
+      "recency": 0.733,
       "relevancy": 0.27,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Google burning through cash with spiralling AI costs",
-      "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This significant increase in spending comes as major tech companies invest heavily in AI technology. As a result, Alphabet's stock fell 4% in after-hours trading.",
-      "hashtag": "GoogleBurning",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+      "title": "McInnes glad of Rangers backing in appeal against ban",
+      "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to a three-game penalty already imposed by the Scottish FA. McInnes is appealing the decision, which he believes was wrong. The appeal will be a key test of the club's support for their manager.",
+      "hashtag": "Rangers",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ad2e/live/99a241b0-861c-11f1-aba5-dfbb15fd1ac1.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/football/articles/cd694y2pezlo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -755,28 +744,59 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.82,
-      "score": 0.355,
+      "freshH": 4.78,
+      "score": 0.324,
       "popularity": 0,
-      "recency": 0.643,
+      "recency": 0.575,
+      "relevancy": 0.488,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
+      "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo athlete, will share the honor. The flag will be returned to its owners after the ceremony, but they may have to compete for the first photo opportunity. The event marks a special moment for both athletes, who have been keeping the news secret for weeks.",
+      "hashtag": "MarshallAdlington",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 5.36,
+      "score": 0.318,
+      "popularity": 0,
+      "recency": 0.538,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
-      "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who co-wrote the script with Ryu Yong-jae. This is Yeon's third project with Netflix, following \"Hellbound\" and \"Parasyte: The Grey.\" The series is expected to premiere next year.",
-      "hashtag": "SangReturns",
+      "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
+      "summary": "A three-hour screening of Christopher Nolan's \"The Odyssey\" in 4DX format has left some viewers shaken and soaked. The 4DX experience, featuring seat-rumbling and water-spritzing technology, is available at select theaters. Over 100 people have reported experiencing seasickness during the film's intense scenes. As a result, some theaters are considering adding a warning to the film's description.",
+      "hashtag": "SoakedSeasick",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+      "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
+        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
+        "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -786,10 +806,41 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.86,
-      "score": 0.354,
+      "freshH": 5.36,
+      "score": 0.318,
       "popularity": 0,
-      "recency": 0.64,
+      "recency": 0.538,
+      "relevancy": 0.519,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Liverpool confident of signing Barcola - Thursday's gossip",
+      "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The deal would come after Liverpool beat Arsenal and Bayern Munich to the signature. Talks around a new deal are also ongoing for Manchester United's Portugal midfielder Bruno Fernandes, 31. Fernandes has decided to commit his future to Manchester United.",
+      "hashtag": "BarcolaThursday",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 5.49,
+      "score": 0.316,
+      "popularity": 0,
+      "recency": 0.53,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -816,110 +867,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.14,
-      "score": 0.342,
+      "freshH": 3.14,
+      "score": 0.313,
       "popularity": 0,
-      "recency": 0.781,
+      "recency": 0.696,
       "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-      "summary": "A 3-hour film, \"The Odyssey,\" starring Matt Damon, was screened in 4DX format at select theaters. The immersive experience features seat-rumbling and water-spritzing technology, simulating the epic adventure on screen. Over 100 theaters worldwide have adopted this format, offering a unique cinematic experience. Audiences are left shaken, soaked, and seasick, a testament to the film's immersive storytelling.",
-      "hashtag": "SoakedSeasick",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.36,
-      "score": 0.341,
-      "popularity": 0,
-      "recency": 0.604,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-      "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowls player, and Adlington, a 39-year-old judo athlete, will share the honour. The flag will be returned to its owners after the ceremony, but the two athletes may have to fight for the first photo opportunity. The event is set to take place at the Commonwealth Games, where Adlington is also competing to complete a treble.",
-      "hashtag": "MarshallAdlington",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.36,
-      "score": 0.341,
-      "popularity": 0,
-      "recency": 0.604,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-      "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The move would come after beating Arsenal and Bayern Munich to the signature. Talks are ongoing, but no official deal has been announced. Liverpool's pursuit of Barcola is a significant development in the transfer market.",
-      "hashtag": "BarcolaThursday",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.49,
-      "score": 0.338,
-      "popularity": 0,
-      "recency": 0.595,
-      "relevancy": 0.517,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-      "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower. The report targets ultra-processed foods, which are high in sugar and refined carbohydrates, as primary drivers of weight gain and type 2 diabetes. The committee recommends a new framework to hold supermarkets and manufacturers accountable. The UK government is expected to review food policy in response to the report's findings.",
+      "summary": "A British health select committee report finds obesity is an engineered outcome, not a failure of willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The committee recommends targeting ultra-processed foods high in sugar and refined carbohydrates instead. This shift could lead to more effective public health measures.",
       "hashtag": "BritainLetter",
       "badge": "HEALTH",
       "category": "health",
@@ -940,10 +898,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 10.01,
-      "score": 0.24,
+      "freshH": 11.01,
+      "score": 0.228,
       "popularity": 0,
-      "recency": 0.315,
+      "recency": 0.28,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -970,10 +928,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.63,
-      "score": 0.236,
+      "freshH": 7.63,
+      "score": 0.219,
       "popularity": 0,
-      "recency": 0.465,
+      "recency": 0.414,
       "relevancy": 0.295,
       "region": "usa",
       "geo": null
@@ -982,40 +940,31 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Son vs. Luna: LAFC host Real Salt Lake in midweek showdown",
-        "summary": "LAFC hosts Real Salt Lake at BMO Stadium on Wednesday evening. The match is a midweek showdown between Western Conference contenders, with LAFC currently standing third in the standings with 27 points. Son Heung-Min and Denis Bouanga are key players to watch, having scored in LAFC's last game against LA Galaxy. The match will be broadcast on Apple TV, FS1, and FOX Deportes.",
-        "hashtag": "SaltLake",
+        "title": "GOP chair of House Judiciary Committee asks Justice Department to consider prosecuting Jack Smith",
+        "summary": "House Judiciary Committee Chairman Jim Jordan has asked the Justice Department to consider criminally charging special counsel Jack Smith, alleging Smith made false statements during closed-door testimony last year. The referral is based on concerns over Smith's team obtaining text messages between Trump administration officials and Congress members. The Justice Department has confirmed receiving the referral and will investigate all evidence of criminal conduct. A decision on Smith's potential prosecution is now pending.",
+        "hashtag": "JimJordan",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.mlssoccer.com/news/son-vs-luna-lafc-host-real-salt-lake-in-midweek-showdown",
-        "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
+        "url": "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
+        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
         "images": [
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/swyuniwgfaww9ua7jgdn.jpg",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/noosmko7pxsaypngpxwh.jpg",
-          "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/mls-lafc/btzuoo8ur7vqxqkhreiv.jpg",
-          "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_png/mls-lafc-prd/f1jbzuiiepm2j3dw0lqu.png",
-          "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/mls-lafc/p6ohmd8sfipq35zsmvvl.jpg",
-          "https://images.mlssoccer.com/image/private/t_keep-aspect-ratio-e-mobile/f_auto/v1782406856/mls-lafc/gwjpaeqsdjb9t3njrap0.jpg",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/awsyc7o8kljqidvmcc3y",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc-prd/ppapxoxndwsq507r9vba",
-          "https://images.mlssoccer.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/mls-lafc/uasracvs6dffz2n0lalo"
+          "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
+          "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain_16x9.jpg?w=1600",
+          "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain.jpg"
         ],
         "sourceUrls": [
-          "https://www.mlssoccer.com/news/son-vs-luna-lafc-host-real-salt-lake-in-midweek-showdown",
-          "https://www.lafc.com/news/player-status-report-lafc-vs-real-salt-lake-2026-mls-season-july-22"
+          "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
+          "https://abcnews.com/Politics/house-judiciary-committee-chairman-jim-jordan-issues-criminal/story?id=135006808"
         ],
-        "sourceName": "mlssoccer.com",
+        "sourceName": "cnn.com",
         "sources": [
-          "MLSsoccer.com",
-          "LAFC"
+          "CNN",
+          "ABC News - Breaking News, Latest News and Videos"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "salt lake vs lafc",
-        "traffic": 5000,
+        "trend": "jim jordan jack smith doj referral",
+        "traffic": 1000,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1025,68 +974,35 @@
         "geo": "US"
       },
       {
-        "title": "2026 Kia WNBA Shooting Stars Participants",
-        "summary": "Four WNBA legends, including two-time MVP Elena Delle Donne and three-time MVP Lauren Jackson, will compete in the Kia WNBA Shooting Stars timed shooting competition on July 24 at 8 p.m. ET, live on ESPN from Wintrust Arena in Chicago. The event is part of the AT&T WNBA All-Star 2026, which will be followed by the 2026 AT&T WNBA All-Star Game on July 25. The competition features four teams representing the WNBA's Minnesota, Seattle, Washington, and Dallas/Detroit markets. The games will be broadcast on multiple platforms.",
-        "hashtag": "WnbaStandings",
+        "title": "Lil Wayne praises Trump's White House ballroom project, calls out critics who 'don't know nothing'",
+        "summary": "Rapper Lil Wayne praises President Trump's White House ballroom project, saying it will spare performers from being pushed outside for major events. The project aims to provide an indoor space for performances, events, and diplomatic ceremonies. Lil Wayne, who performed at a 2023 celebration marking the 50th anniversary of hip-hop, expressed support for the project after a memorable performance outside at Number One Observatory Circle. The ballroom is expected to accommodate guests and heightened security protocols.",
+        "hashtag": "LilWayne",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
-        "imageUrl": "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png",
+        "url": "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
+        "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
         "images": [
-          "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png"
+          "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/lil-wayne-trump.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/lil-wayne-trump.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/11/1200/675/harris.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/05/1200/675/Lil-Wanye.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/04/1200/675/donald-trump-ballroom.jpg?ve=1&tl=1",
+          "https://thehill.com/wp-content/uploads/sites/2/2024/09/66e4bafb8981d0.63708843-e1784667235571.jpeg?w=1280",
+          "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/FILE%20-%20Lil%20Wayne%20performs%20during%20%22The%20Miseducation%20of%20Lauryn%20Hill%22%2025th%20anniversary%20tour,%20Nov.%205,%202023,%20at%20the%20Kia%20Forum%20in%20Inglewood,%20Calif.%20(Photo%20by%20Willy%20Sanjuan/Invision/AP,%20File)"
         ],
         "sourceUrls": [
-          "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
-          "https://www.espn.com/wnba/story/_/id/49427940/delle-donne-legends-wnba-shooting-stars-event",
-          "https://www.dallasnews.com/sports/wings/article/jessica-shepard-wings-wnba-shooting-stars-contest-22356430.php"
+          "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
+          "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/"
         ],
-        "sourceName": "wnba.com",
+        "sourceName": "foxnews.com",
         "sources": [
-          "WNBA",
-          "ESPN",
-          "Dallas News"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "wnba standings",
-        "traffic": 2000,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Jordan accuses Smith of lying to Congress in criminal referral to DOJ",
-        "summary": "House Judiciary Chair Jim Jordan has referred former special counsel Jack Smith to the Justice Department for potential criminal prosecution, accusing Smith of lying to Congress about his investigation into President Trump. Jordan claims Smith made false statements about obtaining lawmakers' text messages, which were actually obtained through the White House. The referral was made in a letter to the acting Attorney General on Wednesday. The Justice Department will now review the allegations.",
-        "hashtag": "JackSmith",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/",
-        "imageUrl": "https://thehill.com/wp-content/uploads/sites/2/2026/01/smithjack_012226gn34_w.jpg?w=1280",
-        "images": [
-          "https://thehill.com/wp-content/uploads/sites/2/2026/01/smithjack_012226gn34_w.jpg?w=1280",
-          "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/Former%20special%20counsel%20Jack%20Smith%20leaves%20for%20a%20break%20in%20a%20House%20Judiciary%20Committee%20oversight%20hearing%20to%20discuss%20his%20investigations%20into%20President%20Trump%20on%20Thursday,%20January%2022,%202026.",
-          "https://static.foxnews.com/foxnews.com/content/uploads/2026/02/special-counsel-jack-smith.jpg",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/02/1024/512/special-counsel-jack-smith.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/02/1200/675/special-counsel-jack-smith.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/jim-jordan-june.png?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2025/10/1200/675/sen-chuck-grassley-september-2025.jpg?ve=1&tl=1"
-        ],
-        "sourceUrls": [
-          "https://thehill.com/homenews/administration/5984841-jordan-recommends-jack-smith-charges/",
-          "https://www.foxnews.com/politics/jack-smith-hit-criminal-referral-gop-moves-testimony-fight-toward-prosecution"
-        ],
-        "sourceName": "thehill.com",
-        "sources": [
-          "The Hill",
-          "Fox News"
+          "Fox News",
+          "The Hill"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "jack smith news",
+        "trend": "lil wayne",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1097,30 +1013,34 @@
         "geo": "US"
       },
       {
-        "title": "Cubs, Tigers face off in rubber match (LIVE on ESPN)",
-        "summary": "The Chicago Cubs face the Detroit Tigers in the rubber match of their series, with the Cubs looking to take the win after a 11-2 victory in the second game. The matchup is exclusively televised on ESPN at 8:10 p.m. ET. The Cubs have had a rollercoaster season, with two 10-game winning streaks and a 10-game losing streak. The team's success is largely due to the development of Pete Crow-Armstrong, who has 5.9 WAR and a .905 OPS.",
-        "hashtag": "CubsScore",
+        "title": "Tigers' Kenley Jansen: Extends scoreless streak Wednesday",
+        "summary": "Tigers' closer Kenley Jansen extended his scoreless streak to seven appearances, logging a clean inning of relief in Wednesday's 5-1 win over the Cubs. He walked one and struck out one. Jansen has now recorded a win and two saves during this streak, and leads Detroit with 11 saves this season. The Tigers are 1-1 in their series with the Cubs, with the final game scheduled for Thursday.",
+        "hashtag": "KenleyJansen",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.mlb.com/news/cubs-tigers-play-series-finale-on-espn",
-        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/lgwv2ynjnjgmu1iuhy2a.jpg",
+        "url": "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
+        "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
         "images": [
-          "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/lgwv2ynjnjgmu1iuhy2a.jpg",
-          "https://platform.bleedcubbieblue.com/wp-content/uploads/sites/35/2026/07/gettyimages-2272370840.jpg?quality=90&strip=all&crop=0%2C13.95280751953%2C100%2C78.540251402588&w=1200"
+          "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
+          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2281864524.jpg?quality=65&strip=all",
+          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2286985418.jpg?quality=65&strip=all",
+          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2273789063.jpg?quality=65&strip=all",
+          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2277880090.jpg?quality=65&strip=all",
+          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2270988527.jpg?quality=65&strip=all"
         ],
         "sourceUrls": [
-          "https://www.mlb.com/news/cubs-tigers-play-series-finale-on-espn",
-          "https://www.bleedcubbieblue.com/chicago-cubs-discussion/225616/cubs-tigers-wednesday-live"
+          "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
+          "https://heavy.com/sports/mlb/detroit-tigers/kenley-jansen-makes-heartfelt-post-during-cubs-series/"
         ],
-        "sourceName": "mlb.com",
+        "sourceName": "cbssports.com",
         "sources": [
-          "MLB.com",
-          "Bleed Cubbie Blue"
+          "CBS Sports",
+          "Heavy.com"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "cubs score",
-        "traffic": 2000,
+        "trend": "kenley jansen",
+        "traffic": 500,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1130,31 +1050,27 @@
         "geo": "US"
       },
       {
-        "title": "Keider Montero unleashing inner bulldog in bullpen role with Tigers",
-        "summary": "Keider Montero is returning to the starting rotation for the Detroit Tigers, starting against the Chicago Cubs at Wrigley Field on July 22. Montero had previously excelled in a bullpen role, making 13 starts and five quality starts earlier in the season. He will join a temporary six-man rotation, with the team looking to give pitchers more rest time during a 13-game stretch. This move allows Montero to pitch every fifth day, a schedule he has grown accustomed to.",
-        "hashtag": "KeiderMontero",
+        "title": "Yordan continues MVP-caliber season with clutch go-ahead blast",
+        "summary": "Yordan Alvarez hit his Major League-leading 34th home run of the season, a two-run shot in the eighth inning, breaking a 2-2 tie and sending the Astros to a 5-2 win over the Marlins at Daikin Park. The Astros completed a three-game sweep of Miami on Wednesday night. Alvarez's 34 homers are three shy of his career high. The Astros' manager, Joe Espada, earned his 225th win with the team.",
+        "hashtag": "YordanAlvarez",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/19/keider-montero-unleashing-inner-bulldog-in-bullpen-role-with-tigers/90974248007/",
-        "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/12/PDTN/90895667007-20260712-rbtigersphillies-531.jpg?crop=3397,1912,x0,y29&width=1600&height=800&format=pjpg&auto=webp",
+        "url": "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins",
+        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg",
         "images": [
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/12/PDTN/90895667007-20260712-rbtigersphillies-531.jpg?crop=3397,1912,x0,y29&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/19/PDTN/90976957007-2286797773.jpg?crop=4543,2556,x0,y236&width=660&height=372&format=pjpg&auto=webp",
-          "https://www.freep.com/gcdn/authoring/authoring-images/2026/07/18/PDTF/90964847007-usatsi-29405108.jpg?crop=5216,2935,x0,y173&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.freep.com/gcdn/authoring/authoring-images/2026/07/18/PDTF/90964849007-usatsi-29405109.jpg?crop=8255,4645,x0,y429&width=660&height=372&format=pjpg&auto=webp"
+          "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg"
         ],
         "sourceUrls": [
-          "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/19/keider-montero-unleashing-inner-bulldog-in-bullpen-role-with-tigers/90974248007/",
-          "https://www.freep.com/story/sports/mlb/tigers/2026/07/19/detroit-tigers-keider-montero-starting-rotation/90975420007/"
+          "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins"
         ],
-        "sourceName": "detroitnews.com",
+        "sourceName": "mlb.com",
         "sources": [
-          "The Detroit News",
-          "Detroit Free Press"
+          "MLB.com",
+          "ESPN"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "keider montero",
+        "trend": "yordan alvarez",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1166,7 +1082,7 @@
       },
       {
         "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
-        "summary": "Rising temperatures in Africa's Afar region are causing extreme heat stress in camels, with herder Ali Umer reporting eight camel calves lost in the past month due to blistering heat, watery eyes, and skin burns. The region is one of the hottest and driest places on Earth, where camels are used to carry salt through the desert. Temperatures are becoming increasingly intense, with even the wind now carrying heat. Herders are struggling to cope with the changing climate.",
+        "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camels, with herders reporting blistered feet, watery eyes, and skin burns. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where camels are often used to carry salt through the desert. As temperatures continue to rise, camel herders are facing unprecedented challenges.",
         "hashtag": "Africa",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1194,7 +1110,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.48,
+        "freshH": 4.48,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1204,7 +1120,7 @@
       },
       {
         "title": "US signs landmark nuclear deal with Saudi Arabia",
-        "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement and could provide great access for American companies. The US Department of Energy estimates the partnership could be worth billions of dollars over decades. The agreement's text remains undisclosed, but experts warn it may increase the risk of nuclear proliferation in the region.",
+        "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement, providing great access for American companies in the Saudi nuclear energy program. The agreement is expected to be a multi-billion-dollar partnership spanning decades. This move marks a significant step in advancing nuclear nonproliferation in the region.",
         "hashtag": "SaudiArabia",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1225,7 +1141,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.5,
+        "freshH": 3.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1235,7 +1151,7 @@
       },
       {
         "title": "Canada's 'powerful' dairy sector is in Trump's trade crosshairs",
-        "summary": "US President Donald Trump has announced a 50% tariff on $20 billion worth of Canadian goods, citing Canada's dairy supply management system as one of the main irritants. The system, which includes production quotas, set pricing, and import quotas, is seen as \"unreasonable\" by American farmers who want to sell their product in Canada. The tariff is set to take effect in August. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable.",
+        "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20 billion worth of Canadian goods, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system, which includes production quotas and set pricing, is a cornerstone of Canada's economy and rural communities. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable. The move is likely to escalate trade tensions between the two nations.",
         "hashtag": "Trump",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1256,7 +1172,100 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.61,
+        "freshH": 3.61,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Houthis claim attack on oil tankers as US launches more strikes on Iran",
+        "summary": "US launches 12th consecutive night of strikes on Iran, killing at least two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships, Encelia and Layla, with drones and missiles, allegedly for violating their naval blockade. The attack would be the first since the Houthis announced a \"maritime embargo\" against Saudi Arabia. The US has threatened to take action against the Houthis if they continue to block the Red Sea.",
+        "hashtag": "Iran",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
+        "summary": "The Saudi authorities confirmed a strike on one of the ships. These are the first claimed attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
+        "hashtag": "ClaimStrikes",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.87,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "U.S.-Saudi Nuclear Deal Stokes Israeli Concerns of Mideast Arms Race",
+        "summary": "An Israeli minister sought to downplay the agreement, while critics said it could spur other regional countries to pursue a nuclear program, and potentially the creation of a bomb.",
+        "hashtag": "SaudiNuclear",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.39,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1268,7 +1277,7 @@
     "facts": [
       {
         "title": "Hosepipe ban in force for millions of households - is your area affected?",
-        "summary": "A hosepipe ban has taken effect for over 20 million households in southern and eastern England and parts of Wales, restricting use for watering gardens, washing vehicles and windows, and filling pools. The ban is in place due to heatwaves straining water supplies. This measure affects a significant portion of the UK population. As the country faces drier summers with climate change, concerns are raised about water resource management.",
+        "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting non-essential water use due to successive heatwaves straining water supplies. The ban affects Thames Water customers and prohibits activities like watering gardens and washing vehicles. This measure is a result of below-average spring and early summer rainfall, despite a wetter-than-usual winter. Water management and preparedness for drier summers expected with climate change are now under scrutiny.",
         "hashtag": "HosepipeForce",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1292,7 +1301,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.66,
+        "freshH": 1.67,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1302,7 +1311,7 @@
       },
       {
         "title": "Most sewage spills in England may be illegal, new research suggests",
-        "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during non-heavy rain conditions. The analysis, covering over 350 storm overflow outlets, found that water companies serving more than 30 million people failed to meet regulations. This raises concerns about the effectiveness of current sewage management practices. The findings may lead to increased scrutiny of England's water companies and potential enforcement action.",
+        "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during normal weather conditions, not heavy rain. The analysis, based on data from over 350 storm overflow outlets, found that none of the country's water companies performed well. This raises concerns about the legitimacy of sewage spills, which affect over 30 million people. The findings are set to be presented to Parliament, potentially leading to increased scrutiny of water companies' practices.",
         "hashtag": "England",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1323,7 +1332,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.07,
+        "freshH": 4.07,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1353,7 +1362,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.63,
+        "freshH": 7.63,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1365,7 +1374,7 @@
     "tech": [
       {
         "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-        "summary": "A Lego Donkey Kong arcade machine has been designed, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine is said to have won the favor of Mario creator Shigeru Miyamoto. The set is now available, offering a unique nostalgic gaming experience.",
+        "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine's design has reportedly won the approval of Mario creator Shigeru Miyamoto. The set is now available for purchase.",
         "hashtag": "DonkeyKong",
         "badge": "TECH",
         "category": "tech",
@@ -1390,7 +1399,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.36,
+        "freshH": 3.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1400,7 +1409,7 @@
       },
       {
         "title": "Google burning through cash with spiralling AI costs",
-        "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This significant increase in spending comes as major tech companies invest heavily in AI technology. As a result, Alphabet's stock fell 4% in after-hours trading.",
+        "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to growing spending on artificial intelligence infrastructure. This comes as Alphabet's AI spending is expected to reach $205 billion this year, a significant increase from $190 billion. The company's combined quarterly revenue rose 23% to $119.8 billion, but its stock fell 4% in after-hours trading. Alphabet's AI spending is now a major focus, with $45 billion spent in the second quarter, mostly on servers and data centers.",
         "hashtag": "GoogleBurning",
         "badge": "TECH",
         "category": "tech",
@@ -1421,7 +1430,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.82,
+        "freshH": 4.82,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1433,7 +1442,7 @@
     "crisis": [
       {
         "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-        "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from top US AI models, specifically Anthropic's Fable AI, through a process called distillation. The US government claims Moonshot AI accessed restricted Nvidia servers to train its K3 model, which was unveiled last week. The K3 model is said to rival top US technology. The US government is now investigating the allegations.",
+        "summary": "A US government adviser claims China's Moonshot AI stole capabilities from top US AI model Anthropic's Fable AI through a process called distillation, gaining access to restricted Nvidia servers to train its K3 model. The alleged theft occurred through a weaker AI model extracting answers from a stronger one. This incident is linked to Moonshot's unveiling of its K3 model, which rivals top US technology. The US government is now investigating the claims.",
         "hashtag": "MoonshotAnthropic",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1454,7 +1463,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.99,
+        "freshH": 1.99,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1463,29 +1472,28 @@
         "geo": null
       },
       {
-        "title": "Airport drop-off fees up by a third - here are the priciest",
-        "summary": "Drop-off fees at the UK's major airports have increased by a third on average since last summer, with two London airports, Gatwick and Stansted, charging the highest fees at £10. The fees are part of airports' business models and climate change objectives. London City Airport now charges the highest per-minute rate at £1.60 per minute. The UK's airports are adopting these fees as they aim to reduce car usage and encourage passengers to use trains and buses.",
-        "hashtag": "AirportDrop",
+        "title": "Three Airports Plan to Ditch T.S.A. Agents Amid Push for Private Security",
+        "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
+        "hashtag": "AirportsDitch",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
+        "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/37bb/live/4f2cc100-85f9-11f1-bee8-53ce494e1abc.jpg"
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c2lqd72d4lqo?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.5,
+        "freshH": 2.29,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1515,7 +1523,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.14,
+        "freshH": 3.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1527,7 +1535,7 @@
     "entertainment": [
       {
         "title": "Where to Find a Commonwealth Games 2026 Livestream in the U.S. to Watch the Event for Free",
-        "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will be livestreamed for free on CBC in Canada, accessible to North American viewers via a virtual private network like ExpressVPN. Viewers can set their location to Canada to stream the coverage online. The Games will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK.",
+        "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available to stream online from anywhere in the world.",
         "hashtag": "FindCommonwealth",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1548,7 +1556,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.81,
+        "freshH": 2.82,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1558,7 +1566,7 @@
       },
       {
         "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
-        "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who co-wrote the script with Ryu Yong-jae. This is Yeon's third project with Netflix, following \"Hellbound\" and \"Parasyte: The Grey.\" The series is expected to premiere next year.",
+        "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who previously worked on \"Hellbound\" and \"Parasyte: The Grey.\" Yeon developed and co-wrote the script with Ryu Yong-jae. The series is expected to premiere next year.",
         "hashtag": "SangReturns",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1579,7 +1587,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.86,
+        "freshH": 4.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1589,7 +1597,7 @@
       },
       {
         "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-        "summary": "A 3-hour film, \"The Odyssey,\" starring Matt Damon, was screened in 4DX format at select theaters. The immersive experience features seat-rumbling and water-spritzing technology, simulating the epic adventure on screen. Over 100 theaters worldwide have adopted this format, offering a unique cinematic experience. Audiences are left shaken, soaked, and seasick, a testament to the film's immersive storytelling.",
+        "summary": "A three-hour screening of Christopher Nolan's \"The Odyssey\" in 4DX format has left some viewers shaken and soaked. The 4DX experience, featuring seat-rumbling and water-spritzing technology, is available at select theaters. Over 100 people have reported experiencing seasickness during the film's intense scenes. As a result, some theaters are considering adding a warning to the film's description.",
         "hashtag": "SoakedSeasick",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1610,99 +1618,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "U.S.-Saudi Nuclear Deal Stokes Israeli Concerns of Mideast Arms Race",
-        "summary": "An Israeli minister sought to downplay the agreement, while critics said it could spur other regional countries to pursue a nuclear program, and potentially the creation of a bomb.",
-        "hashtag": "SaudiNuclear",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.39,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Three Airports Plan to Ditch T.S.A. Agents Amid Push for Private Security",
-        "summary": "The airports have opted in to the agency’s new security model, an agency spokesperson confirmed on Wednesday. A union official said the move could jeopardize public safety.",
-        "hashtag": "AirportsDitch",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22trav-tsa-hmzb/22trav-tsa-hmzb-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/travel/tsa-privatization-push.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.29,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
-        "summary": "The Saudi authorities had yet to confirm the hits, which would be the first attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
-        "hashtag": "ClaimStrikes",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.26,
+        "freshH": 5.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1734,7 +1650,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.7,
+        "freshH": 1.7,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1764,7 +1680,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.71,
+        "freshH": 1.72,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1794,7 +1710,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.69,
+        "freshH": 2.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1806,7 +1722,7 @@
     "health": [
       {
         "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
-        "summary": "A life-changing treatment for thousands of multiple sclerosis patients in England is now available on the NHS. Up to 5,000 people could benefit each year from the drug fampridine, which boosts nerve signals to help people walk and live independently. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed and endurance. This development is expected to significantly improve the quality of life for those affected by the debilitating disease.",
+        "summary": "Up to 5,000 people in England with multiple sclerosis will now have access to the life-changing drug fampridine, which boosts nerve signals to help them walk independently. The drug, already available elsewhere in the UK, is being made available on the NHS in England. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed. This decision could significantly improve the lives of thousands of patients.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -1827,7 +1743,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.21,
+        "freshH": 4.21,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1837,7 +1753,7 @@
       },
       {
         "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-        "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower. The report targets ultra-processed foods, which are high in sugar and refined carbohydrates, as primary drivers of weight gain and type 2 diabetes. The committee recommends a new framework to hold supermarkets and manufacturers accountable. The UK government is expected to review food policy in response to the report's findings.",
+        "summary": "A British health select committee report finds obesity is an engineered outcome, not a failure of willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The committee recommends targeting ultra-processed foods high in sugar and refined carbohydrates instead. This shift could lead to more effective public health measures.",
         "hashtag": "BritainLetter",
         "badge": "HEALTH",
         "category": "health",
@@ -1858,7 +1774,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 10.01,
+        "freshH": 11.01,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1870,7 +1786,7 @@
     "sports": [
       {
         "title": "McInnes glad of Rangers backing in appeal against ban",
-        "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The comments were made when McInnes was in charge of Hearts, and Rangers are now appealing the Scottish FA's decision. McInnes has stated he disagrees with the ban and is glad the club is contesting it. The appeal will likely be a key focus for the club in the coming weeks.",
+        "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to a three-game penalty already imposed by the Scottish FA. McInnes is appealing the decision, which he believes was wrong. The appeal will be a key test of the club's support for their manager.",
         "hashtag": "Rangers",
         "badge": "SPORTS",
         "category": "sports",
@@ -1891,7 +1807,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.78,
+        "freshH": 4.78,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1901,7 +1817,7 @@
       },
       {
         "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-        "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowls player, and Adlington, a 39-year-old judo athlete, will share the honour. The flag will be returned to its owners after the ceremony, but the two athletes may have to fight for the first photo opportunity. The event is set to take place at the Commonwealth Games, where Adlington is also competing to complete a treble.",
+        "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo athlete, will share the honor. The flag will be returned to its owners after the ceremony, but they may have to compete for the first photo opportunity. The event marks a special moment for both athletes, who have been keeping the news secret for weeks.",
         "hashtag": "MarshallAdlington",
         "badge": "SPORTS",
         "category": "sports",
@@ -1922,7 +1838,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.36,
+        "freshH": 5.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1932,7 +1848,7 @@
       },
       {
         "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-        "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The move would come after beating Arsenal and Bayern Munich to the signature. Talks are ongoing, but no official deal has been announced. Liverpool's pursuit of Barcola is a significant development in the transfer market.",
+        "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The deal would come after Liverpool beat Arsenal and Bayern Munich to the signature. Talks around a new deal are also ongoing for Manchester United's Portugal midfielder Bruno Fernandes, 31. Fernandes has decided to commit his future to Manchester United.",
         "hashtag": "BarcolaThursday",
         "badge": "SPORTS",
         "category": "sports",
@@ -1953,7 +1869,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.49,
+        "freshH": 5.49,
         "score": null,
         "popularity": null,
         "recency": null,
