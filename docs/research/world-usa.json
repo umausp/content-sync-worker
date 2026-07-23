@@ -1,655 +1,199 @@
 {
-  "generatedAt": "2026-07-23T16:51:48.153Z",
+  "generatedAt": "2026-07-23T17:51:28.417Z",
   "region": "usa",
-  "count": 30,
+  "count": 27,
   "categoryCounts": {
-    "offbeat": 8,
-    "breaking": 3,
-    "politics": 2,
-    "tech": 2,
-    "entertainment": 3,
-    "crisis": 3,
+    "offbeat": 6,
     "sports": 3,
+    "breaking": 3,
+    "tech": 2,
+    "crisis": 2,
+    "entertainment": 3,
+    "politics": 2,
     "health": 3,
     "facts": 3
   },
   "stories": [
     {
-      "title": "House rebukes Trump in vote to restrict his Iran war powers",
-      "summary": "The US House of Representatives voted 214 to 208 to restrict President Trump's war powers in Iran, with four Republicans joining Democrats in support of the measure. This rebuke comes as the conflict in Iran escalates, following a recent ceasefire. The resolution, however, lacks the force of law and would not compel the administration to end the war.",
-      "hashtag": "TrumpIran",
+      "title": "City: Greenville Zoo’s leopard tranquilized, returned after escaping exhibit",
+      "summary": "A four-year-old Amur leopard named Irina escaped her exhibit at the Greenville Zoo in South Carolina on Thursday morning, prompting the evacuation of zoo staff and guests. She was successfully tranquilized and returned to her den by zoo emergency response teams at approximately 9:20 a.m. The zoo will remain closed while officials investigate the incident.",
+      "hashtag": "GreenvilleZoo",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/23/politics/trump-iran-war-powers",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-14t021432z-1-lynxmpem6d03e-rtroptp-4-usa-trump.jpg?c=16x9&q=w_800,c_fill",
+      "url": "https://www.foxcarolina.com/2026/07/23/police-respond-animal-call-near-greenville-zoo-dispatch-says/",
+      "imageUrl": "https://gray-whns-prod.gtv-cdn.com/resizer/v2/JYQFBF5GGBHJNHFZXQ2V6AH34Y.jpg?auth=8a14935673294dcb74ab8954ba88f312f11cd9831d9891ded76b25c0c0f16eb2&width=1200&height=600&smart=true",
       "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-14t021432z-1-lynxmpem6d03e-rtroptp-4-usa-trump.jpg?c=16x9&q=w_800,c_fill",
-        "https://assets3.cbsnewsstatic.com/hub/i/r/2026/07/23/fd283558-4cb1-4635-92ba-5b28fb3fa31a/thumbnail/1200x630/cd8b89e0c0a5e798a94b882fd110e0ba/gettyimages-2286607383.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/JYQFBF5GGBHJNHFZXQ2V6AH34Y.jpg?auth=8a14935673294dcb74ab8954ba88f312f11cd9831d9891ded76b25c0c0f16eb2&width=1200&height=600&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/4GJZYLYCNVCV7G3UXRTMH3Q6VM.jpg?auth=f8288e79b04e7da407248030e789f1ea0c576b715928da2795779fc646fd7fbb&width=980&height=505&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/DCH2NY7JZFCN7KOEQWUBXDUBFU.png?auth=60b864fbb7ee628fef39f1e7d36c60c0547957f7de350f35d0e0bc5018101b2e&width=1200&height=800&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/NII4CTQ27VHDBMZKCPVB7ROGEY.png?auth=5c2dcf1c543ca2a5ba2fdf95b14ceba62a63ce6fe6c39d1c9aaf16229973c13b&width=1200&height=800&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/4CPFWJ4DUBFVRFUAP2EUTWLIJY.jpg?auth=5525503b39196bd3bde7fab887e6631f0618e6d4bd9a5a7bf4f2c50337862946&width=1200&height=800&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/SCJNJIKFNBA3XFVMR6E2QZADAM.jpg?auth=f0f72704459f85bafc2eaf055accb55669b211521ecfa0991ce66adfcdb890e9&width=1200&height=800&smart=true",
+        "https://gray-whns-prod.gtv-cdn.com/resizer/v2/Q6LR44CS65FNVFHZW4WFYJH5TU.jpg?auth=6ee24121ec008c3d7b73f7ead454c82959adffc355ac960f237f6a039d31eb6c&width=1200&height=800&smart=true",
+        "https://kubrick.htvapps.com/htv-prod/images/a9edd02e-e7fe-43ff-baf5-af31c894cea8.jpg?resize=1200%3A*&crop=1.00xw%3A0.846xh%3B0%2C0.151xh",
+        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
       ],
       "entityShots": [
         {
-          "name": "House",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+          "name": "City",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
       ],
       "entities": [
-        "House",
-        "Trump",
-        "Iran"
+        "City",
+        "Greenville Zoo"
       ],
       "sourceUrls": [
-        "https://www.cnn.com/2026/07/23/politics/trump-iran-war-powers",
-        "https://www.cbsnews.com/news/senate-trump-iran-war-powers/"
+        "https://www.foxcarolina.com/2026/07/23/police-respond-animal-call-near-greenville-zoo-dispatch-says/",
+        "https://www.wyff4.com/article/leopard-escapes-greenville-zoo/73247066",
+        "https://www.wspa.com/news/greenville-zoo-animal-escapes-exhibit-prompting-closure/"
       ],
-      "sourceName": "cnn.com",
+      "sourceName": "foxcarolina.com",
       "sources": [
-        "CNN",
-        "CBS News",
-        "The Guardian"
+        "FOX Carolina News",
+        "WYFF",
+        "WSPA 7NEWS"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "trump iran",
-      "traffic": 5000,
+      "trend": "greenville zoo",
+      "traffic": 500,
       "freshH": 1,
-      "score": 0.726,
+      "score": 0.764,
       "popularity": 0.526,
       "recency": 0.891,
-      "relevancy": 0.814,
+      "relevancy": 0.968,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Sebastian Berhalter finalizing transfer to Middlesbrough from Vancouver: Sources",
-      "summary": "Sebastian Berhalter, a 25-year-old U.S. national team midfielder, is finalizing a transfer to Middlesbrough from the Vancouver Whitecaps for a fee in the region of $2 million. Berhalter, who appeared in all five U.S. matches at the World Cup, will join the Championship team during the summer transfer window. He will reunite with former Columbus Crew teammate Aidan Morris, another U.S. national team midfielder, at Middlesbrough.",
-      "hashtag": "Middlesbrough",
+      "title": "FDA panel votes to place popular peptide BPC-157 on compounding list",
+      "summary": "A US FDA panel has voted to place the peptide BPC-157 on the list of compounds that can be made by licensed pharmacies, a move that could pave the way for its use in human clinical trials. The peptide has been studied for its potential therapeutic benefits, including healing wounds and reducing inflammation. Its addition to the compounding list is expected to facilitate further research into its medical applications.",
+      "hashtag": "HimsStock",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.nytimes.com/athletic/7465931/2026/07/23/sebastian-berhalter-transfer-middlesbrough-vancouver-whitecaps-usmnt/",
-      "imageUrl": "https://static01.nyt.com/athletic/uploads/wp/2026/07/23114849/GettyImages-2282836272-scaled.jpg?width=1200&height=630&fit=cover",
+      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L4N43P25K:0-fda-panel-votes-to-place-popular-peptide-bpc-157-on-compounding-list/",
+      "imageUrl": "https://s.tradingview.com/static/images/illustrations/news-story.jpg",
       "images": [
-        "https://static01.nyt.com/athletic/uploads/wp/2026/07/23114849/GettyImages-2282836272-scaled.jpg?width=1200&height=630&fit=cover",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/06/USAT/90825569007-usatsi-29311236.jpg?crop=3988,2243,x0,y326&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/19/USAT/90974016007-afp-2286143201.jpg?crop=7333,4128,x4,y492&width=660&height=372&format=pjpg&auto=webp",
-        "https://smartcdn.gprod.postmedia.digital/theprovince/wp-content/uploads/2026/07/2249116915_300119540.jpg",
-        "https://smartcdn.gprod.postmedia.digital/theprovince/wp-content/uploads/2026/05/0526-col-caps-11.jpg?h=96&strip=all&quality=80&sig=UgRqSLYQOQ-xqOrn6MxksQ",
-        "https://smartcdn.gprod.postmedia.digital/vancouversun/wp-content/uploads/2026/05/mls-whitecaps-dallas-soccer_303112599.jpg?h=96&strip=all&quality=80&sig=UWajfvA6msLckRbWGDOemw",
-        "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
+        "https://s.tradingview.com/static/images/illustrations/news-story.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Sebastian Berhalter",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg"
-        },
-        {
-          "name": "Middlesbrough",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg"
-        },
-        {
-          "name": "Vancouver",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Sebastian Berhalter",
-        "Middlesbrough",
-        "Vancouver",
-        "Sources"
+        "BPC-"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/athletic/7465931/2026/07/23/sebastian-berhalter-transfer-middlesbrough-vancouver-whitecaps-usmnt/",
-        "https://www.usatoday.com/story/sports/soccer/mls/2026/07/23/sebastian-berhalter-transfer-middlesbrough-usmnt-midfielder-vancouver/91022307007/",
-        "https://theprovince.com/sports/has-the-whitecaps-sebastian-berhalter-played-his-last-mls-game"
+        "https://www.tradingview.com/news/reuters.com,2026:newsml_L4N43P25K:0-fda-panel-votes-to-place-popular-peptide-bpc-157-on-compounding-list/",
+        "https://seekingalpha.com/news/4617588-hims-hers-gains-fda-panel-endorses-peptide-bpc-157"
       ],
-      "sourceName": "The New York Times",
+      "sourceName": "tradingview.com",
       "sources": [
-        "The New York Times",
-        "USA Today",
-        "The Province"
+        "TradingView",
+        "Seeking Alpha"
       ],
-      "corr": 3,
+      "corr": 2,
       "verified": true,
-      "trend": "middlesbrough",
+      "trend": "hims stock",
       "traffic": 500,
       "freshH": 1,
-      "score": 0.664,
-      "popularity": 0.256,
+      "score": 0.676,
+      "popularity": 0.443,
       "recency": 0.891,
-      "relevancy": 1,
+      "relevancy": 0.75,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Richard Carapaz's late attack secures victory in Stage 18 of the 2026 Tour de France",
-      "summary": "Richard Carapaz secured his first stage win of the 2026 Tour de France in Stage 18, covering 185.2 kilometers from Voiron to Orcières-Merlette. The Ecuadorian cyclist launched a decisive attack in the final stretch to claim the summit and stage victory. Carapaz's win narrows the overall general classification, setting the stage for a thrilling conclusion to the 2026 Tour de France.",
-      "hashtag": "RichardCarapaz",
+      "title": "St Gallen vs Benfica LIVE Score Updates in UEFA Europa League Match",
+      "summary": "In the UEFA Europa League Preliminary Round, St Gallen is facing Benfica in the first leg of their match at the AFG Arena stadium. St Gallen is competing in the tournament for the eighth time in its history, but has yet to reach the decisive stages. The match will be refereed by Luca Pairetio, with the Swiss club missing key players due to injury and suspension.",
+      "hashtag": "GallenBenfica",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.usatoday.com/story/sports/cycling/tourdefrance/2026/07/23/tour-de-france-results-richard-carapaz-win-stage-18/91021659007/",
-      "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91022602007-2286673454.jpg?crop=4033,2267,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+      "url": "https://www.vavel.com/en-us/soccer/2026/07/23/1266292-st-gallen-vs-benfica-live-score-uefa-europa-league.html",
+      "imageUrl": "https://img.vavel.com/benfica-1-1784741461037-dpa74d.jpg",
       "images": [
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91022602007-2286673454.jpg?crop=4033,2267,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91013159007-20260722-t-153343-z-1254033604-up-1-em-7-m-1786-ag-rtrmadp-3-cyclingfrance.JPG?crop=3149,1773,x0,y145&width=660&height=372&format=pjpg&auto=webp",
-        "https://nbcsports.brightspotcdn.com/dims4/default/f0b62de/2147483647/strip/true/crop/1920x1080+0+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fhdliveextra-a.akamaihd.net%2FHD%2Fimage_sports%2FNBCU_Sports_Group_-_nbcsports%2F773%2F578%2FTDFStage18Finish.jpg"
+        "https://img.vavel.com/benfica-1-1784741461037-dpa74d.jpg",
+        "https://assets.vavel.com/images/17.gif",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "St Gallen",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
+      ],
       "entities": [
-        "Richard Carapaz's",
-        "Stage",
-        "Tour",
-        "France"
+        "St Gallen",
+        "Benfica LIVE Score Updates",
+        "UEFA Europa League Match"
       ],
       "sourceUrls": [
-        "https://www.usatoday.com/story/sports/cycling/tourdefrance/2026/07/23/tour-de-france-results-richard-carapaz-win-stage-18/91021659007/",
-        "https://www.nbcsports.com/watch/2026-tour-de-france-highlights-stage-18-finish-in-orcieres-merlette"
+        "https://www.vavel.com/en-us/soccer/2026/07/23/1266292-st-gallen-vs-benfica-live-score-uefa-europa-league.html"
       ],
-      "sourceName": "usatoday.com",
+      "sourceName": "vavel.com",
       "sources": [
-        "The Guardian",
-        "USA Today",
-        "NBC Sports"
+        "VAVEL.com"
       ],
-      "corr": 3,
-      "verified": true,
-      "trend": "richard carapaz",
+      "corr": 1,
+      "verified": false,
+      "trend": "st. gallen vs benfica",
       "traffic": 500,
       "freshH": 1,
-      "score": 0.624,
-      "popularity": 0.256,
+      "score": 0.568,
+      "popularity": 0.3,
       "recency": 0.891,
-      "relevancy": 0.839,
+      "relevancy": 0.543,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "France evacuates 20,000 as wildfires spread in south-west",
-      "summary": "France evacuated 20,000 people in the Gironde region on Thursday as wildfires scorched 3,400 hectares near the Bay of Arcachon. Authorities moved 8,800 more residents as a precaution while 700 firefighters battled the flames. Temperatures and winds are expected to peak tonight, complicating containment efforts.",
-      "hashtag": "FranceEvacuates",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
-      ],
-      "entityShots": [
-        {
-          "name": "France",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-        },
-        {
-          "name": "Most",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG"
-        },
-        {
-          "name": "Arcachon Bay",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
-      ],
-      "entities": [
-        "France",
-        "Most",
-        "Arcachon Bay",
-        "France's Gironde"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.17,
-      "score": 0.494,
-      "popularity": 0,
-      "recency": 0.981,
-      "relevancy": 0.604,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Yemen's Houthis attack Saudi tanker as US launches more Iran strikes",
-      "summary": "A Saudi oil tanker was attacked by Yemen's Houthi forces in the Red Sea, causing a fire, as the US launched its 12th consecutive night of strikes on Iran. The attack occurred despite US President Donald Trump's warning that the US would inflict \"major military punishment\" on the Houthis and Iran if they continued such actions. Oil prices surged to $100 per barrel following the latest developments in the region.",
-      "hashtag": "HouthisSaudi",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Saudi",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-      ],
-      "entities": [
-        "Yemen's Houthis",
-        "Saudi",
-        "Iran",
-        "Iran-backed",
-        "Saudi Arabia"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.01,
-      "score": 0.492,
-      "popularity": 0,
-      "recency": 0.998,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Gary Lineker joins calls for wealth tax - The Latest",
-      "summary": "More than 100 UK millionaires, including former footballer Gary Lineker, have signed an open letter urging Prime Minister Andy Burnham to introduce a wealth tax. The signatories say they can afford higher taxes and want the government to act. Campaigners argue the move could ease public spending pressures amid rising costs.",
-      "hashtag": "Lineker",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/news/audio/2026/jul/23/gary-lineker-millionaires-wealth-tax-the-latest",
-      "imageUrl": "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=f8d9299ae4ec241f73b01e1036e82acb",
-      "images": [
-        "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=f8d9299ae4ec241f73b01e1036e82acb",
-        "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=aa9b212e9477b4362dfd519e6b83c944",
-        "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Gary Lineker",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Millionaires",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg"
-        },
-        {
-          "name": "Andy Burnham",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-      ],
-      "entities": [
-        "Gary Lineker",
-        "Millionaires",
-        "Andy Burnham",
-        "More",
-        "UK-based",
-        "Nosheen Iqbal"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/news/audio/2026/jul/23/gary-lineker-millionaires-wealth-tax-the-latest"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.5,
-      "score": 0.484,
-      "popularity": 0,
-      "recency": 0.944,
-      "relevancy": 0.614,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Chris Sale slated to start series finale versus San Diego",
-      "summary": "Braves ace Chris Sale is set to start the series finale against the San Diego Padres, looking to help the team win a series at home for the first time since 2018. Sale has been impressive this season, boasting a 10-6 record and a 2.06 ERA, and he recently threw a gem against the Texas Rangers with seven shutout innings. The Braves have a chance to split the series with a win, which would be a significant accomplishment given their rollercoaster rotation this season.",
-      "hashtag": "PadresBraves",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.batterypower.com/atlanta-braves-game-information/136311/chris-sale-slated-to-start-series-finale-versus-san-diego-braves-vs-san-diego-padres-preview-tv-streaming-radio-start-time-chris-sale-griffin-canning-pitching-matchup",
-      "imageUrl": "https://platform.batterypower.com/wp-content/uploads/sites/22/2026/07/gettyimages-2286033999.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-      "images": [
-        "https://platform.batterypower.com/wp-content/uploads/sites/22/2026/07/gettyimages-2286033999.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Chris Sale",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "San Diego",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "Chris Sale",
-        "San Diego"
-      ],
-      "sourceUrls": [
-        "https://www.batterypower.com/atlanta-braves-game-information/136311/chris-sale-slated-to-start-series-finale-versus-san-diego-braves-vs-san-diego-padres-preview-tv-streaming-radio-start-time-chris-sale-griffin-canning-pitching-matchup"
-      ],
-      "sourceName": "batterypower.com",
-      "sources": [
-        "Battery Power"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "padres - braves",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.466,
-      "popularity": 0.03,
-      "recency": 0.891,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Amazon puts Luna cloud-streamed games like Fallout 4 inside Prime Video",
-      "summary": "Amazon’s Prime Video now lets Fire TV users in the US and UK stream cloud games like Fallout 4 directly through a new Games tab. The feature bundles Prime Gaming, Amazon Game Studios, and Luna under one casual-friendly hub. More titles and regions are expected later this year.",
-      "hashtag": "LunaFallout",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.theverge.com/streaming/970099/amazon-prime-video-luna-gaming",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-      "images": [
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&strip=all&crop=0%2C3.4783743532266%2C100%2C93.043251293547&w=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Luna",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
-      ],
-      "entities": [
-        "Amazon",
-        "Luna",
-        "Fallout",
-        "Prime Video",
-        "Jeff Gattis",
-        "Verge"
-      ],
-      "sourceUrls": [
-        "https://www.theverge.com/streaming/970099/amazon-prime-video-luna-gaming"
-      ],
-      "sourceName": "theverge.com",
-      "sources": [
-        "theverge.com"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.2,
-      "score": 0.461,
-      "popularity": 0,
-      "recency": 0.977,
-      "relevancy": 0.478,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Oscar Voters Rave Over Christopher Nolan’s ‘The Odyssey’ at First Academy Screenings: ‘The Definitive Filmmaker of Our Time’",
-      "summary": "Christopher Nolan’s The Odyssey kicked off its Oscar campaign with exclusive member screenings this week, drawing near-capacity crowds in Los Angeles, London, and New York. The $264 million blockbuster now leads the 2027 race as the film to beat. Academy voters will cast ballots in the fall.",
-      "hashtag": "VotersRave",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/awards/oscars-voters-the-odyssey-reaction-screenings-1236818611/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
-        "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png?crop=0px%2C4px%2C1102px%2C620px&resize=1000%2C563",
-        "https://variety.com/wp-content/uploads/2026/06/CT-48692.jpg?w=1024"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Oscar Voters Rave Over",
-        "Christopher Nolan",
-        "Odyssey",
-        "First Academy Screenings",
-        "Definitive Filmmaker",
-        "Our Time"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/awards/oscars-voters-the-odyssey-reaction-screenings-1236818611/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.36,
-      "score": 0.458,
-      "popularity": 0,
-      "recency": 0.959,
-      "relevancy": 0.489,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘Let’s get back to work’: Karoline Leavitt returns to the briefing room podium for the first time since maternity leave",
-      "summary": "White House press secretary Karoline Leavitt returned to the podium on Thursday, giving her first full briefing since maternity leave at the end of April. Leavitt addressed a range of topics including President Donald Trump's upcoming speech on election integrity, Iran, and the economy. She emphasized the importance of dedication and perseverance as a working mom, crediting her husband for supporting her.",
-      "hashtag": "KarolineLeavitt",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/16/politics/karoline-leavitt-maternity-leave-briefing",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-16t174324z-972400445-rc25fmaj5fui-rtrmadp-3-usa-trump.jpg?c=16x9&q=w_800,c_fill",
-      "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-16t174324z-972400445-rc25fmaj5fui-rtrmadp-3-usa-trump.jpg?c=16x9&q=w_800,c_fill",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Karoline Leavitt",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
-      ],
-      "entities": [
-        "Karoline Leavitt"
-      ],
-      "sourceUrls": [
-        "https://www.cnn.com/2026/07/16/politics/karoline-leavitt-maternity-leave-briefing"
-      ],
-      "sourceName": "cnn.com",
-      "sources": [
-        "CNN"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "karoline leavitt",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.454,
-      "popularity": 0.03,
-      "recency": 0.891,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Athletes and Execs Join Forces at Variety’s Inaugural Sports and Entertainment Studio, Featuring Russell Wilson, Jimmie Johnson and Jay Williams",
-      "summary": "Variety hosted its first Sports & Entertainment Studio in New York on July 16, featuring Russell Wilson, Jimmie Johnson and Jay Williams alongside executives from State Farm, PepsiCo and Teads. The event explored how sports stars and brands can collaborate to engage fans during a booming media landscape. Wilson, a Super Bowl champion and entrepreneur, discussed his dual roles in sports and business.",
-      "hashtag": "ExecsJoin",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/sports/news/sports-entertainment-russell-wilson-jimmie-johnson-1236813582/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-6.19.34-PM.png",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-6.19.34-PM.png"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Athletes",
-        "Execs Join Forces",
-        "Variety",
-        "Inaugural Sports",
-        "Entertainment Studio",
-        "Featuring Russell Wilson"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/sports/news/sports-entertainment-russell-wilson-jimmie-johnson-1236813582/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.36,
-      "score": 0.453,
-      "popularity": 0,
-      "recency": 0.959,
-      "relevancy": 0.47,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Business rate cut not enough, says Michelin-star chef",
-      "summary": "A 20% cut in business rates for pubs and live music venues from April will do little to ease the financial strain on independent restaurants, warns Michelin-starred chef Alex Claridge. Operating on thin margins despite full dining rooms, many independents remain unprofitable nationwide. The industry warns further support is needed to prevent closures.",
-      "hashtag": "Michelin",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/ceqe91pnn7eo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
-        "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Business",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
-      ],
-      "entities": [
-        "Business",
-        "Michelin-star",
-        "Alex Claridge",
-        "Wilderness",
-        "Birmingham"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ceqe91pnn7eo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.8,
-      "score": 0.453,
-      "popularity": 0,
-      "recency": 0.912,
-      "relevancy": 0.535,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Anderson gets Man City move he craved as £116m deal done",
-      "summary": "Manchester City have completed the £116 million signing of midfielder Joachim Anderson from Nottingham Forest. The deal, a club record, sees Anderson join a side now managed by Enzo Maresca following Pep Guardiola’s departure. City confirmed the move ahead of the new Premier League season.",
-      "hashtag": "ManCity",
+      "title": "Modric, 40, signs new AC Milan deal",
+      "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan, following a season where the team finished fifth in Serie A. The Croatian midfielder joined Milan last summer on a one-year deal with an option to extend, after leaving Real Madrid where he spent 13 years. Modric is now set to continue giving his all for the team in the upcoming season.",
+      "hashtag": "Milan",
       "badge": "SPORTS",
       "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c1j1gk23jj4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
       ],
       "entityShots": [
         {
-          "name": "Anderson",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg"
+          "name": "Modric",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg"
         },
         {
-          "name": "Man City",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
+          "name": "AC Milan",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200"
+        },
+        {
+          "name": "Luka Modric",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
       ],
       "entities": [
-        "Anderson",
-        "Man City",
-        "Manchester City",
-        "Elliot Anderson",
-        "England"
+        "Modric",
+        "AC Milan",
+        "Luka Modric",
+        "September"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c1j1gk23jj4o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -659,20 +203,20 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.452,
+      "freshH": 0.04,
+      "score": 0.508,
       "popularity": 0,
-      "recency": 0.907,
-      "relevancy": 0.537,
+      "recency": 0.995,
+      "relevancy": 0.64,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Saudis must recognise Israel for nuclear deal, says Trump",
-      "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi Arabia has previously linked normalization to a Palestinian state but faces a White House ultimatum.",
+      "summary": "US President Donald Trump has stated that Saudi Arabia must recognise Israel in order for a nuclear deal between the two countries to proceed, with the deal dependent on Riyadh joining the Abraham Accords. The condition was reportedly discussed with Saudi leaders on multiple occasions, with Trump stating that if they do not join the accords, the deal is off. The nuclear deal, which has not been released, is intended for non-military use.",
       "hashtag": "IsraelTrump",
-      "badge": "TRENDING",
-      "category": "offbeat",
+      "badge": "BREAKING",
+      "category": "breaking",
       "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
       "images": [
@@ -699,35 +243,43 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.57,
-      "score": 0.451,
+      "freshH": 0.05,
+      "score": 0.49,
       "popularity": 0,
-      "recency": 0.937,
-      "relevancy": 0.494,
+      "recency": 0.994,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Gary Lineker among millionaires asking Andy Burnham to tax them more",
-      "summary": "Gary Lineker and 119 other wealthy Britons have urged Prime Minister Andy Burnham to raise taxes on the richest, proposing a 2% levy on fortunes over £10 million. The Patriotic Millionaires group argues this would fund public services and reduce inequality. The Treasury already accepts voluntary donations from individuals willing to pay more.",
-      "hashtag": "LinekerAndy",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
+      "title": "Russell proud of resilience after string of problems",
+      "summary": "George Russell cut his race deficit from 66 to 25 points over three recent grands prix, telling reporters he’s still making progress despite setbacks. A Mercedes investigation found an electrical power issue cost him half a second in qualifying and hurt his race pace in Belgium. Russell now faces the Dutch Grand Prix on August 24 aiming to build on the gains made so far.",
+      "hashtag": "RussellProud",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "George Russell",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
+      ],
       "entities": [
-        "Gary Lineker",
-        "Andy Burnham",
-        "England"
+        "Russell",
+        "George Russell",
+        "I've"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -737,123 +289,93 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.52,
-      "score": 0.449,
+      "freshH": 0.16,
+      "score": 0.481,
       "popularity": 0,
-      "recency": 0.942,
-      "relevancy": 0.478,
+      "recency": 0.982,
+      "relevancy": 0.55,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Colman Domingo Rips Elon Musk’s Plan for AI ‘The Odyssey’ Movie: ‘It’ll Be ‘Whiter Than Christmas at Cracker Barrel’",
-      "summary": "Colman Domingo criticized Elon Musk’s AI-generated “The Odyssey” movie plan, calling it “whiter than Christmas at Cracker Barrel.” Domingo made the remarks during his guest hosting spot on “Jimmy Kimmel Live” on Wednesday. Musk’s team has faced backlash over diversity casting in the project.",
-      "hashtag": "DomingoRips",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/colman-domingo-elon-musk-ai-odyssey-movie-1236819447/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png",
+      "title": "Ukraine's ousted defence minister insists on being reinstated",
+      "summary": "Ukraine’s defence minister Mykhailo Fedorov, 35, has refused an alternative government role and demanded reinstatement after his dismissal last week. President Volodymyr Zelensky offered Fedorov other posts including deputy prime minister amid mass protests. Fedorov, credited with modernising the army and leading anti-corruption efforts, remains a key figure in Kyiv’s war strategy.",
+      "hashtag": "UkraineOusted",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png",
-        "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Colman Domingo Rips Elon",
-        "Musk",
-        "Plan",
-        "Odyssey",
-        "Movie",
-        "Whiter Than Christmas"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/news/colman-domingo-elon-musk-ai-odyssey-movie-1236819447/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.32,
-      "score": 0.447,
-      "popularity": 0,
-      "recency": 0.964,
-      "relevancy": 0.439,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Trump Prepares Yet Another Strategy to Resurrect Global Tariffs",
-      "summary": "President Trump’s administration plans to replace a lapsing 10 percent global tariff with new 10 to 12.5 percent tariffs on 59 countries and the European Union. The new tariffs, set to take effect by Friday, target goods linked to forced labor under Section 301 of the 1974 Trade Act. Additional duties are expected to follow in the coming weeks.",
-      "hashtag": "PreparesYet",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-facebookJumbo.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Trump Prepares Yet Another",
-        "Strategy",
-        "Resurrect Global Tariffs"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.72,
-      "score": 0.442,
-      "popularity": 0,
-      "recency": 0.92,
-      "relevancy": 0.479,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Microsoft is testing free, ad-supported cloud gaming for Xbox Insiders",
-      "summary": "Microsoft is testing free, ad-supported cloud gaming for Xbox Insiders today. Sessions are capped at one hour with ads only before play begins, and participation is optional for those with paid subscriptions. The limited-time test aims to explore more affordable ways to access Xbox games.",
-      "hashtag": "XboxInsiders",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.theverge.com/games/969969/xbox-testing-ad-supported-streaming",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-      "images": [
-        "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
       ],
       "entityShots": [
         {
-          "name": "Microsoft",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
+          "name": "Mykhailo Fedorov",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
       ],
       "entities": [
-        "Microsoft",
-        "Xbox Insiders",
-        "However",
-        "It's"
+        "Ukraine's",
+        "Mykhailo Fedorov",
+        "President Zelensky's"
       ],
       "sourceUrls": [
-        "https://www.theverge.com/games/969969/xbox-testing-ad-supported-streaming"
+        "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.22,
+      "score": 0.481,
+      "popularity": 0,
+      "recency": 0.974,
+      "relevancy": 0.558,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Corsair’s PC case with a panoramic glass design is $70 off",
+      "summary": "A PC case with a panoramic glass design is now available at a discounted price of $119.99, a $70 reduction from its usual price. The Corsair Frame 4500X RS case supports large motherboards and graphics cards, and features a unique Infinirail system for easy fan installation. This case is currently on sale at Amazon, Best Buy, and Corsair's official website.",
+      "hashtag": "CorsairCase",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Corsair-Frame-4500X-RS-deal-image.png?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400",
+        "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Amazon",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+      ],
+      "entities": [
+        "Corsair",
+        "Amazon",
+        "Best Buy",
+        "Corsair Frame",
+        "EATX",
+        "GPUs"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale"
       ],
       "sourceName": "theverge.com",
       "sources": [
@@ -863,38 +385,42 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.438,
+      "freshH": 0.52,
+      "score": 0.477,
       "popularity": 0,
-      "recency": 0.905,
-      "relevancy": 0.487,
+      "recency": 0.941,
+      "relevancy": 0.589,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Super Giants thrash dismal Spirit at Lord's",
-      "summary": "Manchester Super Giants crushed London Spirit by seven wickets at Lord's on Friday. Super Giants chased 81 in just 59 balls, with Amy Scholfield top-scoring on 22. The win marks Super Giants' first match under their new name after five years as Manchester Originals.",
-      "hashtag": "GiantsSpirit",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/cricket/articles/cj6350pj5dpo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg",
+      "title": "Google and Tesla shares plunge as AI spending rattles markets",
+      "summary": "Google's parent company Alphabet saw its share price drop by over 7% on Thursday, while Tesla's stock fell 13.5% as investors reacted to the companies' massive spending on artificial intelligence. Alphabet now expects to spend up to $205 billion this year, mainly on AI projects and infrastructure, a $15 billion increase from its previous estimate. This significant investment has raised concerns about the potential return on these investments.",
+      "hashtag": "Tesla",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Google",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+      ],
       "entities": [
-        "Super Giants",
-        "Spirit",
-        "Lord's",
-        "Manchester Super Giants",
-        "London Spirit",
-        "Hundred"
+        "Google",
+        "Tesla"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/cricket/articles/cj6350pj5dpo?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -905,35 +431,195 @@
       "trend": null,
       "traffic": 0,
       "freshH": 0.44,
-      "score": 0.437,
+      "score": 0.475,
       "popularity": 0,
-      "recency": 0.95,
-      "relevancy": 0.419,
+      "recency": 0.951,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Ex-governor convicted of murdering a pregnant student in Kenya",
-      "summary": "Former Kenyan governor Ferdinand Waititu was convicted of orchestrating the 2018 murder of pregnant student Sharon Otieno. Three co-defendants, including his former aide, were also found guilty and remanded ahead of sentencing. Investigators traced the abductors’ vehicle using its hidden tracking device.",
-      "hashtag": "Kenya",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cvg9l039ljyo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg",
+      "title": "FCC Poised to Hand Broadcasters Long-Sought Win in Abolishing Station Ownership Cap as Brendan Carr Probes Tension Between TV Groups and Platforms",
+      "summary": "The Federal Communications Commission is set to vote on August 6 to eliminate the station ownership cap, a regulation limiting the number of US TV stations a single entity can own, a move that could bring broadcasters a long-sought victory. The cap was first enacted for radio stations in 1941 and has been in place for over 80 years. This decision comes as FCC Chairman Brendan Carr probes tensions between TV groups and platforms over sports rights and streaming.",
+      "hashtag": "PoisedHand",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/brendan-carr-fcc-lift-station-cap-nexstar-tegna-ownership-1236818762/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg"
+        "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg",
+        "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg?w=1000&h=563&crop=1",
+        "https://variety.com/wp-content/uploads/2026/07/GettyImages-2158794949-e1784778506599.jpg?w=1000"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Ex-governor",
-        "Kenya",
-        "Okoth Obado",
-        "Sharon Otieno"
+        "FCC Poised",
+        "Hand Broadcasters Long-Sought Win",
+        "Abolishing Station Ownership Cap",
+        "Brendan Carr Probes Tension",
+        "Between TV Groups",
+        "Platforms"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvg9l039ljyo?at_medium=RSS&at_campaign=rss"
+        "https://variety.com/2026/tv/news/brendan-carr-fcc-lift-station-cap-nexstar-tegna-ownership-1236818762/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.49,
+      "score": 0.473,
+      "popularity": 0,
+      "recency": 0.945,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Venice Chief Alberto Barbera on Landing Robert Pattinson Film ‘Primetime’ at the Last Minute and Lack of U.S. Studios at the Festival: They Are ‘Experiencing an Identity Crisis’",
+      "summary": "Venice Film Festival chief Alberto Barbera has successfully assembled a star-studded lineup despite a significant decrease in films from US studios and streamers, with 18 new projects from top international directors set to premiere. This comes as Barbera attributes the lack of US studio involvement to an \"identity crisis\" within the industry. The festival will continue to showcase a diverse range of films, with the world premiere of the Oasis reunion documentary \"Don't Look Back in Anger\" among the highlights.",
+      "hashtag": "ChiefAlberto",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/festivals/venice-alberto-barbera-robert-pattinson-lack-studio-movies-1236819420/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg",
+        "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Venice Chief Alberto Barbera",
+        "Landing Robert Pattinson Film",
+        "Primetime",
+        "Last Minute",
+        "Lack",
+        "Studios"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/festivals/venice-alberto-barbera-robert-pattinson-lack-studio-movies-1236819420/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.18,
+      "score": 0.473,
+      "popularity": 0,
+      "recency": 0.979,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Lobbying firm pressed for details about payments to journalists for favourable stories",
+      "summary": "A lobbying firm, CT Group, is facing calls to reveal details of payments made to journalists for favourable stories, following a four-month investigation that exposed the practice as a threat to democracy. The firm, co-founded by Lynton Crosby, has been condemned by MPs, senior lobbyists, and transparency campaigners, who are demanding an overhaul of lobbying rules. The practice has been denounced as an attack on the ethics of journalism and democracy.",
+      "hashtag": "LobbyingFirm",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/politics/2026/jul/23/lobbying-firm-pressed-for-details-about-payments-to-journalists-for-favourable-stories",
+      "imageUrl": "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=88cea99b43011c4811ffdc228398ac31",
+      "images": [
+        "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=88cea99b43011c4811ffdc228398ac31",
+        "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=201f201cfbd39a5922f460f7b341d9cf"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Lobbying",
+        "CT Group"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/politics/2026/jul/23/lobbying-firm-pressed-for-details-about-payments-to-journalists-for-favourable-stories"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.35,
+      "score": 0.466,
+      "popularity": 0,
+      "recency": 0.96,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘Percy Jackson’ Season 3 Drops First Opening Scene Footage at Comic-Con as Walker Scobell Tells Fans the New Episodes Will Stay True to ‘Titan’s Curse’ Book",
+      "summary": "At San Diego Comic-Con, Disney+ premiered the opening scene of Season 3 of \"Percy Jackson and the Olympians\", adapting Rick Riordan's book \"The Titan's Curse\". The new season will follow Percy Jackson, Grover Underwood, and their fellow campers at Camp Half-Blood, with Walker Scobell reprising his role as Percy. The third season is set to stay true to the original book's storyline.",
+      "hashtag": "JacksonSeason",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/percy-jackson-season-3-footage-comic-con-titans-curse-1236807036/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg",
+        "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Percy Jackson",
+        "Season",
+        "Drops First Opening Scene",
+        "Footage",
+        "Comic-Con",
+        "Walker Scobell Tells Fans"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/tv/news/percy-jackson-season-3-footage-comic-con-titans-curse-1236807036/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.32,
+      "score": 0.464,
+      "popularity": 0,
+      "recency": 0.964,
+      "relevancy": 0.508,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Wolves training cancelled after Arokodare refuses to leave pitch",
+      "summary": "Wolves striker Tolu Arokodare halted a training session on Monday after refusing to leave the pitch. The 25-year-old Nigeria international demanded a move to Fiorentina despite Wolves accepting a bid from Trabzonspor. The club confirmed the session was cut short by new manager Cesar Peixoto.",
+      "hashtag": "Arokodare",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Wolves",
+        "Arokodare",
+        "Tolu Arokodare"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -943,17 +629,292 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.74,
-      "score": 0.434,
+      "freshH": 0.14,
+      "score": 0.454,
       "popularity": 0,
-      "recency": 0.918,
-      "relevancy": 0.449,
+      "recency": 0.984,
+      "relevancy": 0.439,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Tesla’s robotaxi promises are clashing with reality",
+      "summary": "Tesla’s robotaxi program drove 380,000 unsupervised miles across six cities in two states as of yesterday’s earnings call. CEO Elon Musk acknowledged scaling efforts while stressing safety, noting growth is flat despite claims of progress. The company faces scrutiny over its technology’s safety record amid limited mileage gains.",
+      "hashtag": "TeslaRobotaxi",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/transportation/970003/tesla-robotaxi-mileage-waymo-cities-earnings-musk",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Tesla's",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
+      ],
+      "entities": [
+        "Tesla",
+        "Tesla CEO Elon Musk",
+        "Tesla's",
+        "Musk's"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/transportation/970003/tesla-robotaxi-mileage-waymo-cities-earnings-musk"
+      ],
+      "sourceName": "theverge.com",
+      "sources": [
+        "theverge.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.7,
+      "score": 0.452,
+      "popularity": 0,
+      "recency": 0.922,
+      "relevancy": 0.517,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+      "summary": "Houthi attacks on Red Sea shipping threaten to disrupt the Europe-Asia trade route through the Bab El Mandeb strait. Two Saudi vessels were hit by missiles this week, escalating tensions after the 2022 ceasefire with Saudi Arabia collapsed. US Central Command has conducted 12 consecutive nights of airstrikes on Iranian coastal targets.",
+      "hashtag": "MiddleEast",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Middle East",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+      ],
+      "entities": [
+        "Houthi",
+        "Middle East",
+        "Iran-backed",
+        "Yemen",
+        "Saudi"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.76,
+      "score": 0.451,
+      "popularity": 0,
+      "recency": 0.916,
+      "relevancy": 0.523,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Yemen's Houthis attack Saudi tanker as US launches more Iran strikes",
+      "summary": "US warships struck Iranian-backed Houthi targets in Yemen for a 12th straight night Wednesday, while the militia claimed it hit a Saudi oil tanker in the Red Sea. The Saudi-run agency reported one vessel caught fire but gave no casualties. Washington warned the Houthis and Tehran of swift retaliation if attacks continue.",
+      "hashtag": "HouthisSaudi",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Saudi",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+      ],
+      "entities": [
+        "Yemen's Houthis",
+        "Saudi",
+        "Iran",
+        "Iran-backed",
+        "Saudi Arabia"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.01,
+      "score": 0.439,
+      "popularity": 0,
+      "recency": 0.89,
+      "relevancy": 0.511,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Modi Caught Off Guard as India’s Economic Failings Inflame Young People",
+      "summary": "Prime Minister Narendra Modi was busy trying to put out other fires when a student movement suddenly exploded. There are no easy solutions to the problems behind it.",
+      "hashtag": "CaughtGuard",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.17,
+      "score": 0.417,
+      "popularity": 0,
+      "recency": 0.981,
+      "relevancy": 0.294,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘Odyssey’ Popcorn Buckets Help Fuel a $100 Million Market",
+      "summary": "Once, a tub of popcorn was just a tub of popcorn. Now, ‘collectible concession vessels’ could make one chain more than $100 million.",
+      "hashtag": "PopcornBuckets",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/media/movie-theaters-popcorn-buckets.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/POPCORN-BUCKETS-promo1-gzbj/POPCORN-BUCKETS-promo1-gzbj-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/POPCORN-BUCKETS-promo1-gzbj/POPCORN-BUCKETS-promo1-gzbj-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/media/movie-theaters-popcorn-buckets.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.05,
+      "score": 0.415,
+      "popularity": 0,
+      "recency": 0.995,
+      "relevancy": 0.269,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Israel Welcomes Trump’s Demand for Diplomatic Ties With Saudi Arabia",
+      "summary": "Israeli officials greeted the possibility of normalized ties, but analysts said the U.S.-Saudi nuclear deal nonetheless remained bad for Israel.",
+      "hashtag": "WelcomesTrump",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/23/us/politics/israel-saudi-arabia-us-nuclear-deal.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-news-Israel-zvqm/23trump-news-Israel-zvqm-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-news-Israel-zvqm/23trump-news-Israel-zvqm-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/us/politics/israel-saudi-arabia-us-nuclear-deal.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.17,
+      "score": 0.413,
+      "popularity": 0,
+      "recency": 0.981,
+      "relevancy": 0.278,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Chaos Breaks Out at Border Crossings With Iraq",
+      "summary": "Videos verified by The New York Times show border crossings in southern Iraq becoming the latest target in the hostilities in the Middle East.",
+      "hashtag": "BreaksBorder",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.2,
+      "score": 0.411,
+      "popularity": 0,
+      "recency": 0.977,
+      "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
     {
       "title": "The only way to stop petrol pump thieves | Brief letters",
-      "summary": "A new UK-wide crackdown on petrol pump theft starts today, requiring drivers to pay upfront or leave a card deposit before fueling. Police report a 15% rise in drive-offs this year, costing forecourts over £50 million annually. Forecourt owners urge customers to carry cash or cards to avoid delays.",
+      "summary": "Petrol pump thieves are exploiting a loophole in the payment system, with many stations releasing pumps before payment is confirmed. In the UK, it's estimated that over £1 million is stolen from petrol pumps each year. To prevent such thefts, some experts are advocating for a change in policy, requiring a cash or card deposit before releasing the pump.",
       "hashtag": "Brief",
       "badge": "HEALTH",
       "category": "health",
@@ -998,57 +959,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.44,
-      "score": 0.432,
+      "freshH": 2.43,
+      "score": 0.411,
       "popularity": 0,
-      "recency": 0.847,
-      "relevancy": 0.544,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Rangers sign 'huge potential' in Partizan captain Dragojevic",
-      "summary": "Rangers have signed Serbia midfielder Vanja Dragojevic from Partizan Belgrade on a four-year deal with a one-year option. The 20-year-old captained Partizan and has two international caps. Manager Derek McInnes called him a high-potential leader with exciting attributes.",
-      "hashtag": "PartizanDragojevic",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c87ng75zlx4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Rangers",
-        "Partizan",
-        "Dragojevic",
-        "Serbia",
-        "Vanja Dragojevic"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c87ng75zlx4o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.64,
-      "score": 0.431,
-      "popularity": 0,
-      "recency": 0.929,
-      "relevancy": 0.423,
+      "recency": 0.755,
+      "relevancy": 0.586,
       "region": "usa",
       "geo": null
     },
     {
       "title": "BBC Inside Science",
-      "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency. Those with low levels will be offered voluntary hormone replacement therapy to maintain force readiness. The initiative aims to ensure a healthy and capable fighting force.",
+      "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency, with those found to have low levels offered voluntary hormone replacement therapy. The move aims to maintain a \"healthy, capable, and decisively dominant fighting force\". The new policy is set to be implemented by the US Department of Defence.",
       "hashtag": "InsideScience",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1074,17 +995,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.423,
+      "freshH": 1.86,
+      "score": 0.402,
       "popularity": 0,
-      "recency": 0.905,
-      "relevancy": 0.426,
+      "recency": 0.807,
+      "relevancy": 0.479,
       "region": "usa",
       "geo": null
     },
     {
       "title": "NASA’s MAVEN Illuminates New Understanding of Auroras at Mars",
-      "summary": "NASA’s MAVEN mission revealed Mars experiences auroras through the same particle process as Earth, though on a smaller scale due to weaker magnetic fields. Findings published Thursday in Nature Communications show the Dungey cycle drives these auroras after charged particles reconnect with the Sun’s magnetic field. Data from the now-concluded mission continues to guide future Mars exploration efforts.",
+      "summary": "NASA’s MAVEN mission revealed Mars experiences auroras through the same particle-driven process as Earth, despite weaker magnetic fields. Findings published Thursday in Nature Communications show the Dungey cycle accelerates charged particles into Mars’ atmosphere on smaller scales. Data from the now-concluded mission continues to shape future Mars exploration efforts.",
       "hashtag": "IlluminatesNew",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1092,10 +1013,18 @@
       "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif?w=2048",
       "images": [
         "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif?w=2048",
-        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "NASA",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+      ],
       "entities": [
         "NASA",
         "MAVEN Illuminates New Understanding",
@@ -1115,116 +1044,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.54,
-      "score": 0.423,
+      "freshH": 2.53,
+      "score": 0.398,
       "popularity": 0,
-      "recency": 0.837,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘We Will All Die From Ebola Here’: Virus Stalks Crowded Camps in Congo",
-      "summary": "There are a million people displaced by violence in the epicenter. They live in dangerous conditions and are fighting the virus with very little clean water.",
-      "hashtag": "AllDie",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.08,
-      "score": 0.419,
-      "popularity": 0,
-      "recency": 0.991,
-      "relevancy": 0.288,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Chaos Breaks Out at Border Crossings in Iraq",
-      "summary": "Videos verified by The New York Times show border crossings in southern Iraq becoming the latest target in the hostilities in the Middle East.",
-      "hashtag": "BreaksBorder",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/23vid-iran-crossing-reporterupdate1-80744-cover/23vid-iran-crossing-reporterupdate1-80744-cover-mediumSquareAt3X-v2.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/middleeast/iraq-border-crossings-struck.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.04,
-      "score": 0.417,
-      "popularity": 0,
-      "recency": 0.995,
-      "relevancy": 0.276,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘Odyssey’ Popcorn Buckets Help Fuel a $100 Million Market",
-      "summary": "Once, a tub of popcorn was just a tub of popcorn. Now, ‘collectible concession vessels’ could make one chain more than $100 million.",
-      "hashtag": "PopcornBuckets",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/23/business/media/movie-theaters-popcorn-buckets.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/POPCORN-BUCKETS-promo1-gzbj/POPCORN-BUCKETS-promo1-gzbj-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/POPCORN-BUCKETS-promo1-gzbj/POPCORN-BUCKETS-promo1-gzbj-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/media/movie-theaters-popcorn-buckets.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.01,
-      "score": 0.417,
-      "popularity": 0,
-      "recency": 0.998,
-      "relevancy": 0.269,
+      "recency": 0.746,
+      "relevancy": 0.548,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Crews Move Artemis IV Liquid Hydrogen Tank",
-      "summary": "Crews at NASA’s Michoud Assembly Facility in New Orleans moved the 130-foot Artemis IV liquid hydrogen tank to a test building on May 15, 2026. The tank will power the SLS rocket’s core stage with super-cold propellant for four RS-25 engines. Testing is expected to follow before integration into the final rocket assembly.",
+      "summary": "Crews at NASA's Michoud Assembly Facility in New Orleans have successfully transported the 130-foot-tall Artemis IV liquid hydrogen tank to a detached test building on May 15, 2026. The tank will form part of the core stage for the SLS rocket, providing thousands of gallons of super-cold propellant to one of four RS-25 engines. This milestone marks a significant step forward in the development of the Artemis IV mission.",
       "hashtag": "MoveArtemis",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1255,17 +1085,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.52,
-      "score": 0.409,
+      "freshH": 2.52,
+      "score": 0.392,
       "popularity": 0,
-      "recency": 0.838,
-      "relevancy": 0.462,
+      "recency": 0.747,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Risk of Parkinson’s disease may increase with prolonged exposure to road traffic noise",
-      "summary": "A new study in JAMA Neurology finds that long-term exposure to road traffic noise may increase Parkinson’s disease risk by 3% for every 11.5-decibel rise in noise levels. Researchers tracked 3.1 million Danish adults over 18 years, linking higher noise exposure at home to a modest but consistent rise in cases. Experts suggest reducing noise at home could help lower the risk.",
+      "summary": "A new study has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease, with a 3% higher risk for every 11.5 decibel rise in noise level at the most exposed facade. The study, which included 3.1 million Danish participants aged 40 and over, followed them for 18 years and suggests that having a quiet part of the home may mitigate this risk. The findings, published in Jama Neurology, highlight the potential long-term health consequences of exposure to road traffic noise.",
       "hashtag": "Parkinson",
       "badge": "HEALTH",
       "category": "health",
@@ -1274,10 +1104,18 @@
       "images": [
         "https://i.guim.co.uk/img/media/833a1021d767e599436b2905d40aa35f53af9198/153_0_5884_4709/master/5884.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e468a632316a5ca549895bcb400c6748",
         "https://i.guim.co.uk/img/media/833a1021d767e599436b2905d40aa35f53af9198/153_0_5884_4709/master/5884.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=5c77ef81fae34d8abe6189131f81656a",
-        "https://i.guim.co.uk/img/media/22e54388b84805200044a193ffe535eaa1de7e32/570_307_5261_4211/master/5261.jpg?width=445&dpr=1&s=none&crop=none"
+        "https://i.guim.co.uk/img/media/22e54388b84805200044a193ffe535eaa1de7e32/570_307_5261_4211/master/5261.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Pioneering",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
+      ],
       "entities": [
         "Risk",
         "Parkinson",
@@ -1296,11 +1134,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.46,
-      "score": 0.373,
+      "freshH": 4.45,
+      "score": 0.364,
       "popularity": 0,
-      "recency": 0.671,
-      "relevancy": 0.553,
+      "recency": 0.598,
+      "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
@@ -1329,10 +1167,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.79,
-      "score": 0.331,
+      "freshH": 3.78,
+      "score": 0.303,
       "popularity": 0,
-      "recency": 0.725,
+      "recency": 0.646,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
@@ -1341,112 +1179,51 @@
   "categories": {
     "offbeat": [
       {
-        "title": "House rebukes Trump in vote to restrict his Iran war powers",
-        "summary": "The US House of Representatives voted 214 to 208 to restrict President Trump's war powers in Iran, with four Republicans joining Democrats in support of the measure. This rebuke comes as the conflict in Iran escalates, following a recent ceasefire. The resolution, however, lacks the force of law and would not compel the administration to end the war.",
-        "hashtag": "TrumpIran",
+        "title": "City: Greenville Zoo’s leopard tranquilized, returned after escaping exhibit",
+        "summary": "A four-year-old Amur leopard named Irina escaped her exhibit at the Greenville Zoo in South Carolina on Thursday morning, prompting the evacuation of zoo staff and guests. She was successfully tranquilized and returned to her den by zoo emergency response teams at approximately 9:20 a.m. The zoo will remain closed while officials investigate the incident.",
+        "hashtag": "GreenvilleZoo",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/23/politics/trump-iran-war-powers",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-14t021432z-1-lynxmpem6d03e-rtroptp-4-usa-trump.jpg?c=16x9&q=w_800,c_fill",
+        "url": "https://www.foxcarolina.com/2026/07/23/police-respond-animal-call-near-greenville-zoo-dispatch-says/",
+        "imageUrl": "https://gray-whns-prod.gtv-cdn.com/resizer/v2/JYQFBF5GGBHJNHFZXQ2V6AH34Y.jpg?auth=8a14935673294dcb74ab8954ba88f312f11cd9831d9891ded76b25c0c0f16eb2&width=1200&height=600&smart=true",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-14t021432z-1-lynxmpem6d03e-rtroptp-4-usa-trump.jpg?c=16x9&q=w_800,c_fill",
-          "https://assets3.cbsnewsstatic.com/hub/i/r/2026/07/23/fd283558-4cb1-4635-92ba-5b28fb3fa31a/thumbnail/1200x630/cd8b89e0c0a5e798a94b882fd110e0ba/gettyimages-2286607383.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/JYQFBF5GGBHJNHFZXQ2V6AH34Y.jpg?auth=8a14935673294dcb74ab8954ba88f312f11cd9831d9891ded76b25c0c0f16eb2&width=1200&height=600&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/4GJZYLYCNVCV7G3UXRTMH3Q6VM.jpg?auth=f8288e79b04e7da407248030e789f1ea0c576b715928da2795779fc646fd7fbb&width=980&height=505&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/DCH2NY7JZFCN7KOEQWUBXDUBFU.png?auth=60b864fbb7ee628fef39f1e7d36c60c0547957f7de350f35d0e0bc5018101b2e&width=1200&height=800&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/NII4CTQ27VHDBMZKCPVB7ROGEY.png?auth=5c2dcf1c543ca2a5ba2fdf95b14ceba62a63ce6fe6c39d1c9aaf16229973c13b&width=1200&height=800&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/4CPFWJ4DUBFVRFUAP2EUTWLIJY.jpg?auth=5525503b39196bd3bde7fab887e6631f0618e6d4bd9a5a7bf4f2c50337862946&width=1200&height=800&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/SCJNJIKFNBA3XFVMR6E2QZADAM.jpg?auth=f0f72704459f85bafc2eaf055accb55669b211521ecfa0991ce66adfcdb890e9&width=1200&height=800&smart=true",
+          "https://gray-whns-prod.gtv-cdn.com/resizer/v2/Q6LR44CS65FNVFHZW4WFYJH5TU.jpg?auth=6ee24121ec008c3d7b73f7ead454c82959adffc355ac960f237f6a039d31eb6c&width=1200&height=800&smart=true",
+          "https://kubrick.htvapps.com/htv-prod/images/a9edd02e-e7fe-43ff-baf5-af31c894cea8.jpg?resize=1200%3A*&crop=1.00xw%3A0.846xh%3B0%2C0.151xh",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
         ],
         "entityShots": [
           {
-            "name": "House",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+            "name": "City",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/1/1b/Katsura_Imperial_Villa_in_Spring.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg"
         ],
         "entities": [
-          "House",
-          "Trump",
-          "Iran"
+          "City",
+          "Greenville Zoo"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/23/politics/trump-iran-war-powers",
-          "https://www.cbsnews.com/news/senate-trump-iran-war-powers/"
+          "https://www.foxcarolina.com/2026/07/23/police-respond-animal-call-near-greenville-zoo-dispatch-says/",
+          "https://www.wyff4.com/article/leopard-escapes-greenville-zoo/73247066",
+          "https://www.wspa.com/news/greenville-zoo-animal-escapes-exhibit-prompting-closure/"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "foxcarolina.com",
         "sources": [
-          "CNN",
-          "CBS News",
-          "The Guardian"
+          "FOX Carolina News",
+          "WYFF",
+          "WSPA 7NEWS"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "trump iran",
-        "traffic": 5000,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Sebastian Berhalter finalizing transfer to Middlesbrough from Vancouver: Sources",
-        "summary": "Sebastian Berhalter, a 25-year-old U.S. national team midfielder, is finalizing a transfer to Middlesbrough from the Vancouver Whitecaps for a fee in the region of $2 million. Berhalter, who appeared in all five U.S. matches at the World Cup, will join the Championship team during the summer transfer window. He will reunite with former Columbus Crew teammate Aidan Morris, another U.S. national team midfielder, at Middlesbrough.",
-        "hashtag": "Middlesbrough",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.nytimes.com/athletic/7465931/2026/07/23/sebastian-berhalter-transfer-middlesbrough-vancouver-whitecaps-usmnt/",
-        "imageUrl": "https://static01.nyt.com/athletic/uploads/wp/2026/07/23114849/GettyImages-2282836272-scaled.jpg?width=1200&height=630&fit=cover",
-        "images": [
-          "https://static01.nyt.com/athletic/uploads/wp/2026/07/23114849/GettyImages-2282836272-scaled.jpg?width=1200&height=630&fit=cover",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/06/USAT/90825569007-usatsi-29311236.jpg?crop=3988,2243,x0,y326&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/19/USAT/90974016007-afp-2286143201.jpg?crop=7333,4128,x4,y492&width=660&height=372&format=pjpg&auto=webp",
-          "https://smartcdn.gprod.postmedia.digital/theprovince/wp-content/uploads/2026/07/2249116915_300119540.jpg",
-          "https://smartcdn.gprod.postmedia.digital/theprovince/wp-content/uploads/2026/05/0526-col-caps-11.jpg?h=96&strip=all&quality=80&sig=UgRqSLYQOQ-xqOrn6MxksQ",
-          "https://smartcdn.gprod.postmedia.digital/vancouversun/wp-content/uploads/2026/05/mls-whitecaps-dallas-soccer_303112599.jpg?h=96&strip=all&quality=80&sig=UWajfvA6msLckRbWGDOemw",
-          "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Sebastian Berhalter",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg"
-          },
-          {
-            "name": "Middlesbrough",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg"
-          },
-          {
-            "name": "Vancouver",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/38/Sebastian_Berhalter_Australia_v_USA_19_June_2026-218.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a3/Middlesborough_Town_Hall_image_by_Robert_Eva.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/33/Skyline_of_Vancouver%2C_Canada.jpg"
-        ],
-        "entities": [
-          "Sebastian Berhalter",
-          "Middlesbrough",
-          "Vancouver",
-          "Sources"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/athletic/7465931/2026/07/23/sebastian-berhalter-transfer-middlesbrough-vancouver-whitecaps-usmnt/",
-          "https://www.usatoday.com/story/sports/soccer/mls/2026/07/23/sebastian-berhalter-transfer-middlesbrough-usmnt-midfielder-vancouver/91022307007/",
-          "https://theprovince.com/sports/has-the-whitecaps-sebastian-berhalter-played-his-last-mls-game"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times",
-          "USA Today",
-          "The Province"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "middlesbrough",
+        "trend": "greenville zoo",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1457,39 +1234,33 @@
         "geo": "US"
       },
       {
-        "title": "Richard Carapaz's late attack secures victory in Stage 18 of the 2026 Tour de France",
-        "summary": "Richard Carapaz secured his first stage win of the 2026 Tour de France in Stage 18, covering 185.2 kilometers from Voiron to Orcières-Merlette. The Ecuadorian cyclist launched a decisive attack in the final stretch to claim the summit and stage victory. Carapaz's win narrows the overall general classification, setting the stage for a thrilling conclusion to the 2026 Tour de France.",
-        "hashtag": "RichardCarapaz",
+        "title": "FDA panel votes to place popular peptide BPC-157 on compounding list",
+        "summary": "A US FDA panel has voted to place the peptide BPC-157 on the list of compounds that can be made by licensed pharmacies, a move that could pave the way for its use in human clinical trials. The peptide has been studied for its potential therapeutic benefits, including healing wounds and reducing inflammation. Its addition to the compounding list is expected to facilitate further research into its medical applications.",
+        "hashtag": "HimsStock",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.usatoday.com/story/sports/cycling/tourdefrance/2026/07/23/tour-de-france-results-richard-carapaz-win-stage-18/91021659007/",
-        "imageUrl": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91022602007-2286673454.jpg?crop=4033,2267,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L4N43P25K:0-fda-panel-votes-to-place-popular-peptide-bpc-157-on-compounding-list/",
+        "imageUrl": "https://s.tradingview.com/static/images/illustrations/news-story.jpg",
         "images": [
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/23/USAT/91022602007-2286673454.jpg?crop=4033,2267,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/22/USAT/91013159007-20260722-t-153343-z-1254033604-up-1-em-7-m-1786-ag-rtrmadp-3-cyclingfrance.JPG?crop=3149,1773,x0,y145&width=660&height=372&format=pjpg&auto=webp",
-          "https://nbcsports.brightspotcdn.com/dims4/default/f0b62de/2147483647/strip/true/crop/1920x1080+0+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fhdliveextra-a.akamaihd.net%2FHD%2Fimage_sports%2FNBCU_Sports_Group_-_nbcsports%2F773%2F578%2FTDFStage18Finish.jpg"
+          "https://s.tradingview.com/static/images/illustrations/news-story.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Richard Carapaz's",
-          "Stage",
-          "Tour",
-          "France"
+          "BPC-"
         ],
         "sourceUrls": [
-          "https://www.usatoday.com/story/sports/cycling/tourdefrance/2026/07/23/tour-de-france-results-richard-carapaz-win-stage-18/91021659007/",
-          "https://www.nbcsports.com/watch/2026-tour-de-france-highlights-stage-18-finish-in-orcieres-merlette"
+          "https://www.tradingview.com/news/reuters.com,2026:newsml_L4N43P25K:0-fda-panel-votes-to-place-popular-peptide-bpc-157-on-compounding-list/",
+          "https://seekingalpha.com/news/4617588-hims-hers-gains-fda-panel-endorses-peptide-bpc-157"
         ],
-        "sourceName": "usatoday.com",
+        "sourceName": "tradingview.com",
         "sources": [
-          "The Guardian",
-          "USA Today",
-          "NBC Sports"
+          "TradingView",
+          "Seeking Alpha"
         ],
-        "corr": 3,
+        "corr": 2,
         "verified": true,
-        "trend": "richard carapaz",
+        "trend": "hims stock",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1500,47 +1271,80 @@
         "geo": "US"
       },
       {
-        "title": "France evacuates 20,000 as wildfires spread in south-west",
-        "summary": "France evacuated 20,000 people in the Gironde region on Thursday as wildfires scorched 3,400 hectares near the Bay of Arcachon. Authorities moved 8,800 more residents as a precaution while 700 firefighters battled the flames. Temperatures and winds are expected to peak tonight, complicating containment efforts.",
-        "hashtag": "FranceEvacuates",
+        "title": "St Gallen vs Benfica LIVE Score Updates in UEFA Europa League Match",
+        "summary": "In the UEFA Europa League Preliminary Round, St Gallen is facing Benfica in the first leg of their match at the AFG Arena stadium. St Gallen is competing in the tournament for the eighth time in its history, but has yet to reach the decisive stages. The match will be refereed by Luca Pairetio, with the Swiss club missing key players due to injury and suspension.",
+        "hashtag": "GallenBenfica",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+        "url": "https://www.vavel.com/en-us/soccer/2026/07/23/1266292-st-gallen-vs-benfica-live-score-uefa-europa-league.html",
+        "imageUrl": "https://img.vavel.com/benfica-1-1784741461037-dpa74d.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+          "https://img.vavel.com/benfica-1-1784741461037-dpa74d.jpg",
+          "https://assets.vavel.com/images/17.gif",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
         ],
         "entityShots": [
           {
-            "name": "France",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-          },
-          {
-            "name": "Most",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG"
-          },
-          {
-            "name": "Arcachon Bay",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+            "name": "St Gallen",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/9/90/City_of_Most.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/PassesBassin.JPG"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20View%20of%20Sankt%20Gallen%2014.02.2008%2014-48-58.JPG?width=1200"
         ],
         "entities": [
-          "France",
-          "Most",
-          "Arcachon Bay",
-          "France's Gironde"
+          "St Gallen",
+          "Benfica LIVE Score Updates",
+          "UEFA Europa League Match"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss"
+          "https://www.vavel.com/en-us/soccer/2026/07/23/1266292-st-gallen-vs-benfica-live-score-uefa-europa-league.html"
+        ],
+        "sourceName": "vavel.com",
+        "sources": [
+          "VAVEL.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "st. gallen vs benfica",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Ukraine's ousted defence minister insists on being reinstated",
+        "summary": "Ukraine’s defence minister Mykhailo Fedorov, 35, has refused an alternative government role and demanded reinstatement after his dismissal last week. President Volodymyr Zelensky offered Fedorov other posts including deputy prime minister amid mass protests. Fedorov, credited with modernising the army and leading anti-corruption efforts, remains a key figure in Kyiv’s war strategy.",
+        "hashtag": "UkraineOusted",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/bcc1/live/101e62c0-86b7-11f1-bb58-d3ffca85db6d.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Mykhailo Fedorov",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/7b/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE_%D0%A4%D0%B5%D0%B4%D0%BE%D1%80%D0%BE%D0%B2.jpg"
+        ],
+        "entities": [
+          "Ukraine's",
+          "Mykhailo Fedorov",
+          "President Zelensky's"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/ce97nm53pgxo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1550,7 +1354,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.17,
+        "freshH": 0.22,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1559,104 +1363,254 @@
         "geo": null
       },
       {
-        "title": "Chris Sale slated to start series finale versus San Diego",
-        "summary": "Braves ace Chris Sale is set to start the series finale against the San Diego Padres, looking to help the team win a series at home for the first time since 2018. Sale has been impressive this season, boasting a 10-6 record and a 2.06 ERA, and he recently threw a gem against the Texas Rangers with seven shutout innings. The Braves have a chance to split the series with a win, which would be a significant accomplishment given their rollercoaster rotation this season.",
-        "hashtag": "PadresBraves",
+        "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+        "summary": "Houthi attacks on Red Sea shipping threaten to disrupt the Europe-Asia trade route through the Bab El Mandeb strait. Two Saudi vessels were hit by missiles this week, escalating tensions after the 2022 ceasefire with Saudi Arabia collapsed. US Central Command has conducted 12 consecutive nights of airstrikes on Iranian coastal targets.",
+        "hashtag": "MiddleEast",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.batterypower.com/atlanta-braves-game-information/136311/chris-sale-slated-to-start-series-finale-versus-san-diego-braves-vs-san-diego-padres-preview-tv-streaming-radio-start-time-chris-sale-griffin-canning-pitching-matchup",
-        "imageUrl": "https://platform.batterypower.com/wp-content/uploads/sites/22/2026/07/gettyimages-2286033999.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
         "images": [
-          "https://platform.batterypower.com/wp-content/uploads/sites/22/2026/07/gettyimages-2286033999.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
         ],
         "entityShots": [
           {
-            "name": "Chris Sale",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg"
+            "name": "Middle East",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+        ],
+        "entities": [
+          "Houthi",
+          "Middle East",
+          "Iran-backed",
+          "Yemen",
+          "Saudi"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.76,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Yemen's Houthis attack Saudi tanker as US launches more Iran strikes",
+        "summary": "US warships struck Iranian-backed Houthi targets in Yemen for a 12th straight night Wednesday, while the militia claimed it hit a Saudi oil tanker in the Red Sea. The Saudi-run agency reported one vessel caught fire but gave no casualties. Washington warned the Houthis and Tehran of swift retaliation if attacks continue.",
+        "hashtag": "HouthisSaudi",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Saudi",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/AramcoCoreArea.jpg?width=1200"
+        ],
+        "entities": [
+          "Yemen's Houthis",
+          "Saudi",
+          "Iran",
+          "Iran-backed",
+          "Saudi Arabia"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.01,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Modric, 40, signs new AC Milan deal",
+        "summary": "Luka Modric, 40, has signed a one-year contract extension with AC Milan, following a season where the team finished fifth in Serie A. The Croatian midfielder joined Milan last summer on a one-year deal with an option to extend, after leaving Real Madrid where he spent 13 years. Modric is now set to continue giving his all for the team in the upcoming season.",
+        "hashtag": "Milan",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b414/live/a014d710-86bc-11f1-bb58-d3ffca85db6d.png",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Modric",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg"
           },
           {
-            "name": "San Diego",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
+            "name": "AC Milan",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200"
+          },
+          {
+            "name": "Luka Modric",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f4/Chris_Sale_in_2017_%2837185846582%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ea/La_Jolla_Shores_view_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/7/7e/HR-Modrich2.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Coreografia%20Curva%20Sud%20Banditi.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg"
         ],
         "entities": [
-          "Chris Sale",
-          "San Diego"
+          "Modric",
+          "AC Milan",
+          "Luka Modric",
+          "September"
         ],
         "sourceUrls": [
-          "https://www.batterypower.com/atlanta-braves-game-information/136311/chris-sale-slated-to-start-series-finale-versus-san-diego-braves-vs-san-diego-padres-preview-tv-streaming-radio-start-time-chris-sale-griffin-canning-pitching-matchup"
+          "https://www.bbc.co.uk/sport/football/articles/cn0nypykzr7o?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "batterypower.com",
+        "sourceName": "BBC",
         "sources": [
-          "Battery Power"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "padres - braves",
-        "traffic": 500,
-        "freshH": 1,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.04,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
-        "geo": "US"
+        "geo": null
       },
       {
-        "title": "‘Let’s get back to work’: Karoline Leavitt returns to the briefing room podium for the first time since maternity leave",
-        "summary": "White House press secretary Karoline Leavitt returned to the podium on Thursday, giving her first full briefing since maternity leave at the end of April. Leavitt addressed a range of topics including President Donald Trump's upcoming speech on election integrity, Iran, and the economy. She emphasized the importance of dedication and perseverance as a working mom, crediting her husband for supporting her.",
-        "hashtag": "KarolineLeavitt",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/16/politics/karoline-leavitt-maternity-leave-briefing",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-16t174324z-972400445-rc25fmaj5fui-rtrmadp-3-usa-trump.jpg?c=16x9&q=w_800,c_fill",
+        "title": "Russell proud of resilience after string of problems",
+        "summary": "George Russell cut his race deficit from 66 to 25 points over three recent grands prix, telling reporters he’s still making progress despite setbacks. A Mercedes investigation found an electrical power issue cost him half a second in qualifying and hurt his race pace in Belgium. Russell now faces the Dutch Grand Prix on August 24 aiming to build on the gains made so far.",
+        "hashtag": "RussellProud",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/2026-07-16t174324z-972400445-rc25fmaj5fui-rtrmadp-3-usa-trump.jpg?c=16x9&q=w_800,c_fill",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/c6a2/live/fe0f5c40-86b8-11f1-bb58-d3ffca85db6d.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
         ],
         "entityShots": [
           {
-            "name": "Karoline Leavitt",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
+            "name": "George Russell",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/e/ea/Official_portrait_of_Karoline_Leavitt%2C_2025_%28cropped%29%282%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/7/7f/KingsLeonSilverstne040724_%2828_of_112%29_%2853838006028%29_%28cropped%29.jpg"
         ],
         "entities": [
-          "Karoline Leavitt"
+          "Russell",
+          "George Russell",
+          "I've"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/16/politics/karoline-leavitt-maternity-leave-briefing"
+          "https://www.bbc.co.uk/sport/formula1/articles/cgew7p77v41o?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "BBC",
         "sources": [
-          "CNN"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "karoline leavitt",
-        "traffic": 500,
-        "freshH": 1,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.16,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
-        "geo": "US"
+        "geo": null
       },
       {
+        "title": "Wolves training cancelled after Arokodare refuses to leave pitch",
+        "summary": "Wolves striker Tolu Arokodare halted a training session on Monday after refusing to leave the pitch. The 25-year-old Nigeria international demanded a move to Fiorentina despite Wolves accepting a bid from Trabzonspor. The club confirmed the session was cut short by new manager Cesar Peixoto.",
+        "hashtag": "Arokodare",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/452a/live/296641b0-85dd-11f1-9837-c51febdbeb82.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Wolves",
+          "Arokodare",
+          "Tolu Arokodare"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cr5934j1jmdo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.14,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
         "title": "Saudis must recognise Israel for nuclear deal, says Trump",
-        "summary": "President Donald Trump says Saudi Arabia must recognize Israel to secure a U.S. nuclear energy deal. The agreement, which bars uranium enrichment, hinges on Riyadh joining the Abraham Accords. Saudi Arabia has previously linked normalization to a Palestinian state but faces a White House ultimatum.",
+        "summary": "US President Donald Trump has stated that Saudi Arabia must recognise Israel in order for a nuclear deal between the two countries to proceed, with the deal dependent on Riyadh joining the Abraham Accords. The condition was reportedly discussed with Saudi leaders on multiple occasions, with Trump stating that if they do not join the accords, the deal is off. The nuclear deal, which has not been released, is intended for non-military use.",
         "hashtag": "IsraelTrump",
-        "badge": "TRENDING",
-        "category": "offbeat",
+        "badge": "BREAKING",
+        "category": "breaking",
         "url": "https://www.bbc.co.uk/news/articles/cwye71yq8wwo?at_medium=RSS&at_campaign=rss",
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3939/live/be2c4e20-86a0-11f1-926f-c90d1bcfbc84.jpg",
         "images": [
@@ -1683,7 +1637,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.57,
+        "freshH": 0.05,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1692,110 +1646,21 @@
         "geo": null
       },
       {
-        "title": "Ex-governor convicted of murdering a pregnant student in Kenya",
-        "summary": "Former Kenyan governor Ferdinand Waititu was convicted of orchestrating the 2018 murder of pregnant student Sharon Otieno. Three co-defendants, including his former aide, were also found guilty and remanded ahead of sentencing. Investigators traced the abductors’ vehicle using its hidden tracking device.",
-        "hashtag": "Kenya",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cvg9l039ljyo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5251/live/b2a36110-86aa-11f1-926f-c90d1bcfbc84.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Ex-governor",
-          "Kenya",
-          "Okoth Obado",
-          "Sharon Otieno"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvg9l039ljyo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.74,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Yemen's Houthis attack Saudi tanker as US launches more Iran strikes",
-        "summary": "A Saudi oil tanker was attacked by Yemen's Houthi forces in the Red Sea, causing a fire, as the US launched its 12th consecutive night of strikes on Iran. The attack occurred despite US President Donald Trump's warning that the US would inflict \"major military punishment\" on the Houthis and Iran if they continued such actions. Oil prices surged to $100 per barrel following the latest developments in the region.",
-        "hashtag": "HouthisSaudi",
+        "title": "Modi Caught Off Guard as India’s Economic Failings Inflame Young People",
+        "summary": "Prime Minister Narendra Modi was busy trying to put out other fires when a student movement suddenly exploded. There are no easy solutions to the problems behind it.",
+        "hashtag": "CaughtGuard",
         "badge": "BREAKING",
         "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
+        "url": "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cf38/live/90c9e750-8676-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Saudi",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        ],
-        "entities": [
-          "Yemen's Houthis",
-          "Saudi",
-          "Iran",
-          "Iran-backed",
-          "Saudi Arabia"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.01,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘We Will All Die From Ebola Here’: Virus Stalks Crowded Camps in Congo",
-        "summary": "There are a million people displaced by violence in the epicenter. They live in dangerous conditions and are fighting the virus with very little clean water.",
-        "hashtag": "AllDie",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-ebola-congo-camps-promo-lqgh/23int-ebola-congo-camps-promo-lqgh-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/africa/ebola-camps-congo-water-aid.html"
+          "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1805,7 +1670,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.08,
+        "freshH": 0.17,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1814,7 +1679,7 @@
         "geo": null
       },
       {
-        "title": "Chaos Breaks Out at Border Crossings in Iraq",
+        "title": "Chaos Breaks Out at Border Crossings With Iraq",
         "summary": "Videos verified by The New York Times show border crossings in southern Iraq becoming the latest target in the hostilities in the Middle East.",
         "hashtag": "BreaksBorder",
         "badge": "BREAKING",
@@ -1838,7 +1703,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.04,
+        "freshH": 0.2,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1847,93 +1712,44 @@
         "geo": null
       }
     ],
-    "politics": [
+    "tech": [
       {
-        "title": "Gary Lineker joins calls for wealth tax - The Latest",
-        "summary": "More than 100 UK millionaires, including former footballer Gary Lineker, have signed an open letter urging Prime Minister Andy Burnham to introduce a wealth tax. The signatories say they can afford higher taxes and want the government to act. Campaigners argue the move could ease public spending pressures amid rising costs.",
-        "hashtag": "Lineker",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/news/audio/2026/jul/23/gary-lineker-millionaires-wealth-tax-the-latest",
-        "imageUrl": "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=f8d9299ae4ec241f73b01e1036e82acb",
+        "title": "Corsair’s PC case with a panoramic glass design is $70 off",
+        "summary": "A PC case with a panoramic glass design is now available at a discounted price of $119.99, a $70 reduction from its usual price. The Corsair Frame 4500X RS case supports large motherboards and graphics cards, and features a unique Infinirail system for easy fan installation. This case is currently on sale at Amazon, Best Buy, and Corsair's official website.",
+        "hashtag": "CorsairCase",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "images": [
-          "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=f8d9299ae4ec241f73b01e1036e82acb",
-          "https://i.guim.co.uk/img/media/6edcbcdcf22cc27f7eee0a2a804723b19f5344d6/461_0_4118_3295/master/4118.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=aa9b212e9477b4362dfd519e6b83c944",
-          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/corsair-4500x-rs-deal-image-3.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Corsair-Frame-4500X-RS-deal-image.png?quality=90&strip=all&crop=16.666666666667%2C0%2C66.666666666667%2C100&w=2400",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
         ],
         "entityShots": [
           {
-            "name": "Gary Lineker",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
-          },
-          {
-            "name": "Millionaires",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg"
-          },
-          {
-            "name": "Andy Burnham",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+            "name": "Amazon",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Millionaires_%40_Warped_Tour.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
         ],
         "entities": [
-          "Gary Lineker",
-          "Millionaires",
-          "Andy Burnham",
-          "More",
-          "UK-based",
-          "Nosheen Iqbal"
+          "Corsair",
+          "Amazon",
+          "Best Buy",
+          "Corsair Frame",
+          "EATX",
+          "GPUs"
         ],
         "sourceUrls": [
-          "https://www.theguardian.com/news/audio/2026/jul/23/gary-lineker-millionaires-wealth-tax-the-latest"
+          "https://www.theverge.com/gadgets/960331/corsair-frame-4500x-deal-pc-case-sale"
         ],
-        "sourceName": "The Guardian",
+        "sourceName": "theverge.com",
         "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Gary Lineker among millionaires asking Andy Burnham to tax them more",
-        "summary": "Gary Lineker and 119 other wealthy Britons have urged Prime Minister Andy Burnham to raise taxes on the richest, proposing a 2% levy on fortunes over £10 million. The Patriotic Millionaires group argues this would fund public services and reduce inequality. The Treasury already accepts voluntary donations from individuals willing to pay more.",
-        "hashtag": "LinekerAndy",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Gary Lineker",
-          "Andy Burnham",
-          "England"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
+          "theverge.com"
         ],
         "corr": 1,
         "verified": false,
@@ -1946,41 +1762,37 @@
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "tech": [
+      },
       {
-        "title": "Amazon puts Luna cloud-streamed games like Fallout 4 inside Prime Video",
-        "summary": "Amazon’s Prime Video now lets Fire TV users in the US and UK stream cloud games like Fallout 4 directly through a new Games tab. The feature bundles Prime Gaming, Amazon Game Studios, and Luna under one casual-friendly hub. More titles and regions are expected later this year.",
-        "hashtag": "LunaFallout",
+        "title": "Tesla’s robotaxi promises are clashing with reality",
+        "summary": "Tesla’s robotaxi program drove 380,000 unsupervised miles across six cities in two states as of yesterday’s earnings call. CEO Elon Musk acknowledged scaling efforts while stressing safety, noting growth is flat despite claims of progress. The company faces scrutiny over its technology’s safety record amid limited mileage gains.",
+        "hashtag": "TeslaRobotaxi",
         "badge": "TECH",
         "category": "tech",
-        "url": "https://www.theverge.com/streaming/970099/amazon-prime-video-luna-gaming",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "url": "https://www.theverge.com/transportation/970003/tesla-robotaxi-mileage-waymo-cities-earnings-musk",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "images": [
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/prime-video-games-tab.jpg?quality=90&strip=all&crop=0%2C3.4783743532266%2C100%2C93.043251293547&w=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2025/09/STKE001_STK086_Tesla_Robotaxi_3_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
         ],
         "entityShots": [
           {
-            "name": "Luna",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
+            "name": "Tesla's",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/23/Monogrammist_IB_-_Diana_als_Luna%2C_1529.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/f/f4/Wittenburg_-_Supercharger_-_2021.jpg"
         ],
         "entities": [
-          "Amazon",
-          "Luna",
-          "Fallout",
-          "Prime Video",
-          "Jeff Gattis",
-          "Verge"
+          "Tesla",
+          "Tesla CEO Elon Musk",
+          "Tesla's",
+          "Musk's"
         ],
         "sourceUrls": [
-          "https://www.theverge.com/streaming/970099/amazon-prime-video-luna-gaming"
+          "https://www.theverge.com/transportation/970003/tesla-robotaxi-mileage-waymo-cities-earnings-musk"
         ],
         "sourceName": "theverge.com",
         "sources": [
@@ -1990,179 +1802,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.2,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Microsoft is testing free, ad-supported cloud gaming for Xbox Insiders",
-        "summary": "Microsoft is testing free, ad-supported cloud gaming for Xbox Insiders today. Sessions are capped at one hour with ads only before play begins, and participation is optional for those with paid subscriptions. The limited-time test aims to explore more affordable ways to access Xbox games.",
-        "hashtag": "XboxInsiders",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.theverge.com/games/969969/xbox-testing-ad-supported-streaming",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "images": [
-          "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-          "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832866/STK048_XBOX_2_C.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Microsoft",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg"
-        ],
-        "entities": [
-          "Microsoft",
-          "Xbox Insiders",
-          "However",
-          "It's"
-        ],
-        "sourceUrls": [
-          "https://www.theverge.com/games/969969/xbox-testing-ad-supported-streaming"
-        ],
-        "sourceName": "theverge.com",
-        "sources": [
-          "theverge.com"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "Oscar Voters Rave Over Christopher Nolan’s ‘The Odyssey’ at First Academy Screenings: ‘The Definitive Filmmaker of Our Time’",
-        "summary": "Christopher Nolan’s The Odyssey kicked off its Oscar campaign with exclusive member screenings this week, drawing near-capacity crowds in Los Angeles, London, and New York. The $264 million blockbuster now leads the 2027 race as the film to beat. Academy voters will cast ballots in the fall.",
-        "hashtag": "VotersRave",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/awards/oscars-voters-the-odyssey-reaction-screenings-1236818611/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png",
-          "https://variety.com/wp-content/uploads/2026/07/theodyssey-e1784741660479.png?crop=0px%2C4px%2C1102px%2C620px&resize=1000%2C563",
-          "https://variety.com/wp-content/uploads/2026/06/CT-48692.jpg?w=1024"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Oscar Voters Rave Over",
-          "Christopher Nolan",
-          "Odyssey",
-          "First Academy Screenings",
-          "Definitive Filmmaker",
-          "Our Time"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/awards/oscars-voters-the-odyssey-reaction-screenings-1236818611/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Athletes and Execs Join Forces at Variety’s Inaugural Sports and Entertainment Studio, Featuring Russell Wilson, Jimmie Johnson and Jay Williams",
-        "summary": "Variety hosted its first Sports & Entertainment Studio in New York on July 16, featuring Russell Wilson, Jimmie Johnson and Jay Williams alongside executives from State Farm, PepsiCo and Teads. The event explored how sports stars and brands can collaborate to engage fans during a booming media landscape. Wilson, a Super Bowl champion and entrepreneur, discussed his dual roles in sports and business.",
-        "hashtag": "ExecsJoin",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/sports/news/sports-entertainment-russell-wilson-jimmie-johnson-1236813582/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-6.19.34-PM.png",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Screenshot-2026-07-22-at-6.19.34-PM.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Athletes",
-          "Execs Join Forces",
-          "Variety",
-          "Inaugural Sports",
-          "Entertainment Studio",
-          "Featuring Russell Wilson"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/sports/news/sports-entertainment-russell-wilson-jimmie-johnson-1236813582/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Colman Domingo Rips Elon Musk’s Plan for AI ‘The Odyssey’ Movie: ‘It’ll Be ‘Whiter Than Christmas at Cracker Barrel’",
-        "summary": "Colman Domingo criticized Elon Musk’s AI-generated “The Odyssey” movie plan, calling it “whiter than Christmas at Cracker Barrel.” Domingo made the remarks during his guest hosting spot on “Jimmy Kimmel Live” on Wednesday. Musk’s team has faced backlash over diversity casting in the project.",
-        "hashtag": "DomingoRips",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/colman-domingo-elon-musk-ai-odyssey-movie-1236819447/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png",
-          "https://variety.com/wp-content/uploads/2026/07/colman-domingo-elon-musk.png?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Colman Domingo Rips Elon",
-          "Musk",
-          "Plan",
-          "Odyssey",
-          "Movie",
-          "Whiter Than Christmas"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/news/colman-domingo-elon-musk-ai-odyssey-movie-1236819447/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.32,
+        "freshH": 0.7,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2173,36 +1813,33 @@
     ],
     "crisis": [
       {
-        "title": "Business rate cut not enough, says Michelin-star chef",
-        "summary": "A 20% cut in business rates for pubs and live music venues from April will do little to ease the financial strain on independent restaurants, warns Michelin-starred chef Alex Claridge. Operating on thin margins despite full dining rooms, many independents remain unprofitable nationwide. The industry warns further support is needed to prevent closures.",
-        "hashtag": "Michelin",
+        "title": "Google and Tesla shares plunge as AI spending rattles markets",
+        "summary": "Google's parent company Alphabet saw its share price drop by over 7% on Thursday, while Tesla's stock fell 13.5% as investors reacted to the companies' massive spending on artificial intelligence. Alphabet now expects to spend up to $205 billion this year, mainly on AI projects and infrastructure, a $15 billion increase from its previous estimate. This significant investment has raised concerns about the potential return on these investments.",
+        "hashtag": "Tesla",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/ceqe91pnn7eo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
+        "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e945/live/63886670-8682-11f1-bee8-53ce494e1abc.png",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entityShots": [
           {
-            "name": "Business",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
+            "name": "Google",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entities": [
-          "Business",
-          "Michelin-star",
-          "Alex Claridge",
-          "Wilderness",
-          "Birmingham"
+          "Google",
+          "Tesla"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/ceqe91pnn7eo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -2212,45 +1849,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.8,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Trump Prepares Yet Another Strategy to Resurrect Global Tariffs",
-        "summary": "President Trump’s administration plans to replace a lapsing 10 percent global tariff with new 10 to 12.5 percent tariffs on 59 countries and the European Union. The new tariffs, set to take effect by Friday, target goods linked to forced labor under Section 301 of the 1974 Trade Act. Additional duties are expected to follow in the coming weeks.",
-        "hashtag": "PreparesYet",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-facebookJumbo.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Trump Prepares Yet Another",
-          "Strategy",
-          "Resurrect Global Tariffs"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.72,
+        "freshH": 0.44,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2283,7 +1882,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.01,
+        "freshH": 0.05,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2292,54 +1891,42 @@
         "geo": null
       }
     ],
-    "sports": [
+    "entertainment": [
       {
-        "title": "Anderson gets Man City move he craved as £116m deal done",
-        "summary": "Manchester City have completed the £116 million signing of midfielder Joachim Anderson from Nottingham Forest. The deal, a club record, sees Anderson join a side now managed by Enzo Maresca following Pep Guardiola’s departure. City confirmed the move ahead of the new Premier League season.",
-        "hashtag": "ManCity",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c1j1gk23jj4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
+        "title": "FCC Poised to Hand Broadcasters Long-Sought Win in Abolishing Station Ownership Cap as Brendan Carr Probes Tension Between TV Groups and Platforms",
+        "summary": "The Federal Communications Commission is set to vote on August 6 to eliminate the station ownership cap, a regulation limiting the number of US TV stations a single entity can own, a move that could bring broadcasters a long-sought victory. The cap was first enacted for radio stations in 1941 and has been in place for over 80 years. This decision comes as FCC Chairman Brendan Carr probes tensions between TV groups and platforms over sports rights and streaming.",
+        "hashtag": "PoisedHand",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/news/brendan-carr-fcc-lift-station-cap-nexstar-tegna-ownership-1236818762/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5dde/live/2a29f710-86b2-11f1-bb58-d3ffca85db6d.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
+          "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg",
+          "https://variety.com/wp-content/uploads/2022/03/Tenga-Local-TV-Stations-acquisition.jpg?w=1000&h=563&crop=1",
+          "https://variety.com/wp-content/uploads/2026/07/GettyImages-2158794949-e1784778506599.jpg?w=1000"
         ],
-        "entityShots": [
-          {
-            "name": "Anderson",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg"
-          },
-          {
-            "name": "Man City",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/b/b7/Madison_County_Courthouse_in_Anderson.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Etihad%20Stadium%2C%20Manchester%20City%20Football%20Club%20(Ank%20Kumar%2C%20Infosys)%2016.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Anderson",
-          "Man City",
-          "Manchester City",
-          "Elliot Anderson",
-          "England"
+          "FCC Poised",
+          "Hand Broadcasters Long-Sought Win",
+          "Abolishing Station Ownership Cap",
+          "Brendan Carr Probes Tension",
+          "Between TV Groups",
+          "Platforms"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c1j1gk23jj4o?at_medium=RSS&at_campaign=rss"
+          "https://variety.com/2026/tv/news/brendan-carr-fcc-lift-station-cap-nexstar-tegna-ownership-1236818762/"
         ],
-        "sourceName": "BBC",
+        "sourceName": "Variety",
         "sources": [
-          "BBC"
+          "Variety"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.85,
+        "freshH": 0.49,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2348,39 +1935,39 @@
         "geo": null
       },
       {
-        "title": "Super Giants thrash dismal Spirit at Lord's",
-        "summary": "Manchester Super Giants crushed London Spirit by seven wickets at Lord's on Friday. Super Giants chased 81 in just 59 balls, with Amy Scholfield top-scoring on 22. The win marks Super Giants' first match under their new name after five years as Manchester Originals.",
-        "hashtag": "GiantsSpirit",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/cricket/articles/cj6350pj5dpo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg",
+        "title": "Venice Chief Alberto Barbera on Landing Robert Pattinson Film ‘Primetime’ at the Last Minute and Lack of U.S. Studios at the Festival: They Are ‘Experiencing an Identity Crisis’",
+        "summary": "Venice Film Festival chief Alberto Barbera has successfully assembled a star-studded lineup despite a significant decrease in films from US studios and streamers, with 18 new projects from top international directors set to premiere. This comes as Barbera attributes the lack of US studio involvement to an \"identity crisis\" within the industry. The festival will continue to showcase a diverse range of films, with the world premiere of the Oasis reunion documentary \"Don't Look Back in Anger\" among the highlights.",
+        "hashtag": "ChiefAlberto",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/festivals/venice-alberto-barbera-robert-pattinson-lack-studio-movies-1236819420/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0afb/live/a2e9f870-86ae-11f1-8e17-395fea5a1d61.jpg"
+          "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg",
+          "https://variety.com/wp-content/uploads/2025/08/Alberto-Barbera.jpg?w=1000&h=563&crop=1"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Super Giants",
-          "Spirit",
-          "Lord's",
-          "Manchester Super Giants",
-          "London Spirit",
-          "Hundred"
+          "Venice Chief Alberto Barbera",
+          "Landing Robert Pattinson Film",
+          "Primetime",
+          "Last Minute",
+          "Lack",
+          "Studios"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/cricket/articles/cj6350pj5dpo?at_medium=RSS&at_campaign=rss"
+          "https://variety.com/2026/film/festivals/venice-alberto-barbera-robert-pattinson-lack-studio-movies-1236819420/"
         ],
-        "sourceName": "BBC",
+        "sourceName": "Variety",
         "sources": [
-          "BBC"
+          "Variety"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.44,
+        "freshH": 0.18,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2389,38 +1976,111 @@
         "geo": null
       },
       {
-        "title": "Rangers sign 'huge potential' in Partizan captain Dragojevic",
-        "summary": "Rangers have signed Serbia midfielder Vanja Dragojevic from Partizan Belgrade on a four-year deal with a one-year option. The 20-year-old captained Partizan and has two international caps. Manager Derek McInnes called him a high-potential leader with exciting attributes.",
-        "hashtag": "PartizanDragojevic",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c87ng75zlx4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg",
+        "title": "‘Percy Jackson’ Season 3 Drops First Opening Scene Footage at Comic-Con as Walker Scobell Tells Fans the New Episodes Will Stay True to ‘Titan’s Curse’ Book",
+        "summary": "At San Diego Comic-Con, Disney+ premiered the opening scene of Season 3 of \"Percy Jackson and the Olympians\", adapting Rick Riordan's book \"The Titan's Curse\". The new season will follow Percy Jackson, Grover Underwood, and their fellow campers at Camp Half-Blood, with Walker Scobell reprising his role as Percy. The third season is set to stay true to the original book's storyline.",
+        "hashtag": "JacksonSeason",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/news/percy-jackson-season-3-footage-comic-con-titans-curse-1236807036/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/13bc/live/caeb8990-81ba-11f1-bee8-53ce494e1abc.jpg"
+          "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg",
+          "https://variety.com/wp-content/uploads/2026/01/175456_0638_R.jpg?w=1000&h=563&crop=1"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Rangers",
-          "Partizan",
-          "Dragojevic",
-          "Serbia",
-          "Vanja Dragojevic"
+          "Percy Jackson",
+          "Season",
+          "Drops First Opening Scene",
+          "Footage",
+          "Comic-Con",
+          "Walker Scobell Tells Fans"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c87ng75zlx4o?at_medium=RSS&at_campaign=rss"
+          "https://variety.com/2026/tv/news/percy-jackson-season-3-footage-comic-con-titans-curse-1236807036/"
         ],
-        "sourceName": "BBC",
+        "sourceName": "Variety",
         "sources": [
-          "BBC"
+          "Variety"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.64,
+        "freshH": 0.32,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Lobbying firm pressed for details about payments to journalists for favourable stories",
+        "summary": "A lobbying firm, CT Group, is facing calls to reveal details of payments made to journalists for favourable stories, following a four-month investigation that exposed the practice as a threat to democracy. The firm, co-founded by Lynton Crosby, has been condemned by MPs, senior lobbyists, and transparency campaigners, who are demanding an overhaul of lobbying rules. The practice has been denounced as an attack on the ethics of journalism and democracy.",
+        "hashtag": "LobbyingFirm",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/politics/2026/jul/23/lobbying-firm-pressed-for-details-about-payments-to-journalists-for-favourable-stories",
+        "imageUrl": "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=88cea99b43011c4811ffdc228398ac31",
+        "images": [
+          "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=88cea99b43011c4811ffdc228398ac31",
+          "https://i.guim.co.uk/img/media/96abd846ceed37f2e659b1703e07e30e814b2a9e/372_0_1816_1452/master/1816.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=201f201cfbd39a5922f460f7b341d9cf"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Lobbying",
+          "CT Group"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/politics/2026/jul/23/lobbying-firm-pressed-for-details-about-payments-to-journalists-for-favourable-stories"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.35,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Israel Welcomes Trump’s Demand for Diplomatic Ties With Saudi Arabia",
+        "summary": "Israeli officials greeted the possibility of normalized ties, but analysts said the U.S.-Saudi nuclear deal nonetheless remained bad for Israel.",
+        "hashtag": "WelcomesTrump",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/23/us/politics/israel-saudi-arabia-us-nuclear-deal.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-news-Israel-zvqm/23trump-news-Israel-zvqm-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-news-Israel-zvqm/23trump-news-Israel-zvqm-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/us/politics/israel-saudi-arabia-us-nuclear-deal.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.17,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2432,7 +2092,7 @@
     "health": [
       {
         "title": "The only way to stop petrol pump thieves | Brief letters",
-        "summary": "A new UK-wide crackdown on petrol pump theft starts today, requiring drivers to pay upfront or leave a card deposit before fueling. Police report a 15% rise in drive-offs this year, costing forecourts over £50 million annually. Forecourt owners urge customers to carry cash or cards to avoid delays.",
+        "summary": "Petrol pump thieves are exploiting a loophole in the payment system, with many stations releasing pumps before payment is confirmed. In the UK, it's estimated that over £1 million is stolen from petrol pumps each year. To prevent such thefts, some experts are advocating for a change in policy, requiring a cash or card deposit before releasing the pump.",
         "hashtag": "Brief",
         "badge": "HEALTH",
         "category": "health",
@@ -2477,7 +2137,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.44,
+        "freshH": 2.43,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2487,7 +2147,7 @@
       },
       {
         "title": "Risk of Parkinson’s disease may increase with prolonged exposure to road traffic noise",
-        "summary": "A new study in JAMA Neurology finds that long-term exposure to road traffic noise may increase Parkinson’s disease risk by 3% for every 11.5-decibel rise in noise levels. Researchers tracked 3.1 million Danish adults over 18 years, linking higher noise exposure at home to a modest but consistent rise in cases. Experts suggest reducing noise at home could help lower the risk.",
+        "summary": "A new study has found that prolonged exposure to road traffic noise may increase the risk of Parkinson's disease, with a 3% higher risk for every 11.5 decibel rise in noise level at the most exposed facade. The study, which included 3.1 million Danish participants aged 40 and over, followed them for 18 years and suggests that having a quiet part of the home may mitigate this risk. The findings, published in Jama Neurology, highlight the potential long-term health consequences of exposure to road traffic noise.",
         "hashtag": "Parkinson",
         "badge": "HEALTH",
         "category": "health",
@@ -2496,10 +2156,18 @@
         "images": [
           "https://i.guim.co.uk/img/media/833a1021d767e599436b2905d40aa35f53af9198/153_0_5884_4709/master/5884.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e468a632316a5ca549895bcb400c6748",
           "https://i.guim.co.uk/img/media/833a1021d767e599436b2905d40aa35f53af9198/153_0_5884_4709/master/5884.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=5c77ef81fae34d8abe6189131f81656a",
-          "https://i.guim.co.uk/img/media/22e54388b84805200044a193ffe535eaa1de7e32/570_307_5261_4211/master/5261.jpg?width=445&dpr=1&s=none&crop=none"
+          "https://i.guim.co.uk/img/media/22e54388b84805200044a193ffe535eaa1de7e32/570_307_5261_4211/master/5261.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Pioneering",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Some%20Scouting%20pioneering%20construction%20work%20in%20the%20Netherlands.jpg?width=1200"
+        ],
         "entities": [
           "Risk",
           "Parkinson",
@@ -2518,7 +2186,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.46,
+        "freshH": 4.45,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2551,7 +2219,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.79,
+        "freshH": 3.78,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2563,7 +2231,7 @@
     "facts": [
       {
         "title": "BBC Inside Science",
-        "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency. Those with low levels will be offered voluntary hormone replacement therapy to maintain force readiness. The initiative aims to ensure a healthy and capable fighting force.",
+        "summary": "The US military will begin screening military personnel aged 30 and older for testosterone deficiency, with those found to have low levels offered voluntary hormone replacement therapy. The move aims to maintain a \"healthy, capable, and decisively dominant fighting force\". The new policy is set to be implemented by the US Department of Defence.",
         "hashtag": "InsideScience",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2589,7 +2257,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.86,
+        "freshH": 1.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2599,7 +2267,7 @@
       },
       {
         "title": "NASA’s MAVEN Illuminates New Understanding of Auroras at Mars",
-        "summary": "NASA’s MAVEN mission revealed Mars experiences auroras through the same particle process as Earth, though on a smaller scale due to weaker magnetic fields. Findings published Thursday in Nature Communications show the Dungey cycle drives these auroras after charged particles reconnect with the Sun’s magnetic field. Data from the now-concluded mission continues to guide future Mars exploration efforts.",
+        "summary": "NASA’s MAVEN mission revealed Mars experiences auroras through the same particle-driven process as Earth, despite weaker magnetic fields. Findings published Thursday in Nature Communications show the Dungey cycle accelerates charged particles into Mars’ atmosphere on smaller scales. Data from the now-concluded mission continues to shape future Mars exploration efforts.",
         "hashtag": "IlluminatesNew",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2607,10 +2275,18 @@
         "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif?w=2048",
         "images": [
           "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif?w=2048",
-          "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+          "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia22/pia22076/PIA22076.tif/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "NASA",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e5/Nasa_urens_%288657621359%29.jpg"
+        ],
         "entities": [
           "NASA",
           "MAVEN Illuminates New Understanding",
@@ -2630,7 +2306,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.54,
+        "freshH": 2.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2640,7 +2316,7 @@
       },
       {
         "title": "Crews Move Artemis IV Liquid Hydrogen Tank",
-        "summary": "Crews at NASA’s Michoud Assembly Facility in New Orleans moved the 130-foot Artemis IV liquid hydrogen tank to a test building on May 15, 2026. The tank will power the SLS rocket’s core stage with super-cold propellant for four RS-25 engines. Testing is expected to follow before integration into the final rocket assembly.",
+        "summary": "Crews at NASA's Michoud Assembly Facility in New Orleans have successfully transported the 130-foot-tall Artemis IV liquid hydrogen tank to a detached test building on May 15, 2026. The tank will form part of the core stage for the SLS rocket, providing thousands of gallons of super-cold propellant to one of four RS-25 engines. This milestone marks a significant step forward in the development of the Artemis IV mission.",
         "hashtag": "MoveArtemis",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2671,7 +2347,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.52,
+        "freshH": 2.52,
         "score": null,
         "popularity": null,
         "recency": null,
