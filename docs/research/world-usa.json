@@ -1,68 +1,62 @@
 {
-  "generatedAt": "2026-07-23T09:51:42.237Z",
+  "generatedAt": "2026-07-23T10:51:40.231Z",
   "region": "usa",
-  "count": 28,
+  "count": 30,
   "categoryCounts": {
-    "offbeat": 5,
-    "politics": 3,
-    "facts": 3,
-    "entertainment": 3,
-    "breaking": 3,
-    "tech": 3,
-    "sports": 3,
+    "offbeat": 7,
     "crisis": 3,
+    "politics": 3,
+    "sports": 3,
+    "entertainment": 3,
+    "facts": 3,
+    "tech": 3,
+    "breaking": 3,
     "health": 2
   },
   "stories": [
     {
-      "title": "Jason Alexander: Seinfeld actor apologises to Courtney Stodden for 'inappropriate' sketch when she was 17",
-      "summary": "Seinfeld actor Jason Alexander has apologised to reality star Courtney Stodden for an \"inappropriate\" comedy sketch they appeared in together when she was 17. The 2012 Funny or Die sketch, which parodied daytime talk shows, saw Alexander rubbing a mobile phone on Stodden's breasts while making suggestive remarks. Alexander has offered his \"sincerest apologies\" and expressed regret for his actions in the sketch.",
-      "hashtag": "JasonAlexander",
+      "title": "Monaco : Aladji Bamba va signer en Angleterre pour plus de 40M€",
+      "summary": "Aladji Bamba, a 20-year-old midfielder, is set to join Newcastle in England for a transfer deal worth approximately 41 million euros, including a 5 million euro bonus, after reportedly being sold by AS Monaco. The deal marks Newcastle's fourth major signing this transfer season, with the club having already spent 95 million euros on other players. Bamba is expected to undergo a medical examination in England before finalizing the transfer.",
+      "hashtag": "AladjiBamba",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.bbc.com/news/articles/cz64pn37138o",
-      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/8c2e/live/544e8be0-8677-11f1-bee8-53ce494e1abc.jpg",
+      "url": "https://www.footmercato.net/a6768498712682882926-monaco-aladji-bamba-va-signer-en-angleterre-pour-plus-de-40meur",
+      "imageUrl": "https://assets-fr.imgfoot.com/media/cache/1200x675/aladji-bamba-asm.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/news/1024/branded_news/8c2e/live/544e8be0-8677-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/b8d6/live/fc4b5a30-866d-11f1-b976-0b9c15b0ccfc.jpg.webp",
-        "https://i.guim.co.uk/img/media/3a3b8dee3ee4c0713d7f9107bbfeab46b478e7db/629_0_6288_5031/master/6288.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2bc8b37f575f239fb6867068a72df308",
-        "https://i.guim.co.uk/img/media/2b3b5d7e4b3ea97f2210ad266f2f2bf06f205784/275_168_3897_3118/master/3897.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+        "https://assets-fr.imgfoot.com/media/cache/1200x675/aladji-bamba-asm.jpg",
+        "https://assets-fr.imgfoot.com/aladji-bamba-asm.jpg",
+        "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fill/width:1200/height:630/plain/https%3A%2F%2Fs3-newsifier.ams3.digitaloceanspaces.com%2Ffoot01.com%2Fimages%2F2026-07%2Faladji-bamba-6a61e90ae4e8e.jpg",
+        "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fill/width:1200/height:675/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/foot01.com/images/2026-07/aladji-bamba-6a61e90ae4e8e.jpg@webp",
+        "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fit/width:1920/height:1280/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/foot01.com/images/2026-07/aladji-bamba-6a61e90ae4e8e.jpg@webp",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Jason Alexander",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg"
-        },
-        {
-          "name": "Courtney Stodden",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+          "name": "Angleterre",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
       ],
       "entities": [
-        "Jason Alexander",
-        "Seinfeld",
-        "Courtney Stodden"
+        "Monaco",
+        "Aladji Bamba",
+        "Angleterre"
       ],
       "sourceUrls": [
-        "https://www.bbc.com/news/articles/cz64pn37138o",
-        "https://www.theguardian.com/tv-and-radio/2026/jul/23/seinfelds-jason-alexander-apologizes-to-courtney-stodden-for-inappropriate-sketch-made-when-she-was-a-teenager"
+        "https://www.footmercato.net/a6768498712682882926-monaco-aladji-bamba-va-signer-en-angleterre-pour-plus-de-40meur",
+        "https://www.foot01.com/monaco/en-crise-monaco-vend-son-crack-pour-40-me"
       ],
-      "sourceName": "bbc.com",
+      "sourceName": "footmercato.net",
       "sources": [
-        "BBC",
-        "The Guardian"
+        "Foot Mercato",
+        "Foot01"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "jason alexander apology courtney stodden",
-      "traffic": 1000,
+      "trend": "aladji bamba",
+      "traffic": 200,
       "freshH": 1,
       "score": 0.739,
       "popularity": 0.443,
@@ -72,69 +66,265 @@
       "geo": "US"
     },
     {
-      "title": "Tennis: Valentin Vacherot Falls in the First Round at Kitzbühel Against Quentin Halys",
-      "summary": "Valentin Vacherot, seeded No. 2, was eliminated in the first round of the ATP 250 in Kitzbühel, Austria, by Quentin Halys. The Frenchman won the match, with Vacherot struggling due to a stress fracture in his foot and bone edema. This setback comes after Vacherot's recent comeback in Gstaad, where he won a round before losing to Raphaël Collignon.",
-      "hashtag": "QuentinHalys",
+      "title": "Reid Scott Leaving ‘Law & Order’, James Badge Dale To Succeed Him In Season 26 Of NBC Drama",
+      "summary": "Reid Scott is leaving the NBC drama \"Law & Order\" after three seasons, citing the strain of a cross-country commute and being away from his family for nine months of the year. He will be succeeded by James Badge Dale, who will play a new Senior Detective in Season 26. Scott's character, Det. Vincent Riley, will receive a proper send-off in upcoming episodes before Dale's introduction.",
+      "hashtag": "LawOrder",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.nice-premium.com/tennis-valentin-vacherot-falls-in-the-first-round-at-kitzbuhel-against-quentin-halys/",
-      "imageUrl": "https://www.nice-premium.com/wp-content/uploads/2026/07/image-14.png",
+      "url": "https://deadline.com/2026/07/reid-scott-leaving-law-order-james-badge-dale-season-26-nbc-1237000929/",
+      "imageUrl": "https://deadline.com/wp-content/uploads/2026/07/Reid-Scott-James-Badge-Dale-2-shot_721f22.jpg?w=1024",
       "images": [
-        "https://www.nice-premium.com/wp-content/uploads/2026/07/image-14.png",
-        "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
+        "https://deadline.com/wp-content/uploads/2026/07/Reid-Scott-James-Badge-Dale-2-shot_721f22.jpg?w=1024",
+        "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/l-intro-1784778865.jpg",
+        "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/intro-1784778865.jpg",
+        "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/who-else-will-be-in-the-cast-for-season-26-1784778866.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Tennis",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Tennis",
-        "Valentin Vacherot Falls",
-        "First Round",
-        "Kitzb",
-        "Against Quentin Halys"
+        "Reid Scott Leaving",
+        "Order",
+        "James Badge Dale To",
+        "Succeed Him In Season",
+        "Of NBC Drama"
       ],
       "sourceUrls": [
-        "https://www.nice-premium.com/tennis-valentin-vacherot-falls-in-the-first-round-at-kitzbuhel-against-quentin-halys/",
-        "https://en.tennistemple.com/match/halys-vacherot-kitzbuhel-2026/9473422/"
+        "https://deadline.com/2026/07/reid-scott-leaving-law-order-james-badge-dale-season-26-nbc-1237000929/",
+        "https://www.justjared.com/2026/07/23/law-order-season-26-cast-shake-up-reid-scott-exits-as-james-badge-dale-joins/",
+        "https://www.tvline.com/2221459/law-and-order-reid-scott-leaving-season-26-riley-james-badge-dale-cast/"
       ],
-      "sourceName": "nice-premium.com",
+      "sourceName": "deadline.com",
       "sources": [
-        "ATP Tour",
-        "www.nice-premium.com",
-        "TennisTemple"
+        "Deadline",
+        "Just Jared",
+        "TVLine"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "quentin halys",
-      "traffic": 200,
+      "trend": "law and order cast changes",
+      "traffic": 100,
       "freshH": 1,
-      "score": 0.617,
-      "popularity": 0.286,
+      "score": 0.685,
+      "popularity": 0.376,
       "recency": 0.891,
-      "relevancy": 0.762,
+      "relevancy": 0.89,
       "region": "usa",
       "geo": "US"
     },
     {
+      "title": "World Earthquake Report for Thursday, 23 July 2026",
+      "summary": "A magnitude 5.1 earthquake struck the Central Mid-Atlantic Ridge on Thursday, July 23, 2026, at 03:29 am GMT-3, followed by four other earthquakes of magnitude 5.0 or higher in various locations around the world, resulting in a total seismic energy equivalent to one quake of magnitude 5.9. The earthquakes occurred in the past 24 hours, with a total of 499 reported quakes. The seismic activity is being closely monitored.",
+      "hashtag": "EarthquakeNear",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.volcanodiscovery.com/earthquake/news/320405/World-Earthquake-Report-for-Thursday-23-July-2026.html",
+      "imageUrl": "https://volcanodiscovery.de/maps/quakes/quakes-23072026-1784802003.jpg",
+      "images": [
+        "https://volcanodiscovery.de/maps/quakes/quakes-23072026-1784802003.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23208707.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23207233.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23208887.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23208912.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23207594.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23207714.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23207741.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23206984.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23207497.jpg",
+        "https://volcanodiscovery.de/uploads/pics/2026/07/quakes-22072026.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23206338.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23205761.jpg",
+        "https://volcanodiscovery.de/maps/quakemap2-23206037.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "July",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+      ],
+      "entities": [
+        "World Earthquake Report",
+        "Thursday",
+        "July"
+      ],
+      "sourceUrls": [
+        "https://www.volcanodiscovery.com/earthquake/news/320405/World-Earthquake-Report-for-Thursday-23-July-2026.html",
+        "https://www.volcanodiscovery.com/earthquake/news/320345/World-Earthquake-Report-for-Wednesday-22-July-2026.html"
+      ],
+      "sourceName": "volcanodiscovery.com",
+      "sources": [
+        "Volcano Discovery"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "earthquake near me",
+      "traffic": 200,
+      "freshH": 1,
+      "score": 0.612,
+      "popularity": 0.3,
+      "recency": 0.891,
+      "relevancy": 0.72,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "AOC roasted over defense bill claim as GOP lawmaker tells her to 'stop stoking Jew hatred'",
+      "summary": "Representative Alexandria Ocasio-Cortez has faced criticism for claiming the House-passed National Defense Authorization Act would merge parts of the US military with the Israel Defense Forces, a claim disputed by Republican lawmakers and officials who argue the legislation strengthens defense cooperation with Israel. The House passed its version of the FY2027 National Defense Authorization Act in a 219-206 vote, with Section 219 intact, which calls for deeper U.S.-Israel defense integration. Ocasio-Cortez's criticism has sparked a heated debate over the bill's provisions.",
+      "hashtag": "AlexandriaOcasio",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.foxnews.com/politics/aoc-roasted-defense-bill-claim-gop-lawmaker-tells-stop-stoking-jew-hatred",
+      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg",
+      "images": [
+        "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2025/12/1200/675/aoc-mamdani-rally.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/mike-lawler-communism-warning-politics-fox-news.jpg?ve=1&tl=1",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/Thomas-Massie.jpg?ve=1&tl=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.foxnews.com/politics/aoc-roasted-defense-bill-claim-gop-lawmaker-tells-stop-stoking-jew-hatred"
+      ],
+      "sourceName": "foxnews.com",
+      "sources": [
+        "Fox News"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "alexandria ocasio-cortez",
+      "traffic": 100,
+      "freshH": 1,
+      "score": 0.539,
+      "popularity": 0.15,
+      "recency": 0.891,
+      "relevancy": 0.67,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "VAT cut to be applied to Manx electricity bills",
+      "summary": "A 0% VAT rate will be applied to domestic electricity bills on the Isle of Man from October, mirroring the UK's measure in place until the end of the 2026-27 financial year. This change is expected to save a typical household around £50 per year, with the overall reduction in VAT revenue estimated to be between £1 million and £1.4 million. The Manx government has confirmed the move as part of efforts to ease cost-of-living pressures on households.",
+      "hashtag": "Manx",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/ce8l56z3e7no?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png",
+        "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Manx",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png"
+        },
+        {
+          "name": "October",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg"
+        },
+        {
+          "name": "Isle",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png",
+        "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+      ],
+      "entities": [
+        "Manx",
+        "October",
+        "Isle"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ce8l56z3e7no?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.18,
+      "score": 0.51,
+      "popularity": 0,
+      "recency": 0.979,
+      "relevancy": 0.67,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Why are UK fuel prices rising again?",
+      "summary": "Fuel prices in the UK are rising again, with wholesale oil prices nearing $100 a barrel, following the collapse of peace talks to end the US-Israel war with Iran. This increase is expected to push up pump prices, with analysts estimating every $10 rise in oil price adds around 7p to the cost per litre. As a result, motorists can expect further price hikes in the coming days.",
+      "hashtag": "FuelPrices",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/28b1/live/f482fc20-5375-11f1-b319-63ed6ac90e5f.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/aec3/live/1322d680-5a80-11f1-b682-cf91850925ea.png",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "US-Israel",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+      ],
+      "entities": [
+        "US-Israel",
+        "Iran"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.35,
+      "score": 0.499,
+      "popularity": 0,
+      "recency": 0.961,
+      "relevancy": 0.653,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "UK millionaires ask Andy Burnham to tax them more",
-      "summary": "A group of 120 UK millionaires, including former footballer Gary Lineker and music producer Brian Eno, have written to new prime minister Andy Burnham asking to be taxed more, specifically a 2% tax on wealth over £10m, to promote a more equal society and devolve wealth and power from the richest. This move is part of a renewed call for higher taxes on the wealthy, following similar campaigns in previous years. The prime minister has not ruled out a wealth tax, suggesting he may consider implementing it.",
+      "summary": "One hundred and twenty UK millionaires, including Gary Lineker and Brian Eno, have written to new Prime Minister Andy Burnham requesting a 2% tax on their wealth exceeding £10 million. This move is aimed at promoting a more equal society by redistributing wealth from the richest to the rest. The signatories believe this investment will benefit the country and help it succeed.",
       "hashtag": "AndyBurnham",
       "badge": "POLITICS",
       "category": "politics",
       "url": "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
         "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png",
-        "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
       ],
       "entityShots": [
         {
@@ -142,24 +332,18 @@
           "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
         },
         {
-          "name": "Former",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png"
-        },
-        {
-          "name": "Gary Lineker",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+          "name": "England",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         }
       ],
       "entityImages": [
         "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png",
-        "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
       ],
       "entities": [
         "Andy Burnham",
-        "Former",
-        "Gary Lineker",
-        "Brian Eno"
+        "England",
+        "Gary Kineker"
       ],
       "sourceUrls": [
         "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss"
@@ -172,17 +356,234 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.28,
-      "score": 0.506,
+      "freshH": 0.14,
+      "score": 0.495,
       "popularity": 0,
-      "recency": 0.968,
-      "relevancy": 0.67,
+      "recency": 0.984,
+      "relevancy": 0.603,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "St Helens boss Rowley leaves club day before derby",
+      "summary": "St Helens head coach Paul Rowley has stepped down from his position with immediate effect, leaving the club sixth in the table and six points behind leaders Leeds Rhinos. Rowley's departure comes after a difficult season, with the club struggling for form and losing six of their past 10 games in all competitions. Assistant coach Eamon O'Carroll will take over on an interim basis ahead of Friday's derby against Wigan Warriors.",
+      "hashtag": "HelensRowley",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/cj0321e00v0o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "St Helens",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+      ],
+      "entities": [
+        "St Helens",
+        "Rowley",
+        "Paul Rowley",
+        "Super League"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/rugby-league/articles/cj0321e00v0o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.17,
+      "score": 0.486,
+      "popularity": 0,
+      "recency": 0.981,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Newcastle agree £34m deal for Monaco's Bamba",
+      "summary": "Newcastle United have agreed a deal worth up to £34 million for Monaco midfielder Aladji Bamba, who will undergo a medical and sign a long-term contract on Thursday. The 20-year-old Frenchman is expected to strengthen the Magpies' midfield after the recent sale of Sandro Tonali to Tottenham. Bamba's impressive statistics in Ligue 1 last season, including 9.1 duels won per game, make him a valuable addition to the team.",
+      "hashtag": "MonacoBamba",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cr593z81lqno?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Newcastle",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+      ],
+      "entities": [
+        "Newcastle",
+        "Monaco's Bamba",
+        "Midfielder Aladji Bamba",
+        "Thursday"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cr593z81lqno?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.3,
+      "score": 0.48,
+      "popularity": 0,
+      "recency": 0.966,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Venice Title ‘The Difficult Bride’ Taps Films Boutique for World Sales (EXCLUSIVE)",
+      "summary": "Bangladesh's first feature film to screen at the Venice Film Festival, \"The Difficult Bride,\" has tapped Films Boutique for international sales. The supernatural feminist drama, directed by Rubaiyat Hossain, will compete in the Horizons section of the festival. It marks a significant milestone for Bangladeshi cinema, with three national award winners among its cast.",
+      "hashtag": "TitleDifficult",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/festivals/venice-difficult-bride-films-boutique-sales-1236818947/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Venice Title",
+        "Difficult Bride",
+        "Taps Films Boutique",
+        "World Sales",
+        "EXCLUSIVE",
+        "Films Boutique"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/festivals/venice-difficult-bride-films-boutique-sales-1236818947/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.06,
+      "score": 0.472,
+      "popularity": 0,
+      "recency": 0.993,
+      "relevancy": 0.496,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Isabel Davis Named Director of BFI Filmmaking Fund – Global Bulletin",
+      "summary": "Isabel Davis has been appointed director of the BFI National Lottery Filmmaking Funds, overseeing £20 million annually in support for U.K. independent filmmakers. She begins a five-year contract in October, succeeding Mia Bays who has overseen several BAFTA wins since 2021. Davis joins the BFI from Screen Scotland, where she served as executive director for eight years.",
+      "hashtag": "DavisNamed",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/isabel-davis-director-bfi-filmmaking-fund-1236819027/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Isabel Davis Named Director",
+        "BFI Filmmaking Fund",
+        "Global Bulletin",
+        "LOTTERY LEADER Isabel Davis",
+        "BFI National Lottery Filmmaking",
+        "Funds"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/isabel-davis-director-bfi-filmmaking-fund-1236819027/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.14,
+      "score": 0.469,
+      "popularity": 0,
+      "recency": 0.983,
+      "relevancy": 0.499,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Liverpool confident of signing Barcola - Thursday's gossip",
+      "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The move would see Liverpool beat Arsenal and Bayern Munich to the signature of the French forward. Barcola's potential transfer is now set to be a major focus for the Reds as they prepare for the upcoming season.",
+      "hashtag": "BarcolaThursday",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Liverpool",
+        "Barcola",
+        "Thursday's",
+        "Alex Scott",
+        "Arsenal",
+        "Bruno Fernandes"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.44,
+      "score": 0.461,
+      "popularity": 0,
+      "recency": 0.951,
+      "relevancy": 0.511,
       "region": "usa",
       "geo": null
     },
     {
       "title": "River levels approach all-time low as drought announcement looms",
-      "summary": "River levels in Wales are approaching all-time lows, with the country experiencing just 5% of its average July rainfall due to consecutive heatwaves and a dry spring. This has led to significant problems, including fish and wildlife deaths, failing crops, and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, as the region moves closer to an environmental drought.",
+      "summary": "River levels in Wales are approaching all-time lows, with the country seeing just 5% of its average July rainfall due to a series of heatwaves and a dry spring. This has led to significant problems for rivers, killing fish and wildlife, and also affecting farming with failing crops and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, which is likely to confirm an environmental drought in parts of the country.",
       "hashtag": "RiverLevels",
       "badge": "SCIENCE",
       "category": "facts",
@@ -223,116 +624,58 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.99,
-      "score": 0.492,
+      "freshH": 1.98,
+      "score": 0.458,
       "popularity": 0,
-      "recency": 0.892,
+      "recency": 0.795,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "The music in Nolan’s Odyssey is as well-crafted – and bloodlessly unmemorable – as the movie itself",
-      "summary": "Christopher Nolan’s The Odyssey features Ludwig Göransson’s score, including a theme for the ancient aulos flute, inspired by recent research reconstructing 2,000-year-old Greek music. Critics note the score is polished yet unmemorable, aligning with mixed reviews of the film’s direction. The soundtrack’s subtle approach contrasts with Nolan’s usual immersive scores.",
-      "hashtag": "NolanOdyssey",
+      "title": "Tom Holland Is Filming Fred Astaire Biopic Next and Plans to ‘Do All of the Dancing’ Himself: ‘I’ve Got So Much Work to Do’",
+      "summary": "Tom Holland is set to star in a biopic about Fred Astaire, with filming reportedly underway. The actor plans to perform all of his own dance scenes, a nod to Astaire's own approach to filming dance numbers. Holland's preparation for the role has already begun, with rehearsals taking place in the dance studio.",
+      "hashtag": "HollandFilming",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
-      "url": "https://www.theguardian.com/film/2026/jul/23/the-odysssey-music-ludwig-goransson-christopher-nolan",
-      "imageUrl": "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=72f02a4efb8edae0a05d40774340a787",
+      "url": "https://variety.com/2026/film/global/tom-holland-fred-astaire-biopic-own-dancing-1236818951/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg",
       "images": [
-        "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=72f02a4efb8edae0a05d40774340a787",
-        "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=d72210c168c67a2455ec9dab5dcc455a",
-        "https://i.guim.co.uk/img/media/89a522be6a5c8e9d59c2df26bfcb0645b6b09f13/648_0_1758_2199/master/1758.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/48cfbb61ffaa034b548a15459738b2255b76ad62/0_0_4588_2480/master/4588.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/d95c25846c09f01446d02d1032885bb148c74afb/0_0_6000_4000/master/6000.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
+        "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg?w=1000&h=563&crop=1"
       ],
-      "entityShots": [
-        {
-          "name": "Ludwig",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Nolan",
-        "Odyssey",
-        "Ludwig",
-        "Professor Armand",
-        "Angour",
-        "Oxford"
+        "Tom Holland Is Filming",
+        "Fred Astaire Biopic Next",
+        "Plans",
+        "Do All",
+        "Dancing",
+        "Himself"
       ],
       "sourceUrls": [
-        "https://www.theguardian.com/film/2026/jul/23/the-odysssey-music-ludwig-goransson-christopher-nolan"
+        "https://variety.com/2026/film/global/tom-holland-fred-astaire-biopic-own-dancing-1236818951/"
       ],
-      "sourceName": "The Guardian",
+      "sourceName": "Variety",
       "sources": [
-        "The Guardian"
+        "Variety"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.84,
-      "score": 0.492,
+      "freshH": 0.15,
+      "score": 0.457,
       "popularity": 0,
-      "recency": 0.907,
-      "relevancy": 0.697,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "US signs landmark nuclear deal with Saudi Arabia",
-      "summary": "The U.S. and Saudi Arabia signed a landmark nuclear cooperation deal on Wednesday, allowing Riyadh to develop a civilian nuclear program with expanded access for American companies. The agreement includes a bilateral safeguards pact to prevent proliferation, though details remain undisclosed. Saudi Arabia called it an extension of existing energy ties, as analysts warn the deal could set a precedent for future uranium enrichment in the region.",
-      "hashtag": "SaudiArabia",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Saudi Arabia",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-      ],
-      "entities": [
-        "Saudi Arabia",
-        "US Department",
-        "Energy",
-        "Saudi"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.56,
-      "score": 0.47,
-      "popularity": 0,
-      "recency": 0.937,
-      "relevancy": 0.57,
+      "recency": 0.983,
+      "relevancy": 0.452,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Framework’s premium laptop is shipping with less RAM",
-      "summary": "Framework has raised prices on its upcoming Laptop 13 Pro after a memory supplier doubled costs, pushing the base prebuilt model to $1,599. Some preorder customers will receive adjusted memory configurations and must accept the change or cancel for a full refund. New orders now reflect the updated pricing and available specs.",
+      "summary": "Framework's premium Laptop 13 Pro is shipping with less RAM than initially promised, affecting customers who preordered the device. The company has adjusted memory configurations due to a significant price increase from its memory supplier, which is now more than double the original cost. As a result, Framework is offering cancellations with full deposit refunds to customers who are unhappy with their new configuration.",
       "hashtag": "FrameworkPremium",
       "badge": "TECH",
       "category": "tech",
@@ -369,45 +712,44 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.39,
-      "score": 0.464,
+      "freshH": 1.39,
+      "score": 0.441,
       "popularity": 0,
-      "recency": 0.956,
-      "relevancy": 0.515,
+      "recency": 0.852,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "No men's Ashes Test in north of England - full 2027 schedule",
-      "summary": "England’s men’s Ashes defence starts at Trent Bridge on 18 June 2027, with no Tests in the north of England after Old Trafford and Headingley were left out. The five-Test series runs until 29 July, overlapping with the women’s multi-format Ashes from 24 June to 20 July. England will warm up against Bangladesh at Lord’s from 28 May, while Australia faces England Lions at Old Trafford from 7 June.",
-      "hashtag": "AshesTest",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
+      "title": "US signs landmark nuclear deal with Saudi Arabia",
+      "summary": "The US and Saudi Arabia have signed a landmark deal allowing the Gulf kingdom to develop a civilian nuclear program, described as a \"peaceful nuclear co-operation agreement\" that could provide access for American companies in the Saudi nuclear energy program. The deal includes a bilateral safeguards agreement and a co-operation deal, laying the foundation for a decades-long, multi-billion-dollar partnership. This marks a significant development in the region, with experts warning it could run the risk of future nuclear proliferation in an already unstable area.",
+      "hashtag": "SaudiArabia",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
       ],
       "entityShots": [
         {
-          "name": "England",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+          "name": "Saudi Arabia",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
       ],
       "entities": [
-        "Ashes Test",
-        "England",
-        "Neither Old Trafford",
-        "Headingley",
-        "Australia"
+        "Saudi Arabia",
+        "US Department",
+        "Energy",
+        "Saudi"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -417,38 +759,44 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.84,
-      "score": 0.46,
+      "freshH": 1.56,
+      "score": 0.435,
       "popularity": 0,
-      "recency": 0.908,
-      "relevancy": 0.569,
+      "recency": 0.835,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Around 12,000 people evacuated in France fires",
-      "summary": "Around 12,000 people have been evacuated from the south-west of France due to ongoing wildfires, with over 2,000 hectares of land destroyed in the Gironde region. No injuries have been reported, but the use of internal combustion and electric engines has been banned in predominantly forested areas. The French government is working to contain the fires, which come after two firefighters died near Bordeaux airport.",
+      "title": "Thousands evacuated in France fires",
+      "summary": "Thousands of people have been evacuated from the south-west of France due to ongoing wildfires, with over 12,000 residents relocated and more than 2,000 hectares of land destroyed. The use of internal combustion and electric engines has been banned in predominantly forested areas, and several roads have been closed. Firefighting efforts are ongoing, with no reported injuries so far.",
       "hashtag": "France",
       "badge": "TRENDING",
       "category": "offbeat",
       "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg",
         "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
       ],
       "entityShots": [
+        {
+          "name": "Thousands",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg"
+        },
         {
           "name": "France",
           "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
         }
       ],
       "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg",
         "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
       ],
       "entities": [
-        "Around",
+        "Thousands",
         "France",
         "Europe"
       ],
@@ -463,246 +811,30 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.92,
-      "score": 0.457,
+      "freshH": 1.92,
+      "score": 0.433,
       "popularity": 0,
-      "recency": 0.899,
-      "relevancy": 0.57,
+      "recency": 0.801,
+      "relevancy": 0.609,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "No 2027 men's Ashes Test in north of England",
-      "summary": "England’s men’s Ashes series against Australia in 2025 will open at Trent Bridge on 18 June, with no Tests in the north of England after Old Trafford and Headingley were dropped. The five-match series runs until 29 July, overlapping with the women’s Ashes from 24 June to 20 July. England will warm up with a Test against Bangladesh at Lord’s starting 28 May.",
-      "hashtag": "AshesTest",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "England",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-      ],
-      "entities": [
-        "Ashes Test",
-        "England",
-        "Neither Old Trafford",
-        "Headingley",
-        "Australia"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.84,
-      "score": 0.453,
-      "popularity": 0,
-      "recency": 0.908,
-      "relevancy": 0.539,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "'Even the CEO doesn't know' - Kaymer on LIV's future",
-      "summary": "LIV Golf's team championship is highly unlikely to take place this year, with players including captain Martin Kaymer uncertain about the circuit's future beyond 2026. The tour is facing financial difficulties after Saudi Arabian backing was withdrawn, with CEO Scott O'Neil seeking $350 million in investment to keep it running. LIV Golf's next events will proceed as scheduled, starting with a tournament in Staffordshire on Thursday.",
-      "hashtag": "Kaymer",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/golf/articles/c8dn9rpev80o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Even",
-        "Kaymer",
-        "LIV's",
-        "Martin Kaymer",
-        "LIV Golf's"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/golf/articles/c8dn9rpev80o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.95,
-      "score": 0.444,
-      "popularity": 0,
-      "recency": 0.897,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Venice Film Festival Reveals 2026 Lineup (Updating Live)",
-      "summary": "The 2026 Venice Film Festival will open with the world premiere of Danny Boyle's \"Ink,\" a 1960s-set biographical drama starring Guy Pearce as Rupert Murdoch and Jack O'Connell as Larry Lamb. The film, which also competes for the Golden Lion, marks a lighter Hollywood presence at the festival compared to previous years. The festival will close with Giovanni Veronesi's \"Dio Ride,\" an out-of-competition film starring Pierfrancesco Favino as a 17th-century friar.",
-      "hashtag": "FilmFestival",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Ink.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Venice Film Festival Reveals",
-        "Lineup",
-        "Updating Live",
-        "Venice Film Festival",
-        "Like Cannes",
-        "Venice"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.03,
-      "score": 0.441,
-      "popularity": 0,
-      "recency": 0.888,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Government to cut business rates for pubs, clubs and music venues",
-      "summary": "The government will slash business rates for pubs, clubs and music venues in England by 20% from April, saving firms around £1,100 each. The £100m package, announced by Andy Burnham, aims to protect 32,000 venues but excludes the largest live music spots. Details on eligibility will come at the autumn Budget.",
-      "hashtag": "GovernmentBusiness",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "April",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-      ],
-      "entities": [
-        "Government",
-        "Some",
-        "April"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.05,
-      "score": 0.436,
-      "popularity": 0,
-      "recency": 0.886,
-      "relevancy": 0.502,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Daniel Wu on ‘Cold War 1994,’ ‘Twilight of the Warriors’ and Coming Home to Hong Kong: ‘The Craft Still Challenges Me’",
-      "summary": "Hong Kong actor Daniel Wu has received the Best from the East Award at the New York Asian Film Festival, capping a successful stretch in the \"Cold War\" series, including the latest installment \"Cold War 1994,\" a prequel to the 2012 and 2016 films. The new film, set in the run-up to Hong Kong's 1997 handover, marks Wu's return to the franchise after a brief hiatus due to the pandemic. Wu will next be seen in \"Twilight of the Warriors,\" another major Hong Kong production.",
-      "hashtag": "ColdWar",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Daniel Wu",
-        "Cold War",
-        "Twilight",
-        "Warriors",
-        "Coming Home",
-        "Hong Kong"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.18,
-      "score": 0.436,
-      "popularity": 0,
-      "recency": 0.873,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "U.S.-Saudi Deal Prompts Fears of a Nuclear Arms Race",
-      "summary": "In Europe, Asia and the Middle East, countries seek nuclear capabilities to hedge against aggressive neighbors and a receding Washington, potentially creating a more freewheeling era.",
-      "hashtag": "SaudiPrompts",
+      "title": "A Russian Spy, Suddenly Cast Into the Spotlight, Flees Japan",
+      "summary": "The military intelligence officer left the country after The Times reported that he was using the Aeroflot airline office in Tokyo to conduct espionage.",
+      "hashtag": "RussianSpy",
       "badge": "BREAKING",
       "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/europe/us-saudi-deal-nuclear-hedging.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-nuclear-world-01-bghq/23int-nuclear-world-01-bghq-mediumSquareAt3X.jpg",
+      "url": "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-nuclear-world-01-bghq/23int-nuclear-world-01-bghq-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/europe/us-saudi-deal-nuclear-hedging.html"
+        "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -712,11 +844,44 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.13,
-      "score": 0.422,
+      "freshH": 0.12,
+      "score": 0.416,
       "popularity": 0,
-      "recency": 0.985,
-      "relevancy": 0.307,
+      "recency": 0.986,
+      "relevancy": 0.284,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Diesel Crisis Puts Poor Farmers Around the World at Risk",
+      "summary": "The closure of the Strait of Hormuz has limited the shipment of diesel, depriving farmers of fuel for irrigation pumps and threatening the food supply.",
+      "hashtag": "CrisisPuts",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.25,
+      "score": 0.411,
+      "popularity": 0,
+      "recency": 0.972,
+      "relevancy": 0.283,
       "region": "usa",
       "geo": null
     },
@@ -727,9 +892,9 @@
       "badge": "BREAKING",
       "category": "breaking",
       "url": "https://www.nytimes.com/2026/07/23/world/europe/russia-ukraine-wildberries-attacks.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X.jpg",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X-v2.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X-v2.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
@@ -745,11 +910,88 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.19,
-      "score": 0.41,
+      "freshH": 0.5,
+      "score": 0.398,
       "popularity": 0,
-      "recency": 0.978,
+      "recency": 0.944,
       "relevancy": 0.269,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Oil-Rich Saudi Arabia Isn’t Short on Energy. Here’s Why It’s Going Nuclear.",
+      "summary": "The world’s largest exporter of crude oil stands to benefit from diversifying its energy sources — and freeing up more oil to sell.",
+      "hashtag": "RichSaudi",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/saudi-arabia-nuclear.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-saudi-nuclear-civilian-1-lqkv/22int-saudi-nuclear-civilian-1-lqkv-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-saudi-nuclear-civilian-1-lqkv/22int-saudi-nuclear-civilian-1-lqkv-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/middleeast/saudi-arabia-nuclear.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.87,
+      "score": 0.384,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.268,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Google burning through cash with spiralling AI costs",
+      "summary": "Google's parent company Alphabet has reported its first negative free cash flow in at least a decade, coming in at $5.9 billion, due to spiralling costs of artificial intelligence infrastructure. The company's spending on AI is expected to reach $205 billion this year, up from $190 billion, as major tech companies invest heavily in the technology. This significant outlay has led to a 4% drop in Alphabet's stock price in after-hours trading.",
+      "hashtag": "GoogleBurning",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Google",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+      ],
+      "entities": [
+        "Google"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.59,
+      "score": 0.374,
+      "popularity": 0,
+      "recency": 0.66,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
@@ -778,55 +1020,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.79,
-      "score": 0.397,
+      "freshH": 1.79,
+      "score": 0.362,
       "popularity": 0,
-      "recency": 0.913,
+      "recency": 0.813,
       "relevancy": 0.308,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Google burning through cash with spiralling AI costs",
-      "summary": "Google's parent company Alphabet has reported its first negative free cash flow in at least a decade, coming in at $5.9 billion, due to growing spending on artificial intelligence infrastructure. This spending is expected to reach $205 billion this year, a significant increase from $190 billion. As a result, Alphabet's stock fell 4% in after-hours trading.",
-      "hashtag": "GoogleBurning",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Google",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
-      ],
-      "entities": [
-        "Google"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.6,
-      "score": 0.394,
-      "popularity": 0,
-      "recency": 0.741,
-      "relevancy": 0.538,
       "region": "usa",
       "geo": null
     },
@@ -855,11 +1053,58 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.77,
-      "score": 0.393,
+      "freshH": 1.77,
+      "score": 0.358,
       "popularity": 0,
-      "recency": 0.915,
+      "recency": 0.815,
       "relevancy": 0.291,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "'I am still alive': Indian activist on hunger strike for 26 days loses 11kg",
+      "summary": "Indian activist Lobsang Wangchuk has been on a hunger strike for 26 days, losing 11 kilograms, as he protests against repeated exam paper leaks in the country. Prime Minister Narendra Modi has responded to the protests by announcing the establishment of fast-track courts to punish those involved in the leaks. Wangchuk's demands remain unmet, with the activist's supporters vowing to continue their struggle until their concerns are addressed.",
+      "hashtag": "Indian",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/ce34n7kqr5ko?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Sonam Wangchuk",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+      ],
+      "entities": [
+        "Indian",
+        "Sonam Wangchuk",
+        "Cockroach Janta Party",
+        "Delhi"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ce34n7kqr5ko?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 4.24,
+      "score": 0.357,
+      "popularity": 0,
+      "recency": 0.613,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
@@ -867,8 +1112,8 @@
       "title": "Should Travelers Give Up on Summer in Western Europe Because of the Heat?",
       "summary": "A favorite vacation option may be at risk because of rising temperatures. Even those sticking with their summer plans agree: More air conditioning would help.",
       "hashtag": "TravelersGive",
-      "badge": "GLOBAL",
-      "category": "crisis",
+      "badge": "SCIENCE",
+      "category": "facts",
       "url": "https://www.nytimes.com/2026/07/23/travel/europe-summer-heat.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/20/multimedia/00Trav-Europe-Heat-jzfq/00Trav-Europe-Heat-jzfq-mediumSquareAt3X.jpg",
       "images": [
@@ -888,44 +1133,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.82,
-      "score": 0.39,
+      "freshH": 1.82,
+      "score": 0.356,
       "popularity": 0,
-      "recency": 0.909,
+      "recency": 0.81,
       "relevancy": 0.288,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "As Cyclosporiasis Spreads, America Says No Thanks to Salads",
-      "summary": "Foot traffic to chains such as Chopt and Chipotle fell in recent weeks after a recall from Taylor Farms and changing messages from the F.D.A.",
-      "hashtag": "CyclosporiasisSpreads",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/23/business/cyclospora-lettuce-salad.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-SALAD-BACKLASH-01-gzfj/22biz-SALAD-BACKLASH-01-gzfj-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-SALAD-BACKLASH-01-gzfj/22biz-SALAD-BACKLASH-01-gzfj-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/cyclospora-lettuce-salad.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.79,
-      "score": 0.388,
-      "popularity": 0,
-      "recency": 0.913,
-      "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
@@ -954,103 +1166,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.83,
-      "score": 0.387,
+      "freshH": 1.83,
+      "score": 0.352,
       "popularity": 0,
-      "recency": 0.908,
+      "recency": 0.809,
       "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-      "summary": "Ukrainian drones have attacked several warehouses belonging to Russia's biggest online retailer, Wildberries, in the past few days, resulting in the deaths of eight workers and injuring dozens more. The attacks have disrupted supplies to the Russian army and also affected hundreds of Russian sellers who depend on online marketplaces for their livelihoods. The consequences of these attacks are expected to be felt by small and medium-sized businesses, with estimated losses of £750m.",
-      "hashtag": "UkraineWildberries",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Wildberries",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-      ],
-      "entities": [
-        "Russia's",
-        "Ukraine's",
-        "Wildberries",
-        "Ukrainian"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.6,
-      "score": 0.373,
-      "popularity": 0,
-      "recency": 0.66,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "'I am still alive': Indian activist on hunger strike for 26 days loses 11kg",
-      "summary": "Indian activist Lobsang Wangchuk has been on a hunger strike for 26 days, losing 11 kilograms, as protests against exam paper leaks continue in India. The demonstrations have sparked public anger and posed a challenge to Prime Minister Narendra Modi's government, with Modi attempting to reach out to students through a recent statement on social media. The protesters are demanding answers on the causes of the paper leaks and those who benefit from them.",
-      "hashtag": "Indian",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/ce34n7kqr5ko?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Indian",
-        "Sonam Wangchuk",
-        "Cockroach Janta Party",
-        "Delhi"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ce34n7kqr5ko?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.24,
-      "score": 0.371,
-      "popularity": 0,
-      "recency": 0.688,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Butterfly city blooms in shadow of office blocks",
-      "summary": "In Hull city centre, a \"butterfly city\" has been created with the discovery of ten species of butterfly, including the rare small skipper, in a \"mini meadow\" established in 2023. The meadow, located near St Stephen's Shopping Centre, features grass and wild flowers that provide a habitat for the butterflies. This initiative encourages people to grow plants that support city centre wildlife.",
+      "summary": "In Hull city centre, a \"butterfly city\" has been created with the discovery of ten species of butterfly in a \"mini meadow\" near St Stephen's Shopping Centre. The meadow, established in 2023, features grass and wild flowers that provide food for caterpillar species, including the small skipper butterfly, which breeds in the area. This rare urban sighting is attributed to the meadow's unique environment, where grass is left uncut throughout the year to support the caterpillar's winter habitat.",
       "hashtag": "ButterflyCity",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1087,17 +1213,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.81,
-      "score": 0.367,
+      "freshH": 5.81,
+      "score": 0.346,
       "popularity": 0,
-      "recency": 0.574,
-      "relevancy": 0.665,
+      "recency": 0.511,
+      "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Alarm over hospital lung admissions for children in England’s poorest postcodes",
-      "summary": "Children in England’s poorest areas are 40% more likely to be admitted to hospital for respiratory infections than those in wealthier areas. In 2024/25, 1,941 per 100,000 children in the most deprived fifth of England were hospitalised compared to 1,380 per 100,000 in the least deprived. Experts warn air pollution and deprivation may be key factors as officials review long-term health strategies.",
+      "summary": "Children living in England's poorest postcodes are 40% more likely to be admitted to hospital for respiratory infections, with 1,941 out of every 100,000 children in the most deprived areas being admitted in 2024/25. This contrasts with 1,380 admissions per 100,000 in the least deprived areas, resulting in a total of 82% more hospital admissions for respiratory infections in the poorest areas. Experts are now raising concerns about the impact of air pollution on young people's health in these areas.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -1137,66 +1263,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.85,
-      "score": 0.355,
-      "popularity": 0,
-      "recency": 0.571,
-      "relevancy": 0.619,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Olympic Mountain Glory",
-      "summary": "A striking new image from the International Space Station highlights the rugged Olympic Mountains in northwest Washington state. The composite photo, taken July 23, 2026, captures snow-capped peaks, deep river valleys, and glaciers within Olympic National Park. The ancient basalt rock forming these peaks emerged from undersea eruptions between 55 and 15 million years ago.",
-      "hashtag": "MountainGlory",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
-      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-      "images": [
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-        "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Washington",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-      ],
-      "entities": [
-        "Olympic Mountain Glory",
-        "Snow-capped",
-        "Washington"
-      ],
-      "sourceUrls": [
-        "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
-      ],
-      "sourceName": "NASA",
-      "sources": [
-        "NASA"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
       "freshH": 5.85,
-      "score": 0.353,
+      "score": 0.333,
       "popularity": 0,
       "recency": 0.509,
-      "relevancy": 0.701,
+      "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Life-changing MS drug to help people walk now on NHS in England",
-      "summary": "The first drug to help people with multiple sclerosis walk is now available on the NHS in England. Up to 5,000 people could benefit each year from fampridine, which improves walking speed and endurance. The NHS will now cover the cost of the drug, previously paid for privately by some patients.",
+      "summary": "A life-changing multiple sclerosis treatment, fampridine, is now available on the NHS in England, benefiting up to 5,000 people annually. This \"signal booster\" drug helps nerve signals, allowing some individuals to move and live independently. The decision is expected to make a significant difference in the lives of those with multiple sclerosis, enabling them to walk and engage in daily activities.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -1204,10 +1281,24 @@
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg"
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "England",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        },
+        {
+          "name": "Fampridine",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
+      ],
       "entities": [
         "Life-changing MS",
         "England",
@@ -1224,11 +1315,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 10.21,
-      "score": 0.218,
+      "freshH": 11.21,
+      "score": 0.251,
       "popularity": 0,
-      "recency": 0.307,
-      "relevancy": 0.441,
+      "recency": 0.274,
+      "relevancy": 0.62,
       "region": "usa",
       "geo": null
     }
@@ -1236,103 +1327,47 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Jason Alexander: Seinfeld actor apologises to Courtney Stodden for 'inappropriate' sketch when she was 17",
-        "summary": "Seinfeld actor Jason Alexander has apologised to reality star Courtney Stodden for an \"inappropriate\" comedy sketch they appeared in together when she was 17. The 2012 Funny or Die sketch, which parodied daytime talk shows, saw Alexander rubbing a mobile phone on Stodden's breasts while making suggestive remarks. Alexander has offered his \"sincerest apologies\" and expressed regret for his actions in the sketch.",
-        "hashtag": "JasonAlexander",
+        "title": "Monaco : Aladji Bamba va signer en Angleterre pour plus de 40M€",
+        "summary": "Aladji Bamba, a 20-year-old midfielder, is set to join Newcastle in England for a transfer deal worth approximately 41 million euros, including a 5 million euro bonus, after reportedly being sold by AS Monaco. The deal marks Newcastle's fourth major signing this transfer season, with the club having already spent 95 million euros on other players. Bamba is expected to undergo a medical examination in England before finalizing the transfer.",
+        "hashtag": "AladjiBamba",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.bbc.com/news/articles/cz64pn37138o",
-        "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/8c2e/live/544e8be0-8677-11f1-bee8-53ce494e1abc.jpg",
+        "url": "https://www.footmercato.net/a6768498712682882926-monaco-aladji-bamba-va-signer-en-angleterre-pour-plus-de-40meur",
+        "imageUrl": "https://assets-fr.imgfoot.com/media/cache/1200x675/aladji-bamba-asm.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/news/1024/branded_news/8c2e/live/544e8be0-8677-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/e55d/live/876788f0-866e-11f1-b976-0b9c15b0ccfc.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/b8d6/live/fc4b5a30-866d-11f1-b976-0b9c15b0ccfc.jpg.webp",
-          "https://i.guim.co.uk/img/media/3a3b8dee3ee4c0713d7f9107bbfeab46b478e7db/629_0_6288_5031/master/6288.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2bc8b37f575f239fb6867068a72df308",
-          "https://i.guim.co.uk/img/media/2b3b5d7e4b3ea97f2210ad266f2f2bf06f205784/275_168_3897_3118/master/3897.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+          "https://assets-fr.imgfoot.com/media/cache/1200x675/aladji-bamba-asm.jpg",
+          "https://assets-fr.imgfoot.com/aladji-bamba-asm.jpg",
+          "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fill/width:1200/height:630/plain/https%3A%2F%2Fs3-newsifier.ams3.digitaloceanspaces.com%2Ffoot01.com%2Fimages%2F2026-07%2Faladji-bamba-6a61e90ae4e8e.jpg",
+          "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fill/width:1200/height:675/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/foot01.com/images/2026-07/aladji-bamba-6a61e90ae4e8e.jpg@webp",
+          "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fit/width:1920/height:1280/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/foot01.com/images/2026-07/aladji-bamba-6a61e90ae4e8e.jpg@webp",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         ],
         "entityShots": [
           {
-            "name": "Jason Alexander",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg"
-          },
-          {
-            "name": "Courtney Stodden",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+            "name": "Angleterre",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jason_Alexander_-_2009_%28cropped%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Stodden%202013.jpg?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         ],
         "entities": [
-          "Jason Alexander",
-          "Seinfeld",
-          "Courtney Stodden"
+          "Monaco",
+          "Aladji Bamba",
+          "Angleterre"
         ],
         "sourceUrls": [
-          "https://www.bbc.com/news/articles/cz64pn37138o",
-          "https://www.theguardian.com/tv-and-radio/2026/jul/23/seinfelds-jason-alexander-apologizes-to-courtney-stodden-for-inappropriate-sketch-made-when-she-was-a-teenager"
+          "https://www.footmercato.net/a6768498712682882926-monaco-aladji-bamba-va-signer-en-angleterre-pour-plus-de-40meur",
+          "https://www.foot01.com/monaco/en-crise-monaco-vend-son-crack-pour-40-me"
         ],
-        "sourceName": "bbc.com",
+        "sourceName": "footmercato.net",
         "sources": [
-          "BBC",
-          "The Guardian"
+          "Foot Mercato",
+          "Foot01"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "jason alexander apology courtney stodden",
-        "traffic": 1000,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Tennis: Valentin Vacherot Falls in the First Round at Kitzbühel Against Quentin Halys",
-        "summary": "Valentin Vacherot, seeded No. 2, was eliminated in the first round of the ATP 250 in Kitzbühel, Austria, by Quentin Halys. The Frenchman won the match, with Vacherot struggling due to a stress fracture in his foot and bone edema. This setback comes after Vacherot's recent comeback in Gstaad, where he won a round before losing to Raphaël Collignon.",
-        "hashtag": "QuentinHalys",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.nice-premium.com/tennis-valentin-vacherot-falls-in-the-first-round-at-kitzbuhel-against-quentin-halys/",
-        "imageUrl": "https://www.nice-premium.com/wp-content/uploads/2026/07/image-14.png",
-        "images": [
-          "https://www.nice-premium.com/wp-content/uploads/2026/07/image-14.png",
-          "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Tennis",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/9/94/2013_Australian_Open_-_Guillaume_Rufin.jpg"
-        ],
-        "entities": [
-          "Tennis",
-          "Valentin Vacherot Falls",
-          "First Round",
-          "Kitzb",
-          "Against Quentin Halys"
-        ],
-        "sourceUrls": [
-          "https://www.nice-premium.com/tennis-valentin-vacherot-falls-in-the-first-round-at-kitzbuhel-against-quentin-halys/",
-          "https://en.tennistemple.com/match/halys-vacherot-kitzbuhel-2026/9473422/"
-        ],
-        "sourceName": "nice-premium.com",
-        "sources": [
-          "ATP Tour",
-          "www.nice-premium.com",
-          "TennisTemple"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "quentin halys",
+        "trend": "aladji bamba",
         "traffic": 200,
         "freshH": 1,
         "score": null,
@@ -1343,29 +1378,224 @@
         "geo": "US"
       },
       {
-        "title": "Around 12,000 people evacuated in France fires",
-        "summary": "Around 12,000 people have been evacuated from the south-west of France due to ongoing wildfires, with over 2,000 hectares of land destroyed in the Gironde region. No injuries have been reported, but the use of internal combustion and electric engines has been banned in predominantly forested areas. The French government is working to contain the fires, which come after two firefighters died near Bordeaux airport.",
+        "title": "Reid Scott Leaving ‘Law & Order’, James Badge Dale To Succeed Him In Season 26 Of NBC Drama",
+        "summary": "Reid Scott is leaving the NBC drama \"Law & Order\" after three seasons, citing the strain of a cross-country commute and being away from his family for nine months of the year. He will be succeeded by James Badge Dale, who will play a new Senior Detective in Season 26. Scott's character, Det. Vincent Riley, will receive a proper send-off in upcoming episodes before Dale's introduction.",
+        "hashtag": "LawOrder",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://deadline.com/2026/07/reid-scott-leaving-law-order-james-badge-dale-season-26-nbc-1237000929/",
+        "imageUrl": "https://deadline.com/wp-content/uploads/2026/07/Reid-Scott-James-Badge-Dale-2-shot_721f22.jpg?w=1024",
+        "images": [
+          "https://deadline.com/wp-content/uploads/2026/07/Reid-Scott-James-Badge-Dale-2-shot_721f22.jpg?w=1024",
+          "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/l-intro-1784778865.jpg",
+          "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/intro-1784778865.jpg",
+          "https://www.tvline.com/img/gallery/law-order-reid-scott-leaving-james-badge-dale-joining-series-in-season-26/who-else-will-be-in-the-cast-for-season-26-1784778866.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Reid Scott Leaving",
+          "Order",
+          "James Badge Dale To",
+          "Succeed Him In Season",
+          "Of NBC Drama"
+        ],
+        "sourceUrls": [
+          "https://deadline.com/2026/07/reid-scott-leaving-law-order-james-badge-dale-season-26-nbc-1237000929/",
+          "https://www.justjared.com/2026/07/23/law-order-season-26-cast-shake-up-reid-scott-exits-as-james-badge-dale-joins/",
+          "https://www.tvline.com/2221459/law-and-order-reid-scott-leaving-season-26-riley-james-badge-dale-cast/"
+        ],
+        "sourceName": "deadline.com",
+        "sources": [
+          "Deadline",
+          "Just Jared",
+          "TVLine"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "law and order cast changes",
+        "traffic": 100,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "World Earthquake Report for Thursday, 23 July 2026",
+        "summary": "A magnitude 5.1 earthquake struck the Central Mid-Atlantic Ridge on Thursday, July 23, 2026, at 03:29 am GMT-3, followed by four other earthquakes of magnitude 5.0 or higher in various locations around the world, resulting in a total seismic energy equivalent to one quake of magnitude 5.9. The earthquakes occurred in the past 24 hours, with a total of 499 reported quakes. The seismic activity is being closely monitored.",
+        "hashtag": "EarthquakeNear",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.volcanodiscovery.com/earthquake/news/320405/World-Earthquake-Report-for-Thursday-23-July-2026.html",
+        "imageUrl": "https://volcanodiscovery.de/maps/quakes/quakes-23072026-1784802003.jpg",
+        "images": [
+          "https://volcanodiscovery.de/maps/quakes/quakes-23072026-1784802003.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23208707.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23207233.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23208887.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23208912.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23207594.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23207714.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23207741.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23206984.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23207497.jpg",
+          "https://volcanodiscovery.de/uploads/pics/2026/07/quakes-22072026.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23206338.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23205761.jpg",
+          "https://volcanodiscovery.de/maps/quakemap2-23206037.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "July",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+        ],
+        "entities": [
+          "World Earthquake Report",
+          "Thursday",
+          "July"
+        ],
+        "sourceUrls": [
+          "https://www.volcanodiscovery.com/earthquake/news/320405/World-Earthquake-Report-for-Thursday-23-July-2026.html",
+          "https://www.volcanodiscovery.com/earthquake/news/320345/World-Earthquake-Report-for-Wednesday-22-July-2026.html"
+        ],
+        "sourceName": "volcanodiscovery.com",
+        "sources": [
+          "Volcano Discovery"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "earthquake near me",
+        "traffic": 200,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "AOC roasted over defense bill claim as GOP lawmaker tells her to 'stop stoking Jew hatred'",
+        "summary": "Representative Alexandria Ocasio-Cortez has faced criticism for claiming the House-passed National Defense Authorization Act would merge parts of the US military with the Israel Defense Forces, a claim disputed by Republican lawmakers and officials who argue the legislation strengthens defense cooperation with Israel. The House passed its version of the FY2027 National Defense Authorization Act in a 219-206 vote, with Section 219 intact, which calls for deeper U.S.-Israel defense integration. Ocasio-Cortez's criticism has sparked a heated debate over the bill's provisions.",
+        "hashtag": "AlexandriaOcasio",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.foxnews.com/politics/aoc-roasted-defense-bill-claim-gop-lawmaker-tells-stop-stoking-jew-hatred",
+        "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg",
+        "images": [
+          "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/alexandria-ocasio-cortez-justin-pearson-memphis-fox-news_.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2025/12/1200/675/aoc-mamdani-rally.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/mike-lawler-communism-warning-politics-fox-news.jpg?ve=1&tl=1",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/Thomas-Massie.jpg?ve=1&tl=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.foxnews.com/politics/aoc-roasted-defense-bill-claim-gop-lawmaker-tells-stop-stoking-jew-hatred"
+        ],
+        "sourceName": "foxnews.com",
+        "sources": [
+          "Fox News"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "alexandria ocasio-cortez",
+        "traffic": 100,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "US signs landmark nuclear deal with Saudi Arabia",
+        "summary": "The US and Saudi Arabia have signed a landmark deal allowing the Gulf kingdom to develop a civilian nuclear program, described as a \"peaceful nuclear co-operation agreement\" that could provide access for American companies in the Saudi nuclear energy program. The deal includes a bilateral safeguards agreement and a co-operation deal, laying the foundation for a decades-long, multi-billion-dollar partnership. This marks a significant development in the region, with experts warning it could run the risk of future nuclear proliferation in an already unstable area.",
+        "hashtag": "SaudiArabia",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Saudi Arabia",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
+        ],
+        "entities": [
+          "Saudi Arabia",
+          "US Department",
+          "Energy",
+          "Saudi"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.56,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Thousands evacuated in France fires",
+        "summary": "Thousands of people have been evacuated from the south-west of France due to ongoing wildfires, with over 12,000 residents relocated and more than 2,000 hectares of land destroyed. The use of internal combustion and electric engines has been banned in predominantly forested areas, and several roads have been closed. Firefighting efforts are ongoing, with no reported injuries so far.",
         "hashtag": "France",
         "badge": "TRENDING",
         "category": "offbeat",
         "url": "https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/17db/live/d97d13d0-8673-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7df8/live/48d08300-867b-11f1-8c77-df97511a6b05.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg",
           "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
         ],
         "entityShots": [
+          {
+            "name": "Thousands",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg"
+          },
           {
             "name": "France",
             "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
           }
         ],
         "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0a/%22Western_Lady%22_At_Old_Oak_Common_-_1976_%2814153848945%29.jpg",
           "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
         ],
         "entities": [
-          "Around",
+          "Thousands",
           "France",
           "Europe"
         ],
@@ -1380,54 +1610,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.92,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-        "summary": "Ukrainian drones have attacked several warehouses belonging to Russia's biggest online retailer, Wildberries, in the past few days, resulting in the deaths of eight workers and injuring dozens more. The attacks have disrupted supplies to the Russian army and also affected hundreds of Russian sellers who depend on online marketplaces for their livelihoods. The consequences of these attacks are expected to be felt by small and medium-sized businesses, with estimated losses of £750m.",
-        "hashtag": "UkraineWildberries",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Wildberries",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        ],
-        "entities": [
-          "Russia's",
-          "Ukraine's",
-          "Wildberries",
-          "Ukrainian"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.6,
+        "freshH": 1.92,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1437,7 +1620,7 @@
       },
       {
         "title": "'I am still alive': Indian activist on hunger strike for 26 days loses 11kg",
-        "summary": "Indian activist Lobsang Wangchuk has been on a hunger strike for 26 days, losing 11 kilograms, as protests against exam paper leaks continue in India. The demonstrations have sparked public anger and posed a challenge to Prime Minister Narendra Modi's government, with Modi attempting to reach out to students through a recent statement on social media. The protesters are demanding answers on the causes of the paper leaks and those who benefit from them.",
+        "summary": "Indian activist Lobsang Wangchuk has been on a hunger strike for 26 days, losing 11 kilograms, as he protests against repeated exam paper leaks in the country. Prime Minister Narendra Modi has responded to the protests by announcing the establishment of fast-track courts to punish those involved in the leaks. Wangchuk's demands remain unmet, with the activist's supporters vowing to continue their struggle until their concerns are addressed.",
         "hashtag": "Indian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1445,10 +1628,18 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e31d/live/86281e60-865e-11f1-93cb-95d7eb12ec49.png",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Sonam Wangchuk",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+        ],
         "entities": [
           "Indian",
           "Sonam Wangchuk",
@@ -1466,7 +1657,147 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.24,
+        "freshH": 4.24,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "crisis": [
+      {
+        "title": "VAT cut to be applied to Manx electricity bills",
+        "summary": "A 0% VAT rate will be applied to domestic electricity bills on the Isle of Man from October, mirroring the UK's measure in place until the end of the 2026-27 financial year. This change is expected to save a typical household around £50 per year, with the overall reduction in VAT revenue estimated to be between £1 million and £1.4 million. The Manx government has confirmed the move as part of efforts to ease cost-of-living pressures on households.",
+        "hashtag": "Manx",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.bbc.co.uk/news/articles/ce8l56z3e7no?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1db1/live/c18595a0-867c-11f1-b60e-a7e0943a9c78.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png",
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Manx",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png"
+          },
+          {
+            "name": "October",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg"
+          },
+          {
+            "name": "Isle",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/5/59/Idioma_man%C3%A9s.png",
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Maple_leaf_in_fall.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hawaje-NoRedLine.jpg"
+        ],
+        "entities": [
+          "Manx",
+          "October",
+          "Isle"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/ce8l56z3e7no?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.18,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Why are UK fuel prices rising again?",
+        "summary": "Fuel prices in the UK are rising again, with wholesale oil prices nearing $100 a barrel, following the collapse of peace talks to end the US-Israel war with Iran. This increase is expected to push up pump prices, with analysts estimating every $10 rise in oil price adds around 7p to the cost per litre. As a result, motorists can expect further price hikes in the coming days.",
+        "hashtag": "FuelPrices",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/28b1/live/f482fc20-5375-11f1-b319-63ed6ac90e5f.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/aec3/live/1322d680-5a80-11f1-b682-cf91850925ea.png",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "US-Israel",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/6a/Israel_CHOD_visit_150108-D-HU462-018_%2816231906515%29.jpg"
+        ],
+        "entities": [
+          "US-Israel",
+          "Iran"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.35,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Diesel Crisis Puts Poor Farmers Around the World at Risk",
+        "summary": "The closure of the Strait of Hormuz has limited the shipment of diesel, depriving farmers of fuel for irrigation pumps and threatening the food supply.",
+        "hashtag": "CrisisPuts",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.25,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1478,18 +1809,17 @@
     "politics": [
       {
         "title": "UK millionaires ask Andy Burnham to tax them more",
-        "summary": "A group of 120 UK millionaires, including former footballer Gary Lineker and music producer Brian Eno, have written to new prime minister Andy Burnham asking to be taxed more, specifically a 2% tax on wealth over £10m, to promote a more equal society and devolve wealth and power from the richest. This move is part of a renewed call for higher taxes on the wealthy, following similar campaigns in previous years. The prime minister has not ruled out a wealth tax, suggesting he may consider implementing it.",
+        "summary": "One hundred and twenty UK millionaires, including Gary Lineker and Brian Eno, have written to new Prime Minister Andy Burnham requesting a 2% tax on their wealth exceeding £10 million. This move is aimed at promoting a more equal society by redistributing wealth from the richest to the rest. The signatories believe this investment will benefit the country and help it succeed.",
         "hashtag": "AndyBurnham",
         "badge": "POLITICS",
         "category": "politics",
         "url": "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8a6e/live/b0338440-8683-11f1-bee8-53ce494e1abc.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0a2a/live/73191cf0-8674-11f1-8c77-df97511a6b05.jpg",
           "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png",
-          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         ],
         "entityShots": [
           {
@@ -1497,24 +1827,18 @@
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
           },
           {
-            "name": "Former",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png"
-          },
-          {
-            "name": "Gary Lineker",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+            "name": "England",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
           }
         ],
         "entityImages": [
           "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/e2/Frankreich_Kantone_2019.png",
-          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
         ],
         "entities": [
           "Andy Burnham",
-          "Former",
-          "Gary Lineker",
-          "Brian Eno"
+          "England",
+          "Gary Kineker"
         ],
         "sourceUrls": [
           "https://www.bbc.co.uk/news/articles/cvgjp79m42go?at_medium=RSS&at_campaign=rss"
@@ -1527,7 +1851,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.28,
+        "freshH": 0.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1560,7 +1884,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.79,
+        "freshH": 1.79,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1593,7 +1917,269 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.77,
+        "freshH": 1.77,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "St Helens boss Rowley leaves club day before derby",
+        "summary": "St Helens head coach Paul Rowley has stepped down from his position with immediate effect, leaving the club sixth in the table and six points behind leaders Leeds Rhinos. Rowley's departure comes after a difficult season, with the club struggling for form and losing six of their past 10 games in all competitions. Assistant coach Eamon O'Carroll will take over on an interim basis ahead of Friday's derby against Wigan Warriors.",
+        "hashtag": "HelensRowley",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/rugby-league/articles/cj0321e00v0o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/5098/live/4f4f9ef0-8680-11f1-b60e-a7e0943a9c78.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "St Helens",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Widnes%20Vikings%20vs%20St%20Helens%20Karalius%20Cup%202010%20001.JPG?width=1200"
+        ],
+        "entities": [
+          "St Helens",
+          "Rowley",
+          "Paul Rowley",
+          "Super League"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/rugby-league/articles/cj0321e00v0o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.17,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Newcastle agree £34m deal for Monaco's Bamba",
+        "summary": "Newcastle United have agreed a deal worth up to £34 million for Monaco midfielder Aladji Bamba, who will undergo a medical and sign a long-term contract on Thursday. The 20-year-old Frenchman is expected to strengthen the Magpies' midfield after the recent sale of Sandro Tonali to Tottenham. Bamba's impressive statistics in Ligue 1 last season, including 9.1 duels won per game, make him a valuable addition to the team.",
+        "hashtag": "MonacoBamba",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cr593z81lqno?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/4771/live/107a3170-8682-11f1-b60e-a7e0943a9c78.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Newcastle",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Tyne%20Bridge%20-%20Newcastle%20Upon%20Tyne%20-%20England%20-%202004-08-14.jpg?width=1200"
+        ],
+        "entities": [
+          "Newcastle",
+          "Monaco's Bamba",
+          "Midfielder Aladji Bamba",
+          "Thursday"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cr593z81lqno?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.3,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Liverpool confident of signing Barcola - Thursday's gossip",
+        "summary": "Liverpool is confident of signing Paris St-Germain forward Bradley Barcola, a 23-year-old who impressed with four goal contributions at the World Cup with France this summer. The move would see Liverpool beat Arsenal and Bayern Munich to the signature of the French forward. Barcola's potential transfer is now set to be a major focus for the Reds as they prepare for the upcoming season.",
+        "hashtag": "BarcolaThursday",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/187c/live/610e6530-8613-11f1-bee8-53ce494e1abc.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Liverpool",
+          "Barcola",
+          "Thursday's",
+          "Alex Scott",
+          "Arsenal",
+          "Bruno Fernandes"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/c78gx10d9n4o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.44,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Venice Title ‘The Difficult Bride’ Taps Films Boutique for World Sales (EXCLUSIVE)",
+        "summary": "Bangladesh's first feature film to screen at the Venice Film Festival, \"The Difficult Bride,\" has tapped Films Boutique for international sales. The supernatural feminist drama, directed by Rubaiyat Hossain, will compete in the Horizons section of the festival. It marks a significant milestone for Bangladeshi cinema, with three national award winners among its cast.",
+        "hashtag": "TitleDifficult",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/festivals/venice-difficult-bride-films-boutique-sales-1236818947/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/The-Difficult-Bride.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Venice Title",
+          "Difficult Bride",
+          "Taps Films Boutique",
+          "World Sales",
+          "EXCLUSIVE",
+          "Films Boutique"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/festivals/venice-difficult-bride-films-boutique-sales-1236818947/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.06,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Isabel Davis Named Director of BFI Filmmaking Fund – Global Bulletin",
+        "summary": "Isabel Davis has been appointed director of the BFI National Lottery Filmmaking Funds, overseeing £20 million annually in support for U.K. independent filmmakers. She begins a five-year contract in October, succeeding Mia Bays who has overseen several BAFTA wins since 2021. Davis joins the BFI from Screen Scotland, where she served as executive director for eight years.",
+        "hashtag": "DavisNamed",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/isabel-davis-director-bfi-filmmaking-fund-1236819027/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Isabel-Davis.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Isabel Davis Named Director",
+          "BFI Filmmaking Fund",
+          "Global Bulletin",
+          "LOTTERY LEADER Isabel Davis",
+          "BFI National Lottery Filmmaking",
+          "Funds"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/isabel-davis-director-bfi-filmmaking-fund-1236819027/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.14,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Tom Holland Is Filming Fred Astaire Biopic Next and Plans to ‘Do All of the Dancing’ Himself: ‘I’ve Got So Much Work to Do’",
+        "summary": "Tom Holland is set to star in a biopic about Fred Astaire, with filming reportedly underway. The actor plans to perform all of his own dance scenes, a nod to Astaire's own approach to filming dance numbers. Holland's preparation for the role has already begun, with rehearsals taking place in the dance studio.",
+        "hashtag": "HollandFilming",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/global/tom-holland-fred-astaire-biopic-own-dancing-1236818951/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Tom-Holland-Fred-Astaire.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Tom Holland Is Filming",
+          "Fred Astaire Biopic Next",
+          "Plans",
+          "Do All",
+          "Dancing",
+          "Himself"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/global/tom-holland-fred-astaire-biopic-own-dancing-1236818951/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.15,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1605,7 +2191,7 @@
     "facts": [
       {
         "title": "River levels approach all-time low as drought announcement looms",
-        "summary": "River levels in Wales are approaching all-time lows, with the country experiencing just 5% of its average July rainfall due to consecutive heatwaves and a dry spring. This has led to significant problems, including fish and wildlife deaths, failing crops, and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, as the region moves closer to an environmental drought.",
+        "summary": "River levels in Wales are approaching all-time lows, with the country seeing just 5% of its average July rainfall due to a series of heatwaves and a dry spring. This has led to significant problems for rivers, killing fish and wildlife, and also affecting farming with failing crops and heat-stressed livestock. An announcement from Natural Resources Wales is expected later on Thursday, which is likely to confirm an environmental drought in parts of the country.",
         "hashtag": "RiverLevels",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1646,7 +2232,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.99,
+        "freshH": 1.98,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Should Travelers Give Up on Summer in Western Europe Because of the Heat?",
+        "summary": "A favorite vacation option may be at risk because of rising temperatures. Even those sticking with their summer plans agree: More air conditioning would help.",
+        "hashtag": "TravelersGive",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nytimes.com/2026/07/23/travel/europe-summer-heat.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/20/multimedia/00Trav-Europe-Heat-jzfq/00Trav-Europe-Heat-jzfq-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/20/multimedia/00Trav-Europe-Heat-jzfq/00Trav-Europe-Heat-jzfq-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/travel/europe-summer-heat.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.82,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1656,7 +2275,7 @@
       },
       {
         "title": "Butterfly city blooms in shadow of office blocks",
-        "summary": "In Hull city centre, a \"butterfly city\" has been created with the discovery of ten species of butterfly, including the rare small skipper, in a \"mini meadow\" established in 2023. The meadow, located near St Stephen's Shopping Centre, features grass and wild flowers that provide a habitat for the butterflies. This initiative encourages people to grow plants that support city centre wildlife.",
+        "summary": "In Hull city centre, a \"butterfly city\" has been created with the discovery of ten species of butterfly in a \"mini meadow\" near St Stephen's Shopping Centre. The meadow, established in 2023, features grass and wild flowers that provide food for caterpillar species, including the small skipper butterfly, which breeds in the area. This rare urban sighting is attributed to the meadow's unique environment, where grass is left uncut throughout the year to support the caterpillar's winter habitat.",
         "hashtag": "ButterflyCity",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1693,307 +2312,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.81,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Olympic Mountain Glory",
-        "summary": "A striking new image from the International Space Station highlights the rugged Olympic Mountains in northwest Washington state. The composite photo, taken July 23, 2026, captures snow-capped peaks, deep river valleys, and glaciers within Olympic National Park. The ancient basalt rock forming these peaks emerged from undersea eruptions between 55 and 15 million years ago.",
-        "hashtag": "MountainGlory",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
-        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-        "images": [
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-          "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Washington",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Puget%20Sound%20from%20Harborview%20Park.jpg?width=1200"
-        ],
-        "entities": [
-          "Olympic Mountain Glory",
-          "Snow-capped",
-          "Washington"
-        ],
-        "sourceUrls": [
-          "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
-        ],
-        "sourceName": "NASA",
-        "sources": [
-          "NASA"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 5.85,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "The music in Nolan’s Odyssey is as well-crafted – and bloodlessly unmemorable – as the movie itself",
-        "summary": "Christopher Nolan’s The Odyssey features Ludwig Göransson’s score, including a theme for the ancient aulos flute, inspired by recent research reconstructing 2,000-year-old Greek music. Critics note the score is polished yet unmemorable, aligning with mixed reviews of the film’s direction. The soundtrack’s subtle approach contrasts with Nolan’s usual immersive scores.",
-        "hashtag": "NolanOdyssey",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://www.theguardian.com/film/2026/jul/23/the-odysssey-music-ludwig-goransson-christopher-nolan",
-        "imageUrl": "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=72f02a4efb8edae0a05d40774340a787",
-        "images": [
-          "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=72f02a4efb8edae0a05d40774340a787",
-          "https://i.guim.co.uk/img/media/cef104676e1180a29893244a31e785fcaefeb457/824_0_5200_4160/master/5200.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=d72210c168c67a2455ec9dab5dcc455a",
-          "https://i.guim.co.uk/img/media/89a522be6a5c8e9d59c2df26bfcb0645b6b09f13/648_0_1758_2199/master/1758.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/48cfbb61ffaa034b548a15459738b2255b76ad62/0_0_4588_2480/master/4588.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/d95c25846c09f01446d02d1032885bb148c74afb/0_0_6000_4000/master/6000.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Ludwig",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/47/Ludwig_I_of_Bavaria.jpg"
-        ],
-        "entities": [
-          "Nolan",
-          "Odyssey",
-          "Ludwig",
-          "Professor Armand",
-          "Angour",
-          "Oxford"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/film/2026/jul/23/the-odysssey-music-ludwig-goransson-christopher-nolan"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Venice Film Festival Reveals 2026 Lineup (Updating Live)",
-        "summary": "The 2026 Venice Film Festival will open with the world premiere of Danny Boyle's \"Ink,\" a 1960s-set biographical drama starring Guy Pearce as Rupert Murdoch and Jack O'Connell as Larry Lamb. The film, which also competes for the Golden Lion, marks a lighter Hollywood presence at the festival compared to previous years. The festival will close with Giovanni Veronesi's \"Dio Ride,\" an out-of-competition film starring Pierfrancesco Favino as a 17th-century friar.",
-        "hashtag": "FilmFestival",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Ink.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Ink.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Venice Film Festival Reveals",
-          "Lineup",
-          "Updating Live",
-          "Venice Film Festival",
-          "Like Cannes",
-          "Venice"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/festivals/venice-film-festival-2026-lineup-1236818922/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.03,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Daniel Wu on ‘Cold War 1994,’ ‘Twilight of the Warriors’ and Coming Home to Hong Kong: ‘The Craft Still Challenges Me’",
-        "summary": "Hong Kong actor Daniel Wu has received the Best from the East Award at the New York Asian Film Festival, capping a successful stretch in the \"Cold War\" series, including the latest installment \"Cold War 1994,\" a prequel to the 2012 and 2016 films. The new film, set in the run-up to Hong Kong's 1997 handover, marks Wu's return to the franchise after a brief hiatus due to the pandemic. Wu will next be seen in \"Twilight of the Warriors,\" another major Hong Kong production.",
-        "hashtag": "ColdWar",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Daniel-Wu.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Daniel Wu",
-          "Cold War",
-          "Twilight",
-          "Warriors",
-          "Coming Home",
-          "Hong Kong"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/news/daniel-wu-cold-war-1994-twilight-warriors-nyaff-1236818912/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.18,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "US signs landmark nuclear deal with Saudi Arabia",
-        "summary": "The U.S. and Saudi Arabia signed a landmark nuclear cooperation deal on Wednesday, allowing Riyadh to develop a civilian nuclear program with expanded access for American companies. The agreement includes a bilateral safeguards pact to prevent proliferation, though details remain undisclosed. Saudi Arabia called it an extension of existing energy ties, as analysts warn the deal could set a precedent for future uranium enrichment in the region.",
-        "hashtag": "SaudiArabia",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4d92/live/fdf9b860-866b-11f1-bee8-53ce494e1abc.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Saudi Arabia",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Aramco_Tower.jpg"
-        ],
-        "entities": [
-          "Saudi Arabia",
-          "US Department",
-          "Energy",
-          "Saudi"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.56,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "U.S.-Saudi Deal Prompts Fears of a Nuclear Arms Race",
-        "summary": "In Europe, Asia and the Middle East, countries seek nuclear capabilities to hedge against aggressive neighbors and a receding Washington, potentially creating a more freewheeling era.",
-        "hashtag": "SaudiPrompts",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/europe/us-saudi-deal-nuclear-hedging.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-nuclear-world-01-bghq/23int-nuclear-world-01-bghq-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-nuclear-world-01-bghq/23int-nuclear-world-01-bghq-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/europe/us-saudi-deal-nuclear-hedging.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.13,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "A New Target for Ukraine’s Long-Range Attacks: Russia’s Version of Amazon",
-        "summary": "Kyiv is escalating its air war by striking commercial warehouses, trying to bring the conflict closer to home for ordinary Russians.",
-        "hashtag": "NewTarget",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/europe/russia-ukraine-wildberries-attacks.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/europe/russia-ukraine-wildberries-attacks.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.19,
+        "freshH": 5.81,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2005,7 +2324,7 @@
     "tech": [
       {
         "title": "Framework’s premium laptop is shipping with less RAM",
-        "summary": "Framework has raised prices on its upcoming Laptop 13 Pro after a memory supplier doubled costs, pushing the base prebuilt model to $1,599. Some preorder customers will receive adjusted memory configurations and must accept the change or cancel for a full refund. New orders now reflect the updated pricing and available specs.",
+        "summary": "Framework's premium Laptop 13 Pro is shipping with less RAM than initially promised, affecting customers who preordered the device. The company has adjusted memory configurations due to a significant price increase from its memory supplier, which is now more than double the original cost. As a result, Framework is offering cancellations with full deposit refunds to customers who are unhappy with their new configuration.",
         "hashtag": "FrameworkPremium",
         "badge": "TECH",
         "category": "tech",
@@ -2042,7 +2361,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.39,
+        "freshH": 1.39,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2052,7 +2371,7 @@
       },
       {
         "title": "Google burning through cash with spiralling AI costs",
-        "summary": "Google's parent company Alphabet has reported its first negative free cash flow in at least a decade, coming in at $5.9 billion, due to growing spending on artificial intelligence infrastructure. This spending is expected to reach $205 billion this year, a significant increase from $190 billion. As a result, Alphabet's stock fell 4% in after-hours trading.",
+        "summary": "Google's parent company Alphabet has reported its first negative free cash flow in at least a decade, coming in at $5.9 billion, due to spiralling costs of artificial intelligence infrastructure. The company's spending on AI is expected to reach $205 billion this year, up from $190 billion, as major tech companies invest heavily in the technology. This significant outlay has led to a 4% drop in Alphabet's stock price in after-hours trading.",
         "hashtag": "GoogleBurning",
         "badge": "TECH",
         "category": "tech",
@@ -2061,16 +2380,16 @@
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entityShots": [
           {
             "name": "Google",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Googleplex%20HQ%20(cropped).jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entities": [
           "Google"
@@ -2086,7 +2405,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.6,
+        "freshH": 3.59,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2119,7 +2438,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.83,
+        "freshH": 1.83,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2128,207 +2447,23 @@
         "geo": null
       }
     ],
-    "sports": [
+    "breaking": [
       {
-        "title": "No men's Ashes Test in north of England - full 2027 schedule",
-        "summary": "England’s men’s Ashes defence starts at Trent Bridge on 18 June 2027, with no Tests in the north of England after Old Trafford and Headingley were left out. The five-Test series runs until 29 July, overlapping with the women’s multi-format Ashes from 24 June to 20 July. England will warm up against Bangladesh at Lord’s from 28 May, while Australia faces England Lions at Old Trafford from 7 June.",
-        "hashtag": "AshesTest",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
+        "title": "A Russian Spy, Suddenly Cast Into the Spotlight, Flees Japan",
+        "summary": "The military intelligence officer left the country after The Times reported that he was using the Aeroflot airline office in Tokyo to conduct espionage.",
+        "hashtag": "RussianSpy",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "England",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-        ],
-        "entities": [
-          "Ashes Test",
-          "England",
-          "Neither Old Trafford",
-          "Headingley",
-          "Australia"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "No 2027 men's Ashes Test in north of England",
-        "summary": "England’s men’s Ashes series against Australia in 2025 will open at Trent Bridge on 18 June, with no Tests in the north of England after Old Trafford and Headingley were dropped. The five-match series runs until 29 July, overlapping with the women’s Ashes from 24 June to 20 July. England will warm up with a Test against Bangladesh at Lord’s starting 28 May.",
-        "hashtag": "AshesTest",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/17d4/live/7b642f00-8668-11f1-926f-c90d1bcfbc84.png",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "England",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
-        ],
-        "entities": [
-          "Ashes Test",
-          "England",
-          "Neither Old Trafford",
-          "Headingley",
-          "Australia"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/cricket/articles/c1e1zl2qgpxo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "'Even the CEO doesn't know' - Kaymer on LIV's future",
-        "summary": "LIV Golf's team championship is highly unlikely to take place this year, with players including captain Martin Kaymer uncertain about the circuit's future beyond 2026. The tour is facing financial difficulties after Saudi Arabian backing was withdrawn, with CEO Scott O'Neil seeking $350 million in investment to keep it running. LIV Golf's next events will proceed as scheduled, starting with a tournament in Staffordshire on Thursday.",
-        "hashtag": "Kaymer",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/golf/articles/c8dn9rpev80o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b30d/live/97278f00-866f-11f1-93cb-95d7eb12ec49.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Even",
-          "Kaymer",
-          "LIV's",
-          "Martin Kaymer",
-          "LIV Golf's"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/golf/articles/c8dn9rpev80o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.95,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "crisis": [
-      {
-        "title": "Government to cut business rates for pubs, clubs and music venues",
-        "summary": "The government will slash business rates for pubs, clubs and music venues in England by 20% from April, saving firms around £1,100 each. The £100m package, announced by Andy Burnham, aims to protect 32,000 venues but excludes the largest live music spots. Details on eligibility will come at the autumn Budget.",
-        "hashtag": "GovernmentBusiness",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/b99f/live/7df3be10-8669-11f1-93cb-95d7eb12ec49.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "April",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/1/11/%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%2C_%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%B0%D1%80%D0%BA._%D0%91%D1%8E%D1%81%D1%82_%22%D0%90%D0%BF%D1%80%D0%B5%D0%BB%D1%8C%22_1.jpg"
-        ],
-        "entities": [
-          "Government",
-          "Some",
-          "April"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cq6dg816464o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.05,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Should Travelers Give Up on Summer in Western Europe Because of the Heat?",
-        "summary": "A favorite vacation option may be at risk because of rising temperatures. Even those sticking with their summer plans agree: More air conditioning would help.",
-        "hashtag": "TravelersGive",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/23/travel/europe-summer-heat.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/20/multimedia/00Trav-Europe-Heat-jzfq/00Trav-Europe-Heat-jzfq-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/20/multimedia/00Trav-Europe-Heat-jzfq/00Trav-Europe-Heat-jzfq-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-japan-spies-fljz/23int-japan-spies-fljz-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/travel/europe-summer-heat.html"
+          "https://www.nytimes.com/2026/07/23/world/asia/russian-spy-flees-japan.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2338,7 +2473,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.82,
+        "freshH": 0.12,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2347,21 +2482,21 @@
         "geo": null
       },
       {
-        "title": "As Cyclosporiasis Spreads, America Says No Thanks to Salads",
-        "summary": "Foot traffic to chains such as Chopt and Chipotle fell in recent weeks after a recall from Taylor Farms and changing messages from the F.D.A.",
-        "hashtag": "CyclosporiasisSpreads",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/23/business/cyclospora-lettuce-salad.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-SALAD-BACKLASH-01-gzfj/22biz-SALAD-BACKLASH-01-gzfj-mediumSquareAt3X.jpg",
+        "title": "A New Target for Ukraine’s Long-Range Attacks: Russia’s Version of Amazon",
+        "summary": "Kyiv is escalating its air war by striking commercial warehouses, trying to bring the conflict closer to home for ordinary Russians.",
+        "hashtag": "NewTarget",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/europe/russia-ukraine-wildberries-attacks.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X-v2.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22biz-SALAD-BACKLASH-01-gzfj/22biz-SALAD-BACKLASH-01-gzfj-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23int-russia-business-attacks-01-kmwc/23int-russia-business-attacks-01-kmwc-mediumSquareAt3X-v2.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/business/cyclospora-lettuce-salad.html"
+          "https://www.nytimes.com/2026/07/23/world/europe/russia-ukraine-wildberries-attacks.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2371,7 +2506,40 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.79,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Oil-Rich Saudi Arabia Isn’t Short on Energy. Here’s Why It’s Going Nuclear.",
+        "summary": "The world’s largest exporter of crude oil stands to benefit from diversifying its energy sources — and freeing up more oil to sell.",
+        "hashtag": "RichSaudi",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/saudi-arabia-nuclear.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-saudi-nuclear-civilian-1-lqkv/22int-saudi-nuclear-civilian-1-lqkv-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-saudi-nuclear-civilian-1-lqkv/22int-saudi-nuclear-civilian-1-lqkv-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/world/middleeast/saudi-arabia-nuclear.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.87,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2383,7 +2551,7 @@
     "health": [
       {
         "title": "Alarm over hospital lung admissions for children in England’s poorest postcodes",
-        "summary": "Children in England’s poorest areas are 40% more likely to be admitted to hospital for respiratory infections than those in wealthier areas. In 2024/25, 1,941 per 100,000 children in the most deprived fifth of England were hospitalised compared to 1,380 per 100,000 in the least deprived. Experts warn air pollution and deprivation may be key factors as officials review long-term health strategies.",
+        "summary": "Children living in England's poorest postcodes are 40% more likely to be admitted to hospital for respiratory infections, with 1,941 out of every 100,000 children in the most deprived areas being admitted in 2024/25. This contrasts with 1,380 admissions per 100,000 in the least deprived areas, resulting in a total of 82% more hospital admissions for respiratory infections in the poorest areas. Experts are now raising concerns about the impact of air pollution on young people's health in these areas.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -2423,7 +2591,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.85,
+        "freshH": 5.85,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2433,7 +2601,7 @@
       },
       {
         "title": "Life-changing MS drug to help people walk now on NHS in England",
-        "summary": "The first drug to help people with multiple sclerosis walk is now available on the NHS in England. Up to 5,000 people could benefit each year from fampridine, which improves walking speed and endurance. The NHS will now cover the cost of the drug, previously paid for privately by some patients.",
+        "summary": "A life-changing multiple sclerosis treatment, fampridine, is now available on the NHS in England, benefiting up to 5,000 people annually. This \"signal booster\" drug helps nerve signals, allowing some individuals to move and live independently. The decision is expected to make a significant difference in the lives of those with multiple sclerosis, enabling them to walk and engage in daily activities.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -2441,10 +2609,24 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/41e4/live/9d09f630-85fa-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "England",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+          },
+          {
+            "name": "Fampridine",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/8/86/4-aminopyridine_sample.jpg"
+        ],
         "entities": [
           "Life-changing MS",
           "England",
@@ -2461,7 +2643,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 10.21,
+        "freshH": 11.21,
         "score": null,
         "popularity": null,
         "recency": null,
