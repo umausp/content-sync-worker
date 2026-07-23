@@ -1,163 +1,291 @@
 {
-  "generatedAt": "2026-07-23T03:51:43.923Z",
+  "generatedAt": "2026-07-23T04:51:29.500Z",
   "region": "usa",
   "count": 29,
   "categoryCounts": {
     "offbeat": 7,
-    "breaking": 3,
-    "facts": 3,
-    "tech": 2,
-    "crisis": 3,
+    "facts": 2,
     "entertainment": 3,
     "politics": 3,
+    "breaking": 3,
+    "tech": 3,
+    "crisis": 3,
     "health": 2,
     "sports": 3
   },
   "stories": [
     {
-      "title": "GOP chair of House Judiciary Committee asks Justice Department to consider prosecuting Jack Smith",
-      "summary": "House Judiciary Committee Chairman Jim Jordan has asked the Justice Department to consider criminally charging special counsel Jack Smith, alleging Smith made false statements during closed-door testimony last year. The referral is based on concerns over Smith's team obtaining text messages between Trump administration officials and Congress members. The Justice Department has confirmed receiving the referral and will investigate all evidence of criminal conduct. A decision on Smith's potential prosecution is now pending.",
-      "hashtag": "JimJordan",
+      "title": "2026 Kia WNBA Shooting Stars Participants",
+      "summary": "Four WNBA legends and current stars, including two-time MVP Elena Delle Donne and five-time WNBA champion Rebekkah Brunson, will compete in the Kia WNBA Shooting Stars timed shooting competition. The event will take place on July 24 at 8 p.m. ET at Wintrust Arena in Chicago, broadcast on ESPN and Disney+. The competition is part of the AT&T WNBA All-Star 2026, which will be followed by the 2026 AT&T WNBA All-Star Game on July 25.",
+      "hashtag": "JessicaShepard",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
+      "url": "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
+      "imageUrl": "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png",
       "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
-        "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain_16x9.jpg?w=1600",
-        "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain.jpg"
+        "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png"
       ],
       "sourceUrls": [
-        "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
-        "https://abcnews.com/Politics/house-judiciary-committee-chairman-jim-jordan-issues-criminal/story?id=135006808"
+        "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
+        "https://www.dallasnews.com/sports/wings/article/jessica-shepard-wings-wnba-shooting-stars-contest-22356430.php",
+        "https://www.espn.com/wnba/story/_/id/49427940/delle-donne-legends-wnba-shooting-stars-event"
       ],
-      "sourceName": "cnn.com",
+      "sourceName": "wnba.com",
       "sources": [
-        "CNN",
-        "ABC News - Breaking News, Latest News and Videos"
+        "WNBA",
+        "Dallas News",
+        "ESPN"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "jessica shepard",
+      "traffic": 2000,
+      "freshH": 1,
+      "score": 0.71,
+      "popularity": 0.526,
+      "recency": 0.891,
+      "relevancy": 0.75,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Matchday | Timbers back at Providence Park to take on FC Dallas",
+      "summary": "The Portland Timbers return to Providence Park to face FC Dallas on Wednesday night, with kickoff at 7:30pm PT. The match marks their first home game since the close of the FIFA World Cup. Portland is seeking to build on their recent 5-1 win over the Seattle Sounders. Fans can watch the game live on Apple TV.",
+      "hashtag": "PortlandTimbers",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.timbers.com/news/matchday-timbers-back-at-providence-park-to-take-on-fc-dallas",
+      "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+      "images": [
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+        "https://www.oregonlive.com/resizer/v2/W6QPHWKMEBFH3MFD5GBOXHXE7Q.jpg?auth=9537c14305cbed7ebcdff3234a050911b69f8acfd39345f78ca25493a2179646&width=1280&smart=true&quality=90",
+        "https://www.oregonlive.com/resizer/v2/W6RIWMHSEBDLLGOSHWPDUJDFQ4.jpg?auth=439a1e2549572faea51948c18151b5a92dc2f8561a1f5bfd1dd55d536a1fab83&width=1280&smart=true&quality=90"
+      ],
+      "sourceUrls": [
+        "https://www.timbers.com/news/matchday-timbers-back-at-providence-park-to-take-on-fc-dallas",
+        "https://www.oregonlive.com/tv/2026/07/how-to-watch-portland-timbers-vs-fc-dallas-for-free-tonight-live-stream-tv-channel-start-time.html"
+      ],
+      "sourceName": "timbers.com",
+      "sources": [
+        "Portland Timbers",
+        "OregonLive.com"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "jim jordan jack smith doj referral",
+      "trend": "portland timbers",
       "traffic": 1000,
       "freshH": 1,
-      "score": 0.701,
-      "popularity": 0.443,
+      "score": 0.637,
+      "popularity": 0.293,
+      "recency": 0.891,
+      "relevancy": 0.833,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Halo Campaign Evolved Release Date and Early Access Times Revealed",
+      "summary": "Halo Campaign Evolved launches on July 28, 2026, at 8 AM PT / 11 AM ET. However, Premium Edition owners can start playing five days early, on July 23, 2026, at 8 AM PT / 11 AM ET. The game is available on PS5, Xbox Series X|S, and PC in various regions. Early access players can experience the reimagined Halo campaign before the full release.",
+      "hashtag": "HaloCampaign",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.vice.com/en/article/halo-campaign-evolved-release-date-times-early-access/",
+      "imageUrl": "https://www.vice.com/wp-content/uploads/sites/2/2026/07/Halo-Campaign-Evolved-Release-Date-and-Times-Revealed-Early-Access-Explained.jpg?w=1280",
+      "images": [
+        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/Halo-Campaign-Evolved-Release-Date-and-Times-Revealed-Early-Access-Explained.jpg?w=1280",
+        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-release-date.jpg?w=1024",
+        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-release-times.jpg?w=1024",
+        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-premium-edition.jpg?w=1024",
+        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-new-zealand-trick.jpg?w=1024"
+      ],
+      "sourceUrls": [
+        "https://www.vice.com/en/article/halo-campaign-evolved-release-date-times-early-access/",
+        "https://games.gg/halo-campaign-evolved/guides/halo-campaign-evolved-preload-guide/"
+      ],
+      "sourceName": "vice.com",
+      "sources": [
+        "VICE",
+        "games.gg"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "halo campaign evolved",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.626,
+      "popularity": 0.218,
+      "recency": 0.891,
+      "relevancy": 0.907,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Antoine Griezmann set to make Orlando City debut",
+      "summary": "French forward Antoine Griezmann is set to make his official debut with Orlando City on Wednesday night against the San Jose Earthquakes at PayPal Park. Griezmann joins the Lions after a decade-plus career in Spain's LaLiga, where he is Atlético's all-time leading scorer with 212 goals. The 37-year-old's arrival aims to revamp Orlando's attack, which also welcomed back striker Daryl Dike. Griezmann's debut comes as the team looks to climb into the Audi MLS Cup Playoffs mix.",
+      "hashtag": "AntoineGriezmann",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlssoccer.com/news/antoine-griezmann-set-to-make-orlando-city-debut",
+      "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
+      "images": [
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
+        "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
+        "https://www.orlandoweekly.com/wp-content/uploads/2026/07/JIM_0605.jpeg"
+      ],
+      "sourceUrls": [
+        "https://www.mlssoccer.com/news/antoine-griezmann-set-to-make-orlando-city-debut",
+        "https://www.orlandoweekly.com/arts/orlando-sports/mural-welcoming-soccer-star-antoine-griezmann-to-orlando-pops-up-at-corner-of-mills-and-colonial/"
+      ],
+      "sourceName": "mlssoccer.com",
+      "sources": [
+        "MLSsoccer.com",
+        "Orlando Weekly"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "antoine griezmann",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.611,
+      "popularity": 0.218,
       "recency": 0.891,
       "relevancy": 0.85,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Lil Wayne praises Trump's White House ballroom project, calls out critics who 'don't know nothing'",
-      "summary": "Rapper Lil Wayne praises President Trump's White House ballroom project, saying it will spare performers from being pushed outside for major events. The project aims to provide an indoor space for performances, events, and diplomatic ceremonies. Lil Wayne, who performed at a 2023 celebration marking the 50th anniversary of hip-hop, expressed support for the project after a memorable performance outside at Number One Observatory Circle. The ballroom is expected to accommodate guests and heightened security protocols.",
-      "hashtag": "LilWayne",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
-      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
+      "title": "Olympic Mountain Glory",
+      "summary": "A 55-million-year-old undersea volcanic rock formation in the Olympic Mountains of northwestern Washington state has been revealed in a NASA image. The rock, primarily basalt, originated beneath the ocean's surface and was uplifted to form the mountain range. The Olympic Mountains' rugged terrain is a key feature of Olympic National Park, which also includes the Pacific coastline and surrounding national forest and tribal lands. Further geological study of this region is expected to provide new insights into the Earth's history.",
+      "hashtag": "MountainGlory",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
       "images": [
-        "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/lil-wayne-trump.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/lil-wayne-trump.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/11/1200/675/harris.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/05/1200/675/Lil-Wanye.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/04/1200/675/donald-trump-ballroom.jpg?ve=1&tl=1",
-        "https://thehill.com/wp-content/uploads/sites/2/2024/09/66e4bafb8981d0.63708843-e1784667235571.jpeg?w=1280",
-        "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/FILE%20-%20Lil%20Wayne%20performs%20during%20%22The%20Miseducation%20of%20Lauryn%20Hill%22%2025th%20anniversary%20tour,%20Nov.%205,%202023,%20at%20the%20Kia%20Forum%20in%20Inglewood,%20Calif.%20(Photo%20by%20Willy%20Sanjuan/Invision/AP,%20File)"
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300"
       ],
       "sourceUrls": [
-        "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
-        "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/"
+        "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
       ],
-      "sourceName": "foxnews.com",
+      "sourceName": "NASA",
       "sources": [
-        "Fox News",
-        "The Hill"
+        "NASA"
       ],
-      "corr": 2,
-      "verified": true,
-      "trend": "lil wayne",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.679,
-      "popularity": 0.293,
-      "recency": 0.891,
-      "relevancy": 1,
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.485,
+      "popularity": 0,
+      "recency": 0.907,
+      "relevancy": 0.67,
       "region": "usa",
-      "geo": "US"
+      "geo": null
     },
     {
-      "title": "Tigers' Kenley Jansen: Extends scoreless streak Wednesday",
-      "summary": "Tigers' closer Kenley Jansen extended his scoreless streak to seven appearances, logging a clean inning of relief in Wednesday's 5-1 win over the Cubs. He walked one and struck out one. Jansen has now recorded a win and two saves during this streak, and leads Detroit with 11 saves this season. The Tigers are 1-1 in their series with the Cubs, with the final game scheduled for Thursday.",
-      "hashtag": "KenleyJansen",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
-      "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
+      "title": "‘The Wild Robot’ VFX Studio STIM Sets Canary Islands Operation, Planning to Create More Than 100 Jobs",
+      "summary": "French animation and visual effects company STIM is opening a production center in Spain's Canary Islands, creating over 100 jobs. The operation, STIM Tenerife, is set to begin in August and will initially employ 60 people by the end of 2026. Located in the Canary Islands Special Zone, a low-tax regime, the studio will increase STIM's production capacity while maintaining artistic and technical excellence. Recruitment for high-skilled positions is already underway.",
+      "hashtag": "WildRobot",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
       "images": [
-        "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
-        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2281864524.jpg?quality=65&strip=all",
-        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2286985418.jpg?quality=65&strip=all",
-        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2273789063.jpg?quality=65&strip=all",
-        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2277880090.jpg?quality=65&strip=all",
-        "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2270988527.jpg?quality=65&strip=all"
+        "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
+        "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp?w=990&h=557&crop=1",
+        "https://variety.com/wp-content/uploads/2026/07/coyotevsacme.png?w=1024",
+        "https://variety.com/wp-content/uploads/2026/07/20250220-zec_pablo-hernandez-048.jpg?w=1024"
       ],
       "sourceUrls": [
-        "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
-        "https://heavy.com/sports/mlb/detroit-tigers/kenley-jansen-makes-heartfelt-post-during-cubs-series/"
+        "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/"
       ],
-      "sourceName": "cbssports.com",
+      "sourceName": "Variety",
       "sources": [
-        "CBS Sports",
-        "Heavy.com"
+        "Variety"
       ],
-      "corr": 2,
-      "verified": true,
-      "trend": "kenley jansen",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.677,
-      "popularity": 0.293,
-      "recency": 0.891,
-      "relevancy": 0.991,
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.472,
+      "popularity": 0,
+      "recency": 0.906,
+      "relevancy": 0.62,
       "region": "usa",
-      "geo": "US"
+      "geo": null
     },
     {
-      "title": "Yordan continues MVP-caliber season with clutch go-ahead blast",
-      "summary": "Yordan Alvarez hit his Major League-leading 34th home run of the season, a two-run shot in the eighth inning, breaking a 2-2 tie and sending the Astros to a 5-2 win over the Marlins at Daikin Park. The Astros completed a three-game sweep of Miami on Wednesday night. Alvarez's 34 homers are three shy of his career high. The Astros' manager, Joe Espada, earned his 225th win with the team.",
-      "hashtag": "YordanAlvarez",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins",
-      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg",
+      "title": "Andy Burnham could easily ignore the UK’s falling aid commitment. He would be wise not to | Halima Begum",
+      "summary": "UK's aid budget is set to decline significantly under the new allocation plan, with a £6.5 billion reduction over four years. The plan, published last week, will see the aid budget fall from £13 billion to £6.5 billion by 2028-29. Malawi's allocation will drop from £50.2 million to £5 million by 2028-29, affecting three-quarters of the population without access to electricity. The new prime minister, Andy Burnham, will face the consequences of these cuts when he takes office.",
+      "hashtag": "BurnhamHalima",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/global-development/2026/jul/23/andy-burnham-could-easily-ignore-the-uks-falling-aid-commitment-he-would-be-wise-not-to",
+      "imageUrl": "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=d14d5c7a2498988fdb6192986f0d7220",
       "images": [
-        "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg"
+        "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=d14d5c7a2498988fdb6192986f0d7220",
+        "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=5c6111e4ebbd3d9fb25cd7a2af224aeb",
+        "https://i.guim.co.uk/img/media/24b85f7b14d8fe39247effb7ccd1b61ca135f6dd/271_0_2734_2187/master/2734.jpg?width=445&dpr=1&s=none&crop=none"
       ],
       "sourceUrls": [
-        "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins"
+        "https://www.theguardian.com/global-development/2026/jul/23/andy-burnham-could-easily-ignore-the-uks-falling-aid-commitment-he-would-be-wise-not-to"
       ],
-      "sourceName": "mlb.com",
+      "sourceName": "The Guardian",
       "sources": [
-        "MLB.com",
-        "ESPN"
+        "The Guardian"
       ],
-      "corr": 2,
-      "verified": true,
-      "trend": "yordan alvarez",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.614,
-      "popularity": 0.293,
-      "recency": 0.891,
-      "relevancy": 0.742,
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.85,
+      "score": 0.46,
+      "popularity": 0,
+      "recency": 0.907,
+      "relevancy": 0.57,
       "region": "usa",
-      "geo": "US"
+      "geo": null
+    },
+    {
+      "title": "Nobody in Europe knows or cares what Kemi Badenoch thinks. That’s a big mistake | Simon Nixon",
+      "summary": "British Conservative party leader Kemi Badenoch has committed her party to a policy of conflict with the EU, potentially leading to rupture, by suggesting opposition to withdrawing from the European Convention on Human Rights or ditching net zero commitments makes one \"not serious\" for Conservative candidacy. This stance was taken after she withdrew the party whip from a critic, Gavin Barwell. The move comes as the party struggles in opinion polls, third behind Labour. The UK's relationship with the EU is now at a critical juncture.",
+      "hashtag": "EuropeKemi",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/commentisfree/2026/jul/23/europe-kemi-badenoch-uk-echr-treaties",
+      "imageUrl": "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f32800f815ba714f9b326aa9afe3615",
+      "images": [
+        "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f32800f815ba714f9b326aa9afe3615",
+        "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=f03321d15793d5c87267217b2347ddbf"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/commentisfree/2026/jul/23/europe-kemi-badenoch-uk-echr-treaties"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.85,
+      "score": 0.447,
+      "popularity": 0,
+      "recency": 0.907,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
     },
     {
       "title": "Houthis claim attack on oil tankers as US launches more strikes on Iran",
-      "summary": "US launches 12th consecutive night of strikes on Iran, killing at least two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships, Encelia and Layla, with drones and missiles, allegedly for violating their naval blockade. The attack would be the first since the Houthis announced a \"maritime embargo\" against Saudi Arabia. The US has threatened to take action against the Houthis if they continue to block the Red Sea.",
+      "summary": "US launches 12th consecutive night of strikes on Iran, killing two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships with drones and missiles for allegedly violating their naval blockade. The attack comes as the US President had threatened to destroy an Iranian bridge or power plant if Iran attacked a ship in the Strait of Hormuz. The US strikes and Houthi attack raise tensions in the region.",
       "hashtag": "Iran",
       "badge": "BREAKING",
       "category": "breaking",
@@ -178,17 +306,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.05,
-      "score": 0.478,
+      "freshH": 1.05,
+      "score": 0.44,
       "popularity": 0,
-      "recency": 0.994,
+      "recency": 0.886,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Hosepipe ban in force for millions of households - is your area affected?",
-      "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting non-essential water use due to successive heatwaves straining water supplies. The ban affects Thames Water customers and prohibits activities like watering gardens and washing vehicles. This measure is a result of below-average spring and early summer rainfall, despite a wetter-than-usual winter. Water management and preparedness for drier summers expected with climate change are now under scrutiny.",
+      "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting watering gardens, washing vehicles and windows, and filling pools. The ban is due to successive heatwaves straining water supplies. This is the third major water restriction in the UK this year. Residents are advised to conserve water as the UK prepares for drier summers expected with climate change.",
       "hashtag": "HosepipeForce",
       "badge": "SCIENCE",
       "category": "facts",
@@ -212,17 +340,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.67,
-      "score": 0.456,
+      "freshH": 2.66,
+      "score": 0.425,
       "popularity": 0,
-      "recency": 0.825,
+      "recency": 0.735,
       "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Amish Shah Wins Democratic Primary in Swing Arizona House District",
+      "summary": "Dr. Amish Shah, who beat the choice of the party’s House campaign arm, will face Jay Feely, a Republican, in a battleground district that covers parts of Phoenix.",
+      "hashtag": "ShahWins",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.43,
+      "score": 0.406,
+      "popularity": 0,
+      "recency": 0.952,
+      "relevancy": 0.291,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-      "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine's design has reportedly won the approval of Mario creator Shigeru Miyamoto. The set is now available for purchase.",
+      "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a basic fully functional game with a working joystick and button. The machine allows Mario to jump endless barrels, utilizing the same original barrels first released in 1989 for Lego pirate sets. The set was reportedly well-received by Mario creator Shigeru Miyamoto. The machine's design is a nostalgic tribute to classic arcade games.",
       "hashtag": "DonkeyKong",
       "badge": "TECH",
       "category": "tech",
@@ -247,17 +405,107 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.36,
-      "score": 0.417,
+      "freshH": 4.36,
+      "score": 0.392,
       "popularity": 0,
-      "recency": 0.678,
+      "recency": 0.604,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Diesel Crisis Puts Poor Farmers Around the World at Risk",
+      "summary": "The closure of the Strait of Hormuz has limited the shipment of diesel, depriving farmers of fuel for irrigation pumps and threatening the food supply.",
+      "hashtag": "CrisisPuts",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.389,
+      "popularity": 0,
+      "recency": 0.908,
+      "relevancy": 0.283,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
+      "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
+      "hashtag": "MilitaryPresence",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.389,
+      "popularity": 0,
+      "recency": 0.908,
+      "relevancy": 0.283,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Japan’s Leader Invokes Her Hero, Shinzo Abe, to Drive Nationalist Agenda",
+      "summary": "Prime Minister Sanae Takaichi is leveraging her ties to Mr. Abe, the slain Japanese leader, as she pushes to reshape defense and the economy.",
+      "hashtag": "LeaderInvokes",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/23/world/asia/japan-sanae-takaichi-shinzo-abe.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-japan-abe-chzq/22int-japan-abe-chzq-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-japan-abe-chzq/22int-japan-abe-chzq-mediumSquareAt3X.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/world/asia/japan-sanae-takaichi-shinzo-abe.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.387,
+      "popularity": 0,
+      "recency": 0.908,
+      "relevancy": 0.276,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-      "summary": "A US government adviser claims China's Moonshot AI stole capabilities from top US AI model Anthropic's Fable AI through a process called distillation, gaining access to restricted Nvidia servers to train its K3 model. The alleged theft occurred through a weaker AI model extracting answers from a stronger one. This incident is linked to Moonshot's unveiling of its K3 model, which rivals top US technology. The US government is now investigating the claims.",
+      "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from top US AI models, specifically Anthropic's Fable AI, to develop its K3 model. The alleged theft occurred through a process called distillation, where a weaker AI extracts answers from a stronger one. Moonshot gained access to restricted Nvidia servers to train its models. The US government claims to have evidence of this alleged theft, which could have significant implications for the global AI landscape.",
       "hashtag": "MoonshotAnthropic",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -278,47 +526,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.99,
-      "score": 0.408,
+      "freshH": 2.99,
+      "score": 0.378,
       "popularity": 0,
-      "recency": 0.794,
+      "recency": 0.708,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
-      "summary": "The Saudi authorities confirmed a strike on one of the ships. These are the first claimed attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
-      "hashtag": "ClaimStrikes",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.87,
-      "score": 0.392,
-      "popularity": 0,
-      "recency": 0.905,
-      "relevancy": 0.3,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
-      "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camels, with herders reporting blistered feet, watery eyes, and skin burns. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where camels are often used to carry salt through the desert. As temperatures continue to rise, camel herders are facing unprecedented challenges.",
+      "summary": "Rising temperatures in Africa's Afar region are causing extreme heat stress in camels, with herder Ali Umer reporting eight camel calves lost in the past month. The region is one of the hottest and driest places on Earth, where nomads lead camel caravans. Camel herders are struggling to cope with blistered feet, watery eyes, and skin burns. The intense heat is expected to worsen, affecting camel populations and local livelihoods.",
       "hashtag": "Africa",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -346,17 +564,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.48,
-      "score": 0.389,
+      "freshH": 5.48,
+      "score": 0.366,
       "popularity": 0,
-      "recency": 0.596,
+      "recency": 0.531,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Where to Find a Commonwealth Games 2026 Livestream in the U.S. to Watch the Event for Free",
-      "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available to stream online from anywhere in the world.",
+      "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available online from anywhere in the world with a VPN set to a Canadian location.",
       "hashtag": "FindCommonwealth",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -377,47 +595,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.82,
-      "score": 0.383,
+      "freshH": 3.81,
+      "score": 0.355,
       "popularity": 0,
-      "recency": 0.722,
+      "recency": 0.644,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "U.S.-Saudi Nuclear Deal Stokes Israeli Concerns of Mideast Arms Race",
-      "summary": "An Israeli minister sought to downplay the agreement, while critics said it could spur other regional countries to pursue a nuclear program, and potentially the creation of a bomb.",
-      "hashtag": "SaudiNuclear",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.39,
-      "score": 0.374,
-      "popularity": 0,
-      "recency": 0.852,
-      "relevancy": 0.305,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "US signs landmark nuclear deal with Saudi Arabia",
-      "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement, providing great access for American companies in the Saudi nuclear energy program. The agreement is expected to be a multi-billion-dollar partnership spanning decades. This move marks a significant step in advancing nuclear nonproliferation in the region.",
+      "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing the Gulf kingdom to develop a civilian nuclear program. The deal provides access for American companies in Saudi's nuclear energy program and includes a bilateral safeguards agreement. The agreement marks a first for the US, potentially enabling Saudi Arabia to enrich uranium in the future. This partnership is expected to advance several economic and strategic objectives, including nuclear nonproliferation.",
       "hashtag": "SaudiArabia",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -438,17 +626,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.5,
-      "score": 0.364,
+      "freshH": 4.49,
+      "score": 0.338,
       "popularity": 0,
-      "recency": 0.668,
+      "recency": 0.595,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Canada's 'powerful' dairy sector is in Trump's trade crosshairs",
-      "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20 billion worth of Canadian goods, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system, which includes production quotas and set pricing, is a cornerstone of Canada's economy and rural communities. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable. The move is likely to escalate trade tensions between the two nations.",
+      "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20bn worth of Canadian goods imported to the US, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system controls production quotas, pricing, and imports of dairy, eggs, and poultry. Canadian politicians have indicated a willingness to stand firm on the system, with Quebec Premier Christine Fréchette calling it non-negotiable. The move is likely to escalate trade tensions between the two nations.",
       "hashtag": "Trump",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -469,108 +657,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.61,
-      "score": 0.361,
+      "freshH": 4.6,
+      "score": 0.336,
       "popularity": 0,
-      "recency": 0.659,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Amish Shah Wins Democratic Primary in Swing Arizona House District",
-      "summary": "Dr. Amish Shah, who beat the choice of the party’s House campaign arm, will face Jay Feely, a Republican, in a battleground district that covers parts of Phoenix.",
-      "hashtag": "ShahWins",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.7,
-      "score": 0.36,
-      "popularity": 0,
-      "recency": 0.822,
-      "relevancy": 0.291,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Republican Lawmaker Urges Charges Against Jack Smith",
-      "summary": "The criminal referral could provide a catalyst for a prosecution of Mr. Smith, who as special counsel became a top target of the president’s retribution campaign.",
-      "hashtag": "LawmakerCharges",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/jack-smith-jim-jordan-charges.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/00dc-smithHFO-photo-qmjb/00dc-smithHFO-photo-qmjb-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/00dc-smithHFO-photo-qmjb/00dc-smithHFO-photo-qmjb-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/jack-smith-jim-jordan-charges.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.72,
-      "score": 0.36,
-      "popularity": 0,
-      "recency": 0.82,
-      "relevancy": 0.291,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Most sewage spills in England may be illegal, new research suggests",
-      "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during normal weather conditions, not heavy rain. The analysis, based on data from over 350 storm overflow outlets, found that none of the country's water companies performed well. This raises concerns about the legitimacy of sewage spills, which affect over 30 million people. The findings are set to be presented to Parliament, potentially leading to increased scrutiny of water companies' practices.",
-      "hashtag": "England",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.07,
-      "score": 0.349,
-      "popularity": 0,
-      "recency": 0.625,
+      "recency": 0.587,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
-      "summary": "Up to 5,000 people in England with multiple sclerosis will now have access to the life-changing drug fampridine, which boosts nerve signals to help them walk independently. The drug, already available elsewhere in the UK, is being made available on the NHS in England. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed. This decision could significantly improve the lives of thousands of patients.",
+      "summary": "Thousands of multiple sclerosis patients in England are set to benefit from the NHS's decision to make the life-changing drug fampridine available, which can help people walk by boosting nerve signals. Up to 5,000 people could benefit each year. The drug has already been shown to improve walking speed and distance in around four in 10 users. This could enable patients to live independently and participate in daily activities.",
       "hashtag": "England",
       "badge": "HEALTH",
       "category": "health",
@@ -591,10 +688,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.21,
-      "score": 0.345,
+      "freshH": 5.21,
+      "score": 0.322,
       "popularity": 0,
-      "recency": 0.615,
+      "recency": 0.548,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -621,109 +718,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.29,
-      "score": 0.343,
+      "freshH": 3.29,
+      "score": 0.314,
       "popularity": 0,
-      "recency": 0.767,
+      "recency": 0.684,
       "relevancy": 0.299,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Google burning through cash with spiralling AI costs",
-      "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to growing spending on artificial intelligence infrastructure. This comes as Alphabet's AI spending is expected to reach $205 billion this year, a significant increase from $190 billion. The company's combined quarterly revenue rose 23% to $119.8 billion, but its stock fell 4% in after-hours trading. Alphabet's AI spending is now a major focus, with $45 billion spent in the second quarter, mostly on servers and data centers.",
-      "hashtag": "GoogleBurning",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.82,
-      "score": 0.331,
-      "popularity": 0,
-      "recency": 0.573,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
-      "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who previously worked on \"Hellbound\" and \"Parasyte: The Grey.\" Yeon developed and co-wrote the script with Ryu Yong-jae. The series is expected to premiere next year.",
-      "hashtag": "SangReturns",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.86,
-      "score": 0.33,
-      "popularity": 0,
-      "recency": 0.57,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "House Passes Defense Bill Amid Iran War Divide",
-      "summary": "Republicans pushed through the $1.15 trillion bill over opposition from Democrats, who said backing it was akin to embracing the war.",
-      "hashtag": "PassesDefense",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.69,
-      "score": 0.324,
-      "popularity": 0,
-      "recency": 0.733,
-      "relevancy": 0.27,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "McInnes glad of Rangers backing in appeal against ban",
-      "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to a three-game penalty already imposed by the Scottish FA. McInnes is appealing the decision, which he believes was wrong. The appeal will be a key test of the club's support for their manager.",
+      "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to an immediate three-game suspension and one game suspended until the end of the season. McInnes is contesting the penalty, saying it was directed at the decision rather than officials. The appeal is expected to be a key issue in the coming weeks.",
       "hashtag": "Rangers",
       "badge": "SPORTS",
       "category": "sports",
@@ -744,28 +749,28 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.78,
-      "score": 0.324,
+      "freshH": 5.78,
+      "score": 0.31,
       "popularity": 0,
-      "recency": 0.575,
-      "relevancy": 0.488,
+      "recency": 0.513,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-      "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo athlete, will share the honor. The flag will be returned to its owners after the ceremony, but they may have to compete for the first photo opportunity. The event marks a special moment for both athletes, who have been keeping the news secret for weeks.",
-      "hashtag": "MarshallAdlington",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+      "title": "Google burning through cash with spiralling AI costs",
+      "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This significant investment comes as Alphabet's combined quarterly revenue hit $119.8 billion, a 23% increase from last year. The company's stock fell 4% in after-hours trading.",
+      "hashtag": "GoogleBurning",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f610/live/9cc8bdc0-8616-11f1-8dd8-4d5cff7c66df.jpg"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/c235n47g8g8o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -775,28 +780,28 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.36,
-      "score": 0.318,
+      "freshH": 5.82,
+      "score": 0.309,
       "popularity": 0,
-      "recency": 0.538,
+      "recency": 0.511,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-      "summary": "A three-hour screening of Christopher Nolan's \"The Odyssey\" in 4DX format has left some viewers shaken and soaked. The 4DX experience, featuring seat-rumbling and water-spritzing technology, is available at select theaters. Over 100 people have reported experiencing seasickness during the film's intense scenes. As a result, some theaters are considering adding a warning to the film's description.",
-      "hashtag": "SoakedSeasick",
+      "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
+      "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks another collaboration between Netflix and Yeon, who developed the show and co-wrote the script with Ryu Yong-jae. This is the latest project from Yeon, known for his work on \"Hellbound\" and \"Parasyte: The Grey.\" The series is expected to premiere next year.",
+      "hashtag": "SangReturns",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
-      "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
+      "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
+        "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -806,17 +811,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.36,
-      "score": 0.318,
+      "freshH": 5.86,
+      "score": 0.308,
       "popularity": 0,
-      "recency": 0.538,
-      "relevancy": 0.519,
+      "recency": 0.508,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-      "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The deal would come after Liverpool beat Arsenal and Bayern Munich to the signature. Talks around a new deal are also ongoing for Manchester United's Portugal midfielder Bruno Fernandes, 31. Fernandes has decided to commit his future to Manchester United.",
+      "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The move would see Liverpool beat out Arsenal and Bayern Munich for the player's signature. Barcola's World Cup performance has boosted his transfer value. Liverpool's confidence in securing the signing suggests a potential deal is imminent.",
       "hashtag": "BarcolaThursday",
       "badge": "SPORTS",
       "category": "sports",
@@ -837,11 +842,42 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.49,
-      "score": 0.316,
+      "freshH": 6.48,
+      "score": 0.295,
       "popularity": 0,
-      "recency": 0.53,
+      "recency": 0.473,
       "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
+      "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo gold medalist, will share the honour. The flag will be presented to them on the day of the big show. The two athletes have been keeping the news a secret for weeks, making it a surprise for everyone else.",
+      "hashtag": "MarshallAdlington",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 6.36,
+      "score": 0.295,
+      "popularity": 0,
+      "recency": 0.48,
+      "relevancy": 0.506,
       "region": "usa",
       "geo": null
     },
@@ -849,8 +885,8 @@
       "title": "Clarity Act Mired In Debate Over Whether to Bar President From Selling Crypto",
       "summary": "Democrats and Republicans are haggling about the Clarity Act, a major bill pushed by the crypto industry, as it moves closer to a Senate vote.",
       "hashtag": "ActMired",
-      "badge": "GLOBAL",
-      "category": "crisis",
+      "badge": "TECH",
+      "category": "tech",
       "url": "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg",
       "images": [
@@ -867,17 +903,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.14,
-      "score": 0.313,
+      "freshH": 4.14,
+      "score": 0.286,
       "popularity": 0,
-      "recency": 0.696,
+      "recency": 0.62,
       "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-      "summary": "A British health select committee report finds obesity is an engineered outcome, not a failure of willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The committee recommends targeting ultra-processed foods high in sugar and refined carbohydrates instead. This shift could lead to more effective public health measures.",
+      "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower, with sugar and refined carbohydrates identified as primary drivers of weight gain and type 2 diabetes. The report recommends targeting ultra-processed foods to reduce obesity in Britain, with a focus on reducing sugar content. This shift in approach aims to correct decades of flawed food policy. The next step is for supermarkets and manufacturers to be held accountable for reformulating their products.",
       "hashtag": "BritainLetter",
       "badge": "HEALTH",
       "category": "health",
@@ -898,41 +934,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 11.01,
-      "score": 0.228,
+      "freshH": 12.01,
+      "score": 0.217,
       "popularity": 0,
-      "recency": 0.28,
+      "recency": 0.25,
       "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "What Were the Lotus-Eaters Eating in Homer’s ‘Odyssey’?",
-      "summary": "In Homer’s epic, Odysseus’s men eat something so powerful that they forget about home. Which plants could have produced such a soporific, narcotic and amnesiac effect?",
-      "hashtag": "LotusEaters",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nytimes.com/2026/07/22/science/odyssey-lotus-eaters-opium.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/22/science/00SCI-LOTUS-EATERS-02/00SCI-LOTUS-EATERS-02-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/22/science/00SCI-LOTUS-EATERS-02/00SCI-LOTUS-EATERS-02-mediumSquareAt3X.jpg"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/22/science/odyssey-lotus-eaters-opium.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 7.63,
-      "score": 0.219,
-      "popularity": 0,
-      "recency": 0.414,
-      "relevancy": 0.295,
       "region": "usa",
       "geo": null
     }
@@ -940,30 +946,65 @@
   "categories": {
     "offbeat": [
       {
-        "title": "GOP chair of House Judiciary Committee asks Justice Department to consider prosecuting Jack Smith",
-        "summary": "House Judiciary Committee Chairman Jim Jordan has asked the Justice Department to consider criminally charging special counsel Jack Smith, alleging Smith made false statements during closed-door testimony last year. The referral is based on concerns over Smith's team obtaining text messages between Trump administration officials and Congress members. The Justice Department has confirmed receiving the referral and will investigate all evidence of criminal conduct. A decision on Smith's potential prosecution is now pending.",
-        "hashtag": "JimJordan",
+        "title": "2026 Kia WNBA Shooting Stars Participants",
+        "summary": "Four WNBA legends and current stars, including two-time MVP Elena Delle Donne and five-time WNBA champion Rebekkah Brunson, will compete in the Kia WNBA Shooting Stars timed shooting competition. The event will take place on July 24 at 8 p.m. ET at Wintrust Arena in Chicago, broadcast on ESPN and Disney+. The competition is part of the AT&T WNBA All-Star 2026, which will be followed by the 2026 AT&T WNBA All-Star Game on July 25.",
+        "hashtag": "JessicaShepard",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
+        "url": "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
+        "imageUrl": "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/ap26022655570696.jpg?c=16x9&q=w_800,c_fill",
-          "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain_16x9.jpg?w=1600",
-          "https://i.abcnewsfe.com/a/0b0923d2-6442-4db5-9b30-f652cff5e76e/jacksmith_1784775148410_hpMain.jpg"
+          "https://cdn.wnba.com/sites/4/2026/07/16x9-8-scaled.png"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/22/politics/jim-jordan-jack-smith-criminal-referral",
-          "https://abcnews.com/Politics/house-judiciary-committee-chairman-jim-jordan-issues-criminal/story?id=135006808"
+          "https://www.wnba.com/news/2026-kia-wnba-shooting-stars-participants",
+          "https://www.dallasnews.com/sports/wings/article/jessica-shepard-wings-wnba-shooting-stars-contest-22356430.php",
+          "https://www.espn.com/wnba/story/_/id/49427940/delle-donne-legends-wnba-shooting-stars-event"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "wnba.com",
         "sources": [
-          "CNN",
-          "ABC News - Breaking News, Latest News and Videos"
+          "WNBA",
+          "Dallas News",
+          "ESPN"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "jessica shepard",
+        "traffic": 2000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Matchday | Timbers back at Providence Park to take on FC Dallas",
+        "summary": "The Portland Timbers return to Providence Park to face FC Dallas on Wednesday night, with kickoff at 7:30pm PT. The match marks their first home game since the close of the FIFA World Cup. Portland is seeking to build on their recent 5-1 win over the Seattle Sounders. Fans can watch the game live on Apple TV.",
+        "hashtag": "PortlandTimbers",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.timbers.com/news/matchday-timbers-back-at-providence-park-to-take-on-fc-dallas",
+        "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+        "images": [
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls-por/r7vcpbabuerbdii4spvd.png",
+          "https://www.oregonlive.com/resizer/v2/W6QPHWKMEBFH3MFD5GBOXHXE7Q.jpg?auth=9537c14305cbed7ebcdff3234a050911b69f8acfd39345f78ca25493a2179646&width=1280&smart=true&quality=90",
+          "https://www.oregonlive.com/resizer/v2/W6RIWMHSEBDLLGOSHWPDUJDFQ4.jpg?auth=439a1e2549572faea51948c18151b5a92dc2f8561a1f5bfd1dd55d536a1fab83&width=1280&smart=true&quality=90"
+        ],
+        "sourceUrls": [
+          "https://www.timbers.com/news/matchday-timbers-back-at-providence-park-to-take-on-fc-dallas",
+          "https://www.oregonlive.com/tv/2026/07/how-to-watch-portland-timbers-vs-fc-dallas-for-free-tonight-live-stream-tv-channel-start-time.html"
+        ],
+        "sourceName": "timbers.com",
+        "sources": [
+          "Portland Timbers",
+          "OregonLive.com"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "jim jordan jack smith doj referral",
+        "trend": "portland timbers",
         "traffic": 1000,
         "freshH": 1,
         "score": null,
@@ -974,35 +1015,32 @@
         "geo": "US"
       },
       {
-        "title": "Lil Wayne praises Trump's White House ballroom project, calls out critics who 'don't know nothing'",
-        "summary": "Rapper Lil Wayne praises President Trump's White House ballroom project, saying it will spare performers from being pushed outside for major events. The project aims to provide an indoor space for performances, events, and diplomatic ceremonies. Lil Wayne, who performed at a 2023 celebration marking the 50th anniversary of hip-hop, expressed support for the project after a memorable performance outside at Number One Observatory Circle. The ballroom is expected to accommodate guests and heightened security protocols.",
-        "hashtag": "LilWayne",
+        "title": "Halo Campaign Evolved Release Date and Early Access Times Revealed",
+        "summary": "Halo Campaign Evolved launches on July 28, 2026, at 8 AM PT / 11 AM ET. However, Premium Edition owners can start playing five days early, on July 23, 2026, at 8 AM PT / 11 AM ET. The game is available on PS5, Xbox Series X|S, and PC in various regions. Early access players can experience the reimagined Halo campaign before the full release.",
+        "hashtag": "HaloCampaign",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
-        "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
+        "url": "https://www.vice.com/en/article/halo-campaign-evolved-release-date-times-early-access/",
+        "imageUrl": "https://www.vice.com/wp-content/uploads/sites/2/2026/07/Halo-Campaign-Evolved-Release-Date-and-Times-Revealed-Early-Access-Explained.jpg?w=1280",
         "images": [
-          "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/lil-wayne-trump.jpg",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/lil-wayne-trump.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/lil-wayne-trump.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/11/1200/675/harris.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/05/1200/675/Lil-Wanye.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/04/1200/675/donald-trump-ballroom.jpg?ve=1&tl=1",
-          "https://thehill.com/wp-content/uploads/sites/2/2024/09/66e4bafb8981d0.63708843-e1784667235571.jpeg?w=1280",
-          "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/FILE%20-%20Lil%20Wayne%20performs%20during%20%22The%20Miseducation%20of%20Lauryn%20Hill%22%2025th%20anniversary%20tour,%20Nov.%205,%202023,%20at%20the%20Kia%20Forum%20in%20Inglewood,%20Calif.%20(Photo%20by%20Willy%20Sanjuan/Invision/AP,%20File)"
+          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/Halo-Campaign-Evolved-Release-Date-and-Times-Revealed-Early-Access-Explained.jpg?w=1280",
+          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-release-date.jpg?w=1024",
+          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-release-times.jpg?w=1024",
+          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-premium-edition.jpg?w=1024",
+          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/halo-campaign-evolved-new-zealand-trick.jpg?w=1024"
         ],
         "sourceUrls": [
-          "https://www.foxnews.com/entertainment/lil-wayne-praises-trumps-white-house-ballroom-project-calls-out-critics",
-          "https://thehill.com/blogs/in-the-know/5981696-lil-wayne-praises-trump-ballroom/"
+          "https://www.vice.com/en/article/halo-campaign-evolved-release-date-times-early-access/",
+          "https://games.gg/halo-campaign-evolved/guides/halo-campaign-evolved-preload-guide/"
         ],
-        "sourceName": "foxnews.com",
+        "sourceName": "vice.com",
         "sources": [
-          "Fox News",
-          "The Hill"
+          "VICE",
+          "games.gg"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "lil wayne",
+        "trend": "halo campaign evolved",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1013,64 +1051,30 @@
         "geo": "US"
       },
       {
-        "title": "Tigers' Kenley Jansen: Extends scoreless streak Wednesday",
-        "summary": "Tigers' closer Kenley Jansen extended his scoreless streak to seven appearances, logging a clean inning of relief in Wednesday's 5-1 win over the Cubs. He walked one and struck out one. Jansen has now recorded a win and two saves during this streak, and leads Detroit with 11 saves this season. The Tigers are 1-1 in their series with the Cubs, with the final game scheduled for Thursday.",
-        "hashtag": "KenleyJansen",
+        "title": "Antoine Griezmann set to make Orlando City debut",
+        "summary": "French forward Antoine Griezmann is set to make his official debut with Orlando City on Wednesday night against the San Jose Earthquakes at PayPal Park. Griezmann joins the Lions after a decade-plus career in Spain's LaLiga, where he is Atlético's all-time leading scorer with 212 goals. The 37-year-old's arrival aims to revamp Orlando's attack, which also welcomed back striker Daryl Dike. Griezmann's debut comes as the team looks to climb into the Audi MLS Cup Playoffs mix.",
+        "hashtag": "AntoineGriezmann",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
-        "imageUrl": "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
+        "url": "https://www.mlssoccer.com/news/antoine-griezmann-set-to-make-orlando-city-debut",
+        "imageUrl": "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
         "images": [
-          "https://sportsfly.cbsistatic.com/fly-736/bundles/sportsmediacss/images/fantasy/default-article-image-large.png",
-          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2281864524.jpg?quality=65&strip=all",
-          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2286985418.jpg?quality=65&strip=all",
-          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2273789063.jpg?quality=65&strip=all",
-          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2277880090.jpg?quality=65&strip=all",
-          "https://heavy.com/wp-content/uploads/2026/07/GettyImages-2270988527.jpg?quality=65&strip=all"
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_3_4_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
+          "https://images.mlssoccer.com/image/private/t_editorial_landscape_12_desktop/mls/e4lpgeblr0huyiqq7d7u.jpg",
+          "https://www.orlandoweekly.com/wp-content/uploads/2026/07/JIM_0605.jpeg"
         ],
         "sourceUrls": [
-          "https://www.cbssports.com/fantasy/baseball/news/tigers-kenley-jansen-extends-scoreless-streak-wednesday/",
-          "https://heavy.com/sports/mlb/detroit-tigers/kenley-jansen-makes-heartfelt-post-during-cubs-series/"
+          "https://www.mlssoccer.com/news/antoine-griezmann-set-to-make-orlando-city-debut",
+          "https://www.orlandoweekly.com/arts/orlando-sports/mural-welcoming-soccer-star-antoine-griezmann-to-orlando-pops-up-at-corner-of-mills-and-colonial/"
         ],
-        "sourceName": "cbssports.com",
+        "sourceName": "mlssoccer.com",
         "sources": [
-          "CBS Sports",
-          "Heavy.com"
+          "MLSsoccer.com",
+          "Orlando Weekly"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "kenley jansen",
-        "traffic": 500,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Yordan continues MVP-caliber season with clutch go-ahead blast",
-        "summary": "Yordan Alvarez hit his Major League-leading 34th home run of the season, a two-run shot in the eighth inning, breaking a 2-2 tie and sending the Astros to a 5-2 win over the Marlins at Daikin Park. The Astros completed a three-game sweep of Miami on Wednesday night. Alvarez's 34 homers are three shy of his career high. The Astros' manager, Joe Espada, earned his 225th win with the team.",
-        "hashtag": "YordanAlvarez",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins",
-        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg",
-        "images": [
-          "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/joabuotvkavcd2skdnee.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.mlb.com/news/yordan-alvarez-go-ahead-homer-astros-sweep-marlins"
-        ],
-        "sourceName": "mlb.com",
-        "sources": [
-          "MLB.com",
-          "ESPN"
-        ],
-        "corr": 2,
-        "verified": true,
-        "trend": "yordan alvarez",
+        "trend": "antoine griezmann",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1082,7 +1086,7 @@
       },
       {
         "title": "Even camels can't cope: Africa's ships of the desert hit by rising temperatures",
-        "summary": "Rising temperatures in Africa's hottest regions are taking a toll on camels, with herders reporting blistered feet, watery eyes, and skin burns. In the Afar region of north-eastern Ethiopia, camel herder Ali Umer has lost eight camel calves in the past month due to extreme heat. The region is one of the driest places on Earth, where camels are often used to carry salt through the desert. As temperatures continue to rise, camel herders are facing unprecedented challenges.",
+        "summary": "Rising temperatures in Africa's Afar region are causing extreme heat stress in camels, with herder Ali Umer reporting eight camel calves lost in the past month. The region is one of the hottest and driest places on Earth, where nomads lead camel caravans. Camel herders are struggling to cope with blistered feet, watery eyes, and skin burns. The intense heat is expected to worsen, affecting camel populations and local livelihoods.",
         "hashtag": "Africa",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1110,7 +1114,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.48,
+        "freshH": 5.48,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1120,7 +1124,7 @@
       },
       {
         "title": "US signs landmark nuclear deal with Saudi Arabia",
-        "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing Saudi Arabia to develop a civilian nuclear program. The deal includes a bilateral safeguards agreement, providing great access for American companies in the Saudi nuclear energy program. The agreement is expected to be a multi-billion-dollar partnership spanning decades. This move marks a significant step in advancing nuclear nonproliferation in the region.",
+        "summary": "The US and Saudi Arabia have signed a landmark nuclear deal, a \"peaceful nuclear co-operation agreement,\" allowing the Gulf kingdom to develop a civilian nuclear program. The deal provides access for American companies in Saudi's nuclear energy program and includes a bilateral safeguards agreement. The agreement marks a first for the US, potentially enabling Saudi Arabia to enrich uranium in the future. This partnership is expected to advance several economic and strategic objectives, including nuclear nonproliferation.",
         "hashtag": "SaudiArabia",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1141,7 +1145,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.5,
+        "freshH": 4.49,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1151,7 +1155,7 @@
       },
       {
         "title": "Canada's 'powerful' dairy sector is in Trump's trade crosshairs",
-        "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20 billion worth of Canadian goods, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system, which includes production quotas and set pricing, is a cornerstone of Canada's economy and rural communities. Canadian politicians, including Quebec Premier Christine Fréchette, have indicated that dairy supply management is non-negotiable. The move is likely to escalate trade tensions between the two nations.",
+        "summary": "US President Donald Trump has targeted Canada's dairy sector with a 50% tariff on $20bn worth of Canadian goods imported to the US, set to take effect in August, citing the country's supply management system as an \"unreasonable\" barrier to American farmers. The system controls production quotas, pricing, and imports of dairy, eggs, and poultry. Canadian politicians have indicated a willingness to stand firm on the system, with Quebec Premier Christine Fréchette calling it non-negotiable. The move is likely to escalate trade tensions between the two nations.",
         "hashtag": "Trump",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1172,100 +1176,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.61,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Houthis claim attack on oil tankers as US launches more strikes on Iran",
-        "summary": "US launches 12th consecutive night of strikes on Iran, killing at least two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships, Encelia and Layla, with drones and missiles, allegedly for violating their naval blockade. The attack would be the first since the Houthis announced a \"maritime embargo\" against Saudi Arabia. The US has threatened to take action against the Houthis if they continue to block the Red Sea.",
-        "hashtag": "Iran",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.05,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Houthis Claim Strikes on 2 Saudi Oil Tankers in Red Sea",
-        "summary": "The Saudi authorities confirmed a strike on one of the ships. These are the first claimed attacks since the Iranian-backed Yemeni group announced a blockade on Saudi Arabia.",
-        "hashtag": "ClaimStrikes",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22mideast-live-oil-tankers-htqp/22mideast-live-oil-tankers-htqp-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/middleeast/houthis-saudi-oil-tankers-red-sea.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.87,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "U.S.-Saudi Nuclear Deal Stokes Israeli Concerns of Mideast Arms Race",
-        "summary": "An Israeli minister sought to downplay the agreement, while critics said it could spur other regional countries to pursue a nuclear program, and potentially the creation of a bomb.",
-        "hashtag": "SaudiNuclear",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-reax-Israel-saudi-tpfk/22int-reax-Israel-saudi-tpfk-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/world/middleeast/saudi-nuclear-deal-israel.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.39,
+        "freshH": 4.6,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1276,8 +1187,42 @@
     ],
     "facts": [
       {
+        "title": "Olympic Mountain Glory",
+        "summary": "A 55-million-year-old undersea volcanic rock formation in the Olympic Mountains of northwestern Washington state has been revealed in a NASA image. The rock, primarily basalt, originated beneath the ocean's surface and was uplifted to form the mountain range. The Olympic Mountains' rugged terrain is a key feature of Olympic National Park, which also includes the Pacific coastline and surrounding national forest and tribal lands. Further geological study of this region is expected to provide new insights into the Earth's history.",
+        "hashtag": "MountainGlory",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "images": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144.jpg?w=2160&#038;h=1008&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+          "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/olympic-mountain-glory/ISS047-E-104144_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/belts-of-green-in-the-washington-suburbs/ISS069-E-39302_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/92000/92382/colonialpark_oli_2016161_front.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300",
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/great-balls-of-fire/ISS074-E-540214_th.jpg?fit=clip&crop=faces%2Cfocalpoint&w=300"
+        ],
+        "sourceUrls": [
+          "https://science.nasa.gov/earth/earth-observatory/olympic-mountain-glory/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Hosepipe ban in force for millions of households - is your area affected?",
-        "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting non-essential water use due to successive heatwaves straining water supplies. The ban affects Thames Water customers and prohibits activities like watering gardens and washing vehicles. This measure is a result of below-average spring and early summer rainfall, despite a wetter-than-usual winter. Water management and preparedness for drier summers expected with climate change are now under scrutiny.",
+        "summary": "A hosepipe ban is now in effect for over 20 million households in southern and eastern England and parts of Wales, restricting watering gardens, washing vehicles and windows, and filling pools. The ban is due to successive heatwaves straining water supplies. This is the third major water restriction in the UK this year. Residents are advised to conserve water as the UK prepares for drier summers expected with climate change.",
         "hashtag": "HosepipeForce",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1301,38 +1246,42 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.67,
+        "freshH": 2.66,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      },
+      }
+    ],
+    "entertainment": [
       {
-        "title": "Most sewage spills in England may be illegal, new research suggests",
-        "summary": "New research suggests that up to 86% of raw sewage spills in England may be illegal, with most occurring during normal weather conditions, not heavy rain. The analysis, based on data from over 350 storm overflow outlets, found that none of the country's water companies performed well. This raises concerns about the legitimacy of sewage spills, which affect over 30 million people. The findings are set to be presented to Parliament, potentially leading to increased scrutiny of water companies' practices.",
-        "hashtag": "England",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
+        "title": "‘The Wild Robot’ VFX Studio STIM Sets Canary Islands Operation, Planning to Create More Than 100 Jobs",
+        "summary": "French animation and visual effects company STIM is opening a production center in Spain's Canary Islands, creating over 100 jobs. The operation, STIM Tenerife, is set to begin in August and will initially employ 60 people by the end of 2026. Located in the Canary Islands Special Zone, a low-tax regime, the studio will increase STIM's production capacity while maintaining artistic and technical excellence. Recruitment for high-skilled positions is already underway.",
+        "hashtag": "WildRobot",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/af6e/live/65772b70-85f0-11f1-8ade-a7a676c613b9.jpg"
+          "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp",
+          "https://variety.com/wp-content/uploads/2026/07/Wild-Robot.webp?w=990&h=557&crop=1",
+          "https://variety.com/wp-content/uploads/2026/07/coyotevsacme.png?w=1024",
+          "https://variety.com/wp-content/uploads/2026/07/20250220-zec_pablo-hernandez-048.jpg?w=1024"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cn0nxd1jgw5o?at_medium=RSS&at_campaign=rss"
+          "https://variety.com/2026/film/markets-festivals/stim-canary-islands-animation-studio-tenerife-zec-1236817891/"
         ],
-        "sourceName": "BBC",
+        "sourceName": "Variety",
         "sources": [
-          "BBC"
+          "Variety"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.07,
+        "freshH": 0.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1341,18 +1290,145 @@
         "geo": null
       },
       {
-        "title": "What Were the Lotus-Eaters Eating in Homer’s ‘Odyssey’?",
-        "summary": "In Homer’s epic, Odysseus’s men eat something so powerful that they forget about home. Which plants could have produced such a soporific, narcotic and amnesiac effect?",
-        "hashtag": "LotusEaters",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nytimes.com/2026/07/22/science/odyssey-lotus-eaters-opium.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/science/00SCI-LOTUS-EATERS-02/00SCI-LOTUS-EATERS-02-mediumSquareAt3X.jpg",
+        "title": "Where to Find a Commonwealth Games 2026 Livestream in the U.S. to Watch the Event for Free",
+        "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available online from anywhere in the world with a VPN set to a Canadian location.",
+        "hashtag": "FindCommonwealth",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/shopping/athletes/how-to-watch-2026-commonwealth-games-online-free-streaming-1236816812/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/22/science/00SCI-LOTUS-EATERS-02/00SCI-LOTUS-EATERS-02-mediumSquareAt3X.jpg"
+          "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg?w=1000&h=563&crop=1"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/science/odyssey-lotus-eaters-opium.html"
+          "https://variety.com/2026/shopping/athletes/how-to-watch-2026-commonwealth-games-online-free-streaming-1236816812/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.81,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
+        "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks another collaboration between Netflix and Yeon, who developed the show and co-wrote the script with Ryu Yong-jae. This is the latest project from Yeon, known for his work on \"Hellbound\" and \"Parasyte: The Grey.\" The series is expected to premiere next year.",
+        "hashtag": "SangReturns",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 5.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Andy Burnham could easily ignore the UK’s falling aid commitment. He would be wise not to | Halima Begum",
+        "summary": "UK's aid budget is set to decline significantly under the new allocation plan, with a £6.5 billion reduction over four years. The plan, published last week, will see the aid budget fall from £13 billion to £6.5 billion by 2028-29. Malawi's allocation will drop from £50.2 million to £5 million by 2028-29, affecting three-quarters of the population without access to electricity. The new prime minister, Andy Burnham, will face the consequences of these cuts when he takes office.",
+        "hashtag": "BurnhamHalima",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/global-development/2026/jul/23/andy-burnham-could-easily-ignore-the-uks-falling-aid-commitment-he-would-be-wise-not-to",
+        "imageUrl": "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=d14d5c7a2498988fdb6192986f0d7220",
+        "images": [
+          "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=d14d5c7a2498988fdb6192986f0d7220",
+          "https://i.guim.co.uk/img/media/de526c0c9e7624795fdc5fe7f46edd151e22dfee/150_156_1512_1209/master/1512.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=5c6111e4ebbd3d9fb25cd7a2af224aeb",
+          "https://i.guim.co.uk/img/media/24b85f7b14d8fe39247effb7ccd1b61ca135f6dd/271_0_2734_2187/master/2734.jpg?width=445&dpr=1&s=none&crop=none"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/global-development/2026/jul/23/andy-burnham-could-easily-ignore-the-uks-falling-aid-commitment-he-would-be-wise-not-to"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.85,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Nobody in Europe knows or cares what Kemi Badenoch thinks. That’s a big mistake | Simon Nixon",
+        "summary": "British Conservative party leader Kemi Badenoch has committed her party to a policy of conflict with the EU, potentially leading to rupture, by suggesting opposition to withdrawing from the European Convention on Human Rights or ditching net zero commitments makes one \"not serious\" for Conservative candidacy. This stance was taken after she withdrew the party whip from a critic, Gavin Barwell. The move comes as the party struggles in opinion polls, third behind Labour. The UK's relationship with the EU is now at a critical juncture.",
+        "hashtag": "EuropeKemi",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/commentisfree/2026/jul/23/europe-kemi-badenoch-uk-echr-treaties",
+        "imageUrl": "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f32800f815ba714f9b326aa9afe3615",
+        "images": [
+          "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2f32800f815ba714f9b326aa9afe3615",
+          "https://i.guim.co.uk/img/media/235d72463c0b866c34151490d61ba2dee54a2b4e/825_4_3988_3191/master/3988.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=f03321d15793d5c87267217b2347ddbf"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/commentisfree/2026/jul/23/europe-kemi-badenoch-uk-echr-treaties"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.85,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Amish Shah Wins Democratic Primary in Swing Arizona House District",
+        "summary": "Dr. Amish Shah, who beat the choice of the party’s House campaign arm, will face Jay Feely, a Republican, in a battleground district that covers parts of Phoenix.",
+        "hashtag": "ShahWins",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1362,7 +1438,100 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 7.63,
+        "freshH": 0.43,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Houthis claim attack on oil tankers as US launches more strikes on Iran",
+        "summary": "US launches 12th consecutive night of strikes on Iran, killing two people, as Yemen's Houthis claim to have attacked two Saudi oil tankers in the Red Sea. The Houthis targeted the ships with drones and missiles for allegedly violating their naval blockade. The attack comes as the US President had threatened to destroy an Iranian bridge or power plant if Iran attacked a ship in the Strait of Hormuz. The US strikes and Houthi attack raise tensions in the region.",
+        "hashtag": "Iran",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5df9/live/bacada70-862e-11f1-b1b6-99ee8edc68f7.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cpw9xzx9r4ko?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "U.S. Military Presence in Jordan Makes It Iranian Target",
+        "summary": "Relying heavily on U.S. aid and protection, Jordan is unlikely to restrict the American military presence there, despite escalating Iranian airstrikes.",
+        "hashtag": "MilitaryPresence",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/world/22int-jordan-us-afpm/22int-jordan-us-afpm-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/world/middleeast/jordan-iran-us-forces.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Japan’s Leader Invokes Her Hero, Shinzo Abe, to Drive Nationalist Agenda",
+        "summary": "Prime Minister Sanae Takaichi is leveraging her ties to Mr. Abe, the slain Japanese leader, as she pushes to reshape defense and the economy.",
+        "hashtag": "LeaderInvokes",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/23/world/asia/japan-sanae-takaichi-shinzo-abe.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22int-japan-abe-chzq/22int-japan-abe-chzq-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/22/multimedia/22int-japan-abe-chzq/22int-japan-abe-chzq-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/world/asia/japan-sanae-takaichi-shinzo-abe.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.84,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1374,7 +1543,7 @@
     "tech": [
       {
         "title": "Lego’s Donkey Kong arcade machine lets Mario jump endless barrels — Miyamoto is reportedly happy",
-        "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a working joystick and button to control Mario's movement and jumping. The game includes an endless series of barrels for Mario to jump, utilizing the same original barrels first released in 1989 for Lego's pirate sets. The machine's design has reportedly won the approval of Mario creator Shigeru Miyamoto. The set is now available for purchase.",
+        "summary": "A Lego Donkey Kong arcade machine has been created, priced at $200, featuring a basic fully functional game with a working joystick and button. The machine allows Mario to jump endless barrels, utilizing the same original barrels first released in 1989 for Lego pirate sets. The set was reportedly well-received by Mario creator Shigeru Miyamoto. The machine's design is a nostalgic tribute to classic arcade games.",
         "hashtag": "DonkeyKong",
         "badge": "TECH",
         "category": "tech",
@@ -1399,7 +1568,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.36,
+        "freshH": 4.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1409,7 +1578,7 @@
       },
       {
         "title": "Google burning through cash with spiralling AI costs",
-        "summary": "Google's parent company Alphabet reported a negative free cash flow of $5.9 billion for the first time in at least a decade, due to growing spending on artificial intelligence infrastructure. This comes as Alphabet's AI spending is expected to reach $205 billion this year, a significant increase from $190 billion. The company's combined quarterly revenue rose 23% to $119.8 billion, but its stock fell 4% in after-hours trading. Alphabet's AI spending is now a major focus, with $45 billion spent in the second quarter, mostly on servers and data centers.",
+        "summary": "Google's parent company Alphabet reported negative free cash flow of $5.9 billion for the first time in at least a decade, due to soaring spending on artificial intelligence infrastructure. The company's AI costs are expected to reach $205 billion this year, up from $190 billion. This significant investment comes as Alphabet's combined quarterly revenue hit $119.8 billion, a 23% increase from last year. The company's stock fell 4% in after-hours trading.",
         "hashtag": "GoogleBurning",
         "badge": "TECH",
         "category": "tech",
@@ -1430,7 +1599,37 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.82,
+        "freshH": 5.82,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Clarity Act Mired In Debate Over Whether to Bar President From Selling Crypto",
+        "summary": "Democrats and Republicans are haggling about the Clarity Act, a major bill pushed by the crypto industry, as it moves closer to a Senate vote.",
+        "hashtag": "ActMired",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1441,8 +1640,38 @@
     ],
     "crisis": [
       {
+        "title": "Diesel Crisis Puts Poor Farmers Around the World at Risk",
+        "summary": "The closure of the Strait of Hormuz has limited the shipment of diesel, depriving farmers of fuel for irrigation pumps and threatening the food supply.",
+        "hashtag": "CrisisPuts",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/21/multimedia/Biz-Bangladesh-Irrigation-video-still-gmlc/Biz-Bangladesh-Irrigation-video-still-gmlc-mediumSquareAt3X.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/business/bangladesh-farmers-diesel-water-iran.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-        "summary": "A US government adviser claims China's Moonshot AI stole capabilities from top US AI model Anthropic's Fable AI through a process called distillation, gaining access to restricted Nvidia servers to train its K3 model. The alleged theft occurred through a weaker AI model extracting answers from a stronger one. This incident is linked to Moonshot's unveiling of its K3 model, which rivals top US technology. The US government is now investigating the claims.",
+        "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from top US AI models, specifically Anthropic's Fable AI, to develop its K3 model. The alleged theft occurred through a process called distillation, where a weaker AI extracts answers from a stronger one. Moonshot gained access to restricted Nvidia servers to train its models. The US government claims to have evidence of this alleged theft, which could have significant implications for the global AI landscape.",
         "hashtag": "MoonshotAnthropic",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1463,7 +1692,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.99,
+        "freshH": 2.99,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1493,224 +1722,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.29,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Clarity Act Mired In Debate Over Whether to Bar President From Selling Crypto",
-        "summary": "Democrats and Republicans are haggling about the Clarity Act, a major bill pushed by the crypto industry, as it moves closer to a Senate vote.",
-        "hashtag": "ActMired",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23trump-ethics-bkhv/23trump-ethics-bkhv-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/technology/crypto-bill-trump.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.14,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "Where to Find a Commonwealth Games 2026 Livestream in the U.S. to Watch the Event for Free",
-        "summary": "The 2026 Commonwealth Games will take place in Glasgow, Scotland, from July 23 to August 2, featuring over 7,000 athletes from more than 70 nations. The event will air live and as nightly highlights on channels like 7Plus in Australia and Channel 5 in the UK. North American viewers can watch the Games for free on CBC, Canada's national public broadcaster, using a virtual private network. The Games will be available to stream online from anywhere in the world.",
-        "hashtag": "FindCommonwealth",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/shopping/athletes/how-to-watch-2026-commonwealth-games-online-free-streaming-1236816812/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/watch-commonwealth-games-2026-online-free.jpg?w=1000&h=563&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/shopping/athletes/how-to-watch-2026-commonwealth-games-online-free-streaming-1236816812/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.82,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Yeon Sang-ho Returns to ‘Parasyte’ Universe With ‘Tamiya,’ Starring Shioli Kutsuna, at Netflix",
-        "summary": "South Korean filmmaker Yeon Sang-ho is returning to the \"Parasyte\" universe with a new live-action series, \"Parasyte: Tamiya,\" starring Shioli Kutsuna, set to stream on Netflix in 2027. The series marks a collaboration between Netflix and Yeon, who previously worked on \"Hellbound\" and \"Parasyte: The Grey.\" Yeon developed and co-wrote the script with Ryu Yong-jae. The series is expected to premiere next year.",
-        "hashtag": "SangReturns",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Parastye-Tamiya.jpg?w=1000&h=563&crop=1"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/tv/news/yeon-sang-ho-parasyte-tamiya-shioli-kutsuna-netflix-1236817846/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 4.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Shaken, Soaked and Seasick: What It’s Like to Survive ‘The Odyssey’ in 4DX",
-        "summary": "A three-hour screening of Christopher Nolan's \"The Odyssey\" in 4DX format has left some viewers shaken and soaked. The 4DX experience, featuring seat-rumbling and water-spritzing technology, is available at select theaters. Over 100 people have reported experiencing seasickness during the film's intense scenes. As a result, some theaters are considering adding a warning to the film's description.",
-        "hashtag": "SoakedSeasick",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/MCDODYS_UV017-2.jpg?crop=0px%2C284px%2C3000px%2C1688px&resize=1000%2C563"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/features/the-odyssey-4dx-moving-seats-water-spraying-1236818539/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 5.36,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "politics": [
-      {
-        "title": "Amish Shah Wins Democratic Primary in Swing Arizona House District",
-        "summary": "Dr. Amish Shah, who beat the choice of the party’s House campaign arm, will face Jay Feely, a Republican, in a battleground district that covers parts of Phoenix.",
-        "hashtag": "ShahWins",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22pol-arizona-dem-upset-kfjh/22pol-arizona-dem-upset-kfjh-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/amish-shah-arizona-house-democrats.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.7,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Republican Lawmaker Urges Charges Against Jack Smith",
-        "summary": "The criminal referral could provide a catalyst for a prosecution of Mr. Smith, who as special counsel became a top target of the president’s retribution campaign.",
-        "hashtag": "LawmakerCharges",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/jack-smith-jim-jordan-charges.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/00dc-smithHFO-photo-qmjb/00dc-smithHFO-photo-qmjb-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/00dc-smithHFO-photo-qmjb/00dc-smithHFO-photo-qmjb-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/jack-smith-jim-jordan-charges.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.72,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "House Passes Defense Bill Amid Iran War Divide",
-        "summary": "Republicans pushed through the $1.15 trillion bill over opposition from Democrats, who said backing it was akin to embracing the war.",
-        "hashtag": "PassesDefense",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/22/multimedia/22dc-defensebill-photo-gfvm/22dc-defensebill-photo-gfvm-mediumSquareAt3X.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.69,
+        "freshH": 3.29,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1722,7 +1734,7 @@
     "health": [
       {
         "title": "Hope for thousands of MS patients as 'life-changing' drug now on NHS in England",
-        "summary": "Up to 5,000 people in England with multiple sclerosis will now have access to the life-changing drug fampridine, which boosts nerve signals to help them walk independently. The drug, already available elsewhere in the UK, is being made available on the NHS in England. Clinical trials showed around four in 10 people taking the drug had improvements in their walking speed. This decision could significantly improve the lives of thousands of patients.",
+        "summary": "Thousands of multiple sclerosis patients in England are set to benefit from the NHS's decision to make the life-changing drug fampridine available, which can help people walk by boosting nerve signals. Up to 5,000 people could benefit each year. The drug has already been shown to improve walking speed and distance in around four in 10 users. This could enable patients to live independently and participate in daily activities.",
         "hashtag": "England",
         "badge": "HEALTH",
         "category": "health",
@@ -1743,7 +1755,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.21,
+        "freshH": 5.21,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1753,7 +1765,7 @@
       },
       {
         "title": "Target ultra-processed food to reduce obesity in Britain | Letter",
-        "summary": "A British health select committee report finds obesity is an engineered outcome, not a failure of willpower. The report highlights a flaw in decades of British food policy, specifically the \"high in fat, salt or sugar\" framework, which unfairly targets fat as a primary driver of weight gain. The committee recommends targeting ultra-processed foods high in sugar and refined carbohydrates instead. This shift could lead to more effective public health measures.",
+        "summary": "A British health select committee report has found that obesity is an engineered outcome, not a failure of willpower, with sugar and refined carbohydrates identified as primary drivers of weight gain and type 2 diabetes. The report recommends targeting ultra-processed foods to reduce obesity in Britain, with a focus on reducing sugar content. This shift in approach aims to correct decades of flawed food policy. The next step is for supermarkets and manufacturers to be held accountable for reformulating their products.",
         "hashtag": "BritainLetter",
         "badge": "HEALTH",
         "category": "health",
@@ -1774,7 +1786,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 11.01,
+        "freshH": 12.01,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1786,7 +1798,7 @@
     "sports": [
       {
         "title": "McInnes glad of Rangers backing in appeal against ban",
-        "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to a three-game penalty already imposed by the Scottish FA. McInnes is appealing the decision, which he believes was wrong. The appeal will be a key test of the club's support for their manager.",
+        "summary": "Rangers manager Derek McInnes has received a four-match touchline ban for criticizing a late penalty awarded to Celtic at Motherwell in May. The ban is in addition to an immediate three-game suspension and one game suspended until the end of the season. McInnes is contesting the penalty, saying it was directed at the decision rather than officials. The appeal is expected to be a key issue in the coming weeks.",
         "hashtag": "Rangers",
         "badge": "SPORTS",
         "category": "sports",
@@ -1807,38 +1819,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.78,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
-        "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo athlete, will share the honor. The flag will be returned to its owners after the ceremony, but they may have to compete for the first photo opportunity. The event marks a special moment for both athletes, who have been keeping the news secret for weeks.",
-        "hashtag": "MarshallAdlington",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 5.36,
+        "freshH": 5.78,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1848,7 +1829,7 @@
       },
       {
         "title": "Liverpool confident of signing Barcola - Thursday's gossip",
-        "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The deal would come after Liverpool beat Arsenal and Bayern Munich to the signature. Talks around a new deal are also ongoing for Manchester United's Portugal midfielder Bruno Fernandes, 31. Fernandes has decided to commit his future to Manchester United.",
+        "summary": "Liverpool is confident of signing 23-year-old Paris St-Germain forward Bradley Barcola, who impressed with four goal contributions at the World Cup with France this summer. The move would see Liverpool beat out Arsenal and Bayern Munich for the player's signature. Barcola's World Cup performance has boosted his transfer value. Liverpool's confidence in securing the signing suggests a potential deal is imminent.",
         "hashtag": "BarcolaThursday",
         "badge": "SPORTS",
         "category": "sports",
@@ -1869,7 +1850,38 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.49,
+        "freshH": 6.48,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Tears and sleepless nights as Marshall and Adlington get Scotland flag honour",
+        "summary": "Scottish athletes Marshall and Adlington have been chosen to carry the Scotland flag at the Commonwealth Games. Marshall, a 59-year-old bowler, and Adlington, a 39-year-old judo gold medalist, will share the honour. The flag will be presented to them on the day of the big show. The two athletes have been keeping the news a secret for weeks, making it a surprise for everyone else.",
+        "hashtag": "MarshallAdlington",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f151/live/e5249f20-85ea-11f1-8ade-a7a676c613b9.jpg"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/articles/c4gjwxq1kzeo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 6.36,
         "score": null,
         "popularity": null,
         "recency": null,
