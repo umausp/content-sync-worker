@@ -37,6 +37,16 @@ const jget = async (url, { timeoutMs = 8000 } = {}) => {
   return r.json();
 };
 
+// MONETIZATION SAFETY: only Wikimedia COMMONS files (CC/PD) are safe to show in a monetized
+// video. A file served from a LOCAL wiki upload path (/wikipedia/en/…, /wikipedia/hi/…) is a
+// NON-FREE "fair use" upload — album covers, film posters, TV screenshots, company logos —
+// which is copyrighted and NOT license-safe for us. Commons files live under /wikipedia/commons/.
+// (P18 is Commons-only by datatype, so this only ever filters the Wikipedia-summary lead image.)
+function isCommonsHosted(url) {
+  return /\/wikipedia\/commons\//.test(String(url || '')) ||
+    /(^|\/\/)commons\.wikimedia\.org\//.test(String(url || ''));
+}
+
 // ── Wikipedia REST: title → lead image (originalimage/thumbnail). Cheapest, one call. ──
 // `type` guards against disambiguation/list pages (no real subject photo there).
 async function wikipediaImage(title) {
@@ -46,55 +56,151 @@ async function wikipediaImage(title) {
     );
     if (!j || j.type === 'disambiguation') return null;
     const url = j.originalimage?.source || j.thumbnail?.source || null;
+    if (!url) return null;
     // The summary thumbnail is often a small crop; prefer originalimage, and drop the
     // size-limiting "/thumb/…/NNNpx-" segment so we get the full-res Commons original.
-    return url ? url.replace(/\/thumb(\/.+?)\/\d+px-[^/]+$/, '$1') : null;
+    const full = url.replace(/\/thumb(\/.+?)\/\d+px-[^/]+$/, '$1');
+    // Reject non-free local-wiki uploads (posters/covers/logos) — keep only Commons CC/PD.
+    return isCommonsHosted(full) ? full : null;
   } catch {
     return null;
   }
 }
 
-// ── Wikidata: entity search → P18 (image) → Commons file URL. More precise (uses the
-// knowledge graph to disambiguate "The Odyssey (2026 film)" from the poem). ──
-async function wikidataImage(name) {
-  try {
-    const s = await jget(
-      `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(name)}` +
-        `&language=en&format=json&limit=1&origin=*`,
-    );
-    const id = s?.search?.[0]?.id;
-    if (!id) return null;
-    const c = await jget(
-      `https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=${id}&property=P18&format=json&origin=*`,
-    );
-    const file = c?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
-    if (!file) return null;
-    // Commons Special:FilePath resolves a file NAME to its actual image URL (handles the
-    // md5-hash directory sharding). width= keeps it a reasonable size.
-    return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1200`;
-  } catch {
-    return null;
-  }
+function commonsFilePath(file) {
+  // Commons Special:FilePath resolves a file NAME to its actual image URL (handles the
+  // md5-hash directory sharding). width= keeps it a reasonable size. NOT the formatter URL
+  // https://commons.wikimedia.org/wiki/<file> — that returns a description PAGE, not the
+  // binary (deep-research refuted that path 1-2).
+  return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1200`;
 }
 
-// Resolve ONE entity name → a usable image URL (Wikipedia lead first — it's the most
-// "editorial" pick; Wikidata P18 as the disambiguating fallback). Gated through the same
-// acceptImage filters (no ads/aggregators/tiny/avatars) as every other image.
-export async function entityImage(name) {
+// ── CONTEXT-AWARE DISAMBIGUATION (user: "Odyssey should give the Odyssey MOVIE, not the
+// poem — always fetch the LATEST image which is in the news"). Wikipedia REST returns the
+// PRIMARY topic for a title ("The Odyssey" → Homer's ancient poem), which is wrong when the
+// news is the 2026 Nolan film. So we search Wikidata for CANDIDATES and pick the one whose
+// short description best fits THIS story: other named entities appearing in it, overlap with
+// the story's words, a RECENT year (news is current), and media-type words (film/series/…). ──
+const CTX_TYPE = /\b(film|movie|series|show|season|album|song|single|video game|tournament|championship|election|company|startup|band|novel|book)\b/;
+function buildContext(story, entities) {
+  const text = `${story?.title || ''} ${story?.summary || ''}`.toLowerCase();
+  const words = new Set(text.match(/[a-z]{4,}/g) || []);
+  const others = (entities || []).map((e) => String(e || '').toLowerCase());
+  return { words, entities: others };
+}
+// Score how well a Wikidata candidate's description matches the story context. Higher = the
+// candidate the news is actually about. `self` is the entity being resolved (excluded from
+// the other-entity signal). Context-less callers pass an empty context → score 0 (rank wins).
+function scoreCandidate(desc, ctx, self) {
+  const d = String(desc || '').toLowerCase();
+  if (!d || !ctx) return 0;
+  let s = 0;
+  const selfLc = String(self || '').toLowerCase();
+  for (const e of ctx.entities || []) {
+    if (!e || e === selfLc) continue;
+    // a co-occurring OTHER entity named in the description is the strongest signal
+    if (e.split(/\s+/).some((t) => t.length >= 4 && d.includes(t))) s += 4;
+  }
+  for (const w of ctx.words || []) if (w.length >= 4 && d.includes(w)) s += 1;
+  const ym = d.match(/\b(?:19|20)\d{2}\b/); // a recent year → the current-events sense
+  if (ym && Number(ym[0]) >= 2015) s += 3;
+  if (CTX_TYPE.test(d)) s += 1;
+  return s;
+}
+
+// How much better a non-primary candidate must score before we OVERRIDE Wikidata's own
+// rank-0 result. The rank-0 sense is right for most people/places (Zendaya → the actress,
+// NOT her album), so we only switch when the story context STRONGLY points elsewhere
+// (e.g. "The Odyssey" in a film story: film scores ≫ poem → switch to the film).
+const OVERRIDE_MARGIN = 3;
+
+// Resolve an entity NAME to the best-matching Wikidata item id, returning { id, label,
+// description }. DEFAULTS to Wikidata's rank-0 (the primary/most-notable sense) and only
+// overrides it when a later candidate beats rank-0's context score by ≥OVERRIDE_MARGIN.
+// One API call. With no context, always returns rank-0.
+async function resolveWikidataItem(name, ctx) {
+  const s = await jget(
+    `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(name)}` +
+      `&language=en&format=json&limit=7&origin=*`,
+  );
+  const cands = s?.search || [];
+  if (!cands.length) return null;
+  const primary = cands[0];
+  const asItem = (c) => (c ? { id: c.id, label: c.label, description: c.description } : null);
+  if (!ctx) return asItem(primary);
+  const primaryScore = scoreCandidate(primary.description, ctx, name);
+  // find the highest-scoring NON-primary candidate
+  let alt = null;
+  let altScore = -Infinity;
+  for (let i = 1; i < cands.length; i++) {
+    const sc = scoreCandidate(cands[i].description, ctx, name) - i * 0.01; // rank tiebreak
+    if (sc > altScore) { altScore = sc; alt = cands[i]; }
+  }
+  // Override only on a strong, positive contextual win over the primary sense.
+  if (alt && altScore >= primaryScore + OVERRIDE_MARGIN && altScore > 0) return asItem(alt);
+  return asItem(primary);
+}
+
+// Given a resolved Wikidata id, fetch (in ONE call) its enwiki article TITLE + P18 image.
+// Prefer the Wikipedia lead image of the RIGHT article (curated, editorial); fall back to
+// the P18 Commons file. Returns an image URL or null.
+async function imageForWikidataId(id) {
+  const e = await jget(
+    `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${id}` +
+      `&props=sitelinks|claims&sitefilter=enwiki&format=json&origin=*`,
+  );
+  const ent = e?.entities?.[id];
+  const title = ent?.sitelinks?.enwiki?.title;
+  if (title) {
+    const wimg = await wikipediaImage(title);
+    if (wimg) return wimg;
+  }
+  const file = ent?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
+  return file ? commonsFilePath(file) : null;
+}
+
+// Resolve ONE entity name → a usable image URL, DISAMBIGUATED by the story context so a
+// title in the news (a film, an album, a person) maps to the RIGHT article rather than the
+// generic primary topic. Gated through acceptImage (no ads/aggregators/tiny/avatars).
+//   • WITH context → Wikidata context-scored resolution FIRST (fixes "Odyssey → the poem"),
+//     then a bare Wikipedia-summary fallback.
+//   • WITHOUT context → cheap Wikipedia-summary first, then Wikidata rank-1.
+export async function entityImage(name, ctx = null) {
   const clean = String(name || '').trim();
   if (clean.length < 3) return null;
-  const url = (await wikipediaImage(clean)) || (await wikidataImage(clean));
+  let url = null;
+  try {
+    if (ctx) {
+      // Context path: resolve to the IN-THE-NEWS sense via Wikidata. Use its image if it
+      // has one; only if Wikidata resolved NOTHING do we fall back to the bare Wikipedia
+      // summary. We do NOT fall back to the summary when Wikidata resolved a specific sense
+      // but that sense has no free image — that would return the WRONG-sense photo (e.g.
+      // Homer's poem for a Nolan-film story). Better no entity image than a wrong one.
+      const item = await resolveWikidataItem(clean, ctx);
+      if (item) url = await imageForWikidataId(item.id);
+      else url = await wikipediaImage(clean);
+    } else {
+      url = (await wikipediaImage(clean)) || (await (async () => {
+        const item = await resolveWikidataItem(clean, null);
+        return item ? imageForWikidataId(item.id) : null;
+      })());
+    }
+  } catch {
+    return null;
+  }
   if (!url || isAggregatorUrl(url)) return null;
   // pubDomain '' → accept any host (Commons/Wikipedia upload domains), path/ad gate still applies.
   return acceptImage(url, '');
 }
 
 // Fetch photos for up to ENTITY_IMG_MAX entities in parallel, preserving priority order.
-// `entities` = ranked list of names (most important first). Returns deduped image URLs.
-export async function entityImages(entities, { max = ENTITY_IMG_MAX } = {}) {
+// `entities` = ranked list of names (most important first). `story` (optional) provides the
+// disambiguation context so each entity resolves to its IN-THE-NEWS sense. Returns deduped URLs.
+export async function entityImages(entities, { max = ENTITY_IMG_MAX, story = null } = {}) {
   if (!ENABLE || !Array.isArray(entities) || !entities.length) return [];
   const pick = entities.slice(0, max);
-  const urls = await Promise.all(pick.map((e) => entityImage(e).catch(() => null)));
+  const ctx = story ? buildContext(story, entities) : null;
+  const urls = await Promise.all(pick.map((e) => entityImage(e, ctx).catch(() => null)));
   return [...new Set(urls.filter(Boolean))];
 }
 

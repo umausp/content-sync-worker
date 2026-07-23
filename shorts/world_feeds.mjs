@@ -815,7 +815,9 @@ export async function enrichSummary(story) {
     try {
       const entities = await extractEntities(story, haveLlmKey() ? llmChat : null);
       story.entities = entities.slice(0, 6); // persisted in bundle for the render caption layer
-      const eimgs = await entityImages(entities);
+      // Pass the story so each entity resolves to its IN-THE-NEWS sense (user: "Odyssey
+      // should give the Odyssey MOVIE, not the poem") — context-scored Wikidata disambiguation.
+      const eimgs = await entityImages(entities, { story });
       if (eimgs.length) {
         story.entityImages = eimgs; // kept distinct so the renderer can time them to the name
         story.images = [...new Set([...(story.images || []), ...eimgs].filter(Boolean))];
