@@ -93,8 +93,12 @@ async function accessToken(refreshToken) {
   // the refresh token was minted with too narrow a scope (re-run get_token.mjs and Allow on
   // the consent screen). The scope is frozen at mint time; a code fix can't widen it.
   const scope = j.scope || '(none returned)';
-  const canPlaylist = /\/auth\/youtube(\b|$)|youtube\.force-ssl/.test(scope);
-  console.log(`[upload] token scope: ${scope} — playlist-capable: ${canPlaylist ? 'YES' : 'NO (upload-only)'}`);
+  // Playlist management needs the FULL manage scope (.../auth/youtube, with no suffix) or
+  // youtube.force-ssl — NOT youtube.upload. The negative lookahead is deliberate: `\b` would
+  // falsely match `youtube.upload` (word boundary sits between "youtube" and ".upload"), so
+  // require that `.../auth/youtube` is NOT followed by a `.suffix` / word char.
+  const canPlaylist = /\/auth\/youtube(?![.\w-])/.test(scope) || /youtube\.force-ssl/.test(scope);
+  console.log(`[upload] token scope: ${scope} — playlist-capable: ${canPlaylist ? 'YES' : 'NO (upload-only — re-mint with the full youtube scope)'}`);
   return j.access_token;
 }
 
