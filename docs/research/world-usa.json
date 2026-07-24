@@ -1,89 +1,224 @@
 {
-  "generatedAt": "2026-07-24T03:51:36.876Z",
+  "generatedAt": "2026-07-24T04:51:19.838Z",
   "region": "usa",
-  "count": 26,
+  "count": 28,
   "categoryCounts": {
-    "offbeat": 7,
-    "entertainment": 1,
-    "politics": 3,
+    "offbeat": 9,
+    "health": 3,
     "breaking": 1,
     "facts": 3,
-    "crisis": 3,
-    "health": 3,
+    "politics": 3,
     "tech": 3,
+    "entertainment": 1,
+    "crisis": 3,
     "sports": 2
   },
   "stories": [
     {
-      "title": "NYC attacker yelled 'Allahu Akbar' as he randomly stabbed two men near Central Park, according to victim, witnesses: commish",
-      "summary": "A 51-year-old man, Raul Morales, was arrested Thursday after yelling \"Allahu Akbar\" while stabbing two men in separate attacks near Central Park in Manhattan. Both victims, aged 57 and 50, were hospitalized with nonfatal injuries and are expected to survive. Police are investigating whether hate or mental health factors motivated the assaults.",
+      "title": "Suspect arrested after allegedly yelling ‘Allahu Akbar,’ stabbing 2 men in NYC attack",
+      "summary": "A 51-year-old suspect, Raul Morales, was arrested after allegedly shouting \"Allahu Akbar\" while stabbing two men in Manhattan’s Upper West Side on Thursday afternoon. Both victims, aged 57 and 50, were taken to the hospital in stable condition after separate attacks near Central Park West and Amsterdam Avenue. Authorities are evaluating the incidents as potential hate crimes while investigating Morales’ motive.",
       "hashtag": "AllahuAkbar",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-      "imageUrl": "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
+      "url": "https://www.wfmd.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+      "imageUrl": "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
       "images": [
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/manhattan-shomrim-135308109.jpg?w=768",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305448.jpg?w=1024",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-police-responded-two-people-135307280.jpg?w=1024",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305446.jpg?w=1024",
-        "https://smartcdn.gprod.postmedia.digital/nationalpost/wp-content/uploads/2026/07/NYPD-2.jpg",
-        "https://www.livemint.com/lm-img/img/2026/07/24/600x338/Accident-or-crime-scene-cordon-tape--police-line-d_1784861279136_1784861284478_cd347830-8167-4e21-bf1d-912f3a2478e3.jpg"
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
+        "https://bnonews.com/wp-content/uploads/2026/07/20260723NYCStabbing.jpg",
+        "https://static.toiimg.com/thumb/msid-132595929,width-1280,height-720,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+        "https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-132595929/132595929.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Central Park",
         "New York City"
       ],
       "sourceUrls": [
-        "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-        "https://www.thestatesman.com/world/asian-jewish-men-stabbed-in-manhattan-suspect-shouted-allahu-akbar-nypd-probes-hate-crime-1503620227.html",
-        "https://nationalpost.com/news/world/jewish-man-stabbed-in-n-y-c-by-attacker-who-yelled-allahu-akbar-according-to-witnesses",
-        "https://www.livemint.com/news/us-news/nyc-attacker-stabs-two-men-near-central-park-yells-allahu-akbar-witnesses-recall-attack-knife-was-sticking-out-11784861096534.html"
+        "https://www.wfmd.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+        "https://bnonews.com/index.php/2026/07/2-men-stabbed-in-apparently-random-attacks-on-new-yorks-upper-west-side/",
+        "https://timesofindia.indiatimes.com/world/us/watch-suspect-yelling-allahu-akbar-stabs-two-in-new-york-arrested/articleshow/132595618.cms"
       ],
-      "sourceName": "New York Post",
+      "sourceName": "930 WFMD Free Talk",
       "sources": [
-        "New York Post",
-        "The Statesman",
-        "National Post",
-        "livemint.com"
+        "930 WFMD Free Talk",
+        "BNO News",
+        "The Times of India"
       ],
-      "corr": 4,
+      "corr": 3,
       "verified": true,
       "trend": "Allahu Akbar",
-      "traffic": 92000,
+      "traffic": 93000,
       "freshH": 0.5,
-      "score": 0.796,
-      "popularity": 0.564,
+      "score": 0.759,
+      "popularity": 0.508,
       "recency": 0.944,
-      "relevancy": 0.959,
+      "relevancy": 0.9,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "The Game Recalls Early Encounters With Nipsey Hussle During VERZUZ With YG",
-      "summary": "During a VERZUZ clash with YG on June 23, The Game honored late rapper Nipsey Hussle by recalling their early friendship and performing their 2008 collaboration \"They Roll.\" Travis Barker joined The Game for a surprise drum performance of \"Dope Boys\" to kick off the event. The livestream is available on Apple Music and YouTube.",
+      "title": "Avatar: Seven Havens Officially Reveals Korra's Earthbender Successor With October 9 Premiere",
+      "summary": "Avatar: Seven Havens premieres on October 9, 2026, introducing Pavi, the new Earthbending Avatar successor to Korra, in a fractured world that blames the Avatar for a past catastrophe. The 26-episode series, co-created by Michael Dante DiMartino and Bryan Konietzko, follows Pavi and her twin sister Nisha as they uncover their origins and defend the last strongholds of civilization.",
+      "hashtag": "Korra",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://www.cbr.com/avatar-seven-havens-korra-successor/",
+      "imageUrl": "https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/11/xfjt9w6u5vef1.jpeg?w=1200&h=675&fit=crop",
+      "images": [
+        "https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/11/xfjt9w6u5vef1.jpeg?w=1200&h=675&fit=crop",
+        "https://image-cdn.netflixjunkie.com/msn/image/image_1782452466478.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Avatar: The Last Airbender",
+        "Korra"
+      ],
+      "sourceUrls": [
+        "https://www.cbr.com/avatar-seven-havens-korra-successor/",
+        "https://www.enstarz.com/articles/245754/20260723/avatar-seven-havens-teaser-introduces-new-earthbending-avatar-korra-connection.htm",
+        "https://www.netflixjunkie.com/hollywood-news-avatar-seven-havens-first-teaser-reveals-a-world-after-korras-cataclysm/amp/"
+      ],
+      "sourceName": "Comic Book Resources",
+      "sources": [
+        "Comic Book Resources",
+        "Enstarz",
+        "Netflix Junkie"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "Korra",
+      "traffic": 97000,
+      "freshH": 2,
+      "score": 0.683,
+      "popularity": 0.52,
+      "recency": 0.794,
+      "relevancy": 0.788,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Samantha Morton casts a spell and steals 'The Odyssey.' She's always been a little dangerous",
+      "summary": "Samantha Morton's captivating performance as Circe in Christopher Nolan's adaptation of \"The Odyssey\" has left audiences spellbound, particularly in a haunting scene where she transforms Odysseus' men into pigs using her hands, a visceral and unsettling sequence that relies on practical effects. Morton, known for her intense shape-shifting performances, brings a depth to the character that makes her transformation of the men all the more believable. The film, which opened in theaters this weekend, marks a significant milestone in Morton's illustrious career.",
+      "hashtag": "HeathLedger",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.latimes.com/entertainment-arts/movies/story/2026-07-23/samantha-morton-odyssey-christopher-nolan-circe",
+      "imageUrl": "https://ca-times.brightspotcdn.com/dims4/default/238f78b/2147483647/strip/true/crop/5417x2844+0+23/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+      "images": [
+        "https://ca-times.brightspotcdn.com/dims4/default/238f78b/2147483647/strip/true/crop/5417x2844+0+23/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/6577a14/2147483647/strip/false/crop/5417x3613+0+0/resize/1486x991!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/8790f5b/2147483647/strip/false/crop/5417x3047+0+0/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/b8492b7/2147483647/strip/true/crop/5417x3047+0+0/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/4abc58c/2147483647/strip/true/crop/3072x2048+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F40%2F95%2Feb571b8c4702af00132010a7cabc%2Fsamanthamorton.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/2dd80ec/2147483647/strip/true/crop/8736x11648+0+0/resize/2000x2667!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F2e%2F3c%2F83b3da1b44028f2f994f49ae4ed4%2F1563139-et-samantha-morton-4779.jpg",
+        "https://ca-times.brightspotcdn.com/dims4/default/692847c/2147483647/strip/true/crop/4644x6502+0+0/resize/2000x2800!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F96%2F15%2F2168150543f2964ce54370ae787e%2F1563139-et-samantha-morton-4783.jpg",
+        "https://pyxis.nymag.com/v1/imgs/427/cbd/6d6bff0f77cfb4a176b918d2dc76c1513a-samanthamorton-odyssey.1x.rsocial.w1200.jpg",
+        "https://pyxis.nymag.com/v1/imgs/427/cbd/6d6bff0f77cfb4a176b918d2dc76c1513a-samanthamorton-odyssey.rhorizontal.w700.jpg",
+        "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/16:9/w_1280,c_limit/Samantha3762_1.jpg",
+        "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/16:9/w_1488,h_837,c_limit/Samantha3762_1.jpg",
+        "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/4:3/w_1500,h_1125,c_limit/Samantha3762_1.jpg",
+        "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/1:1/w_1500,h_1500,c_limit/Samantha3762_1.jpg",
+        "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/master/w_2560%2Cc_limit/Samantha3762_1.jpg",
+        "https://media.vanityfair.com/photos/6a5a28e0bd98b5e0f38b2963/master/w_1600%2Cc_limit/CT-49880CC.jpg",
+        "https://media.vanityfair.com/photos/6a590032d28eb9aa1e8176d3/master/w_1600%2Cc_limit/Samantha3708.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Samantha Morton",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+      ],
+      "entities": [
+        "Samantha Morton",
+        "Odyssey",
+        "She's"
+      ],
+      "sourceUrls": [
+        "https://www.latimes.com/entertainment-arts/movies/story/2026-07-23/samantha-morton-odyssey-christopher-nolan-circe",
+        "https://www.vulture.com/article/samantha-morton-played-circe-like-shed-met-odysseus-before.html",
+        "https://www.vanityfair.com/story/the-odyssey-samantha-morton-circe-interview"
+      ],
+      "sourceName": "latimes.com",
+      "sources": [
+        "Los Angeles Times",
+        "Vulture",
+        "Vanity Fair"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "heath ledger",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.653,
+      "popularity": 0.228,
+      "recency": 0.891,
+      "relevancy": 1,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "UPDATE: Verdict reached in jury trial of Shiloh Hendrix",
+      "summary": "A jury has found Shiloh Hendrix not guilty of disorderly conduct involving a child but guilty of disorderly conduct against a camera operator during an April 2025 incident in Rochester, Minnesota. Hendrix received supervised probation, 200 hours of community service, and a $1,000 fine. The trial centered on allegations that she used a racial slur toward a Black child.",
+      "hashtag": "ShilohHendrix",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.kttc.com/2026/07/20/trial-updates-shiloh-hendrix-trial-disorderly-conduct-racial-slur-incident/",
+      "imageUrl": "https://gray-kttc-prod.gtv-cdn.com/resizer/v2/2JYQ2UQRWZGTJIMJIIZAU3JYFY.png?auth=82e7d3970128c8889c287397d34306757fcb553d967fb743a218e81d954197d7&width=1200&height=600&smart=true",
+      "images": [
+        "https://gray-kttc-prod.gtv-cdn.com/resizer/v2/2JYQ2UQRWZGTJIMJIIZAU3JYFY.png?auth=82e7d3970128c8889c287397d34306757fcb553d967fb743a218e81d954197d7&width=1200&height=600&smart=true",
+        "https://bloximages.newyork1.vip.townnews.com/kimt.com/content/tncms/assets/v3/editorial/3/e2/3e232814-d571-4da0-957d-963b39d3e01d/6a62de4985533.image.jpg?crop=1480%2C777%2C0%2C101&resize=1200%2C630&order=crop%2Cresize"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Verdict",
+        "Shiloh Hendrix"
+      ],
+      "sourceUrls": [
+        "https://www.kttc.com/2026/07/20/trial-updates-shiloh-hendrix-trial-disorderly-conduct-racial-slur-incident/",
+        "https://www.kimt.com/news/update-jury-reaches-a-verdict-in-trial-of-shiloh-hendrix/article_3517ea0b-b4ae-4210-baaf-ad3dc56562b1.html"
+      ],
+      "sourceName": "kttc.com",
+      "sources": [
+        "KTTC | Rochester, MN",
+        "KIMT"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "shiloh hendrix",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.564,
+      "popularity": 0.144,
+      "recency": 0.891,
+      "relevancy": 0.777,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+      "summary": "The Game stunned viewers at Thursday’s VERZUZ showdown with YG by downing nearly an entire bottle of tequila in one gulp. The Compton rappers traded hits during the two-round battle in front of a live crowd. The event, created by Swizz Beatz and Timbaland in 2020, continues to showcase hip-hop legends in high-energy face-offs.",
       "hashtag": "Verzuz",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
-      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
+      "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
       "images": [
-        "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
-        "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z"
+        "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
         "The Game",
-        "Nipsey Hussle",
         "VERZUZ"
       ],
       "sourceUrls": [
-        "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
-        "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
+        "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg"
       ],
       "sourceName": "Complex",
       "sources": [
@@ -94,205 +229,70 @@
       "trend": "#Verzuz",
       "traffic": 99000,
       "freshH": 0.5,
-      "score": 0.567,
+      "score": 0.554,
       "popularity": 0.3,
       "recency": 0.944,
-      "relevancy": 0.467,
+      "relevancy": 0.416,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "YG and The Game's 'VERZUZ': Travis Barker Pops Out for Opening Cut \"Dope Boys\"",
-      "summary": "Travis Barker joined The Game on drums for the opening of his VERZUZ battle with YG on July 23, delivering a high-energy performance of “Dope Boys.” The surprise appearance thrilled fans during the livestream on Apple Music and YouTube. The event continues with the rappers trading verses live.",
-      "hashtag": "TravisBarker",
+      "title": "Behind the Bylines: The stories beyond the game",
+      "summary": "The World Cup final on Sunday delivered a dramatic finish as Argentina secured victory over Spain in a penalty shootout. The match capped months of global anticipation, with fans worldwide glued to their screens. Analysts now dissect how tactical shifts and individual brilliance shaped the outcome.",
+      "hashtag": "Game",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys",
-      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
+      "url": "https://www.sentinelandenterprise.com/2026/07/24/behind-the-bylines-the-stories-beyond-the-game/",
+      "imageUrl": "https://www.sentinelandenterprise.com/wp-content/uploads/2026/07/AP26201708668842.jpg?w=6000&h=4000",
       "images": [
-        "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z"
+        "https://www.sentinelandenterprise.com/wp-content/uploads/2026/07/AP26201708668842.jpg?w=6000&h=4000"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "The Game",
-        "Travis Barker"
+        "Behind",
+        "Bylines"
       ],
       "sourceUrls": [
-        "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
+        "https://www.sentinelandenterprise.com/2026/07/24/behind-the-bylines-the-stories-beyond-the-game/"
       ],
-      "sourceName": "Complex",
+      "sourceName": "Sentinel and Enterprise",
       "sources": [
-        "Complex"
+        "Sentinel and Enterprise"
       ],
       "corr": 1,
       "verified": false,
-      "trend": "Travis Barker",
-      "traffic": 96000,
+      "trend": "The Game",
+      "traffic": 98000,
       "freshH": 0.5,
-      "score": 0.544,
-      "popularity": 0.291,
+      "score": 0.548,
+      "popularity": 0.297,
       "recency": 0.944,
-      "relevancy": 0.391,
+      "relevancy": 0.394,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Measles surges dramatically in California among children and young adults",
-      "summary": "Measles cases in California have more than doubled this year compared to last year, with 52 confirmed cases in the first 6½ months of 2026, a pace that could lead to the highest number of cases since 2015. The majority of cases involve children and young adults, with 27 cases among those aged 5 to 19 and 15 cases among children under 5 years old. If this trend continues, the state may see its highest measles case total since a large outbreak at Disneyland in 2015.",
-      "hashtag": "Vaccines",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.latimes.com/california/story/2026-07-23/measles-surge-dramatically-in-california-among-children-young-adults",
-      "imageUrl": "https://ca-times.brightspotcdn.com/dims4/default/0a654b2/2147483647/strip/true/crop/2400x1260+0+170/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
+      "title": "'Evidence lacking' for mental health monitoring tech",
+      "summary": "A UK inquiry has found no strong evidence that Oxevision, a monitoring system used in mental health wards, improves patient safety. The Lampard Inquiry, examining over 2,000 deaths in Essex mental health services since 2000, heard experts criticise the lack of robust independent research. The technology’s maker claims it helped staff respond to 1,453 safety incidents in one trust over four years.",
+      "hashtag": "Evidence",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
       "images": [
-        "https://ca-times.brightspotcdn.com/dims4/default/0a654b2/2147483647/strip/true/crop/2400x1260+0+170/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-        "https://ca-times.brightspotcdn.com/dims4/default/90425e9/2147483647/strip/false/crop/2400x1600+0+0/resize/1486x991!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-        "https://ca-times.brightspotcdn.com/dims4/default/b0666fc/2147483647/strip/false/crop/2400x1350+0+125/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-        "https://ca-times.brightspotcdn.com/dims4/default/a53f17c/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Measles",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-      ],
-      "entities": [
-        "Measles",
-        "California"
-      ],
-      "sourceUrls": [
-        "https://www.latimes.com/california/story/2026-07-23/measles-surge-dramatically-in-california-among-children-young-adults"
-      ],
-      "sourceName": "latimes.com",
-      "sources": [
-        "Los Angeles Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "vaccines",
-      "traffic": 1000,
-      "freshH": 1,
-      "score": 0.481,
-      "popularity": 0.003,
-      "recency": 0.891,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
-      "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies their themes of strength. The film’s abstract visuals turn her into a vessel for a broader message of feminine empowerment. It remains a striking testament to her enduring influence.",
-      "hashtag": "PresentReview",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Sia",
-        "Unstoppable",
-        "Titanium"
+        "Evidence",
+        "Lampard Inquiry",
+        "Oxevision"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.44,
-      "score": 0.452,
-      "popularity": 0,
-      "recency": 0.951,
-      "relevancy": 0.476,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "HHS Changes Two Vaccine Committee Charters",
-      "summary": "US Health and Human Services has altered the charters of two vaccine-related committees, the Advisory Commission on Childhood Vaccines and the National Vaccine Advisory Committee, with changes including the removal of a designated federal officer from the first committee and the addition of a focus on non-immunization strategies for the second. The changes are set to take effect immediately, with the committees advising on policies for the National Vaccine Injury Compensation Program and national vaccine strategy respectively. The implications of these changes are unclear, but experts have expressed concern over the potential impact on vaccine policy.",
-      "hashtag": "Immunizations",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.medpagetoday.com/washington-watch/washington-watch/122322",
-      "imageUrl": "https://assets.medpagetoday.net/media/images/122xxx/122322.jpg",
-      "images": [
-        "https://assets.medpagetoday.net/media/images/122xxx/122322.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "HHS Changes Two Vaccine",
-        "Committee Charters"
-      ],
-      "sourceUrls": [
-        "https://www.medpagetoday.com/washington-watch/washington-watch/122322"
-      ],
-      "sourceName": "medpagetoday.com",
-      "sources": [
-        "MedPage Today"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "immunizations",
-      "traffic": 1000,
-      "freshH": 1,
-      "score": 0.431,
-      "popularity": 0.003,
-      "recency": 0.891,
-      "relevancy": 0.47,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Burnham to spend first day working from northern branch of No 10",
-      "summary": "Andy Burnham will hold his first meeting at the new No 10 North office in Manchester today, marking a push to decentralise government power from London. Up to 300 civil servants will relocate to the site by the end of next year as part of broader devolution plans. The prime minister will chair a National Economic Council meeting to prioritise regional investment and local growth.",
-      "hashtag": "Burnham",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Various",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
-        },
-        {
-          "name": "Downing Street",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-      ],
-      "entities": [
-        "Burnham",
-        "Various",
-        "Downing Street"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -302,17 +302,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.12,
-      "score": 0.426,
+      "freshH": 0.05,
+      "score": 0.478,
       "popularity": 0,
-      "recency": 0.783,
-      "relevancy": 0.606,
+      "recency": 0.995,
+      "relevancy": 0.519,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-      "summary": "The US is imposing new tariffs of 10% to 12.5% on imports from 60 trading partners, including the UK, China, the EU, Canada, Japan and India, over forced labour concerns. The duties take effect Friday as a temporary 10% tax expires. The move escalates trade tensions amid ongoing global disputes.",
+      "title": "US imposes tariffs on dozens of trade partners, citing forced labour concerns",
+      "summary": "US Trade Representative Jamieson Greer has announced the imposition of new tariffs on 60 trading partners, accounting for the majority of US imports, due to concerns over forced labour practices. The tariffs, ranging from 10% to 12.5%, target key economic partners including the UK, China, the European Union, and India, and came into effect on Friday. This move marks the latest escalation in the global trade war, as the US seeks to address human rights abuses and distortive trade practices.",
       "hashtag": "US",
       "badge": "BREAKING",
       "category": "breaking",
@@ -336,17 +336,398 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.69,
-      "score": 0.398,
+      "freshH": 0.4,
+      "score": 0.464,
       "popularity": 0,
-      "recency": 0.822,
-      "relevancy": 0.442,
+      "recency": 0.955,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Please Welcome Demi Moore to the Humungous-Hat Club",
+      "summary": "Demi Moore has joined the exclusive Humongous-Hat Club, a group of celebrities who make a bold fashion statement with oversized headpieces. The actress wore a massive, cloud-like organza hat to a private shopping appointment at the Schiaparelli showroom in Paris during haute couture week, where she was accompanied by her daughter Tallulah Willis. This extravagant accessory is the latest addition to Moore's impressive wardrobe, solidifying her status as a fashion icon.",
+      "hashtag": "DemiMoore",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.thecut.com/article/demi-moore-humungous-hat-club.html",
+      "imageUrl": "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.1x.rsocial.w1200.jpg",
+      "images": [
+        "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.1x.rsocial.w1200.jpg",
+        "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.rvertical.w330.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Please Welcome Demi Moore",
+        "Humungous-Hat Club"
+      ],
+      "sourceUrls": [
+        "https://www.thecut.com/article/demi-moore-humungous-hat-club.html"
+      ],
+      "sourceName": "thecut.com",
+      "sources": [
+        "The Cut"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "demi moore",
+      "traffic": 1000,
+      "freshH": 1,
+      "score": 0.443,
+      "popularity": 0.003,
+      "recency": 0.891,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "A Million-Panel Project",
+      "summary": "Utah’s Green River Energy Center, a massive solar and battery storage plant, went online in June 2026 with nearly one million solar panels and 500 batteries. The facility delivers 400 megawatts of solar power and 400 megawatts of storage, supplying energy to Salt Lake City and beyond. It marks a shift from the region’s coal mining past to renewable energy.",
+      "hashtag": "AMillion",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/",
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+      "images": [
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+        "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20260606_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Million-Panel Project",
+        "Utah"
+      ],
+      "sourceUrls": [
+        "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/"
+      ],
+      "sourceName": "NASA",
+      "sources": [
+        "NASA"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.44,
+      "popularity": 0,
+      "recency": 0.908,
+      "relevancy": 0.488,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Burnham urged to 'build bridges' with sacked Starmerites",
+      "summary": "Andy Burnham needs to \"build bridges\" with the Starmerite minister he sacked during his reshuffle, Baroness Harriet Harman has told the Electoral Dysfunction podcast.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311",
+      "imageUrl": "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
+      "images": [
+        "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
+        "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Burnham",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg"
+        },
+        {
+          "name": "Starmerites",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg"
+        },
+        {
+          "name": "Andy Burnham",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+      ],
+      "entities": [
+        "Burnham",
+        "Starmerites",
+        "Andy Burnham",
+        "Starmerite",
+        "Baroness Harriet Harman",
+        "Electoral Dysfunction"
+      ],
+      "sourceUrls": [
+        "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311"
+      ],
+      "sourceName": "Sky News",
+      "sources": [
+        "Sky News"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.428,
+      "popularity": 0,
+      "recency": 0.906,
+      "relevancy": 0.445,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Brent Crude Oil Prices Top $100 as Conflict With Iran Drags On",
+      "summary": "Stocks in Asia were down following a sell-off in the U.S. markets over soaring oil prices, rising borrowing costs and worries about the technology industry.",
+      "hashtag": "BrentCrude",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.nytimes.com/2026/07/24/technology/oil-prices-global-stocks-shipping.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24biz-oil-stocks-gas-promo-lwtb/24biz-oil-stocks-gas-promo-lwtb-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24biz-oil-stocks-gas-promo-lwtb/24biz-oil-stocks-gas-promo-lwtb-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Brent Crude Oil Prices",
+        "Conflict With Iran Drags",
+        "Stocks",
+        "Asia"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/24/technology/oil-prices-global-stocks-shipping.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.33,
+      "score": 0.409,
+      "popularity": 0,
+      "recency": 0.963,
+      "relevancy": 0.287,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
+      "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless, abstract performance that amplifies themes of feminine strength. The film highlights how her anonymity transforms her into a vessel for universal empowerment.",
+      "hashtag": "PresentReview",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Nostalgic",
+        "Present",
+        "Review",
+        "Concert Performance Film",
+        "It Channels Sia",
+        "Mystery"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.43,
+      "score": 0.406,
+      "popularity": 0,
+      "recency": 0.847,
+      "relevancy": 0.438,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+      "summary": "Yemen’s Houthi rebels have attacked Red Sea shipping for 13 straight nights, forcing vessels to reroute and threatening the main Europe-Asia trade lane. US Central Command struck 13 Iranian targets overnight, citing threats to Gulf maritime traffic. Analysts warn the escalation risks deeper regional conflict and higher global shipping costs.",
+      "hashtag": "MiddleEast",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Houthi",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200"
+        },
+        {
+          "name": "Middle East",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+      ],
+      "entities": [
+        "Houthi",
+        "Middle East",
+        "Iran-backed",
+        "Yemen",
+        "Saudi"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 2.86,
+      "score": 0.396,
+      "popularity": 0,
+      "recency": 0.719,
+      "relevancy": 0.577,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Trump Administration Imposed New Tariffs of Around 10% on Over 80 Nations",
+      "summary": "The administration launched new duties tied to countries’ imports of goods made with forced labor, replacing a 10 percent tariff immediately after it expired.",
+      "hashtag": "TrumpAdministration",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Trump Administration Imposed New",
+        "Tariffs",
+        "Around",
+        "Nations"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.79,
+      "score": 0.392,
+      "popularity": 0,
+      "recency": 0.913,
+      "relevancy": 0.288,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Trump’s Global Tariffs: What’s the Latest on the Trade War",
+      "summary": "The president has unveiled a complicated system to forge ahead with his trade war, after the Supreme Court stuck down his original levies.",
+      "hashtag": "GlobalTariffs",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/article/trump-tariffs-trade.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Trump",
+        "Global Tariffs",
+        "Trade War",
+        "Supreme Court"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/article/trump-tariffs-trade.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.84,
+      "score": 0.386,
+      "popularity": 0,
+      "recency": 0.908,
+      "relevancy": 0.273,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Burnham to spend first day working from northern branch of No 10",
+      "summary": "Andy Burnham will spend his first day in office working from the new No 10 North in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee launched in 2008 to address UK economic challenges. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, marking a shift of power from Whitehall and Westminster to regional areas. Up to 300 civil servants are expected to join the new site by the end of next year.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Burnham",
+        "Various",
+        "Downing Street"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.11,
+      "score": 0.374,
+      "popularity": 0,
+      "recency": 0.698,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Curiosity Blog, Sols 4954–4960: Celebrating Our Rover Engineers Past and Present",
-      "summary": "NASA’s Curiosity rover completed its latest science campaign on Mars this week, analyzing five rock targets with its APXS instrument and MAHLI imager. Engineers overcame dusty, uneven terrain to safely deploy the robotic arm despite challenging conditions. The team now plans to continue driving toward a sulfate-rich area to study Mars’ ancient climate history.",
+      "summary": "NASA’s Curiosity rover completed its 4,960th Martian day on July 27, 2026, analyzing five new rock targets with its APXS instrument and MAHLI imager. Engineers overcame dusty, uneven terrain by safely deploying the robotic arm after brushing surfaces. The team continues driving toward sulfate-rich layers to study Mars’ ancient climate shifts.",
       "hashtag": "CuriosityBlog",
       "badge": "SCIENCE",
       "category": "facts",
@@ -377,17 +758,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.49,
-      "score": 0.385,
+      "freshH": 3.49,
+      "score": 0.353,
       "popularity": 0,
-      "recency": 0.75,
-      "relevancy": 0.491,
+      "recency": 0.669,
+      "relevancy": 0.478,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-      "summary": "Indonesian babies trafficked to Singapore face an uncertain future after a court convicted 19 people for selling at least 34 infants, with 12 sent to Singapore. The verdict leaves adoptive parents in limbo, awaiting decisions on whether the children will remain or return to Indonesia. Authorities in both countries are now under pressure to resolve the children’s status promptly.",
+      "summary": "Indonesian babies trafficked to Singapore for illegal adoption face uncertain futures after a court convicted 19 people for procuring at least 34 infants. Twelve of the babies were sent to Singapore, leaving adoptive parents in limbo as authorities decide their fate. Both governments are now under pressure to resolve the children’s status swiftly.",
       "hashtag": "Indonesian",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -397,18 +778,10 @@
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
         "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Indonesian",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Indonesian",
         "Singapore",
@@ -425,79 +798,34 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.53,
-      "score": 0.371,
+      "freshH": 5.52,
+      "score": 0.33,
       "popularity": 0,
-      "recency": 0.593,
-      "relevancy": 0.656,
+      "recency": 0.528,
+      "relevancy": 0.582,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Trump Administration to Impose New Tariffs of Around 10% on Over 80 Nations",
-      "summary": "The administration announced new duties tied to countries’ imports of goods made with forced labor, replacing a global 10 percent tariff set to expire at midnight.",
-      "hashtag": "ImposeNew",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
+      "title": "Google fined €890m by EU for favouring its own apps over rivals",
+      "summary": "Google has been fined €890 million by the EU for allegedly abusing its power by favouring its own apps and services over those from rivals, in the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections to comply with the EU's requirements.",
+      "hashtag": "Google",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Trump Administration",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
-      ],
-      "entities": [
-        "Trump Administration",
-        "Impose New Tariffs",
-        "Around",
-        "Nations"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.91,
-      "score": 0.366,
-      "popularity": 0,
-      "recency": 0.802,
-      "relevancy": 0.342,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-      "summary": "A record June heatwave in England, peaking above 30C in some homes, left parents like Tavia Watts feeling \"incredibly helpless\" as anxiety surged. Watts, a stay-at-home mum in Cheltenham, shared her fears online, sparking thousands of reactions as UK climate anxiety affects an estimated 4.6% of people. Experts warn the mental toll of extreme heat will likely grow as temperatures rise.",
-      "hashtag": "Heatwave",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Heatwave"
+        "Google",
+        "EU's"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -507,96 +835,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.76,
-      "score": 0.354,
+      "freshH": 5.69,
+      "score": 0.311,
       "popularity": 0,
-      "recency": 0.648,
-      "relevancy": 0.51,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-      "summary": "China’s Moonshot AI allegedly stole advanced AI capabilities from US firm Anthropic by using a technique called distillation to extract answers from stronger models. A White House adviser said Moonshot accessed restricted Nvidia servers to train its K3 model, which was unveiled last week and is seen as a major step for Chinese AI. The US restricted Nvidia’s top chips in 2022 over security concerns.",
-      "hashtag": "MoonshotAI",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/c5ye2gyz0x4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "China's Moonshot AI",
-        "Anthropic",
-        "Trump",
-        "Chinese AI"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c5ye2gyz0x4o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.02,
-      "score": 0.35,
-      "popularity": 0,
-      "recency": 0.629,
+      "recency": 0.518,
       "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "US health panel recommends easing restrictions on controversial peptides",
-      "summary": "A federal health advisory panel on Thursday narrowly voted 8-6 to ease restrictions on several injectable peptides, including BPC-157 and TB-500, despite safety concerns from government scientists. The non-binding recommendation could lead the FDA to allow pharmacies to compound these substances, potentially expanding their use in wellness and cosmetic treatments. Health Secretary Robert F. Kennedy Jr., a vocal peptide advocate, has signaled plans to overturn existing FDA restrictions.",
-      "hashtag": "US",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.theguardian.com/us-news/2026/jul/23/peptides-advisory-panel-rfk-jr",
-      "imageUrl": "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=339f63c761b823b94686592ddcc10310",
-      "images": [
-        "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=339f63c761b823b94686592ddcc10310",
-        "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=3d75ed397095b1e13e559cc2f6107242",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "RFK Jr",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-      ],
-      "entities": [
-        "Vote",
-        "RFK Jr",
-        "Thursday"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/us-news/2026/jul/23/peptides-advisory-panel-rfk-jr"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 5.11,
-      "score": 0.337,
-      "popularity": 0,
-      "recency": 0.554,
-      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
@@ -629,47 +872,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.34,
-      "score": 0.336,
+      "freshH": 3.34,
+      "score": 0.307,
       "popularity": 0,
-      "recency": 0.763,
+      "recency": 0.68,
       "relevancy": 0.274,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Google fined €890m by EU for favouring its own apps over rivals",
-      "summary": "Google has been fined €890 million by the European Union for abusing its market dominance by favouring its own apps and services over rivals. The penalty, the first major action under the EU’s Digital Markets Act, follows two breaches where Google gave its services an unfair advantage. Google warns the ruling could strip away key features for European users, but EU officials insist the measures protect fair competition.",
-      "hashtag": "Google",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Google"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 4.69,
-      "score": 0.334,
-      "popularity": 0,
-      "recency": 0.582,
-      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -683,16 +890,16 @@
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
       "images": [
         "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
       ],
       "entityShots": [
         {
           "name": "Deal",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
       ],
       "entities": [
         "Judge Extends Pause",
@@ -711,62 +918,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.95,
-      "score": 0.328,
+      "freshH": 3.95,
+      "score": 0.301,
       "popularity": 0,
-      "recency": 0.711,
+      "recency": 0.634,
       "relevancy": 0.318,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "India activist ends hunger strike after 26 days",
-      "summary": "India’s prominent activist Sonam Wangchuk ended a 26-day hunger strike after the government guaranteed no legal action against protesters at Delhi’s Jantar Mantar. The government ministers visited him in hospital as mass demonstrations continued following a violent police crackdown on Monday’s march to parliament. Youth-led group CJP, now a major dissent voice, vows to keep protesting until Education Minister Dharmendra Pradhan resigns.",
-      "hashtag": "India",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Sonam Wangchuk",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "India",
-        "Sonam Wangchuk"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 6.41,
-      "score": 0.309,
-      "popularity": 0,
-      "recency": 0.477,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "King's Tardis entrance as Commonwealth Games begin",
-      "summary": "The Commonwealth Games opening ceremony in Glasgow featured a surprise appearance by King Charles III, who entered via a Tardis-like portal. Scotland’s team drew the loudest cheers as they marched in kilts, followed by a Loch Ness Monster float and a rousing rendition of Flower of Scotland. The event showcased Scottish culture with performances by Nathan Evans and Callum Beattie before 10,000 spectators.",
+      "summary": "The Commonwealth Games opening ceremony in Glasgow featured a surprise appearance by King Charles III, who arrived via a Tardis-like lift. Scotland’s team received the loudest cheer as they marched in kilts, followed by a Loch Ness Monster float and a rousing performance of Flower of Scotland. The show celebrated Glasgow’s culture with live music and a dance under a replica of the city’s iconic clock.",
       "hashtag": "CommonwealthGames",
       "badge": "SPORTS",
       "category": "sports",
@@ -797,11 +959,49 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.98,
-      "score": 0.305,
+      "freshH": 6.97,
+      "score": 0.286,
       "popularity": 0,
-      "recency": 0.501,
+      "recency": 0.447,
       "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Hull KR inflict more derby misery on Hull FC",
+      "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side come from behind to secure a crucial victory. The win marked Hull KR's ninth consecutive derby win and moved them back into the play-off positions in fifth place. The result was a sixth straight loss for second-bottom Hull FC, whose struggling season continues.",
+      "hashtag": "HullKR",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Hull KR",
+        "Hull FC",
+        "Out-of-form Super League"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 6.82,
+      "score": 0.284,
+      "popularity": 0,
+      "recency": 0.455,
+      "relevancy": 0.497,
       "region": "usa",
       "geo": null
     },
@@ -837,10 +1037,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.61,
-      "score": 0.301,
+      "freshH": 4.6,
+      "score": 0.276,
       "popularity": 0,
-      "recency": 0.659,
+      "recency": 0.588,
       "relevancy": 0.28,
       "region": "usa",
       "geo": null
@@ -849,8 +1049,8 @@
       "title": "FDA Panel Supports Lifting Restrictions on Four Peptides",
       "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
       "hashtag": "FDAPanel",
-      "badge": "POLITICS",
-      "category": "politics",
+      "badge": "HEALTH",
+      "category": "health",
       "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
       "images": [
@@ -874,10 +1074,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.84,
-      "score": 0.294,
+      "freshH": 4.83,
+      "score": 0.27,
       "popularity": 0,
-      "recency": 0.642,
+      "recency": 0.572,
       "relevancy": 0.279,
       "region": "usa",
       "geo": null
@@ -914,10 +1114,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.83,
-      "score": 0.294,
+      "freshH": 4.83,
+      "score": 0.269,
       "popularity": 0,
-      "recency": 0.642,
+      "recency": 0.572,
       "relevancy": 0.276,
       "region": "usa",
       "geo": null
@@ -931,18 +1131,10 @@
       "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Dozens",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Health Care Agency Discontinues",
         "Dozens",
@@ -962,127 +1154,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.53,
-      "score": 0.286,
+      "freshH": 5.53,
+      "score": 0.251,
       "popularity": 0,
-      "recency": 0.593,
-      "relevancy": 0.314,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Hull KR inflict more derby misery on Hull FC",
-      "summary": "Hull KR beat Hull FC 28-20 in a tense Super League derby, ending their losing streak with nine straight wins over their rivals. Hull FC, already second-bottom, suffered their sixth straight defeat despite an early 12-0 lead. The Robins moved into fifth in the play-off race.",
-      "hashtag": "HullKR",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Hull KR",
-        "Hull FC",
-        "Out-of-form Super League"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 5.82,
-      "score": 0.285,
-      "popularity": 0,
-      "recency": 0.51,
-      "relevancy": 0.425,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Intel Benefits From a New Shift in A.I. Spending",
-      "summary": "The Silicon Valley chipmaker’s revenue rose 25 percent in the latest quarter, its fastest growth in 15 years, as A.I. firms increasingly bought chips known as central processing units.",
-      "hashtag": "AI",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Intel Benefits From",
-        "Shift",
-        "Spending",
-        "Silicon Valley"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 5.69,
-      "score": 0.258,
-      "popularity": 0,
-      "recency": 0.518,
-      "relevancy": 0.308,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Key Republican Senator Says He Will Support Erica Schwartz for C.D.C. Director",
-      "summary": "Senator Bill Cassidy, who is believed to hold the deciding vote in the Senate health committee for Dr. Erica Schwartz’s confirmation, had declined for days to say whether he would back her.",
-      "hashtag": "SupportErica",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.nytimes.com/2026/07/23/health/erica-schwartz-cdc-vote.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-cdc-director-photo-fhmj/23dc-cdc-director-photo-fhmj-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-cdc-director-photo-fhmj/23dc-cdc-director-photo-fhmj-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Key Republican Senator Says",
-        "He Will Support Erica",
-        "Schwartz",
-        "Director",
-        "Senator Bill Cassidy",
-        "Senate"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/health/erica-schwartz-cdc-vote.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 9.01,
-      "score": 0.202,
-      "popularity": 0,
-      "recency": 0.353,
-      "relevancy": 0.312,
+      "recency": 0.528,
+      "relevancy": 0.264,
       "region": "usa",
       "geo": null
     }
@@ -1090,45 +1166,39 @@
   "categories": {
     "offbeat": [
       {
-        "title": "NYC attacker yelled 'Allahu Akbar' as he randomly stabbed two men near Central Park, according to victim, witnesses: commish",
-        "summary": "A 51-year-old man, Raul Morales, was arrested Thursday after yelling \"Allahu Akbar\" while stabbing two men in separate attacks near Central Park in Manhattan. Both victims, aged 57 and 50, were hospitalized with nonfatal injuries and are expected to survive. Police are investigating whether hate or mental health factors motivated the assaults.",
+        "title": "Suspect arrested after allegedly yelling ‘Allahu Akbar,’ stabbing 2 men in NYC attack",
+        "summary": "A 51-year-old suspect, Raul Morales, was arrested after allegedly shouting \"Allahu Akbar\" while stabbing two men in Manhattan’s Upper West Side on Thursday afternoon. Both victims, aged 57 and 50, were taken to the hospital in stable condition after separate attacks near Central Park West and Amsterdam Avenue. Authorities are evaluating the incidents as potential hate crimes while investigating Morales’ motive.",
         "hashtag": "AllahuAkbar",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-        "imageUrl": "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
+        "url": "https://www.wfmd.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+        "imageUrl": "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
         "images": [
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/manhattan-shomrim-135308109.jpg?w=768",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305448.jpg?w=1024",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-police-responded-two-people-135307280.jpg?w=1024",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305446.jpg?w=1024",
-          "https://smartcdn.gprod.postmedia.digital/nationalpost/wp-content/uploads/2026/07/NYPD-2.jpg",
-          "https://www.livemint.com/lm-img/img/2026/07/24/600x338/Accident-or-crime-scene-cordon-tape--police-line-d_1784861279136_1784861284478_cd347830-8167-4e21-bf1d-912f3a2478e3.jpg"
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
+          "https://bnonews.com/wp-content/uploads/2026/07/20260723NYCStabbing.jpg",
+          "https://static.toiimg.com/thumb/msid-132595929,width-1280,height-720,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+          "https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-132595929/132595929.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Central Park",
           "New York City"
         ],
         "sourceUrls": [
-          "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-          "https://www.thestatesman.com/world/asian-jewish-men-stabbed-in-manhattan-suspect-shouted-allahu-akbar-nypd-probes-hate-crime-1503620227.html",
-          "https://nationalpost.com/news/world/jewish-man-stabbed-in-n-y-c-by-attacker-who-yelled-allahu-akbar-according-to-witnesses",
-          "https://www.livemint.com/news/us-news/nyc-attacker-stabs-two-men-near-central-park-yells-allahu-akbar-witnesses-recall-attack-knife-was-sticking-out-11784861096534.html"
+          "https://www.wfmd.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+          "https://bnonews.com/index.php/2026/07/2-men-stabbed-in-apparently-random-attacks-on-new-yorks-upper-west-side/",
+          "https://timesofindia.indiatimes.com/world/us/watch-suspect-yelling-allahu-akbar-stabs-two-in-new-york-arrested/articleshow/132595618.cms"
         ],
-        "sourceName": "New York Post",
+        "sourceName": "930 WFMD Free Talk",
         "sources": [
-          "New York Post",
-          "The Statesman",
-          "National Post",
-          "livemint.com"
+          "930 WFMD Free Talk",
+          "BNO News",
+          "The Times of India"
         ],
-        "corr": 4,
+        "corr": 3,
         "verified": true,
         "trend": "Allahu Akbar",
-        "traffic": 92000,
+        "traffic": 93000,
         "freshH": 0.5,
         "score": null,
         "popularity": null,
@@ -1138,27 +1208,168 @@
         "geo": "US"
       },
       {
-        "title": "The Game Recalls Early Encounters With Nipsey Hussle During VERZUZ With YG",
-        "summary": "During a VERZUZ clash with YG on June 23, The Game honored late rapper Nipsey Hussle by recalling their early friendship and performing their 2008 collaboration \"They Roll.\" Travis Barker joined The Game for a surprise drum performance of \"Dope Boys\" to kick off the event. The livestream is available on Apple Music and YouTube.",
+        "title": "Avatar: Seven Havens Officially Reveals Korra's Earthbender Successor With October 9 Premiere",
+        "summary": "Avatar: Seven Havens premieres on October 9, 2026, introducing Pavi, the new Earthbending Avatar successor to Korra, in a fractured world that blames the Avatar for a past catastrophe. The 26-episode series, co-created by Michael Dante DiMartino and Bryan Konietzko, follows Pavi and her twin sister Nisha as they uncover their origins and defend the last strongholds of civilization.",
+        "hashtag": "Korra",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://www.cbr.com/avatar-seven-havens-korra-successor/",
+        "imageUrl": "https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/11/xfjt9w6u5vef1.jpeg?w=1200&h=675&fit=crop",
+        "images": [
+          "https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/11/xfjt9w6u5vef1.jpeg?w=1200&h=675&fit=crop",
+          "https://image-cdn.netflixjunkie.com/msn/image/image_1782452466478.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Avatar: The Last Airbender",
+          "Korra"
+        ],
+        "sourceUrls": [
+          "https://www.cbr.com/avatar-seven-havens-korra-successor/",
+          "https://www.enstarz.com/articles/245754/20260723/avatar-seven-havens-teaser-introduces-new-earthbending-avatar-korra-connection.htm",
+          "https://www.netflixjunkie.com/hollywood-news-avatar-seven-havens-first-teaser-reveals-a-world-after-korras-cataclysm/amp/"
+        ],
+        "sourceName": "Comic Book Resources",
+        "sources": [
+          "Comic Book Resources",
+          "Enstarz",
+          "Netflix Junkie"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "Korra",
+        "traffic": 97000,
+        "freshH": 2,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Samantha Morton casts a spell and steals 'The Odyssey.' She's always been a little dangerous",
+        "summary": "Samantha Morton's captivating performance as Circe in Christopher Nolan's adaptation of \"The Odyssey\" has left audiences spellbound, particularly in a haunting scene where she transforms Odysseus' men into pigs using her hands, a visceral and unsettling sequence that relies on practical effects. Morton, known for her intense shape-shifting performances, brings a depth to the character that makes her transformation of the men all the more believable. The film, which opened in theaters this weekend, marks a significant milestone in Morton's illustrious career.",
+        "hashtag": "HeathLedger",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.latimes.com/entertainment-arts/movies/story/2026-07-23/samantha-morton-odyssey-christopher-nolan-circe",
+        "imageUrl": "https://ca-times.brightspotcdn.com/dims4/default/238f78b/2147483647/strip/true/crop/5417x2844+0+23/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+        "images": [
+          "https://ca-times.brightspotcdn.com/dims4/default/238f78b/2147483647/strip/true/crop/5417x2844+0+23/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/6577a14/2147483647/strip/false/crop/5417x3613+0+0/resize/1486x991!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/8790f5b/2147483647/strip/false/crop/5417x3047+0+0/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/b8492b7/2147483647/strip/true/crop/5417x3047+0+0/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fcd%2Fd1%2F960361a24c2ea01058add57519da%2F1563139-et-samantha-morton-4781.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/4abc58c/2147483647/strip/true/crop/3072x2048+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F40%2F95%2Feb571b8c4702af00132010a7cabc%2Fsamanthamorton.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/2dd80ec/2147483647/strip/true/crop/8736x11648+0+0/resize/2000x2667!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F2e%2F3c%2F83b3da1b44028f2f994f49ae4ed4%2F1563139-et-samantha-morton-4779.jpg",
+          "https://ca-times.brightspotcdn.com/dims4/default/692847c/2147483647/strip/true/crop/4644x6502+0+0/resize/2000x2800!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F96%2F15%2F2168150543f2964ce54370ae787e%2F1563139-et-samantha-morton-4783.jpg",
+          "https://pyxis.nymag.com/v1/imgs/427/cbd/6d6bff0f77cfb4a176b918d2dc76c1513a-samanthamorton-odyssey.1x.rsocial.w1200.jpg",
+          "https://pyxis.nymag.com/v1/imgs/427/cbd/6d6bff0f77cfb4a176b918d2dc76c1513a-samanthamorton-odyssey.rhorizontal.w700.jpg",
+          "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/16:9/w_1280,c_limit/Samantha3762_1.jpg",
+          "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/16:9/w_1488,h_837,c_limit/Samantha3762_1.jpg",
+          "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/4:3/w_1500,h_1125,c_limit/Samantha3762_1.jpg",
+          "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/1:1/w_1500,h_1500,c_limit/Samantha3762_1.jpg",
+          "https://media.vanityfair.com/photos/6a590031282b966024e6b19f/master/w_2560%2Cc_limit/Samantha3762_1.jpg",
+          "https://media.vanityfair.com/photos/6a5a28e0bd98b5e0f38b2963/master/w_1600%2Cc_limit/CT-49880CC.jpg",
+          "https://media.vanityfair.com/photos/6a590032d28eb9aa1e8176d3/master/w_1600%2Cc_limit/Samantha3708.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Samantha Morton",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/08/SamanthaMorton-byPhilipRomano.jpg"
+        ],
+        "entities": [
+          "Samantha Morton",
+          "Odyssey",
+          "She's"
+        ],
+        "sourceUrls": [
+          "https://www.latimes.com/entertainment-arts/movies/story/2026-07-23/samantha-morton-odyssey-christopher-nolan-circe",
+          "https://www.vulture.com/article/samantha-morton-played-circe-like-shed-met-odysseus-before.html",
+          "https://www.vanityfair.com/story/the-odyssey-samantha-morton-circe-interview"
+        ],
+        "sourceName": "latimes.com",
+        "sources": [
+          "Los Angeles Times",
+          "Vulture",
+          "Vanity Fair"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "heath ledger",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "UPDATE: Verdict reached in jury trial of Shiloh Hendrix",
+        "summary": "A jury has found Shiloh Hendrix not guilty of disorderly conduct involving a child but guilty of disorderly conduct against a camera operator during an April 2025 incident in Rochester, Minnesota. Hendrix received supervised probation, 200 hours of community service, and a $1,000 fine. The trial centered on allegations that she used a racial slur toward a Black child.",
+        "hashtag": "ShilohHendrix",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.kttc.com/2026/07/20/trial-updates-shiloh-hendrix-trial-disorderly-conduct-racial-slur-incident/",
+        "imageUrl": "https://gray-kttc-prod.gtv-cdn.com/resizer/v2/2JYQ2UQRWZGTJIMJIIZAU3JYFY.png?auth=82e7d3970128c8889c287397d34306757fcb553d967fb743a218e81d954197d7&width=1200&height=600&smart=true",
+        "images": [
+          "https://gray-kttc-prod.gtv-cdn.com/resizer/v2/2JYQ2UQRWZGTJIMJIIZAU3JYFY.png?auth=82e7d3970128c8889c287397d34306757fcb553d967fb743a218e81d954197d7&width=1200&height=600&smart=true",
+          "https://bloximages.newyork1.vip.townnews.com/kimt.com/content/tncms/assets/v3/editorial/3/e2/3e232814-d571-4da0-957d-963b39d3e01d/6a62de4985533.image.jpg?crop=1480%2C777%2C0%2C101&resize=1200%2C630&order=crop%2Cresize"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Verdict",
+          "Shiloh Hendrix"
+        ],
+        "sourceUrls": [
+          "https://www.kttc.com/2026/07/20/trial-updates-shiloh-hendrix-trial-disorderly-conduct-racial-slur-incident/",
+          "https://www.kimt.com/news/update-jury-reaches-a-verdict-in-trial-of-shiloh-hendrix/article_3517ea0b-b4ae-4210-baaf-ad3dc56562b1.html"
+        ],
+        "sourceName": "kttc.com",
+        "sources": [
+          "KTTC | Rochester, MN",
+          "KIMT"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "shiloh hendrix",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+        "summary": "The Game stunned viewers at Thursday’s VERZUZ showdown with YG by downing nearly an entire bottle of tequila in one gulp. The Compton rappers traded hits during the two-round battle in front of a live crowd. The event, created by Swizz Beatz and Timbaland in 2020, continues to showcase hip-hop legends in high-energy face-offs.",
         "hashtag": "Verzuz",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
-        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
+        "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
         "images": [
-          "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
-          "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z"
+          "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
           "The Game",
-          "Nipsey Hussle",
           "VERZUZ"
         ],
         "sourceUrls": [
-          "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
-          "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
+          "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg"
         ],
         "sourceName": "Complex",
         "sources": [
@@ -1177,33 +1388,33 @@
         "geo": "US"
       },
       {
-        "title": "YG and The Game's 'VERZUZ': Travis Barker Pops Out for Opening Cut \"Dope Boys\"",
-        "summary": "Travis Barker joined The Game on drums for the opening of his VERZUZ battle with YG on July 23, delivering a high-energy performance of “Dope Boys.” The surprise appearance thrilled fans during the livestream on Apple Music and YouTube. The event continues with the rappers trading verses live.",
-        "hashtag": "TravisBarker",
+        "title": "Behind the Bylines: The stories beyond the game",
+        "summary": "The World Cup final on Sunday delivered a dramatic finish as Argentina secured victory over Spain in a penalty shootout. The match capped months of global anticipation, with fans worldwide glued to their screens. Analysts now dissect how tactical shifts and individual brilliance shaped the outcome.",
+        "hashtag": "Game",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys",
-        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
+        "url": "https://www.sentinelandenterprise.com/2026/07/24/behind-the-bylines-the-stories-beyond-the-game/",
+        "imageUrl": "https://www.sentinelandenterprise.com/wp-content/uploads/2026/07/AP26201708668842.jpg?w=6000&h=4000",
         "images": [
-          "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z"
+          "https://www.sentinelandenterprise.com/wp-content/uploads/2026/07/AP26201708668842.jpg?w=6000&h=4000"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "The Game",
-          "Travis Barker"
+          "Behind",
+          "Bylines"
         ],
         "sourceUrls": [
-          "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
+          "https://www.sentinelandenterprise.com/2026/07/24/behind-the-bylines-the-stories-beyond-the-game/"
         ],
-        "sourceName": "Complex",
+        "sourceName": "Sentinel and Enterprise",
         "sources": [
-          "Complex"
+          "Sentinel and Enterprise"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "Travis Barker",
-        "traffic": 96000,
+        "trend": "The Game",
+        "traffic": 98000,
         "freshH": 0.5,
         "score": null,
         "popularity": null,
@@ -1213,79 +1424,33 @@
         "geo": "US"
       },
       {
-        "title": "Measles surges dramatically in California among children and young adults",
-        "summary": "Measles cases in California have more than doubled this year compared to last year, with 52 confirmed cases in the first 6½ months of 2026, a pace that could lead to the highest number of cases since 2015. The majority of cases involve children and young adults, with 27 cases among those aged 5 to 19 and 15 cases among children under 5 years old. If this trend continues, the state may see its highest measles case total since a large outbreak at Disneyland in 2015.",
-        "hashtag": "Vaccines",
+        "title": "Please Welcome Demi Moore to the Humungous-Hat Club",
+        "summary": "Demi Moore has joined the exclusive Humongous-Hat Club, a group of celebrities who make a bold fashion statement with oversized headpieces. The actress wore a massive, cloud-like organza hat to a private shopping appointment at the Schiaparelli showroom in Paris during haute couture week, where she was accompanied by her daughter Tallulah Willis. This extravagant accessory is the latest addition to Moore's impressive wardrobe, solidifying her status as a fashion icon.",
+        "hashtag": "DemiMoore",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.latimes.com/california/story/2026-07-23/measles-surge-dramatically-in-california-among-children-young-adults",
-        "imageUrl": "https://ca-times.brightspotcdn.com/dims4/default/0a654b2/2147483647/strip/true/crop/2400x1260+0+170/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
+        "url": "https://www.thecut.com/article/demi-moore-humungous-hat-club.html",
+        "imageUrl": "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.1x.rsocial.w1200.jpg",
         "images": [
-          "https://ca-times.brightspotcdn.com/dims4/default/0a654b2/2147483647/strip/true/crop/2400x1260+0+170/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-          "https://ca-times.brightspotcdn.com/dims4/default/90425e9/2147483647/strip/false/crop/2400x1600+0+0/resize/1486x991!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-          "https://ca-times.brightspotcdn.com/dims4/default/b0666fc/2147483647/strip/false/crop/2400x1350+0+125/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-          "https://ca-times.brightspotcdn.com/dims4/default/a53f17c/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fe2%2F13%2Fa4046caa49739ce2f60b49aab974%2F937496-fi-0329-delta-lax-006-ik.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Measles",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/27/RougeoleDP.jpg"
-        ],
-        "entities": [
-          "Measles",
-          "California"
-        ],
-        "sourceUrls": [
-          "https://www.latimes.com/california/story/2026-07-23/measles-surge-dramatically-in-california-among-children-young-adults"
-        ],
-        "sourceName": "latimes.com",
-        "sources": [
-          "Los Angeles Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "vaccines",
-        "traffic": 1000,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "HHS Changes Two Vaccine Committee Charters",
-        "summary": "US Health and Human Services has altered the charters of two vaccine-related committees, the Advisory Commission on Childhood Vaccines and the National Vaccine Advisory Committee, with changes including the removal of a designated federal officer from the first committee and the addition of a focus on non-immunization strategies for the second. The changes are set to take effect immediately, with the committees advising on policies for the National Vaccine Injury Compensation Program and national vaccine strategy respectively. The implications of these changes are unclear, but experts have expressed concern over the potential impact on vaccine policy.",
-        "hashtag": "Immunizations",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.medpagetoday.com/washington-watch/washington-watch/122322",
-        "imageUrl": "https://assets.medpagetoday.net/media/images/122xxx/122322.jpg",
-        "images": [
-          "https://assets.medpagetoday.net/media/images/122xxx/122322.jpg"
+          "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.1x.rsocial.w1200.jpg",
+          "https://pyxis.nymag.com/v1/imgs/5c9/b89/827d6a3db2f64a35e619b5707efb27e052-demi-moore.rvertical.w330.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "HHS Changes Two Vaccine",
-          "Committee Charters"
+          "Please Welcome Demi Moore",
+          "Humungous-Hat Club"
         ],
         "sourceUrls": [
-          "https://www.medpagetoday.com/washington-watch/washington-watch/122322"
+          "https://www.thecut.com/article/demi-moore-humungous-hat-club.html"
         ],
-        "sourceName": "medpagetoday.com",
+        "sourceName": "thecut.com",
         "sources": [
-          "MedPage Today"
+          "The Cut"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "immunizations",
+        "trend": "demi moore",
         "traffic": 1000,
         "freshH": 1,
         "score": null,
@@ -1296,8 +1461,62 @@
         "geo": "US"
       },
       {
+        "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+        "summary": "Yemen’s Houthi rebels have attacked Red Sea shipping for 13 straight nights, forcing vessels to reroute and threatening the main Europe-Asia trade lane. US Central Command struck 13 Iranian targets overnight, citing threats to Gulf maritime traffic. Analysts warn the escalation risks deeper regional conflict and higher global shipping costs.",
+        "hashtag": "MiddleEast",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Houthi",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200"
+          },
+          {
+            "name": "Middle East",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Houthis%20protest%20against%20airstrikes%202.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Colorful%20shaded%20map%20of%20Middle%20East.jpg?width=1200"
+        ],
+        "entities": [
+          "Houthi",
+          "Middle East",
+          "Iran-backed",
+          "Yemen",
+          "Saudi"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-        "summary": "Indonesian babies trafficked to Singapore face an uncertain future after a court convicted 19 people for selling at least 34 infants, with 12 sent to Singapore. The verdict leaves adoptive parents in limbo, awaiting decisions on whether the children will remain or return to Indonesia. Authorities in both countries are now under pressure to resolve the children’s status promptly.",
+        "summary": "Indonesian babies trafficked to Singapore for illegal adoption face uncertain futures after a court convicted 19 people for procuring at least 34 infants. Twelve of the babies were sent to Singapore, leaving adoptive parents in limbo as authorities decide their fate. Both governments are now under pressure to resolve the children’s status swiftly.",
         "hashtag": "Indonesian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1307,18 +1526,10 @@
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
           "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Indonesian",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Utamakan_Bahasa_Indonesia%2C_Yogyakarta.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
           "Indonesian",
           "Singapore",
@@ -1335,42 +1546,37 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.53,
+        "freshH": 5.52,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      },
+      }
+    ],
+    "health": [
       {
-        "title": "India activist ends hunger strike after 26 days",
-        "summary": "India’s prominent activist Sonam Wangchuk ended a 26-day hunger strike after the government guaranteed no legal action against protesters at Delhi’s Jantar Mantar. The government ministers visited him in hospital as mass demonstrations continued following a violent police crackdown on Monday’s march to parliament. Youth-led group CJP, now a major dissent voice, vows to keep protesting until Education Minister Dharmendra Pradhan resigns.",
-        "hashtag": "India",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+        "title": "'Evidence lacking' for mental health monitoring tech",
+        "summary": "A UK inquiry has found no strong evidence that Oxevision, a monitoring system used in mental health wards, improves patient safety. The Lampard Inquiry, examining over 2,000 deaths in Essex mental health services since 2000, heard experts criticise the lack of robust independent research. The technology’s maker claims it helped staff respond to 1,453 safety incidents in one trust over four years.",
+        "hashtag": "Evidence",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Sonam Wangchuk",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "India",
-          "Sonam Wangchuk"
+          "Evidence",
+          "Lampard Inquiry",
+          "Oxevision"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1380,7 +1586,84 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.41,
+        "freshH": 0.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "FDA Panel Supports Lifting Restrictions on Four Peptides",
+        "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
+        "hashtag": "FDAPanel",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "FDA Panel Supports Lifting",
+          "Restrictions",
+          "Four Peptides"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.83,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Health Care Agency Discontinues Dozens of Active Research Awards",
+        "summary": "The Agency for Healthcare Research and Quality slowed the awarding of new grants last year. Now it is stopping existing ones.",
+        "hashtag": "HealthCare",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Health Care Agency Discontinues",
+          "Dozens",
+          "Active Research Awards",
+          "Agency",
+          "Healthcare Research",
+          "Quality"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 5.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1389,38 +1672,151 @@
         "geo": null
       }
     ],
-    "entertainment": [
+    "breaking": [
       {
-        "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
-        "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies their themes of strength. The film’s abstract visuals turn her into a vessel for a broader message of feminine empowerment. It remains a striking testament to her enduring influence.",
-        "hashtag": "PresentReview",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+        "title": "US imposes tariffs on dozens of trade partners, citing forced labour concerns",
+        "summary": "US Trade Representative Jamieson Greer has announced the imposition of new tariffs on 60 trading partners, accounting for the majority of US imports, due to concerns over forced labour practices. The tariffs, ranging from 10% to 12.5%, target key economic partners including the UK, China, the European Union, and India, and came into effect on Friday. This move marks the latest escalation in the global trade war, as the US seeks to address human rights abuses and distortive trade practices.",
+        "hashtag": "US",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
         "images": [
-          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
-        "entities": [
-          "Sia",
-          "Unstoppable",
-          "Titanium"
-        ],
+        "entities": [],
         "sourceUrls": [
-          "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
+          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "Variety",
+        "sourceName": "BBC",
         "sources": [
-          "Variety"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.44,
+        "freshH": 0.4,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "A Million-Panel Project",
+        "summary": "Utah’s Green River Energy Center, a massive solar and battery storage plant, went online in June 2026 with nearly one million solar panels and 500 batteries. The facility delivers 400 megawatts of solar power and 400 megawatts of storage, supplying energy to Salt Lake City and beyond. It marks a shift from the region’s coal mining past to renewable energy.",
+        "hashtag": "AMillion",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+        "images": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+          "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20260606_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Million-Panel Project",
+          "Utah"
+        ],
+        "sourceUrls": [
+          "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Curiosity Blog, Sols 4954–4960: Celebrating Our Rover Engineers Past and Present",
+        "summary": "NASA’s Curiosity rover completed its 4,960th Martian day on July 27, 2026, analyzing five new rock targets with its APXS instrument and MAHLI imager. Engineers overcame dusty, uneven terrain by safely deploying the robotic arm after brushing surfaces. The team continues driving toward sulfate-rich layers to study Mars’ ancient climate shifts.",
+        "hashtag": "CuriosityBlog",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "images": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+          "https://assets.science.nasa.gov/content/dam/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Curiosity Blog",
+          "Sols",
+          "Celebrating Our Rover Engineers",
+          "Past",
+          "Present",
+          "Written"
+        ],
+        "sourceUrls": [
+          "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.49,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "What to Know About Peptides the FDA Is Considering for Use",
+        "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
+        "hashtag": "FDAIs",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Know About Peptides",
+          "FDA Is Considering",
+          "BPC-"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.34,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1431,8 +1827,68 @@
     ],
     "politics": [
       {
+        "title": "Burnham urged to 'build bridges' with sacked Starmerites",
+        "summary": "Andy Burnham needs to \"build bridges\" with the Starmerite minister he sacked during his reshuffle, Baroness Harriet Harman has told the Electoral Dysfunction podcast.",
+        "hashtag": "Burnham",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311",
+        "imageUrl": "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
+        "images": [
+          "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
+          "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Burnham",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg"
+          },
+          {
+            "name": "Starmerites",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg"
+          },
+          {
+            "name": "Andy Burnham",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/46/Prime_Minister%27s_Questions%2C_11_September_2024_17.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        ],
+        "entities": [
+          "Burnham",
+          "Starmerites",
+          "Andy Burnham",
+          "Starmerite",
+          "Baroness Harriet Harman",
+          "Electoral Dysfunction"
+        ],
+        "sourceUrls": [
+          "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311"
+        ],
+        "sourceName": "Sky News",
+        "sources": [
+          "Sky News"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Burnham to spend first day working from northern branch of No 10",
-        "summary": "Andy Burnham will hold his first meeting at the new No 10 North office in Manchester today, marking a push to decentralise government power from London. Up to 300 civil servants will relocate to the site by the end of next year as part of broader devolution plans. The prime minister will chair a National Economic Council meeting to prioritise regional investment and local growth.",
+        "summary": "Andy Burnham will spend his first day in office working from the new No 10 North in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee launched in 2008 to address UK economic challenges. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, marking a shift of power from Whitehall and Westminster to regional areas. Up to 300 civil servants are expected to join the new site by the end of next year.",
         "hashtag": "Burnham",
         "badge": "POLITICS",
         "category": "politics",
@@ -1440,24 +1896,10 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/56e3/live/8d7bf160-8711-11f1-bee8-53ce494e1abc.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Various",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
-          },
-          {
-            "name": "Downing Street",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
           "Burnham",
           "Various",
@@ -1474,7 +1916,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.12,
+        "freshH": 3.11,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1514,34 +1956,37 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.61,
+        "freshH": 4.6,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      },
+      }
+    ],
+    "tech": [
       {
-        "title": "FDA Panel Supports Lifting Restrictions on Four Peptides",
-        "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
-        "hashtag": "FDAPanel",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
+        "title": "Brent Crude Oil Prices Top $100 as Conflict With Iran Drags On",
+        "summary": "Stocks in Asia were down following a sell-off in the U.S. markets over soaring oil prices, rising borrowing costs and worries about the technology industry.",
+        "hashtag": "BrentCrude",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/24/technology/oil-prices-global-stocks-shipping.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24biz-oil-stocks-gas-promo-lwtb/24biz-oil-stocks-gas-promo-lwtb-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24biz-oil-stocks-gas-promo-lwtb/24biz-oil-stocks-gas-promo-lwtb-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "FDA Panel Supports Lifting",
-          "Restrictions",
-          "Four Peptides"
+          "Brent Crude Oil Prices",
+          "Conflict With Iran Drags",
+          "Stocks",
+          "Asia"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
+          "https://www.nytimes.com/2026/07/24/technology/oil-prices-global-stocks-shipping.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -1551,33 +1996,34 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.84,
+        "freshH": 0.33,
         "score": null,
         "popularity": null,
         "recency": null,
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "breaking": [
+      },
       {
-        "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-        "summary": "The US is imposing new tariffs of 10% to 12.5% on imports from 60 trading partners, including the UK, China, the EU, Canada, Japan and India, over forced labour concerns. The duties take effect Friday as a temporary 10% tax expires. The move escalates trade tensions amid ongoing global disputes.",
-        "hashtag": "US",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+        "title": "Google fined €890m by EU for favouring its own apps over rivals",
+        "summary": "Google has been fined €890 million by the EU for allegedly abusing its power by favouring its own apps and services over those from rivals, in the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections to comply with the EU's requirements.",
+        "hashtag": "Google",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
-        "entities": [],
+        "entities": [
+          "Google",
+          "EU's"
+        ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1587,7 +2033,53 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.69,
+        "freshH": 5.69,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
+        "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
+        "hashtag": "JudgeExtends",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        ],
+        "entityShots": [
+          {
+            "name": "Deal",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        ],
+        "entities": [
+          "Judge Extends Pause",
+          "Paramount-Warner Bros",
+          "Deal",
+          "August"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.95,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1596,114 +2088,41 @@
         "geo": null
       }
     ],
-    "facts": [
+    "entertainment": [
       {
-        "title": "Curiosity Blog, Sols 4954–4960: Celebrating Our Rover Engineers Past and Present",
-        "summary": "NASA’s Curiosity rover completed its latest science campaign on Mars this week, analyzing five rock targets with its APXS instrument and MAHLI imager. Engineers overcame dusty, uneven terrain to safely deploy the robotic arm despite challenging conditions. The team now plans to continue driving toward a sulfate-rich area to study Mars’ ancient climate history.",
-        "hashtag": "CuriosityBlog",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/",
-        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
+        "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless, abstract performance that amplifies themes of feminine strength. The film highlights how her anonymity transforms her into a vessel for universal empowerment.",
+        "hashtag": "PresentReview",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
         "images": [
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
-          "https://assets.science.nasa.gov/content/dam/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Curiosity Blog",
-          "Sols",
-          "Celebrating Our Rover Engineers",
-          "Past",
+          "Nostalgic",
           "Present",
-          "Written"
+          "Review",
+          "Concert Performance Film",
+          "It Channels Sia",
+          "Mystery"
         ],
         "sourceUrls": [
-          "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/"
+          "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
         ],
-        "sourceName": "NASA",
+        "sourceName": "Variety",
         "sources": [
-          "NASA"
+          "Variety"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.49,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-        "summary": "A record June heatwave in England, peaking above 30C in some homes, left parents like Tavia Watts feeling \"incredibly helpless\" as anxiety surged. Watts, a stay-at-home mum in Cheltenham, shared her fears online, sparking thousands of reactions as UK climate anxiety affects an estimated 4.6% of people. Experts warn the mental toll of extreme heat will likely grow as temperatures rise.",
-        "hashtag": "Heatwave",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Heatwave"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.76,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "What to Know About Peptides the FDA Is Considering for Use",
-        "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
-        "hashtag": "FDAIs",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Know About Peptides",
-          "FDA Is Considering",
-          "BPC-"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.34,
+        "freshH": 1.43,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1714,29 +2133,21 @@
     ],
     "crisis": [
       {
-        "title": "Trump Administration to Impose New Tariffs of Around 10% on Over 80 Nations",
-        "summary": "The administration announced new duties tied to countries’ imports of goods made with forced labor, replacing a global 10 percent tariff set to expire at midnight.",
-        "hashtag": "ImposeNew",
+        "title": "Trump Administration Imposed New Tariffs of Around 10% on Over 80 Nations",
+        "summary": "The administration launched new duties tied to countries’ imports of goods made with forced labor, replacing a 10 percent tariff immediately after it expired.",
+        "hashtag": "TrumpAdministration",
         "badge": "GLOBAL",
         "category": "crisis",
         "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Trump Administration",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Donald%20Trump%20Cabinet%20meeting%202017-03-13%2001.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Trump Administration",
-          "Impose New Tariffs",
+          "Trump Administration Imposed New",
+          "Tariffs",
           "Around",
           "Nations"
         ],
@@ -1751,7 +2162,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.91,
+        "freshH": 0.79,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1760,37 +2171,36 @@
         "geo": null
       },
       {
-        "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-        "summary": "China’s Moonshot AI allegedly stole advanced AI capabilities from US firm Anthropic by using a technique called distillation to extract answers from stronger models. A White House adviser said Moonshot accessed restricted Nvidia servers to train its K3 model, which was unveiled last week and is seen as a major step for Chinese AI. The US restricted Nvidia’s top chips in 2022 over security concerns.",
-        "hashtag": "MoonshotAI",
+        "title": "Trump’s Global Tariffs: What’s the Latest on the Trade War",
+        "summary": "The president has unveiled a complicated system to forge ahead with his trade war, after the Supreme Court stuck down his original levies.",
+        "hashtag": "GlobalTariffs",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/c5ye2gyz0x4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg",
+        "url": "https://www.nytimes.com/article/trump-tariffs-trade.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8b7e/live/ab7d6920-8629-11f1-8e14-33590a929431.jpg"
+          "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "China's Moonshot AI",
-          "Anthropic",
           "Trump",
-          "Chinese AI"
+          "Global Tariffs",
+          "Trade War",
+          "Supreme Court"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c5ye2gyz0x4o?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/article/trump-tariffs-trade.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.02,
+        "freshH": 0.84,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1830,265 +2240,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.83,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "health": [
-      {
-        "title": "US health panel recommends easing restrictions on controversial peptides",
-        "summary": "A federal health advisory panel on Thursday narrowly voted 8-6 to ease restrictions on several injectable peptides, including BPC-157 and TB-500, despite safety concerns from government scientists. The non-binding recommendation could lead the FDA to allow pharmacies to compound these substances, potentially expanding their use in wellness and cosmetic treatments. Health Secretary Robert F. Kennedy Jr., a vocal peptide advocate, has signaled plans to overturn existing FDA restrictions.",
-        "hashtag": "US",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/us-news/2026/jul/23/peptides-advisory-panel-rfk-jr",
-        "imageUrl": "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=339f63c761b823b94686592ddcc10310",
-        "images": [
-          "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=339f63c761b823b94686592ddcc10310",
-          "https://i.guim.co.uk/img/media/7accd5a97f1210040686381446026aba0386fa55/0_0_3333_2668/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=3d75ed397095b1e13e559cc2f6107242",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "RFK Jr",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d8/Robert_F._Kennedy_Jr.%2C_official_portrait_%282025%29_%28cropped_3-4%29_%28b%29.jpg"
-        ],
-        "entities": [
-          "Vote",
-          "RFK Jr",
-          "Thursday"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/us-news/2026/jul/23/peptides-advisory-panel-rfk-jr"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 5.11,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Health Care Agency Discontinues Dozens of Active Research Awards",
-        "summary": "The Agency for Healthcare Research and Quality slowed the awarding of new grants last year. Now it is stopping existing ones.",
-        "hashtag": "HealthCare",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Dozens",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-        ],
-        "entities": [
-          "Health Care Agency Discontinues",
-          "Dozens",
-          "Active Research Awards",
-          "Agency",
-          "Healthcare Research",
-          "Quality"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 4.53,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Key Republican Senator Says He Will Support Erica Schwartz for C.D.C. Director",
-        "summary": "Senator Bill Cassidy, who is believed to hold the deciding vote in the Senate health committee for Dr. Erica Schwartz’s confirmation, had declined for days to say whether he would back her.",
-        "hashtag": "SupportErica",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.nytimes.com/2026/07/23/health/erica-schwartz-cdc-vote.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-cdc-director-photo-fhmj/23dc-cdc-director-photo-fhmj-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-cdc-director-photo-fhmj/23dc-cdc-director-photo-fhmj-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Key Republican Senator Says",
-          "He Will Support Erica",
-          "Schwartz",
-          "Director",
-          "Senator Bill Cassidy",
-          "Senate"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/health/erica-schwartz-cdc-vote.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 9.01,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "tech": [
-      {
-        "title": "Google fined €890m by EU for favouring its own apps over rivals",
-        "summary": "Google has been fined €890 million by the European Union for abusing its market dominance by favouring its own apps and services over rivals. The penalty, the first major action under the EU’s Digital Markets Act, follows two breaches where Google gave its services an unfair advantage. Google warns the ruling could strip away key features for European users, but EU officials insist the measures protect fair competition.",
-        "hashtag": "Google",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Google"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 4.69,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
-        "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
-        "hashtag": "JudgeExtends",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Deal",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-        ],
-        "entities": [
-          "Judge Extends Pause",
-          "Paramount-Warner Bros",
-          "Deal",
-          "August"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.95,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Intel Benefits From a New Shift in A.I. Spending",
-        "summary": "The Silicon Valley chipmaker’s revenue rose 25 percent in the latest quarter, its fastest growth in 15 years, as A.I. firms increasingly bought chips known as central processing units.",
-        "hashtag": "AI",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Intel Benefits From",
-          "Shift",
-          "Spending",
-          "Silicon Valley"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 5.69,
+        "freshH": 4.83,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2100,7 +2252,7 @@
     "sports": [
       {
         "title": "King's Tardis entrance as Commonwealth Games begin",
-        "summary": "The Commonwealth Games opening ceremony in Glasgow featured a surprise appearance by King Charles III, who entered via a Tardis-like portal. Scotland’s team drew the loudest cheers as they marched in kilts, followed by a Loch Ness Monster float and a rousing rendition of Flower of Scotland. The event showcased Scottish culture with performances by Nathan Evans and Callum Beattie before 10,000 spectators.",
+        "summary": "The Commonwealth Games opening ceremony in Glasgow featured a surprise appearance by King Charles III, who arrived via a Tardis-like lift. Scotland’s team received the loudest cheer as they marched in kilts, followed by a Loch Ness Monster float and a rousing performance of Flower of Scotland. The show celebrated Glasgow’s culture with live music and a dance under a replica of the city’s iconic clock.",
         "hashtag": "CommonwealthGames",
         "badge": "SPORTS",
         "category": "sports",
@@ -2131,7 +2283,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.98,
+        "freshH": 6.97,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2141,7 +2293,7 @@
       },
       {
         "title": "Hull KR inflict more derby misery on Hull FC",
-        "summary": "Hull KR beat Hull FC 28-20 in a tense Super League derby, ending their losing streak with nine straight wins over their rivals. Hull FC, already second-bottom, suffered their sixth straight defeat despite an early 12-0 lead. The Robins moved into fifth in the play-off race.",
+        "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side come from behind to secure a crucial victory. The win marked Hull KR's ninth consecutive derby win and moved them back into the play-off positions in fifth place. The result was a sixth straight loss for second-bottom Hull FC, whose struggling season continues.",
         "hashtag": "HullKR",
         "badge": "SPORTS",
         "category": "sports",
@@ -2169,7 +2321,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.82,
+        "freshH": 6.82,
         "score": null,
         "popularity": null,
         "recency": null,
