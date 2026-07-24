@@ -1,112 +1,64 @@
 {
-  "generatedAt": "2026-07-24T07:51:40.205Z",
+  "generatedAt": "2026-07-24T08:51:45.128Z",
   "region": "usa",
-  "count": 31,
+  "count": 32,
   "categoryCounts": {
-    "offbeat": 8,
-    "sports": 3,
-    "politics": 3,
-    "entertainment": 2,
+    "offbeat": 9,
     "breaking": 3,
-    "health": 3,
+    "politics": 3,
     "facts": 3,
+    "sports": 3,
+    "entertainment": 2,
+    "health": 3,
     "crisis": 3,
     "tech": 3
   },
   "stories": [
     {
-      "title": "Critics Are Calling Charli XCX's Brat Follow-Up Music, Fashion, Film 'Fascinating'",
-      "summary": "Charli XCX’s new album Music, Fashion, Film has earned rave reviews since its release on Friday, with critics calling it “fascinating” and “triumphant.” The British pop star shifts from Brat’s dance beats to rock-inspired organic sounds while exploring fame and identity. Some critics remain divided, but the bold follow-up cements her reputation as one of pop’s most daring artists.",
-      "hashtag": "Charli",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.huffingtonpost.co.uk/entry/charli-xcx-music-fashion-film-reviews_uk_6a630c54e4b0811ae03fecf6?origin",
-      "imageUrl": "https://img.huffingtonpost.com/asset/6a630d301b00005d0b9393d0.jpg?cache=ngAxtYqNvR&ops=1200_630",
-      "images": [
-        "https://img.huffingtonpost.com/asset/6a630d301b00005d0b9393d0.jpg?cache=ngAxtYqNvR&ops=1200_630",
-        "https://img.huffingtonpost.com/asset/6a630d541b0000810c9393d2.jpeg?ops=scalefit_720_noupscale",
-        "https://img.huffingtonpost.com/asset/6a630d991b0000880c9393d3.jpeg?ops=scalefit_720_noupscale",
-        "https://img.huffingtonpost.com/asset/6a630df3140000ba23eae82e.jpeg?ops=scalefit_720_noupscale"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Charli XCX",
-        "Brat"
-      ],
-      "sourceUrls": [
-        "https://www.huffingtonpost.co.uk/entry/charli-xcx-music-fashion-film-reviews_uk_6a630c54e4b0811ae03fecf6?origin",
-        "https://www.musicomh.com/reviews/albums/charli-xcx-music-fashion-film"
-      ],
-      "sourceName": "HuffPost UK",
-      "sources": [
-        "HuffPost UK",
-        "musicOMH"
-      ],
-      "corr": 2,
-      "verified": true,
-      "trend": "Charli",
-      "traffic": 92000,
-      "freshH": 0.5,
-      "score": 0.725,
-      "popularity": 0.433,
-      "recency": 0.944,
-      "relevancy": 0.887,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Tukwila approves camping ban on city property, effective July 28",
-      "summary": "Tukwila has approved a camping ban on city property, effective July 28, after a 4-3 City Council vote. The ordinance, requested by Police Chief Eric Lund, prohibits camping in public spaces, including parks and sidewalks, with violators facing up to 90 days in jail and a $1,000 fine. The measure aims to address growing encampments in the city's green spaces, with city leaders emphasizing it is not intended to criminalize homelessness but rather provide a legal tool for police response.",
-      "hashtag": "Camping",
+      "title": "Prada to Open Upcoming Milan Women’s Fashion Week",
+      "summary": "Prada will open Milan Women's Fashion Week on September 22, staging its runway show at 2 p.m. CET, marking a change from its traditional Thursday slot. The event, running from September 22 to 28, features 54 physical and six digital shows, with notable sophomore presentations from Demna for Gucci, Maria Grazia Chiuri for Fendi, and Meryll Rogge for Marni. The week will conclude with shows from heavy-hitters Dolce & Gabbana, Bottega Veneta, and Ferragamo on September 25.",
+      "hashtag": "Fashion",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://komonews.com/news/local/tukwila-bans-camping-on-city-property-july-28-camping-regulations-police-chief-eric-lund-supreme-court-decision-2024-homelessness-fuel-flammables-dead-animals",
-      "imageUrl": "https://komonews.com/resources/media2/16x9/1280/1320/center/90/84da2fde-2e44-4fe3-9290-f5d81a2ab6bd-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe336.png",
+      "url": "https://wwd.com/fashion-news/fashion-features/prada-moschino-debut-milan-fashion-week-september-2026-calendar-1239080481/",
+      "imageUrl": "https://wwd.com/wp-content/uploads/2026/07/Prada-Womenswear-FW26_parade-2.jpg?w=1000&h=563&crop=1",
       "images": [
-        "https://komonews.com/resources/media2/16x9/1280/1320/center/90/84da2fde-2e44-4fe3-9290-f5d81a2ab6bd-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe336.png",
-        "https://komonews.com/resources/media2/16x9/1280/1320/center/90/a1cd07cb-ba7d-4a04-ac2a-d36820d5072e-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe2728.png",
-        "https://komonews.com/resources/media2/16x9/1280/1320/center/90/0e03998a-ca2e-4472-ae26-6fa875e8246f-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe1746.png",
-        "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/1200/630/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-        "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/1280/720/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-        "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/932/524/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-        "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2022/06/932/524/tukwila-skyline.jpg?ve=1&tl=1",
-        "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/06/932/524/seattle-homeless-encampment.jpg?ve=1&tl=1",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+        "https://wwd.com/wp-content/uploads/2026/07/Prada-Womenswear-FW26_parade-2.jpg?w=1000&h=563&crop=1",
+        "https://wwd.com/wp-content/uploads/2025/09/the-attico-ss26-rtw-bsb-ba-0028.jpg?w=300",
+        "https://assets.vogue.com/photos/6a62568e0a40979825dc63a3/16:9/w_1280,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+        "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/16:9/w_2992,h_1683,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+        "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/4:3/w_3000,h_2250,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+        "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/1:1/w_3000,h_3000,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
       ],
       "entityShots": [
         {
-          "name": "Tukwila",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg"
-        },
-        {
-          "name": "July",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+          "name": "Prada",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
       ],
       "entities": [
-        "Tukwila",
-        "July"
+        "Prada",
+        "Open Upcoming Milan Women",
+        "Fashion Week"
       ],
       "sourceUrls": [
-        "https://komonews.com/news/local/tukwila-bans-camping-on-city-property-july-28-camping-regulations-police-chief-eric-lund-supreme-court-decision-2024-homelessness-fuel-flammables-dead-animals",
-        "https://mynorthwest.com/mynorthwest-politics/tukwila-homeless-camping-ban/4257916",
-        "https://www.fox13seattle.com/news/tukwila-wa-camping-ban"
+        "https://wwd.com/fashion-news/fashion-features/prada-moschino-debut-milan-fashion-week-september-2026-calendar-1239080481/",
+        "https://www.vogue.com/article/the-milan-fashion-week-spring-summer-2027-schedule-is-here",
+        "https://ww.fashionnetwork.com/news/Cnmi-unveils-provisional-milan-fashion-week-calendar-with-prada-to-open-and-debutant-miguel-vieira-to-close,1855030.html"
       ],
-      "sourceName": "komonews.com",
+      "sourceName": "wwd.com",
       "sources": [
-        "KOMO",
-        "MyNorthwest.com",
-        "FOX 13 Seattle"
+        "WWD",
+        "Vogue",
+        "FashionNetwork - The World's Fashion Business News"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "camping news",
+      "trend": "fashion news",
       "traffic": 200,
       "freshH": 1,
       "score": 0.653,
@@ -117,15 +69,211 @@
       "geo": "US"
     },
     {
-      "title": "Tyla drops ‘A*POP,’ her most ambitious project yet",
-      "summary": "Tyla has released her second album, APOP, marking her most ambitious project yet. The 14-track album blends amapiano, Afrobeats, R&B, and pop, showcasing her evolved artistry. Featuring collaborations with MaWhoo and Babalwa M, it reflects her South African roots and global appeal.",
+      "title": "‘Up in smoke’: Attacks on ‘Russia’s Amazon’ bring Putin’s war closer to home",
+      "summary": "Ukrainian drone strikes on Russian warehouses have sent hundreds of millions of dollars in inventory up in flames, killing at least eight people and disrupting the lives of ordinary Russians. The attacks, targeting Russia's largest online retailer Wildberries, are part of a Ukrainian campaign of economic warfare aimed at shattering the \"illusion of comfortable peacetime life\" enjoyed by Russian citizens. The strikes have brought Moscow's war on Ukraine closer to home, with several regions affected, including the Moscow region, Tambov region, Krasnodar region, and Voronezh region.",
+      "hashtag": "Drone",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl",
+      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
+      "images": [
+        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
+        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2279263358.jpg?c=original&q=w_860,c_fill",
+        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991519.jpg?c=original&q=w_860,c_fill",
+        "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496071783_17848264861060_trans_NvBQzQNjv4BqVkaRXocUMsms1xK2NhduyHbWVQg819nTsEls4H7J0kQ.jpeg?impolicy=OG-Standard",
+        "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496181693_17848266652780_trans_NvBQzQNjv4BqP-t--XiuvYMJPd4Ncdgt2haFS7t6wUD2c5CAYw-u7FY.jpeg?imwidth=350",
+        "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496106319_17848266359890_trans_NvBQzQNjv4BqHqEqWIQYN_HlsJ_HcWHEJKkIgbqFjtqE7VzX64Vv544.jpeg?imwidth=350",
+        "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496106309_17848266949860_trans_NvBQzQNjv4BqC_LLCXkS_z-CZqgOMP7Be4NJOW97-4gC-TIHNP2xpBw.jpeg?imwidth=350",
+        "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Attacks",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png"
+        },
+        {
+          "name": "Russia",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200"
+        },
+        {
+          "name": "Amazon",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+      ],
+      "entities": [
+        "Attacks",
+        "Russia",
+        "Amazon",
+        "Putin"
+      ],
+      "sourceUrls": [
+        "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl",
+        "https://www.telegraph.co.uk/world-news/2026/07/24/why-russias-amazon-became-ukraines-number-one-target/"
+      ],
+      "sourceName": "cnn.com",
+      "sources": [
+        "CNN",
+        "The Telegraph"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "drone",
+      "traffic": 10000,
+      "freshH": 1,
+      "score": 0.631,
+      "popularity": 0.174,
+      "recency": 0.891,
+      "relevancy": 1,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Opinion | Levy: Local opposition to Flock cameras is strong",
+      "summary": "Avon residents have expressed strong opposition to Flock cameras, with hundreds of comments on local Facebook groups criticizing the devices and their concerns about data collection. The Avon Police Department's Facebook post about the destruction of two Flock cameras and a speed camera received over 17,000 comments, with many residents voicing their disapproval. The town is now investigating the destruction of the cameras, which is being treated as a felony, with estimated costs of over $15,000 for replacement and repairs.",
+      "hashtag": "Camera",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.vaildaily.com/opinion/opinion-levy-local-opposition-to-flock-cameras-is-strong/",
+      "imageUrl": "https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/7/2026/07/22142435/5936F2F5-8B02-4D37-A7F9-A9ECCA639F17-1024x1024.jpg",
+      "images": [
+        "https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/7/2026/07/22142435/5936F2F5-8B02-4D37-A7F9-A9ECCA639F17-1024x1024.jpg",
+        "https://www.denverpost.com/wp-content/uploads/2026/07/Avon-Flock-reader.jpg?w=1536&h=2048",
+        "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+      ],
+      "entityShots": [
+        {
+          "name": "Local",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+      ],
+      "entities": [
+        "Opinion",
+        "Levy",
+        "Local",
+        "Flock"
+      ],
+      "sourceUrls": [
+        "https://www.vaildaily.com/opinion/opinion-levy-local-opposition-to-flock-cameras-is-strong/",
+        "https://www.denverpost.com/2026/07/23/avon-police-investigate-theft-of-speed-cameras-and-flock-license-plate-reader/"
+      ],
+      "sourceName": "vaildaily.com",
+      "sources": [
+        "VailDaily.com",
+        "The Denver Post"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "camera news",
+      "traffic": 200,
+      "freshH": 1,
+      "score": 0.582,
+      "popularity": 0.143,
+      "recency": 0.891,
+      "relevancy": 0.85,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Samaria: The man who’s seen every side of the game - The Namibian -",
+      "summary": "Namibian football legend Frans ‘Killa’ Samaria has died at 72. A former player, referee, instructor, and match commissioner, he served the Namibia Football Association and CAF for decades. Samaria leaves behind a legacy spanning every corner of the game.",
+      "hashtag": "Game",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://www.namibian.com.na/samaria-the-man-whos-seen-every-side-of-the-game/",
+      "imageUrl": "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-1-1024x669.jpeg",
+      "images": [
+        "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-1-1024x669.jpeg",
+        "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-3.jpeg",
+        "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-2-1024x682.jpeg",
+        "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-4.jpeg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Samaria",
+        "Namibia"
+      ],
+      "sourceUrls": [
+        "https://www.namibian.com.na/samaria-the-man-whos-seen-every-side-of-the-game/"
+      ],
+      "sourceName": "The Namibian -",
+      "sources": [
+        "The Namibian -"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "The Game",
+      "traffic": 97000,
+      "freshH": 0.5,
+      "score": 0.578,
+      "popularity": 0.3,
+      "recency": 0.944,
+      "relevancy": 0.51,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "MLB Gameday: Tigers 5, Cubs 1 Final Score (07/22/2026)",
+      "summary": "The Detroit Tigers secured a 5-1 victory over the Chicago Cubs at Wrigley Field on July 22, 2026, with a strong performance from their starting pitcher, who allowed just one run in six innings. The Tigers' offense was led by two home runs from their star player, who drove in three runs. The win marks the Tigers' fifth consecutive victory.",
+      "hashtag": "Score",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlb.com/gameday/824650/final/insights",
+      "imageUrl": "https://midfield.mlbstatic.com/v1/teams-matchup/116-112/ar_16:9/w_1440",
+      "images": [
+        "https://midfield.mlbstatic.com/v1/teams-matchup/116-112/ar_16:9/w_1440",
+        "https://midfield.mlbstatic.com/v1/teams-matchup/529-2310/ar_16:9/w_1440",
+        "https://midfield.mlbstatic.com/v1/teams-matchup/110-111/ar_16:9/w_1440"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "MLB Gameday",
+        "Tigers",
+        "Cubs",
+        "Final Score"
+      ],
+      "sourceUrls": [
+        "https://www.mlb.com/gameday/824650/final/insights",
+        "https://www.milb.com/gameday/rainiers-vs-aces/2026/07/22/815127/final/box",
+        "https://www.mlb.com/gameday/orioles-vs-red-sox/2026/07/22/824735/final/insights"
+      ],
+      "sourceName": "mlb.com",
+      "sources": [
+        "MLB.com"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "score",
+      "traffic": 200,
+      "freshH": 1,
+      "score": 0.57,
+      "popularity": 0.143,
+      "recency": 0.891,
+      "relevancy": 0.805,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Tyla – A*POP",
+      "summary": "Tyla releases her new album APOP, marking another bold step in her global pop career. The Grammy-winning South African artist blends confidence and vulnerability across 11 tracks, opening with Is It Love. The record reflects her growth while staying true to her signature intimate yet understated sound.",
       "hashtag": "Tyla",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.bona.co.za/entertainment/tyla-drops-apop-her-most-ambitious-project-yet/",
-      "imageUrl": "https://www.bona.co.za/wp-content/uploads/2026/07/HN9kiH0X0AA9_Q5.jpeg",
+      "url": "https://www.clashmusic.com/reviews/tyla-apop/",
+      "imageUrl": "https://www.clashmusic.com/wp-content/uploads/2026/07/TYLA-APOP-Cover-1-scaled.jpeg",
       "images": [
-        "https://www.bona.co.za/wp-content/uploads/2026/07/HN9kiH0X0AA9_Q5.jpeg"
+        "https://www.clashmusic.com/wp-content/uploads/2026/07/TYLA-APOP-Cover-1-scaled.jpeg"
       ],
       "entityShots": [],
       "entityImages": [],
@@ -134,279 +282,104 @@
         "A*POP"
       ],
       "sourceUrls": [
-        "https://www.bona.co.za/entertainment/tyla-drops-apop-her-most-ambitious-project-yet/"
+        "https://www.clashmusic.com/reviews/tyla-apop/"
       ],
-      "sourceName": "Bona Magazine",
+      "sourceName": "clashmusic.com",
       "sources": [
-        "Bona Magazine"
+        "clashmusic.com"
       ],
       "corr": 1,
       "verified": false,
       "trend": "Tyla",
-      "traffic": 95000,
+      "traffic": 96000,
       "freshH": 0.5,
-      "score": 0.546,
-      "popularity": 0.3,
+      "score": 0.548,
+      "popularity": 0.297,
       "recency": 0.944,
-      "relevancy": 0.382,
+      "relevancy": 0.397,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Man Utd mascot, six, hit by club's ticket tout crackdown",
-      "summary": "A six-year-old Manchester United season ticket holder has had restrictions put on his account as part of the club's crackdown on ticket touting, with the club citing repeated access to his account and others as evidence of central control. The boy, who was once a match mascot, will now be unable to apply for away game tickets, despite his mother's appeal being turned down. This is one of thousands of accounts restricted by the club in its operation to identify potential ticket touts.",
-      "hashtag": "ManUtd",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/news/articles/c79gdjr0ny4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/955/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1104/cpsprodpb/b5dd/live/f590f0a0-8731-11f1-a42c-83dd67bf1cb2.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1056/cpsprodpb/e70c/live/0cf33750-86b3-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/714/cpsprodpb/4b83/live/75e9bb50-8733-11f1-a42c-83dd67bf1cb2.png"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Man Utd",
-        "Ruari's"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c79gdjr0ny4o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.43,
-      "score": 0.513,
-      "popularity": 0,
-      "recency": 0.952,
-      "relevancy": 0.72,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "BREAKING: Shiloh Hendrix found GUILTY of disorderly conduct after viral 'racial slur' incident involving Somalis in Minnesota park",
-      "summary": "Shiloh Hendrix, 37, was found guilty of disorderly conduct Thursday after a Minnesota jury deliberated nine hours in a viral case involving a Somali family. Judge Christa M. Daily sentenced her to a stayed 90-day jail term, 200 hours of community service, and a $1,000 fine for the April 28, 2025 incident at a Rochester playground. Hendrix chased an 8-year-old autistic Somali boy after he took an applesauce packet from her child’s diaper bag and used a racial slur.",
-      "hashtag": "ShilohHendrix",
+      "title": "Charli xcx – Music, Fashion, Film",
+      "summary": "Charli xcx releases her new album Music, Fashion, Film, a shorter follow-up to last year’s breakout Brat. The 12-track collection leans into tense, unsettling energy with most songs under three minutes. The lead single Rock Music drops today.",
+      "hashtag": "Charli",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://thepostmillennial.com/breaking-shiloh-hendrix-found-guilty-of-disorderly-conduct-after-viral-racial-slur-incident-involving-somalis-in-minnesota-park",
-      "imageUrl": "https://mr.cdn.ignitecdn.com/client_assets/thepostmillennial_com/media/picture/6a62/f4a1/539e/5ede/9151/640d/original_original_photo_2025-05-02_10.55.16.jpeg?1784870051",
+      "url": "https://www.clashmusic.com/reviews/charli-xcx-music-fashion-film/",
+      "imageUrl": "https://www.clashmusic.com/wp-content/uploads/2026/06/Charli-xcx-artwork.jpg",
       "images": [
-        "https://mr.cdn.ignitecdn.com/client_assets/thepostmillennial_com/media/picture/6a62/f4a1/539e/5ede/9151/640d/original_original_photo_2025-05-02_10.55.16.jpeg?1784870051"
+        "https://www.clashmusic.com/wp-content/uploads/2026/06/Charli-xcx-artwork.jpg",
+        "https://www.clashmusic.com/wp-content/uploads/2025/06/Charli-xcx-at-LIDO-Festival-credit-Henry-Redcliffe-9-1024x683.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Shiloh Hendrix",
-        "Minnesota park"
+        "Charli xcx"
       ],
       "sourceUrls": [
-        "https://thepostmillennial.com/breaking-shiloh-hendrix-found-guilty-of-disorderly-conduct-after-viral-racial-slur-incident-involving-somalis-in-minnesota-park"
+        "https://www.clashmusic.com/reviews/charli-xcx-music-fashion-film/"
       ],
-      "sourceName": "thepostmillennial.com",
+      "sourceName": "clashmusic.com",
       "sources": [
-        "thepostmillennial.com"
+        "clashmusic.com"
       ],
       "corr": 1,
       "verified": false,
-      "trend": "Shiloh Hendrix",
-      "traffic": 93000,
-      "freshH": 2,
-      "score": 0.513,
-      "popularity": 0.294,
-      "recency": 0.794,
-      "relevancy": 0.47,
+      "trend": "Charli",
+      "traffic": 92000,
+      "freshH": 0.5,
+      "score": 0.545,
+      "popularity": 0.285,
+      "recency": 0.944,
+      "relevancy": 0.401,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Why Samsung Gave Its Next Folding Phone a New Shape",
-      "summary": "Samsung has unveiled a new design for its Galaxy Fold8, a passport-shaped, book-like fold, which is aimed at consumers who prioritize consuming content on their mobile devices. The new phone features a 10:16 aspect ratio for its front cover screen and a 4:3 inner display, making it well-suited for watching videos in both landscape and vertical orientations. This move comes as mobile video watching has seen an explosive growth, with 80 percent of consumers now watching videos on their mobile devices rather than on TV screens or tablets.",
-      "hashtag": "Phone",
-      "badge": "TRENDING",
+      "title": "2026 WNBA 3-Point Contest Odds, Prediction, Participants, Past Winners (Bet on Rhyne Howard, Fade Azzi Fudd)",
+      "summary": "The 2026 WNBA All-Star festivities kick off Friday night at Wintrust Arena with the 3-Point Contest, featuring six sharpshooters including Rhyne Howard and Azzi Fudd. Howard, a 2022 finalist, and Mabrey, who scored just 19 points in 2024, headline the fresh field. The contest starts at 8 p.m. local time.",
+      "hashtag": "Azzi",
+      "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.wired.com/story/why-samsung-gave-its-next-folding-phone-a-new-shape-galaxy-z-fold8/",
-      "imageUrl": "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/191:100/w_1280,c_limit/SamsungFlip.jpg",
+      "url": "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
+      "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg",
       "images": [
-        "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/191:100/w_1280,c_limit/SamsungFlip.jpg",
-        "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/16:9/w_2400,h_1350,c_limit/SamsungFlip.jpg",
-        "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/4:3/w_2132,h_1599,c_limit/SamsungFlip.jpg",
-        "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/1:1/w_1600,h_1600,c_limit/SamsungFlip.jpg",
-        "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/3:2/w_2560%2Cc_limit/SamsungFlip.jpg",
-        "https://media.wired.com/photos/6a5f46e2278d5136b7120eae/master/w_1600%2Cc_limit/DSC_9094.jpg",
-        "https://media.wired.com/photos/6a5f46c120f569fb01f0b80c/master/w_1600%2Cc_limit/DSC_9121.jpg",
-        "https://media.wired.com/photos/6a5f46bc21e9fecd32444a9a/master/w_1600%2Cc_limit/DSC_9096.jpg",
-        "https://media.wired.com/photos/65e837c3237d9447be5378b7/1:1/w_90%2Cc_limit/Julian%2520Chokkattu.jpg"
+        "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Samsung Gave Its",
-        "Next Folding Phone",
-        "Shape"
+        "Rhyne Howard",
+        "Azzi Fudd",
+        "WNBA 3-Point Contest"
       ],
       "sourceUrls": [
-        "https://www.wired.com/story/why-samsung-gave-its-next-folding-phone-a-new-shape-galaxy-z-fold8/"
+        "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
+        "https://mshale.com/5a036551/37ca7fbfHUAGIAEdRSkbPAY",
+        "https://collegefootballnetwork.com/wnba/top-7-outfits-on-the-wnba-all-star-orange-carpet-feat-aja-wilson-azzi-fudd-paige-bueckers-and-more/"
       ],
-      "sourceName": "wired.com",
+      "sourceName": "Sports Illustrated",
       "sources": [
-        "WIRED"
+        "Sports Illustrated",
+        "Mshale",
+        "College Sports Network"
       ],
-      "corr": 1,
-      "verified": false,
-      "trend": "phone",
-      "traffic": 200,
-      "freshH": 1,
-      "score": 0.492,
-      "popularity": 0.001,
-      "recency": 0.891,
-      "relevancy": 0.72,
+      "corr": 3,
+      "verified": true,
+      "trend": "Azzi",
+      "traffic": 94000,
+      "freshH": 8,
+      "score": 0.515,
+      "popularity": 0.517,
+      "recency": 0.397,
+      "relevancy": 0.679,
       "region": "usa",
       "geo": "US"
-    },
-    {
-      "title": "The 12 Worst Fashion Trends of the Past Century",
-      "summary": "A 23-year-old singer's revival of the 1950s baby doll dress has sparked controversy, with critics accusing the look of being regressive and childlike. The dress, originally designed as wartime lingerie, has been a recurring fashion trend, with its modern revival drawing attention to the cultural habit of sexualizing young or childlike appearances. The singer has defended the outfit, arguing that the criticism reflects a broader societal issue rather than a personal fashion choice.",
-      "hashtag": "FashionStyle",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://thecurvyfashionista.com/the-12-worst-fashion-trends-of-the-past-century/",
-      "imageUrl": "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T082242.064.jpg",
-      "images": [
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T082242.064.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T064419.301-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T065156.142-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-14T141319.463-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T070141.155-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T070608.737-1-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071034.138-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071603.541-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071905.525-1024x576.jpg",
-        "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T072211.221-1024x576.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Worst Fashion Trends",
-        "Past Century"
-      ],
-      "sourceUrls": [
-        "https://thecurvyfashionista.com/the-12-worst-fashion-trends-of-the-past-century/"
-      ],
-      "sourceName": "thecurvyfashionista.com",
-      "sources": [
-        "The Curvy Fashionista"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "fashion style",
-      "traffic": 200,
-      "freshH": 1,
-      "score": 0.492,
-      "popularity": 0.001,
-      "recency": 0.891,
-      "relevancy": 0.72,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Regional mayors to take key roles in UK policy decisions as part of No 10 North plans",
-      "summary": "Regional mayors will take key roles in UK economic policy as part of the new No 10 North initiative, Prime Minister Andy Burnham announced. The revived National Economic Council, chaired by Burnham, will hold its first meeting on Friday, aiming to decentralise decision-making from London. The move seeks to drive growth by aligning central government with regional leaders.",
-      "hashtag": "Regional",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/politics/2026/jul/23/regional-mayors-to-take-key-roles-in-uk-policy-decisions-as-part-of-no-10-north-plans",
-      "imageUrl": "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e0c3b7292ff20ac4887273f23a923418",
-      "images": [
-        "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e0c3b7292ff20ac4887273f23a923418",
-        "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=10f8290cecdb0208db2986ca2dc1f7d9",
-        "https://i.guim.co.uk/img/media/0f57aa3f523b6a9114652dc3f96dcb90cd8bc413/0_0_6000_4000/master/6000.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/cd4396cad87aadc4dcc16cdb1922070fc9c1e0bd/0_0_3636_2425/master/3636.jpg?width=445&dpr=1&s=none&crop=none"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Regional",
-        "North",
-        "Burnham",
-        "Brown-era",
-        "Andy Burnham Regional",
-        "Andy Burnham"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/politics/2026/jul/23/regional-mayors-to-take-key-roles-in-uk-policy-decisions-as-part-of-no-10-north-plans"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.35,
-      "score": 0.486,
-      "popularity": 0,
-      "recency": 0.96,
-      "relevancy": 0.601,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘It was the moment I lost innocence’: how a childhood stop-and-search led to the British debut movie of the year",
-      "summary": "A childhood stop-and-search inspired Ishmail Perretta’s debut film “Ish,” a coming-of-age drama set in Luton that critics now compare to classics like “Kes.” The poetic film, praised for its heartfelt portrayal of youth, premieres as Britain’s standout movie of the year. Perretta calls the overwhelmingly positive reviews a relief after fears it might be mistaken for gritty urban dramas.",
-      "hashtag": "It",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year",
-      "imageUrl": "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
-      "images": [
-        "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
-        "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f4fd25fb45f7db7395245d51b94bc9b3",
-        "https://i.guim.co.uk/img/media/5788158c1e5e29b7895307e7f13051bd958637a0/0_0_6496_4872/master/6496.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/7bde9d5251d8e8295d11161086217084fc22ae63/0_0_8256_5504/master/8256.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/5afa85e49b1dd4a7f8b65d8af61e88f44c97af57/0_0_2514_3149/master/2514.jpg?width=445&dpr=1&s=none&crop=none"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "British",
-        "Imran Perretta",
-        "British Muslim",
-        "Luton"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.482,
-      "popularity": 0,
-      "recency": 0.906,
-      "relevancy": 0.662,
-      "region": "usa",
-      "geo": null
     },
     {
       "title": "US hits dozens of trading partners with new wave of tariffs",
-      "summary": "US President Donald Trump's administration has imposed new tariffs of 10% to 12.5% on 60 trading partners, including the UK, China, and the European Union, accounting for nearly all American imports, worth almost 100% of US imports. The tariffs are based on claims that these partners have failed to properly address forced labour, but US trade experts say the move is actually a legal justification for the tariffs. The new duties will take effect immediately, replacing an identical levy that expires on Friday.",
+      "summary": "The US has imposed new tariffs of 10% to 12.5% on goods from 60 trading partners, including the UK, China and the EU, covering 99.4% of American imports. The move replaces an expiring 10% levy and targets nations accused of failing to address forced labour. The White House claims the duties will address human rights abuses and trade distortions.",
       "hashtag": "US",
       "badge": "BREAKING",
       "category": "breaking",
@@ -448,72 +421,324 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.66,
-      "score": 0.479,
+      "freshH": 0.36,
+      "score": 0.481,
       "popularity": 0,
-      "recency": 0.927,
-      "relevancy": 0.62,
+      "recency": 0.959,
+      "relevancy": 0.58,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Jumbo’ Sequel, ‘Queen of Malacca’ Franchise Plans on the Cards as Indonesia’s Visinema Eyes Expansion (EXCLUSIVE)",
-      "summary": "Indonesian filmmaker Angga Dwimas Sasongko plans to release the fantasy epic \"Queen of Malacca\" in the first quarter of 2027, after it moves through post-production and attracts interest from potential distribution partners in China, Thailand, and other international markets. The project has gained significant industry attention since its announcement. A sequel to the film, titled \"Jumbo,\" is also reportedly in the works as part of the expanding \"Queen of Malacca\" franchise.",
-      "hashtag": "VisinemaEyes",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
+      "title": "Angela Rayner rules out rent controls in England",
+      "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, despite calls from some mayors. She cited the Renters' Rights Act, which took effect in May, as the government’s preferred solution to rising rental costs. The policy shift follows temporary rent controls in Scotland, which expired last year without lasting impact.",
+      "hashtag": "AngelaRayner",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg?w=1000&h=563&crop=1",
-        "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Sequel",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg"
-        },
-        {
-          "name": "Queen",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Jumbo",
-        "Sequel",
-        "Queen",
-        "Malacca",
-        "Franchise Plans",
-        "Cards"
+        "Angela Rayner",
+        "Renters Rights' Act"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/"
+        "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "Variety",
+      "sourceName": "BBC",
       "sources": [
-        "Variety"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.83,
-      "score": 0.473,
+      "freshH": 0.08,
+      "score": 0.467,
       "popularity": 0,
-      "recency": 0.909,
-      "relevancy": 0.62,
+      "recency": 0.99,
+      "relevancy": 0.482,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Tech titan ordered to pay ex-wife $644m in divorce settlement",
+      "summary": "A South Korean court ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in their record-breaking divorce settlement. The amount is lower than the initial $870 million ruling in 2024 after a decade-long dispute over asset division. The finalized payment follows deliberations on dividing assets from their 35-year marriage.",
+      "hashtag": "Tech",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/ckg68jky65eo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "South Korea"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ckg68jky65eo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.35,
+      "score": 0.458,
+      "popularity": 0,
+      "recency": 0.961,
+      "relevancy": 0.487,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Regional mayors to take key roles in UK policy decisions as part of No 10 North plans",
+      "summary": "Regional mayors will take key roles in UK economic policy as part of the new No 10 North initiative, Prime Minister Andy Burnham announced on Friday. The revived National Economic Council will meet for the first time, aiming to decentralise decision-making from London and boost growth across the country. The move marks a major shift in government power-sharing, Burnham said.",
+      "hashtag": "Regional",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/politics/2026/jul/23/regional-mayors-to-take-key-roles-in-uk-policy-decisions-as-part-of-no-10-north-plans",
+      "imageUrl": "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e0c3b7292ff20ac4887273f23a923418",
+      "images": [
+        "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e0c3b7292ff20ac4887273f23a923418",
+        "https://i.guim.co.uk/img/media/b8bb5cd61a6c60636a078c946adfa66c1b916d38/532_159_2633_2108/master/2633.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=10f8290cecdb0208db2986ca2dc1f7d9",
+        "https://i.guim.co.uk/img/media/0f57aa3f523b6a9114652dc3f96dcb90cd8bc413/0_0_6000_4000/master/6000.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/cd4396cad87aadc4dcc16cdb1922070fc9c1e0bd/0_0_3636_2425/master/3636.jpg?width=445&dpr=1&s=none&crop=none"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Regional",
+        "North",
+        "Burnham",
+        "Brown-era",
+        "Andy Burnham Regional",
+        "Andy Burnham"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/politics/2026/jul/23/regional-mayors-to-take-key-roles-in-uk-policy-decisions-as-part-of-no-10-north-plans"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.35,
+      "score": 0.45,
+      "popularity": 0,
+      "recency": 0.855,
+      "relevancy": 0.603,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "France orders evacuation of tourist spot as hundreds flee wildfires by boat",
+      "summary": "French authorities have ordered the full evacuation of the Cap Ferret peninsula in south-west France as wildfires rage in the Gironde region, scorching 8,700 hectares since Tuesday. Hundreds fled by boat while another major fire near Biscarrosse has forced over 23,000 people from their homes, including a nursing home and summer camp. No new casualties have been reported overnight, though two firefighters died battling blazes near Bordeaux airport earlier this week.",
+      "hashtag": "France",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "France",
+        "Cap Ferret"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.87,
+      "score": 0.446,
+      "popularity": 0,
+      "recency": 0.904,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Why have thousands taken to the streets? India's 'cockroach' protest explained",
+      "summary": "Tens of thousands of young protesters marched across Delhi and other Indian cities on Thursday, demanding the resignation of the education minister. The movement, dubbed the Cockroach Janta Party, began as an online satire just months ago and has since grown into a major youth-led campaign.",
+      "hashtag": "Why",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/videos/c3307vgneveo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/news/1024/branded_news/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "India",
+        "cockroach"
+      ],
+      "sourceUrls": [],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.38,
+      "score": 0.444,
+      "popularity": 0,
+      "recency": 0.957,
+      "relevancy": 0.438,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Man Utd bring in Leicester goalkeeper Leitzig",
+      "summary": "Manchester United have signed goalkeeper Janina Leitzig from Leicester City for an undisclosed fee. The 27-year-old German international joins on a three-year deal after United triggered her release clause. Leitzig, who made nearly 70 appearances for Leicester, aims to help United avoid relegation in the Women's Super League.",
+      "hashtag": "ManUtd",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/czjle91ry39o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Janina Leitzig",
+        "Manchester United F.C.",
+        "Leicester City F.C."
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/czjle91ry39o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.74,
+      "score": 0.438,
+      "popularity": 0,
+      "recency": 0.918,
+      "relevancy": 0.465,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘It was the moment I lost innocence’: how a childhood stop-and-search led to the British debut movie of the year",
+      "summary": "A childhood stop-and-search inspired filmmaker Mran Perretta’s debut feature Ish, which follows 12-year-old Ishmail in Luton. The poetic coming-of-age drama has drawn comparisons to classics like Kes and Apu, with critics praising its heartfelt portrayal. Perretta’s film opens in UK cinemas this week after strong early reviews.",
+      "hashtag": "It",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year",
+      "imageUrl": "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
+      "images": [
+        "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
+        "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f4fd25fb45f7db7395245d51b94bc9b3",
+        "https://i.guim.co.uk/img/media/5788158c1e5e29b7895307e7f13051bd958637a0/0_0_6496_4872/master/6496.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/7bde9d5251d8e8295d11161086217084fc22ae63/0_0_8256_5504/master/8256.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/5afa85e49b1dd4a7f8b65d8af61e88f44c97af57/0_0_2514_3149/master/2514.jpg?width=445&dpr=1&s=none&crop=none"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Imran Perretta",
+        "Ish"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.86,
+      "score": 0.436,
+      "popularity": 0,
+      "recency": 0.807,
+      "relevancy": 0.617,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Scotland's Gunn concedes four in San Jose debut defeat",
+      "summary": "Scotland’s Gunn conceded four in his San Jose debut defeat on Sunday. Brekalo, Angulo, Griezmann and Ojeda scored as San Jose lost 4-0 to LAFC. Gunn’s side remain tied on points at the top of the Western Conference but trail Vancouver on goal difference.",
+      "hashtag": "SanJose",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cqlxyvq7n93o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Scotland's Gunn",
+        "San Jose",
+        "Scotland",
+        "Angus Gunn",
+        "San Jose Earthquakes",
+        "Orlando City"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cqlxyvq7n93o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.44,
+      "score": 0.435,
+      "popularity": 0,
+      "recency": 0.95,
+      "relevancy": 0.41,
       "region": "usa",
       "geo": null
     },
     {
       "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-      "summary": "Youth services in England have seen a 73% decline in funding over the past 12 years, leaving nearly 1 million 16- to 24-year-olds not in work, education or training, with many coastal towns facing severe deprivation and isolation. This has led to young people being unfairly stigmatized as \"lazy\" or \"feral\", with their towns being labeled as \"problematic\". The Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
+      "summary": "Coastal towns in England and Wales face a youth crisis, with nearly one million 16- to 24-year-olds not in work, education or training. Funding for youth services has plummeted by 73% over 12 years, leaving young people isolated and struggling. The Guardian’s year-long project highlights their struggles amid decades of deprivation and negative stereotypes.",
       "hashtag": "One",
       "badge": "HEALTH",
       "category": "health",
@@ -562,17 +787,108 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.86,
-      "score": 0.462,
+      "freshH": 2.86,
+      "score": 0.424,
       "popularity": 0,
-      "recency": 0.807,
-      "relevancy": 0.72,
+      "recency": 0.719,
+      "relevancy": 0.689,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Who am I? Guess The Hundred cricket star No 4",
+      "summary": "A new cricket quiz challenges fans to guess the identity of a star player in The Hundred tournament. Today’s mystery cricketer is the fourth player featured in the daily guessing game. More clues will unlock with each incorrect guess until the correct answer is revealed.",
+      "hashtag": "IGuess",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/cricket/articles/cqjx05wrndgo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Guess The Hundred"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/cricket/articles/cqjx05wrndgo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.93,
+      "score": 0.42,
+      "popularity": 0,
+      "recency": 0.898,
+      "relevancy": 0.423,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘Jumbo’ Sequel, ‘Queen of Malacca’ Franchise Plans on the Cards as Indonesia’s Visinema Eyes Expansion (EXCLUSIVE)",
+      "summary": "Indonesian studio Visinema plans to release the fantasy epic Queen of Malacca in early 2027, following post-production progress and rising international interest from distributors in China and Thailand. The sequel to the hit Jumbo underscores Visinema’s push to expand its regional franchise reach.",
+      "hashtag": "VisinemaEyes",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg?w=1000&h=563&crop=1",
+        "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Sequel",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg"
+        },
+        {
+          "name": "Queen",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/1/1f/Return_of_Tarzan.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg"
+      ],
+      "entities": [
+        "Jumbo",
+        "Sequel",
+        "Queen",
+        "Malacca",
+        "Franchise Plans",
+        "Cards"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.83,
+      "score": 0.419,
+      "popularity": 0,
+      "recency": 0.81,
+      "relevancy": 0.543,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Burnham to spend first day working from northern branch of No 10",
-      "summary": "British Prime Minister Rishi Sunak's plan to decentralize power is taking shape as Labour leader Andy Burnham will spend his first day working from the new No 10 North in Manchester, marking a significant shift in power from Whitehall and Westminster to regional areas. Up to 300 civil servants are expected to join ministers Lucy Powell and Louise Haigh at the new site by the end of next year. This move aims to put devolution at the centre of the government's mission to boost local economic growth and address regional disparities.",
+      "summary": "Andy Burnham will hold his first meeting at the new No 10 North office in Manchester today, marking a push to decentralise government power from London. Up to 300 civil servants will relocate to the North West by next year as part of the prime minister’s devolution plan. The National Economic Council will meet in Manchester to prioritise regional investment and local economic growth.",
       "hashtag": "Burnham",
       "badge": "POLITICS",
       "category": "politics",
@@ -600,189 +916,57 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.61,
-      "score": 0.456,
+      "freshH": 1.61,
+      "score": 0.418,
       "popularity": 0,
-      "recency": 0.932,
-      "relevancy": 0.52,
+      "recency": 0.831,
+      "relevancy": 0.509,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "France orders evacuation of peninsula as hundreds flee wildfires by boat",
-      "summary": "French authorities have ordered the full evacuation of the Cap Ferret peninsula in southwest France as wildfires consume 8,700 hectares near Bordeaux. Hundreds fled by boat as firefighters battle the blaze that began Tuesday, with no new injuries reported Friday. Spain has declared a national emergency amid worsening wildfires near Madrid.",
-      "hashtag": "France",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "France",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-      ],
-      "entities": [
-        "France",
-        "Friday"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.74,
-      "score": 0.453,
-      "popularity": 0,
-      "recency": 0.918,
-      "relevancy": 0.526,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "What's on for Team NI on first day of Commonwealth Games?",
-      "summary": "Team Northern Ireland kicks off the 2026 Commonwealth Games in Glasgow with action starting at 08:30 BST as Gary Kelly competes in the men's singles. Swimmers Victoria Catterson, Grace Davison and Lottie Cullen lead the morning heats at Tollcross Swimming Centre, with semi-finals and finals scheduled from 19:00. Boxing’s Louis Rooney also begins his campaign at the SEC Centre.",
-      "hashtag": "TeamNI",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/ckg9mwmz14no?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "What's",
-        "Team NI",
-        "Commonwealth Games",
-        "BBC Sport NI",
-        "Team Northern Ireland"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/ckg9mwmz14no?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.72,
-      "score": 0.448,
-      "popularity": 0,
-      "recency": 0.92,
-      "relevancy": 0.504,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
-      "summary": "India’s government will hold talks Friday with the ‘Cockroach Janta Party’ as protests demanding education minister Dharmendra Pradhan’s resignation enter their fourth week. Prime Minister Narendra Modi vowed tough new laws on exam paper leaks after activist Sonam Wangchuk ended a 26-day hunger strike, but protesters insist Pradhan must step down. Tens of thousands have marched nationwide since police forcibly removed Wangchuk and injured scores during a Delhi crackdown.",
-      "hashtag": "India",
+      "title": "Faced With Heat and Wildfires, France Turns to Spain to Learn How to Cope",
+      "summary": "A French government delegation will travel to its southern neighbor to learn how it copes with long spells of hot weather.",
+      "hashtag": "WildfiresFrance",
       "badge": "BREAKING",
       "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
+      "url": "https://www.nytimes.com/2026/07/24/world/europe/france-spain-climate-heat-wildfires.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-paris-spain-heat-kmlz/24int-paris-spain-heat-kmlz-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "India's",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-      ],
-      "entities": [
-        "India's",
-        "Sonam Wangchuk"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.35,
-      "score": 0.442,
-      "popularity": 0,
-      "recency": 0.855,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘A small snippet’: what pubs make of Burnham’s £100m rates giveaway",
-      "summary": "British Prime Minister Andy Burnham has announced a £100m policy to reduce business rates for pubs, clubs, and live music venues by 20%, as part of a broader agenda to support the high street. This move aims to combat the trend of pub closures, which has seen one pub shut down every day. The policy is expected to benefit thousands of establishments, but its effectiveness in halting the decline of the UK's pub industry remains to be seen.",
-      "hashtag": "A",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors",
-      "imageUrl": "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
-      "images": [
-        "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
-        "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c331a24e8b8793ae738eb52693081530",
-        "https://i.guim.co.uk/img/media/287b32d1b4352482ddbe4068035210af532a1463/0_0_6700_4467/master/6700.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/4954ef61e0eb83a1e1373641537f8d5630a64fc6/142_173_7637_4302/master/7637.jpg?width=445&dpr=1&s=none&crop=none"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24int-paris-spain-heat-kmlz/24int-paris-spain-heat-kmlz-mediumSquareAt3X.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Burnham",
-        "Landlords",
-        "Andy Burnham",
-        "Thursday",
-        "Continue"
+        "Faced With Heat",
+        "Wildfires",
+        "France Turns",
+        "Spain",
+        "Learn How",
+        "Cope"
       ],
       "sourceUrls": [
-        "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors"
+        "https://www.nytimes.com/2026/07/24/world/europe/france-spain-climate-heat-wildfires.html"
       ],
-      "sourceName": "The Guardian",
+      "sourceName": "The New York Times",
       "sources": [
-        "The Guardian"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.86,
-      "score": 0.437,
+      "freshH": 0.13,
+      "score": 0.41,
       "popularity": 0,
-      "recency": 0.807,
-      "relevancy": 0.62,
+      "recency": 0.985,
+      "relevancy": 0.262,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Rare night heron spotted at National Trust site",
-      "summary": "A rare black-crowned night heron, typically found in Africa, Asia, and the Americas, has been spotted at the National Trust’s Holnicote Estate in Somerset, UK. Conservationists say the sighting follows new freshwater habitats introduced at the site, supporting species like water voles and otters. Experts call it a sign that restored wetlands could help struggling wildlife populations recover.",
+      "summary": "A rare black-crowned night heron, typically found in Africa, Asia, and the Americas, has been spotted at the National Trust’s Holnicote Estate in Somerset. The sighting follows conservation efforts to restore freshwater habitats, benefiting species like water voles, otters, and white-tailed eagles. Conservationists say the UK’s wetlands have declined by over 97%, making such sightings significant for wildlife recovery.",
       "hashtag": "NationalTrust",
       "badge": "SCIENCE",
       "category": "facts",
@@ -792,18 +976,10 @@
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
         "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
+        "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png"
       ],
-      "entityShots": [
-        {
-          "name": "Africa",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Rare",
         "National Trust",
@@ -823,50 +999,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.56,
-      "score": 0.427,
+      "freshH": 3.56,
+      "score": 0.387,
       "popularity": 0,
-      "recency": 0.744,
-      "relevancy": 0.666,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Socceroos star allegedly tests positive for cocaine after speeding",
-      "summary": "Australia midfielder Cristian Volpato, 22, faces a cocaine allegation after police twice stopped him for speeding in Sydney on Thursday night. He was caught driving over 86km/h in a 60km/h zone at 11:05pm, then again at 1:05am, where he tested positive for cocaine. His international driver’s licence was suspended for six months, and police will continue their investigation.",
-      "hashtag": "Socceroos",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Socceroos",
-        "Socceroos World Cup",
-        "Cristian Volpato",
-        "Sydney"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.45,
-      "score": 0.421,
-      "popularity": 0,
-      "recency": 0.845,
-      "relevancy": 0.502,
+      "recency": 0.663,
+      "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
@@ -900,17 +1037,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.13,
-      "score": 0.417,
+      "freshH": 1.13,
+      "score": 0.379,
       "popularity": 0,
-      "recency": 0.985,
+      "recency": 0.878,
       "relevancy": 0.287,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Play area aims to interest children in rare habitat",
-      "summary": "A Hampshire science centre has opened a new play area to teach children about England’s rare chalk streams, which face pressure from hot and dry weather. The exhibit at Winchester Science Centre lets kids explore water flow and wildlife in one of the world’s most unique freshwater habitats. The centre hopes early engagement will inspire future conservation efforts.",
+      "summary": "A Hampshire science centre has opened a new play area to teach children about England’s rare chalk streams, which face pressure from hot and dry weather. The Winchester Science Centre’s exhibit lets kids explore why water flow and temperature matter to these unique habitats. The project aims to inspire future conservation efforts as wildlife groups push for stronger protections.",
       "hashtag": "Play",
       "badge": "SCIENCE",
       "category": "facts",
@@ -918,18 +1055,10 @@
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Play",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Play"
       ],
@@ -944,17 +1073,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.51,
-      "score": 0.398,
+      "freshH": 3.51,
+      "score": 0.36,
       "popularity": 0,
-      "recency": 0.748,
-      "relevancy": 0.545,
+      "recency": 0.666,
+      "relevancy": 0.506,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-      "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with hospital admissions and days off from work or school dropping by 70% among 72 households in Ohio. This finding is comparable to the benefits reported in clinical trials of commonly used asthma medications. The researchers are now calling for further investigation into the potential health benefits of switching to electric cooking.",
+      "summary": "A US study found replacing gas stoves with electric models cut hospital admissions and missed work or school by 70% for people with poorly controlled asthma. The Cleveland-area trial, involving 72 homes, showed benefits comparable to or exceeding common asthma medications. Funding was halted early, leaving over 1,100 households without access to the program.",
       "hashtag": "Replacing",
       "badge": "HEALTH",
       "category": "health",
@@ -967,12 +1096,8 @@
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Replacing",
-        "Team",
-        "Ohio",
-        "Trump",
         "MetroHealth",
-        "December"
+        "Ohio"
       ],
       "sourceUrls": [
         "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
@@ -985,17 +1110,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.86,
-      "score": 0.382,
+      "freshH": 3.86,
+      "score": 0.347,
       "popularity": 0,
-      "recency": 0.719,
-      "relevancy": 0.52,
+      "recency": 0.64,
+      "relevancy": 0.49,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Female veterans support group makes national impact",
-      "summary": "Chelley Tulloch, a former RAF medic, credits a female veterans support group with helping her recover from PTSD after multiple war-zone deployments. The group now assists hundreds nationwide as more women join the military, prompting the Ministry of Defence to increase NHS mental health services for veterans.",
+      "summary": "Chelley Tulloch, a former RAF medic, says her PTSD improved after joining a female veterans support group following multiple war-zone deployments. The group, now expanding nationwide, provides tailored mental health help as more women enter the military. The UK Ministry of Defence confirms increased investment in NHS veteran services.",
       "hashtag": "Female",
       "badge": "HEALTH",
       "category": "health",
@@ -1022,51 +1147,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.99,
-      "score": 0.361,
+      "freshH": 3.99,
+      "score": 0.339,
       "popularity": 0,
-      "recency": 0.708,
-      "relevancy": 0.452,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Modi Caught Off Guard as India’s Economic Failings Inflame Young People",
-      "summary": "Prime Minister Narendra Modi was busy trying to put out other fires when a student movement suddenly exploded. There are no easy solutions to the problems behind it.",
-      "hashtag": "EconomicFailings",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Modi Caught Off Guard",
-        "India",
-        "Economic Failings Inflame Young",
-        "People",
-        "Prime Minister Narendra Modi",
-        "There"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.99,
-      "score": 0.321,
-      "popularity": 0,
-      "recency": 0.708,
-      "relevancy": 0.294,
+      "recency": 0.631,
+      "relevancy": 0.472,
       "region": "usa",
       "geo": null
     },
@@ -1100,51 +1185,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.79,
-      "score": 0.298,
+      "freshH": 4.8,
+      "score": 0.273,
       "popularity": 0,
-      "recency": 0.645,
+      "recency": 0.575,
       "relevancy": 0.288,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
-      "summary": "Houthi fighters in Yemen have attacked Red Sea shipping, forcing vessels to reroute and threatening the main trade lane between Europe and Asia. US Central Command has conducted 13 consecutive nights of airstrikes on Iranian targets in response. The escalation follows a Saudi nuclear deal raising regional arms race concerns.",
-      "hashtag": "MiddleEast",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Houthi",
-        "Middle East",
-        "Iran-backed",
-        "Yemen",
-        "Saudi"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 5.86,
-      "score": 0.294,
-      "popularity": 0,
-      "recency": 0.508,
-      "relevancy": 0.464,
       "region": "usa",
       "geo": null
     },
@@ -1178,65 +1223,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.84,
-      "score": 0.293,
+      "freshH": 4.85,
+      "score": 0.268,
       "popularity": 0,
-      "recency": 0.641,
+      "recency": 0.571,
       "relevancy": 0.273,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-      "summary": "An Indonesian court convicted 19 people for trafficking at least 34 babies, with 12 sent to Singapore for adoption. Singaporean parents caring for the babies now face uncertainty over their future after the verdict. Authorities in both countries are expected to decide soon whether the children will remain or return to Indonesia.",
-      "hashtag": "Indonesian",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/c7vgeredvlgo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Indonesian",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-      ],
-      "entities": [
-        "Indonesian",
-        "Singapore",
-        "Indonesia"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c7vgeredvlgo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 8.53,
-      "score": 0.285,
-      "popularity": 0,
-      "recency": 0.373,
-      "relevancy": 0.617,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Google fined €890m by EU for favouring its own apps over rivals",
-      "summary": "Google has been fined €890m by the EU for allegedly abusing its power by favouring its own apps and services over those from rivals, limiting consumer choice and giving its own services an unfair advantage. The fine is comprised of two separate breaches of the EU's Digital Markets Act, with a total of €460m imposed for a second breach. The company must now comply with the EU's requirements, which may damage services used by millions of European customers.",
+      "summary": "Google has been fined €890 million by the European Union for abusing its market dominance by favouring its own apps over rivals. The penalty, the first under the EU’s Digital Markets Act, follows two breaches where Google gave its services an unfair advantage. Google warns the ruling could strip key features from its search tools and weaken security on Google Play.",
       "hashtag": "Google",
       "badge": "TECH",
       "category": "tech",
@@ -1249,8 +1246,7 @@
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Google",
-        "EU's"
+        "Google"
       ],
       "sourceUrls": [
         "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
@@ -1263,11 +1259,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 8.69,
-      "score": 0.258,
+      "freshH": 9.69,
+      "score": 0.238,
       "popularity": 0,
-      "recency": 0.366,
-      "relevancy": 0.52,
+      "recency": 0.326,
+      "relevancy": 0.495,
       "region": "usa",
       "geo": null
     },
@@ -1281,16 +1277,16 @@
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
       "images": [
         "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
       ],
       "entityShots": [
         {
           "name": "Deal",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
       ],
       "entities": [
         "Judge Extends Pause",
@@ -1309,10 +1305,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.95,
-      "score": 0.236,
+      "freshH": 7.95,
+      "score": 0.219,
       "popularity": 0,
-      "recency": 0.448,
+      "recency": 0.399,
       "relevancy": 0.318,
       "region": "usa",
       "geo": null
@@ -1347,10 +1343,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 9.7,
-      "score": 0.191,
+      "freshH": 10.7,
+      "score": 0.179,
       "popularity": 0,
-      "recency": 0.326,
+      "recency": 0.291,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
@@ -1359,36 +1355,317 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Critics Are Calling Charli XCX's Brat Follow-Up Music, Fashion, Film 'Fascinating'",
-        "summary": "Charli XCX’s new album Music, Fashion, Film has earned rave reviews since its release on Friday, with critics calling it “fascinating” and “triumphant.” The British pop star shifts from Brat’s dance beats to rock-inspired organic sounds while exploring fame and identity. Some critics remain divided, but the bold follow-up cements her reputation as one of pop’s most daring artists.",
-        "hashtag": "Charli",
+        "title": "Prada to Open Upcoming Milan Women’s Fashion Week",
+        "summary": "Prada will open Milan Women's Fashion Week on September 22, staging its runway show at 2 p.m. CET, marking a change from its traditional Thursday slot. The event, running from September 22 to 28, features 54 physical and six digital shows, with notable sophomore presentations from Demna for Gucci, Maria Grazia Chiuri for Fendi, and Meryll Rogge for Marni. The week will conclude with shows from heavy-hitters Dolce & Gabbana, Bottega Veneta, and Ferragamo on September 25.",
+        "hashtag": "Fashion",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://wwd.com/fashion-news/fashion-features/prada-moschino-debut-milan-fashion-week-september-2026-calendar-1239080481/",
+        "imageUrl": "https://wwd.com/wp-content/uploads/2026/07/Prada-Womenswear-FW26_parade-2.jpg?w=1000&h=563&crop=1",
+        "images": [
+          "https://wwd.com/wp-content/uploads/2026/07/Prada-Womenswear-FW26_parade-2.jpg?w=1000&h=563&crop=1",
+          "https://wwd.com/wp-content/uploads/2025/09/the-attico-ss26-rtw-bsb-ba-0028.jpg?w=300",
+          "https://assets.vogue.com/photos/6a62568e0a40979825dc63a3/16:9/w_1280,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+          "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/16:9/w_2992,h_1683,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+          "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/4:3/w_3000,h_2250,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+          "https://assets.vogue.com/photos/6a625693e28bb0b479d356e2/1:1/w_3000,h_3000,c_limit/07-24-26-MILAN-CALENDAR-vogue-business-story.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
+        ],
+        "entityShots": [
+          {
+            "name": "Prada",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/31/Prada_milano.JPG"
+        ],
+        "entities": [
+          "Prada",
+          "Open Upcoming Milan Women",
+          "Fashion Week"
+        ],
+        "sourceUrls": [
+          "https://wwd.com/fashion-news/fashion-features/prada-moschino-debut-milan-fashion-week-september-2026-calendar-1239080481/",
+          "https://www.vogue.com/article/the-milan-fashion-week-spring-summer-2027-schedule-is-here",
+          "https://ww.fashionnetwork.com/news/Cnmi-unveils-provisional-milan-fashion-week-calendar-with-prada-to-open-and-debutant-miguel-vieira-to-close,1855030.html"
+        ],
+        "sourceName": "wwd.com",
+        "sources": [
+          "WWD",
+          "Vogue",
+          "FashionNetwork - The World's Fashion Business News"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "fashion news",
+        "traffic": 200,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "‘Up in smoke’: Attacks on ‘Russia’s Amazon’ bring Putin’s war closer to home",
+        "summary": "Ukrainian drone strikes on Russian warehouses have sent hundreds of millions of dollars in inventory up in flames, killing at least eight people and disrupting the lives of ordinary Russians. The attacks, targeting Russia's largest online retailer Wildberries, are part of a Ukrainian campaign of economic warfare aimed at shattering the \"illusion of comfortable peacetime life\" enjoyed by Russian citizens. The strikes have brought Moscow's war on Ukraine closer to home, with several regions affected, including the Moscow region, Tambov region, Krasnodar region, and Voronezh region.",
+        "hashtag": "Drone",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl",
+        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
+        "images": [
+          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
+          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2279263358.jpg?c=original&q=w_860,c_fill",
+          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991519.jpg?c=original&q=w_860,c_fill",
+          "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496071783_17848264861060_trans_NvBQzQNjv4BqVkaRXocUMsms1xK2NhduyHbWVQg819nTsEls4H7J0kQ.jpeg?impolicy=OG-Standard",
+          "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496181693_17848266652780_trans_NvBQzQNjv4BqP-t--XiuvYMJPd4Ncdgt2haFS7t6wUD2c5CAYw-u7FY.jpeg?imwidth=350",
+          "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496106319_17848266359890_trans_NvBQzQNjv4BqHqEqWIQYN_HlsJ_HcWHEJKkIgbqFjtqE7VzX64Vv544.jpeg?imwidth=350",
+          "https://www.telegraph.co.uk/content/dam/briefs/2026/07/23/TELEMMGLPICT000496106309_17848266949860_trans_NvBQzQNjv4BqC_LLCXkS_z-CZqgOMP7Be4NJOW97-4gC-TIHNP2xpBw.jpeg?imwidth=350",
+          "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Attacks",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png"
+          },
+          {
+            "name": "Russia",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200"
+          },
+          {
+            "name": "Amazon",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/60/2023_Kremlin_drone_attack.png",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Russia%2087.74494E%2066.20034N.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon_Tower_I_topped_out%2C_June_2015.jpg"
+        ],
+        "entities": [
+          "Attacks",
+          "Russia",
+          "Amazon",
+          "Putin"
+        ],
+        "sourceUrls": [
+          "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl",
+          "https://www.telegraph.co.uk/world-news/2026/07/24/why-russias-amazon-became-ukraines-number-one-target/"
+        ],
+        "sourceName": "cnn.com",
+        "sources": [
+          "CNN",
+          "The Telegraph"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "drone",
+        "traffic": 10000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Opinion | Levy: Local opposition to Flock cameras is strong",
+        "summary": "Avon residents have expressed strong opposition to Flock cameras, with hundreds of comments on local Facebook groups criticizing the devices and their concerns about data collection. The Avon Police Department's Facebook post about the destruction of two Flock cameras and a speed camera received over 17,000 comments, with many residents voicing their disapproval. The town is now investigating the destruction of the cameras, which is being treated as a felony, with estimated costs of over $15,000 for replacement and repairs.",
+        "hashtag": "Camera",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.vaildaily.com/opinion/opinion-levy-local-opposition-to-flock-cameras-is-strong/",
+        "imageUrl": "https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/7/2026/07/22142435/5936F2F5-8B02-4D37-A7F9-A9ECCA639F17-1024x1024.jpg",
+        "images": [
+          "https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/7/2026/07/22142435/5936F2F5-8B02-4D37-A7F9-A9ECCA639F17-1024x1024.jpg",
+          "https://www.denverpost.com/wp-content/uploads/2026/07/Avon-Flock-reader.jpg?w=1536&h=2048",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+        ],
+        "entityShots": [
+          {
+            "name": "Local",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bourton-on-the-Water_2010_PD_09.JPG"
+        ],
+        "entities": [
+          "Opinion",
+          "Levy",
+          "Local",
+          "Flock"
+        ],
+        "sourceUrls": [
+          "https://www.vaildaily.com/opinion/opinion-levy-local-opposition-to-flock-cameras-is-strong/",
+          "https://www.denverpost.com/2026/07/23/avon-police-investigate-theft-of-speed-cameras-and-flock-license-plate-reader/"
+        ],
+        "sourceName": "vaildaily.com",
+        "sources": [
+          "VailDaily.com",
+          "The Denver Post"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "camera news",
+        "traffic": 200,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Samaria: The man who’s seen every side of the game - The Namibian -",
+        "summary": "Namibian football legend Frans ‘Killa’ Samaria has died at 72. A former player, referee, instructor, and match commissioner, he served the Namibia Football Association and CAF for decades. Samaria leaves behind a legacy spanning every corner of the game.",
+        "hashtag": "Game",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.huffingtonpost.co.uk/entry/charli-xcx-music-fashion-film-reviews_uk_6a630c54e4b0811ae03fecf6?origin",
-        "imageUrl": "https://img.huffingtonpost.com/asset/6a630d301b00005d0b9393d0.jpg?cache=ngAxtYqNvR&ops=1200_630",
+        "url": "https://www.namibian.com.na/samaria-the-man-whos-seen-every-side-of-the-game/",
+        "imageUrl": "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-1-1024x669.jpeg",
         "images": [
-          "https://img.huffingtonpost.com/asset/6a630d301b00005d0b9393d0.jpg?cache=ngAxtYqNvR&ops=1200_630",
-          "https://img.huffingtonpost.com/asset/6a630d541b0000810c9393d2.jpeg?ops=scalefit_720_noupscale",
-          "https://img.huffingtonpost.com/asset/6a630d991b0000880c9393d3.jpeg?ops=scalefit_720_noupscale",
-          "https://img.huffingtonpost.com/asset/6a630df3140000ba23eae82e.jpeg?ops=scalefit_720_noupscale"
+          "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-1-1024x669.jpeg",
+          "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-3.jpeg",
+          "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-2-1024x682.jpeg",
+          "https://d4f7y6nbupj5z.cloudfront.net/wp-content/uploads/2026/07/Samaria-4.jpeg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Charli XCX",
-          "Brat"
+          "Samaria",
+          "Namibia"
         ],
         "sourceUrls": [
-          "https://www.huffingtonpost.co.uk/entry/charli-xcx-music-fashion-film-reviews_uk_6a630c54e4b0811ae03fecf6?origin",
-          "https://www.musicomh.com/reviews/albums/charli-xcx-music-fashion-film"
+          "https://www.namibian.com.na/samaria-the-man-whos-seen-every-side-of-the-game/"
         ],
-        "sourceName": "HuffPost UK",
+        "sourceName": "The Namibian -",
         "sources": [
-          "HuffPost UK",
-          "musicOMH"
+          "The Namibian -"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "The Game",
+        "traffic": 97000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "MLB Gameday: Tigers 5, Cubs 1 Final Score (07/22/2026)",
+        "summary": "The Detroit Tigers secured a 5-1 victory over the Chicago Cubs at Wrigley Field on July 22, 2026, with a strong performance from their starting pitcher, who allowed just one run in six innings. The Tigers' offense was led by two home runs from their star player, who drove in three runs. The win marks the Tigers' fifth consecutive victory.",
+        "hashtag": "Score",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.mlb.com/gameday/824650/final/insights",
+        "imageUrl": "https://midfield.mlbstatic.com/v1/teams-matchup/116-112/ar_16:9/w_1440",
+        "images": [
+          "https://midfield.mlbstatic.com/v1/teams-matchup/116-112/ar_16:9/w_1440",
+          "https://midfield.mlbstatic.com/v1/teams-matchup/529-2310/ar_16:9/w_1440",
+          "https://midfield.mlbstatic.com/v1/teams-matchup/110-111/ar_16:9/w_1440"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "MLB Gameday",
+          "Tigers",
+          "Cubs",
+          "Final Score"
+        ],
+        "sourceUrls": [
+          "https://www.mlb.com/gameday/824650/final/insights",
+          "https://www.milb.com/gameday/rainiers-vs-aces/2026/07/22/815127/final/box",
+          "https://www.mlb.com/gameday/orioles-vs-red-sox/2026/07/22/824735/final/insights"
+        ],
+        "sourceName": "mlb.com",
+        "sources": [
+          "MLB.com"
         ],
         "corr": 2,
         "verified": true,
+        "trend": "score",
+        "traffic": 200,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Tyla – A*POP",
+        "summary": "Tyla releases her new album APOP, marking another bold step in her global pop career. The Grammy-winning South African artist blends confidence and vulnerability across 11 tracks, opening with Is It Love. The record reflects her growth while staying true to her signature intimate yet understated sound.",
+        "hashtag": "Tyla",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://www.clashmusic.com/reviews/tyla-apop/",
+        "imageUrl": "https://www.clashmusic.com/wp-content/uploads/2026/07/TYLA-APOP-Cover-1-scaled.jpeg",
+        "images": [
+          "https://www.clashmusic.com/wp-content/uploads/2026/07/TYLA-APOP-Cover-1-scaled.jpeg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Tyla",
+          "A*POP"
+        ],
+        "sourceUrls": [
+          "https://www.clashmusic.com/reviews/tyla-apop/"
+        ],
+        "sourceName": "clashmusic.com",
+        "sources": [
+          "clashmusic.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "Tyla",
+        "traffic": 96000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Charli xcx – Music, Fashion, Film",
+        "summary": "Charli xcx releases her new album Music, Fashion, Film, a shorter follow-up to last year’s breakout Brat. The 12-track collection leans into tense, unsettling energy with most songs under three minutes. The lead single Rock Music drops today.",
+        "hashtag": "Charli",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://www.clashmusic.com/reviews/charli-xcx-music-fashion-film/",
+        "imageUrl": "https://www.clashmusic.com/wp-content/uploads/2026/06/Charli-xcx-artwork.jpg",
+        "images": [
+          "https://www.clashmusic.com/wp-content/uploads/2026/06/Charli-xcx-artwork.jpg",
+          "https://www.clashmusic.com/wp-content/uploads/2025/06/Charli-xcx-at-LIDO-Festival-credit-Henry-Redcliffe-9-1024x683.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Charli xcx"
+        ],
+        "sourceUrls": [
+          "https://www.clashmusic.com/reviews/charli-xcx-music-fashion-film/"
+        ],
+        "sourceName": "clashmusic.com",
+        "sources": [
+          "clashmusic.com"
+        ],
+        "corr": 1,
+        "verified": false,
         "trend": "Charli",
         "traffic": 92000,
         "freshH": 0.5,
@@ -1400,59 +1677,39 @@
         "geo": "US"
       },
       {
-        "title": "Tukwila approves camping ban on city property, effective July 28",
-        "summary": "Tukwila has approved a camping ban on city property, effective July 28, after a 4-3 City Council vote. The ordinance, requested by Police Chief Eric Lund, prohibits camping in public spaces, including parks and sidewalks, with violators facing up to 90 days in jail and a $1,000 fine. The measure aims to address growing encampments in the city's green spaces, with city leaders emphasizing it is not intended to criminalize homelessness but rather provide a legal tool for police response.",
-        "hashtag": "Camping",
-        "badge": "TRENDING",
+        "title": "2026 WNBA 3-Point Contest Odds, Prediction, Participants, Past Winners (Bet on Rhyne Howard, Fade Azzi Fudd)",
+        "summary": "The 2026 WNBA All-Star festivities kick off Friday night at Wintrust Arena with the 3-Point Contest, featuring six sharpshooters including Rhyne Howard and Azzi Fudd. Howard, a 2022 finalist, and Mabrey, who scored just 19 points in 2024, headline the fresh field. The contest starts at 8 p.m. local time.",
+        "hashtag": "Azzi",
+        "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://komonews.com/news/local/tukwila-bans-camping-on-city-property-july-28-camping-regulations-police-chief-eric-lund-supreme-court-decision-2024-homelessness-fuel-flammables-dead-animals",
-        "imageUrl": "https://komonews.com/resources/media2/16x9/1280/1320/center/90/84da2fde-2e44-4fe3-9290-f5d81a2ab6bd-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe336.png",
+        "url": "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
+        "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg",
         "images": [
-          "https://komonews.com/resources/media2/16x9/1280/1320/center/90/84da2fde-2e44-4fe3-9290-f5d81a2ab6bd-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe336.png",
-          "https://komonews.com/resources/media2/16x9/1280/1320/center/90/a1cd07cb-ba7d-4a04-ac2a-d36820d5072e-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe2728.png",
-          "https://komonews.com/resources/media2/16x9/1280/1320/center/90/0e03998a-ca2e-4472-ae26-6fa875e8246f-FTP15TYLER11PMPKGTUKWILAPARKHOMELESSCRIME.movframe1746.png",
-          "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/1200/630/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-          "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/1280/720/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-          "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/11/932/524/tukwila-migrant-encampment.jpg?ve=1&tl=1",
-          "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2022/06/932/524/tukwila-skyline.jpg?ve=1&tl=1",
-          "https://images.foxtv.com/static.q13fox.com/www.q13fox.com/content/uploads/2024/06/932/524/seattle-homeless-encampment.jpg?ve=1&tl=1",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
+          "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Tukwila",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg"
-          },
-          {
-            "name": "July",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4f/International_Boulevard_in_Tukwila_%2831003195156%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Tukwila",
-          "July"
+          "Rhyne Howard",
+          "Azzi Fudd",
+          "WNBA 3-Point Contest"
         ],
         "sourceUrls": [
-          "https://komonews.com/news/local/tukwila-bans-camping-on-city-property-july-28-camping-regulations-police-chief-eric-lund-supreme-court-decision-2024-homelessness-fuel-flammables-dead-animals",
-          "https://mynorthwest.com/mynorthwest-politics/tukwila-homeless-camping-ban/4257916",
-          "https://www.fox13seattle.com/news/tukwila-wa-camping-ban"
+          "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
+          "https://mshale.com/5a036551/37ca7fbfHUAGIAEdRSkbPAY",
+          "https://collegefootballnetwork.com/wnba/top-7-outfits-on-the-wnba-all-star-orange-carpet-feat-aja-wilson-azzi-fudd-paige-bueckers-and-more/"
         ],
-        "sourceName": "komonews.com",
+        "sourceName": "Sports Illustrated",
         "sources": [
-          "KOMO",
-          "MyNorthwest.com",
-          "FOX 13 Seattle"
+          "Sports Illustrated",
+          "Mshale",
+          "College Sports Network"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "camping news",
-        "traffic": 200,
-        "freshH": 1,
+        "trend": "Azzi",
+        "traffic": 94000,
+        "freshH": 8,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1461,191 +1718,24 @@
         "geo": "US"
       },
       {
-        "title": "Tyla drops ‘A*POP,’ her most ambitious project yet",
-        "summary": "Tyla has released her second album, APOP, marking her most ambitious project yet. The 14-track album blends amapiano, Afrobeats, R&B, and pop, showcasing her evolved artistry. Featuring collaborations with MaWhoo and Babalwa M, it reflects her South African roots and global appeal.",
-        "hashtag": "Tyla",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.bona.co.za/entertainment/tyla-drops-apop-her-most-ambitious-project-yet/",
-        "imageUrl": "https://www.bona.co.za/wp-content/uploads/2026/07/HN9kiH0X0AA9_Q5.jpeg",
-        "images": [
-          "https://www.bona.co.za/wp-content/uploads/2026/07/HN9kiH0X0AA9_Q5.jpeg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Tyla",
-          "A*POP"
-        ],
-        "sourceUrls": [
-          "https://www.bona.co.za/entertainment/tyla-drops-apop-her-most-ambitious-project-yet/"
-        ],
-        "sourceName": "Bona Magazine",
-        "sources": [
-          "Bona Magazine"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "Tyla",
-        "traffic": 95000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "BREAKING: Shiloh Hendrix found GUILTY of disorderly conduct after viral 'racial slur' incident involving Somalis in Minnesota park",
-        "summary": "Shiloh Hendrix, 37, was found guilty of disorderly conduct Thursday after a Minnesota jury deliberated nine hours in a viral case involving a Somali family. Judge Christa M. Daily sentenced her to a stayed 90-day jail term, 200 hours of community service, and a $1,000 fine for the April 28, 2025 incident at a Rochester playground. Hendrix chased an 8-year-old autistic Somali boy after he took an applesauce packet from her child’s diaper bag and used a racial slur.",
-        "hashtag": "ShilohHendrix",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://thepostmillennial.com/breaking-shiloh-hendrix-found-guilty-of-disorderly-conduct-after-viral-racial-slur-incident-involving-somalis-in-minnesota-park",
-        "imageUrl": "https://mr.cdn.ignitecdn.com/client_assets/thepostmillennial_com/media/picture/6a62/f4a1/539e/5ede/9151/640d/original_original_photo_2025-05-02_10.55.16.jpeg?1784870051",
-        "images": [
-          "https://mr.cdn.ignitecdn.com/client_assets/thepostmillennial_com/media/picture/6a62/f4a1/539e/5ede/9151/640d/original_original_photo_2025-05-02_10.55.16.jpeg?1784870051"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Shiloh Hendrix",
-          "Minnesota park"
-        ],
-        "sourceUrls": [
-          "https://thepostmillennial.com/breaking-shiloh-hendrix-found-guilty-of-disorderly-conduct-after-viral-racial-slur-incident-involving-somalis-in-minnesota-park"
-        ],
-        "sourceName": "thepostmillennial.com",
-        "sources": [
-          "thepostmillennial.com"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "Shiloh Hendrix",
-        "traffic": 93000,
-        "freshH": 2,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Why Samsung Gave Its Next Folding Phone a New Shape",
-        "summary": "Samsung has unveiled a new design for its Galaxy Fold8, a passport-shaped, book-like fold, which is aimed at consumers who prioritize consuming content on their mobile devices. The new phone features a 10:16 aspect ratio for its front cover screen and a 4:3 inner display, making it well-suited for watching videos in both landscape and vertical orientations. This move comes as mobile video watching has seen an explosive growth, with 80 percent of consumers now watching videos on their mobile devices rather than on TV screens or tablets.",
-        "hashtag": "Phone",
+        "title": "Why have thousands taken to the streets? India's 'cockroach' protest explained",
+        "summary": "Tens of thousands of young protesters marched across Delhi and other Indian cities on Thursday, demanding the resignation of the education minister. The movement, dubbed the Cockroach Janta Party, began as an online satire just months ago and has since grown into a major youth-led campaign.",
+        "hashtag": "Why",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.wired.com/story/why-samsung-gave-its-next-folding-phone-a-new-shape-galaxy-z-fold8/",
-        "imageUrl": "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/191:100/w_1280,c_limit/SamsungFlip.jpg",
+        "url": "https://www.bbc.co.uk/news/videos/c3307vgneveo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg",
         "images": [
-          "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/191:100/w_1280,c_limit/SamsungFlip.jpg",
-          "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/16:9/w_2400,h_1350,c_limit/SamsungFlip.jpg",
-          "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/4:3/w_2132,h_1599,c_limit/SamsungFlip.jpg",
-          "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/1:1/w_1600,h_1600,c_limit/SamsungFlip.jpg",
-          "https://media.wired.com/photos/6a5fa7f914becfb4f5b6bf98/3:2/w_2560%2Cc_limit/SamsungFlip.jpg",
-          "https://media.wired.com/photos/6a5f46e2278d5136b7120eae/master/w_1600%2Cc_limit/DSC_9094.jpg",
-          "https://media.wired.com/photos/6a5f46c120f569fb01f0b80c/master/w_1600%2Cc_limit/DSC_9121.jpg",
-          "https://media.wired.com/photos/6a5f46bc21e9fecd32444a9a/master/w_1600%2Cc_limit/DSC_9096.jpg",
-          "https://media.wired.com/photos/65e837c3237d9447be5378b7/1:1/w_90%2Cc_limit/Julian%2520Chokkattu.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/news/1024/branded_news/8035/live/f55f5520-8738-11f1-926f-c90d1bcfbc84.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Samsung Gave Its",
-          "Next Folding Phone",
-          "Shape"
+          "India",
+          "cockroach"
         ],
-        "sourceUrls": [
-          "https://www.wired.com/story/why-samsung-gave-its-next-folding-phone-a-new-shape-galaxy-z-fold8/"
-        ],
-        "sourceName": "wired.com",
-        "sources": [
-          "WIRED"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "phone",
-        "traffic": 200,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "The 12 Worst Fashion Trends of the Past Century",
-        "summary": "A 23-year-old singer's revival of the 1950s baby doll dress has sparked controversy, with critics accusing the look of being regressive and childlike. The dress, originally designed as wartime lingerie, has been a recurring fashion trend, with its modern revival drawing attention to the cultural habit of sexualizing young or childlike appearances. The singer has defended the outfit, arguing that the criticism reflects a broader societal issue rather than a personal fashion choice.",
-        "hashtag": "FashionStyle",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://thecurvyfashionista.com/the-12-worst-fashion-trends-of-the-past-century/",
-        "imageUrl": "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T082242.064.jpg",
-        "images": [
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T082242.064.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T064419.301-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T065156.142-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-14T141319.463-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T070141.155-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T070608.737-1-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071034.138-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071603.541-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T071905.525-1024x576.jpg",
-          "https://thecurvyfashionista.com/wp-content/uploads/2026/07/Untitled-design-2026-07-21T072211.221-1024x576.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Worst Fashion Trends",
-          "Past Century"
-        ],
-        "sourceUrls": [
-          "https://thecurvyfashionista.com/the-12-worst-fashion-trends-of-the-past-century/"
-        ],
-        "sourceName": "thecurvyfashionista.com",
-        "sources": [
-          "The Curvy Fashionista"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "fashion style",
-        "traffic": 200,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
-        "summary": "Houthi fighters in Yemen have attacked Red Sea shipping, forcing vessels to reroute and threatening the main trade lane between Europe and Asia. US Central Command has conducted 13 consecutive nights of airstrikes on Iranian targets in response. The escalation follows a Saudi nuclear deal raising regional arms race concerns.",
-        "hashtag": "MiddleEast",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Houthi",
-          "Middle East",
-          "Iran-backed",
-          "Yemen",
-          "Saudi"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
-        ],
+        "sourceUrls": [],
         "sourceName": "BBC",
         "sources": [
           "BBC"
@@ -1654,55 +1744,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-        "summary": "An Indonesian court convicted 19 people for trafficking at least 34 babies, with 12 sent to Singapore for adoption. Singaporean parents caring for the babies now face uncertainty over their future after the verdict. Authorities in both countries are expected to decide soon whether the children will remain or return to Indonesia.",
-        "hashtag": "Indonesian",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/c7vgeredvlgo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Indonesian",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
-        ],
-        "entities": [
-          "Indonesian",
-          "Singapore",
-          "Indonesia"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c7vgeredvlgo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 8.53,
+        "freshH": 0.38,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1711,31 +1753,42 @@
         "geo": null
       }
     ],
-    "sports": [
+    "breaking": [
       {
-        "title": "Man Utd mascot, six, hit by club's ticket tout crackdown",
-        "summary": "A six-year-old Manchester United season ticket holder has had restrictions put on his account as part of the club's crackdown on ticket touting, with the club citing repeated access to his account and others as evidence of central control. The boy, who was once a match mascot, will now be unable to apply for away game tickets, despite his mother's appeal being turned down. This is one of thousands of accounts restricted by the club in its operation to identify potential ticket touts.",
-        "hashtag": "ManUtd",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/news/articles/c79gdjr0ny4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
+        "title": "US hits dozens of trading partners with new wave of tariffs",
+        "summary": "The US has imposed new tariffs of 10% to 12.5% on goods from 60 trading partners, including the UK, China and the EU, covering 99.4% of American imports. The move replaces an expiring 10% levy and targets nations accused of failing to address forced labour. The White House claims the duties will address human rights abuses and trade distortions.",
+        "hashtag": "US",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/955/cpsprodpb/a399/live/2e328260-8733-11f1-a42c-83dd67bf1cb2.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1104/cpsprodpb/b5dd/live/f590f0a0-8731-11f1-a42c-83dd67bf1cb2.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1056/cpsprodpb/e70c/live/0cf33750-86b3-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/714/cpsprodpb/4b83/live/75e9bb50-8733-11f1-a42c-83dd67bf1cb2.png"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "US Supreme Court",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+          },
+          {
+            "name": "February",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        ],
         "entities": [
-          "Man Utd",
-          "Ruari's"
+          "Imposed",
+          "US Supreme Court",
+          "February"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c79gdjr0ny4o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1745,7 +1798,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.43,
+        "freshH": 0.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1754,28 +1807,24 @@
         "geo": null
       },
       {
-        "title": "What's on for Team NI on first day of Commonwealth Games?",
-        "summary": "Team Northern Ireland kicks off the 2026 Commonwealth Games in Glasgow with action starting at 08:30 BST as Gary Kelly competes in the men's singles. Swimmers Victoria Catterson, Grace Davison and Lottie Cullen lead the morning heats at Tollcross Swimming Centre, with semi-finals and finals scheduled from 19:00. Boxing’s Louis Rooney also begins his campaign at the SEC Centre.",
-        "hashtag": "TeamNI",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/articles/ckg9mwmz14no?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg",
+        "title": "Tech titan ordered to pay ex-wife $644m in divorce settlement",
+        "summary": "A South Korean court ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in their record-breaking divorce settlement. The amount is lower than the initial $870 million ruling in 2024 after a decade-long dispute over asset division. The finalized payment follows deliberations on dividing assets from their 35-year marriage.",
+        "hashtag": "Tech",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/ckg68jky65eo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/d544/live/7321a5a0-86ba-11f1-bb58-d3ffca85db6d.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ea53/live/d83d0260-8726-11f1-9733-edfe8d3e29a7.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "What's",
-          "Team NI",
-          "Commonwealth Games",
-          "BBC Sport NI",
-          "Team Northern Ireland"
+          "South Korea"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/articles/ckg9mwmz14no?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/ckg68jky65eo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1785,7 +1834,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.72,
+        "freshH": 0.35,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1794,37 +1843,38 @@
         "geo": null
       },
       {
-        "title": "Socceroos star allegedly tests positive for cocaine after speeding",
-        "summary": "Australia midfielder Cristian Volpato, 22, faces a cocaine allegation after police twice stopped him for speeding in Sydney on Thursday night. He was caught driving over 86km/h in a 60km/h zone at 11:05pm, then again at 1:05am, where he tested positive for cocaine. His international driver’s licence was suspended for six months, and police will continue their investigation.",
-        "hashtag": "Socceroos",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
+        "title": "Faced With Heat and Wildfires, France Turns to Spain to Learn How to Cope",
+        "summary": "A French government delegation will travel to its southern neighbor to learn how it copes with long spells of hot weather.",
+        "hashtag": "WildfiresFrance",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/24/world/europe/france-spain-climate-heat-wildfires.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-paris-spain-heat-kmlz/24int-paris-spain-heat-kmlz-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg"
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24int-paris-spain-heat-kmlz/24int-paris-spain-heat-kmlz-mediumSquareAt3X.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Socceroos",
-          "Socceroos World Cup",
-          "Cristian Volpato",
-          "Sydney"
+          "Faced With Heat",
+          "Wildfires",
+          "France Turns",
+          "Spain",
+          "Learn How",
+          "Cope"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/2026/07/24/world/europe/france-spain-climate-heat-wildfires.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.45,
+        "freshH": 0.13,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1835,8 +1885,45 @@
     ],
     "politics": [
       {
+        "title": "Angela Rayner rules out rent controls in England",
+        "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, despite calls from some mayors. She cited the Renters' Rights Act, which took effect in May, as the government’s preferred solution to rising rental costs. The policy shift follows temporary rent controls in Scotland, which expired last year without lasting impact.",
+        "hashtag": "AngelaRayner",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/09ac/live/d14dc4e0-8734-11f1-a42c-83dd67bf1cb2.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Angela Rayner",
+          "Renters Rights' Act"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.08,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Regional mayors to take key roles in UK policy decisions as part of No 10 North plans",
-        "summary": "Regional mayors will take key roles in UK economic policy as part of the new No 10 North initiative, Prime Minister Andy Burnham announced. The revived National Economic Council, chaired by Burnham, will hold its first meeting on Friday, aiming to decentralise decision-making from London. The move seeks to drive growth by aligning central government with regional leaders.",
+        "summary": "Regional mayors will take key roles in UK economic policy as part of the new No 10 North initiative, Prime Minister Andy Burnham announced on Friday. The revived National Economic Council will meet for the first time, aiming to decentralise decision-making from London and boost growth across the country. The move marks a major shift in government power-sharing, Burnham said.",
         "hashtag": "Regional",
         "badge": "POLITICS",
         "category": "politics",
@@ -1869,7 +1956,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.35,
+        "freshH": 1.35,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1879,7 +1966,7 @@
       },
       {
         "title": "Burnham to spend first day working from northern branch of No 10",
-        "summary": "British Prime Minister Rishi Sunak's plan to decentralize power is taking shape as Labour leader Andy Burnham will spend his first day working from the new No 10 North in Manchester, marking a significant shift in power from Whitehall and Westminster to regional areas. Up to 300 civil servants are expected to join ministers Lucy Powell and Louise Haigh at the new site by the end of next year. This move aims to put devolution at the centre of the government's mission to boost local economic growth and address regional disparities.",
+        "summary": "Andy Burnham will hold his first meeting at the new No 10 North office in Manchester today, marking a push to decentralise government power from London. Up to 300 civil servants will relocate to the North West by next year as part of the prime minister’s devolution plan. The National Economic Council will meet in Manchester to prioritise regional investment and local economic growth.",
         "hashtag": "Burnham",
         "badge": "POLITICS",
         "category": "politics",
@@ -1907,7 +1994,46 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.61,
+        "freshH": 1.61,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "France orders evacuation of tourist spot as hundreds flee wildfires by boat",
+        "summary": "French authorities have ordered the full evacuation of the Cap Ferret peninsula in south-west France as wildfires rage in the Gironde region, scorching 8,700 hectares since Tuesday. Hundreds fled by boat while another major fire near Biscarrosse has forced over 23,000 people from their homes, including a nursing home and summer camp. No new casualties have been reported overnight, though two firefighters died battling blazes near Bordeaux airport earlier this week.",
+        "hashtag": "France",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "France",
+          "Cap Ferret"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.87,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1916,30 +2042,226 @@
         "geo": null
       },
       {
-        "title": "‘A small snippet’: what pubs make of Burnham’s £100m rates giveaway",
-        "summary": "British Prime Minister Andy Burnham has announced a £100m policy to reduce business rates for pubs, clubs, and live music venues by 20%, as part of a broader agenda to support the high street. This move aims to combat the trend of pub closures, which has seen one pub shut down every day. The policy is expected to benefit thousands of establishments, but its effectiveness in halting the decline of the UK's pub industry remains to be seen.",
-        "hashtag": "A",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors",
-        "imageUrl": "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
+        "title": "Rare night heron spotted at National Trust site",
+        "summary": "A rare black-crowned night heron, typically found in Africa, Asia, and the Americas, has been spotted at the National Trust’s Holnicote Estate in Somerset. The sighting follows conservation efforts to restore freshwater habitats, benefiting species like water voles, otters, and white-tailed eagles. Conservationists say the UK’s wetlands have declined by over 97%, making such sightings significant for wildlife recovery.",
+        "hashtag": "NationalTrust",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
         "images": [
-          "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
-          "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c331a24e8b8793ae738eb52693081530",
-          "https://i.guim.co.uk/img/media/287b32d1b4352482ddbe4068035210af532a1463/0_0_6700_4467/master/6700.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/4954ef61e0eb83a1e1373641537f8d5630a64fc6/142_173_7637_4302/master/7637.jpg?width=445&dpr=1&s=none&crop=none"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Burnham",
-          "Landlords",
-          "Andy Burnham",
-          "Thursday",
-          "Continue"
+          "Rare",
+          "National Trust",
+          "Africa",
+          "Asia",
+          "Americas",
+          "Europe"
         ],
         "sourceUrls": [
-          "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors"
+          "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.56,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Play area aims to interest children in rare habitat",
+        "summary": "A Hampshire science centre has opened a new play area to teach children about England’s rare chalk streams, which face pressure from hot and dry weather. The Winchester Science Centre’s exhibit lets kids explore why water flow and temperature matter to these unique habitats. The project aims to inspire future conservation efforts as wildlife groups push for stronger protections.",
+        "hashtag": "Play",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Play"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.51,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Man Utd bring in Leicester goalkeeper Leitzig",
+        "summary": "Manchester United have signed goalkeeper Janina Leitzig from Leicester City for an undisclosed fee. The 27-year-old German international joins on a three-year deal after United triggered her release clause. Leitzig, who made nearly 70 appearances for Leicester, aims to help United avoid relegation in the Women's Super League.",
+        "hashtag": "ManUtd",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/czjle91ry39o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/995e/live/6390f710-8734-11f1-a42c-83dd67bf1cb2.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Janina Leitzig",
+          "Manchester United F.C.",
+          "Leicester City F.C."
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/czjle91ry39o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.74,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Scotland's Gunn concedes four in San Jose debut defeat",
+        "summary": "Scotland’s Gunn conceded four in his San Jose debut defeat on Sunday. Brekalo, Angulo, Griezmann and Ojeda scored as San Jose lost 4-0 to LAFC. Gunn’s side remain tied on points at the top of the Western Conference but trail Vancouver on goal difference.",
+        "hashtag": "SanJose",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cqlxyvq7n93o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/3e4c/live/0a316150-8739-11f1-a10e-a5d4f08bc20c.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Scotland's Gunn",
+          "San Jose",
+          "Scotland",
+          "Angus Gunn",
+          "San Jose Earthquakes",
+          "Orlando City"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cqlxyvq7n93o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.44,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Who am I? Guess The Hundred cricket star No 4",
+        "summary": "A new cricket quiz challenges fans to guess the identity of a star player in The Hundred tournament. Today’s mystery cricketer is the fourth player featured in the daily guessing game. More clues will unlock with each incorrect guess until the correct answer is revealed.",
+        "hashtag": "IGuess",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/cricket/articles/cqjx05wrndgo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/a0c1/live/971717c0-8510-11f1-926f-c90d1bcfbc84.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Guess The Hundred"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/cricket/articles/cqjx05wrndgo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.93,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "‘It was the moment I lost innocence’: how a childhood stop-and-search led to the British debut movie of the year",
+        "summary": "A childhood stop-and-search inspired filmmaker Mran Perretta’s debut feature Ish, which follows 12-year-old Ishmail in Luton. The poetic coming-of-age drama has drawn comparisons to classics like Kes and Apu, with critics praising its heartfelt portrayal. Perretta’s film opens in UK cinemas this week after strong early reviews.",
+        "hashtag": "It",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year",
+        "imageUrl": "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
+        "images": [
+          "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
+          "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f4fd25fb45f7db7395245d51b94bc9b3",
+          "https://i.guim.co.uk/img/media/5788158c1e5e29b7895307e7f13051bd958637a0/0_0_6496_4872/master/6496.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/7bde9d5251d8e8295d11161086217084fc22ae63/0_0_8256_5504/master/8256.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/5afa85e49b1dd4a7f8b65d8af61e88f44c97af57/0_0_2514_3149/master/2514.jpg?width=445&dpr=1&s=none&crop=none"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Imran Perretta",
+          "Ish"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year"
         ],
         "sourceName": "The Guardian",
         "sources": [
@@ -1956,54 +2278,10 @@
         "relevancy": null,
         "region": "usa",
         "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "‘It was the moment I lost innocence’: how a childhood stop-and-search led to the British debut movie of the year",
-        "summary": "A childhood stop-and-search inspired Ishmail Perretta’s debut film “Ish,” a coming-of-age drama set in Luton that critics now compare to classics like “Kes.” The poetic film, praised for its heartfelt portrayal of youth, premieres as Britain’s standout movie of the year. Perretta calls the overwhelmingly positive reviews a relief after fears it might be mistaken for gritty urban dramas.",
-        "hashtag": "It",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year",
-        "imageUrl": "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
-        "images": [
-          "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=349668b2583c7f590ce0776426c0aeca",
-          "https://i.guim.co.uk/img/media/4d70f2873195b9e38a0f3d4ba21dd25331799590/0_0_4550_3642/master/4550.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=f4fd25fb45f7db7395245d51b94bc9b3",
-          "https://i.guim.co.uk/img/media/5788158c1e5e29b7895307e7f13051bd958637a0/0_0_6496_4872/master/6496.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/7bde9d5251d8e8295d11161086217084fc22ae63/0_0_8256_5504/master/8256.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/5afa85e49b1dd4a7f8b65d8af61e88f44c97af57/0_0_2514_3149/master/2514.jpg?width=445&dpr=1&s=none&crop=none"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "British",
-          "Imran Perretta",
-          "British Muslim",
-          "Luton"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/film/2026/jul/24/imran-perretta-interview-ish-british-debut-movie-of-the-year"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
       },
       {
         "title": "‘Jumbo’ Sequel, ‘Queen of Malacca’ Franchise Plans on the Cards as Indonesia’s Visinema Eyes Expansion (EXCLUSIVE)",
-        "summary": "Indonesian filmmaker Angga Dwimas Sasongko plans to release the fantasy epic \"Queen of Malacca\" in the first quarter of 2027, after it moves through post-production and attracts interest from potential distribution partners in China, Thailand, and other international markets. The project has gained significant industry attention since its announcement. A sequel to the film, titled \"Jumbo,\" is also reportedly in the works as part of the expanding \"Queen of Malacca\" franchise.",
+        "summary": "Indonesian studio Visinema plans to release the fantasy epic Queen of Malacca in early 2027, following post-production progress and rising international interest from distributors in China and Thailand. The sequel to the hit Jumbo underscores Visinema’s push to expand its regional franchise reach.",
         "hashtag": "VisinemaEyes",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -2048,146 +2326,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.83,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "US hits dozens of trading partners with new wave of tariffs",
-        "summary": "US President Donald Trump's administration has imposed new tariffs of 10% to 12.5% on 60 trading partners, including the UK, China, and the European Union, accounting for nearly all American imports, worth almost 100% of US imports. The tariffs are based on claims that these partners have failed to properly address forced labour, but US trade experts say the move is actually a legal justification for the tariffs. The new duties will take effect immediately, replacing an identical levy that expires on Friday.",
-        "hashtag": "US",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "US Supreme Court",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
-          },
-          {
-            "name": "February",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
-        ],
-        "entities": [
-          "Imposed",
-          "US Supreme Court",
-          "February"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.66,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
-        "summary": "India’s government will hold talks Friday with the ‘Cockroach Janta Party’ as protests demanding education minister Dharmendra Pradhan’s resignation enter their fourth week. Prime Minister Narendra Modi vowed tough new laws on exam paper leaks after activist Sonam Wangchuk ended a 26-day hunger strike, but protesters insist Pradhan must step down. Tens of thousands have marched nationwide since police forcibly removed Wangchuk and injured scores during a Delhi crackdown.",
-        "hashtag": "India",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "India's",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d2/India_Summer_2011.jpg"
-        ],
-        "entities": [
-          "India's",
-          "Sonam Wangchuk"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.35,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Modi Caught Off Guard as India’s Economic Failings Inflame Young People",
-        "summary": "Prime Minister Narendra Modi was busy trying to put out other fires when a student movement suddenly exploded. There are no easy solutions to the problems behind it.",
-        "hashtag": "EconomicFailings",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz/23INT-INDIA-PROTEST-ANALYSIS-01-wjbz-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Modi Caught Off Guard",
-          "India",
-          "Economic Failings Inflame Young",
-          "People",
-          "Prime Minister Narendra Modi",
-          "There"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/world/asia/india-modi-protests-economy-cockroach-party.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.99,
+        "freshH": 1.83,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2199,7 +2338,7 @@
     "health": [
       {
         "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-        "summary": "Youth services in England have seen a 73% decline in funding over the past 12 years, leaving nearly 1 million 16- to 24-year-olds not in work, education or training, with many coastal towns facing severe deprivation and isolation. This has led to young people being unfairly stigmatized as \"lazy\" or \"feral\", with their towns being labeled as \"problematic\". The Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
+        "summary": "Coastal towns in England and Wales face a youth crisis, with nearly one million 16- to 24-year-olds not in work, education or training. Funding for youth services has plummeted by 73% over 12 years, leaving young people isolated and struggling. The Guardian’s year-long project highlights their struggles amid decades of deprivation and negative stereotypes.",
         "hashtag": "One",
         "badge": "HEALTH",
         "category": "health",
@@ -2248,7 +2387,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.86,
+        "freshH": 2.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2258,7 +2397,7 @@
       },
       {
         "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-        "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with hospital admissions and days off from work or school dropping by 70% among 72 households in Ohio. This finding is comparable to the benefits reported in clinical trials of commonly used asthma medications. The researchers are now calling for further investigation into the potential health benefits of switching to electric cooking.",
+        "summary": "A US study found replacing gas stoves with electric models cut hospital admissions and missed work or school by 70% for people with poorly controlled asthma. The Cleveland-area trial, involving 72 homes, showed benefits comparable to or exceeding common asthma medications. Funding was halted early, leaving over 1,100 households without access to the program.",
         "hashtag": "Replacing",
         "badge": "HEALTH",
         "category": "health",
@@ -2271,12 +2410,8 @@
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Replacing",
-          "Team",
-          "Ohio",
-          "Trump",
           "MetroHealth",
-          "December"
+          "Ohio"
         ],
         "sourceUrls": [
           "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
@@ -2289,7 +2424,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.86,
+        "freshH": 3.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2299,7 +2434,7 @@
       },
       {
         "title": "Female veterans support group makes national impact",
-        "summary": "Chelley Tulloch, a former RAF medic, credits a female veterans support group with helping her recover from PTSD after multiple war-zone deployments. The group now assists hundreds nationwide as more women join the military, prompting the Ministry of Defence to increase NHS mental health services for veterans.",
+        "summary": "Chelley Tulloch, a former RAF medic, says her PTSD improved after joining a female veterans support group following multiple war-zone deployments. The group, now expanding nationwide, provides tailored mental health help as more women enter the military. The UK Ministry of Defence confirms increased investment in NHS veteran services.",
         "hashtag": "Female",
         "badge": "HEALTH",
         "category": "health",
@@ -2326,149 +2461,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.99,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "facts": [
-      {
-        "title": "France orders evacuation of peninsula as hundreds flee wildfires by boat",
-        "summary": "French authorities have ordered the full evacuation of the Cap Ferret peninsula in southwest France as wildfires consume 8,700 hectares near Bordeaux. Hundreds fled by boat as firefighters battle the blaze that began Tuesday, with no new injuries reported Friday. Spain has declared a national emergency amid worsening wildfires near Madrid.",
-        "hashtag": "France",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/dad3/live/0e54c2b0-872d-11f1-9733-edfe8d3e29a7.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "France",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg?width=1200"
-        ],
-        "entities": [
-          "France",
-          "Friday"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.74,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Rare night heron spotted at National Trust site",
-        "summary": "A rare black-crowned night heron, typically found in Africa, Asia, and the Americas, has been spotted at the National Trust’s Holnicote Estate in Somerset, UK. Conservationists say the sighting follows new freshwater habitats introduced at the site, supporting species like water voles and otters. Experts call it a sign that restored wetlands could help struggling wildlife populations recover.",
-        "hashtag": "NationalTrust",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Africa",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        ],
-        "entities": [
-          "Rare",
-          "National Trust",
-          "Africa",
-          "Asia",
-          "Americas",
-          "Europe"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.56,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Play area aims to interest children in rare habitat",
-        "summary": "A Hampshire science centre has opened a new play area to teach children about England’s rare chalk streams, which face pressure from hot and dry weather. The exhibit at Winchester Science Centre lets kids explore water flow and wildlife in one of the world’s most unique freshwater habitats. The centre hopes early engagement will inspire future conservation efforts.",
-        "hashtag": "Play",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Play",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Sarria%200024.jpg?width=1200"
-        ],
-        "entities": [
-          "Play"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.51,
+        "freshH": 3.99,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2508,7 +2501,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.13,
+        "freshH": 1.13,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2546,7 +2539,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.79,
+        "freshH": 4.8,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2584,7 +2577,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.84,
+        "freshH": 4.85,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2596,7 +2589,7 @@
     "tech": [
       {
         "title": "Google fined €890m by EU for favouring its own apps over rivals",
-        "summary": "Google has been fined €890m by the EU for allegedly abusing its power by favouring its own apps and services over those from rivals, limiting consumer choice and giving its own services an unfair advantage. The fine is comprised of two separate breaches of the EU's Digital Markets Act, with a total of €460m imposed for a second breach. The company must now comply with the EU's requirements, which may damage services used by millions of European customers.",
+        "summary": "Google has been fined €890 million by the European Union for abusing its market dominance by favouring its own apps over rivals. The penalty, the first under the EU’s Digital Markets Act, follows two breaches where Google gave its services an unfair advantage. Google warns the ruling could strip key features from its search tools and weaken security on Google Play.",
         "hashtag": "Google",
         "badge": "TECH",
         "category": "tech",
@@ -2609,8 +2602,7 @@
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Google",
-          "EU's"
+          "Google"
         ],
         "sourceUrls": [
           "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
@@ -2623,7 +2615,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 8.69,
+        "freshH": 9.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2641,16 +2633,16 @@
         "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
         "images": [
           "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
         ],
         "entityShots": [
           {
             "name": "Deal",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
         ],
         "entities": [
           "Judge Extends Pause",
@@ -2669,7 +2661,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.95,
+        "freshH": 7.95,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2707,7 +2699,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 9.7,
+        "freshH": 10.7,
         "score": null,
         "popularity": null,
         "recency": null,
