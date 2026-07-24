@@ -36,6 +36,10 @@ import {
   recentTopics,
   deprioritizeRecentTopics,
 } from './video_ledger.mjs';
+// DEMONETIZATION GUARD — drop policy-disqualifying stories + mask strong profanity/slurs in the
+// text every surface (narration/captions/title/description) is derived from. These go PUBLIC +
+// monetized, so this runs on every channel before dedup/claim/render.
+import { guardStories, stripForSpeech } from './safety.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -627,10 +631,15 @@ function storySentences(story, cfg, index) {
       if (ctx) out.push(ctx);
     }
   }
-  const spoken = out.map((s) => s.trim()).filter(Boolean);
+  // DEMONETIZATION GUARD: title+summary were mask-scrubbed upstream (guardStories) for the
+  // on-screen/meta DISPLAY form ("s***"). Narration must NOT speak asterisks, so strip masked
+  // tokens (and any raw profanity that slipped through) out of the SPOKEN lines — captions are
+  // derived from this audio, so they come out clean too. Then drop lines emptied by the strip.
+  const spoken = out.map((s) => stripForSpeech(s.trim())).filter(Boolean);
   // SAFETY: if the brief yielded no complete sentence (thin/paywalled source) and we
-  // dropped the spoken title, fall back to speaking the headline so the clip isn't silent.
-  if (!spoken.length) spoken.push(title);
+  // dropped the spoken title, fall back to speaking the (speech-cleaned) headline so the clip
+  // isn't silent.
+  if (!spoken.length) spoken.push(stripForSpeech(title) || title);
   return spoken;
 }
 
@@ -697,11 +706,19 @@ async function main() {
   // sharing a normalized title BEFORE the ledger/claim, so one video never plays the same
   // event twice. Needed because the research-bundle path skips mergeByTitle and two trend
   // sources can carry the same event worded differently. Preserve the region tag.
-  const candidates = dedupeByTitle(gathered);
+  let candidates = dedupeByTitle(gathered);
   candidates.region = gathered.region;
   if (candidates.length < gathered.length) {
     console.log(`[shorts:${cfg.id}] intra-video dedup: ${gathered.length} → ${candidates.length} unique stories`);
   }
+  // DEMONETIZATION GUARD (public + monetized): drop disqualifying subjects (sexual-minor,
+  // explicit-sexual, self-harm method, incitement) and MASK strong profanity/slurs in the
+  // surviving stories' title+summary — so narration, captions and upload meta are all clean.
+  // Runs before the ledger/claim so we never spend a claim slot on a story we'd drop.
+  const guardRegion = candidates.region;
+  candidates = guardStories(candidates, { label: cfg.id });
+  candidates.region = guardRegion;
+  if (!candidates.length) throw new Error('no usable stories left after safety guard');
   // VIDEO-DEDUP: drop candidates we've ALREADY made a video of (durable Upstash ledger),
   // unless the story gained a genuine update since. Runs BEFORE the cross-run claim so we
   // don't spend claim slots on stories we'd skip anyway. Fail-open (never blanks the feed).

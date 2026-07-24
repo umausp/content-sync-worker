@@ -2,7 +2,7 @@ name: shorts-sv
 
 # Render a native-language Swedish Short for the @AgyataWorld channel — sourced,
 # synthesised, voiced and captioned ENTIRELY IN SWEDISH (no translation),
-# then auto-uploaded UNLISTED to the SV playlist. TTS engine: piper. Nothing is
+# then auto-uploaded PUBLIC to the SV playlist. TTS engine: piper. Nothing is
 # committed to the repo; the staged output is purged after upload.
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
@@ -19,6 +19,12 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
+  # PUBLIC + monetized (user: "make all native language crons at direct public with right
+  # playlist"). build_short reads SHORTS_PRIVACY into meta.privacyStatus → upload.mjs sets it
+  # on videos.insert, so the video is public the moment it's uploaded (no manual Studio flip).
+  # A DEMONETIZATION GUARD (shorts/safety.mjs) drops policy-unsafe stories + masks strong
+  # profanity/slurs before render, so going straight-to-public is monetization-safe.
+  SHORTS_PRIVACY: public
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
   # upload writes after a successful publish. Keyed by channel label so sv is independent.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
@@ -115,11 +121,11 @@ jobs:
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs sv
 
-      # AUTO-UPLOAD to YouTube as UNLISTED. Native channels are PLAYLISTS on @AgyataWorld, so
-      # they authenticate with YT_REFRESH_TOKEN_WORLD and land in the SV playlist
-      # (YT_PLAYLIST_SV). On success sets uploaded=true so the video is NOT also published
-      # as a public artifact. Best-effort — never fails the run.
-      - name: Auto-upload to YouTube (unlisted)
+      # AUTO-UPLOAD to YouTube as PUBLIC (SHORTS_PRIVACY=public). Native channels are PLAYLISTS
+      # on @AgyataWorld, so they authenticate with YT_REFRESH_TOKEN_WORLD and land in the SV
+      # playlist (YT_PLAYLIST_SV). On success sets uploaded=true so the video is NOT also
+      # published as a public artifact. Best-effort — never fails the run.
+      - name: Auto-upload to YouTube (public)
         id: yt
         continue-on-error: true
         env:

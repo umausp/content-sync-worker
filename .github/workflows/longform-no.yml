@@ -2,7 +2,7 @@ name: longform-no
 
 # Render a native-language Norwegian long-form recap for the @AgyataWorld channel — sourced,
 # synthesised, voiced and captioned ENTIRELY IN NORWEGIAN (no translation),
-# then auto-uploaded UNLISTED to the NO playlist. TTS engine: piper. Nothing is
+# then auto-uploaded PUBLIC to the NO playlist. TTS engine: piper. Nothing is
 # committed to the repo; the staged output is purged after upload.
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
@@ -20,6 +20,12 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # 1920x1080, multi-story recap
+  # PUBLIC + monetized (user: "make all native language crons at direct public with right
+  # playlist"). build_short reads SHORTS_PRIVACY into meta.privacyStatus → upload.mjs sets it
+  # on videos.insert, so the video is public the moment it's uploaded (no manual Studio flip).
+  # A DEMONETIZATION GUARD (shorts/safety.mjs) drops policy-unsafe stories + masks strong
+  # profanity/slurs before render, so going straight-to-public is monetization-safe.
+  SHORTS_PRIVACY: public
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
   # upload writes after a successful publish. Keyed by channel label so no is independent.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
@@ -116,11 +122,11 @@ jobs:
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs no
 
-      # AUTO-UPLOAD to YouTube as UNLISTED. Native channels are PLAYLISTS on @AgyataWorld, so
-      # they authenticate with YT_REFRESH_TOKEN_WORLD and land in the NO playlist
-      # (YT_PLAYLIST_NO). On success sets uploaded=true so the video is NOT also published
-      # as a public artifact. Best-effort — never fails the run.
-      - name: Auto-upload to YouTube (unlisted)
+      # AUTO-UPLOAD to YouTube as PUBLIC (SHORTS_PRIVACY=public). Native channels are PLAYLISTS
+      # on @AgyataWorld, so they authenticate with YT_REFRESH_TOKEN_WORLD and land in the NO
+      # playlist (YT_PLAYLIST_NO). On success sets uploaded=true so the video is NOT also
+      # published as a public artifact. Best-effort — never fails the run.
+      - name: Auto-upload to YouTube (public)
         id: yt
         continue-on-error: true
         env:
