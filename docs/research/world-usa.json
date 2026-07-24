@@ -1,311 +1,556 @@
 {
-  "generatedAt": "2026-07-24T09:51:47.454Z",
+  "generatedAt": "2026-07-24T10:52:06.306Z",
   "region": "usa",
   "count": 27,
   "categoryCounts": {
-    "offbeat": 9,
-    "health": 3,
-    "sports": 1,
-    "crisis": 3,
-    "tech": 2,
-    "breaking": 3,
-    "politics": 2,
+    "offbeat": 6,
     "entertainment": 2,
-    "facts": 2
+    "politics": 3,
+    "breaking": 2,
+    "crisis": 3,
+    "sports": 3,
+    "health": 3,
+    "tech": 2,
+    "facts": 3
   },
   "stories": [
     {
-      "title": "Lynx star Kayla McBride becomes latest to speak out on WNBA 3-point contest drama: ‘Half a-- invite’",
-      "summary": "WNBA star Kayla McBride has spoken out about her absence from the league's 3-point contest, claiming she received a \"half-ass invite\" through her agent just 48 hours before the event. The Minnesota Lynx guard joins New York Liberty star Sabrina Ionescu in criticizing the WNBA's communication, with both players saying they were not officially invited to participate. The controversy comes as the league prepares for its 2026 All-Star game.",
-      "hashtag": "KaylaMcbride",
-      "badge": "TRENDING",
+      "title": "Who Is Shiloh Hendrix? Minnesota Woman Found Guilty in Viral Racial Slur Case",
+      "summary": "A Minnesota jury found Shiloh Hendrix guilty of disorderly conduct for her confrontation with a videographer at a Rochester playground, acquitting her on a separate count involving a child. The verdict came after eight hours of deliberation in a case that drew national attention after a viral video surfaced in 2025. The ruling may reignite debates over free speech and the legal boundaries of offensive language.",
+      "hashtag": "ShilohHendrix",
+      "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.foxnews.com/outkick-sports/lynx-star-kayla-mcbride-latest-speak-wnba-3-point-contest-drama-half-ass-invite",
-      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/kayla-mcbride-minnesota-lynx-seattle-storm.jpg",
+      "url": "https://www.ibtimes.sg/who-shiloh-hendrix-woman-viral-playground-racism-case-found-guilty-one-count-90572",
+      "imageUrl": "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-one-count-after-viral-playground-confrontation-rochester.jpg?w=1200&h=630?q=60",
       "images": [
-        "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/kayla-mcbride-minnesota-lynx-seattle-storm.jpg",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/kayla-mcbride-minnesota-lynx-seattle-storm.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-minnesota-lynx-seattle-storm.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-shoots-lynx-storm.jpg?ve=1&tl=1",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-reacts-lynx-storm.jpg?ve=1&tl=1",
-        "https://static01.nyt.com/athletic/uploads/wp/2026/07/23111708/GettyImages-2286698889-scaled.jpg?width=1200&height=630&fit=cover",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
+        "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-one-count-after-viral-playground-confrontation-rochester.jpg?w=1200&h=630?q=60",
+        "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-on-one-count-after-viral-playground-confrontation-in-rochester.jpg?w=736"
       ],
-      "entityShots": [
-        {
-          "name": "Kayla McBride",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "WNBA",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Lynx",
-        "Kayla McBride",
-        "WNBA",
-        "Half"
+        "Is Shiloh Hendrix",
+        "Minnesota Woman Found Guilty",
+        "Viral Racial Slur Case"
       ],
       "sourceUrls": [
-        "https://www.foxnews.com/outkick-sports/lynx-star-kayla-mcbride-latest-speak-wnba-3-point-contest-drama-half-ass-invite",
-        "https://www.nytimes.com/athletic/7466183/2026/07/23/ionescu-mcbride-response-wnba-3-point-contest-invitation-decline/",
-        "https://www.espn.com/wnba/story/_/id/49420142/fudd-mabrey-howard-wnba-all-star-3-point-contestants"
+        "https://www.ibtimes.sg/who-shiloh-hendrix-woman-viral-playground-racism-case-found-guilty-one-count-90572"
       ],
-      "sourceName": "foxnews.com",
+      "sourceName": "International Business Times, Singapore Edition",
       "sources": [
-        "Fox News",
-        "The New York Times",
-        "ESPN"
+        "International Business Times, Singapore Edition"
       ],
-      "corr": 3,
-      "verified": true,
-      "trend": "kayla mcbride wnba invitation comments",
-      "traffic": 100,
-      "freshH": 1,
-      "score": 0.652,
-      "popularity": 0.226,
-      "recency": 0.891,
-      "relevancy": 1,
+      "corr": 1,
+      "verified": false,
+      "trend": "Shiloh Hendrix",
+      "traffic": 88000,
+      "freshH": 0.5,
+      "score": 0.572,
+      "popularity": 0.278,
+      "recency": 0.944,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Scientists warn of potential global marine invasive species event linked to idle ships in the Strait of Hormuz",
-      "summary": "Thousands of commercial vessels stranded in the Persian Gulf for months following the closure of the Strait of Hormuz due to fighting between the US and Iran may unintentionally trigger a massive global marine invasive species event when they resume normal trade routes. The prolonged periods at anchor have allowed ship hulls to accumulate dense communities of marine organisms, including algae, barnacles, and mussels, which can be transported around the world. This could lead to a global marine bioinvasion \"super-spreader\" event, with potentially devastating consequences for ecosystems worldwide.",
-      "hashtag": "PersianGulf",
+      "title": "Education Secretary Linda McMahon Speaks to Reporters in New Bern, North Carolina",
+      "summary": "US Education Secretary Linda McMahon spoke to reporters in New Bern, North Carolina, on Wednesday, where she announced a $100 million grant to support teacher training and recruitment in the state. The grant aims to address a teacher shortage in North Carolina, with the state facing a projected deficit of over 3,000 teachers by the end of the year. McMahon's visit comes as the state's education system faces significant challenges, with a growing need for qualified educators.",
+      "hashtag": "LindaMcmahon",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://phys.org/news/2026-07-scientists-potential-global-marine-invasive.html",
-      "imageUrl": "https://scx2.b-cdn.net/gfx/news/hires/2026/strait-of-hormuz-1.jpg",
+      "url": "https://www.c-span.org/program/public-affairs-event/education-secretary-linda-mcmahon-speaks-to-reporters-in-new-bern-north-carolina/682862",
+      "imageUrl": "https://ximage.c-spanvideo.org/eyJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJoZWlnaHQiOjYzMCwid2lkdGgiOjEyMDB9fSwiYnVja2V0IjoicGljdHVyZXMuYy1zcGFudmlkZW8ub3JnIiwia2V5IjoiRmlsZXMvNWMzLzA2NC8xNzg0MDQxMzk5XzA2NC5qcGcifQ==",
       "images": [
-        "https://scx2.b-cdn.net/gfx/news/hires/2026/strait-of-hormuz-1.jpg",
-        "https://scx2.b-cdn.net/gfx/news/2026/strait-of-hormuz-1.jpg",
-        "https://scx1.b-cdn.net/csz/news/800a/2026/strait-of-hormuz-1.jpg",
-        "https://scx1.b-cdn.net/gfx/profiles/e661c1d664a28c5b.jpg",
-        "https://scx1.b-cdn.net/gfx/profiles/8b33bc1b4d9f6b4c.jpg",
-        "https://img.etimg.com/thumb/msid-132595476,width-1200,height-630,imgsize-202912,overlay-economictimes/articleshow.jpg",
-        "https://img.etimg.com/thumb/msid-132595476,resizemode-4,width-1200,height-900,imgsize-202912,overlay-economictimes/articleshow.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
+        "https://ximage.c-spanvideo.org/eyJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJoZWlnaHQiOjYzMCwid2lkdGgiOjEyMDB9fSwiYnVja2V0IjoicGljdHVyZXMuYy1zcGFudmlkZW8ub3JnIiwia2V5IjoiRmlsZXMvNWMzLzA2NC8xNzg0MDQxMzk5XzA2NC5qcGcifQ=="
       ],
-      "entityShots": [
-        {
-          "name": "Strait",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg"
-        },
-        {
-          "name": "Hormuz",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Scientists",
-        "Strait",
-        "Hormuz"
+        "Education Secretary Linda McMahon",
+        "Speaks",
+        "Reporters",
+        "Bern",
+        "North Carolina"
       ],
       "sourceUrls": [
-        "https://phys.org/news/2026-07-scientists-potential-global-marine-invasive.html",
-        "https://m.economictimes.com/news/new-updates/1500-ships-trapped-in-gulf-of-hormuz-is-quietly-multiplying-an-underwater-army-that-could-unleash-worlds-biggest-bioinvasion-event/articleshow/132595366.cms",
-        "https://www.marinelog.com/news/op-ed-what-the-strait-of-hormuz-backlog-reveals-about-operational-readiness/"
+        "https://www.c-span.org/program/public-affairs-event/education-secretary-linda-mcmahon-speaks-to-reporters-in-new-bern-north-carolina/682862"
       ],
-      "sourceName": "phys.org",
+      "sourceName": "c-span.org",
       "sources": [
-        "Phys.org",
-        "The Economic Times",
-        "Marine Log"
-      ],
-      "corr": 3,
-      "verified": true,
-      "trend": "persian gulf stuck commercial vessels",
-      "traffic": 100,
-      "freshH": 1,
-      "score": 0.652,
-      "popularity": 0.226,
-      "recency": 0.891,
-      "relevancy": 1,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-      "summary": "Russia's largest online retailer, Wildberries, has seen four of its warehouses targeted by Ukrainian drones in recent days, including two in the Moscow region and two in the Tambov and Krasnodar regions, resulting in significant losses and disruptions to supplies to the Russian army and hundreds of small businesses that rely on the online marketplace. The attacks have killed at least eight people and caused millions of dollars in inventory to be destroyed, sparking an online outcry among Russian small-business owners. The strikes are part of Ukraine's campaign of economic warfare against Russia, which has also included drone attacks on oil refineries and depots.",
-      "hashtag": "Drone",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.com/news/articles/cvg9n2y61w6o",
-      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/news/1024/branded_news/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/d47b/live/e52279e0-85b6-11f1-bee8-53ce494e1abc.png.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/84cf/live/470fbe70-85f2-11f1-926f-c90d1bcfbc84.png.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/4db7/live/6be7f7e0-85e7-11f1-8ade-a7a676c613b9.jpg.webp",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2279263358.jpg?c=original&q=w_860,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991519.jpg?c=original&q=w_860,c_fill",
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Wildberries",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-      ],
-      "entities": [
-        "Russia's",
-        "Ukraine's",
-        "Wildberries"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.com/news/articles/cvg9n2y61w6o",
-        "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl"
-      ],
-      "sourceName": "bbc.com",
-      "sources": [
-        "BBC",
-        "CNN"
+        "C-SPAN",
+        "Fox Business"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "drone",
-      "traffic": 5000,
+      "trend": "linda mcmahon",
+      "traffic": 200,
       "freshH": 1,
-      "score": 0.625,
-      "popularity": 0.158,
+      "score": 0.557,
+      "popularity": 0.143,
       "recency": 0.891,
-      "relevancy": 1,
+      "relevancy": 0.75,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "My Word: Political name of the game",
-      "summary": "Israel’s political parties are reshuffling names and merging ahead of the October 27 election, with many now known by their leaders’ nicknames like Bibi or Eisenkot. Analysts say generic party names and frequent shifts make it hard for voters to track alliances. The latest round of changes could reshape the race just weeks before ballots are cast.",
-      "hashtag": "Game",
+      "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+      "summary": "During Thursday’s VERZUZ showdown between YG and The Game, Compton rapper The Game downed nearly an entire bottle of tequila in one gulp. The event aired live on Apple Music and YouTube on July 23, celebrating two decades of West Coast hip-hop. Both artists traded hits and memories, ending with a tribute to the late Nipsey Hussle.",
+      "hashtag": "Verzuz",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.jpost.com/opinion/article-903397",
-      "imageUrl": "https://images.jpost.com/image/upload/f_auto,fl_lossy/q_auto/c_fill,g_faces:center,h_720,w_1280/731096",
+      "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
       "images": [
-        "https://images.jpost.com/image/upload/f_auto,fl_lossy/q_auto/c_fill,g_faces:center,h_720,w_1280/731096",
-        "https://images.jpost.com/image/upload/f_auto,fl_lossy/c_fill,g_faces:center,h_537,w_822/727782"
+        "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+        "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
+        "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "My Word"
+        "The Game",
+        "VERZUZ"
       ],
       "sourceUrls": [
-        "https://www.jpost.com/opinion/article-903397"
+        "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+        "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
+        "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
+        "https://www.readers.id/en/yg-the-game-verzuz-july-23"
       ],
-      "sourceName": "The Jerusalem Post",
+      "sourceName": "Complex",
       "sources": [
-        "The Jerusalem Post"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "The Game",
-      "traffic": 96000,
-      "freshH": 0.5,
-      "score": 0.571,
-      "popularity": 0.3,
-      "recency": 0.944,
-      "relevancy": 0.482,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Tyla – ‘A*Pop’ review: safe, polished pop that could’ve gone further",
-      "summary": "South African singer Tyla released her second album, APop, on May 17, following her 2023 global hit Water. The album blends R&B and amapiano but leans heavily on slow-burning love songs, leaving critics underwhelmed. Tyla’s next single is expected in early June.",
-      "hashtag": "Tyla",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.nme.com/reviews/album/tyla-apop-review-3958756",
-      "imageUrl": "https://www.nme.com/wp-content/uploads/2026/07/Tyla-Credit-Catherine-Lo-Medico.jpg",
-      "images": [
-        "https://www.nme.com/wp-content/uploads/2026/07/Tyla-Credit-Catherine-Lo-Medico.jpg",
-        "https://www.nme.com/wp-content/uploads/2026/07/Tyla-A-Pop-Artwork-Review.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Tyla",
-        "A*Pop"
-      ],
-      "sourceUrls": [
-        "https://www.nme.com/reviews/album/tyla-apop-review-3958756"
-      ],
-      "sourceName": "NME",
-      "sources": [
-        "NME"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "Tyla",
-      "traffic": 93000,
-      "freshH": 0.5,
-      "score": 0.551,
-      "popularity": 0.291,
-      "recency": 0.944,
-      "relevancy": 0.416,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "2026 WNBA 3-Point Contest Odds, Prediction, Participants, Past Winners (Bet on Rhyne Howard, Fade Azzi Fudd)",
-      "summary": "The 2026 WNBA 3-Point Contest kicks off Friday night at Chicago’s Wintrust Arena with six sharpshooters vying for the title. Atlanta’s Rhyne Howard, a 2022 finalist, leads the field, while Azzi Fudd of Dallas is the betting favorite at +210. The event, starting July 24, marks the first contest since 2024 with no returning finalists.",
-      "hashtag": "Azzi",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
-      "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg",
-      "images": [
-        "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Rhyne Howard",
-        "Azzi Fudd"
-      ],
-      "sourceUrls": [
-        "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
-        "https://mshale.com/5a036551/37ca7fbfHUAGIAEdRSkbPAY",
-        "https://collegefootballnetwork.com/wnba/top-7-outfits-on-the-wnba-all-star-orange-carpet-feat-aja-wilson-azzi-fudd-paige-bueckers-and-more/"
-      ],
-      "sourceName": "Sports Illustrated",
-      "sources": [
-        "Sports Illustrated",
-        "Mshale",
-        "College Sports Network"
+        "Complex",
+        "Hip Hop Vibe",
+        "Readers.id"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "Azzi",
+      "trend": "#Verzuz",
       "traffic": 95000,
       "freshH": 8,
-      "score": 0.523,
-      "popularity": 0.523,
+      "score": 0.549,
+      "popularity": 0.526,
       "recency": 0.397,
-      "relevancy": 0.701,
+      "relevancy": 0.799,
       "region": "usa",
       "geo": "US"
     },
     {
+      "title": "Fred Tsui Named Executive Director of Hong Kong International Film Festival Society",
+      "summary": "Fred Tsui has been appointed as the new executive director of the Hong Kong International Film Festival Society, effective September 23, succeeding Albert Lee. Tsui brings over 30 years of experience in the film industry, having worked in various roles including distribution, financing, and exhibition, and has established himself as a respected international sales agency for Asian titles. He will oversee the society's initiatives, including the Hong Kong International Film Festival, and report to chair Dr. Wilfred Wong.",
+      "hashtag": "HongKong",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/news/fred-tsui-executive-director-hong-kong-international-film-festival-society-1236820176/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg?w=1000&h=563&crop=1",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Director",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200"
+        },
+        {
+          "name": "Hong Kong International Film",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+      ],
+      "entities": [
+        "Fred Tsui Named Executive",
+        "Director",
+        "Hong Kong International Film",
+        "Festival Society",
+        "Hong Kong International",
+        "Film Festival Society"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/news/fred-tsui-executive-director-hong-kong-international-film-festival-society-1236820176/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.14,
+      "score": 0.499,
+      "popularity": 0,
+      "recency": 0.984,
+      "relevancy": 0.62,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Burnham to spend first day working from northern branch of No 10",
+      "summary": "British Prime Minister Burnham will spend his first day in office working from the northern branch of No 10, chairing a meeting of the National Economic Council to drive devolution and local economic growth across the UK, with a focus on addressing decades of power being concentrated in the centre. The meeting will bring together senior ministers and regional mayors to put devolution at the centre of the government's mission. Strategic decisions on devolution will shift from the Treasury and Ministry of Housing to No 10 North, marking a significant shift in the government's approach.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Various",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+      ],
+      "entities": [
+        "Burnham",
+        "Various",
+        "Downing Street"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.05,
+      "score": 0.491,
+      "popularity": 0,
+      "recency": 0.995,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Tens of thousands evacuated from French tourist spot as wildfires spread",
+      "summary": "Tens of thousands of people have been evacuated from the French tourist spot in the Landes region due to spreading wildfires, with over 23,000 forced to leave their homes, campsites, and other facilities. The fires, fueled by strong winds of up to 31mph and high temperatures, have destroyed at least 105 homes and buildings, with no reported casualties overnight. Emergency efforts are underway, with the European Union providing aid, including three planes and two helicopters, to help combat the blazes.",
+      "hashtag": "Tens",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Tens",
+        "French",
+        "Cap Ferret"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.03,
+      "score": 0.479,
+      "popularity": 0,
+      "recency": 0.997,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Why are UK fuel prices rising again?",
+      "summary": "Petrol prices in the UK have risen to 156.19p a litre, while diesel costs 173.15p a litre, following a decline in early July. This increase comes despite the conflict in Iran, with prices remaining below the levels reached in the summer of 2022 following Russia's invasion of Ukraine. Fuel retailers have denied accusations of price gouging, with the official markets regulator stating it has seen no evidence of retailers changing their pricing strategies to take advantage of the crisis.",
+      "hashtag": "Why",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.11,
+      "score": 0.476,
+      "popularity": 0,
+      "recency": 0.988,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "UK mortgage rates rise to highest level for a month",
+      "summary": "UK mortgage rates have risen to their highest level in a month, with the average rate increasing due to renewed tensions in the Middle East and higher oil prices, which have reduced the possibility of interest rate cuts by central banks. This has led to lenders, including the five biggest High Street banks, increasing their interest rates on new fixed deals. As a result, over five million homeowners are expected to see their monthly mortgage repayments increase by the end of 2028.",
+      "hashtag": "UK",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/c70gknr7z1eo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/7762/live/c94f91c0-8729-11f1-8c61-e72dd81a46e3.png",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/8ccf/live/80485cd0-86b3-11f1-bee8-53ce494e1abc.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Renewed",
+        "Middle East"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c70gknr7z1eo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.12,
+      "score": 0.475,
+      "popularity": 0,
+      "recency": 0.879,
+      "relevancy": 0.67,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Klopp starts Germany reign by threatening to quit",
+      "summary": "German football coach Jurgen Klopp has started his reign by warning the media that he will quit if they invade his family's privacy. The 59-year-old, appointed on a four-year deal, made the threat during his first press conference as Germany's head coach, citing his love for the job but also his readiness to call it quits if necessary. Klopp's contract will see him through to the 2030 World Cup, co-hosted by Spain, Portugal and Morocco.",
+      "hashtag": "Klopp",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Klopp",
+        "Germany",
+        "Jurgen Klopp",
+        "Germany's"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.2,
+      "score": 0.472,
+      "popularity": 0,
+      "recency": 0.977,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "South Africa's president wins bid to temporarily halt impeachment inquiry over 'Farmgate'",
+      "summary": "South Africa's President Cyril Ramaphosa has secured a temporary reprieve from an impeachment inquiry over the 'Farmgate' scandal, after a court ruled in his favour. The inquiry stems from a 2022 incident where burglars stole large sums of cash hidden in a sofa from Ramaphosa's private farm, with the president denying any wrongdoing. The case will now proceed to a separate court hearing in September, where Ramaphosa will challenge the findings of an independent panel.",
+      "hashtag": "SouthAfrica",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cwymj9lkx13o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "South Africa's",
+        "Farmgate",
+        "Ramaphosa"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cwymj9lkx13o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.3,
+      "score": 0.468,
+      "popularity": 0,
+      "recency": 0.966,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "BBC Buys War Drama ‘Kabul,’ Featuring Eric Dane in One of His Last Roles",
+      "summary": "The BBC has acquired a six-part war drama series \"Kabul\" featuring Eric Dane in one of his last roles, alongside Shervin Alenabi from the series \"Tehran\". The show is set against the backdrop of the US troops' withdrawal from Afghanistan and the Taliban's return to Kabul, following the chaotic evacuation of diplomats, soldiers, and civilians. The series will now be available to BBC audiences worldwide.",
+      "hashtag": "BBCBuys",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/global/bbc-war-drama-kabul-eric-dane-1236820165/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "BBC Buys War Drama",
+        "Kabul",
+        "Featuring Eric Dane",
+        "Last Roles",
+        "Eric Dane",
+        "Tehran"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/tv/global/bbc-war-drama-kabul-eric-dane-1236820165/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.6,
+      "score": 0.456,
+      "popularity": 0,
+      "recency": 0.933,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Boxers choose Commonwealths over Love Island chance",
+      "summary": "Two Northern Irish boxers, Jon McConnell and Kaci Rock, have chosen to compete in the Commonwealth Games over a chance to appear on the reality TV show Love Island. McConnell will face India's Sumit in the light-middleweight division on Monday, while Rock will compete in the welterweight division against Niue's Karen Te Ruki Pasene the following day. This decision comes after they progressed through initial auditions for Love Island before pulling out due to the timing clash with the Commonwealth Games.",
+      "hashtag": "LoveIsland",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/boxing/articles/c7vgz6rr4llo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Boxers",
+        "Commonwealths",
+        "Love Island",
+        "Team Northern Ireland",
+        "Jon McConnell",
+        "Kaci Rock"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/boxing/articles/c7vgz6rr4llo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.71,
+      "score": 0.453,
+      "popularity": 0,
+      "recency": 0.922,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Meet the Glasgow curry shop boss representing Pakistan at bowls",
+      "summary": "Pakistan's representative at the bowls, Qureshi, suffered a disappointing loss in his opening match against Wales' Ross Owen, losing in straight sets 12-5 and 17-0. Despite the setback, Qureshi remains optimistic, citing the need for improvement on the carpet and joking that his poor performance may have scared off his supporters. His restaurant, however, remains a popular destination, even attracting a former world number one, Banks, who has decided to dine elsewhere due to Qureshi's recent performance.",
+      "hashtag": "Meet",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/articles/c0m71jvk2lwo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Meet",
+        "Glasgow",
+        "Pakistan",
+        "Mohammed",
+        "Chico' Qureshi",
+        "Scotland"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/articles/c0m71jvk2lwo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.78,
+      "score": 0.45,
+      "popularity": 0,
+      "recency": 0.914,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "I spent years trying to get smaller. Until I decided to get bigger",
-      "summary": "A woman who had been lifting weights for years fell into an unhealthy body image spiral after planning her wedding, leading her to obsess over her weight and restrict her food intake. She began weighing herself daily and tracking her calorie and step counts, eventually resorting to binge eating when she couldn't cope with her restrictive diet. This pattern of behavior has been linked to a higher risk of eating disorders and other mental health issues.",
+      "summary": "A woman who had been lifting weights for years fell into an unhealthy body image spiral after planning her wedding, leading her to obsessively track her weight and calories, and eventually develop disordered eating habits. She began weighing herself daily and restricting her food intake, only to binge when she couldn't cope anymore. This cycle of extreme dieting and guilt has left her struggling with her body image.",
       "hashtag": "UntilI",
       "badge": "HEALTH",
       "category": "health",
@@ -314,18 +559,18 @@
       "images": [
         "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
         "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200",
         "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
       ],
       "entityShots": [
         {
           "name": "Until",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200"
         },
         {
           "name": "Bulking",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
         },
         {
           "name": "First",
@@ -333,8 +578,8 @@
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200",
         "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
       ],
       "entities": [
@@ -354,36 +599,35 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.484,
+      "freshH": 1.87,
+      "score": 0.45,
       "popularity": 0,
-      "recency": 0.905,
+      "recency": 0.806,
       "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Guardiola turns down Italy manager job",
-      "summary": "Pep Guardiola has turned down the opportunity to coach the Italian national team, despite being offered a significant salary and the chance to shape the job as he saw fit. The Italian Football Federation had approached Guardiola after he left Manchester City this summer, but he has decided to take a break from the game to rest and spend more time with his family. Former Italy playmaker Andrea Pirlo is now the frontrunner to take over the team.",
-      "hashtag": "Guardiola",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cd7len4lvy9o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg",
+      "title": "Angela Rayner rules out rent controls in England",
+      "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, stating that controls implemented in some areas have not necessarily brought down rents. The Renters' Rights Act, which came into effect in May, is already having a significant impact on the market, giving renters more power and control. This decision comes as Scotland prepares to introduce new rent control legislation by 2027, allowing ministers to designate certain areas where rent increases can be capped.",
+      "hashtag": "AngelaRayner",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Guardiola",
-        "Italy",
-        "Former Manchester City",
-        "Pep Guardiola"
+        "Angela Rayner",
+        "England",
+        "Renters Rights' Act"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cd7len4lvy9o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -393,54 +637,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.07,
-      "score": 0.477,
+      "freshH": 0.84,
+      "score": 0.448,
       "popularity": 0,
-      "recency": 0.992,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "UK mortgage rates rise to highest level for a month",
-      "summary": "UK mortgage rates have risen to their highest level in a month, with 100 deals being temporarily pulled by lenders as they reassess their pricing plans. This sudden increase in rates has left borrowers feeling frustrated and uncertain, with experts warning that the market needs stability to recover. As a result, borrowers are advised to lock in new deals with their existing lenders or seek help from a broker to explore better options.",
-      "hashtag": "UK",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/c70gknr7z1eo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Renewed",
-        "Middle East"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c70gknr7z1eo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.12,
-      "score": 0.475,
-      "popularity": 0,
-      "recency": 0.987,
+      "recency": 0.908,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Microsoft pressures LG into killing unwanted McAfee ads",
-      "summary": "Microsoft has successfully pressured LG into disabling unwanted McAfee ads on Windows 11 PCs connected to LG monitors, following a year-long backlash against large pop-up ads for McAfee antivirus and LG's own apps. The move comes after Microsoft's Windows chief, Pavan Davuluri, intervened to address user complaints about the LG bloatware. LG has agreed to immediately disable the McAfee pop-up from its LG Monitor App Installer, ending a contentious issue that began with reports of auto-installing driver updates in 2024.",
+      "summary": "Microsoft has forced LG to disable unwanted McAfee trial pop-ups on Windows 11 PCs connected to LG monitors, following user complaints about large ads for McAfee antivirus and LG's own apps appearing without explicit permission. The move comes after reports of the issue dating back to 2024, when a Windows driver update would silently install LG driver updates and the LG Monitor App Installer. LG has agreed to immediately disable the McAfee pop-up from its LG Monitor App Installer.",
       "hashtag": "Microsoft",
       "badge": "TECH",
       "category": "tech",
@@ -479,34 +686,83 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.53,
-      "score": 0.472,
+      "freshH": 1.53,
+      "score": 0.436,
       "popularity": 0,
-      "recency": 0.941,
+      "recency": 0.838,
       "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "France orders evacuation of tourist spot as hundreds flee wildfires by boat",
-      "summary": "French authorities have ordered the evacuation of the entire Cap Ferret peninsula, with over 40,000 people fleeing by boat as wildfires in the Gironde region have consumed 8,700 hectares of land since Tuesday. The fires have destroyed around 80 homes, with 50 completely destroyed, and firefighters continue to battle the blaze. The evacuation is part of a larger effort to contain the wildfires, which have also prompted a national emergency declaration in Spain.",
-      "hashtag": "France",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+      "title": "With Hopes High for New H.I.V. Prevention Pill, Merck Takes Steps to Ensure Access",
+      "summary": "Companies in Africa and India will make generic versions of the pill that could cost as little as $5 per person per year. But access to the drug and other new products in much of Latin America remains uncertain.",
+      "hashtag": "NewH",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "France",
-        "Cap Ferret"
+        "Hopes High",
+        "Prevention Pill",
+        "Merck Takes Steps",
+        "Ensure Access",
+        "Companies",
+        "Africa"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
+        "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.12,
+      "score": 0.427,
+      "popularity": 0,
+      "recency": 0.987,
+      "relevancy": 0.328,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "US hits dozens of countries with new wave of tariffs",
+      "summary": "US President Donald Trump has imposed new tariffs on 60 countries, including the UK, China, and the European Union, with a 10% to 12.5% duty on all goods, accounting for nearly all American imports. The tariffs, aimed at addressing forced labour concerns, replace an identical levy set to expire on Friday and cover 99.4% of US imports. The move follows a US Supreme Court ruling that many previous tariffs were illegally enacted, and it is expected to escalate the ongoing trade war.",
+      "hashtag": "US",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "February",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+      ],
+      "entities": [
+        "Imposed",
+        "US Supreme Court",
+        "February"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -516,20 +772,20 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.49,
-      "score": 0.461,
+      "freshH": 1.88,
+      "score": 0.424,
       "popularity": 0,
-      "recency": 0.945,
-      "relevancy": 0.52,
+      "recency": 0.805,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
       "title": "US and Iran trade more strikes in Gulf as fears of escalation mount",
-      "summary": "US and Iranian forces have engaged in a new round of airstrikes in the Middle East, with Iran targeting US military facilities and bases for the 13th consecutive night in response to American attacks. The strikes resulted in four deaths and five injuries in Iran's south-west, and also hit US-allied Kuwait, prompting flight suspensions at a major Iraqi airport. The escalation comes as the US plans to use frozen Iranian assets to pay for war damages, a move Iran has condemned as a dangerous precedent.",
+      "summary": "US and Iran have escalated their conflict in the Gulf, with Iran launching drone strikes on US military facilities and bases across the Middle East, killing four people and injuring five in a south-west attack. The strikes come after 13 consecutive nights of American attacks on Iran, and as the US plans to use frozen Iranian assets to pay for war damages. The situation is increasingly volatile, with reports of sirens sounding in Bahrain and Jordan, and flights suspended at a major Iraqi airport.",
       "hashtag": "US",
-      "badge": "BREAKING",
-      "category": "breaking",
+      "badge": "TRENDING",
+      "category": "offbeat",
       "url": "https://www.bbc.co.uk/news/articles/c05ql5llj4do?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg",
       "images": [
@@ -554,142 +810,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.53,
-      "score": 0.459,
+      "freshH": 1.53,
+      "score": 0.423,
       "popularity": 0,
-      "recency": 0.941,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "US hits dozens of countries with new wave of tariffs",
-      "summary": "US President Donald Trump has imposed new tariffs on 60 trading partners, including the UK, China, and the European Union, with a 10% to 12.5% tariff on all goods, accounting for almost all American imports. The move is reportedly aimed at tackling forced labour, although US trade experts claim it is a pretext for Trump to maintain tariffs. The new duties will take effect immediately, replacing an identical levy that expires on Friday.",
-      "hashtag": "US",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "US Supreme Court",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
-      ],
-      "entities": [
-        "Imposed",
-        "US Supreme Court",
-        "February"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.87,
-      "score": 0.459,
-      "popularity": 0,
-      "recency": 0.904,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Angela Rayner rules out rent controls in England",
-      "summary": "Angela Rayner, the Housing Secretary, has ruled out introducing rent controls in England, citing the impact of the Renters' Rights Act which came into effect in May. The Act has already had a significant effect on the market, according to Rayner, and she believes that controls implemented in some areas of the UK have not necessarily led to lower rents. This decision comes as Scotland prepares to introduce new rent control measures by 2027.",
-      "hashtag": "AngelaRayner",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Angela Rayner",
-        "England",
-        "Renters Rights' Act"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.57,
-      "score": 0.458,
-      "popularity": 0,
-      "recency": 0.937,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Jon Bon Jovi Ends Madison Square Garden Show Early Due to Sinus Infection: ‘We’ll Figure Out How to Reschedule’",
-      "summary": "Rock legend Jon Bon Jovi abruptly ended his Madison Square Garden show on Thursday night due to a sinus infection, forcing the cancellation of the remaining 90 minutes of the performance. The frontman, who has been enjoying the band's residency at the iconic venue, reassured fans that they would be able to reschedule the show and encouraged them to hold onto their ticket stubs. A representative for the band confirmed that Bon Jovi has been battling the infection and will provide updated information on rescheduling the show in the coming days.",
-      "hashtag": "JonBon",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/music/news/jon-bon-jovi-ends-madison-square-garden-show-early-illness-1236820127/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Jon Bon Jovi Ends",
-        "Madison Square Garden Show",
-        "Early Due",
-        "Sinus Infection",
-        "Figure Out How",
-        "Reschedule"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/music/news/jon-bon-jovi-ends-madison-square-garden-show-early-illness-1236820127/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.77,
-      "score": 0.45,
-      "popularity": 0,
-      "recency": 0.915,
+      "recency": 0.838,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Tech titan ordered to pay ex-wife $644m in divorce settlement",
-      "summary": "A South Korean court has ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in a divorce settlement, a significant reduction from the initial $1.38 trillion award. The couple, married for 35 years, had been embroiled in a high-profile divorce case following Chey's admission of fathering a child with another woman. The verdict marks a major conclusion to the long-running \"divorce of the century\" case.",
+      "summary": "A South Korean court has ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in a divorce settlement, a significant reduction from the initial $1.38 trillion award. The couple had been married for 35 years before their marriage fell apart over Chey's infidelity. The verdict marks a major development in a highly publicized case that has captivated South Korea.",
       "hashtag": "Tech",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -716,11 +847,64 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.35,
-      "score": 0.43,
+      "freshH": 2.35,
+      "score": 0.396,
       "popularity": 0,
-      "recency": 0.856,
-      "relevancy": 0.52,
+      "recency": 0.762,
+      "relevancy": 0.515,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
+      "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This dire situation has been exacerbated by decades of negative media portrayals, labeling them as \"lazy\" or \"feral\". The Guardian's Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
+      "hashtag": "One",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
+      "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+      "images": [
+        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
+        "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "England",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+      ],
+      "entities": [
+        "England",
+        "Wales",
+        "Reporting"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 4.87,
+      "score": 0.379,
+      "popularity": 0,
+      "recency": 0.57,
+      "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
@@ -754,90 +938,42 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.39,
-      "score": 0.406,
+      "freshH": 1.4,
+      "score": 0.37,
       "popularity": 0,
-      "recency": 0.956,
+      "recency": 0.851,
       "relevancy": 0.287,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-      "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This alarming trend has been exacerbated by negative media portrayals of young people in these areas, often described as \"lazy\" or \"feral\". The Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
-      "hashtag": "One",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
-      "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+      "title": "Can This New Enzyme Turn Back the Clock in Bodily Tissues?",
+      "summary": "In a recent study, scientists devised a way of reversing the buildup of compounds that lead to some age-related diseases.",
+      "hashtag": "NewEnzyme",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.nytimes.com/2026/07/24/science/enzymes-aging-cmlase.html",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg",
       "images": [
-        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
-        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
-        "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
       ],
       "entityShots": [
         {
-          "name": "Reporting",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+          "name": "Clock",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
       ],
       "entities": [
-        "England",
-        "Wales",
-        "Reporting"
+        "Can This New Enzyme",
+        "Turn Back",
+        "Clock",
+        "Bodily Tissues"
       ],
       "sourceUrls": [
-        "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.86,
-      "score": 0.404,
-      "popularity": 0,
-      "recency": 0.64,
-      "relevancy": 0.72,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "As Canada Opens Gordie Howe International Bridge, Americans Are Told to Stay Home",
-      "summary": "After a delay ordered by President Trump and new tariffs against Canada, the bridge between Windsor, Ontario, and Detroit opens in “underwhelming” fashion on Friday.",
-      "hashtag": "AsCanada",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/24/world/canada/canada-gordie-howe-bridge-trump.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-canada-bridge-jclb/24int-canada-bridge-jclb-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24int-canada-bridge-jclb/24int-canada-bridge-jclb-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "As Canada Opens Gordie",
-        "Howe International Bridge",
-        "Americans Are Told",
-        "Stay Home",
-        "President Trump",
-        "Canada"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/24/world/canada/canada-gordie-howe-bridge-trump.html"
+        "https://www.nytimes.com/2026/07/24/science/enzymes-aging-cmlase.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -847,180 +983,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.78,
-      "score": 0.393,
+      "freshH": 1.85,
+      "score": 0.348,
       "popularity": 0,
-      "recency": 0.914,
-      "relevancy": 0.294,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Democrats Prepare for Possible Election Clashes With Federal Government",
-      "summary": "Top officials overseeing state elections and law enforcement are stepping up plans to prepare for what they worry could be interference in the midterms.",
-      "hashtag": "PossibleElection",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/24/us/politics/democrats-trump-election-interference.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24pol-dems-elections-tpjf/24pol-dems-elections-tpjf-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24pol-dems-elections-tpjf/24pol-dems-elections-tpjf-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Democrats Prepare",
-        "Possible Election Clashes With",
-        "Federal Government"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/24/us/politics/democrats-trump-election-interference.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.78,
-      "score": 0.391,
-      "popularity": 0,
-      "recency": 0.914,
-      "relevancy": 0.284,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Iran War and Trump’s Tariffs Threaten a Resilient US Economy",
-      "summary": "As renewed fighting with Iran sends oil and gas prices soaring, President Trump has imposed new global tariffs that could push up prices further.",
-      "hashtag": "ResilientUS",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.nytimes.com/2026/07/24/business/iran-war-tariffs-economy.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24DC-TRUMP-ECON-01-ghwp/24DC-TRUMP-ECON-01-ghwp-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24DC-TRUMP-ECON-01-ghwp/24DC-TRUMP-ECON-01-ghwp-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Iran War",
-        "Trump",
-        "Tariffs Threaten",
-        "Resilient US Economy",
-        "Iran",
-        "President Trump"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/24/business/iran-war-tariffs-economy.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.77,
-      "score": 0.39,
-      "popularity": 0,
-      "recency": 0.914,
-      "relevancy": 0.279,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "‘Jumbo’ Sequel, ‘Queen of Malacca’ Franchise Plans on the Cards as Indonesia’s Visinema Eyes Expansion (EXCLUSIVE)",
-      "summary": "Indonesian filmmaker Angga Dwimas Sasongko is planning to release the fantasy epic \"Queen of Malacca\" in the first quarter of 2027, following significant industry attention and interest from potential distribution partners in China, Thailand, and other international markets. The film is currently in post-production and has attracted attention from various countries, indicating a potential expansion of Visinema's global reach. This move is part of the company's plans to increase its international presence.",
-      "hashtag": "VisinemaEyes",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Jumbo",
-        "Sequel",
-        "Queen",
-        "Malacca",
-        "Franchise Plans",
-        "Cards"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.83,
-      "score": 0.382,
-      "popularity": 0,
-      "recency": 0.721,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
-      "summary": "India's government has agreed to hold talks with protesters from the Cockroach Janta Party on Friday, as thousands continue to demand the resignation of Education Minister Dharmendra Pradhan over examination paper leaks. The talks come after activist Sonam Wangchuk ended his 26-day hunger strike in solidarity with the protests, and Prime Minister Narendra Modi promised a new law to tackle the issue. The protests, involving tens of thousands of young people, have become a major challenge for Modi's government.",
-      "hashtag": "India",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "India's",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
-      ],
-      "entities": [
-        "India's",
-        "Sonam Wangchuk"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.35,
-      "score": 0.38,
-      "popularity": 0,
-      "recency": 0.679,
-      "relevancy": 0.57,
+      "recency": 0.807,
+      "relevancy": 0.261,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Rare night heron spotted at National Trust site",
-      "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, England, marking a significant sighting in the UK where this species is rarely seen. The heron's appearance is attributed to the estate's efforts to restore freshwater habitats, which are also providing a refuge for other wildlife including water voles, otters, and white-tailed eagles. This conservation success highlights the importance of preserving and renewing wetlands to improve water quality, reduce flood risk, and create more resilient landscapes.",
+      "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a significant sighting for UK wildlife, with the bird's presence raising hopes that conservation efforts to restore freshwater habitats are paying off. The heron's appearance comes as the estate has introduced new freshwater habitats, providing a refuge for various species including water voles, otters, and white-tailed eagles. Conservationists believe this success will help wildlife thrive, improve water quality, and reduce flood risk in the region.",
       "hashtag": "NationalTrust",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1053,17 +1026,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.56,
-      "score": 0.362,
+      "freshH": 5.57,
+      "score": 0.339,
       "popularity": 0,
-      "recency": 0.59,
+      "recency": 0.526,
       "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Play area aims to interest children in rare habitat",
-      "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's unique chalk streams, with over 80 percent of the world's chalk streams found in the country. The prolonged hot and dry weather poses a significant threat to the wildlife that inhabits these rare waterways. The centre's interactive exhibit is designed to inspire a lifelong connection with the environment in children, who will learn about the importance of water flow, temperature, and oxygen for the chalk streams' survival.",
+      "summary": "England's unique chalk streams, home to over 80% of the world's remaining habitats, are under threat from prolonged hot and dry weather, prompting the Winchester Science Centre to create a play zone themed on the local landscape to educate children about the importance of preserving these rare waterways. The centre's exhibit allows children to explore the delicate balance of water flow, temperature, and oxygen in chalk streams. The Berkshire, Buckinghamshire & Oxfordshire Wildlife Trust has thrown its support behind a new Westminster group aiming to protect these vital freshwater habitats.",
       "hashtag": "Play",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1071,10 +1044,18 @@
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Play",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
+      ],
       "entities": [
         "Play"
       ],
@@ -1089,17 +1070,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.51,
-      "score": 0.338,
+      "freshH": 5.52,
+      "score": 0.327,
       "popularity": 0,
-      "recency": 0.594,
-      "relevancy": 0.52,
+      "recency": 0.529,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-      "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of commonly used asthma medications. The study, which involved 72 households in Ohio, showed a 70% drop in hospital admissions and days off from work or school. Further research is now needed to confirm these findings and explore their potential to improve the lives of millions of people worldwide.",
+      "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of certain asthma medications. The study, which began in December 2024 in Ohio, found a 70% drop in hospital admissions and days off from work or school among 72 participants. The researchers now plan to expand the study to further investigate the potential of gas stove replacement as a treatment for poorly controlled asthma.",
       "hashtag": "Replacing",
       "badge": "HEALTH",
       "category": "health",
@@ -1130,10 +1111,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.86,
-      "score": 0.33,
+      "freshH": 5.87,
+      "score": 0.308,
       "popularity": 0,
-      "recency": 0.57,
+      "recency": 0.508,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -1147,10 +1128,18 @@
       "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Deal",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+      ],
       "entities": [
         "Judge Extends Pause",
         "Paramount-Warner Bros",
@@ -1168,11 +1157,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 8.96,
-      "score": 0.191,
+      "freshH": 9.96,
+      "score": 0.19,
       "popularity": 0,
-      "recency": 0.355,
-      "relevancy": 0.268,
+      "recency": 0.316,
+      "relevancy": 0.318,
       "region": "usa",
       "geo": null
     }
@@ -1180,59 +1169,36 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Lynx star Kayla McBride becomes latest to speak out on WNBA 3-point contest drama: ‘Half a-- invite’",
-        "summary": "WNBA star Kayla McBride has spoken out about her absence from the league's 3-point contest, claiming she received a \"half-ass invite\" through her agent just 48 hours before the event. The Minnesota Lynx guard joins New York Liberty star Sabrina Ionescu in criticizing the WNBA's communication, with both players saying they were not officially invited to participate. The controversy comes as the league prepares for its 2026 All-Star game.",
-        "hashtag": "KaylaMcbride",
-        "badge": "TRENDING",
+        "title": "Who Is Shiloh Hendrix? Minnesota Woman Found Guilty in Viral Racial Slur Case",
+        "summary": "A Minnesota jury found Shiloh Hendrix guilty of disorderly conduct for her confrontation with a videographer at a Rochester playground, acquitting her on a separate count involving a child. The verdict came after eight hours of deliberation in a case that drew national attention after a viral video surfaced in 2025. The ruling may reignite debates over free speech and the legal boundaries of offensive language.",
+        "hashtag": "ShilohHendrix",
+        "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.foxnews.com/outkick-sports/lynx-star-kayla-mcbride-latest-speak-wnba-3-point-contest-drama-half-ass-invite",
-        "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/kayla-mcbride-minnesota-lynx-seattle-storm.jpg",
+        "url": "https://www.ibtimes.sg/who-shiloh-hendrix-woman-viral-playground-racism-case-found-guilty-one-count-90572",
+        "imageUrl": "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-one-count-after-viral-playground-confrontation-rochester.jpg?w=1200&h=630?q=60",
         "images": [
-          "https://static.foxnews.com/foxnews.com/content/uploads/2026/07/kayla-mcbride-minnesota-lynx-seattle-storm.jpg",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1024/512/kayla-mcbride-minnesota-lynx-seattle-storm.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-minnesota-lynx-seattle-storm.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-shoots-lynx-storm.jpg?ve=1&tl=1",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/kayla-mcbride-reacts-lynx-storm.jpg?ve=1&tl=1",
-          "https://static01.nyt.com/athletic/uploads/wp/2026/07/23111708/GettyImages-2286698889-scaled.jpg?width=1200&height=630&fit=cover",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
+          "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-one-count-after-viral-playground-confrontation-rochester.jpg?w=1200&h=630?q=60",
+          "https://data.ibtimes.sg/en/full/93568/shiloh-hendrix-convicted-on-one-count-after-viral-playground-confrontation-in-rochester.jpg?w=736"
         ],
-        "entityShots": [
-          {
-            "name": "Kayla McBride",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg"
-          },
-          {
-            "name": "WNBA",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d1/260711_Lynx_Liberty_JohnMc454_%2855386995242%29_%28cropped%29.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Courtney%20Williams%20guards%20Leonie%20Fiebich.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Lynx",
-          "Kayla McBride",
-          "WNBA",
-          "Half"
+          "Is Shiloh Hendrix",
+          "Minnesota Woman Found Guilty",
+          "Viral Racial Slur Case"
         ],
         "sourceUrls": [
-          "https://www.foxnews.com/outkick-sports/lynx-star-kayla-mcbride-latest-speak-wnba-3-point-contest-drama-half-ass-invite",
-          "https://www.nytimes.com/athletic/7466183/2026/07/23/ionescu-mcbride-response-wnba-3-point-contest-invitation-decline/",
-          "https://www.espn.com/wnba/story/_/id/49420142/fudd-mabrey-howard-wnba-all-star-3-point-contestants"
+          "https://www.ibtimes.sg/who-shiloh-hendrix-woman-viral-playground-racism-case-found-guilty-one-count-90572"
         ],
-        "sourceName": "foxnews.com",
+        "sourceName": "International Business Times, Singapore Edition",
         "sources": [
-          "Fox News",
-          "The New York Times",
-          "ESPN"
+          "International Business Times, Singapore Edition"
         ],
-        "corr": 3,
-        "verified": true,
-        "trend": "kayla mcbride wnba invitation comments",
-        "traffic": 100,
-        "freshH": 1,
+        "corr": 1,
+        "verified": false,
+        "trend": "Shiloh Hendrix",
+        "traffic": 88000,
+        "freshH": 0.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1241,112 +1207,37 @@
         "geo": "US"
       },
       {
-        "title": "Scientists warn of potential global marine invasive species event linked to idle ships in the Strait of Hormuz",
-        "summary": "Thousands of commercial vessels stranded in the Persian Gulf for months following the closure of the Strait of Hormuz due to fighting between the US and Iran may unintentionally trigger a massive global marine invasive species event when they resume normal trade routes. The prolonged periods at anchor have allowed ship hulls to accumulate dense communities of marine organisms, including algae, barnacles, and mussels, which can be transported around the world. This could lead to a global marine bioinvasion \"super-spreader\" event, with potentially devastating consequences for ecosystems worldwide.",
-        "hashtag": "PersianGulf",
+        "title": "Education Secretary Linda McMahon Speaks to Reporters in New Bern, North Carolina",
+        "summary": "US Education Secretary Linda McMahon spoke to reporters in New Bern, North Carolina, on Wednesday, where she announced a $100 million grant to support teacher training and recruitment in the state. The grant aims to address a teacher shortage in North Carolina, with the state facing a projected deficit of over 3,000 teachers by the end of the year. McMahon's visit comes as the state's education system faces significant challenges, with a growing need for qualified educators.",
+        "hashtag": "LindaMcmahon",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://phys.org/news/2026-07-scientists-potential-global-marine-invasive.html",
-        "imageUrl": "https://scx2.b-cdn.net/gfx/news/hires/2026/strait-of-hormuz-1.jpg",
+        "url": "https://www.c-span.org/program/public-affairs-event/education-secretary-linda-mcmahon-speaks-to-reporters-in-new-bern-north-carolina/682862",
+        "imageUrl": "https://ximage.c-spanvideo.org/eyJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJoZWlnaHQiOjYzMCwid2lkdGgiOjEyMDB9fSwiYnVja2V0IjoicGljdHVyZXMuYy1zcGFudmlkZW8ub3JnIiwia2V5IjoiRmlsZXMvNWMzLzA2NC8xNzg0MDQxMzk5XzA2NC5qcGcifQ==",
         "images": [
-          "https://scx2.b-cdn.net/gfx/news/hires/2026/strait-of-hormuz-1.jpg",
-          "https://scx2.b-cdn.net/gfx/news/2026/strait-of-hormuz-1.jpg",
-          "https://scx1.b-cdn.net/csz/news/800a/2026/strait-of-hormuz-1.jpg",
-          "https://scx1.b-cdn.net/gfx/profiles/e661c1d664a28c5b.jpg",
-          "https://scx1.b-cdn.net/gfx/profiles/8b33bc1b4d9f6b4c.jpg",
-          "https://img.etimg.com/thumb/msid-132595476,width-1200,height-630,imgsize-202912,overlay-economictimes/articleshow.jpg",
-          "https://img.etimg.com/thumb/msid-132595476,resizemode-4,width-1200,height-900,imgsize-202912,overlay-economictimes/articleshow.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
+          "https://ximage.c-spanvideo.org/eyJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJoZWlnaHQiOjYzMCwid2lkdGgiOjEyMDB9fSwiYnVja2V0IjoicGljdHVyZXMuYy1zcGFudmlkZW8ub3JnIiwia2V5IjoiRmlsZXMvNWMzLzA2NC8xNzg0MDQxMzk5XzA2NC5qcGcifQ=="
         ],
-        "entityShots": [
-          {
-            "name": "Strait",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg"
-          },
-          {
-            "name": "Hormuz",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a3/ISS-44_Strait_of_Gibraltar.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4a/City_of_Hormuz.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Scientists",
-          "Strait",
-          "Hormuz"
+          "Education Secretary Linda McMahon",
+          "Speaks",
+          "Reporters",
+          "Bern",
+          "North Carolina"
         ],
         "sourceUrls": [
-          "https://phys.org/news/2026-07-scientists-potential-global-marine-invasive.html",
-          "https://m.economictimes.com/news/new-updates/1500-ships-trapped-in-gulf-of-hormuz-is-quietly-multiplying-an-underwater-army-that-could-unleash-worlds-biggest-bioinvasion-event/articleshow/132595366.cms",
-          "https://www.marinelog.com/news/op-ed-what-the-strait-of-hormuz-backlog-reveals-about-operational-readiness/"
+          "https://www.c-span.org/program/public-affairs-event/education-secretary-linda-mcmahon-speaks-to-reporters-in-new-bern-north-carolina/682862"
         ],
-        "sourceName": "phys.org",
+        "sourceName": "c-span.org",
         "sources": [
-          "Phys.org",
-          "The Economic Times",
-          "Marine Log"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "persian gulf stuck commercial vessels",
-        "traffic": 100,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Russia's businesses under strain from Ukraine's attacks on Wildberries",
-        "summary": "Russia's largest online retailer, Wildberries, has seen four of its warehouses targeted by Ukrainian drones in recent days, including two in the Moscow region and two in the Tambov and Krasnodar regions, resulting in significant losses and disruptions to supplies to the Russian army and hundreds of small businesses that rely on the online marketplace. The attacks have killed at least eight people and caused millions of dollars in inventory to be destroyed, sparking an online outcry among Russian small-business owners. The strikes are part of Ukraine's campaign of economic warfare against Russia, which has also included drone attacks on oil refineries and depots.",
-        "hashtag": "Drone",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.com/news/articles/cvg9n2y61w6o",
-        "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/news/1024/branded_news/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/3c64/live/d7b13ca0-85f3-11f1-8ade-a7a676c613b9.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/d47b/live/e52279e0-85b6-11f1-bee8-53ce494e1abc.png.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/84cf/live/470fbe70-85f2-11f1-926f-c90d1bcfbc84.png.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/4db7/live/6be7f7e0-85e7-11f1-8ade-a7a676c613b9.jpg.webp",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991599.jpg?c=16x9&q=w_800,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2279263358.jpg?c=original&q=w_860,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2285991519.jpg?c=original&q=w_860,c_fill",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Wildberries",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0_%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C_40%D0%91_%D0%B2_%D0%A3%D1%87%D0%B0%D0%BB%D0%B0%D1%85_2024-10-05.jpg"
-        ],
-        "entities": [
-          "Russia's",
-          "Ukraine's",
-          "Wildberries"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.com/news/articles/cvg9n2y61w6o",
-          "https://www.cnn.com/2026/07/23/europe/russia-ukraine-conflict-wildberries-intl"
-        ],
-        "sourceName": "bbc.com",
-        "sources": [
-          "BBC",
-          "CNN"
+          "C-SPAN",
+          "Fox Business"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "drone",
-        "traffic": 5000,
+        "trend": "linda mcmahon",
+        "traffic": 200,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1356,109 +1247,39 @@
         "geo": "US"
       },
       {
-        "title": "My Word: Political name of the game",
-        "summary": "Israel’s political parties are reshuffling names and merging ahead of the October 27 election, with many now known by their leaders’ nicknames like Bibi or Eisenkot. Analysts say generic party names and frequent shifts make it hard for voters to track alliances. The latest round of changes could reshape the race just weeks before ballots are cast.",
-        "hashtag": "Game",
+        "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+        "summary": "During Thursday’s VERZUZ showdown between YG and The Game, Compton rapper The Game downed nearly an entire bottle of tequila in one gulp. The event aired live on Apple Music and YouTube on July 23, celebrating two decades of West Coast hip-hop. Both artists traded hits and memories, ending with a tribute to the late Nipsey Hussle.",
+        "hashtag": "Verzuz",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.jpost.com/opinion/article-903397",
-        "imageUrl": "https://images.jpost.com/image/upload/f_auto,fl_lossy/q_auto/c_fill,g_faces:center,h_720,w_1280/731096",
+        "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
         "images": [
-          "https://images.jpost.com/image/upload/f_auto,fl_lossy/q_auto/c_fill,g_faces:center,h_720,w_1280/731096",
-          "https://images.jpost.com/image/upload/f_auto,fl_lossy/c_fill,g_faces:center,h_537,w_822/727782"
+          "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+          "https://images.complex.com/complex/image/upload/c_crop,h_2701,w_4000,x_0,y_0/g_auto:aoi_1600_1081_800_540,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-940863392_rwy3x9",
+          "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "My Word"
+          "The Game",
+          "VERZUZ"
         ],
         "sourceUrls": [
-          "https://www.jpost.com/opinion/article-903397"
+          "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+          "https://www.complex.com/music/a/shawn-setaro/the-game-early-encounters-nipsey-hussle-verzuz-with-yg",
+          "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
+          "https://www.readers.id/en/yg-the-game-verzuz-july-23"
         ],
-        "sourceName": "The Jerusalem Post",
+        "sourceName": "Complex",
         "sources": [
-          "The Jerusalem Post"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "The Game",
-        "traffic": 96000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Tyla – ‘A*Pop’ review: safe, polished pop that could’ve gone further",
-        "summary": "South African singer Tyla released her second album, APop, on May 17, following her 2023 global hit Water. The album blends R&B and amapiano but leans heavily on slow-burning love songs, leaving critics underwhelmed. Tyla’s next single is expected in early June.",
-        "hashtag": "Tyla",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.nme.com/reviews/album/tyla-apop-review-3958756",
-        "imageUrl": "https://www.nme.com/wp-content/uploads/2026/07/Tyla-Credit-Catherine-Lo-Medico.jpg",
-        "images": [
-          "https://www.nme.com/wp-content/uploads/2026/07/Tyla-Credit-Catherine-Lo-Medico.jpg",
-          "https://www.nme.com/wp-content/uploads/2026/07/Tyla-A-Pop-Artwork-Review.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Tyla",
-          "A*Pop"
-        ],
-        "sourceUrls": [
-          "https://www.nme.com/reviews/album/tyla-apop-review-3958756"
-        ],
-        "sourceName": "NME",
-        "sources": [
-          "NME"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": "Tyla",
-        "traffic": 93000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "2026 WNBA 3-Point Contest Odds, Prediction, Participants, Past Winners (Bet on Rhyne Howard, Fade Azzi Fudd)",
-        "summary": "The 2026 WNBA 3-Point Contest kicks off Friday night at Chicago’s Wintrust Arena with six sharpshooters vying for the title. Atlanta’s Rhyne Howard, a 2022 finalist, leads the field, while Azzi Fudd of Dallas is the betting favorite at +210. The event, starting July 24, marks the first contest since 2024 with no returning finalists.",
-        "hashtag": "Azzi",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
-        "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg",
-        "images": [
-          "https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_141,w_4029,h_2266/c_fill,w_1440,ar_1440:810,f_auto,q_auto,g_auto/images/ReutersImages/mmsport/si/01ky8zcjjtnhjpdyvd3t.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Rhyne Howard",
-          "Azzi Fudd"
-        ],
-        "sourceUrls": [
-          "https://www.si.com/betting/2026-wnba-3-point-contest-odds-prediction-participants-past-winners-bet-on-rhyne-howard-fade-azzi-fudd-01ky8zb3jn1e",
-          "https://mshale.com/5a036551/37ca7fbfHUAGIAEdRSkbPAY",
-          "https://collegefootballnetwork.com/wnba/top-7-outfits-on-the-wnba-all-star-orange-carpet-feat-aja-wilson-azzi-fudd-paige-bueckers-and-more/"
-        ],
-        "sourceName": "Sports Illustrated",
-        "sources": [
-          "Sports Illustrated",
-          "Mshale",
-          "College Sports Network"
+          "Complex",
+          "Hip Hop Vibe",
+          "Readers.id"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "Azzi",
+        "trend": "#Verzuz",
         "traffic": 95000,
         "freshH": 8,
         "score": null,
@@ -1470,7 +1291,7 @@
       },
       {
         "title": "US hits dozens of countries with new wave of tariffs",
-        "summary": "US President Donald Trump has imposed new tariffs on 60 trading partners, including the UK, China, and the European Union, with a 10% to 12.5% tariff on all goods, accounting for almost all American imports. The move is reportedly aimed at tackling forced labour, although US trade experts claim it is a pretext for Trump to maintain tariffs. The new duties will take effect immediately, replacing an identical levy that expires on Friday.",
+        "summary": "US President Donald Trump has imposed new tariffs on 60 countries, including the UK, China, and the European Union, with a 10% to 12.5% duty on all goods, accounting for nearly all American imports. The tariffs, aimed at addressing forced labour concerns, replace an identical levy set to expire on Friday and cover 99.4% of US imports. The move follows a US Supreme Court ruling that many previous tariffs were illegally enacted, and it is expected to escalate the ongoing trade war.",
         "hashtag": "US",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1479,16 +1300,16 @@
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
         ],
         "entityShots": [
           {
-            "name": "US Supreme Court",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+            "name": "February",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
         ],
         "entities": [
           "Imposed",
@@ -1506,7 +1327,45 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.87,
+        "freshH": 1.88,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "US and Iran trade more strikes in Gulf as fears of escalation mount",
+        "summary": "US and Iran have escalated their conflict in the Gulf, with Iran launching drone strikes on US military facilities and bases across the Middle East, killing four people and injuring five in a south-west attack. The strikes come after 13 consecutive nights of American attacks on Iran, and as the US plans to use frozen Iranian assets to pay for war damages. The situation is increasingly volatile, with reports of sirens sounding in Bahrain and Jordan, and flights suspended at a major Iraqi airport.",
+        "hashtag": "US",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/c05ql5llj4do?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Iran",
+          "Gulf",
+          "Iranian"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c05ql5llj4do?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1516,7 +1375,7 @@
       },
       {
         "title": "Tech titan ordered to pay ex-wife $644m in divorce settlement",
-        "summary": "A South Korean court has ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in a divorce settlement, a significant reduction from the initial $1.38 trillion award. The couple, married for 35 years, had been embroiled in a high-profile divorce case following Chey's admission of fathering a child with another woman. The verdict marks a major conclusion to the long-running \"divorce of the century\" case.",
+        "summary": "A South Korean court has ordered SK Group chairman Chey Tae-won to pay his ex-wife Roh Soh-yeong $644 million in a divorce settlement, a significant reduction from the initial $1.38 trillion award. The couple had been married for 35 years before their marriage fell apart over Chey's infidelity. The verdict marks a major development in a highly publicized case that has captivated South Korea.",
         "hashtag": "Tech",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1543,7 +1402,64 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.35,
+        "freshH": 2.35,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Fred Tsui Named Executive Director of Hong Kong International Film Festival Society",
+        "summary": "Fred Tsui has been appointed as the new executive director of the Hong Kong International Film Festival Society, effective September 23, succeeding Albert Lee. Tsui brings over 30 years of experience in the film industry, having worked in various roles including distribution, financing, and exhibition, and has established himself as a respected international sales agency for Asian titles. He will oversee the society's initiatives, including the Hong Kong International Film Festival, and report to chair Dr. Wilfred Wong.",
+        "hashtag": "HongKong",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/news/fred-tsui-executive-director-hong-kong-international-film-festival-society-1236820176/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Fred-Tsui.jpg?w=1000&h=563&crop=1",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Director",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200"
+          },
+          {
+            "name": "Hong Kong International Film",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Mahmoud%20Zulfikar%2C%201968.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/HK%20MK%20%E6%97%BA%E8%A7%92%20Mongkok%20%E5%BD%8C%E6%95%A6%E9%81%93%20Nathan%20Road%20Cine%20Fan%20Com%20%E9%A6%99%E6%B8%AF%E9%9B%BB%E5%BD%B1%E7%AF%80%20%E7%99%BC%E7%87%92%E5%8F%8B%20HKIFF%20Hong%20Kong%20International%20Film%20Festival%20bus%20body%20ads%20April%202017%20IX1.jpg?width=1200"
+        ],
+        "entities": [
+          "Fred Tsui Named Executive",
+          "Director",
+          "Hong Kong International Film",
+          "Festival Society",
+          "Hong Kong International",
+          "Film Festival Society"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/news/fred-tsui-executive-director-hong-kong-international-film-festival-society-1236820176/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.14,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1552,33 +1468,77 @@
         "geo": null
       },
       {
-        "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
-        "summary": "India's government has agreed to hold talks with protesters from the Cockroach Janta Party on Friday, as thousands continue to demand the resignation of Education Minister Dharmendra Pradhan over examination paper leaks. The talks come after activist Sonam Wangchuk ended his 26-day hunger strike in solidarity with the protests, and Prime Minister Narendra Modi promised a new law to tackle the issue. The protests, involving tens of thousands of young people, have become a major challenge for Modi's government.",
-        "hashtag": "India",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+        "title": "BBC Buys War Drama ‘Kabul,’ Featuring Eric Dane in One of His Last Roles",
+        "summary": "The BBC has acquired a six-part war drama series \"Kabul\" featuring Eric Dane in one of his last roles, alongside Shervin Alenabi from the series \"Tehran\". The show is set against the backdrop of the US troops' withdrawal from Afghanistan and the Taliban's return to Kabul, following the chaotic evacuation of diplomats, soldiers, and civilians. The series will now be available to BBC audiences worldwide.",
+        "hashtag": "BBCBuys",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/tv/global/bbc-war-drama-kabul-eric-dane-1236820165/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
+          "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/Kabul.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "BBC Buys War Drama",
+          "Kabul",
+          "Featuring Eric Dane",
+          "Last Roles",
+          "Eric Dane",
+          "Tehran"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/tv/global/bbc-war-drama-kabul-eric-dane-1236820165/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.6,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Burnham to spend first day working from northern branch of No 10",
+        "summary": "British Prime Minister Burnham will spend his first day in office working from the northern branch of No 10, chairing a meeting of the National Economic Council to drive devolution and local economic growth across the UK, with a focus on addressing decades of power being concentrated in the centre. The meeting will bring together senior ministers and regional mayors to put devolution at the centre of the government's mission. Strategic decisions on devolution will shift from the Treasury and Ministry of Housing to No 10 North, marking a significant shift in the government's approach.",
+        "hashtag": "Burnham",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
         ],
         "entityShots": [
           {
-            "name": "India's",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
+            "name": "Various",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/India%20Summer%202011.jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
         ],
         "entities": [
-          "India's",
-          "Sonam Wangchuk"
+          "Burnham",
+          "Various",
+          "Downing Street"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1588,68 +1548,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.35,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "health": [
-      {
-        "title": "I spent years trying to get smaller. Until I decided to get bigger",
-        "summary": "A woman who had been lifting weights for years fell into an unhealthy body image spiral after planning her wedding, leading her to obsess over her weight and restrict her food intake. She began weighing herself daily and tracking her calorie and step counts, eventually resorting to binge eating when she couldn't cope with her restrictive diet. This pattern of behavior has been linked to a higher risk of eating disorders and other mental health issues.",
-        "hashtag": "UntilI",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight",
-        "imageUrl": "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
-        "images": [
-          "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
-          "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Until",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg"
-          },
-          {
-            "name": "Bulking",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg"
-          },
-          {
-            "name": "First",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Untilone.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
-        ],
-        "entities": [
-          "Until",
-          "Bulking",
-          "First",
-          "Continue"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.86,
+        "freshH": 0.05,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1658,123 +1557,26 @@
         "geo": null
       },
       {
-        "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-        "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This alarming trend has been exacerbated by negative media portrayals of young people in these areas, often described as \"lazy\" or \"feral\". The Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
-        "hashtag": "One",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
-        "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+        "title": "Angela Rayner rules out rent controls in England",
+        "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, stating that controls implemented in some areas have not necessarily brought down rents. The Renters' Rights Act, which came into effect in May, is already having a significant impact on the market, giving renters more power and control. This decision comes as Scotland prepares to introduce new rent control legislation by 2027, allowing ministers to designate certain areas where rent increases can be capped.",
+        "hashtag": "AngelaRayner",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
         "images": [
-          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
-          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
-          "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Reporting",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
+          "Angela Rayner",
           "England",
-          "Wales",
-          "Reporting"
+          "Renters Rights' Act"
         ],
         "sourceUrls": [
-          "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-        "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of commonly used asthma medications. The study, which involved 72 households in Ohio, showed a 70% drop in hospital admissions and days off from work or school. Further research is now needed to confirm these findings and explore their potential to improve the lives of millions of people worldwide.",
-        "hashtag": "Replacing",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
-        "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-        "images": [
-          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Replacing",
-          "Team",
-          "Ohio",
-          "Trump",
-          "MetroHealth",
-          "December"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 4.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "sports": [
-      {
-        "title": "Guardiola turns down Italy manager job",
-        "summary": "Pep Guardiola has turned down the opportunity to coach the Italian national team, despite being offered a significant salary and the chance to shape the job as he saw fit. The Italian Football Federation had approached Guardiola after he left Manchester City this summer, but he has decided to take a break from the game to rest and spend more time with his family. Former Italy playmaker Andrea Pirlo is now the frontrunner to take over the team.",
-        "hashtag": "Guardiola",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cd7len4lvy9o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/88f9/live/81e5a190-8741-11f1-bee8-53ce494e1abc.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Guardiola",
-          "Italy",
-          "Former Manchester City",
-          "Pep Guardiola"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cd7len4lvy9o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1784,7 +1586,125 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.07,
+        "freshH": 0.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "With Hopes High for New H.I.V. Prevention Pill, Merck Takes Steps to Ensure Access",
+        "summary": "Companies in Africa and India will make generic versions of the pill that could cost as little as $5 per person per year. But access to the drug and other new products in much of Latin America remains uncertain.",
+        "hashtag": "NewH",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Hopes High",
+          "Prevention Pill",
+          "Merck Takes Steps",
+          "Ensure Access",
+          "Companies",
+          "Africa"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.12,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Tens of thousands evacuated from French tourist spot as wildfires spread",
+        "summary": "Tens of thousands of people have been evacuated from the French tourist spot in the Landes region due to spreading wildfires, with over 23,000 forced to leave their homes, campsites, and other facilities. The fires, fueled by strong winds of up to 31mph and high temperatures, have destroyed at least 105 homes and buildings, with no reported casualties overnight. Emergency efforts are underway, with the European Union providing aid, including three planes and two helicopters, to help combat the blazes.",
+        "hashtag": "Tens",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Tens",
+          "French",
+          "Cap Ferret"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.03,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "South Africa's president wins bid to temporarily halt impeachment inquiry over 'Farmgate'",
+        "summary": "South Africa's President Cyril Ramaphosa has secured a temporary reprieve from an impeachment inquiry over the 'Farmgate' scandal, after a court ruled in his favour. The inquiry stems from a 2022 incident where burglars stole large sums of cash hidden in a sofa from Ramaphosa's private farm, with the president denying any wrongdoing. The case will now proceed to a separate court hearing in September, where Ramaphosa will challenge the findings of an independent panel.",
+        "hashtag": "SouthAfrica",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cwymj9lkx13o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "South Africa's",
+          "Farmgate",
+          "Ramaphosa"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cwymj9lkx13o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.3,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1795,8 +1715,42 @@
     ],
     "crisis": [
       {
+        "title": "Why are UK fuel prices rising again?",
+        "summary": "Petrol prices in the UK have risen to 156.19p a litre, while diesel costs 173.15p a litre, following a decline in early July. This increase comes despite the conflict in Iran, with prices remaining below the levels reached in the summer of 2022 following Russia's invasion of Ukraine. Fuel retailers have denied accusations of price gouging, with the official markets regulator stating it has seen no evidence of retailers changing their pricing strategies to take advantage of the crisis.",
+        "hashtag": "Why",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.11,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "UK mortgage rates rise to highest level for a month",
-        "summary": "UK mortgage rates have risen to their highest level in a month, with 100 deals being temporarily pulled by lenders as they reassess their pricing plans. This sudden increase in rates has left borrowers feeling frustrated and uncertain, with experts warning that the market needs stability to recover. As a result, borrowers are advised to lock in new deals with their existing lenders or seek help from a broker to explore better options.",
+        "summary": "UK mortgage rates have risen to their highest level in a month, with the average rate increasing due to renewed tensions in the Middle East and higher oil prices, which have reduced the possibility of interest rate cuts by central banks. This has led to lenders, including the five biggest High Street banks, increasing their interest rates on new fixed deals. As a result, over five million homeowners are expected to see their monthly mortgage repayments increase by the end of 2028.",
         "hashtag": "UK",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1804,7 +1758,10 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/7e21/live/4bc39dc0-869b-11f1-9e03-bdd14c1ce63a.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/7762/live/c94f91c0-8729-11f1-8c61-e72dd81a46e3.png",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/8ccf/live/80485cd0-86b3-11f1-bee8-53ce494e1abc.png"
         ],
         "entityShots": [],
         "entityImages": [],
@@ -1823,7 +1780,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.12,
+        "freshH": 1.12,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1861,7 +1818,48 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.39,
+        "freshH": 1.4,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "Klopp starts Germany reign by threatening to quit",
+        "summary": "German football coach Jurgen Klopp has started his reign by warning the media that he will quit if they invade his family's privacy. The 59-year-old, appointed on a four-year deal, made the threat during his first press conference as Germany's head coach, citing his love for the job but also his readiness to call it quits if necessary. Klopp's contract will see him through to the 2030 World Cup, co-hosted by Spain, Portugal and Morocco.",
+        "hashtag": "Klopp",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Klopp",
+          "Germany",
+          "Jurgen Klopp",
+          "Germany's"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.2,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1870,38 +1868,235 @@
         "geo": null
       },
       {
-        "title": "Iran War and Trump’s Tariffs Threaten a Resilient US Economy",
-        "summary": "As renewed fighting with Iran sends oil and gas prices soaring, President Trump has imposed new global tariffs that could push up prices further.",
-        "hashtag": "ResilientUS",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/24/business/iran-war-tariffs-economy.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24DC-TRUMP-ECON-01-ghwp/24DC-TRUMP-ECON-01-ghwp-mediumSquareAt3X.jpg",
+        "title": "Boxers choose Commonwealths over Love Island chance",
+        "summary": "Two Northern Irish boxers, Jon McConnell and Kaci Rock, have chosen to compete in the Commonwealth Games over a chance to appear on the reality TV show Love Island. McConnell will face India's Sumit in the light-middleweight division on Monday, while Rock will compete in the welterweight division against Niue's Karen Te Ruki Pasene the following day. This decision comes after they progressed through initial auditions for Love Island before pulling out due to the timing clash with the Commonwealth Games.",
+        "hashtag": "LoveIsland",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/boxing/articles/c7vgz6rr4llo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png",
         "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24DC-TRUMP-ECON-01-ghwp/24DC-TRUMP-ECON-01-ghwp-mediumSquareAt3X.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/2798/live/c413acc0-873b-11f1-a10e-a5d4f08bc20c.png"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Iran War",
-          "Trump",
-          "Tariffs Threaten",
-          "Resilient US Economy",
-          "Iran",
-          "President Trump"
+          "Boxers",
+          "Commonwealths",
+          "Love Island",
+          "Team Northern Ireland",
+          "Jon McConnell",
+          "Kaci Rock"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/24/business/iran-war-tariffs-economy.html"
+          "https://www.bbc.co.uk/sport/boxing/articles/c7vgz6rr4llo?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "The New York Times",
+        "sourceName": "BBC",
         "sources": [
-          "The New York Times"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.77,
+        "freshH": 0.71,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Meet the Glasgow curry shop boss representing Pakistan at bowls",
+        "summary": "Pakistan's representative at the bowls, Qureshi, suffered a disappointing loss in his opening match against Wales' Ross Owen, losing in straight sets 12-5 and 17-0. Despite the setback, Qureshi remains optimistic, citing the need for improvement on the carpet and joking that his poor performance may have scared off his supporters. His restaurant, however, remains a popular destination, even attracting a former world number one, Banks, who has decided to dine elsewhere due to Qureshi's recent performance.",
+        "hashtag": "Meet",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/articles/c0m71jvk2lwo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/270b/live/a82b3360-8746-11f1-b2ab-0dd01740f9f6.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Meet",
+          "Glasgow",
+          "Pakistan",
+          "Mohammed",
+          "Chico' Qureshi",
+          "Scotland"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/articles/c0m71jvk2lwo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.78,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "health": [
+      {
+        "title": "I spent years trying to get smaller. Until I decided to get bigger",
+        "summary": "A woman who had been lifting weights for years fell into an unhealthy body image spiral after planning her wedding, leading her to obsessively track her weight and calories, and eventually develop disordered eating habits. She began weighing herself daily and restricting her food intake, only to binge when she couldn't cope anymore. This cycle of extreme dieting and guilt has left her struggling with her body image.",
+        "hashtag": "UntilI",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight",
+        "imageUrl": "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
+        "images": [
+          "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
+          "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Until",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200"
+          },
+          {
+            "name": "Bulking",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
+          },
+          {
+            "name": "First",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4b/VLA_4893505508.jpg"
+        ],
+        "entities": [
+          "Until",
+          "Bulking",
+          "First",
+          "Continue"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.87,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
+        "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This dire situation has been exacerbated by decades of negative media portrayals, labeling them as \"lazy\" or \"feral\". The Guardian's Against the Tide project will continue to report on the lives of young people in coastal communities across England and Wales over the next year.",
+        "hashtag": "One",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
+        "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+        "images": [
+          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
+          "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "England",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        ],
+        "entities": [
+          "England",
+          "Wales",
+          "Reporting"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.87,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
+        "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of certain asthma medications. The study, which began in December 2024 in Ohio, found a 70% drop in hospital admissions and days off from work or school among 72 participants. The researchers now plan to expand the study to further investigate the potential of gas stove replacement as a treatment for poorly controlled asthma.",
+        "hashtag": "Replacing",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
+        "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
+        "images": [
+          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
+          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Replacing",
+          "Team",
+          "Ohio",
+          "Trump",
+          "MetroHealth",
+          "December"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 5.87,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1913,7 +2108,7 @@
     "tech": [
       {
         "title": "Microsoft pressures LG into killing unwanted McAfee ads",
-        "summary": "Microsoft has successfully pressured LG into disabling unwanted McAfee ads on Windows 11 PCs connected to LG monitors, following a year-long backlash against large pop-up ads for McAfee antivirus and LG's own apps. The move comes after Microsoft's Windows chief, Pavan Davuluri, intervened to address user complaints about the LG bloatware. LG has agreed to immediately disable the McAfee pop-up from its LG Monitor App Installer, ending a contentious issue that began with reports of auto-installing driver updates in 2024.",
+        "summary": "Microsoft has forced LG to disable unwanted McAfee trial pop-ups on Windows 11 PCs connected to LG monitors, following user complaints about large ads for McAfee antivirus and LG's own apps appearing without explicit permission. The move comes after reports of the issue dating back to 2024, when a Windows driver update would silently install LG driver updates and the LG Monitor App Installer. LG has agreed to immediately disable the McAfee pop-up from its LG Monitor App Installer.",
         "hashtag": "Microsoft",
         "badge": "TECH",
         "category": "tech",
@@ -1952,7 +2147,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.53,
+        "freshH": 1.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1969,10 +2164,18 @@
         "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Deal",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
+        ],
         "entities": [
           "Judge Extends Pause",
           "Paramount-Warner Bros",
@@ -1990,285 +2193,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 8.96,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "breaking": [
-      {
-        "title": "France orders evacuation of tourist spot as hundreds flee wildfires by boat",
-        "summary": "French authorities have ordered the evacuation of the entire Cap Ferret peninsula, with over 40,000 people fleeing by boat as wildfires in the Gironde region have consumed 8,700 hectares of land since Tuesday. The fires have destroyed around 80 homes, with 50 completely destroyed, and firefighters continue to battle the blaze. The evacuation is part of a larger effort to contain the wildfires, which have also prompted a national emergency declaration in Spain.",
-        "hashtag": "France",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "France",
-          "Cap Ferret"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.49,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "US and Iran trade more strikes in Gulf as fears of escalation mount",
-        "summary": "US and Iranian forces have engaged in a new round of airstrikes in the Middle East, with Iran targeting US military facilities and bases for the 13th consecutive night in response to American attacks. The strikes resulted in four deaths and five injuries in Iran's south-west, and also hit US-allied Kuwait, prompting flight suspensions at a major Iraqi airport. The escalation comes as the US plans to use frozen Iranian assets to pay for war damages, a move Iran has condemned as a dangerous precedent.",
-        "hashtag": "US",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/c05ql5llj4do?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5b45/live/fd31d670-8719-11f1-926f-c90d1bcfbc84.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Iran",
-          "Gulf",
-          "Iranian"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c05ql5llj4do?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.53,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "As Canada Opens Gordie Howe International Bridge, Americans Are Told to Stay Home",
-        "summary": "After a delay ordered by President Trump and new tariffs against Canada, the bridge between Windsor, Ontario, and Detroit opens in “underwhelming” fashion on Friday.",
-        "hashtag": "AsCanada",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/24/world/canada/canada-gordie-howe-bridge-trump.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-canada-bridge-jclb/24int-canada-bridge-jclb-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24int-canada-bridge-jclb/24int-canada-bridge-jclb-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "As Canada Opens Gordie",
-          "Howe International Bridge",
-          "Americans Are Told",
-          "Stay Home",
-          "President Trump",
-          "Canada"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/24/world/canada/canada-gordie-howe-bridge-trump.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.78,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "politics": [
-      {
-        "title": "Angela Rayner rules out rent controls in England",
-        "summary": "Angela Rayner, the Housing Secretary, has ruled out introducing rent controls in England, citing the impact of the Renters' Rights Act which came into effect in May. The Act has already had a significant effect on the market, according to Rayner, and she believes that controls implemented in some areas of the UK have not necessarily led to lower rents. This decision comes as Scotland prepares to introduce new rent control measures by 2027.",
-        "hashtag": "AngelaRayner",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Angela Rayner",
-          "England",
-          "Renters Rights' Act"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.57,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Democrats Prepare for Possible Election Clashes With Federal Government",
-        "summary": "Top officials overseeing state elections and law enforcement are stepping up plans to prepare for what they worry could be interference in the midterms.",
-        "hashtag": "PossibleElection",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/24/us/politics/democrats-trump-election-interference.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24pol-dems-elections-tpjf/24pol-dems-elections-tpjf-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24pol-dems-elections-tpjf/24pol-dems-elections-tpjf-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Democrats Prepare",
-          "Possible Election Clashes With",
-          "Federal Government"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/24/us/politics/democrats-trump-election-interference.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.78,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "Jon Bon Jovi Ends Madison Square Garden Show Early Due to Sinus Infection: ‘We’ll Figure Out How to Reschedule’",
-        "summary": "Rock legend Jon Bon Jovi abruptly ended his Madison Square Garden show on Thursday night due to a sinus infection, forcing the cancellation of the remaining 90 minutes of the performance. The frontman, who has been enjoying the band's residency at the iconic venue, reassured fans that they would be able to reschedule the show and encouraged them to hold onto their ticket stubs. A representative for the band confirmed that Bon Jovi has been battling the infection and will provide updated information on rescheduling the show in the coming days.",
-        "hashtag": "JonBon",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/music/news/jon-bon-jovi-ends-madison-square-garden-show-early-illness-1236820127/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/bon-jovi.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Jon Bon Jovi Ends",
-          "Madison Square Garden Show",
-          "Early Due",
-          "Sinus Infection",
-          "Figure Out How",
-          "Reschedule"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/music/news/jon-bon-jovi-ends-madison-square-garden-show-early-illness-1236820127/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.77,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "‘Jumbo’ Sequel, ‘Queen of Malacca’ Franchise Plans on the Cards as Indonesia’s Visinema Eyes Expansion (EXCLUSIVE)",
-        "summary": "Indonesian filmmaker Angga Dwimas Sasongko is planning to release the fantasy epic \"Queen of Malacca\" in the first quarter of 2027, following significant industry attention and interest from potential distribution partners in China, Thailand, and other international markets. The film is currently in post-production and has attracted attention from various countries, indicating a potential expansion of Visinema's global reach. This move is part of the company's plans to increase its international presence.",
-        "hashtag": "VisinemaEyes",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Angga-Dwimas-Sasongko.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Jumbo",
-          "Sequel",
-          "Queen",
-          "Malacca",
-          "Franchise Plans",
-          "Cards"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/news/jumbo-sequel-queen-of-malacca-franchise-indonesia-visinema-1236820084/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.83,
+        "freshH": 9.96,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2279,8 +2204,53 @@
     ],
     "facts": [
       {
+        "title": "Can This New Enzyme Turn Back the Clock in Bodily Tissues?",
+        "summary": "In a recent study, scientists devised a way of reversing the buildup of compounds that lead to some age-related diseases.",
+        "hashtag": "NewEnzyme",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nytimes.com/2026/07/24/science/enzymes-aging-cmlase.html",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg",
+        "images": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Clock",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
+        ],
+        "entities": [
+          "Can This New Enzyme",
+          "Turn Back",
+          "Clock",
+          "Bodily Tissues"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/24/science/enzymes-aging-cmlase.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.85,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Rare night heron spotted at National Trust site",
-        "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, England, marking a significant sighting in the UK where this species is rarely seen. The heron's appearance is attributed to the estate's efforts to restore freshwater habitats, which are also providing a refuge for other wildlife including water voles, otters, and white-tailed eagles. This conservation success highlights the importance of preserving and renewing wetlands to improve water quality, reduce flood risk, and create more resilient landscapes.",
+        "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a significant sighting for UK wildlife, with the bird's presence raising hopes that conservation efforts to restore freshwater habitats are paying off. The heron's appearance comes as the estate has introduced new freshwater habitats, providing a refuge for various species including water voles, otters, and white-tailed eagles. Conservationists believe this success will help wildlife thrive, improve water quality, and reduce flood risk in the region.",
         "hashtag": "NationalTrust",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2313,7 +2283,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.56,
+        "freshH": 5.57,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2323,7 +2293,7 @@
       },
       {
         "title": "Play area aims to interest children in rare habitat",
-        "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's unique chalk streams, with over 80 percent of the world's chalk streams found in the country. The prolonged hot and dry weather poses a significant threat to the wildlife that inhabits these rare waterways. The centre's interactive exhibit is designed to inspire a lifelong connection with the environment in children, who will learn about the importance of water flow, temperature, and oxygen for the chalk streams' survival.",
+        "summary": "England's unique chalk streams, home to over 80% of the world's remaining habitats, are under threat from prolonged hot and dry weather, prompting the Winchester Science Centre to create a play zone themed on the local landscape to educate children about the importance of preserving these rare waterways. The centre's exhibit allows children to explore the delicate balance of water flow, temperature, and oxygen in chalk streams. The Berkshire, Buckinghamshire & Oxfordshire Wildlife Trust has thrown its support behind a new Westminster group aiming to protect these vital freshwater habitats.",
         "hashtag": "Play",
         "badge": "SCIENCE",
         "category": "facts",
@@ -2331,10 +2301,18 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Play",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
+        ],
         "entities": [
           "Play"
         ],
@@ -2349,7 +2327,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.51,
+        "freshH": 5.52,
         "score": null,
         "popularity": null,
         "recency": null,
