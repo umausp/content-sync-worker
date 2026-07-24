@@ -287,8 +287,20 @@ function imageRichnessFirst(stories) {
   // push stories BELOW the floor behind stories AT/above it.
   const idx = new Map((stories || []).map((s, i) => [s, i]));
   return [...(stories || [])].sort((a, b) => {
-    const ra = imgs(a) >= IMG_LEAD_FLOOR ? 1 : 0;
-    const rb = imgs(b) >= IMG_LEAD_FLOOR ? 1 : 0;
+    const na = imgs(a);
+    const nb = imgs(b);
+    // TIER 0 — NEVER let a ZERO-image story be the single lead when ANY story has a photo.
+    // A single-story Short with no image renders the blank brand gradient (the "blue screen":
+    // a hot trend like a JP merch story that resolved 0 photos was winning the one slot on
+    // heat alone). A story with ≥1 image always beats a 0-image one. Pure reorder — a pool
+    // where EVERY story has 0 images still ships (never blanks the channel).
+    const ha = na > 0 ? 1 : 0;
+    const hb = nb > 0 ? 1 : 0;
+    if (ha !== hb) return hb - ha;
+    // TIER 1 — among stories WITH photos, an image-RICH lead (≥ floor) beats a 1-2 photo one
+    // so the clip has a lively sequence, not a single frame.
+    const ra = na >= IMG_LEAD_FLOOR ? 1 : 0;
+    const rb = nb >= IMG_LEAD_FLOOR ? 1 : 0;
     if (ra !== rb) return rb - ra; // above-floor stories lead
     return idx.get(a) - idx.get(b); // else keep incoming (heat) order
   });

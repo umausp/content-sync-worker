@@ -72,10 +72,21 @@ function maskToken(tok) {
   return tok[0] + '*'.repeat(Math.min(tok.length - 1, 4));
 }
 
+// Strip stray HTML/XML tags that leaked from an article body into the text (e.g. Sky Sports
+// embeds "<p><em>Sky Sports News</em>" inside JSON-LD articleBody). The extractor is the
+// primary fix, but this is the render-time backstop: it runs on EVERY candidate (incl.
+// already-committed research bundles), so leaked markup can never reach a caption or the TTS.
+// Bounded tag shape (`<` + optional `/` + letter…`>`) so real prose like "score < 5" is left
+// alone; collapses the space left behind.
+function stripMarkup(s) {
+  if (!s || s.indexOf('<') === -1) return s;
+  return String(s).replace(/<\/?[a-zA-Z][^>]*>/g, ' ').replace(/ {2,}/g, ' ').trim();
+}
+
 // Mask strong profanity/slurs in a string (DISPLAY form). Safe on empty/undefined.
 export function scrubText(s) {
   if (!s) return s;
-  return String(s).replace(MASK_RE, (m) => maskToken(m)).replace(/ {2,}/g, ' ').trim();
+  return stripMarkup(String(s)).replace(MASK_RE, (m) => maskToken(m)).replace(/ {2,}/g, ' ').trim();
 }
 
 // Remove masked tokens ("f***", "S****") so NARRATION/CAPTIONS never speak asterisks. Also
@@ -83,7 +94,7 @@ export function scrubText(s) {
 // spacing/space-before-punctuation a removal leaves behind. Used by the narration builder.
 export function stripForSpeech(s) {
   if (!s) return s;
-  return String(s)
+  return stripMarkup(String(s))
     .replace(/\b[A-Za-z]\*{2,}/g, '') // masked tokens
     .replace(MASK_RE, '') // any unmasked profanity/slur that slipped through
     .replace(/\s+([,.;:!?])/g, '$1') // tidy " ," → ","

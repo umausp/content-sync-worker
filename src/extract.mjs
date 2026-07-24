@@ -156,7 +156,9 @@ function jsonLdArticle(html) {
         const images = [].concat(n.image || []).map((i) => (typeof i === 'string' ? i : i?.url)).filter(Boolean);
         return {
           title: stripTags(n.headline || ''),
-          text: decodeEntities(n.articleBody).replace(/\s+/g, ' ').trim(),
+          // articleBody is often HTML-in-JSON (Sky Sports etc. embed <p><em>…</em>) — strip
+          // tags like every other path so markup can't leak into the corpus → summary → caption.
+          text: stripTags(n.articleBody),
           images,
           lang: n.inLanguage || '',
           via: 'jsonld',
