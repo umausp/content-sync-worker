@@ -1,255 +1,267 @@
 {
-  "generatedAt": "2026-07-24T11:52:25.836Z",
+  "generatedAt": "2026-07-24T12:51:43.899Z",
   "region": "usa",
-  "count": 24,
+  "count": 32,
   "categoryCounts": {
-    "offbeat": 5,
+    "offbeat": 8,
+    "breaking": 3,
+    "facts": 3,
+    "tech": 3,
     "politics": 3,
-    "entertainment": 3,
-    "breaking": 2,
-    "tech": 1,
     "crisis": 3,
-    "sports": 2,
-    "health": 3,
-    "facts": 2
+    "entertainment": 3,
+    "sports": 3,
+    "health": 3
   },
   "stories": [
     {
-      "title": "Sony’s decision to ditch discs was practically inevitable, data shows",
-      "summary": "Sony has announced it will permanently discontinue production of physical discs for all new PlayStation games by the end of 2027, with all newly released titles available exclusively in digital formats from January 2028. This decision marks the culmination of a 16-year decline in physical game sales, with the trend of downloadable options becoming increasingly prevalent since the late 2000s. The shift to digital is expected to continue, with major releases like Grand Theft Auto VI already offering \"download in a box\" retail options.",
-      "hashtag": "Playstation",
-      "badge": "TRENDING",
+      "title": "Nick Bosa takes victory lap over Ryan Clark’s ESPN layoff",
+      "summary": "Nick Bosa broke a four-year social media silence with a single emoji, seemingly endorsing Ryan Clark’s firing from ESPN. The 49ers defensive end’s rare post followed Clark’s 2024 criticism of Bosa’s political display during a teammate’s interview. The move has sparked mixed reactions among fans and media personalities.",
+      "hashtag": "Bosa",
+      "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://arstechnica.com/gaming/2026/07/the-playstation-game-disc-was-dying-long-before-sony-pulled-the-plug/",
-      "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/psdisc-1024x648.jpg",
+      "url": "https://www.thebiglead.com/nick-bosa-victory-lap-ryan-clark-espn-layoff/",
+      "imageUrl": "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1330-scaled.jpg",
       "images": [
-        "https://cdn.arstechnica.net/wp-content/uploads/2026/07/psdisc-1024x648.jpg",
-        "https://cdn.arstechnica.net/wp-content/uploads/2026/07/circana3.webp",
-        "https://image.cnbcfm.com/api/v1/image/108337118-1784520909551-gettyimages-2285443186-pekiaridis-notitle260714_np7em.jpeg?v=1784520941&w=1920&h=1080",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
+        "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1330-scaled.jpg",
+        "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1331-scaled.jpg",
+        "https://nypost.com/wp-content/uploads/sites/2/2026/07/ryan-clark-nick-bosa.jpg?quality=75&strip=all&1784880159&w=1200",
+        "https://nypost.com/wp-content/uploads/sites/2/2026/07/nick-bosa.jpg?w=1024",
+        "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-jacob-javits-center-july-134885093_f1efba.jpg?w=1024",
+        "https://media.bolavip.com/wp-content/uploads/sites/10/2026/07/24071638/Nick-Bosa-of-the-49ers-1200x740.webp",
+        "https://media.bolavip.com/wp-content/uploads/sites/10/2026/07/24072354/image-18-590x776.webp",
+        "https://media.bolavip.com/wp-content/uploads/sites/10/2024/09/27193250/Richard-Tovar-150x150.webp"
       ],
-      "entityShots": [
-        {
-          "name": "Sony",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Sony"
+        "Nick Bosa",
+        "Ryan Clark"
       ],
       "sourceUrls": [
-        "https://arstechnica.com/gaming/2026/07/the-playstation-game-disc-was-dying-long-before-sony-pulled-the-plug/",
-        "https://www.cnbc.com/2026/07/22/sonys-playstation-disc-decision-threatens-a-7-billion-resale-market-.html"
+        "https://www.thebiglead.com/nick-bosa-victory-lap-ryan-clark-espn-layoff/",
+        "https://nypost.com/2026/07/24/sports/nick-bosa-appears-to-celebrate-ryan-clarks-espn-firing-after-breaking-social-media-hiatus/",
+        "https://bolavip.com/en/nfl/nick-bosa-breaks-social-media-silence-to-celebrate-ryan-clarks-espn-firing"
       ],
-      "sourceName": "arstechnica.com",
+      "sourceName": "The Big Lead",
       "sources": [
-        "Ars Technica",
-        "CNBC"
+        "The Big Lead",
+        "New York Post",
+        "bolavip.com"
       ],
-      "corr": 2,
+      "corr": 3,
       "verified": true,
-      "trend": "playstation",
-      "traffic": 500,
-      "freshH": 1,
-      "score": 0.714,
-      "popularity": 0.443,
-      "recency": 0.891,
-      "relevancy": 0.9,
+      "trend": "Bosa",
+      "traffic": 87000,
+      "freshH": 0.5,
+      "score": 0.765,
+      "popularity": 0.498,
+      "recency": 0.944,
+      "relevancy": 0.94,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Burnham urged to lobby EU leaders directly to waive EES border controls",
-      "summary": "British holidaymakers are expected to face long queues at European borders this weekend, with around 2.2 million people traveling between Friday and Monday. The Liberal Democrats are urging Prime Minister Andy Burnham to lobby EU leaders to suspend the new entry-exit system, citing its malfunctioning state, which has caused delays and missed flights. If resolved, this could alleviate the summer travel chaos for UK citizens.",
-      "hashtag": "Burnham",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls",
-      "imageUrl": "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2b2b0ef6502170f33ddcfd3aa1e752be",
-      "images": [
-        "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2b2b0ef6502170f33ddcfd3aa1e752be",
-        "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=dcbdbd479a71b12e86674bf3e215798d",
-        "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Burnham",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg"
-        },
-        {
-          "name": "Lib Dems",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200"
-        },
-        {
-          "name": "Andy Burnham",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-      ],
-      "entities": [
-        "Burnham",
-        "Lib Dems",
-        "Andy Burnham",
-        "About",
-        "British",
-        "Friday"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.14,
-      "score": 0.512,
-      "popularity": 0,
-      "recency": 0.984,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Joe Manchin reenters the political orbit with a new independent experiment",
-      "summary": "Joe Manchin, a former West Virginia senator, has launched the Independent Leadership Council to recruit and support independent candidates nationwide. The initiative aims to back individuals who can vote with either Democrats or Republicans when necessary and speak out against them when they are wrong. Manchin's effort comes as a record 45% of American adults identify as political independents, reflecting growing disillusionment with the major parties.",
-      "hashtag": "ManchinIndependent",
+      "title": "Singer Chris Brown pleads guilty to affray over an altercation at a London nightclub",
+      "summary": "Grammy-winning singer Chris Brown pleaded guilty Friday to affray over a 2023 London nightclub brawl that injured a music producer. The 37-year-old will be sentenced October 26 after prosecutors dropped more serious charges in exchange for his plea. His co-defendant, vocal coach Omololu Akinlolu, also pleaded guilty to the same charge.",
+      "hashtag": "Affray",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/24/politics/joe-manchin-recruit-independent-candidates",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2024-07-11t212149z-1601831748-rc2ys8as6fqg-rtrmadp-3-usa-election-biden.jpg?c=16x9&q=w_800,c_fill",
+      "url": "https://www.nbcnews.com/world/europe/singer-chris-brown-pleads-guilty-affray-altercation-london-rcna589037",
+      "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
       "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/2024-07-11t212149z-1601831748-rc2ys8as6fqg-rtrmadp-3-usa-election-biden.jpg?c=16x9&q=w_800,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2163958002.jpg?c=original&q=w_860,c_fill",
-        "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
+        "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+        "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+        "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1024-512,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+        "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2286787728.jpg?c=16x9&q=w_800,c_fill",
+        "https://ichef.bbci.co.uk/news/1024/branded_news/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a65a/live/4a343700-8752-11f1-95ec-a30de4e448c4.jpg.webp",
+        "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
       ],
       "entityShots": [
         {
-          "name": "Joe Manchin",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
+          "name": "London",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
       ],
       "entities": [
-        "Joe Manchin"
+        "Singer Chris Brown",
+        "London"
       ],
       "sourceUrls": [
-        "https://www.cnn.com/2026/07/24/politics/joe-manchin-recruit-independent-candidates"
+        "https://www.nbcnews.com/world/europe/singer-chris-brown-pleads-guilty-affray-altercation-london-rcna589037",
+        "https://www.cnn.com/2026/07/24/entertainment/chris-brown-guilty-affray-london-nightclub-intl",
+        "https://www.bbc.com/news/articles/c3w01e37v9vo"
       ],
-      "sourceName": "cnn.com",
+      "sourceName": "nbcnews.com",
       "sources": [
-        "CNN"
+        "NBC News",
+        "CNN",
+        "BBC"
       ],
-      "corr": 1,
-      "verified": false,
-      "trend": "joe manchin independent leadership council",
-      "traffic": 200,
+      "corr": 3,
+      "verified": true,
+      "trend": "affray",
+      "traffic": 1000,
       "freshH": 1,
-      "score": 0.502,
-      "popularity": 0.12,
+      "score": 0.642,
+      "popularity": 0.229,
       "recency": 0.891,
-      "relevancy": 0.57,
+      "relevancy": 0.953,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "India’s Paid Music Subscribers Could Hit 30 Million by 2028, EY-IMI Report Finds",
-      "summary": "India's paid music streaming subscriber base is expected to reach between 28 and 30 million by 2028, up from 14 million in December 2025, according to a recent report by EY and the Indian Music Industry. This growth is attributed to the country's large smartphone user base, with 96% of owners consuming music and 80% listening for over an hour daily. The report highlights a significant gap between music and video streaming, with 38% of users paying for music versus 86% for video streaming services.",
-      "hashtag": "PaidMusic",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
+      "title": "The ‘Reacher’ actor is very clear on why he lost the chance to be Thor. It certainly wasn’t because of a lack of muscles.",
+      "summary": "Alan Ritchson revealed he auditioned for Marvel’s Thor role but lost to Chris Hemsworth. The actor admitted his audition went poorly due to lack of preparation, calling the feedback constructive but harsh. He now stars as Jack Reacher on Amazon Prime Video for three seasons.",
+      "hashtag": "Reacher",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://en.softonic.com/articles/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-be-thor-it-certainly-wasnt-because-of-a-lack-of-muscles",
+      "imageUrl": "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-20260724.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/imi1.jpg?w=1000&h=563&crop=1",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
+        "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-morning-show-already-has-a-date-for-its-final-goodbye-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-most-popular-soccer-anime-today-makes-the-leap-to-live-a-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/let-s-forget-about-passwords-google-will-let-us-into-our-acc-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/what-is-whatsapp-up-to-the-4-new-features-that-are-already-a-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/why-you-re-going-to-start-seeing-announcements-and-news-ever-20260724.jpg",
+        "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/why-we-need-more-movies-like-clayface-and-fewer-like-supergi-20260724.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "India",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "India",
-        "Paid Music Subscribers Could",
-        "Million",
-        "EY-IMI Report Finds",
-        "December",
-        "Indian Music Industry"
+        "Reacher",
+        "Thor"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/"
+        "https://en.softonic.com/articles/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-be-thor-it-certainly-wasnt-because-of-a-lack-of-muscles"
       ],
-      "sourceName": "Variety",
+      "sourceName": "en.softonic.com",
       "sources": [
-        "Variety"
+        "en.softonic.com"
       ],
       "corr": 1,
       "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.08,
-      "score": 0.489,
-      "popularity": 0,
-      "recency": 0.991,
-      "relevancy": 0.57,
+      "trend": "Reacher",
+      "traffic": 96000,
+      "freshH": 0.5,
+      "score": 0.607,
+      "popularity": 0.3,
+      "recency": 0.944,
+      "relevancy": 0.626,
       "region": "usa",
-      "geo": null
+      "geo": "US"
     },
     {
-      "title": "Burnham to spend first day working from northern branch of No 10",
-      "summary": "UK Deputy Prime Minister Andy Burnham has begun working from the northern branch of No 10, marking a significant shift in the country's power dynamics. Located in Manchester, the hub will serve as a central meeting point for government ministers from across the UK, with 10 ministers scheduled to meet there on Friday. This move aims to promote regional equality and reduce the need for frequent trips to London.",
-      "hashtag": "Burnham",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
+      "title": "Jury reaches split verdict in Shiloh Hendrix racial slur case",
+      "summary": "A jury found Shiloh Hendrix guilty of one count after she allegedly hurled racial slurs at an 8-year-old girl with autism in a Rochester playground on April 28, 2025. Hendrix was acquitted of disorderly conduct but must complete 200 hours of community service, pay a $1,000 fine, and serve supervised probation. The case ignited debates over free speech and protected speech limits.",
+      "hashtag": "ShilohHendrix",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://kstp.com/kstp-news/top-news/jury-reaches-split-verdict-in-shiloh-hendrix-racial-slur-case/",
+      "imageUrl": "https://kstp.com/wp-content/uploads/2026/07/vlcsnap-2026-07-24-05h57m34s326-1024x576.png",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
+        "https://kstp.com/wp-content/uploads/2026/07/vlcsnap-2026-07-24-05h57m34s326-1024x576.png"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Shiloh Hendrix"
+      ],
+      "sourceUrls": [
+        "https://kstp.com/kstp-news/top-news/jury-reaches-split-verdict-in-shiloh-hendrix-racial-slur-case/"
+      ],
+      "sourceName": "5 EYEWITNESS NEWS",
+      "sources": [
+        "5 EYEWITNESS NEWS"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "Shiloh Hendrix",
+      "traffic": 89000,
+      "freshH": 0.5,
+      "score": 0.556,
+      "popularity": 0.278,
+      "recency": 0.944,
+      "relevancy": 0.456,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "New Jersey Wawa worker died after being run over. Driver loses appeal",
+      "summary": "A New Jersey teenager lost his appeal against a 10-year prison sentence for running over a Wawa employee who died 50 days later. Bryce Lomas, 17 at the time, pleaded guilty to vehicular homicide and leaving the scene in December 2023. The victim, Andrew Padulano, 60, was struck outside a Wawa store in Old Bridge.",
+      "hashtag": "Appeal",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://nydailyrecord.com/2026/07/24/new-jersey-wawa-worker-died-after-being-run-over-driver-loses-appeal/",
+      "imageUrl": "https://nydailyrecord.com/files/2026/07/2026-07-24T085821Z_309603501_MT1USDAYNETNJP73064685007_FRTPIP_4_USA-TODAY-NETWORK.jpg",
+      "images": [
+        "https://nydailyrecord.com/files/2026/07/2026-07-24T085821Z_309603501_MT1USDAYNETNJP73064685007_FRTPIP_4_USA-TODAY-NETWORK.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Wawa"
+      ],
+      "sourceUrls": [
+        "https://nydailyrecord.com/2026/07/24/new-jersey-wawa-worker-died-after-being-run-over-driver-loses-appeal/"
+      ],
+      "sourceName": "NY Daily Record",
+      "sources": [
+        "NY Daily Record"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "Appeal",
+      "traffic": 85000,
+      "freshH": 0.5,
+      "score": 0.538,
+      "popularity": 0.266,
+      "recency": 0.944,
+      "relevancy": 0.405,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "US hits dozens of countries with new wave of tariffs",
+      "summary": "The US has imposed new tariffs on 60 trading partners, including the UK, China, and the European Union, with a 10% to 12.5% duty on all goods, accounting for almost all American imports. This move is part of an escalation in the trade war reignited by US President Donald Trump, who claims key economic partners have failed to properly tackle forced labour. The tariffs will take effect immediately, following the expiration of an identical levy on Friday.",
+      "hashtag": "US",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Various",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+          "name": "US Supreme Court",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
         },
         {
-          "name": "Downing Street",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
+          "name": "February",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
       ],
       "entities": [
-        "Burnham",
-        "Various",
-        "Downing Street"
+        "Imposed",
+        "US Supreme Court",
+        "February"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -259,28 +271,55 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.44,
-      "score": 0.488,
+      "freshH": 0.18,
+      "score": 0.51,
       "popularity": 0,
-      "recency": 0.95,
-      "relevancy": 0.62,
+      "recency": 0.979,
+      "relevancy": 0.67,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Tens of thousands evacuated from French tourist spot and near Madrid as wildfires spread",
-      "summary": "Tens of thousands of people have been evacuated from a French tourist spot and near Madrid as wildfires spread, with over 23,000 people forced to leave their homes in the Landes region of France. The fires, fueled by strong winds of up to 31mph and temperatures of 36-37C, have destroyed at least 105 homes and buildings, with no reported casualties overnight. The European Union has dispatched aid to help combat the fires, which are expected to continue raging over the weekend.",
+      "summary": "Tens of thousands of people are being evacuated from the Cap Ferret peninsula in southwest France and areas near Madrid as wildfires rage across both countries. French authorities have ordered the entire peninsula evacuated, with 10,000 hectares burned, while Spain declares a national emergency as fires worsen near the capital. Firefighters are battling the blazes amid record heat, with officials warning conditions could deteriorate further.",
       "hashtag": "Tens",
-      "badge": "BREAKING",
-      "category": "breaking",
+      "badge": "SCIENCE",
+      "category": "facts",
       "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/399f/live/fca52830-8758-11f1-b2ab-0dd01740f9f6.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/d80d/live/15dea7d0-8746-11f1-80f4-b5921bc87065.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1536/cpsprodpb/32ee/live/53e7c3a0-874f-11f1-a7ab-8b30adf0800a.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1600/cpsprodpb/d645/live/f69ffc60-8741-11f1-8c61-e72dd81a46e3.png",
+        "https://ichef.bbci.co.uk/ace/standard/999/cpsprodpb/d0fd/live/266f74f0-8753-11f1-95ec-a30de4e448c4.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/5588/live/8513bb90-8737-11f1-926f-c90d1bcfbc84.png",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Tens",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200"
+        },
+        {
+          "name": "French",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200"
+        },
+        {
+          "name": "Madrid",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
+      ],
       "entities": [
         "Tens",
         "French",
@@ -298,37 +337,52 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.04,
-      "score": 0.479,
+      "freshH": 1.02,
+      "score": 0.491,
       "popularity": 0,
-      "recency": 0.996,
-      "relevancy": 0.52,
+      "recency": 0.888,
+      "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "TikTok’s protection of minors should not be opt-in, warns EU",
-      "summary": "The European Union has warned TikTok that its default settings for minors' accounts are inadequate, allowing their content to be visible to other users and potentially exposing them to harm. The Commission suggests that TikTok should change its settings so that minors' content is only visible to users they have chosen to share it with. If TikTok fails to address these concerns, it could face fines of up to 6 percent of its global annual revenue.",
-      "hashtag": "Tiktok",
+      "title": "Whack-a-drone",
+      "summary": "The US Federal Communications Commission banned foreign-made drones on December 22, 2025, citing national security risks. Investigators found Odyssey Robot’s Pasadena office in California empty, with no equipment or employees, despite claims of drone manufacturing. The ban now faces scrutiny as critics call it ineffective without verified threats.",
+      "hashtag": "Whack",
       "badge": "TECH",
       "category": "tech",
-      "url": "https://www.theverge.com/tech/970519/tiktok-eu-dsa-child-safety-age-account-privacy",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "url": "https://www.theverge.com/report/969725/fcc-drone-ban-odyssey-robot-galiview-etak-randolph-howard-eason",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
       "images": [
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/odyssey-robot-office-18-john-higgins-the-verge.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/galiview-ocusync.png?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/odyssey-robot-us-attestation.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/galiview-website.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/SCR-20260702-ksri.jpeg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_160734.jpg?quality=90&strip=all&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_160900.jpg?quality=90&strip=all&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_161452.jpg?quality=90&strip=all&w=2400",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/etak-worldwide-google-maps.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "California",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
+      ],
       "entities": [
-        "TikTok",
-        "European Union",
-        "European Commission",
-        "Digital Services Act",
-        "Commission"
+        "Whack-a-drone",
+        "In Pasadena",
+        "California"
       ],
       "sourceUrls": [
-        "https://www.theverge.com/tech/970519/tiktok-eu-dsa-child-safety-age-account-privacy"
+        "https://www.theverge.com/report/969725/fcc-drone-ban-odyssey-robot-galiview-etak-randolph-howard-eason"
       ],
       "sourceName": "theverge.com",
       "sources": [
@@ -338,33 +392,49 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.21,
-      "score": 0.472,
+      "freshH": 0.86,
+      "score": 0.487,
       "popularity": 0,
-      "recency": 0.976,
-      "relevancy": 0.52,
+      "recency": 0.905,
+      "relevancy": 0.682,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Why are UK fuel prices rising again?",
-      "summary": "UK petrol prices have reached their highest level since mid-June, with the average cost of fuel now exceeding previous records due to the ongoing US-Israel war with Iran. Wholesale oil prices have risen above $100 a barrel, directly impacting the cost of petrol and diesel at the pump, with every $10 increase pushing up prices by roughly 7p a litre. Unless the hostilities end soon, fuel prices are likely to continue rising, affecting drivers' finances.",
-      "hashtag": "Why",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+      "title": "Angela Rayner rules out rent controls in England",
+      "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, saying current measures under the Renters' Rights Act are already improving the market. She dismissed calls for rent freezes, pointing to Scotland’s expired temporary controls as evidence they do not lower rents. The government will instead focus on empowering renters through existing legislation.",
+      "hashtag": "AngelaRayner",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/28b1/live/f482fc20-5375-11f1-b319-63ed6ac90e5f.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/aec3/live/1322d680-5a80-11f1-b682-cf91850925ea.png"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
+      "entityShots": [
+        {
+          "name": "Angela Rayner",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg"
+        },
+        {
+          "name": "England",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+      ],
+      "entities": [
+        "Angela Rayner",
+        "England",
+        "Renters Rights' Act"
+      ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -374,58 +444,191 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.11,
-      "score": 0.463,
+      "freshH": 0.53,
+      "score": 0.481,
       "popularity": 0,
-      "recency": 0.879,
-      "relevancy": 0.62,
+      "recency": 0.94,
+      "relevancy": 0.606,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Kino Rebelde Boards Locarno Title ‘September Afternoon’ for International Sales (EXCLUSIVE)",
-      "summary": "Kino Rebelde has acquired international sales rights for \"September Afternoon\", a film by writer-director Nicolaas Schmidt, which premiered at the Locarno Film Festival's Cineasti del Presente competition section. The movie follows a couple's desperate attempt to cling to summer, only to face a disaster of a different magnitude. Kino Rebelde's María Vera will now oversee the film's international distribution.",
-      "hashtag": "KinoRebelde",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/global/kino-rebelde-september-afternoon-locarno-1236820183/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg",
+      "title": "New figures show costs rising for pensioners",
+      "summary": "Pensioners in Jersey are facing rising costs, with heating fuel prices playing a significant role in their inflation measure, contributing to an overall inflation rate of 2.8% in June, up from 2.7% in March. Household services, including a 5.6% price increase, made the largest contribution to inflation, while food prices also rose by 3.5% over the year. The island's inflation rate remains in line with the UK's CPIH measure.",
+      "hashtag": "New",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.bbc.co.uk/news/articles/cj637z28xnyo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg?w=1000&h=563&crop=1"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "They",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
+      ],
       "entities": [
-        "Kino Rebelde Boards Locarno",
-        "Title",
-        "September Afternoon",
-        "International Sales",
-        "EXCLUSIVE",
-        "Kino Rebelde"
+        "They"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/global/kino-rebelde-september-afternoon-locarno-1236820183/"
+        "https://www.bbc.co.uk/news/articles/cj637z28xnyo?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "Variety",
+      "sourceName": "BBC",
       "sources": [
-        "Variety"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.53,
-      "score": 0.459,
+      "freshH": 0.36,
+      "score": 0.478,
       "popularity": 0,
-      "recency": 0.941,
-      "relevancy": 0.52,
+      "recency": 0.959,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Chris Brown pleads guilty to affray over nightclub attack",
+      "summary": "Singer Chris Brown pleaded guilty to affray for a nightclub attack in London’s Mayfair on 19 February 2023. At Southwark Crown Court on Friday, he entered the plea in under five minutes with sentencing set for 26 October 2026. Brown, known for hits like Loyal and Look At Me Now, arrived flanked by security and waved to cheering fans outside court.",
+      "hashtag": "ChrisBrown",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://www.bbc.co.uk/news/articles/c3w01e37v9vo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Chris Brown",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+      ],
+      "entities": [
+        "Chris Brown",
+        "Assault"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/c3w01e37v9vo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.19,
+      "score": 0.475,
+      "popularity": 0,
+      "recency": 0.978,
+      "relevancy": 0.532,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Chancellor joins PM on first day working from No 10 North",
+      "summary": "The UK Prime Minister and Chancellor today opened the new No 10 North office in Manchester, marking a permanent shift in government operations outside London. The hub will host key ministers including Angela Rayner and Yvette Cooper, with plans to expand regional engagement across the UK. The move aims to decentralise decision-making and counter criticism of London-centric governance.",
+      "hashtag": "Chancellor",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Various",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+      ],
+      "entities": [
+        "Chancellor",
+        "North",
+        "Various",
+        "Downing Street"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.43,
+      "score": 0.473,
+      "popularity": 0,
+      "recency": 0.951,
+      "relevancy": 0.56,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Burnham urged to lobby EU leaders directly to waive EES border controls",
+      "summary": "Andy Burnham is being urged to lobby EU leaders to suspend the new Entry-Exit System (EES) border controls as 2.2 million British holidaymakers prepare to travel abroad this weekend. The Liberal Democrats’ foreign affairs spokesperson, Calum Miller, called for the system to be paused until at least September, citing extreme delays and missed flights. Miller argued that travelers should not be penalized by a malfunctioning system.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls",
+      "imageUrl": "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=4db3111a1edcdd5da38e7f09797ad06a",
+      "images": [
+        "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=4db3111a1edcdd5da38e7f09797ad06a",
+        "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=a0d533ade87cabdf22345465b1426066",
+        "https://i.guim.co.uk/img/media/3b365cf94e391f15f3f48566063c3bc373058a0f/0_0_2644_1541/master/2644.jpg?width=445&dpr=1&s=none&crop=none"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Andy Burnham",
+        "EES"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.63,
+      "score": 0.468,
+      "popularity": 0,
+      "recency": 0.93,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
       "title": "South Africa's president wins bid to temporarily halt impeachment inquiry over 'Farmgate'",
-      "summary": "South Africa's President Cyril Ramaphosa has won a temporary reprieve from an impeachment inquiry over the \"Farmgate\" scandal, with a court ruling in his favour to halt the parliamentary investigation. The inquiry stems from a 2022 incident where burglars stole large sums of cash hidden in a sofa from Ramaphosa's private farm, which he denies any wrongdoing in. The president will now challenge the findings of an independent panel in a separate court case to be heard in September.",
+      "summary": "A South African court has temporarily blocked an impeachment inquiry into President Cyril Ramaphosa over the \"Farmgate\" scandal. The inquiry was revived after the Constitutional Court ruled in May that parliament had unlawfully shelved a 2022 report suggesting Ramaphosa may have broken the law. The president denies wrongdoing and is separately challenging the panel’s findings in court next month.",
       "hashtag": "SouthAfrica",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -435,7 +638,7 @@
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
         "https://commons.wikimedia.org/wiki/Special:FilePath/Farmgate%20metro%20station.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
       ],
       "entityShots": [
         {
@@ -444,12 +647,12 @@
         },
         {
           "name": "Ramaphosa",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
         }
       ],
       "entityImages": [
         "https://commons.wikimedia.org/wiki/Special:FilePath/Farmgate%20metro%20station.jpg?width=1200",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
       ],
       "entities": [
         "South Africa's",
@@ -467,38 +670,85 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.31,
-      "score": 0.456,
+      "freshH": 0.97,
+      "score": 0.468,
       "popularity": 0,
-      "recency": 0.86,
-      "relevancy": 0.62,
+      "recency": 0.894,
+      "relevancy": 0.619,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Edinburgh Industry Program Features Ewan McGregor, Kenneth Branagh and Bruce Dern and an Inaugural U.K. Film Conference",
-      "summary": "The Edinburgh International Film Festival's 2026 industry program has announced a star-studded lineup featuring Ewan McGregor, Kenneth Branagh, and Bruce Dern, among others, to participate in the inaugural UK Film Conference, a five-day event aimed at discussing the state of British independent cinema. The conference will take place in Edinburgh, with over 50 industry professionals and experts in attendance. The event is expected to spark crucial discussions on the future of British film production.",
-      "hashtag": "EdinburghIndustry",
+      "title": "Why Jimothy the raccoon has become a mega meme online",
+      "summary": "A Seattle raccoon named Jimothy, believed to have short spine syndrome, has gone viral with over eight million views after a video of it climbing steps was shared on Instagram. The meme has sparked both humor and awareness about spine conditions, with some users hoping Jimothy receives care as he ages.",
+      "hashtag": "WhyJimothy",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/cd0xnge2zx7o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Seattle",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+      ],
+      "entities": [
+        "Jimothy",
+        "Seattle",
+        "Kiana Hall",
+        "Instagram"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cd0xnge2zx7o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.18,
+      "score": 0.467,
+      "popularity": 0,
+      "recency": 0.979,
+      "relevancy": 0.497,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Chris Brown Pleads Guilty Over ‘Vicious and Unprovoked’ Attack at U.K. Nightclub",
+      "summary": "Chris Brown and his co-defendant Omololu Akinlolu pleaded guilty to affray for a 2023 attack at London’s Tape nightclub. Brown struck the victim twice with a glass bottle to the head while Akinlolu punched and kicked him as he lay defenseless on the floor. Brown was arrested in May 2025 during a U.K. tour stop and now faces sentencing.",
+      "hashtag": "ChrisBrown",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
-      "url": "https://variety.com/2026/film/events/edinburgh-industry-program-ewan-mcgregor-kenneth-branagh-1236820141/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg",
+      "url": "https://variety.com/2026/music/global/chris-brown-guilty-affray-london-nightclub-1236820242/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg?w=1000&h=563&crop=1"
+        "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg?w=1000&h=563&crop=1"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Edinburgh Industry Program Features",
-        "Ewan McGregor",
-        "Kenneth Branagh",
-        "Bruce Dern",
-        "Inaugural",
-        "Film Conference"
+        "Chris Brown Pleads Guilty",
+        "Vicious",
+        "Unprovoked",
+        "Attack",
+        "Nightclub",
+        "Chris Brown"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/events/edinburgh-industry-program-ewan-mcgregor-kenneth-branagh-1236820141/"
+        "https://variety.com/2026/music/global/chris-brown-guilty-affray-london-nightclub-1236820242/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -508,75 +758,36 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.66,
-      "score": 0.454,
+      "freshH": 0.07,
+      "score": 0.465,
       "popularity": 0,
-      "recency": 0.926,
-      "relevancy": 0.52,
+      "recency": 0.992,
+      "relevancy": 0.473,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Preston Bus still to decide on Burnham's £2 cap",
-      "summary": "Preston Bus is still to decide on joining a new government scheme capping single fares at £2 from January, as it awaits reimbursement details for participating operators. The scheme, backed by £400m, aims to help passengers with the cost of living, particularly in rural areas where single fares can be higher. The bus company will assess the plan once reimbursement arrangements are available, with no decision on participation announced yet.",
-      "hashtag": "PrestonBus",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/cre4wz4np7lo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Preston Bus",
-        "Burnham's",
-        "Andy Burnham's"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cre4wz4np7lo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.74,
-      "score": 0.451,
-      "popularity": 0,
-      "recency": 0.918,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Devlin opens up on 'too stressful' Hearts exit for Rangers",
-      "summary": "Rangers midfielder Alex Devlin has opened up on his decision to leave Hearts, citing the stress of the World Cup and contract negotiations as factors in his departure. Devlin, who failed to add to his five Australia caps at the World Cup, has joined Rangers after Hearts announced he would not be signing a new contract. He will now link up with manager John McInnes, who had previously tried to persuade him to stay at Hearts.",
-      "hashtag": "Devlin",
+      "title": "McClenaghan set to qualify for pommel horse final",
+      "summary": "Rhys McClenaghan leads the Commonwealth Games pommel horse qualifying with a top score of 14.500 after a flawless routine. The Olympic champion is set to advance to Monday’s final after topping the standings with two subdivisions completed. McClenaghan, returning after shoulder surgery, aims for his third Games medal following gold in 2018 and silver in 2022.",
+      "hashtag": "Mcclenaghan",
       "badge": "SPORTS",
       "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c80n5mnvkyjo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg",
+      "url": "https://www.bbc.co.uk/sport/gymnastics/articles/cvgje68jqrvo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Devlin",
-        "Hearts",
-        "Rangers",
-        "Cammy Devlin",
-        "World Cup"
+        "McClenaghan",
+        "Olympic",
+        "Rhys McClenaghan",
+        "Commonwealth Games"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c80n5mnvkyjo?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/gymnastics/articles/cvgje68jqrvo?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -586,36 +797,35 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.447,
+      "freshH": 0.34,
+      "score": 0.459,
       "popularity": 0,
-      "recency": 0.906,
-      "relevancy": 0.52,
+      "recency": 0.962,
+      "relevancy": 0.491,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Klopp starts Germany reign by threatening to quit",
-      "summary": "German football coach Jurgen Klopp has begun his tenure by warning the media that he will quit if they invade his family's privacy. He made the threat during his first press conference as Germany's head coach, a position he holds on a four-year deal until the 2030 World Cup. Klopp's appointment was widely expected and he has stated that this is the pinnacle of his coaching career, with no plans to continue after leaving the national team.",
-      "hashtag": "Klopp",
+      "title": "Opetaia sues IBF to return cruiserweight world title",
+      "summary": "Australian boxer Jai Opetaia has initiated a lawsuit in the US District Court for the District of Nevada against the International Boxing Federation, seeking to regain his cruiserweight world title after being stripped of it following a dispute with promotional outfit Zuffa Boxing. The lawsuit claims rival governing bodies, including the World Boxing Council, have conspired to prevent Opetaia from competing, citing instances where they threatened to strip other champions if they faced him. Opetaia is also seeking damages and legal costs, as well as a court order to prevent the IBF from naming another cruiserweight champion while the litigation continues.",
+      "hashtag": "Opetaia",
       "badge": "SPORTS",
       "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+      "url": "https://www.bbc.co.uk/sport/boxing/articles/cdx82vdn5lno?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Klopp",
-        "Germany",
-        "Jurgen Klopp",
-        "Germany's"
+        "Opetaia",
+        "Boxer Jai Opetaia",
+        "United States"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/sport/boxing/articles/cdx82vdn5lno?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -625,34 +835,108 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.21,
-      "score": 0.434,
+      "freshH": 0.94,
+      "score": 0.444,
       "popularity": 0,
-      "recency": 0.87,
+      "recency": 0.897,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "India's 'cockroach' protesters hold talks with government as stalemate continues",
-      "summary": "Thousands of protesters in India are continuing their demands for the resignation of Education Minister Dharmendra Pradhan, following talks with the government that failed to yield a decision on the key issue. The Cockroach Janta Party, a satirical movement turned powerful platform for young people's dissent, has seen its protests gain momentum after a police crackdown left dozens injured. The government has agreed to consider two other demands, including compensation for families of students who died by suicide and the withdrawal of police cases against protesters.",
-      "hashtag": "India",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+      "title": "India’s Paid Music Subscribers Could Hit 30 Million by 2028, EY-IMI Report Finds",
+      "summary": "India’s paid music streaming subscribers could nearly double to 30 million by 2028, up from 14 million in December 2025, according to an EY and IMI report released Friday. Despite 96% of smartphone owners listening to music daily, only 38% have ever paid for streaming services. The report highlights YouTube as the top platform for music discovery, while dedicated streaming services remain the preferred choice for structured listening.",
+      "hashtag": "PaidMusic",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg"
+        "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/imi1.jpg?w=1000&h=563&crop=1"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "India's",
-        "Sonam Wangchuk"
+        "Indian Music Industry"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+        "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.07,
+      "score": 0.439,
+      "popularity": 0,
+      "recency": 0.884,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "TikTok’s protection of minors should not be opt-in, warns EU",
+      "summary": "The European Commission has warned TikTok it must strengthen protections for minors or face fines up to 6 percent of global revenue under the Digital Services Act. The EU found teens’ public posts can still be recommended to others and private accounts remain easily discoverable through follower lists. TikTok must adjust default settings so under-18 content is only visible to chosen followers by default.",
+      "hashtag": "Tiktok",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.theverge.com/tech/970519/tiktok-eu-dsa-child-safety-age-account-privacy",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+      "images": [
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK051_VRG_Illo_N_Barclay_2_tiktok.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "TikTok",
+        "European Commission"
+      ],
+      "sourceUrls": [
+        "https://www.theverge.com/tech/970519/tiktok-eu-dsa-child-safety-age-account-privacy"
+      ],
+      "sourceName": "theverge.com",
+      "sources": [
+        "theverge.com"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.19,
+      "score": 0.435,
+      "popularity": 0,
+      "recency": 0.871,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "GB Paralympian Schrager given two-year ban after failed drug test",
+      "summary": "British Paralympic silver medallist Daphne Schrager has been handed a two-year doping ban backdated to June 2025 after testing positive for the muscle-building substance Ligandrol. The 25-year-old, who won silver at Paris 2024, argued environmental contamination but the tribunal rejected her claim. She remains eligible for the 2028 Paralympics but has been omitted from England’s Commonwealth Games squad in Glasgow.",
+      "hashtag": "GBParalympian",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/cycling/articles/cp30y17l074o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "GB Paralympian Schrager",
+        "Paralympic",
+        "Daphne Schrager"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/cycling/articles/cp30y17l074o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -662,45 +946,45 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.35,
-      "score": 0.429,
+      "freshH": 1.55,
+      "score": 0.422,
       "popularity": 0,
-      "recency": 0.855,
+      "recency": 0.836,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Russia and Ukraine Trade Blows With Missiles and Drones",
-      "summary": "Ukrainian strikes set fire to warehouses and other sites in Russia, and Russian bombing rocked Ukraine’s capital, as the two countries escalated a deadly air campaign.",
-      "hashtag": "UkraineTrade",
+      "title": "South Korea A.I. Billionaire Ordered to Pay More Than Half a Billion Dollars in ‘Divorce of the Century’",
+      "summary": "A South Korean court awarded $644 million to Roh Soh-yeong, who had sought much more from her ex-husband, Chey Tae-won, the head of the conglomerate behind SK Hynix.",
+      "hashtag": "SouthKorea",
       "badge": "BREAKING",
       "category": "breaking",
-      "url": "https://www.nytimes.com/2026/07/24/world/europe/russia-ukraine-war-attacks.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/24/24-vid-wilberries-top-art-1-25978-cover/24-vid-wilberries-top-art-1-25978-cover-mediumSquareAt3X.jpg",
+      "url": "https://www.nytimes.com/2026/07/24/world/asia/korea-chey-tae-won-sk-hynix-divorce.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-skorea-divorce-01-pkht/24int-skorea-divorce-01-pkht-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/24/24-vid-wilberries-top-art-1-25978-cover/24-vid-wilberries-top-art-1-25978-cover-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24int-skorea-divorce-01-pkht/24int-skorea-divorce-01-pkht-mediumSquareAt3X.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Russia",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
+          "name": "South Korea",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
       ],
       "entities": [
-        "Russia",
-        "Ukraine Trade Blows With",
-        "Missiles",
-        "Drones",
-        "Ukrainian",
-        "Russian"
+        "South Korea",
+        "Billionaire Ordered",
+        "Pay More Than Half",
+        "Billion Dollars",
+        "Divorce",
+        "Century"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/24/world/europe/russia-ukraine-war-attacks.html"
+        "https://www.nytimes.com/2026/07/24/world/asia/korea-chey-tae-won-sk-hynix-divorce.html"
       ],
       "sourceName": "The New York Times",
       "sources": [
@@ -710,110 +994,50 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.26,
-      "score": 0.426,
+      "freshH": 0.6,
+      "score": 0.413,
       "popularity": 0,
-      "recency": 0.97,
-      "relevancy": 0.345,
+      "recency": 0.933,
+      "relevancy": 0.344,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "I spent years trying to get smaller. Until I decided to get bigger",
-      "summary": "A woman's decision to get married triggered a body-loathing spiral, prompting her to start tracking her weight and calories, and restricting her food intake, with some days resulting in binge eating. She had previously avoided weighing herself for years but began daily weigh-ins after her proposal. Her wedding planning process led to a relapse of unhealthy eating habits she had not experienced since her teenage years.",
-      "hashtag": "UntilI",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight",
-      "imageUrl": "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
+      "title": "Hubble Spies One-Sided Spiral",
+      "summary": "NASA’s Hubble Space Telescope has captured NGC 4654, a spiral galaxy 72 million light-years away in the Virgo Cluster, showing one side stripped of gas by ram pressure. The galaxy’s lopsided shape results from its high-speed plunge through the cluster’s hot, thin gas. Astronomers will study the stripped tail to learn how such forces shape galaxies over time.",
+      "hashtag": "HubbleSpies",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://science.nasa.gov/missions/hubble/hubble-spies-one-sided-spiral/",
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg?w=3984&#038;h=3826&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
       "images": [
-        "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
-        "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Until",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200"
-        },
-        {
-          "name": "Bulking",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg"
-        },
-        {
-          "name": "First",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
-      ],
-      "entities": [
-        "Until",
-        "Bulking",
-        "First",
-        "Continue"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.87,
-      "score": 0.419,
-      "popularity": 0,
-      "recency": 0.718,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "With Hopes High for New H.I.V. Prevention Pill, Merck Takes Steps to Ensure Access",
-      "summary": "Companies in Africa and India will make generic versions of the pill that could cost as little as $5 per person per year. But access to the drug and other new products in much of Latin America remains uncertain.",
-      "hashtag": "NewH",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg"
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg?w=3984&#038;h=3826&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "https://assets.science.nasa.gov/content/dam/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Hopes High",
-        "Prevention Pill",
-        "Merck Takes Steps",
-        "Ensure Access",
-        "Companies",
-        "Africa"
+        "Hubble Spies One-Sided Spiral",
+        "Hubble",
+        "Virgo",
+        "Maiden"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html"
+        "https://science.nasa.gov/missions/hubble/hubble-spies-one-sided-spiral/"
       ],
-      "sourceName": "The New York Times",
+      "sourceName": "NASA",
       "sources": [
-        "The New York Times"
+        "NASA"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.39,
-      "score": 0.417,
+      "freshH": 1.68,
+      "score": 0.411,
       "popularity": 0,
-      "recency": 0.956,
-      "relevancy": 0.328,
+      "recency": 0.824,
+      "relevancy": 0.49,
       "region": "usa",
       "geo": null
     },
@@ -847,17 +1071,132 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.63,
-      "score": 0.394,
+      "freshH": 0.46,
+      "score": 0.4,
       "popularity": 0,
-      "recency": 0.93,
+      "recency": 0.948,
       "relevancy": 0.274,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "India's 'cockroach' protesters hold talks with government as stalemate continues",
+      "summary": "Thousands of protesters led by India’s online satirical movement, the Cockroach Janta Party, held talks with the government today after a month-long demand for Education Minister Dharmendra Pradhan’s resignation. The government has asked for a day to decide on the resignation while agreeing to compensate families of students who died by suicide after a medical exam was canceled and to drop police cases against marchers. Another nationwide protest is threatened if the minister does not step down soon.",
+      "hashtag": "India",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4614/live/a3ae37c0-873b-11f1-a10e-a5d4f08bc20c.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "India's",
+        "Sonam Wangchuk"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 2.34,
+      "score": 0.397,
+      "popularity": 0,
+      "recency": 0.763,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Why Trump’s Renewed Trade War Could Be Costly",
+      "summary": "Households and businesses were already contending with an affordability crunch. A new round of tariffs could inflict more pain.",
+      "hashtag": "RenewedTrade",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/24/business/dealbook/trump-trade-war-economy.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24db-trump-wqhz/24db-trump-wqhz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24db-trump-wqhz/24db-trump-wqhz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Trump",
+        "Renewed Trade War Could",
+        "Be Costly",
+        "Households"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/24/business/dealbook/trump-trade-war-economy.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.62,
+      "score": 0.392,
+      "popularity": 0,
+      "recency": 0.93,
+      "relevancy": 0.265,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Bangladesh’s President Resigns Amid Uncertainty Over Ex-Leader’s Plans",
+      "summary": "President Mohammed Shahabuddin stepped down as speculation swirled over the possible return of his onetime ally Sheikh Hasina, who was ousted as prime minister and fled to India.",
+      "hashtag": "ExLeader",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.nytimes.com/2026/07/24/world/asia/bangladesh-president-resigns.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-bangladesh-president-qcgb/24int-bangladesh-president-qcgb-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24int-bangladesh-president-qcgb/24int-bangladesh-president-qcgb-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Bangladesh",
+        "President Resigns Amid Uncertainty",
+        "Ex-Leader",
+        "Plans",
+        "President Mohammed Shahabuddin",
+        "Sheikh Hasina"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/24/world/asia/bangladesh-president-resigns.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.96,
+      "score": 0.389,
+      "popularity": 0,
+      "recency": 0.895,
+      "relevancy": 0.303,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "US and Iran trade more strikes in Gulf as fears of escalation mount",
-      "summary": "US and Iranian forces have engaged in a new round of airstrikes in the Middle East, with Iran reporting drone strikes on US military facilities and bases across the region, resulting in at least four deaths and five injuries. The escalation comes as Iran condemns the US plan to use frozen Iranian assets to pay for war damages, with Iranian Foreign Minister Abbas Araghchi calling the move an incendiary precedent. The situation remains highly volatile, with reports of further strikes and disruptions to air travel in the region.",
+      "summary": "US and Iran have engaged in a cycle of retaliatory strikes in the Gulf, with Iran carrying out drone attacks on US military facilities and bases across the Middle East, resulting in at least four deaths and five injuries. The escalation comes as the US plans to use frozen Iranian assets to pay for war damages, a move Iran has condemned as an incendiary precedent. Tensions between the two countries continue to rise, with flights suspended at a major Iraqi airport and sirens sounding in Bahrain and Jordan.",
       "hashtag": "US",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -885,17 +1224,70 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.54,
-      "score": 0.391,
+      "freshH": 3.53,
+      "score": 0.363,
       "popularity": 0,
-      "recency": 0.746,
+      "recency": 0.665,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "I spent years trying to get smaller. Until I decided to get bigger",
+      "summary": "A woman’s wedding planning triggered a body-loathing spiral, leading to obsessive weighing, calorie counting and binge eating. She lost years of progress after years of casual weightlifting when she tried to shrink for her big day.",
+      "hashtag": "UntilI",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight",
+      "imageUrl": "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
+      "images": [
+        "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
+        "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Until",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200"
+        },
+        {
+          "name": "Bulking",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
+      ],
+      "entities": [
+        "Until",
+        "Bulking",
+        "First",
+        "Continue"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/lifeandstyle/2026/jul/24/bulking-body-image-weight"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.86,
+      "score": 0.347,
+      "popularity": 0,
+      "recency": 0.64,
+      "relevancy": 0.493,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-      "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This stark reality was witnessed firsthand by a team reporting on the lives of young people in coastal communities across England and Wales. The situation has been exacerbated by decades of negative media portrayals of these young people and their towns.",
+      "summary": "Young people in coastal towns across England and Wales face severe challenges, with youth service funding down 73% in 12 years and nearly a million aged 16 to 24 not in work, education or training. A year-long Guardian project reveals widespread isolation and despair among young residents in 17 towns. The series highlights how decades of neglect have left communities struggling to provide opportunities.",
       "hashtag": "One",
       "badge": "HEALTH",
       "category": "health",
@@ -930,68 +1322,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 5.87,
-      "score": 0.358,
+      "freshH": 6.86,
+      "score": 0.338,
       "popularity": 0,
-      "recency": 0.507,
+      "recency": 0.453,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Rare night heron spotted at National Trust site",
-      "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a first for the UK, raising hopes that conservation efforts to restore freshwater habitats will provide a refuge for the bird and other wildlife. The estate's new habitats have also attracted water voles, otters, pine martens, and white-tailed eagles, highlighting the importance of wetland renewal. Conservationists believe this project will improve water quality, reduce flood risk, and create more resilient landscapes for future generations.",
-      "hashtag": "NationalTrust",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Africa",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-      ],
-      "entities": [
-        "Rare",
-        "National Trust",
-        "Africa",
-        "Asia",
-        "Americas",
-        "Europe"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 6.57,
-      "score": 0.331,
-      "popularity": 0,
-      "recency": 0.468,
-      "relevancy": 0.67,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Play area aims to interest children in rare habitat",
-      "summary": "England's unique chalk streams, home to over 80% of the world's remaining habitats, are facing pressure from prolonged hot and dry weather, threatening the wildlife that inhabits them. A new play area at Winchester Science Centre in Hampshire aims to educate children about the importance of these rare waterways, teaching them about the impact of water flow, temperature, and oxygen on the environment. The centre's exhibit is part of a broader effort to protect these habitats, with the Berkshire, Buckinghamshire & Oxfordshire Wildlife Trust supporting a new group in Westminster to safeguard England's chalk streams.",
+      "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's rare chalk streams, with over 80% of the world's chalk streams found in the country. The prolonged hot and dry weather is putting pressure on the wildlife that inhabits these unique waterways. The play zone is designed to encourage children to connect with the environment, potentially inspiring a lifelong interest in conservation.",
       "hashtag": "Play",
       "badge": "SCIENCE",
       "category": "facts",
@@ -1017,17 +1358,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.53,
-      "score": 0.295,
+      "freshH": 7.51,
+      "score": 0.277,
       "popularity": 0,
-      "recency": 0.471,
+      "recency": 0.42,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-      "summary": "A US study has found that replacing gas stoves with electric ones can significantly improve asthma symptoms, with a 70% drop in hospital admissions and days off from work or school among participants. The study, which began in December 2024 in Ohio, involved 72 households and found benefits comparable to those reported in clinical trials of commonly used asthma medications. Further research is needed to confirm these findings, but the results suggest a simple and cost-effective solution to alleviate asthma symptoms.",
+      "summary": "A US study found replacing gas stoves with electric models cut hospital admissions and missed school or work days by 70% for people with poorly controlled asthma. The project in Cleveland, Ohio, involved 1,200 participants but was halted early due to funding cuts, leaving over 1,100 households without the intervention. Even in the reduced study of 72 homes, the improvements matched or exceeded those from common asthma medications.",
       "hashtag": "Replacing",
       "badge": "HEALTH",
       "category": "health",
@@ -1040,12 +1381,8 @@
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Replacing",
-        "Team",
-        "Ohio",
-        "Trump",
         "MetroHealth",
-        "December"
+        "gas stove"
       ],
       "sourceUrls": [
         "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
@@ -1058,10 +1395,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.87,
-      "score": 0.288,
+      "freshH": 7.86,
+      "score": 0.271,
       "popularity": 0,
-      "recency": 0.452,
+      "recency": 0.403,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -1070,44 +1407,97 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Sony’s decision to ditch discs was practically inevitable, data shows",
-        "summary": "Sony has announced it will permanently discontinue production of physical discs for all new PlayStation games by the end of 2027, with all newly released titles available exclusively in digital formats from January 2028. This decision marks the culmination of a 16-year decline in physical game sales, with the trend of downloadable options becoming increasingly prevalent since the late 2000s. The shift to digital is expected to continue, with major releases like Grand Theft Auto VI already offering \"download in a box\" retail options.",
-        "hashtag": "Playstation",
+        "title": "Nick Bosa takes victory lap over Ryan Clark’s ESPN layoff",
+        "summary": "Nick Bosa broke a four-year social media silence with a single emoji, seemingly endorsing Ryan Clark’s firing from ESPN. The 49ers defensive end’s rare post followed Clark’s 2024 criticism of Bosa’s political display during a teammate’s interview. The move has sparked mixed reactions among fans and media personalities.",
+        "hashtag": "Bosa",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://www.thebiglead.com/nick-bosa-victory-lap-ryan-clark-espn-layoff/",
+        "imageUrl": "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1330-scaled.jpg",
+        "images": [
+          "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1330-scaled.jpg",
+          "https://www.thebiglead.com/wp-content/uploads/2026/07/default-1331-scaled.jpg",
+          "https://nypost.com/wp-content/uploads/sites/2/2026/07/ryan-clark-nick-bosa.jpg?quality=75&strip=all&1784880159&w=1200",
+          "https://nypost.com/wp-content/uploads/sites/2/2026/07/nick-bosa.jpg?w=1024",
+          "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-jacob-javits-center-july-134885093_f1efba.jpg?w=1024",
+          "https://media.bolavip.com/wp-content/uploads/sites/10/2026/07/24071638/Nick-Bosa-of-the-49ers-1200x740.webp",
+          "https://media.bolavip.com/wp-content/uploads/sites/10/2026/07/24072354/image-18-590x776.webp",
+          "https://media.bolavip.com/wp-content/uploads/sites/10/2024/09/27193250/Richard-Tovar-150x150.webp"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Nick Bosa",
+          "Ryan Clark"
+        ],
+        "sourceUrls": [
+          "https://www.thebiglead.com/nick-bosa-victory-lap-ryan-clark-espn-layoff/",
+          "https://nypost.com/2026/07/24/sports/nick-bosa-appears-to-celebrate-ryan-clarks-espn-firing-after-breaking-social-media-hiatus/",
+          "https://bolavip.com/en/nfl/nick-bosa-breaks-social-media-silence-to-celebrate-ryan-clarks-espn-firing"
+        ],
+        "sourceName": "The Big Lead",
+        "sources": [
+          "The Big Lead",
+          "New York Post",
+          "bolavip.com"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "Bosa",
+        "traffic": 87000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Singer Chris Brown pleads guilty to affray over an altercation at a London nightclub",
+        "summary": "Grammy-winning singer Chris Brown pleaded guilty Friday to affray over a 2023 London nightclub brawl that injured a music producer. The 37-year-old will be sentenced October 26 after prosecutors dropped more serious charges in exchange for his plea. His co-defendant, vocal coach Omololu Akinlolu, also pleaded guilty to the same charge.",
+        "hashtag": "Affray",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://arstechnica.com/gaming/2026/07/the-playstation-game-disc-was-dying-long-before-sony-pulled-the-plug/",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/psdisc-1024x648.jpg",
+        "url": "https://www.nbcnews.com/world/europe/singer-chris-brown-pleads-guilty-affray-altercation-london-rcna589037",
+        "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
         "images": [
-          "https://cdn.arstechnica.net/wp-content/uploads/2026/07/psdisc-1024x648.jpg",
-          "https://cdn.arstechnica.net/wp-content/uploads/2026/07/circana3.webp",
-          "https://image.cnbcfm.com/api/v1/image/108337118-1784520909551-gettyimages-2285443186-pekiaridis-notitle260714_np7em.jpeg?v=1784520941&w=1920&h=1080",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
+          "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+          "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+          "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1024-512,f_auto,q_auto:best/rockcms/2026-07/260724-chris-brown-mb-1313-890aad.jpg",
+          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2286787728.jpg?c=16x9&q=w_800,c_fill",
+          "https://ichef.bbci.co.uk/news/1024/branded_news/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+          "https://ichef.bbci.co.uk/news/480/cpsprodpb/a65a/live/4a343700-8752-11f1-95ec-a30de4e448c4.jpg.webp",
+          "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
         ],
         "entityShots": [
           {
-            "name": "Sony",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
+            "name": "London",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sony_headquaters_1.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/6/67/London_Skyline_%28125508655%29.jpeg"
         ],
         "entities": [
-          "Sony"
+          "Singer Chris Brown",
+          "London"
         ],
         "sourceUrls": [
-          "https://arstechnica.com/gaming/2026/07/the-playstation-game-disc-was-dying-long-before-sony-pulled-the-plug/",
-          "https://www.cnbc.com/2026/07/22/sonys-playstation-disc-decision-threatens-a-7-billion-resale-market-.html"
+          "https://www.nbcnews.com/world/europe/singer-chris-brown-pleads-guilty-affray-altercation-london-rcna589037",
+          "https://www.cnn.com/2026/07/24/entertainment/chris-brown-guilty-affray-london-nightclub-intl",
+          "https://www.bbc.com/news/articles/c3w01e37v9vo"
         ],
-        "sourceName": "arstechnica.com",
+        "sourceName": "nbcnews.com",
         "sources": [
-          "Ars Technica",
-          "CNBC"
+          "NBC News",
+          "CNN",
+          "BBC"
         ],
-        "corr": 2,
+        "corr": 3,
         "verified": true,
-        "trend": "playstation",
-        "traffic": 500,
+        "trend": "affray",
+        "traffic": 1000,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1117,42 +1507,110 @@
         "geo": "US"
       },
       {
-        "title": "Joe Manchin reenters the political orbit with a new independent experiment",
-        "summary": "Joe Manchin, a former West Virginia senator, has launched the Independent Leadership Council to recruit and support independent candidates nationwide. The initiative aims to back individuals who can vote with either Democrats or Republicans when necessary and speak out against them when they are wrong. Manchin's effort comes as a record 45% of American adults identify as political independents, reflecting growing disillusionment with the major parties.",
-        "hashtag": "ManchinIndependent",
-        "badge": "TRENDING",
+        "title": "The ‘Reacher’ actor is very clear on why he lost the chance to be Thor. It certainly wasn’t because of a lack of muscles.",
+        "summary": "Alan Ritchson revealed he auditioned for Marvel’s Thor role but lost to Chris Hemsworth. The actor admitted his audition went poorly due to lack of preparation, calling the feedback constructive but harsh. He now stars as Jack Reacher on Amazon Prime Video for three seasons.",
+        "hashtag": "Reacher",
+        "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/24/politics/joe-manchin-recruit-independent-candidates",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/2024-07-11t212149z-1601831748-rc2ys8as6fqg-rtrmadp-3-usa-election-biden.jpg?c=16x9&q=w_800,c_fill",
+        "url": "https://en.softonic.com/articles/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-be-thor-it-certainly-wasnt-because-of-a-lack-of-muscles",
+        "imageUrl": "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-20260724.jpg",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/2024-07-11t212149z-1601831748-rc2ys8as6fqg-rtrmadp-3-usa-election-biden.jpg?c=16x9&q=w_800,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2163958002.jpg?c=original&q=w_860,c_fill",
-          "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
+          "https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/3/2026/07/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-morning-show-already-has-a-date-for-its-final-goodbye-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/the-most-popular-soccer-anime-today-makes-the-leap-to-live-a-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/let-s-forget-about-passwords-google-will-let-us-into-our-acc-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/what-is-whatsapp-up-to-the-4-new-features-that-are-already-a-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/why-you-re-going-to-start-seeing-announcements-and-news-ever-20260724.jpg",
+          "https://articles-img.sftcdn.net/t_article_cover_s/auto-mapping-folder/sites/3/2026/07/why-we-need-more-movies-like-clayface-and-fewer-like-supergi-20260724.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Joe Manchin",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/9/9c/Senator_Manchin.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Joe Manchin"
+          "Reacher",
+          "Thor"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/24/politics/joe-manchin-recruit-independent-candidates"
+          "https://en.softonic.com/articles/the-reacher-actor-is-very-clear-on-why-he-lost-the-chance-to-be-thor-it-certainly-wasnt-because-of-a-lack-of-muscles"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "en.softonic.com",
         "sources": [
-          "CNN"
+          "en.softonic.com"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "joe manchin independent leadership council",
-        "traffic": 200,
-        "freshH": 1,
+        "trend": "Reacher",
+        "traffic": 96000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Jury reaches split verdict in Shiloh Hendrix racial slur case",
+        "summary": "A jury found Shiloh Hendrix guilty of one count after she allegedly hurled racial slurs at an 8-year-old girl with autism in a Rochester playground on April 28, 2025. Hendrix was acquitted of disorderly conduct but must complete 200 hours of community service, pay a $1,000 fine, and serve supervised probation. The case ignited debates over free speech and protected speech limits.",
+        "hashtag": "ShilohHendrix",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://kstp.com/kstp-news/top-news/jury-reaches-split-verdict-in-shiloh-hendrix-racial-slur-case/",
+        "imageUrl": "https://kstp.com/wp-content/uploads/2026/07/vlcsnap-2026-07-24-05h57m34s326-1024x576.png",
+        "images": [
+          "https://kstp.com/wp-content/uploads/2026/07/vlcsnap-2026-07-24-05h57m34s326-1024x576.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Shiloh Hendrix"
+        ],
+        "sourceUrls": [
+          "https://kstp.com/kstp-news/top-news/jury-reaches-split-verdict-in-shiloh-hendrix-racial-slur-case/"
+        ],
+        "sourceName": "5 EYEWITNESS NEWS",
+        "sources": [
+          "5 EYEWITNESS NEWS"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "Shiloh Hendrix",
+        "traffic": 89000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "New Jersey Wawa worker died after being run over. Driver loses appeal",
+        "summary": "A New Jersey teenager lost his appeal against a 10-year prison sentence for running over a Wawa employee who died 50 days later. Bryce Lomas, 17 at the time, pleaded guilty to vehicular homicide and leaving the scene in December 2023. The victim, Andrew Padulano, 60, was struck outside a Wawa store in Old Bridge.",
+        "hashtag": "Appeal",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://nydailyrecord.com/2026/07/24/new-jersey-wawa-worker-died-after-being-run-over-driver-loses-appeal/",
+        "imageUrl": "https://nydailyrecord.com/files/2026/07/2026-07-24T085821Z_309603501_MT1USDAYNETNJP73064685007_FRTPIP_4_USA-TODAY-NETWORK.jpg",
+        "images": [
+          "https://nydailyrecord.com/files/2026/07/2026-07-24T085821Z_309603501_MT1USDAYNETNJP73064685007_FRTPIP_4_USA-TODAY-NETWORK.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Wawa"
+        ],
+        "sourceUrls": [
+          "https://nydailyrecord.com/2026/07/24/new-jersey-wawa-worker-died-after-being-run-over-driver-loses-appeal/"
+        ],
+        "sourceName": "NY Daily Record",
+        "sources": [
+          "NY Daily Record"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "Appeal",
+        "traffic": 85000,
+        "freshH": 0.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1162,7 +1620,7 @@
       },
       {
         "title": "South Africa's president wins bid to temporarily halt impeachment inquiry over 'Farmgate'",
-        "summary": "South Africa's President Cyril Ramaphosa has won a temporary reprieve from an impeachment inquiry over the \"Farmgate\" scandal, with a court ruling in his favour to halt the parliamentary investigation. The inquiry stems from a 2022 incident where burglars stole large sums of cash hidden in a sofa from Ramaphosa's private farm, which he denies any wrongdoing in. The president will now challenge the findings of an independent panel in a separate court case to be heard in September.",
+        "summary": "A South African court has temporarily blocked an impeachment inquiry into President Cyril Ramaphosa over the \"Farmgate\" scandal. The inquiry was revived after the Constitutional Court ruled in May that parliament had unlawfully shelved a 2022 report suggesting Ramaphosa may have broken the law. The president denies wrongdoing and is separately challenging the panel’s findings in court next month.",
         "hashtag": "SouthAfrica",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1172,7 +1630,7 @@
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/1b0b/live/5f10c1f0-873b-11f1-a10e-a5d4f08bc20c.jpg",
           "https://commons.wikimedia.org/wiki/Special:FilePath/Farmgate%20metro%20station.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
         ],
         "entityShots": [
           {
@@ -1181,12 +1639,12 @@
           },
           {
             "name": "Ramaphosa",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
           }
         ],
         "entityImages": [
           "https://commons.wikimedia.org/wiki/Special:FilePath/Farmgate%20metro%20station.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/21.11.2025%20%E2%80%93%20Presidente%20da%20Rep%C3%BAblica%20da%20%C3%81frica%20do%20Sul%2C%20Cyril%20Ramaphosa%20(54938010569)%20(cropped).jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/1/13/Cyril_Ramaphosa_in_2026.jpg"
         ],
         "entities": [
           "South Africa's",
@@ -1204,7 +1662,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.31,
+        "freshH": 0.97,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1214,7 +1672,7 @@
       },
       {
         "title": "India's 'cockroach' protesters hold talks with government as stalemate continues",
-        "summary": "Thousands of protesters in India are continuing their demands for the resignation of Education Minister Dharmendra Pradhan, following talks with the government that failed to yield a decision on the key issue. The Cockroach Janta Party, a satirical movement turned powerful platform for young people's dissent, has seen its protests gain momentum after a police crackdown left dozens injured. The government has agreed to consider two other demands, including compensation for families of students who died by suicide and the withdrawal of police cases against protesters.",
+        "summary": "Thousands of protesters led by India’s online satirical movement, the Cockroach Janta Party, held talks with the government today after a month-long demand for Education Minister Dharmendra Pradhan’s resignation. The government has asked for a day to decide on the resignation while agreeing to compensate families of students who died by suicide after a medical exam was canceled and to drop police cases against marchers. Another nationwide protest is threatened if the minister does not step down soon.",
         "hashtag": "India",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1241,7 +1699,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.35,
+        "freshH": 2.34,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1251,7 +1709,7 @@
       },
       {
         "title": "US and Iran trade more strikes in Gulf as fears of escalation mount",
-        "summary": "US and Iranian forces have engaged in a new round of airstrikes in the Middle East, with Iran reporting drone strikes on US military facilities and bases across the region, resulting in at least four deaths and five injuries. The escalation comes as Iran condemns the US plan to use frozen Iranian assets to pay for war damages, with Iranian Foreign Minister Abbas Araghchi calling the move an incendiary precedent. The situation remains highly volatile, with reports of further strikes and disruptions to air travel in the region.",
+        "summary": "US and Iran have engaged in a cycle of retaliatory strikes in the Gulf, with Iran carrying out drone attacks on US military facilities and bases across the Middle East, resulting in at least four deaths and five injuries. The escalation comes as the US plans to use frozen Iranian assets to pay for war damages, a move Iran has condemned as an incendiary precedent. Tensions between the two countries continue to rise, with flights suspended at a major Iraqi airport and sirens sounding in Bahrain and Jordan.",
         "hashtag": "US",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1279,295 +1737,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.54,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "politics": [
-      {
-        "title": "Burnham urged to lobby EU leaders directly to waive EES border controls",
-        "summary": "British holidaymakers are expected to face long queues at European borders this weekend, with around 2.2 million people traveling between Friday and Monday. The Liberal Democrats are urging Prime Minister Andy Burnham to lobby EU leaders to suspend the new entry-exit system, citing its malfunctioning state, which has caused delays and missed flights. If resolved, this could alleviate the summer travel chaos for UK citizens.",
-        "hashtag": "Burnham",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls",
-        "imageUrl": "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2b2b0ef6502170f33ddcfd3aa1e752be",
-        "images": [
-          "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2b2b0ef6502170f33ddcfd3aa1e752be",
-          "https://i.guim.co.uk/img/media/028814bd68a4796d9e854133b481c4781c98306e/496_0_4583_3667/master/4583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=dcbdbd479a71b12e86674bf3e215798d",
-          "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Burnham",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg"
-          },
-          {
-            "name": "Lib Dems",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200"
-          },
-          {
-            "name": "Andy Burnham",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/76/Burnham_station_11th_June_2022_03.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Liberal%20Democrat%20Conference%202011.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
-        ],
-        "entities": [
-          "Burnham",
-          "Lib Dems",
-          "Andy Burnham",
-          "About",
-          "British",
-          "Friday"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.14,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Burnham to spend first day working from northern branch of No 10",
-        "summary": "UK Deputy Prime Minister Andy Burnham has begun working from the northern branch of No 10, marking a significant shift in the country's power dynamics. Located in Manchester, the hub will serve as a central meeting point for government ministers from across the UK, with 10 ministers scheduled to meet there on Friday. This move aims to promote regional equality and reduce the need for frequent trips to London.",
-        "hashtag": "Burnham",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/333c/live/1433feb0-873e-11f1-bee8-53ce494e1abc.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Various",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
-          },
-          {
-            "name": "Downing Street",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
-        ],
-        "entities": [
-          "Burnham",
-          "Various",
-          "Downing Street"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.44,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "With Hopes High for New H.I.V. Prevention Pill, Merck Takes Steps to Ensure Access",
-        "summary": "Companies in Africa and India will make generic versions of the pill that could cost as little as $5 per person per year. But access to the drug and other new products in much of Latin America remains uncertain.",
-        "hashtag": "NewH",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24dc-hiv-drug01-photo-hlfv/24dc-hiv-drug01-photo-hlfv-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Hopes High",
-          "Prevention Pill",
-          "Merck Takes Steps",
-          "Ensure Access",
-          "Companies",
-          "Africa"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/24/us/politics/merck-hiv-pill.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.39,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "India’s Paid Music Subscribers Could Hit 30 Million by 2028, EY-IMI Report Finds",
-        "summary": "India's paid music streaming subscriber base is expected to reach between 28 and 30 million by 2028, up from 14 million in December 2025, according to a recent report by EY and the Indian Music Industry. This growth is attributed to the country's large smartphone user base, with 96% of owners consuming music and 80% listening for over an hour daily. The report highlights a significant gap between music and video streaming, with 38% of users paying for music versus 86% for video streaming services.",
-        "hashtag": "PaidMusic",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/imi1.jpg?w=1000&h=563&crop=1",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "India",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown%20Indianapolis.jpg?width=1200"
-        ],
-        "entities": [
-          "India",
-          "Paid Music Subscribers Could",
-          "Million",
-          "EY-IMI Report Finds",
-          "December",
-          "Indian Music Industry"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.08,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Kino Rebelde Boards Locarno Title ‘September Afternoon’ for International Sales (EXCLUSIVE)",
-        "summary": "Kino Rebelde has acquired international sales rights for \"September Afternoon\", a film by writer-director Nicolaas Schmidt, which premiered at the Locarno Film Festival's Cineasti del Presente competition section. The movie follows a couple's desperate attempt to cling to summer, only to face a disaster of a different magnitude. Kino Rebelde's María Vera will now oversee the film's international distribution.",
-        "hashtag": "KinoRebelde",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/global/kino-rebelde-september-afternoon-locarno-1236820183/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/September-Afternoon.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Kino Rebelde Boards Locarno",
-          "Title",
-          "September Afternoon",
-          "International Sales",
-          "EXCLUSIVE",
-          "Kino Rebelde"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/global/kino-rebelde-september-afternoon-locarno-1236820183/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.53,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Edinburgh Industry Program Features Ewan McGregor, Kenneth Branagh and Bruce Dern and an Inaugural U.K. Film Conference",
-        "summary": "The Edinburgh International Film Festival's 2026 industry program has announced a star-studded lineup featuring Ewan McGregor, Kenneth Branagh, and Bruce Dern, among others, to participate in the inaugural UK Film Conference, a five-day event aimed at discussing the state of British independent cinema. The conference will take place in Edinburgh, with over 50 industry professionals and experts in attendance. The event is expected to spark crucial discussions on the future of British film production.",
-        "hashtag": "EdinburghIndustry",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/events/edinburgh-industry-program-ewan-mcgregor-kenneth-branagh-1236820141/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/eiff_branagh_mcgregor_johnanPerssoncredit_JeffVespacredit.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Edinburgh Industry Program Features",
-          "Ewan McGregor",
-          "Kenneth Branagh",
-          "Bruce Dern",
-          "Inaugural",
-          "Film Conference"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/events/edinburgh-industry-program-ewan-mcgregor-kenneth-branagh-1236820141/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.66,
+        "freshH": 3.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1578,19 +1748,189 @@
     ],
     "breaking": [
       {
-        "title": "Tens of thousands evacuated from French tourist spot and near Madrid as wildfires spread",
-        "summary": "Tens of thousands of people have been evacuated from a French tourist spot and near Madrid as wildfires spread, with over 23,000 people forced to leave their homes in the Landes region of France. The fires, fueled by strong winds of up to 31mph and temperatures of 36-37C, have destroyed at least 105 homes and buildings, with no reported casualties overnight. The European Union has dispatched aid to help combat the fires, which are expected to continue raging over the weekend.",
-        "hashtag": "Tens",
+        "title": "US hits dozens of countries with new wave of tariffs",
+        "summary": "The US has imposed new tariffs on 60 trading partners, including the UK, China, and the European Union, with a 10% to 12.5% duty on all goods, accounting for almost all American imports. This move is part of an escalation in the trade war reignited by US President Donald Trump, who claims key economic partners have failed to properly tackle forced labour. The tariffs will take effect immediately, following the expiration of an identical levy on Friday.",
+        "hashtag": "US",
         "badge": "BREAKING",
         "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/78a1/live/d9a08500-875d-11f1-b2ab-0dd01740f9f6.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "US Supreme Court",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+          },
+          {
+            "name": "February",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        ],
+        "entities": [
+          "Imposed",
+          "US Supreme Court",
+          "February"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.18,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "South Korea A.I. Billionaire Ordered to Pay More Than Half a Billion Dollars in ‘Divorce of the Century’",
+        "summary": "A South Korean court awarded $644 million to Roh Soh-yeong, who had sought much more from her ex-husband, Chey Tae-won, the head of the conglomerate behind SK Hynix.",
+        "hashtag": "SouthKorea",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/24/world/asia/korea-chey-tae-won-sk-hynix-divorce.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-skorea-divorce-01-pkht/24int-skorea-divorce-01-pkht-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24int-skorea-divorce-01-pkht/24int-skorea-divorce-01-pkht-mediumSquareAt3X.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "South Korea",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20national%20football%20team%20-%20October%202012.jpg?width=1200"
+        ],
+        "entities": [
+          "South Korea",
+          "Billionaire Ordered",
+          "Pay More Than Half",
+          "Billion Dollars",
+          "Divorce",
+          "Century"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/24/world/asia/korea-chey-tae-won-sk-hynix-divorce.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.6,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Bangladesh’s President Resigns Amid Uncertainty Over Ex-Leader’s Plans",
+        "summary": "President Mohammed Shahabuddin stepped down as speculation swirled over the possible return of his onetime ally Sheikh Hasina, who was ousted as prime minister and fled to India.",
+        "hashtag": "ExLeader",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.nytimes.com/2026/07/24/world/asia/bangladesh-president-resigns.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24int-bangladesh-president-qcgb/24int-bangladesh-president-qcgb-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24int-bangladesh-president-qcgb/24int-bangladesh-president-qcgb-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Bangladesh",
+          "President Resigns Amid Uncertainty",
+          "Ex-Leader",
+          "Plans",
+          "President Mohammed Shahabuddin",
+          "Sheikh Hasina"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/24/world/asia/bangladesh-president-resigns.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.96,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "Tens of thousands evacuated from French tourist spot and near Madrid as wildfires spread",
+        "summary": "Tens of thousands of people are being evacuated from the Cap Ferret peninsula in southwest France and areas near Madrid as wildfires rage across both countries. French authorities have ordered the entire peninsula evacuated, with 10,000 hectares burned, while Spain declares a national emergency as fires worsen near the capital. Firefighters are battling the blazes amid record heat, with officials warning conditions could deteriorate further.",
+        "hashtag": "Tens",
+        "badge": "SCIENCE",
+        "category": "facts",
         "url": "https://www.bbc.co.uk/news/articles/cdx82rl5g0do?at_medium=RSS&at_campaign=rss",
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg"
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1800/cpsprodpb/cb06/live/2f9183e0-8738-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/399f/live/fca52830-8758-11f1-b2ab-0dd01740f9f6.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/d80d/live/15dea7d0-8746-11f1-80f4-b5921bc87065.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1536/cpsprodpb/32ee/live/53e7c3a0-874f-11f1-a7ab-8b30adf0800a.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1600/cpsprodpb/d645/live/f69ffc60-8741-11f1-8c61-e72dd81a46e3.png",
+          "https://ichef.bbci.co.uk/ace/standard/999/cpsprodpb/d0fd/live/266f74f0-8753-11f1-95ec-a30de4e448c4.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/5588/live/8513bb90-8737-11f1-926f-c90d1bcfbc84.png",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Tens",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200"
+          },
+          {
+            "name": "French",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200"
+          },
+          {
+            "name": "Madrid",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Toxic-epidermal-necrolysis.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/JO199411392.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(38624991251).jpg?width=1200"
+        ],
         "entities": [
           "Tens",
           "French",
@@ -1608,7 +1948,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.04,
+        "freshH": 1.02,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1617,46 +1957,73 @@
         "geo": null
       },
       {
-        "title": "Russia and Ukraine Trade Blows With Missiles and Drones",
-        "summary": "Ukrainian strikes set fire to warehouses and other sites in Russia, and Russian bombing rocked Ukraine’s capital, as the two countries escalated a deadly air campaign.",
-        "hashtag": "UkraineTrade",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.nytimes.com/2026/07/24/world/europe/russia-ukraine-war-attacks.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/24-vid-wilberries-top-art-1-25978-cover/24-vid-wilberries-top-art-1-25978-cover-mediumSquareAt3X.jpg",
+        "title": "Hubble Spies One-Sided Spiral",
+        "summary": "NASA’s Hubble Space Telescope has captured NGC 4654, a spiral galaxy 72 million light-years away in the Virgo Cluster, showing one side stripped of gas by ram pressure. The galaxy’s lopsided shape results from its high-speed plunge through the cluster’s hot, thin gas. Astronomers will study the stripped tail to learn how such forces shape galaxies over time.",
+        "hashtag": "HubbleSpies",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/missions/hubble/hubble-spies-one-sided-spiral/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg?w=3984&#038;h=3826&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
         "images": [
-          "https://static01.nyt.com/images/2026/07/24/24-vid-wilberries-top-art-1-25978-cover/24-vid-wilberries-top-art-1-25978-cover-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg?w=3984&#038;h=3826&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+          "https://assets.science.nasa.gov/content/dam/science/missions/hubble/galaxies/spiral/Hubble_NGC4654_potm2607a.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
         ],
-        "entityShots": [
-          {
-            "name": "Russia",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Wikipedia%20Main%20Page%2015.07.2018.png?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Russia",
-          "Ukraine Trade Blows With",
-          "Missiles",
-          "Drones",
-          "Ukrainian",
-          "Russian"
+          "Hubble Spies One-Sided Spiral",
+          "Hubble",
+          "Virgo",
+          "Maiden"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/24/world/europe/russia-ukraine-war-attacks.html"
+          "https://science.nasa.gov/missions/hubble/hubble-spies-one-sided-spiral/"
         ],
-        "sourceName": "The New York Times",
+        "sourceName": "NASA",
         "sources": [
-          "The New York Times"
+          "NASA"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.26,
+        "freshH": 1.68,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Play area aims to interest children in rare habitat",
+        "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's rare chalk streams, with over 80% of the world's chalk streams found in the country. The prolonged hot and dry weather is putting pressure on the wildlife that inhabits these unique waterways. The play zone is designed to encourage children to connect with the environment, potentially inspiring a lifelong interest in conservation.",
+        "hashtag": "Play",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Play"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 7.51,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1667,8 +2034,110 @@
     ],
     "tech": [
       {
+        "title": "Whack-a-drone",
+        "summary": "The US Federal Communications Commission banned foreign-made drones on December 22, 2025, citing national security risks. Investigators found Odyssey Robot’s Pasadena office in California empty, with no equipment or employees, despite claims of drone manufacturing. The ban now faces scrutiny as critics call it ineffective without verified threats.",
+        "hashtag": "Whack",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.theverge.com/report/969725/fcc-drone-ban-odyssey-robot-galiview-etak-randolph-howard-eason",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "images": [
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/FCC_Drone_Ban.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/odyssey-robot-office-18-john-higgins-the-verge.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/galiview-ocusync.png?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/odyssey-robot-us-attestation.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/galiview-website.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/SCR-20260702-ksri.jpeg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_160734.jpg?quality=90&strip=all&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_160900.jpg?quality=90&strip=all&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/20260701_161452.jpg?quality=90&strip=all&w=2400",
+          "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/etak-worldwide-google-maps.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "California",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Caltech%20Entrance.jpg?width=1200"
+        ],
+        "entities": [
+          "Whack-a-drone",
+          "In Pasadena",
+          "California"
+        ],
+        "sourceUrls": [
+          "https://www.theverge.com/report/969725/fcc-drone-ban-odyssey-robot-galiview-etak-randolph-howard-eason"
+        ],
+        "sourceName": "theverge.com",
+        "sources": [
+          "theverge.com"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Why Jimothy the raccoon has become a mega meme online",
+        "summary": "A Seattle raccoon named Jimothy, believed to have short spine syndrome, has gone viral with over eight million views after a video of it climbing steps was shared on Instagram. The meme has sparked both humor and awareness about spine conditions, with some users hoping Jimothy receives care as he ages.",
+        "hashtag": "WhyJimothy",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/cd0xnge2zx7o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0777/live/a337c1b0-875b-11f1-81a1-97eb1bc16692.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Seattle",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Space%20Needle002.jpg?width=1200"
+        ],
+        "entities": [
+          "Jimothy",
+          "Seattle",
+          "Kiana Hall",
+          "Instagram"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cd0xnge2zx7o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.18,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "TikTok’s protection of minors should not be opt-in, warns EU",
-        "summary": "The European Union has warned TikTok that its default settings for minors' accounts are inadequate, allowing their content to be visible to other users and potentially exposing them to harm. The Commission suggests that TikTok should change its settings so that minors' content is only visible to users they have chosen to share it with. If TikTok fails to address these concerns, it could face fines of up to 6 percent of its global annual revenue.",
+        "summary": "The European Commission has warned TikTok it must strengthen protections for minors or face fines up to 6 percent of global revenue under the Digital Services Act. The EU found teens’ public posts can still be recommended to others and private accounts remain easily discoverable through follower lists. TikTok must adjust default settings so under-18 content is only visible to chosen followers by default.",
         "hashtag": "Tiktok",
         "badge": "TECH",
         "category": "tech",
@@ -1682,10 +2151,7 @@
         "entityImages": [],
         "entities": [
           "TikTok",
-          "European Union",
-          "European Commission",
-          "Digital Services Act",
-          "Commission"
+          "European Commission"
         ],
         "sourceUrls": [
           "https://www.theverge.com/tech/970519/tiktok-eu-dsa-child-safety-age-account-privacy"
@@ -1698,7 +2164,146 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.21,
+        "freshH": 1.19,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Angela Rayner rules out rent controls in England",
+        "summary": "Housing Secretary Angela Rayner has ruled out introducing rent controls in England, saying current measures under the Renters' Rights Act are already improving the market. She dismissed calls for rent freezes, pointing to Scotland’s expired temporary controls as evidence they do not lower rents. The government will instead focus on empowering renters through existing legislation.",
+        "hashtag": "AngelaRayner",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/2c7c/live/532338f0-8740-11f1-a10e-a5d4f08bc20c.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Angela Rayner",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg"
+          },
+          {
+            "name": "England",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Official_portrait_of_Angela_Rayner_MP_crop_2%2C_2024.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        ],
+        "entities": [
+          "Angela Rayner",
+          "England",
+          "Renters Rights' Act"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cx2dg54vprno?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.53,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Chancellor joins PM on first day working from No 10 North",
+        "summary": "The UK Prime Minister and Chancellor today opened the new No 10 North office in Manchester, marking a permanent shift in government operations outside London. The hub will host key ministers including Angela Rayner and Yvette Cooper, with plans to expand regional engagement across the UK. The move aims to decentralise decision-making and counter criticism of London-centric governance.",
+        "hashtag": "Chancellor",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5cb6/live/bc5fd0a0-8752-11f1-95ec-a30de4e448c4.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Various",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
+        ],
+        "entities": [
+          "Chancellor",
+          "North",
+          "Various",
+          "Downing Street"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.43,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Burnham urged to lobby EU leaders directly to waive EES border controls",
+        "summary": "Andy Burnham is being urged to lobby EU leaders to suspend the new Entry-Exit System (EES) border controls as 2.2 million British holidaymakers prepare to travel abroad this weekend. The Liberal Democrats’ foreign affairs spokesperson, Calum Miller, called for the system to be paused until at least September, citing extreme delays and missed flights. Miller argued that travelers should not be penalized by a malfunctioning system.",
+        "hashtag": "Burnham",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls",
+        "imageUrl": "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=4db3111a1edcdd5da38e7f09797ad06a",
+        "images": [
+          "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=4db3111a1edcdd5da38e7f09797ad06a",
+          "https://i.guim.co.uk/img/media/4f27b627c549fdacb1c45a69cef3f96d6f47ba13/463_0_3758_3007/master/3758.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=a0d533ade87cabdf22345465b1426066",
+          "https://i.guim.co.uk/img/media/3b365cf94e391f15f3f48566063c3bc373058a0f/0_0_2644_1541/master/2644.jpg?width=445&dpr=1&s=none&crop=none"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Andy Burnham",
+          "EES"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/business/2026/jul/24/burnham-urged-to-lobby-eu-leaders-directly-to-waive-ees-border-controls"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.63,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1709,62 +2314,32 @@
     ],
     "crisis": [
       {
-        "title": "Why are UK fuel prices rising again?",
-        "summary": "UK petrol prices have reached their highest level since mid-June, with the average cost of fuel now exceeding previous records due to the ongoing US-Israel war with Iran. Wholesale oil prices have risen above $100 a barrel, directly impacting the cost of petrol and diesel at the pump, with every $10 increase pushing up prices by roughly 7p a litre. Unless the hostilities end soon, fuel prices are likely to continue rising, affecting drivers' finances.",
-        "hashtag": "Why",
+        "title": "New figures show costs rising for pensioners",
+        "summary": "Pensioners in Jersey are facing rising costs, with heating fuel prices playing a significant role in their inflation measure, contributing to an overall inflation rate of 2.8% in June, up from 2.7% in March. Household services, including a 5.6% price increase, made the largest contribution to inflation, while food prices also rose by 3.5% over the year. The island's inflation rate remains in line with the UK's CPIH measure.",
+        "hashtag": "New",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/cj637z28xnyo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8143/live/f8d0c8b0-7572-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/28b1/live/f482fc20-5375-11f1-b319-63ed6ac90e5f.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/aec3/live/1322d680-5a80-11f1-b682-cf91850925ea.png"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/e236/live/96e8cab0-8753-11f1-95ec-a30de4e448c4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
+        "entityShots": [
+          {
+            "name": "They",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
+          }
         ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8b/They-sous-Montfort%2C_Mairie.jpg"
         ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.11,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Preston Bus still to decide on Burnham's £2 cap",
-        "summary": "Preston Bus is still to decide on joining a new government scheme capping single fares at £2 from January, as it awaits reimbursement details for participating operators. The scheme, backed by £400m, aims to help passengers with the cost of living, particularly in rural areas where single fares can be higher. The bus company will assess the plan once reimbursement arrangements are available, with no decision on participation announced yet.",
-        "hashtag": "PrestonBus",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/cre4wz4np7lo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/628e/live/2e7ae1c0-874e-11f1-97b5-935c9a6ea48f.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
         "entities": [
-          "Preston Bus",
-          "Burnham's",
-          "Andy Burnham's"
+          "They"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cre4wz4np7lo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/news/articles/cj637z28xnyo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1774,7 +2349,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.74,
+        "freshH": 0.36,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1812,7 +2387,169 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.63,
+        "freshH": 0.46,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Why Trump’s Renewed Trade War Could Be Costly",
+        "summary": "Households and businesses were already contending with an affordability crunch. A new round of tariffs could inflict more pain.",
+        "hashtag": "RenewedTrade",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/24/business/dealbook/trump-trade-war-economy.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24db-trump-wqhz/24db-trump-wqhz-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24db-trump-wqhz/24db-trump-wqhz-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Trump",
+          "Renewed Trade War Could",
+          "Be Costly",
+          "Households"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/24/business/dealbook/trump-trade-war-economy.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.62,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Chris Brown pleads guilty to affray over nightclub attack",
+        "summary": "Singer Chris Brown pleaded guilty to affray for a nightclub attack in London’s Mayfair on 19 February 2023. At Southwark Crown Court on Friday, he entered the plea in under five minutes with sentencing set for 26 October 2026. Brown, known for hits like Loyal and Look At Me Now, arrived flanked by security and waved to cheering fans outside court.",
+        "hashtag": "ChrisBrown",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://www.bbc.co.uk/news/articles/c3w01e37v9vo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/528a/live/e6980720-875c-11f1-b8ee-9b3c26ad07bb.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Chris Brown",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Chris%20Brown%20in%20Tampa%2C%202015.jpg?width=1200"
+        ],
+        "entities": [
+          "Chris Brown",
+          "Assault"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c3w01e37v9vo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.19,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Chris Brown Pleads Guilty Over ‘Vicious and Unprovoked’ Attack at U.K. Nightclub",
+        "summary": "Chris Brown and his co-defendant Omololu Akinlolu pleaded guilty to affray for a 2023 attack at London’s Tape nightclub. Brown struck the victim twice with a glass bottle to the head while Akinlolu punched and kicked him as he lay defenseless on the floor. Brown was arrested in May 2025 during a U.K. tour stop and now faces sentencing.",
+        "hashtag": "ChrisBrown",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/music/global/chris-brown-guilty-affray-london-nightclub-1236820242/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/chris-brown.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Chris Brown Pleads Guilty",
+          "Vicious",
+          "Unprovoked",
+          "Attack",
+          "Nightclub",
+          "Chris Brown"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/music/global/chris-brown-guilty-affray-london-nightclub-1236820242/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.07,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "India’s Paid Music Subscribers Could Hit 30 Million by 2028, EY-IMI Report Finds",
+        "summary": "India’s paid music streaming subscribers could nearly double to 30 million by 2028, up from 14 million in December 2025, according to an EY and IMI report released Friday. Despite 96% of smartphone owners listening to music daily, only 38% have ever paid for streaming services. The report highlights YouTube as the top platform for music discovery, while dedicated streaming services remain the preferred choice for structured listening.",
+        "hashtag": "PaidMusic",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/imi1.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/imi1.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Indian Music Industry"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/music/news/india-paid-music-subscribers-30-million-2028-1236820218/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.07,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1823,28 +2560,27 @@
     ],
     "sports": [
       {
-        "title": "Devlin opens up on 'too stressful' Hearts exit for Rangers",
-        "summary": "Rangers midfielder Alex Devlin has opened up on his decision to leave Hearts, citing the stress of the World Cup and contract negotiations as factors in his departure. Devlin, who failed to add to his five Australia caps at the World Cup, has joined Rangers after Hearts announced he would not be signing a new contract. He will now link up with manager John McInnes, who had previously tried to persuade him to stay at Hearts.",
-        "hashtag": "Devlin",
+        "title": "McClenaghan set to qualify for pommel horse final",
+        "summary": "Rhys McClenaghan leads the Commonwealth Games pommel horse qualifying with a top score of 14.500 after a flawless routine. The Olympic champion is set to advance to Monday’s final after topping the standings with two subdivisions completed. McClenaghan, returning after shoulder surgery, aims for his third Games medal following gold in 2018 and silver in 2022.",
+        "hashtag": "Mcclenaghan",
         "badge": "SPORTS",
         "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c80n5mnvkyjo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg",
+        "url": "https://www.bbc.co.uk/sport/gymnastics/articles/cvgje68jqrvo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/134d/live/ed788260-86b0-11f1-8c61-e72dd81a46e3.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/bc4c/live/4d062210-875a-11f1-95ec-a30de4e448c4.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Devlin",
-          "Hearts",
-          "Rangers",
-          "Cammy Devlin",
-          "World Cup"
+          "McClenaghan",
+          "Olympic",
+          "Rhys McClenaghan",
+          "Commonwealth Games"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c80n5mnvkyjo?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/sport/gymnastics/articles/cvgje68jqrvo?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1854,7 +2590,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.86,
+        "freshH": 0.34,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1863,27 +2599,26 @@
         "geo": null
       },
       {
-        "title": "Klopp starts Germany reign by threatening to quit",
-        "summary": "German football coach Jurgen Klopp has begun his tenure by warning the media that he will quit if they invade his family's privacy. He made the threat during his first press conference as Germany's head coach, a position he holds on a four-year deal until the 2030 World Cup. Klopp's appointment was widely expected and he has stated that this is the pinnacle of his coaching career, with no plans to continue after leaving the national team.",
-        "hashtag": "Klopp",
+        "title": "Opetaia sues IBF to return cruiserweight world title",
+        "summary": "Australian boxer Jai Opetaia has initiated a lawsuit in the US District Court for the District of Nevada against the International Boxing Federation, seeking to regain his cruiserweight world title after being stripped of it following a dispute with promotional outfit Zuffa Boxing. The lawsuit claims rival governing bodies, including the World Boxing Council, have conspired to prevent Opetaia from competing, citing instances where they threatened to strip other champions if they faced him. Opetaia is also seeking damages and legal costs, as well as a court order to prevent the IBF from naming another cruiserweight champion while the litigation continues.",
+        "hashtag": "Opetaia",
         "badge": "SPORTS",
         "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
+        "url": "https://www.bbc.co.uk/sport/boxing/articles/cdx82vdn5lno?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6a61/live/077e1fd0-8747-11f1-80f4-b5921bc87065.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/3f19/live/5d7bcc40-874a-11f1-97b5-935c9a6ea48f.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Klopp",
-          "Germany",
-          "Jurgen Klopp",
-          "Germany's"
+          "Opetaia",
+          "Boxer Jai Opetaia",
+          "United States"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cqjxd0n4gd2o?at_medium=RSS&at_campaign=rss"
+          "https://www.bbc.co.uk/sport/boxing/articles/cdx82vdn5lno?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -1893,7 +2628,45 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.21,
+        "freshH": 0.94,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "GB Paralympian Schrager given two-year ban after failed drug test",
+        "summary": "British Paralympic silver medallist Daphne Schrager has been handed a two-year doping ban backdated to June 2025 after testing positive for the muscle-building substance Ligandrol. The 25-year-old, who won silver at Paris 2024, argued environmental contamination but the tribunal rejected her claim. She remains eligible for the 2028 Paralympics but has been omitted from England’s Commonwealth Games squad in Glasgow.",
+        "hashtag": "GBParalympian",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/cycling/articles/cp30y17l074o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6085/live/cb3a23e0-874e-11f1-95ec-a30de4e448c4.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "GB Paralympian Schrager",
+          "Paralympic",
+          "Daphne Schrager"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/cycling/articles/cp30y17l074o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.55,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1905,7 +2678,7 @@
     "health": [
       {
         "title": "I spent years trying to get smaller. Until I decided to get bigger",
-        "summary": "A woman's decision to get married triggered a body-loathing spiral, prompting her to start tracking her weight and calories, and restricting her food intake, with some days resulting in binge eating. She had previously avoided weighing herself for years but began daily weigh-ins after her proposal. Her wedding planning process led to a relapse of unhealthy eating habits she had not experienced since her teenage years.",
+        "summary": "A woman’s wedding planning triggered a body-loathing spiral, leading to obsessive weighing, calorie counting and binge eating. She lost years of progress after years of casual weightlifting when she tried to shrink for her big day.",
         "hashtag": "UntilI",
         "badge": "HEALTH",
         "category": "health",
@@ -1915,8 +2688,7 @@
           "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ca35b87832da396d8d8890a323eb1d09",
           "https://i.guim.co.uk/img/media/0ad2250a76eb20df950eb719d4b42db62a5ca9aa/51_0_2844_2274/master/2844.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=2480a0a3fcf2f8c3861e061e218fc6f0",
           "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
         ],
         "entityShots": [
           {
@@ -1925,17 +2697,12 @@
           },
           {
             "name": "Bulking",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg"
-          },
-          {
-            "name": "First",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
           }
         ],
         "entityImages": [
           "https://commons.wikimedia.org/wiki/Special:FilePath/Untilone.jpg?width=1200",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Christchurch%2C_Bulkington_-_geograph.org.uk_-_1437480.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/VLA%204893505508.jpg?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%2C%20Bulkington%20-%20geograph.org.uk%20-%201437480.jpg?width=1200"
         ],
         "entities": [
           "Until",
@@ -1954,7 +2721,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.87,
+        "freshH": 3.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1964,7 +2731,7 @@
       },
       {
         "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
-        "summary": "A devastating 73% decline in funding for youth services in England over the past 12 years has left nearly 1 million 16- to 24-year-olds without work, education, or training, with many young people in coastal towns feeling isolated and despondent due to a lack of opportunities. This stark reality was witnessed firsthand by a team reporting on the lives of young people in coastal communities across England and Wales. The situation has been exacerbated by decades of negative media portrayals of these young people and their towns.",
+        "summary": "Young people in coastal towns across England and Wales face severe challenges, with youth service funding down 73% in 12 years and nearly a million aged 16 to 24 not in work, education or training. A year-long Guardian project reveals widespread isolation and despair among young residents in 17 towns. The series highlights how decades of neglect have left communities struggling to provide opportunities.",
         "hashtag": "One",
         "badge": "HEALTH",
         "category": "health",
@@ -1999,7 +2766,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.87,
+        "freshH": 6.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2009,7 +2776,7 @@
       },
       {
         "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-        "summary": "A US study has found that replacing gas stoves with electric ones can significantly improve asthma symptoms, with a 70% drop in hospital admissions and days off from work or school among participants. The study, which began in December 2024 in Ohio, involved 72 households and found benefits comparable to those reported in clinical trials of commonly used asthma medications. Further research is needed to confirm these findings, but the results suggest a simple and cost-effective solution to alleviate asthma symptoms.",
+        "summary": "A US study found replacing gas stoves with electric models cut hospital admissions and missed school or work days by 70% for people with poorly controlled asthma. The project in Cleveland, Ohio, involved 1,200 participants but was halted early due to funding cuts, leaving over 1,100 households without the intervention. Even in the reduced study of 72 homes, the improvements matched or exceeded those from common asthma medications.",
         "hashtag": "Replacing",
         "badge": "HEALTH",
         "category": "health",
@@ -2022,12 +2789,8 @@
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Replacing",
-          "Team",
-          "Ohio",
-          "Trump",
           "MetroHealth",
-          "December"
+          "gas stove"
         ],
         "sourceUrls": [
           "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
@@ -2040,96 +2803,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.87,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "facts": [
-      {
-        "title": "Rare night heron spotted at National Trust site",
-        "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a first for the UK, raising hopes that conservation efforts to restore freshwater habitats will provide a refuge for the bird and other wildlife. The estate's new habitats have also attracted water voles, otters, pine martens, and white-tailed eagles, highlighting the importance of wetland renewal. Conservationists believe this project will improve water quality, reduce flood risk, and create more resilient landscapes for future generations.",
-        "hashtag": "NationalTrust",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Africa",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg?width=1200"
-        ],
-        "entities": [
-          "Rare",
-          "National Trust",
-          "Africa",
-          "Asia",
-          "Americas",
-          "Europe"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 6.57,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Play area aims to interest children in rare habitat",
-        "summary": "England's unique chalk streams, home to over 80% of the world's remaining habitats, are facing pressure from prolonged hot and dry weather, threatening the wildlife that inhabits them. A new play area at Winchester Science Centre in Hampshire aims to educate children about the importance of these rare waterways, teaching them about the impact of water flow, temperature, and oxygen on the environment. The centre's exhibit is part of a broader effort to protect these habitats, with the Berkshire, Buckinghamshire & Oxfordshire Wildlife Trust supporting a new group in Westminster to safeguard England's chalk streams.",
-        "hashtag": "Play",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Play"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 6.53,
+        "freshH": 7.86,
         "score": null,
         "popularity": null,
         "recency": null,
