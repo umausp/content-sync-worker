@@ -1,128 +1,148 @@
 {
-  "generatedAt": "2026-07-24T05:51:21.714Z",
+  "generatedAt": "2026-07-24T06:51:43.147Z",
   "region": "usa",
-  "count": 27,
+  "count": 30,
   "categoryCounts": {
-    "offbeat": 6,
+    "offbeat": 7,
+    "breaking": 3,
     "sports": 3,
-    "facts": 3,
-    "crisis": 3,
     "health": 3,
     "politics": 3,
-    "breaking": 2,
-    "tech": 3,
-    "entertainment": 1
+    "crisis": 3,
+    "facts": 3,
+    "entertainment": 2,
+    "tech": 3
   },
   "stories": [
     {
-      "title": "YG And The Game Deliver Epic West Coast Verzuz Battle",
-      "summary": "YG and The Game held a historic West Coast Verzuz battle on July 23, streaming live on Apple Music and YouTube. The Compton rappers celebrated their city’s hip-hop legacy with a night of iconic performances. Earlier that morning, authorities briefly detained YG during a search warrant at his Burbank building unrelated to the Drakeo the Ruler case.",
-      "hashtag": "Verzuz",
+      "title": "Charli xcx's Music, Fashion, Film is not a continuation of Brat, but a counterweight",
+      "summary": "Charli xcx’s new album Music, Fashion, Film marks a bold shift from her 2024 hit Brat, blending rock and hyperpop with 11 genre-defying tracks. The project, co-produced with A.G. Cook and Finn Keane, challenges listeners with raw artistry and playful irony. Critics call it a counterweight to her earlier work, expanding her creative vision beyond club anthems.",
+      "hashtag": "Charli",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
-      "imageUrl": "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg",
+      "url": "https://www.hotpress.com/music/charli-xcx-music-fashion-film-brat-23153718",
+      "imageUrl": "https://img.resized.co/hotpress/eyJkYXRhIjoie1widXJsXCI6XCJodHRwczpcXFwvXFxcL21lZGlhLmhvdHByZXNzLmNvbVxcXC91cGxvYWRzXFxcLzIwMjZcXFwvMDdcXFwvMjMxNjM2NTdcXFwvQ0hBUkxJLVhDWC1QUkVTUy1TSE9ULTIwMjYtZTE3ODQ4MjEwMzcyODYuanBnXCIsXCJ3aWR0aFwiOjY0NyxcImhlaWdodFwiOjM0MCxcImRlZmF1bHRcIjpcImh0dHBzOlxcXC9cXFwvd3d3LmhvdHByZXNzLmNvbVxcXC9pXFxcL25vLWltYWdlLnBuZz92PTlcIixcIm9wdGlvbnNcIjpbXX0iLCJoYXNoIjoiNzIwN2JhOWI4MmZlYzcwNDRhNmU4NzI4MTIwNjg3NWM4OTNjNjFlMiJ9/charli-xcx-press-shot-2026-e1784821037286.jpg",
       "images": [
-        "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg",
-        "https://urbanhollywood411.com/wp-content/uploads/2020/01/YG.jpg",
-        "https://urbanhollywood411.com/wp-content/uploads/2021/12/Drakeo-the-Ruler.jpg"
+        "https://img.resized.co/hotpress/eyJkYXRhIjoie1widXJsXCI6XCJodHRwczpcXFwvXFxcL21lZGlhLmhvdHByZXNzLmNvbVxcXC91cGxvYWRzXFxcLzIwMjZcXFwvMDdcXFwvMjMxNjM2NTdcXFwvQ0hBUkxJLVhDWC1QUkVTUy1TSE9ULTIwMjYtZTE3ODQ4MjEwMzcyODYuanBnXCIsXCJ3aWR0aFwiOjY0NyxcImhlaWdodFwiOjM0MCxcImRlZmF1bHRcIjpcImh0dHBzOlxcXC9cXFwvd3d3LmhvdHByZXNzLmNvbVxcXC9pXFxcL25vLWltYWdlLnBuZz92PTlcIixcIm9wdGlvbnNcIjpbXX0iLCJoYXNoIjoiNzIwN2JhOWI4MmZlYzcwNDRhNmU4NzI4MTIwNjg3NWM4OTNjNjFlMiJ9/charli-xcx-press-shot-2026-e1784821037286.jpg",
+        "https://www.fbcnews.com.fj/wp-content/uploads/2026/07/charlie3.jpg",
+        "https://static.independent.co.uk/2026/07/23/15/16/Charli-xcx-Rock-Music-[Credit-Tyrell-Hampton].jpg?trim=284,396,721,1113&width=1200&height=800&crop=1200:800"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "The Game",
-        "Verzuz"
+        "Charli xcx"
       ],
       "sourceUrls": [
-        "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
-        "https://urbanhollywood411.com/yg-briefly-detained-drakeo-murder-case/"
+        "https://www.hotpress.com/music/charli-xcx-music-fashion-film-brat-23153718",
+        "https://www.fbcnews.com.fj/entertainment/charli-xcx-remains-one-of-pops-great-contrarians-on-music-fashion-film/",
+        "https://streamlinefeed.co.ke/news/charli-xcx-pivots-to-noir-on-disorienting-music-fashion-film-album"
       ],
-      "sourceName": "Hip Hop Vibe",
+      "sourceName": "Hotpress",
       "sources": [
-        "Hip Hop Vibe",
-        "Urban Hollywood 411"
+        "Hotpress",
+        "FBC News",
+        "streamlinefeed.co.ke"
       ],
-      "corr": 2,
+      "corr": 3,
       "verified": true,
-      "trend": "#Verzuz",
-      "traffic": 99000,
+      "trend": "Charli",
+      "traffic": 94000,
       "freshH": 0.5,
-      "score": 0.71,
-      "popularity": 0.443,
+      "score": 0.74,
+      "popularity": 0.511,
       "recency": 0.944,
-      "relevancy": 0.812,
+      "relevancy": 0.821,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Charli xcx: Music, Fashion, Film review – slippery search into selfhood that hits just as hard as Brat",
-      "summary": "Charli XCX's new album, Music, Fashion, Film, marks a significant departure from her 2024 era-defining record Brat, incorporating a rock sound and exploring themes of selfhood, art, and ego. The album's 11 short, guitar-based songs are a response to the intense scrutiny and cultural phenomenon that Brat spawned, with Charli XCX confronting her post-Brat demons and questioning her public persona. The album's release comes after a two-year hiatus, during which Charli XCX accepted acting roles and married her long-term partner.",
-      "hashtag": "Charli",
+      "title": "Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC character",
+      "summary": "Phoenix Cyclops has been confirmed as the first year one DLC character for MARVEL Tōkon: Fighting Souls, a fighting game from Arc System Works, set to join the game in fall 2026. This version of Cyclops draws inspiration from his Phoenix Five incarnation, sporting a bold new look infused with the fiery cosmic power of the Phoenix Force. He will bring devastating Optic Blasts and the cosmic flames of the Phoenix Force to the game, marking a significant addition to the roster.",
+      "hashtag": "MarvelTokon",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.theguardian.com/music/2026/jul/24/charli-xcx-music-fashion-film-review",
-      "imageUrl": "https://i.guim.co.uk/img/media/26648886ec541c5312f1a46888b150265180fd11/163_0_4859_3888/master/4859.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctcmV2aWV3LTUucG5n&enable=upscale&s=946c6f1717f2fa058552d095e71e6169",
+      "url": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
+      "imageUrl": "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
       "images": [
-        "https://i.guim.co.uk/img/media/26648886ec541c5312f1a46888b150265180fd11/163_0_4859_3888/master/4859.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctcmV2aWV3LTUucG5n&enable=upscale&s=946c6f1717f2fa058552d095e71e6169",
-        "https://static.ffx.io/images/$zoom_0.1809290005141156%2C$multiply_0.7554%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_52/t_crop_custom/q_86%2Cf_auto/31b4d1e2a6508304673ea801ae18b777b45fcc1a",
-        "https://ichef.bbci.co.uk/news/1024/branded_news/b583/live/d382c430-86ae-11f1-8e17-395fea5a1d61.jpg",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/b583/live/d382c430-86ae-11f1-8e17-395fea5a1d61.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/d155/live/fe8226d0-86ae-11f1-8c61-e72dd81a46e3.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/5124/live/4bfc22d0-86af-11f1-bee8-53ce494e1abc.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/7069/live/9b505d10-86af-11f1-926f-c90d1bcfbc84.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/96d8/live/c6547aa0-86af-11f1-8c61-e72dd81a46e3.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/778a/live/f2e3a500-86af-11f1-8c61-e72dd81a46e3.jpg.webp",
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a74c/live/25d41c60-86b0-11f1-926f-c90d1bcfbc84.jpg.webp",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
+        "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
+        "https://blog.playstation.com/tachyon/2026/07/5a1fb2cf2edb1f4b27c14e3d6b2ce31fc6a6dce6-scaled.jpg",
+        "https://blog.playstation.com/tachyon/2026/07/1e2743f95c1228e707cb8b63537025b5728c3543-1.png",
+        "https://kotaku.com/app/uploads/2026/07/tokon.jpg",
+        "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/phoenix-cyclops.png?w=1600&h=900&fit=crop",
+        "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/wolverine_tokon.jpg?q=49&fit=crop&w=825&dpr=2"
       ],
-      "entityShots": [
-        {
-          "name": "Music",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg"
-        },
-        {
-          "name": "Fashion",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Charli",
-        "Music",
-        "Fashion",
-        "Film",
-        "Brat"
+        "Phoenix Cyclops",
+        "MARVEL",
+        "Fighting Souls First Year"
       ],
       "sourceUrls": [
-        "https://www.theguardian.com/music/2026/jul/24/charli-xcx-music-fashion-film-review",
-        "https://www.smh.com.au/culture/music/brat-is-dead-but-her-new-album-proves-charli-xcx-is-forever-20260724-p60i8z.html",
-        "https://www.bbc.com/news/articles/c151zp1p4qyo"
+        "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
+        "https://kotaku.com/marvel-tokon-fighting-souls-opening-movie-song-anime-op-2000718880",
+        "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-announcement/"
       ],
-      "sourceName": "The Guardian",
+      "sourceName": "blog.playstation.com",
       "sources": [
-        "The Guardian",
-        "SMH.com.au",
-        "BBC"
+        "PlayStation.Blog",
+        "Kotaku",
+        "Polygon.com"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "charli xcx",
-      "traffic": 1000,
+      "trend": "marvel tokon open beta",
+      "traffic": 500,
       "freshH": 1,
       "score": 0.653,
-      "popularity": 0.229,
+      "popularity": 0.228,
       "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
+      "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+      "summary": "The Game stunned fans at Thursday’s VERZUZ clash with YG by downing nearly a full bottle of tequila in one gulp during their West Coast hip-hop showdown. The high-energy event aired live on Apple Music and YouTube, celebrating two decades of Compton rap from both artists. Both rappers traded hits and hometown pride in a night that felt more like a celebration than a competition.",
+      "hashtag": "Verzuz",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+      "images": [
+        "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+        "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "The Game",
+        "VERZUZ"
+      ],
+      "sourceUrls": [
+        "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+        "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/"
+      ],
+      "sourceName": "Complex",
+      "sources": [
+        "Complex",
+        "Hip Hop Vibe"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "#Verzuz",
+      "traffic": 99000,
+      "freshH": 2,
+      "score": 0.651,
+      "popularity": 0.443,
+      "recency": 0.794,
+      "relevancy": 0.786,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
       "title": "Brush fire near S Olympia St forces evacuations in south Kennewick",
-      "summary": "A rapidly growing brush fire near South Olympia Street has forced evacuations in south Kennewick, Washington, with the fire spreading to around 20 acres. Level 3 \"Go Now\" evacuation orders have been issued for the Inspiration Heights area, with multiple firefighting agencies on the scene. Firefighters are working to prevent the fire from threatening homes and other buildings, with a Red Flag Warning in effect due to windy conditions and low relative humidity.",
+      "summary": "A brush fire near South Olympia Street in south Kennewick has forced evacuations, with residents in the area of West 50th and South being told to leave immediately. The fire, which broke out on Thursday evening, has spread rapidly and is currently uncontained, with a Level 3 Go Now evacuation order in place. Evacuation shelters have been set up at the South Hills Church parking lot and the Southridge Sports Complex.",
       "hashtag": "KennewickFire",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -130,8 +150,8 @@
       "imageUrl": "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/17/717f511f-5894-55a9-a174-03e5c823cb40/6a62f656802b0.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
       "images": [
         "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/17/717f511f-5894-55a9-a174-03e5c823cb40/6a62f656802b0.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
-        "https://www.hindustantimes.com/ht-img/img/2026/07/24/550x309/download_1784868414352_1784868418374_3b889b0b-2a0c-48ad-8eb6-0846bb67eda7.jpg",
         "https://bloximages.newyork1.vip.townnews.com/applevalleynewsnow.com/content/tncms/assets/v3/editorial/5/4c/54ca7f4e-dd77-46ab-8a9a-591bb43437b6/6a62f3ad34f53.image.png?crop=1184%2C622%2C0%2C2",
+        "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/40/740914fb-e12e-46ee-975e-db97ed4764eb/6a62f3fcac3fe.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
         "https://upload.wikimedia.org/wikipedia/commons/e/ea/George_de_Forest_Brush_cph.3a45964.jpg",
         "https://upload.wikimedia.org/wikipedia/commons/4/4f/2009-04-07_Berlin_Olympiastadion_560.jpg",
         "https://upload.wikimedia.org/wikipedia/commons/7/7a/Kennewick-ColumbiaRiverAerial_%2831695765421%29.jpg"
@@ -162,142 +182,112 @@
       ],
       "sourceUrls": [
         "https://www.nbcrightnow.com/news/brush-fire-near-s-olympia-st-forces-evacuations-in-south-kennewick/video_717f511f-5894-55a9-a174-03e5c823cb40.html",
-        "https://www.hindustantimes.com/world-news/us-news/locust-grove-fire-update-vegetation-blaze-grows-south-of-tri-cities-check-map-as-scary-videos-emerge-101784868421788.html",
-        "https://www.applevalleynewsnow.com/news/level-3-go-now-evacuations-issued-for-locust-grove-fire-in-benton-county/article_a75dd96a-ebcb-4e9d-b0e4-dd2768b28cde.html"
+        "https://www.applevalleynewsnow.com/news/level-3-go-now-evacuations-issued-for-locust-grove-fire-in-benton-county/article_a75dd96a-ebcb-4e9d-b0e4-dd2768b28cde.html",
+        "https://www.nbcrightnow.com/news/kennewick-brush-fire-prompts-evacuation-warning-south-of-w-50th/article_3972db27-6cb0-406a-937b-555734609c49.html"
       ],
       "sourceName": "nbcrightnow.com",
       "sources": [
         "Nonstop Local News",
-        "Hindustan Times",
         "AppleValleyNewsNow.com"
       ],
-      "corr": 3,
+      "corr": 2,
       "verified": true,
       "trend": "kennewick fire",
-      "traffic": 200,
+      "traffic": 500,
       "freshH": 1,
-      "score": 0.652,
-      "popularity": 0.227,
+      "score": 0.619,
+      "popularity": 0.144,
       "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC character",
-      "summary": "Phoenix Cyclops, Marvel’s iconic X-Men leader infused with the Phoenix Force, will be the first Year 1 DLC character for Marvel Tōkon: Fighting Souls, arriving in fall 2026. The fiery update reimagines Scott Summers with devastating Optic Blasts and cosmic abilities, blending his classic combat with Phoenix-powered devastation.",
-      "hashtag": "MarvelTokon",
+      "title": "‘Dungeon Crawler Carl’ TV Series Casts Audiobook Star Jeff Hays as Princess Donut’s Voice",
+      "summary": "A live-action TV series adaptation of Matt Dinniman's best-selling LitRPG novels, \"Dungeon Crawler Carl,\" has cast Jeff Hays as the voice of Princess Donut, a key character in the books. Hays, the narrator and producer of the audiobook versions, will bring the character to life in the Peacock TV series. The show, produced by Seth MacFarlane's Fuzzy Door Productions, is set to premiere on Peacock, following an alien invasion that forces survivors to fight for their lives.",
+      "hashtag": "PrincessDonut",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
-      "imageUrl": "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
+      "url": "https://variety.com/2026/tv/news/dungeon-crawler-carl-tv-series-princess-donut-jeff-hays-1236819828/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Dungeon-Crawler-Carl.jpg?w=1000&h=563&crop=1",
       "images": [
-        "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
-        "https://blog.playstation.com/tachyon/2026/07/5a1fb2cf2edb1f4b27c14e3d6b2ce31fc6a6dce6-scaled.jpg",
-        "https://blog.playstation.com/tachyon/2026/07/1e2743f95c1228e707cb8b63537025b5728c3543-1.png",
-        "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/phoenix-cyclops.png?w=1600&h=900&fit=crop",
-        "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/wolverine_tokon.jpg?q=49&fit=crop&w=825&dpr=2"
+        "https://variety.com/wp-content/uploads/2026/07/Dungeon-Crawler-Carl.jpg?w=1000&h=563&crop=1",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Dungeon Crawler Carl",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
+      ],
       "entities": [
-        "Phoenix Cyclops",
-        "MARVEL Tōkon: Fighting Souls"
+        "Dungeon Crawler Carl",
+        "TV Series Casts Audiobook",
+        "Star Jeff Hays",
+        "Princess Donut",
+        "Voice"
       ],
       "sourceUrls": [
-        "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
-        "https://kotaku.com/marvel-tokon-fighting-souls-opening-movie-song-anime-op-2000718880",
-        "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-announcement/"
+        "https://variety.com/2026/tv/news/dungeon-crawler-carl-tv-series-princess-donut-jeff-hays-1236819828/",
+        "https://www.hollywoodreporter.com/tv/tv-news/dungeon-crawler-carl-peacock-audiobook-narrator-jeff-hays-1236655544/",
+        "https://ew.com/dungeon-crawler-carl-tv-series-cast-revealed-12025009"
       ],
-      "sourceName": "blog.playstation.com",
+      "sourceName": "Variety",
       "sources": [
-        "PlayStation.Blog",
-        "Kotaku",
-        "Polygon.com"
+        "Variety",
+        "The Hollywood Reporter",
+        "Entertainment Weekly"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "marvel tokon open beta",
-      "traffic": 500,
+      "trend": "princess donut dungeon crawler carl",
+      "traffic": 5000,
       "freshH": 1,
-      "score": 0.627,
-      "popularity": 0.228,
+      "score": 0.608,
+      "popularity": 0.241,
       "recency": 0.891,
-      "relevancy": 0.897,
+      "relevancy": 0.8,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Charli xcx, Tyla, Morgan Wallen & More: New Music Friday Guide",
-      "summary": "Charli xcx releases her new album Music, Fashion, Film today, marking her first major post-Brat project. Tyla and Morgan Wallen also drop new music, with Tyla’s second studio album and Wallen’s latest single following his live preview. The lineup dominates playlists this weekend.",
-      "hashtag": "Tyla",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.billboard.com/music/music-news/charli-xcx-tyla-morgan-wallen-new-music-friday-guide-1236300112/",
-      "imageUrl": "https://www.billboard.com/wp-content/uploads/2026/02/Charli-xcx-2025-Photo-Credit-Stolen-Besos-e1770927343476.jpg?w=1024",
+      "title": "US hits dozens of trading partners with new wave of tariffs",
+      "summary": "The US has imposed new tariffs ranging from 10% to 12.5% on imports from 60 trading partners, including the UK, China, the EU, Canada, Japan and India. The duties, covering most American imports, take effect after a temporary global levy expired following a Supreme Court ruling. The move escalates trade tensions amid claims the targeted nations have failed to address forced labour concerns.",
+      "hashtag": "US",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
       "images": [
-        "https://www.billboard.com/wp-content/uploads/2026/02/Charli-xcx-2025-Photo-Credit-Stolen-Besos-e1770927343476.jpg?w=1024",
-        "https://charts-static.billboard.com/img/2012/06/charli-xcx-iuj-344x344.jpg",
-        "https://charts-static.billboard.com/img/2016/08/morgan-wallen-eos-344x344.jpg",
-        "https://charts-static.billboard.com/img/2023/02/tyla-mpz-344x344.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "US Supreme Court",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+        },
+        {
+          "name": "February",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+      ],
       "entities": [
-        "Charli xcx",
-        "Tyla",
-        "Morgan Wallen"
+        "Imposed",
+        "US Supreme Court",
+        "February"
       ],
       "sourceUrls": [
-        "https://www.billboard.com/music/music-news/charli-xcx-tyla-morgan-wallen-new-music-friday-guide-1236300112/"
-      ],
-      "sourceName": "Billboard",
-      "sources": [
-        "Billboard"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "Tyla",
-      "traffic": 96000,
-      "freshH": 0.5,
-      "score": 0.579,
-      "popularity": 0.291,
-      "recency": 0.944,
-      "relevancy": 0.53,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Why Rogers and Palmer will thrive together in Alonso's Chelsea",
-      "summary": "Chelsea's new signing Morgan Rogers is set to reunite with his close friend Cole Palmer, who he has been eager to play with for a while. The two players are expected to thrive together under new manager Xabi Alonso, who will need to find a system that accommodates their similar profiles. With Rogers' versatile skillset and ability to adapt to different roles, Alonso will face a challenge in setting up his side this season.",
-      "hashtag": "WhyRogers",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c4gwpzzgpyko?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2560/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/6d3a/live/2b2559c0-8680-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/standard/1280/cpsprodpb/1520/live/b5e5a250-867f-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/8f56/live/726c6130-867f-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/standard/1536/cpsprodpb/9ddf/live/9c633f60-867d-11f1-b976-0b9c15b0ccfc.png",
-        "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/ce40/live/8c0f8f60-867d-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/standard/1680/cpsprodpb/88a8/live/258572e0-867e-11f1-b60e-a7e0943a9c78.png"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Rogers",
-        "Palmer",
-        "Alonso's Chelsea",
-        "Morgan Rogers",
-        "Cole Palmer",
-        "Xabi Alonso's Chelsea"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c4gwpzzgpyko?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -307,17 +297,289 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.37,
-      "score": 0.515,
+      "freshH": 0.08,
+      "score": 0.501,
       "popularity": 0,
-      "recency": 0.958,
+      "recency": 0.991,
+      "relevancy": 0.615,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "What's working - and what's not - for WSL fans?",
+      "summary": "Attendance at Arsenal Women’s matches soared to an average of 34,000 last season, nearly four times higher than any other WSL club and surpassing eight Premier League teams. A YouGov study in January 2026 found 28.5 million global WSL fans, evenly split by gender with nearly half aged 18-34. Clubs now face the challenge of sustaining growth while improving the supporter experience across the league.",
+      "hashtag": "WSL",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cj0plpe7eq6o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/627/cpsprodpb/0e53/live/10c83e30-5e71-11f1-9bb7-93b44936b5cf.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1008/cpsprodpb/11d0/live/d584ec80-5f40-11f1-ae51-c396b5163a64.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/8193/live/1002fbe0-5f41-11f1-ae51-c396b5163a64.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/3eab/live/1021d910-5f42-11f1-ae51-c396b5163a64.jpg",
+        "https://ichef.bbci.co.uk/ace/standard/761/cpsprodpb/3021/live/bb191d70-600e-11f1-8252-657841956bfc.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "What's",
+        "BBC Sport",
+        "Women's Super League",
+        "England Lionesses"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cj0plpe7eq6o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.11,
+      "score": 0.488,
+      "popularity": 0,
+      "recency": 0.88,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
+      "summary": "Young people in coastal towns across England and Wales face growing isolation and limited opportunities, with youth service funding down 73% in 12 years and nearly a million aged 16–24 not in work, education or training. A Guardian project found decades of neglect and negative stereotypes have left many despondent, with few signs of immediate change.",
+      "hashtag": "One",
+      "badge": "HEALTH",
+      "category": "health",
+      "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
+      "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+      "images": [
+        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+        "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
+        "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "England",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+        },
+        {
+          "name": "Reporting",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+      ],
+      "entities": [
+        "England",
+        "Wales",
+        "Reporting"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.488,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.684,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
+      "summary": "India’s ‘Cockroach’ Janta Party will hold talks with the government on Friday after 26 days of hunger strike by activist Sonam Wangchuk ended last night. Tens of thousands of young protesters across India demand education minister Dharmendra Pradhan’s resignation over exam paper leaks. The government faces mounting pressure after police crackdowns left scores injured and sparked nationwide outrage.",
+      "hashtag": "India",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "India's",
+        "Sonam Wangchuk"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.35,
+      "score": 0.466,
+      "popularity": 0,
+      "recency": 0.96,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘A small snippet’: what pubs make of Burnham’s £100m rates giveaway",
+      "summary": "Prime Minister Andy Burnham has announced a 20% cut in business rates for pubs, clubs and live music venues, costing £100m. The move aims to support struggling high streets amid a trend of closures averaging one per day.",
+      "hashtag": "A",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors",
+      "imageUrl": "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
+      "images": [
+        "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
+        "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c331a24e8b8793ae738eb52693081530",
+        "https://i.guim.co.uk/img/media/287b32d1b4352482ddbe4068035210af532a1463/0_0_6700_4467/master/6700.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://i.guim.co.uk/img/media/4954ef61e0eb83a1e1373641537f8d5630a64fc6/142_173_7637_4302/master/7637.jpg?width=445&dpr=1&s=none&crop=none",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Burnham",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200"
+        },
+        {
+          "name": "Andy Burnham",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+      ],
+      "entities": [
+        "Burnham",
+        "Landlords",
+        "Andy Burnham",
+        "Thursday",
+        "Continue"
+      ],
+      "sourceUrls": [
+        "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors"
+      ],
+      "sourceName": "The Guardian",
+      "sources": [
+        "The Guardian"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.463,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.585,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Socceroos star allegedly tests positive for cocaine after speeding",
+      "summary": "Australia midfielder Cristian Volpato, 22, tested positive for cocaine after police twice stopped him for speeding in Sydney on Thursday night. He was caught driving between 86-94km/h and later 109km/h in a 60km/h zone, leading to a six-month driving ban. The Socceroos star, who played in three World Cup matches, faces further police inquiries.",
+      "hashtag": "Socceroos",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Socceroos",
+        "Socceroos World Cup",
+        "Cristian Volpato",
+        "Sydney"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.45,
+      "score": 0.452,
+      "popularity": 0,
+      "recency": 0.949,
+      "relevancy": 0.479,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Volkswagen profits slump as it flags full-year revenue squeeze ahead of restructuring",
+      "summary": "Volkswagen’s second-quarter profit fell 10% to 3.5 billion euros as the German automaker scrapped its 2026 sales growth forecast, now expecting a 3% revenue decline. The company also announced plans to cut up to 100,000 jobs as part of a sweeping restructuring amid rising costs and fierce competition from Chinese rivals.",
+      "hashtag": "Volkswagen",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.cnbc.com/2026/07/24/volkswagen-earnings-autos-germany.html",
+      "imageUrl": "https://image.cnbcfm.com/api/v1/image/108176236-1753353598783-gettyimages-2215029122-3h4a0105_lswefliq.jpeg?v=1768807038&w=1920&h=1080",
+      "images": [
+        "https://image.cnbcfm.com/api/v1/image/108176236-1753353598783-gettyimages-2215029122-3h4a0105_lswefliq.jpeg?v=1768807038&w=1920&h=1080"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Volkswagen",
+        "German",
+        "Friday"
+      ],
+      "sourceUrls": [
+        "https://www.cnbc.com/2026/07/24/volkswagen-earnings-autos-germany.html"
+      ],
+      "sourceName": "CNBC",
+      "sources": [
+        "CNBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.05,
+      "score": 0.451,
+      "popularity": 0,
+      "recency": 0.994,
+      "relevancy": 0.411,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Rare night heron spotted at National Trust site",
-      "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a species rarely seen in the UK, with conservationists attributing the sighting to the introduction of new freshwater habitats. The estate's efforts to restore wetlands have also provided a refuge for other wildlife, including water voles, otters, pine martens, and white-tailed eagles. This comes as the UK has lost over 97% of its wetlands through drainage and changes in land management.",
+      "summary": "A rare black-crowned night heron, native to Africa, Asia, the Americas and parts of Europe, has been spotted at the National Trust’s Holnicote Estate near Minehead, Somerset. The sighting follows conservation efforts to restore freshwater habitats that now support water voles, otters, pine martens and white-tailed eagles. Conservationists say the UK has lost over 97% of its wetlands, making such habitats vital for wildlife recovery.",
       "hashtag": "NationalTrust",
       "badge": "SCIENCE",
       "category": "facts",
@@ -350,53 +612,59 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.56,
-      "score": 0.483,
+      "freshH": 1.56,
+      "score": 0.447,
       "popularity": 0,
-      "recency": 0.938,
+      "recency": 0.835,
       "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Trump's new global tariff draws rebukes from trade partners over forced-labor justification",
-      "summary": "US President Donald Trump has imposed new global tariffs on 60 economies, covering 99.4% of American imports, citing their failure to ban goods made with forced labor. The tariffs, ranging from 10% to 12.5%, target the US' top trade partners, including those in Australia, Brazil, and other countries that have not enforced such bans. The move replaces a temporary tariff and provides a more durable legal foundation for the administration's trade policy.",
-      "hashtag": "Trump",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.cnbc.com/2026/07/24/trump-global-tariffs-trade-imbalance-forced-labor.html",
-      "imageUrl": "https://image.cnbcfm.com/api/v1/image/108338775-1784749377851-gettyimages-2286590232-AFP_C2WF97T.jpeg?v=1784809906&w=1920&h=1080",
+      "title": "The two days which could make or break Fury-AJ",
+      "summary": "Tyson Fury and Anthony Joshua could face off later this year after both win their warm-up fights. Fury faces Mariusz Wach in Thailand on Friday, while Joshua meets Kristian Prenga in Saudi Arabia the next day. If both prevail, they’ll meet in a long-awaited British boxing showdown.",
+      "hashtag": "FuryAJ",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/boxing/articles/c2k758w1xdzo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
       "images": [
-        "https://image.cnbcfm.com/api/v1/image/108338775-1784749377851-gettyimages-2286590232-AFP_C2WF97T.jpeg?v=1784809906&w=1920&h=1080",
-        "https://image.cnbcfm.com/api/v1/image/108339626-17848622451784862242-47351675671-1080pnbcnews.jpg?v=1784862244&w=750&h=422&vtcrop=y"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
+        "https://ichef.bbci.co.uk/ace/standard/1600/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Trump's"
+        "Fury-AJ",
+        "BBC Sport",
+        "Tyson Fury",
+        "Anthony Joshua",
+        "Friday",
+        "Saturday"
       ],
       "sourceUrls": [
-        "https://www.cnbc.com/2026/07/24/trump-global-tariffs-trade-imbalance-forced-labor.html"
+        "https://www.bbc.co.uk/sport/boxing/articles/c2k758w1xdzo?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "CNBC",
+      "sourceName": "BBC",
       "sources": [
-        "CNBC"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.07,
-      "score": 0.477,
+      "freshH": 0.93,
+      "score": 0.435,
       "popularity": 0,
-      "recency": 0.992,
-      "relevancy": 0.52,
+      "recency": 0.898,
+      "relevancy": 0.482,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Play area aims to interest children in rare habitat",
-      "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's rare chalk streams, with over 80% of the world's chalk streams found in the country. The prolonged hot and dry weather is putting pressure on the wildlife that inhabits these waterways, prompting conservation efforts. The play zone is designed to encourage children to connect with the environment, potentially inspiring future conservationists.",
+      "summary": "In England, a unique play area has been created at the Winchester Science Centre to educate children about the country's rare chalk streams, with over 80% of the world's chalk streams found there. The play zone, themed on the local landscape, aims to foster a connection between children and the environment, which they can carry into adulthood. The centre's exhibit highlights the importance of water flow, temperature, and oxygen for these rare freshwater habitats, and how they can be protected.",
       "hashtag": "Play",
       "badge": "SCIENCE",
       "category": "facts",
@@ -404,18 +672,10 @@
       "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Play",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Play"
       ],
@@ -430,145 +690,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.51,
-      "score": 0.473,
+      "freshH": 1.51,
+      "score": 0.424,
       "popularity": 0,
-      "recency": 0.943,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Vyner braced for eye-opening Wrexham popularity in US",
-      "summary": "Wrexham football club is set to face a massive following in the United States, with three upcoming games expected to attract huge crowds. The Welsh club, owned by Ryan Reynolds and Rob McElhenney, has previously toured America twice, drawing large crowds due to their global profile. Zak Vyner, a Wrexham defender, is anticipating an \"eye-opening\" experience, with fans in the US reportedly ten times more enthusiastic than those in Europe.",
-      "hashtag": "Vyner",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c8endk9yry0o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Vyner",
-        "Wrexham",
-        "Zak Vyner",
-        "Welsh",
-        "United States"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/c8endk9yry0o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.4,
-      "score": 0.464,
-      "popularity": 0,
-      "recency": 0.955,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-      "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of certain asthma medications. The study, which initially aimed to investigate 1,200 households near Cleveland, Ohio, was scaled down to 72 homes after funding was terminated early. As a result, researchers detected a substantial 70% drop in hospital admissions and days off from work or school among participants.",
-      "hashtag": "Replacing",
-      "badge": "HEALTH",
-      "category": "health",
-      "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
-      "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-      "images": [
-        "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-        "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Ohio",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-      ],
-      "entities": [
-        "Replacing",
-        "Team",
-        "Ohio",
-        "Trump",
-        "MetroHealth",
-        "December"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.46,
-      "popularity": 0,
-      "recency": 0.906,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Urgent need for more security after physical attacks and abuse, say MPs’ staff",
-      "summary": "Staff employed by British MPs are demanding enhanced security measures following a surge in physical attacks and threatening communications, with nearly 80% of over 500 surveyed staff members reporting to have received threatening messages. The alarming trend has prompted Prime Minister Andy Burnham to announce a review of MPs' security, amid concerns for staff safety and well-being. The review comes in the wake of a murder investigation into the death of former Conservative minister Ann Widdecombe.",
-      "hashtag": "Urgent",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff",
-      "imageUrl": "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
-      "images": [
-        "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
-        "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=106267e756d4cde2cd164fa61f657365"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Urgent",
-        "Exclusive",
-        "Westminster",
-        "Staff"
-      ],
-      "sourceUrls": [
-        "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff"
-      ],
-      "sourceName": "The Guardian",
-      "sources": [
-        "The Guardian"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.447,
-      "popularity": 0,
-      "recency": 0.906,
+      "recency": 0.84,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "My generation shouldn’t be scared of a care tax – we’re paying one already | Gaby Hinsliff",
-      "summary": "Generation X now faces the dual burden of caring for aging parents while raising their own children, with many juggling full-time jobs and long commutes. A growing care crisis is pushing families to spend financial and emotional resources they can’t afford, prompting calls for political action. Prime Minister Andy Burnham has signaled his intent to address social care funding amid rising public demand.",
+      "summary": "Generation X now faces the dual burden of caring for aging parents while raising their own children, with many struggling to balance full-time work and long-distance caregiving. A new care tax could ease this strain, but experts warn political hesitation risks shifting the financial and emotional toll onto struggling families. The issue is expected to dominate upcoming policy debates as demand for social care rises.",
       "hashtag": "GabyHinsliff",
       "badge": "POLITICS",
       "category": "politics",
@@ -599,53 +731,56 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.447,
+      "freshH": 1.86,
+      "score": 0.412,
       "popularity": 0,
-      "recency": 0.906,
+      "recency": 0.807,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Who am I? Guess Premier League star No 4",
-      "summary": "A new Premier League star is the subject of today’s \"Who am I?\" quiz by BBC Sport. Players must guess the footballer using as few clues as possible, with three correct answers considered a strong score. The challenge continues daily on BBC’s dedicated football quiz pages.",
-      "hashtag": "IGuess",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cx2d52rr559o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png",
+      "title": "Urgent need for more security after physical attacks and abuse, say MPs’ staff",
+      "summary": "MPs’ staff are demanding urgent security upgrades after a survey found 78% received threats and nearly one-third fear for their safety. Prime Minister Andy Burnham will announce a review following the murder of former minister Ann Widdecombe, 75, in South Yorkshire, where Joshua Kerry, 28, has been charged. Staff report rising racist abuse and pressure to ignore safety risks.",
+      "hashtag": "Urgent",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff",
+      "imageUrl": "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png"
+        "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
+        "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=106267e756d4cde2cd164fa61f657365"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Guess Premier League"
+        "Urgent",
+        "Exclusive",
+        "Westminster",
+        "Staff"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/sport/football/articles/cx2d52rr559o?at_medium=RSS&at_campaign=rss"
+        "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff"
       ],
-      "sourceName": "BBC",
+      "sourceName": "The Guardian",
       "sources": [
-        "BBC"
+        "The Guardian"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.29,
-      "score": 0.445,
+      "freshH": 1.86,
+      "score": 0.408,
       "popularity": 0,
-      "recency": 0.967,
-      "relevancy": 0.424,
+      "recency": 0.807,
+      "relevancy": 0.503,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Female veterans support group makes national impact",
-      "summary": "A UK-based support group for female veterans is making a national impact, with members sharing their experiences of post-traumatic stress disorder following deployments to war zones. The group's efforts are being supported by the Ministry of Defence, which has announced increased investment in NHS services for veterans. This move is expected to provide much-needed mental health support to the growing number of female veterans entering the military.",
+      "summary": "Female veterans’ support groups are gaining national traction as former RAF medic Chelley Tulloch reveals how PTSD from multiple war-zone deployments left her desperate for help. Tulloch now coordinates nationwide networks for women veterans, warning that rising female military recruitment will demand more dedicated mental health services. The Ministry of Defence says it is increasing NHS support for veterans.",
       "hashtag": "Female",
       "badge": "HEALTH",
       "category": "health",
@@ -672,89 +807,58 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.98,
-      "score": 0.442,
+      "freshH": 1.99,
+      "score": 0.408,
       "popularity": 0,
-      "recency": 0.893,
+      "recency": 0.795,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "'Evidence lacking' for mental health monitoring tech",
-      "summary": "A UK inquiry into the deaths of over 2,000 mental health patients in Essex has found a lack of strong evidence supporting the use of Oxevision technology, which monitors patients using infrared sensors and cameras. The system, widely used in mental health wards, claims to have helped staff respond to 1,453 safety incidents over four years, but experts from the University of Oxford have questioned its effectiveness, citing methodological flaws in the studies used to justify its introduction. The inquiry's findings raise concerns about the widespread adoption of Oxevision technology in the NHS.",
-      "hashtag": "Evidence",
+      "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
+      "summary": "A US study found replacing gas stoves with electric cut hospital visits and missed school or work by 70% for poorly controlled asthma patients. The project, involving 1,200 Cleveland-area households, was halted early in December 2024 after funding ended. Researchers reported asthma improvements matching or exceeding those from common medications.",
+      "hashtag": "Replacing",
       "badge": "HEALTH",
       "category": "health",
-      "url": "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
+      "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
+      "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg"
+        "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
+        "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Evidence",
-        "Lampard Inquiry",
-        "Oxevision"
+        "Replacing",
+        "Team",
+        "Ohio",
+        "Trump",
+        "MetroHealth",
+        "December"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss"
+        "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
       ],
-      "sourceName": "BBC",
+      "sourceName": "The Guardian",
       "sources": [
-        "BBC"
+        "The Guardian"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.05,
-      "score": 0.44,
+      "freshH": 1.86,
+      "score": 0.403,
       "popularity": 0,
-      "recency": 0.886,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "US imposes tariffs on dozens of trade partners, citing forced labour concerns",
-      "summary": "The US has imposed tariffs ranging from 10% to 12.5% on 60 of its trading partners, accounting for the majority of its imports, over concerns they failed to properly address forced labour. The targeted countries include key economic partners such as the UK, China, the European Union, Canada, Japan, and India. The tariffs came into effect on Friday, marking the latest escalation in the global trade war under US President Donald Trump's leadership.",
-      "hashtag": "US",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.4,
-      "score": 0.428,
-      "popularity": 0,
-      "recency": 0.85,
-      "relevancy": 0.52,
+      "recency": 0.807,
+      "relevancy": 0.481,
       "region": "usa",
       "geo": null
     },
     {
       "title": "A Million-Panel Project",
-      "summary": "Utah’s new Green River Energy Center, a massive solar and battery storage plant, went online in June 2026 with nearly one million panels and 500 batteries. The 400-megawatt solar and 400-megawatt battery facility will power Salt Lake City and surrounding areas. It marks a shift from the region’s historic coal mining industry toward renewable energy.",
+      "summary": "Utah’s new Green River Energy Center, featuring nearly one million solar panels and 500 batteries, went online in June 2026. The 400-megawatt solar and 400-megawatt battery facility, located 130 miles southeast of Salt Lake City, is among the largest in the region. It will supply power to Salt Lake City and other parts of Utah.",
       "hashtag": "AMillion",
       "badge": "SCIENCE",
       "category": "facts",
@@ -781,11 +885,49 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.84,
-      "score": 0.404,
+      "freshH": 2.85,
+      "score": 0.369,
       "popularity": 0,
-      "recency": 0.809,
-      "relevancy": 0.483,
+      "recency": 0.72,
+      "relevancy": 0.467,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
+      "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies themes of strength and feminine triumph. The film captures her voice as the sole focal point, symbolizing power beyond the individual. Critics highlight how her abstract presence turns her music into a universal anthem of resilience.",
+      "hashtag": "PresentReview",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Sia",
+        "Unstoppable",
+        "Titanium"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 3.44,
+      "score": 0.364,
+      "popularity": 0,
+      "recency": 0.672,
+      "relevancy": 0.514,
       "region": "usa",
       "geo": null
     },
@@ -819,10 +961,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.65,
-      "score": 0.397,
+      "freshH": 1.65,
+      "score": 0.361,
       "popularity": 0,
-      "recency": 0.928,
+      "recency": 0.826,
       "relevancy": 0.287,
       "region": "usa",
       "geo": null
@@ -859,52 +1001,47 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.98,
-      "score": 0.386,
+      "freshH": 1.99,
+      "score": 0.352,
       "popularity": 0,
-      "recency": 0.893,
+      "recency": 0.795,
       "relevancy": 0.294,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
-      "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies themes of strength and feminine triumph. The film’s abstract visuals present her as a vessel for a larger force, creating a powerful, otherworldly experience.",
-      "hashtag": "PresentReview",
+      "title": "Gruesome images in D4vd hearing are 'worst nightmare' for teen girl's family",
+      "summary": "A 21-year-old singer, David Anthony Burke, has been accused of murdering 14-year-old Celeste Rivas Hernandez in a gruesome crime that has left her family traumatized. Prosecutors presented graphic crime scene photos in court, showing Celeste's dismembered body, and testified that Burke had ordered online items including a body bag, chainsaws, and a shovel in the days following her death. The hearing is a preliminary step towards a trial, where prosecutors aim to convince the judge that there is sufficient evidence to proceed.",
+      "hashtag": "Gruesome",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
-      "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+      "url": "https://www.bbc.co.uk/news/articles/c4g4lyze30vo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Nostalgic",
-        "Present",
-        "Review",
-        "Concert Performance Film",
-        "It Channels Sia",
-        "Mystery"
+        "Gruesome"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
+        "https://www.bbc.co.uk/news/articles/c4g4lyze30vo?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "Variety",
+      "sourceName": "BBC",
       "sources": [
-        "Variety"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.43,
-      "score": 0.379,
+      "freshH": 4.44,
+      "score": 0.339,
       "popularity": 0,
-      "recency": 0.755,
-      "relevancy": 0.458,
+      "recency": 0.599,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -938,51 +1075,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.79,
-      "score": 0.357,
+      "freshH": 2.8,
+      "score": 0.326,
       "popularity": 0,
-      "recency": 0.813,
+      "recency": 0.724,
       "relevancy": 0.288,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Burnham urged to 'build bridges' with sacked Starmerites",
-      "summary": "Andy Burnham needs to \"build bridges\" with the Starmerite minister he sacked during his reshuffle, Baroness Harriet Harman has told the Electoral Dysfunction podcast.",
-      "hashtag": "Burnham",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311",
-      "imageUrl": "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
-      "images": [
-        "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Burnham",
-        "Starmerites",
-        "Andy Burnham",
-        "Starmerite",
-        "Baroness Harriet Harman",
-        "Electoral Dysfunction"
-      ],
-      "sourceUrls": [
-        "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311"
-      ],
-      "sourceName": "Sky News",
-      "sources": [
-        "Sky News"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.86,
-      "score": 0.356,
-      "popularity": 0,
-      "recency": 0.807,
-      "relevancy": 0.294,
       "region": "usa",
       "geo": null
     },
@@ -1016,17 +1113,57 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.84,
-      "score": 0.351,
+      "freshH": 2.84,
+      "score": 0.32,
       "popularity": 0,
-      "recency": 0.809,
+      "recency": 0.72,
       "relevancy": 0.273,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+      "summary": "Yemen’s Houthi rebels have attacked Red Sea shipping, forcing vessels to reroute and threatening the main Europe-Asia trade lane. US Central Command has carried out 13 straight nights of strikes on Iranian targets in response to the escalation. Gulf Arab states now face heightened security risks amid rising regional tensions.",
+      "hashtag": "MiddleEast",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Houthi",
+        "Middle East",
+        "Iran-backed",
+        "Yemen",
+        "Saudi"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 4.87,
+      "score": 0.316,
+      "popularity": 0,
+      "recency": 0.57,
+      "relevancy": 0.465,
+      "region": "usa",
+      "geo": null
+    },
+    {
       "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-      "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while adoptive parents in Singapore are left uncertain about the fate of the children, with many awaiting a decision on whether the babies will be allowed to remain in their care. The Indonesian government is expected to work with Singaporean authorities to determine the next steps for the affected children.",
+      "summary": "Indonesian babies trafficked to Singapore are now at the center of a legal and humanitarian debate after a court convicted 19 people for selling at least 34 infants, with 12 sent to Singapore. Adoptive parents in Singapore face uncertainty over whether the children will remain with them or return to Indonesia as authorities in both countries deliberate on next steps.",
       "hashtag": "Indonesian",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -1056,17 +1193,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.52,
-      "score": 0.32,
+      "freshH": 7.53,
+      "score": 0.296,
       "popularity": 0,
-      "recency": 0.471,
-      "relevancy": 0.62,
+      "recency": 0.419,
+      "relevancy": 0.597,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Google fined €890m by EU for favouring its own apps over rivals",
-      "summary": "Google has been fined €890 million by the European Union for allegedly favouring its own apps over rivals, marking the first major action under the EU’s Digital Markets Act. The fine follows two breaches where Google’s practices were found to limit consumer choice and give its services an unfair advantage. Google disputes the decision, warning it could harm services used by millions in Europe.",
+      "summary": "Google has been fined €890 million by the European Union for unfairly favouring its own apps over rivals, the first major penalty under the bloc’s new Digital Markets Act. The EU ruled Google’s practices restricted consumer choice and gave its services an unfair advantage, while Google warned the decision could harm services used by millions. The fine combines two separate breaches of the DMA, with the larger penalty imposed after Google was found to have promoted its own services in search results.",
       "hashtag": "Google",
       "badge": "TECH",
       "category": "tech",
@@ -1079,8 +1216,7 @@
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Google",
-        "EU's"
+        "Google"
       ],
       "sourceUrls": [
         "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
@@ -1093,11 +1229,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.69,
-      "score": 0.291,
+      "freshH": 7.69,
+      "score": 0.274,
       "popularity": 0,
-      "recency": 0.462,
-      "relevancy": 0.517,
+      "recency": 0.411,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -1110,10 +1246,18 @@
       "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Deal",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+      ],
       "entities": [
         "Judge Extends Pause",
         "Paramount-Warner Bros",
@@ -1131,11 +1275,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.95,
-      "score": 0.264,
+      "freshH": 5.95,
+      "score": 0.255,
       "popularity": 0,
-      "recency": 0.565,
-      "relevancy": 0.268,
+      "recency": 0.503,
+      "relevancy": 0.318,
       "region": "usa",
       "geo": null
     }
@@ -1143,37 +1287,38 @@
   "categories": {
     "offbeat": [
       {
-        "title": "YG And The Game Deliver Epic West Coast Verzuz Battle",
-        "summary": "YG and The Game held a historic West Coast Verzuz battle on July 23, streaming live on Apple Music and YouTube. The Compton rappers celebrated their city’s hip-hop legacy with a night of iconic performances. Earlier that morning, authorities briefly detained YG during a search warrant at his Burbank building unrelated to the Drakeo the Ruler case.",
-        "hashtag": "Verzuz",
+        "title": "Charli xcx's Music, Fashion, Film is not a continuation of Brat, but a counterweight",
+        "summary": "Charli xcx’s new album Music, Fashion, Film marks a bold shift from her 2024 hit Brat, blending rock and hyperpop with 11 genre-defying tracks. The project, co-produced with A.G. Cook and Finn Keane, challenges listeners with raw artistry and playful irony. Critics call it a counterweight to her earlier work, expanding her creative vision beyond club anthems.",
+        "hashtag": "Charli",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
-        "imageUrl": "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg",
+        "url": "https://www.hotpress.com/music/charli-xcx-music-fashion-film-brat-23153718",
+        "imageUrl": "https://img.resized.co/hotpress/eyJkYXRhIjoie1widXJsXCI6XCJodHRwczpcXFwvXFxcL21lZGlhLmhvdHByZXNzLmNvbVxcXC91cGxvYWRzXFxcLzIwMjZcXFwvMDdcXFwvMjMxNjM2NTdcXFwvQ0hBUkxJLVhDWC1QUkVTUy1TSE9ULTIwMjYtZTE3ODQ4MjEwMzcyODYuanBnXCIsXCJ3aWR0aFwiOjY0NyxcImhlaWdodFwiOjM0MCxcImRlZmF1bHRcIjpcImh0dHBzOlxcXC9cXFwvd3d3LmhvdHByZXNzLmNvbVxcXC9pXFxcL25vLWltYWdlLnBuZz92PTlcIixcIm9wdGlvbnNcIjpbXX0iLCJoYXNoIjoiNzIwN2JhOWI4MmZlYzcwNDRhNmU4NzI4MTIwNjg3NWM4OTNjNjFlMiJ9/charli-xcx-press-shot-2026-e1784821037286.jpg",
         "images": [
-          "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg",
-          "https://urbanhollywood411.com/wp-content/uploads/2020/01/YG.jpg",
-          "https://urbanhollywood411.com/wp-content/uploads/2021/12/Drakeo-the-Ruler.jpg"
+          "https://img.resized.co/hotpress/eyJkYXRhIjoie1widXJsXCI6XCJodHRwczpcXFwvXFxcL21lZGlhLmhvdHByZXNzLmNvbVxcXC91cGxvYWRzXFxcLzIwMjZcXFwvMDdcXFwvMjMxNjM2NTdcXFwvQ0hBUkxJLVhDWC1QUkVTUy1TSE9ULTIwMjYtZTE3ODQ4MjEwMzcyODYuanBnXCIsXCJ3aWR0aFwiOjY0NyxcImhlaWdodFwiOjM0MCxcImRlZmF1bHRcIjpcImh0dHBzOlxcXC9cXFwvd3d3LmhvdHByZXNzLmNvbVxcXC9pXFxcL25vLWltYWdlLnBuZz92PTlcIixcIm9wdGlvbnNcIjpbXX0iLCJoYXNoIjoiNzIwN2JhOWI4MmZlYzcwNDRhNmU4NzI4MTIwNjg3NWM4OTNjNjFlMiJ9/charli-xcx-press-shot-2026-e1784821037286.jpg",
+          "https://www.fbcnews.com.fj/wp-content/uploads/2026/07/charlie3.jpg",
+          "https://static.independent.co.uk/2026/07/23/15/16/Charli-xcx-Rock-Music-[Credit-Tyrell-Hampton].jpg?trim=284,396,721,1113&width=1200&height=800&crop=1200:800"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "The Game",
-          "Verzuz"
+          "Charli xcx"
         ],
         "sourceUrls": [
-          "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/",
-          "https://urbanhollywood411.com/yg-briefly-detained-drakeo-murder-case/"
+          "https://www.hotpress.com/music/charli-xcx-music-fashion-film-brat-23153718",
+          "https://www.fbcnews.com.fj/entertainment/charli-xcx-remains-one-of-pops-great-contrarians-on-music-fashion-film/",
+          "https://streamlinefeed.co.ke/news/charli-xcx-pivots-to-noir-on-disorienting-music-fashion-film-album"
         ],
-        "sourceName": "Hip Hop Vibe",
+        "sourceName": "Hotpress",
         "sources": [
-          "Hip Hop Vibe",
-          "Urban Hollywood 411"
+          "Hotpress",
+          "FBC News",
+          "streamlinefeed.co.ke"
         ],
-        "corr": 2,
+        "corr": 3,
         "verified": true,
-        "trend": "#Verzuz",
-        "traffic": 99000,
+        "trend": "Charli",
+        "traffic": 94000,
         "freshH": 0.5,
         "score": null,
         "popularity": null,
@@ -1183,63 +1328,43 @@
         "geo": "US"
       },
       {
-        "title": "Charli xcx: Music, Fashion, Film review – slippery search into selfhood that hits just as hard as Brat",
-        "summary": "Charli XCX's new album, Music, Fashion, Film, marks a significant departure from her 2024 era-defining record Brat, incorporating a rock sound and exploring themes of selfhood, art, and ego. The album's 11 short, guitar-based songs are a response to the intense scrutiny and cultural phenomenon that Brat spawned, with Charli XCX confronting her post-Brat demons and questioning her public persona. The album's release comes after a two-year hiatus, during which Charli XCX accepted acting roles and married her long-term partner.",
-        "hashtag": "Charli",
+        "title": "Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC character",
+        "summary": "Phoenix Cyclops has been confirmed as the first year one DLC character for MARVEL Tōkon: Fighting Souls, a fighting game from Arc System Works, set to join the game in fall 2026. This version of Cyclops draws inspiration from his Phoenix Five incarnation, sporting a bold new look infused with the fiery cosmic power of the Phoenix Force. He will bring devastating Optic Blasts and the cosmic flames of the Phoenix Force to the game, marking a significant addition to the roster.",
+        "hashtag": "MarvelTokon",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.theguardian.com/music/2026/jul/24/charli-xcx-music-fashion-film-review",
-        "imageUrl": "https://i.guim.co.uk/img/media/26648886ec541c5312f1a46888b150265180fd11/163_0_4859_3888/master/4859.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctcmV2aWV3LTUucG5n&enable=upscale&s=946c6f1717f2fa058552d095e71e6169",
+        "url": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
+        "imageUrl": "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
         "images": [
-          "https://i.guim.co.uk/img/media/26648886ec541c5312f1a46888b150265180fd11/163_0_4859_3888/master/4859.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctcmV2aWV3LTUucG5n&enable=upscale&s=946c6f1717f2fa058552d095e71e6169",
-          "https://static.ffx.io/images/$zoom_0.1809290005141156%2C$multiply_0.7554%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_52/t_crop_custom/q_86%2Cf_auto/31b4d1e2a6508304673ea801ae18b777b45fcc1a",
-          "https://ichef.bbci.co.uk/news/1024/branded_news/b583/live/d382c430-86ae-11f1-8e17-395fea5a1d61.jpg",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/b583/live/d382c430-86ae-11f1-8e17-395fea5a1d61.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/d155/live/fe8226d0-86ae-11f1-8c61-e72dd81a46e3.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/5124/live/4bfc22d0-86af-11f1-bee8-53ce494e1abc.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/7069/live/9b505d10-86af-11f1-926f-c90d1bcfbc84.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/96d8/live/c6547aa0-86af-11f1-8c61-e72dd81a46e3.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/778a/live/f2e3a500-86af-11f1-8c61-e72dd81a46e3.jpg.webp",
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/a74c/live/25d41c60-86b0-11f1-926f-c90d1bcfbc84.jpg.webp",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
+          "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
+          "https://blog.playstation.com/tachyon/2026/07/5a1fb2cf2edb1f4b27c14e3d6b2ce31fc6a6dce6-scaled.jpg",
+          "https://blog.playstation.com/tachyon/2026/07/1e2743f95c1228e707cb8b63537025b5728c3543-1.png",
+          "https://kotaku.com/app/uploads/2026/07/tokon.jpg",
+          "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/phoenix-cyclops.png?w=1600&h=900&fit=crop",
+          "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/wolverine_tokon.jpg?q=49&fit=crop&w=825&dpr=2"
         ],
-        "entityShots": [
-          {
-            "name": "Music",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg"
-          },
-          {
-            "name": "Fashion",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Sounds_of_Earth_-_GPN-2000-001976.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a6/Carolina_Herrera_AW14_12.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Charli",
-          "Music",
-          "Fashion",
-          "Film",
-          "Brat"
+          "Phoenix Cyclops",
+          "MARVEL",
+          "Fighting Souls First Year"
         ],
         "sourceUrls": [
-          "https://www.theguardian.com/music/2026/jul/24/charli-xcx-music-fashion-film-review",
-          "https://www.smh.com.au/culture/music/brat-is-dead-but-her-new-album-proves-charli-xcx-is-forever-20260724-p60i8z.html",
-          "https://www.bbc.com/news/articles/c151zp1p4qyo"
+          "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
+          "https://kotaku.com/marvel-tokon-fighting-souls-opening-movie-song-anime-op-2000718880",
+          "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-announcement/"
         ],
-        "sourceName": "The Guardian",
+        "sourceName": "blog.playstation.com",
         "sources": [
-          "The Guardian",
-          "SMH.com.au",
-          "BBC"
+          "PlayStation.Blog",
+          "Kotaku",
+          "Polygon.com"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "charli xcx",
-        "traffic": 1000,
+        "trend": "marvel tokon open beta",
+        "traffic": 500,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1249,8 +1374,47 @@
         "geo": "US"
       },
       {
+        "title": "The Game Takes a Bottle to the Head at 'VERZUZ' With YG",
+        "summary": "The Game stunned fans at Thursday’s VERZUZ clash with YG by downing nearly a full bottle of tequila in one gulp during their West Coast hip-hop showdown. The high-energy event aired live on Apple Music and YouTube, celebrating two decades of Compton rap from both artists. Both rappers traded hits and hometown pride in a night that felt more like a celebration than a competition.",
+        "hashtag": "Verzuz",
+        "badge": "VIRAL",
+        "category": "offbeat",
+        "url": "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+        "images": [
+          "https://images.complex.com/complex/image/upload/c_crop,h_3950,w_5921,x_0,y_0/g_auto:aoi_2369_1580_1184_790,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2FGettyImages-2206579458_vae5zg",
+          "https://hip-hopvibe.com/wp-content/uploads/2026/07/the-game-yg-verzuz-1.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "The Game",
+          "VERZUZ"
+        ],
+        "sourceUrls": [
+          "https://www.complex.com/music/a/shawn-setaro/the-game-bottle-to-the-head-verzuz-yg",
+          "https://hip-hopvibe.com/news/yg-and-the-game-headline-iconic-west-coast-verzuz/"
+        ],
+        "sourceName": "Complex",
+        "sources": [
+          "Complex",
+          "Hip Hop Vibe"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "#Verzuz",
+        "traffic": 99000,
+        "freshH": 2,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
         "title": "Brush fire near S Olympia St forces evacuations in south Kennewick",
-        "summary": "A rapidly growing brush fire near South Olympia Street has forced evacuations in south Kennewick, Washington, with the fire spreading to around 20 acres. Level 3 \"Go Now\" evacuation orders have been issued for the Inspiration Heights area, with multiple firefighting agencies on the scene. Firefighters are working to prevent the fire from threatening homes and other buildings, with a Red Flag Warning in effect due to windy conditions and low relative humidity.",
+        "summary": "A brush fire near South Olympia Street in south Kennewick has forced evacuations, with residents in the area of West 50th and South being told to leave immediately. The fire, which broke out on Thursday evening, has spread rapidly and is currently uncontained, with a Level 3 Go Now evacuation order in place. Evacuation shelters have been set up at the South Hills Church parking lot and the Southridge Sports Complex.",
         "hashtag": "KennewickFire",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1258,8 +1422,8 @@
         "imageUrl": "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/17/717f511f-5894-55a9-a174-03e5c823cb40/6a62f656802b0.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
         "images": [
           "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/17/717f511f-5894-55a9-a174-03e5c823cb40/6a62f656802b0.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
-          "https://www.hindustantimes.com/ht-img/img/2026/07/24/550x309/download_1784868414352_1784868418374_3b889b0b-2a0c-48ad-8eb6-0846bb67eda7.jpg",
           "https://bloximages.newyork1.vip.townnews.com/applevalleynewsnow.com/content/tncms/assets/v3/editorial/5/4c/54ca7f4e-dd77-46ab-8a9a-591bb43437b6/6a62f3ad34f53.image.png?crop=1184%2C622%2C0%2C2",
+          "https://bloximages.newyork1.vip.townnews.com/nbcrightnow.com/content/tncms/assets/v3/editorial/7/40/740914fb-e12e-46ee-975e-db97ed4764eb/6a62f3fcac3fe.image.jpg?crop=1779%2C934%2C110%2C0&resize=1200%2C630&order=crop%2Cresize",
           "https://upload.wikimedia.org/wikipedia/commons/e/ea/George_de_Forest_Brush_cph.3a45964.jpg",
           "https://upload.wikimedia.org/wikipedia/commons/4/4f/2009-04-07_Berlin_Olympiastadion_560.jpg",
           "https://upload.wikimedia.org/wikipedia/commons/7/7a/Kennewick-ColumbiaRiverAerial_%2831695765421%29.jpg"
@@ -1290,62 +1454,17 @@
         ],
         "sourceUrls": [
           "https://www.nbcrightnow.com/news/brush-fire-near-s-olympia-st-forces-evacuations-in-south-kennewick/video_717f511f-5894-55a9-a174-03e5c823cb40.html",
-          "https://www.hindustantimes.com/world-news/us-news/locust-grove-fire-update-vegetation-blaze-grows-south-of-tri-cities-check-map-as-scary-videos-emerge-101784868421788.html",
-          "https://www.applevalleynewsnow.com/news/level-3-go-now-evacuations-issued-for-locust-grove-fire-in-benton-county/article_a75dd96a-ebcb-4e9d-b0e4-dd2768b28cde.html"
+          "https://www.applevalleynewsnow.com/news/level-3-go-now-evacuations-issued-for-locust-grove-fire-in-benton-county/article_a75dd96a-ebcb-4e9d-b0e4-dd2768b28cde.html",
+          "https://www.nbcrightnow.com/news/kennewick-brush-fire-prompts-evacuation-warning-south-of-w-50th/article_3972db27-6cb0-406a-937b-555734609c49.html"
         ],
         "sourceName": "nbcrightnow.com",
         "sources": [
           "Nonstop Local News",
-          "Hindustan Times",
           "AppleValleyNewsNow.com"
         ],
-        "corr": 3,
+        "corr": 2,
         "verified": true,
         "trend": "kennewick fire",
-        "traffic": 200,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC character",
-        "summary": "Phoenix Cyclops, Marvel’s iconic X-Men leader infused with the Phoenix Force, will be the first Year 1 DLC character for Marvel Tōkon: Fighting Souls, arriving in fall 2026. The fiery update reimagines Scott Summers with devastating Optic Blasts and cosmic abilities, blending his classic combat with Phoenix-powered devastation.",
-        "hashtag": "MarvelTokon",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
-        "imageUrl": "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
-        "images": [
-          "https://blog.playstation.com/tachyon/2026/07/7433c090b4a81d3b967bcdbd72d7e8e28c24a941-scaled.jpg",
-          "https://blog.playstation.com/tachyon/2026/07/5a1fb2cf2edb1f4b27c14e3d6b2ce31fc6a6dce6-scaled.jpg",
-          "https://blog.playstation.com/tachyon/2026/07/1e2743f95c1228e707cb8b63537025b5728c3543-1.png",
-          "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/phoenix-cyclops.png?w=1600&h=900&fit=crop",
-          "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/07/wolverine_tokon.jpg?q=49&fit=crop&w=825&dpr=2"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Phoenix Cyclops",
-          "MARVEL Tōkon: Fighting Souls"
-        ],
-        "sourceUrls": [
-          "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/",
-          "https://kotaku.com/marvel-tokon-fighting-souls-opening-movie-song-anime-op-2000718880",
-          "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-announcement/"
-        ],
-        "sourceName": "blog.playstation.com",
-        "sources": [
-          "PlayStation.Blog",
-          "Kotaku",
-          "Polygon.com"
-        ],
-        "corr": 3,
-        "verified": true,
-        "trend": "marvel tokon open beta",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1356,38 +1475,49 @@
         "geo": "US"
       },
       {
-        "title": "Charli xcx, Tyla, Morgan Wallen & More: New Music Friday Guide",
-        "summary": "Charli xcx releases her new album Music, Fashion, Film today, marking her first major post-Brat project. Tyla and Morgan Wallen also drop new music, with Tyla’s second studio album and Wallen’s latest single following his live preview. The lineup dominates playlists this weekend.",
-        "hashtag": "Tyla",
-        "badge": "VIRAL",
+        "title": "‘Dungeon Crawler Carl’ TV Series Casts Audiobook Star Jeff Hays as Princess Donut’s Voice",
+        "summary": "A live-action TV series adaptation of Matt Dinniman's best-selling LitRPG novels, \"Dungeon Crawler Carl,\" has cast Jeff Hays as the voice of Princess Donut, a key character in the books. Hays, the narrator and producer of the audiobook versions, will bring the character to life in the Peacock TV series. The show, produced by Seth MacFarlane's Fuzzy Door Productions, is set to premiere on Peacock, following an alien invasion that forces survivors to fight for their lives.",
+        "hashtag": "PrincessDonut",
+        "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.billboard.com/music/music-news/charli-xcx-tyla-morgan-wallen-new-music-friday-guide-1236300112/",
-        "imageUrl": "https://www.billboard.com/wp-content/uploads/2026/02/Charli-xcx-2025-Photo-Credit-Stolen-Besos-e1770927343476.jpg?w=1024",
+        "url": "https://variety.com/2026/tv/news/dungeon-crawler-carl-tv-series-princess-donut-jeff-hays-1236819828/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Dungeon-Crawler-Carl.jpg?w=1000&h=563&crop=1",
         "images": [
-          "https://www.billboard.com/wp-content/uploads/2026/02/Charli-xcx-2025-Photo-Credit-Stolen-Besos-e1770927343476.jpg?w=1024",
-          "https://charts-static.billboard.com/img/2012/06/charli-xcx-iuj-344x344.jpg",
-          "https://charts-static.billboard.com/img/2016/08/morgan-wallen-eos-344x344.jpg",
-          "https://charts-static.billboard.com/img/2023/02/tyla-mpz-344x344.jpg"
+          "https://variety.com/wp-content/uploads/2026/07/Dungeon-Crawler-Carl.jpg?w=1000&h=563&crop=1",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Dungeon Crawler Carl",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/MattDinniman.jpg?width=1200"
+        ],
         "entities": [
-          "Charli xcx",
-          "Tyla",
-          "Morgan Wallen"
+          "Dungeon Crawler Carl",
+          "TV Series Casts Audiobook",
+          "Star Jeff Hays",
+          "Princess Donut",
+          "Voice"
         ],
         "sourceUrls": [
-          "https://www.billboard.com/music/music-news/charli-xcx-tyla-morgan-wallen-new-music-friday-guide-1236300112/"
+          "https://variety.com/2026/tv/news/dungeon-crawler-carl-tv-series-princess-donut-jeff-hays-1236819828/",
+          "https://www.hollywoodreporter.com/tv/tv-news/dungeon-crawler-carl-peacock-audiobook-narrator-jeff-hays-1236655544/",
+          "https://ew.com/dungeon-crawler-carl-tv-series-cast-revealed-12025009"
         ],
-        "sourceName": "Billboard",
+        "sourceName": "Variety",
         "sources": [
-          "Billboard"
+          "Variety",
+          "The Hollywood Reporter",
+          "Entertainment Weekly"
         ],
-        "corr": 1,
-        "verified": false,
-        "trend": "Tyla",
-        "traffic": 96000,
-        "freshH": 0.5,
+        "corr": 3,
+        "verified": true,
+        "trend": "princess donut dungeon crawler carl",
+        "traffic": 5000,
+        "freshH": 1,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1396,8 +1526,48 @@
         "geo": "US"
       },
       {
+        "title": "Houthi attacks raise fears of wider Middle East conflict and more global economic damage",
+        "summary": "Yemen’s Houthi rebels have attacked Red Sea shipping, forcing vessels to reroute and threatening the main Europe-Asia trade lane. US Central Command has carried out 13 straight nights of strikes on Iranian targets in response to the escalation. Gulf Arab states now face heightened security risks amid rising regional tensions.",
+        "hashtag": "MiddleEast",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/39c0/live/60bb5b90-86b5-11f1-bb58-d3ffca85db6d.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Houthi",
+          "Middle East",
+          "Iran-backed",
+          "Yemen",
+          "Saudi"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cvgve0vxy1yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.87,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
         "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-        "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while adoptive parents in Singapore are left uncertain about the fate of the children, with many awaiting a decision on whether the babies will be allowed to remain in their care. The Indonesian government is expected to work with Singaporean authorities to determine the next steps for the affected children.",
+        "summary": "Indonesian babies trafficked to Singapore are now at the center of a legal and humanitarian debate after a court convicted 19 people for selling at least 34 infants, with 12 sent to Singapore. Adoptive parents in Singapore face uncertainty over whether the children will remain with them or return to Indonesia as authorities in both countries deliberate on next steps.",
         "hashtag": "Indonesian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1427,621 +1597,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.52,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "sports": [
-      {
-        "title": "Why Rogers and Palmer will thrive together in Alonso's Chelsea",
-        "summary": "Chelsea's new signing Morgan Rogers is set to reunite with his close friend Cole Palmer, who he has been eager to play with for a while. The two players are expected to thrive together under new manager Xabi Alonso, who will need to find a system that accommodates their similar profiles. With Rogers' versatile skillset and ability to adapt to different roles, Alonso will face a challenge in setting up his side this season.",
-        "hashtag": "WhyRogers",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c4gwpzzgpyko?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2560/cpsprodpb/1999/live/4dbe9450-86a4-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/6d3a/live/2b2559c0-8680-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/1280/cpsprodpb/1520/live/b5e5a250-867f-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/8f56/live/726c6130-867f-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/standard/1536/cpsprodpb/9ddf/live/9c633f60-867d-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/ce40/live/8c0f8f60-867d-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/standard/1680/cpsprodpb/88a8/live/258572e0-867e-11f1-b60e-a7e0943a9c78.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Rogers",
-          "Palmer",
-          "Alonso's Chelsea",
-          "Morgan Rogers",
-          "Cole Palmer",
-          "Xabi Alonso's Chelsea"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c4gwpzzgpyko?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.37,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Vyner braced for eye-opening Wrexham popularity in US",
-        "summary": "Wrexham football club is set to face a massive following in the United States, with three upcoming games expected to attract huge crowds. The Welsh club, owned by Ryan Reynolds and Rob McElhenney, has previously toured America twice, drawing large crowds due to their global profile. Zak Vyner, a Wrexham defender, is anticipating an \"eye-opening\" experience, with fans in the US reportedly ten times more enthusiastic than those in Europe.",
-        "hashtag": "Vyner",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/c8endk9yry0o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ada7/live/bbec9a10-871e-11f1-9733-edfe8d3e29a7.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Vyner",
-          "Wrexham",
-          "Zak Vyner",
-          "Welsh",
-          "United States"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/c8endk9yry0o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.4,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Who am I? Guess Premier League star No 4",
-        "summary": "A new Premier League star is the subject of today’s \"Who am I?\" quiz by BBC Sport. Players must guess the footballer using as few clues as possible, with three correct answers considered a strong score. The challenge continues daily on BBC’s dedicated football quiz pages.",
-        "hashtag": "IGuess",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/football/articles/cx2d52rr559o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0bd9/live/088569b0-85b2-11f1-926f-c90d1bcfbc84.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Guess Premier League"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/football/articles/cx2d52rr559o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.29,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "facts": [
-      {
-        "title": "Rare night heron spotted at National Trust site",
-        "summary": "A rare black-crowned night heron has been spotted at the National Trust's Holnicote Estate in Somerset, a species rarely seen in the UK, with conservationists attributing the sighting to the introduction of new freshwater habitats. The estate's efforts to restore wetlands have also provided a refuge for other wildlife, including water voles, otters, pine martens, and white-tailed eagles. This comes as the UK has lost over 97% of its wetlands through drainage and changes in land management.",
-        "hashtag": "NationalTrust",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
-          "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Rare",
-          "National Trust",
-          "Africa",
-          "Asia",
-          "Americas",
-          "Europe"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.56,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Play area aims to interest children in rare habitat",
-        "summary": "A new play area at Winchester Science Centre in Hampshire aims to educate children about England's rare chalk streams, with over 80% of the world's chalk streams found in the country. The prolonged hot and dry weather is putting pressure on the wildlife that inhabits these waterways, prompting conservation efforts. The play zone is designed to encourage children to connect with the environment, potentially inspiring future conservationists.",
-        "hashtag": "Play",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Play",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/63/Macbeth_%2832280144787%29.jpg"
-        ],
-        "entities": [
-          "Play"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.51,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "A Million-Panel Project",
-        "summary": "Utah’s new Green River Energy Center, a massive solar and battery storage plant, went online in June 2026 with nearly one million panels and 500 batteries. The 400-megawatt solar and 400-megawatt battery facility will power Salt Lake City and surrounding areas. It marks a shift from the region’s historic coal mining industry toward renewable energy.",
-        "hashtag": "AMillion",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/",
-        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
-        "images": [
-          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
-          "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20260606_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Million-Panel Project",
-          "Utah"
-        ],
-        "sourceUrls": [
-          "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/"
-        ],
-        "sourceName": "NASA",
-        "sources": [
-          "NASA"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "crisis": [
-      {
-        "title": "Trump's new global tariff draws rebukes from trade partners over forced-labor justification",
-        "summary": "US President Donald Trump has imposed new global tariffs on 60 economies, covering 99.4% of American imports, citing their failure to ban goods made with forced labor. The tariffs, ranging from 10% to 12.5%, target the US' top trade partners, including those in Australia, Brazil, and other countries that have not enforced such bans. The move replaces a temporary tariff and provides a more durable legal foundation for the administration's trade policy.",
-        "hashtag": "Trump",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.cnbc.com/2026/07/24/trump-global-tariffs-trade-imbalance-forced-labor.html",
-        "imageUrl": "https://image.cnbcfm.com/api/v1/image/108338775-1784749377851-gettyimages-2286590232-AFP_C2WF97T.jpeg?v=1784809906&w=1920&h=1080",
-        "images": [
-          "https://image.cnbcfm.com/api/v1/image/108338775-1784749377851-gettyimages-2286590232-AFP_C2WF97T.jpeg?v=1784809906&w=1920&h=1080",
-          "https://image.cnbcfm.com/api/v1/image/108339626-17848622451784862242-47351675671-1080pnbcnews.jpg?v=1784862244&w=750&h=422&vtcrop=y"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Trump's"
-        ],
-        "sourceUrls": [
-          "https://www.cnbc.com/2026/07/24/trump-global-tariffs-trade-imbalance-forced-labor.html"
-        ],
-        "sourceName": "CNBC",
-        "sources": [
-          "CNBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.07,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Trump Administration Imposed New Tariffs of Around 10% on Over 80 Nations",
-        "summary": "The administration launched new duties tied to countries’ imports of goods made with forced labor, replacing a 10 percent tariff immediately after it expired.",
-        "hashtag": "TrumpAdministration",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Trump Administration Imposed New",
-          "Tariffs",
-          "Around",
-          "Nations"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.79,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Trump’s Global Tariffs: What’s the Latest on the Trade War",
-        "summary": "The president has unveiled a complicated system to forge ahead with his trade war, after the Supreme Court stuck down his original levies.",
-        "hashtag": "GlobalTariffs",
-        "badge": "GLOBAL",
-        "category": "crisis",
-        "url": "https://www.nytimes.com/article/trump-tariffs-trade.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Trump",
-          "Global Tariffs",
-          "Trade War",
-          "Supreme Court"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/article/trump-tariffs-trade.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "health": [
-      {
-        "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
-        "summary": "A US study has found that replacing gas stoves with electric ones can lead to a significant reduction in asthma symptoms, with benefits comparable to those of certain asthma medications. The study, which initially aimed to investigate 1,200 households near Cleveland, Ohio, was scaled down to 72 homes after funding was terminated early. As a result, researchers detected a substantial 70% drop in hospital admissions and days off from work or school among participants.",
-        "hashtag": "Replacing",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
-        "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-        "images": [
-          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
-          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Ohio",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/CampusOU.jpg?width=1200"
-        ],
-        "entities": [
-          "Replacing",
-          "Team",
-          "Ohio",
-          "Trump",
-          "MetroHealth",
-          "December"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.85,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Female veterans support group makes national impact",
-        "summary": "A UK-based support group for female veterans is making a national impact, with members sharing their experiences of post-traumatic stress disorder following deployments to war zones. The group's efforts are being supported by the Ministry of Defence, which has announced increased investment in NHS services for veterans. This move is expected to provide much-needed mental health support to the growing number of female veterans entering the military.",
-        "hashtag": "Female",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.bbc.co.uk/news/articles/cg7mzv73jjdo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Female",
-          "Chelley Tulloch"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cg7mzv73jjdo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.98,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "'Evidence lacking' for mental health monitoring tech",
-        "summary": "A UK inquiry into the deaths of over 2,000 mental health patients in Essex has found a lack of strong evidence supporting the use of Oxevision technology, which monitors patients using infrared sensors and cameras. The system, widely used in mental health wards, claims to have helped staff respond to 1,453 safety incidents over four years, but experts from the University of Oxford have questioned its effectiveness, citing methodological flaws in the studies used to justify its introduction. The inquiry's findings raise concerns about the widespread adoption of Oxevision technology in the NHS.",
-        "hashtag": "Evidence",
-        "badge": "HEALTH",
-        "category": "health",
-        "url": "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ad80/live/2560f690-8660-11f1-b976-0b9c15b0ccfc.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Evidence",
-          "Lampard Inquiry",
-          "Oxevision"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/c7vgd11d60do?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.05,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "politics": [
-      {
-        "title": "Urgent need for more security after physical attacks and abuse, say MPs’ staff",
-        "summary": "Staff employed by British MPs are demanding enhanced security measures following a surge in physical attacks and threatening communications, with nearly 80% of over 500 surveyed staff members reporting to have received threatening messages. The alarming trend has prompted Prime Minister Andy Burnham to announce a review of MPs' security, amid concerns for staff safety and well-being. The review comes in the wake of a murder investigation into the death of former Conservative minister Ann Widdecombe.",
-        "hashtag": "Urgent",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff",
-        "imageUrl": "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
-        "images": [
-          "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
-          "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=106267e756d4cde2cd164fa61f657365"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Urgent",
-          "Exclusive",
-          "Westminster",
-          "Staff"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.85,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "My generation shouldn’t be scared of a care tax – we’re paying one already | Gaby Hinsliff",
-        "summary": "Generation X now faces the dual burden of caring for aging parents while raising their own children, with many juggling full-time jobs and long commutes. A growing care crisis is pushing families to spend financial and emotional resources they can’t afford, prompting calls for political action. Prime Minister Andy Burnham has signaled his intent to address social care funding amid rising public demand.",
-        "hashtag": "GabyHinsliff",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.theguardian.com/commentisfree/2026/jul/24/my-generation-scared-care-tax-andy-burnham-ageing-well",
-        "imageUrl": "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1a16ac6fb377c376368dd90432d6454a",
-        "images": [
-          "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1a16ac6fb377c376368dd90432d6454a",
-          "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=e2c0e5f58fd39e7b756cc856d05fb5aa"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Gaby Hinsliff",
-          "If Andy Burnham",
-          "Andy Burnham",
-          "Downing Street",
-          "Roy Burnham",
-          "Alzheimer"
-        ],
-        "sourceUrls": [
-          "https://www.theguardian.com/commentisfree/2026/jul/24/my-generation-scared-care-tax-andy-burnham-ageing-well"
-        ],
-        "sourceName": "The Guardian",
-        "sources": [
-          "The Guardian"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.85,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Burnham urged to 'build bridges' with sacked Starmerites",
-        "summary": "Andy Burnham needs to \"build bridges\" with the Starmerite minister he sacked during his reshuffle, Baroness Harriet Harman has told the Electoral Dysfunction podcast.",
-        "hashtag": "Burnham",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311",
-        "imageUrl": "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140",
-        "images": [
-          "https://e3.365dm.com/26/07/1920x1080/skynews-electoral-dysfunction_7294029.png?20260709194140"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Burnham",
-          "Starmerites",
-          "Andy Burnham",
-          "Starmerite",
-          "Baroness Harriet Harman",
-          "Electoral Dysfunction"
-        ],
-        "sourceUrls": [
-          "https://news.sky.com/story/burnham-should-build-bridges-with-sacked-starmerites-like-darren-jones-says-harman-13566311"
-        ],
-        "sourceName": "Sky News",
-        "sources": [
-          "Sky News"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.86,
+        "freshH": 7.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2052,20 +1608,38 @@
     ],
     "breaking": [
       {
-        "title": "US imposes tariffs on dozens of trade partners, citing forced labour concerns",
-        "summary": "The US has imposed tariffs ranging from 10% to 12.5% on 60 of its trading partners, accounting for the majority of its imports, over concerns they failed to properly address forced labour. The targeted countries include key economic partners such as the UK, China, the European Union, Canada, Japan, and India. The tariffs came into effect on Friday, marking the latest escalation in the global trade war under US President Donald Trump's leadership.",
+        "title": "US hits dozens of trading partners with new wave of tariffs",
+        "summary": "The US has imposed new tariffs ranging from 10% to 12.5% on imports from 60 trading partners, including the UK, China, the EU, Canada, Japan and India. The duties, covering most American imports, take effect after a temporary global levy expired following a Supreme Court ruling. The move escalates trade tensions amid claims the targeted nations have failed to address forced labour concerns.",
         "hashtag": "US",
         "badge": "BREAKING",
         "category": "breaking",
         "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c18a/live/839d6280-8727-11f1-926f-c90d1bcfbc84.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
+        "entityShots": [
+          {
+            "name": "US Supreme Court",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200"
+          },
+          {
+            "name": "February",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/USSupremeCourtWestFacade.JPG?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20February.jpg?width=1200"
+        ],
+        "entities": [
+          "Imposed",
+          "US Supreme Court",
+          "February"
+        ],
         "sourceUrls": [
           "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
         ],
@@ -2077,7 +1651,44 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.4,
+        "freshH": 0.08,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "India's 'cockroach' protesters and government to hold talks as stalemate continues",
+        "summary": "India’s ‘Cockroach’ Janta Party will hold talks with the government on Friday after 26 days of hunger strike by activist Sonam Wangchuk ended last night. Tens of thousands of young protesters across India demand education minister Dharmendra Pradhan’s resignation over exam paper leaks. The government faces mounting pressure after police crackdowns left scores injured and sparked nationwide outrage.",
+        "hashtag": "India",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0729/live/fad88e10-8722-11f1-9733-edfe8d3e29a7.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "India's",
+          "Sonam Wangchuk"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.35,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2117,7 +1728,720 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.98,
+        "freshH": 1.99,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "sports": [
+      {
+        "title": "What's working - and what's not - for WSL fans?",
+        "summary": "Attendance at Arsenal Women’s matches soared to an average of 34,000 last season, nearly four times higher than any other WSL club and surpassing eight Premier League teams. A YouGov study in January 2026 found 28.5 million global WSL fans, evenly split by gender with nearly half aged 18-34. Clubs now face the challenge of sustaining growth while improving the supporter experience across the league.",
+        "hashtag": "WSL",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cj0plpe7eq6o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/2fd2/live/9e4eb740-8723-11f1-bee8-53ce494e1abc.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/627/cpsprodpb/0e53/live/10c83e30-5e71-11f1-9bb7-93b44936b5cf.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1008/cpsprodpb/11d0/live/d584ec80-5f40-11f1-ae51-c396b5163a64.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/8193/live/1002fbe0-5f41-11f1-ae51-c396b5163a64.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/3eab/live/1021d910-5f42-11f1-ae51-c396b5163a64.jpg",
+          "https://ichef.bbci.co.uk/ace/standard/761/cpsprodpb/3021/live/bb191d70-600e-11f1-8252-657841956bfc.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "What's",
+          "BBC Sport",
+          "Women's Super League",
+          "England Lionesses"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cj0plpe7eq6o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.11,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Socceroos star allegedly tests positive for cocaine after speeding",
+        "summary": "Australia midfielder Cristian Volpato, 22, tested positive for cocaine after police twice stopped him for speeding in Sydney on Thursday night. He was caught driving between 86-94km/h and later 109km/h in a 60km/h zone, leading to a six-month driving ban. The Socceroos star, who played in three World Cup matches, faces further police inquiries.",
+        "hashtag": "Socceroos",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/58ae/live/ba5e7140-8724-11f1-9733-edfe8d3e29a7.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Socceroos",
+          "Socceroos World Cup",
+          "Cristian Volpato",
+          "Sydney"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/football/articles/cm2gdnz5x50o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.45,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "The two days which could make or break Fury-AJ",
+        "summary": "Tyson Fury and Anthony Joshua could face off later this year after both win their warm-up fights. Fury faces Mariusz Wach in Thailand on Friday, while Joshua meets Kristian Prenga in Saudi Arabia the next day. If both prevail, they’ll meet in a long-awaited British boxing showdown.",
+        "hashtag": "FuryAJ",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/boxing/articles/c2k758w1xdzo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/standard/1600/cpsprodpb/515e/live/efac3070-869e-11f1-b976-0b9c15b0ccfc.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Fury-AJ",
+          "BBC Sport",
+          "Tyson Fury",
+          "Anthony Joshua",
+          "Friday",
+          "Saturday"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/boxing/articles/c2k758w1xdzo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.93,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "health": [
+      {
+        "title": "One year, 17 towns, dozens of voices: what we heard along the coast of England and Wales",
+        "summary": "Young people in coastal towns across England and Wales face growing isolation and limited opportunities, with youth service funding down 73% in 12 years and nearly a million aged 16–24 not in work, education or training. A Guardian project found decades of neglect and negative stereotypes have left many despondent, with few signs of immediate change.",
+        "hashtag": "One",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales",
+        "imageUrl": "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+        "images": [
+          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e998a00614bda7936d598cdad1d4fcf1",
+          "https://i.guim.co.uk/img/media/d4e25f7634134b34c06df981683ed61eab0f3007/503_0_7487_5992/master/7487.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=55a69f9f3866a67960c18c57dc918e75",
+          "https://i.guim.co.uk/img/media/f9d6d719d0ac8b17fb24c9f1f61662fd4fae71a0/1_0_10485_8392/master/10485.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/4c6f65bd75520b9c41177a3fa8b7a43f6f80b58d/209_334_10509_8408/master/10509.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/d90c47ffd38709826a25c00458ecaa3146b4aca3/0_0_9321_6387/master/9321.jpg?width=465&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/927db2230d3f2d6445dd9ce299f681d874ef25c2/728_0_10928_8742/master/10928.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/d04a567d420d07c05e0a40cef5ee13449147757f/0_366_10566_7360/master/10566.jpg?width=465&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/2f6b2a4e90da0adca8e52096c722d73b81cd631f/2213_0_6695_8369/master/6695.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/a7b1c2b1542addf7dc99250bd659d72c1f43b72d/0_0_11656_8742/master/11656.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "England",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200"
+          },
+          {
+            "name": "Reporting",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/England%20satellite%20image.png?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/CBC%20journalists%20in%20Montreal.jpg?width=1200"
+        ],
+        "entities": [
+          "England",
+          "Wales",
+          "Reporting"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/environment/2026/jul/24/one-year-17-towns-dozens-of-voices-what-we-heard-along-the-coast-of-england-and-wales"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Female veterans support group makes national impact",
+        "summary": "Female veterans’ support groups are gaining national traction as former RAF medic Chelley Tulloch reveals how PTSD from multiple war-zone deployments left her desperate for help. Tulloch now coordinates nationwide networks for women veterans, warning that rising female military recruitment will demand more dedicated mental health services. The Ministry of Defence says it is increasing NHS support for veterans.",
+        "hashtag": "Female",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.bbc.co.uk/news/articles/cg7mzv73jjdo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/362c/live/67742e10-871b-11f1-a4e0-e589dd7408b0.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Female",
+          "Chelley Tulloch"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cg7mzv73jjdo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.99,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Replacing gas stove can help asthmatics as much as some drugs, US experts find",
+        "summary": "A US study found replacing gas stoves with electric cut hospital visits and missed school or work by 70% for poorly controlled asthma patients. The project, involving 1,200 Cleveland-area households, was halted early in December 2024 after funding ended. Researchers reported asthma improvements matching or exceeding those from common medications.",
+        "hashtag": "Replacing",
+        "badge": "HEALTH",
+        "category": "health",
+        "url": "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find",
+        "imageUrl": "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
+        "images": [
+          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e8964174f74cf22367c9e0c709a249d2",
+          "https://i.guim.co.uk/img/media/bcd69a1bc660d9fa2a48621608fea02f8fa05207/338_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c13c2f6d4a01593bf85e422856a5d29c"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Replacing",
+          "Team",
+          "Ohio",
+          "Trump",
+          "MetroHealth",
+          "December"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/environment/2026/jul/24/replacing-gas-stove-can-help-asthmatics-as-much-as-some-drugs-us-experts-find"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "‘A small snippet’: what pubs make of Burnham’s £100m rates giveaway",
+        "summary": "Prime Minister Andy Burnham has announced a 20% cut in business rates for pubs, clubs and live music venues, costing £100m. The move aims to support struggling high streets amid a trend of closures averaging one per day.",
+        "hashtag": "A",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors",
+        "imageUrl": "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
+        "images": [
+          "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=5b0ad79c7a36cdfa5f0cd807298d6c78",
+          "https://i.guim.co.uk/img/media/abd52ece36f1ca186ea7293201ae376c50eb4c89/680_0_5583_4467/master/5583.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c331a24e8b8793ae738eb52693081530",
+          "https://i.guim.co.uk/img/media/287b32d1b4352482ddbe4068035210af532a1463/0_0_6700_4467/master/6700.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://i.guim.co.uk/img/media/4954ef61e0eb83a1e1373641537f8d5630a64fc6/142_173_7637_4302/master/7637.jpg?width=445&dpr=1&s=none&crop=none",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Burnham",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200"
+          },
+          {
+            "name": "Andy Burnham",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Burnham%20station.JPG?width=1200",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Official_portrait_of_Andy_Burnham_MP_2026_%28cropped_3x4%29.jpg"
+        ],
+        "entities": [
+          "Burnham",
+          "Landlords",
+          "Andy Burnham",
+          "Thursday",
+          "Continue"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/business/2026/jul/24/snippet-pubs-burnham-rates-giveaway-landlors"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "My generation shouldn’t be scared of a care tax – we’re paying one already | Gaby Hinsliff",
+        "summary": "Generation X now faces the dual burden of caring for aging parents while raising their own children, with many struggling to balance full-time work and long-distance caregiving. A new care tax could ease this strain, but experts warn political hesitation risks shifting the financial and emotional toll onto struggling families. The issue is expected to dominate upcoming policy debates as demand for social care rises.",
+        "hashtag": "GabyHinsliff",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/commentisfree/2026/jul/24/my-generation-scared-care-tax-andy-burnham-ageing-well",
+        "imageUrl": "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1a16ac6fb377c376368dd90432d6454a",
+        "images": [
+          "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=1a16ac6fb377c376368dd90432d6454a",
+          "https://i.guim.co.uk/img/media/a78949e55c0feac20ea50ef426fb6727bb48fc22/3_0_2437_1949/master/2437.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=e2c0e5f58fd39e7b756cc856d05fb5aa"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Gaby Hinsliff",
+          "If Andy Burnham",
+          "Andy Burnham",
+          "Downing Street",
+          "Roy Burnham",
+          "Alzheimer"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/commentisfree/2026/jul/24/my-generation-scared-care-tax-andy-burnham-ageing-well"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Urgent need for more security after physical attacks and abuse, say MPs’ staff",
+        "summary": "MPs’ staff are demanding urgent security upgrades after a survey found 78% received threats and nearly one-third fear for their safety. Prime Minister Andy Burnham will announce a review following the murder of former minister Ann Widdecombe, 75, in South Yorkshire, where Joshua Kerry, 28, has been charged. Staff report rising racist abuse and pressure to ignore safety risks.",
+        "hashtag": "Urgent",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff",
+        "imageUrl": "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
+        "images": [
+          "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=088a4df59a8db8d37d47f4a9761aeae9",
+          "https://i.guim.co.uk/img/media/cf97eea9ea27817f8a6923ebe1cebdbab50652a7/0_645_4194_3355/master/4194.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=106267e756d4cde2cd164fa61f657365"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Urgent",
+          "Exclusive",
+          "Westminster",
+          "Staff"
+        ],
+        "sourceUrls": [
+          "https://www.theguardian.com/politics/2026/jul/24/urgent-need-for-more-security-after-physical-attacks-and-abuse-say-mps-staff"
+        ],
+        "sourceName": "The Guardian",
+        "sources": [
+          "The Guardian"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.86,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "crisis": [
+      {
+        "title": "Volkswagen profits slump as it flags full-year revenue squeeze ahead of restructuring",
+        "summary": "Volkswagen’s second-quarter profit fell 10% to 3.5 billion euros as the German automaker scrapped its 2026 sales growth forecast, now expecting a 3% revenue decline. The company also announced plans to cut up to 100,000 jobs as part of a sweeping restructuring amid rising costs and fierce competition from Chinese rivals.",
+        "hashtag": "Volkswagen",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.cnbc.com/2026/07/24/volkswagen-earnings-autos-germany.html",
+        "imageUrl": "https://image.cnbcfm.com/api/v1/image/108176236-1753353598783-gettyimages-2215029122-3h4a0105_lswefliq.jpeg?v=1768807038&w=1920&h=1080",
+        "images": [
+          "https://image.cnbcfm.com/api/v1/image/108176236-1753353598783-gettyimages-2215029122-3h4a0105_lswefliq.jpeg?v=1768807038&w=1920&h=1080"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Volkswagen",
+          "German",
+          "Friday"
+        ],
+        "sourceUrls": [
+          "https://www.cnbc.com/2026/07/24/volkswagen-earnings-autos-germany.html"
+        ],
+        "sourceName": "CNBC",
+        "sources": [
+          "CNBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.05,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Trump Administration Imposed New Tariffs of Around 10% on Over 80 Nations",
+        "summary": "The administration launched new duties tied to countries’ imports of goods made with forced labor, replacing a 10 percent tariff immediately after it expired.",
+        "hashtag": "TrumpAdministration",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Trump Administration Imposed New",
+          "Tariffs",
+          "Around",
+          "Nations"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.8,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Trump’s Global Tariffs: What’s the Latest on the Trade War",
+        "summary": "The president has unveiled a complicated system to forge ahead with his trade war, after the Supreme Court stuck down his original levies.",
+        "hashtag": "GlobalTariffs",
+        "badge": "GLOBAL",
+        "category": "crisis",
+        "url": "https://www.nytimes.com/article/trump-tariffs-trade.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/24/multimedia/2026-tariff-tracker-embeds-index/2026-tariff-tracker-embeds-index-mediumSquareAt3X.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Trump",
+          "Global Tariffs",
+          "Trade War",
+          "Supreme Court"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/article/trump-tariffs-trade.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "facts": [
+      {
+        "title": "Rare night heron spotted at National Trust site",
+        "summary": "A rare black-crowned night heron, native to Africa, Asia, the Americas and parts of Europe, has been spotted at the National Trust’s Holnicote Estate near Minehead, Somerset. The sighting follows conservation efforts to restore freshwater habitats that now support water voles, otters, pine martens and white-tailed eagles. Conservationists say the UK has lost over 97% of its wetlands, making such habitats vital for wildlife recovery.",
+        "hashtag": "NationalTrust",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/f415/live/a6d6a320-8686-11f1-b976-0b9c15b0ccfc.png",
+          "https://ichef.bbci.co.uk/ace/standard/524/cpsprodpb/631b/live/3ce363a0-868a-11f1-b60e-a7e0943a9c78.png"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Rare",
+          "National Trust",
+          "Africa",
+          "Asia",
+          "Americas",
+          "Europe"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cy078pej4jxo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.56,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Play area aims to interest children in rare habitat",
+        "summary": "In England, a unique play area has been created at the Winchester Science Centre to educate children about the country's rare chalk streams, with over 80% of the world's chalk streams found there. The play zone, themed on the local landscape, aims to foster a connection between children and the environment, which they can carry into adulthood. The centre's exhibit highlights the importance of water flow, temperature, and oxygen for these rare freshwater habitats, and how they can be protected.",
+        "hashtag": "Play",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8738/live/808718e0-86c6-11f1-bf7f-25405e28486d.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Play"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c74gev9399yo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.51,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "A Million-Panel Project",
+        "summary": "Utah’s new Green River Energy Center, featuring nearly one million solar panels and 500 batteries, went online in June 2026. The 400-megawatt solar and 400-megawatt battery facility, located 130 miles southeast of Salt Lake City, is among the largest in the region. It will supply power to Salt Lake City and other parts of Utah.",
+        "hashtag": "AMillion",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+        "images": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20240616.jpg",
+          "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-million-panel-project/solarutah_oli_20260606_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Million-Panel Project",
+          "Utah"
+        ],
+        "sourceUrls": [
+          "https://science.nasa.gov/earth/earth-observatory/a-million-panel-project/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.85,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
+        "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies themes of strength and feminine triumph. The film captures her voice as the sole focal point, symbolizing power beyond the individual. Critics highlight how her abstract presence turns her music into a universal anthem of resilience.",
+        "hashtag": "PresentReview",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+        "images": [
+          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Sia",
+          "Unstoppable",
+          "Titanium"
+        ],
+        "sourceUrls": [
+          "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
+        ],
+        "sourceName": "Variety",
+        "sources": [
+          "Variety"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.44,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Gruesome images in D4vd hearing are 'worst nightmare' for teen girl's family",
+        "summary": "A 21-year-old singer, David Anthony Burke, has been accused of murdering 14-year-old Celeste Rivas Hernandez in a gruesome crime that has left her family traumatized. Prosecutors presented graphic crime scene photos in court, showing Celeste's dismembered body, and testified that Burke had ordered online items including a body bag, chainsaws, and a shovel in the days following her death. The hearing is a preliminary step towards a trial, where prosecutors aim to convince the judge that there is sufficient evidence to proceed.",
+        "hashtag": "Gruesome",
+        "badge": "ENTERTAINMENT",
+        "category": "entertainment",
+        "url": "https://www.bbc.co.uk/news/articles/c4g4lyze30vo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/5310/live/31c9bd90-85ac-11f1-a300-4537eea2be58.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Gruesome"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/c4g4lyze30vo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.44,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2157,7 +2481,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.65,
+        "freshH": 1.65,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2167,7 +2491,7 @@
       },
       {
         "title": "Google fined €890m by EU for favouring its own apps over rivals",
-        "summary": "Google has been fined €890 million by the European Union for allegedly favouring its own apps over rivals, marking the first major action under the EU’s Digital Markets Act. The fine follows two breaches where Google’s practices were found to limit consumer choice and give its services an unfair advantage. Google disputes the decision, warning it could harm services used by millions in Europe.",
+        "summary": "Google has been fined €890 million by the European Union for unfairly favouring its own apps over rivals, the first major penalty under the bloc’s new Digital Markets Act. The EU ruled Google’s practices restricted consumer choice and gave its services an unfair advantage, while Google warned the decision could harm services used by millions. The fine combines two separate breaches of the DMA, with the larger penalty imposed after Google was found to have promoted its own services in search results.",
         "hashtag": "Google",
         "badge": "TECH",
         "category": "tech",
@@ -2180,8 +2504,7 @@
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Google",
-          "EU's"
+          "Google"
         ],
         "sourceUrls": [
           "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
@@ -2194,7 +2517,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.69,
+        "freshH": 7.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2211,10 +2534,18 @@
         "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Deal",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        ],
         "entities": [
           "Judge Extends Pause",
           "Paramount-Warner Bros",
@@ -2232,50 +2563,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.95,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "entertainment": [
-      {
-        "title": "‘Sia: Nostalgic for the Present’ Review: A Concert Performance Film from 2016, but It Channels Sia’s Mystery and Power",
-        "summary": "Sia’s 2016 concert film Nostalgic for the Present showcases her iconic anthems like \"Unstoppable\" and \"Titanium\" through a faceless performance that amplifies themes of strength and feminine triumph. The film’s abstract visuals present her as a vessel for a larger force, creating a powerful, otherworldly experience.",
-        "hashtag": "PresentReview",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/SiaAlive2.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Nostalgic",
-          "Present",
-          "Review",
-          "Concert Performance Film",
-          "It Channels Sia",
-          "Mystery"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/reviews/sia-nostalgic-for-the-present-review-1236817974/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.43,
+        "freshH": 5.95,
         "score": null,
         "popularity": null,
         "recency": null,
