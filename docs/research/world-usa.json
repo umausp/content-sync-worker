@@ -1,210 +1,157 @@
 {
-  "generatedAt": "2026-07-24T01:51:45.460Z",
+  "generatedAt": "2026-07-24T02:51:35.806Z",
   "region": "usa",
-  "count": 30,
+  "count": 28,
   "categoryCounts": {
-    "offbeat": 9,
+    "offbeat": 8,
     "politics": 3,
-    "entertainment": 3,
     "breaking": 1,
-    "crisis": 3,
+    "entertainment": 2,
     "facts": 3,
+    "crisis": 3,
     "health": 3,
     "tech": 3,
     "sports": 2
   },
   "stories": [
     {
-      "title": "Stabbing suspect yells 'Allahu Akbar' before attacking 2 men in New York: police",
-      "summary": "A 51-year-old man was arrested Thursday after stabbing two men on New York’s Upper West Side while shouting “Allahu Akbar.” The victims, an Asian man and a Jewish man, were hospitalized with non-life-threatening injuries and are expected to survive. Police are investigating the attacks as a possible hate crime while assessing mental health factors in the suspect’s motive.",
-      "hashtag": "AllahuAkbar",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-      "imageUrl": "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-      "images": [
-        "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-        "https://nbc16.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-        "https://foxchattanooga.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-        "https://foxchattanooga.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
-        "https://media.townhall.com/cdn/hodl/2023/346/cac9bca4-b278-4d91-b1b6-f0454841e142-1200x630.jpg",
-        "https://media.townhall.com/cdn/hodl/2017/130/50b12da2-e6ff-48e1-84ba-5ba5eeb21b1b.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "New York"
-      ],
-      "sourceUrls": [
-        "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-        "https://foxchattanooga.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-        "https://www.wrganews.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
-        "https://townhall.com/tipsheet/scott-mcclallen/2026/07/23/nypd-suspect-yelled-allahu-akbar-during-upper-west-side-stabbings-n2680048",
-        "https://hotair.com/john-s-2/2026/07/23/nyc-two-men-stabbed-by-suspect-yelling-allahu-akbar-n3817265"
-      ],
-      "sourceName": "KMTR",
-      "sources": [
-        "KMTR",
-        "wtvcfox",
-        "wrganews.com",
-        "townhall.com",
-        "hotair.com"
-      ],
-      "corr": 5,
-      "verified": true,
-      "trend": "Allahu Akbar",
-      "traffic": 98000,
-      "freshH": 0.5,
-      "score": 0.828,
-      "popularity": 0.631,
-      "recency": 0.944,
-      "relevancy": 0.981,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "Dillon Dingler, James Outman deliver in clutch in Tigers' comeback win",
-      "summary": "The Detroit Tigers secured a 4-3 comeback win over the Kansas City Royals at Comerica Park, with Dillon Dingler delivering a clutch two-out RBI to break the tie and James Outman contributing a crucial swing. The Tigers trailed 2-0 after six innings but rallied to improve their July record to 12-5 and their overall record since June 1 to 27-16. The team will look to build on this momentum in the second game of the weekend series against the Royals.",
+      "title": "James Outman, Dillion Dingler lift surging Tigers to 4-3 win over Royals",
+      "summary": "James Outman’s three-run homer in the seventh inning and Dillon Dingler’s go-ahead RBI double in the eighth led the Detroit Tigers to a 4-3 win over the Kansas City Royals on Thursday night. The Tigers improved to 50-54, keeping their playoff hopes alive as the trade deadline approaches. Detroit starter Troy Melton allowed two runs over five innings in the victory.",
       "hashtag": "JamesOutman",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
-      "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
+      "url": "https://www.cbsnews.com/detroit/news/tigers-beat-royal-4-3/",
+      "imageUrl": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/07/24/0370da3d-27d3-42eb-9c2e-d26190d2312c/thumbnail/1200x630/9e86313a8f74c6a044d0dea2fa40f8bf/gettyimages-2287393931.jpg",
       "images": [
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031646007-20260723-rbtigersroyals-1364.jpg?crop=3397,1912,x0,y139&width=660&height=372&format=pjpg&auto=webp",
-        "https://platform.blessyouboys.com/wp-content/uploads/sites/37/2026/07/imagn-29440531.jpg?quality=90&strip=all&crop=0%2C10.750116498999%2C100%2C78.499767002001&w=1200"
+        "https://assets1.cbsnewsstatic.com/hub/i/r/2026/07/24/0370da3d-27d3-42eb-9c2e-d26190d2312c/thumbnail/1200x630/9e86313a8f74c6a044d0dea2fa40f8bf/gettyimages-2287393931.jpg",
+        "https://www.el-balad.com/uploads/2026/07/24/james-outman-2a0e765a_1200w.webp"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Dillon Dingler",
         "James Outman",
-        "Tigers"
+        "Dillion Dingler",
+        "Detroit Tigers"
       ],
       "sourceUrls": [
-        "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
-        "https://www.blessyouboys.com/detroit-tigers-scores-standings/95474/detroit-tigers-kansas-city-royals-troy-melton-randy-dobnak-james-outman-recap",
-        "https://www.mlive.com/tigers/2026/07/james-outmans-clutch-homer-sparks-tigers-comeback-win-over-royals.html"
+        "https://www.cbsnews.com/detroit/news/tigers-beat-royal-4-3/",
+        "https://www.el-balad.com/17035157"
       ],
-      "sourceName": "The Detroit News",
+      "sourceName": "CBS News",
       "sources": [
-        "The Detroit News",
-        "Bless You Boys",
-        "MLB.com",
-        "MLive.com"
+        "CBS News",
+        "El-Balad.com"
       ],
-      "corr": 4,
+      "corr": 2,
       "verified": true,
       "trend": "James Outman",
-      "traffic": 95000,
+      "traffic": 88000,
       "freshH": 0.5,
-      "score": 0.773,
-      "popularity": 0.576,
+      "score": 0.688,
+      "popularity": 0.409,
       "recency": 0.944,
-      "relevancy": 0.85,
+      "relevancy": 0.775,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Why Tom Hiddleston can’t stop thinking about Pompeii",
-      "summary": "Tom Hiddleston, a classical studies graduate and actor, explores the ancient Roman city of Pompeii in a new three-part series, tracing the stories of three real-life residents on the day Mount Vesuvius erupted in A.D. 79, killing thousands and preserving the city in time. The series, hosted by Hiddleston, delves into new insights into ancient Roman life, guided by experts and featuring scripted drama and documentary storytelling. This project marks a new creative venture for Hiddleston, who previously collaborated with Kevin Wright on the successful Disney+ series Loki.",
-      "hashtag": "Hiddleston",
+      "title": "Rapper YG Detained as Cops Execute Search Warrant Over Drakeo the Ruler Murder",
+      "summary": "Rapper YG was detained by police in Burbank, California, as they executed a search warrant related to the 2021 murder investigation of Drakeo the Ruler, with whom YG had a public feud despite denying involvement in the crime. The search warrant was served by the California Highway Patrol and the Burbank Police Department's SWAT team, but YG was released without being arrested. YG is scheduled to perform in a rap battle series, VERZUZ, later that evening, despite the morning's unexpected encounter with law enforcement.",
+      "hashtag": "Rapper",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
-      "imageUrl": "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+      "url": "https://www.tmz.com/2026/07/23/yg-detained-by-burbank-police/",
+      "imageUrl": "https://imagez.tmz.com/image/0e/16by9/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
       "images": [
-        "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
-        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/GettyImages-2286410201-H-2026.jpg?w=1296&h=730&crop=1",
-        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_020-H-2026.jpg?w=1296",
-        "https://www.hollywoodreporter.com/wp-content/uploads/2023/11/FCG2120_206_comp_FRA_v0296.1534_R-H-2023.jpg?w=1296",
-        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_CGI_058-H-2026.jpg?w=1296",
-        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        "https://imagez.tmz.com/image/0e/16by9/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+        "https://imagez.tmz.com/image/0e/4by3/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+        "https://imagez.tmz.com/image/0e/1by1/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+        "https://imagez.tmz.com/image/34/16by9/2026/07/23/344d29d316b7423a8306ca351536e3b4_xl.jpg",
+        "https://imagez.tmz.com/image/74/16by9/2026/07/23/746a4b0c50064a4bb508318d15da9d6a_xl.jpg",
+        "https://imagez.tmz.com/image/17/16by9/2026/07/23/1713db1021cf4237b2dea7aa3295477d_md.png",
+        "https://imagez.tmz.com/image/34/4by3/2026/07/23/344d29d316b7423a8306ca351536e3b4_md.jpg",
+        "https://imagez.tmz.com/image/74/4by3/2026/07/23/746a4b0c50064a4bb508318d15da9d6a_md.jpg",
+        "https://media.nbclosangeles.com/2026/07/GettyImages-2191886935.jpg?quality=85&strip=all&resize=1200%2C675",
+        "https://media.nbclosangeles.com/2019/09/LA_aerial-1-1.png?fit=2060%2C847&quality=85&strip=all&w=400&h=44&crop=1"
       ],
-      "entityShots": [
-        {
-          "name": "Tom Hiddleston",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Tom Hiddleston",
-        "Pompeii"
+        "Rapper YG Detained",
+        "Cops Execute Search Warrant",
+        "Drakeo",
+        "Ruler Murder"
       ],
       "sourceUrls": [
-        "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
-        "https://www.wsj.com/arts-culture/television/pompeii-out-of-time-with-tom-hiddleston-review-uncovering-survivors-d3e7f744",
-        "https://www.hollywoodreporter.com/tv/tv-features/loki-ep-kevin-r-wright-talks-pompeii-out-of-time-1236654094/"
+        "https://www.tmz.com/2026/07/23/yg-detained-by-burbank-police/",
+        "https://ktla.com/news/local-news/rapper-yg-briefly-detained-as-police-search-property-in-homicide-investigation/",
+        "https://www.nbclosangeles.com/news/local/rapper-yg-drakeo-the-ruler-burbank-murder-investigation/3921048/"
       ],
-      "sourceName": "nationalgeographic.com",
+      "sourceName": "tmz.com",
       "sources": [
-        "National Geographic",
-        "WSJ",
-        "The Hollywood Reporter"
+        "TMZ",
+        "KTLA",
+        "NBC Los Angeles"
       ],
       "corr": 3,
       "verified": true,
-      "trend": "tom hiddleston",
-      "traffic": 500,
+      "trend": "yg rapper",
+      "traffic": 1000,
       "freshH": 1,
       "score": 0.653,
-      "popularity": 0.228,
+      "popularity": 0.229,
       "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Jerry O’Connell addresses brutal Giuliana Rancic breakup more than a decade after she blasted him in memoir",
-      "summary": "Jerry O'Connell has broken his silence on his 2004 breakup with Giuliana Rancic, confessing he doesn't recall his exact wording but acknowledging he may have said something similar to what Rancic described in her 2015 memoir, \"Going Off Script\". The \"Jerry Maguire\" star, 52, praised Rancic for using colorful dialogue in her book, which included a brutal description of their split. The couple's breakup occurred more than 20 years ago, with Rancic releasing her tell-all memoir over a decade later.",
-      "hashtag": "GiulianaRancic",
+      "title": "Satellite spots a 'hummingbird' in Antarctica photo of the day for July 23, 2026",
+      "summary": "A stunning satellite image captured by NISAR has revealed a unique feature resembling a hummingbird in Antarctica, but it's actually a mountaintop with crevasses and a stream of ice flowing northeast towards the ocean. The image shows Nunatak Zaterjavshijsja, a mountaintop in East Antarctica, with the dark belly of the \"bird\" being the mountain's surface and the \"feathers\" being crevasses formed by a glacier. This detailed view was made possible by NISAR's sophisticated radar instruments, which will continue to provide valuable data for researchers and users worldwide.",
+      "hashtag": "NisarSatellite",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
-      "imageUrl": "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
+      "url": "https://www.space.com/astronomy/earth/radar-satellite-spots-a-hummingbird-in-antarctica-space-photo-of-the-day-for-july-23-2026",
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-2000-80.png",
       "images": [
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/actor-jerry-oconnell-wife-giuliana-135023888.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/kelly-ripa-jerry-oconnell-attend-135023995.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/giuliana-rancic-signs-copies-new-135024001.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/american-women-radio-television-new-135023860.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-arriving-135023889.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/red-carpet-arrivals-graumans-chinese-135023887.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-pose-135023861.jpg",
-        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/new-york-daily-news-newsday-135023880.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+        "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-2000-80.png",
+        "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-1200-80.png",
+        "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi.png",
+        "https://c.ndtvimg.com/2026-07/me628j4o_nasa_625x300_24_July_26.jpeg",
+        "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Giuliana Rancic",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+          "name": "Satellite",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg"
+        },
+        {
+          "name": "July",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
       ],
       "entities": [
-        "Jerry",
-        "Connell",
-        "Giuliana Rancic"
+        "Satellite",
+        "Antarctica",
+        "July"
       ],
       "sourceUrls": [
-        "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
-        "https://people.com/jerry-o-connell-terrible-boyfriend-ex-giuliana-rancic-intercom-breakup-12024007"
+        "https://www.space.com/astronomy/earth/radar-satellite-spots-a-hummingbird-in-antarctica-space-photo-of-the-day-for-july-23-2026",
+        "https://www.ndtv.com/science/nasas-nisar-captures-hummingbird-like-pattern-beneath-antarcticas-ice-11814081"
       ],
-      "sourceName": "pagesix.com",
+      "sourceName": "space.com",
       "sources": [
-        "Page Six",
-        "People.com"
+        "Space",
+        "NDTV"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "giuliana rancic",
+      "trend": "nisar satellite antarctica image",
       "traffic": 1000,
       "freshH": 1,
       "score": 0.62,
@@ -215,57 +162,52 @@
       "geo": "US"
     },
     {
-      "title": "AUSL postseason is here! Cascade face Bandits in play-in game (9 ET, ESPN)",
-      "summary": "The 2026 Athletes Unlimited Softball League postseason has begun with the Chicago Bandits facing off against the Portland Cascade in a win-or-go-home play-in game on Thursday at 9 p.m. ET on ESPN, with the winner advancing to the AUSL Championship against the top-seeded Utah Talons. The AUSL Championship series will begin on Saturday at 1 p.m. ET on ABC, marking the first time a professional softball game has been televised on the network.",
-      "hashtag": "Ausl",
-      "badge": "TRENDING",
+      "title": "YG and The Game's 'VERZUZ': Travis Barker Pops Out for Opening Cut \"Dope Boys\"",
+      "summary": "Travis Barker joined YG and The Game’s VERZUZ livestream on July 23, drumming live during The Game’s opening performance of “Dope Boys.” The surprise appearance capped off a high-energy start to the Compton rappers’ long-awaited clash. The event is available to watch on Apple Music and YouTube.",
+      "hashtag": "Verzuz",
+      "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
-      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
+      "url": "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys",
+      "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
       "images": [
-        "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
-        "https://espnpressroom.com/wp-content/uploads/2026-AUSL-Schedule-6.png",
-        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+        "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
+        "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
       ],
       "entityShots": [
         {
-          "name": "Cascade",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+          "name": "Travis Barker",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+        "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
       ],
       "entities": [
-        "AUSL",
-        "Cascade",
-        "Bandits",
-        "ESPN"
+        "Travis Barker",
+        "VERZUZ"
       ],
       "sourceUrls": [
-        "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
-        "https://espnpressroom.com/press-release/espn-presents-2026-athletes-unlimited-softball-league-postseason-beginning-july-23/"
+        "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
       ],
-      "sourceName": "mlb.com",
+      "sourceName": "Complex",
       "sources": [
-        "MLB.com",
-        "ESPN Press Room"
+        "Complex"
       ],
-      "corr": 2,
-      "verified": true,
-      "trend": "ausl",
-      "traffic": 2000,
-      "freshH": 1,
-      "score": 0.584,
-      "popularity": 0.149,
-      "recency": 0.891,
-      "relevancy": 0.85,
+      "corr": 1,
+      "verified": false,
+      "trend": "#Verzuz",
+      "traffic": 99000,
+      "freshH": 0.5,
+      "score": 0.561,
+      "popularity": 0.3,
+      "recency": 0.944,
+      "relevancy": 0.441,
       "region": "usa",
       "geo": "US"
     },
     {
       "title": "Burnham to spend first day working from northern branch of No 10",
-      "summary": "Andy Burnham will spend his first day in office working from the new No 10 North branch in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee established in 2008 to address economic challenges across the UK. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, with up to 300 civil servants expected to join the new site by the end of next year. This marks a significant shift in power from Whitehall and Westminster to regional areas, as the prime minister aims to give more attention and investment to communities that have felt forgotten.",
+      "summary": "Mayor Andy Burnham will chair the National Economic Council in Manchester this Friday to mark the opening of the new Downing Street northern branch. This office aims to decentralize government power by moving key decision-making away from London and toward regional leaders. Up to 300 civil servants are expected to relocate to the site by the end of next year to support local economic growth.",
       "hashtag": "Burnham",
       "badge": "POLITICS",
       "category": "politics",
@@ -274,22 +216,22 @@
       "images": [
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
       ],
       "entityShots": [
         {
           "name": "Various",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
         },
         {
           "name": "Downing Street",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
       ],
       "entities": [
         "Burnham",
@@ -307,17 +249,51 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.12,
-      "score": 0.5,
+      "freshH": 1.12,
+      "score": 0.462,
       "popularity": 0,
-      "recency": 0.986,
-      "relevancy": 0.62,
+      "recency": 0.879,
+      "relevancy": 0.615,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
+      "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan, and India, over claims they failed to properly stop forced labour imports. The new duties will take effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, as the US seeks to address human rights abuses and distortive trade practices.",
+      "hashtag": "US",
+      "badge": "BREAKING",
+      "category": "breaking",
+      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.69,
+      "score": 0.453,
+      "popularity": 0,
+      "recency": 0.923,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Creepy Twins, Religious Fanaticism and a Loaded Gun Collide in Tense Chamber Drama ‘Godhead’ — Fantasia",
-      "summary": "A rural Catholic priest is being visited by two bizarre twins who claim to be part of a prophecy and need his help to fulfill it, but they also bring a gun to the meeting, adding to the tension. The film, \"Godhead,\" premiered at the Fantasia Festival in Montreal, where it received enthusiastic reviews for its masterful blend of faith, sex, lies, and discomfort. The director, Mark H. Rapaport, aimed to challenge authority figures and leave audiences with difficult questions.",
+      "summary": "A new chamber drama titled Godhead premiered at Montreal’s Fantasia Festival, blending faith, sex, and tension in black-and-white. A rural priest is visited by two bizarre twins who claim to be part of a prophecy and arrive with a gun. Director Mark H. Rapaport, whose debut Hippo also premiered at Fantasia, explores crooked authority and leaves audiences with challenging questions.",
       "hashtag": "TenseChamber",
       "badge": "ENTERTAINMENT",
       "category": "entertainment",
@@ -356,144 +332,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.16,
-      "score": 0.486,
+      "freshH": 1.16,
+      "score": 0.446,
       "popularity": 0,
-      "recency": 0.981,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "'Big Brother' says goodbye to Traverse City pickleball coach",
-      "summary": "Rome Seymour, a pickleball coach from Traverse City, has become the second player to be voted off the CBS reality show \"Big Brother\" this season, with a near-unanimous 12-1 vote. Seymour was evicted despite his efforts to save himself in the BB Block Buster competition, where he was narrowly outperformed by former \"RuPaul's Drag Race\" standout Jason De Puy. Seymour has taken his early exit graciously, stating that he has no hard feelings towards his fellow houseguests.",
-      "hashtag": "BrotherSpoilers",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/",
-      "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-      "images": [
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/16/PDTN/90945971007-97248-d-1745.JPG?crop=1996,1123,x0,y600&width=660&height=372&format=pjpg&auto=webp",
-        "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Traverse City",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
-      ],
-      "entities": [
-        "Big Brother",
-        "Traverse City"
-      ],
-      "sourceUrls": [
-        "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/"
-      ],
-      "sourceName": "detroitnews.com",
-      "sources": [
-        "The Detroit News"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "big brother spoilers",
-      "traffic": 2000,
-      "freshH": 1,
-      "score": 0.457,
-      "popularity": 0.006,
-      "recency": 0.891,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "‘Stuart Fails to Save the Universe’ Co-Creator Bill Prady Explains the Science Behind the Show’s Multiverse",
-      "summary": "A post-apocalyptic Pasadena has been ravaged by zombie hands, giant moths, and reality tears, with the only functioning business being a comic book shop run by Stuart Bloom. The show's multiverse is attributed to a quantum interference device built by \"The Big Bang Theory\" characters Leonard, Sheldon, and Howard, which has altered reality. Regular Stuart and his companions must now find the device at Cal Tech to potentially save the universe from further destruction.",
-      "hashtag": "UniverseCo",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Stuart Fails",
-        "Save",
-        "Universe",
-        "Co-Creator Bill Prady Explains",
-        "Science Behind",
-        "Show"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.447,
-      "popularity": 0,
-      "recency": 0.905,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "’72 Hours’ Review: Kevin Hart Tries to Be Down With the Kids in a Mediocre ‘Hangover’ Knockoff",
-      "summary": "Kevin Hart stars in the mediocre comedy \"72 Hours,\" a hangover-inspired film directed by Tim Story and written by Jon Hurwitz and Hayden Schlossberg, which attempts to revive the crime subplot formula that has often ruined even the most average comedies. The movie, a retread of the \"Hangover\" franchise, failed to impress critics despite its all-star cast. The film's lackluster performance is a reminder that even the most promising comedies can fall short of expectations.",
-      "hashtag": "HoursReview",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg?w=1000&h=563&crop=1"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Hours",
-        "Review",
-        "Kevin Hart Tries",
-        "Be Down With",
-        "Kids",
-        "Mediocre"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.447,
-      "popularity": 0,
-      "recency": 0.905,
-      "relevancy": 0.52,
+      "recency": 0.875,
+      "relevancy": 0.558,
       "region": "usa",
       "geo": null
     },
     {
       "title": "YG vs. The Game: VERZUZ — Compton Forever",
-      "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering a 22-song setlist that included hits like \"Toxic\" and \"Godzilla\". The event, which celebrated the artists' impact on Compton culture, featured live voting from fans, with over 1 million votes cast in real-time. The VERZUZ battle marked a historic moment in hip-hop, bringing together two legendary artists for a night of music and celebration.",
+      "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering 12 songs, including hits like \"Toxic\" and \"Godzilla,\" while The Game performed 10 tracks, including \"Hate It or Love It\" and \"My Life.\" The event, which celebrated the artists' impact on hip-hop culture, featured live voting from fans, with results reflecting their real-time participation. The outcome of the battle remains unofficial, as the votes were cast to represent the fans' opinions rather than an official declaration of victory or defeat.",
       "hashtag": "Verzuz",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -527,82 +376,165 @@
       "corr": 1,
       "verified": false,
       "trend": "verzuz",
-      "traffic": 500,
+      "traffic": 2000,
       "freshH": 1,
-      "score": 0.442,
-      "popularity": 0.002,
+      "score": 0.444,
+      "popularity": 0.006,
       "recency": 0.891,
       "relevancy": 0.52,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-      "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to properly stop forced labour imports. The new duties come into effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, with the US seeking to address human rights abuses and distortive trade practices.",
-      "hashtag": "US",
-      "badge": "BREAKING",
-      "category": "breaking",
-      "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+      "title": "Curiosity Blog, Sols 4954–4960: Celebrating Our Rover Engineers Past and Present",
+      "summary": "NASA’s Curiosity rover completed its latest science operations on Mars, analyzing five rock targets with its APXS instrument and MAHLI imager. Engineers successfully deployed the robotic arm despite dusty, uneven terrain by brushing surfaces and selecting safe contact points. The team now plans to continue exploring the area while celebrating the engineers behind the rover’s ongoing mission.",
+      "hashtag": "CuriosityBlog",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/",
+      "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+        "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+        "https://assets.science.nasa.gov/content/dam/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [],
+      "entityShots": [
+        {
+          "name": "Curiosity rover",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
+      ],
+      "entities": [
+        "Curiosity rover"
+      ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+        "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/"
       ],
-      "sourceName": "BBC",
+      "sourceName": "NASA",
       "sources": [
-        "BBC"
+        "NASA"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.19,
-      "score": 0.435,
+      "freshH": 1.49,
+      "score": 0.436,
       "popularity": 0,
-      "recency": 0.872,
+      "recency": 0.842,
+      "relevancy": 0.566,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Week 8: Edmonton Elks at Saskatchewan Roughriders",
+      "summary": "The Edmonton Elks are set to face the Saskatchewan Roughriders in Week 8 of the 2026 Canadian Football League season, with kickoff scheduled for 9:00 pm ET. This matchup is available to international audiences on CFL+, while Canadian viewers can watch on TSN or RDS2, and U.S. audiences on CBS Sports. The game marks a key contest in the league's ongoing season.",
+      "hashtag": "Scores",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.cfl.ca/2026/07/22/week-8-edmonton-elks-at-saskatchewan-roughriders-2/",
+      "imageUrl": "https://static.cfl.ca/wp-content/uploads/CFLThumbnails-1920x1080-EDM-SSK.jpg",
+      "images": [
+        "https://static.cfl.ca/wp-content/uploads/CFLThumbnails-1920x1080-EDM-SSK.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Week",
+        "Edmonton Elks",
+        "Saskatchewan Roughriders"
+      ],
+      "sourceUrls": [
+        "https://www.cfl.ca/2026/07/22/week-8-edmonton-elks-at-saskatchewan-roughriders-2/"
+      ],
+      "sourceName": "cfl.ca",
+      "sources": [
+        "CFL.ca"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "cfl scores",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.423,
+      "popularity": 0.002,
+      "recency": 0.891,
+      "relevancy": 0.442,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "‘Stuart Fails to Save the Universe’ Co-Creator Bill Prady Explains the Science Behind the Show’s Multiverse",
+      "summary": "Bill Prady, co-creator of Stuart Fails to Save the Universe, explains the show’s multiverse chaos in the series premiere now streaming on HBO Max. The post-apocalyptic Pasadena setting features zombie hands, giant moths and reality-tearing portals, while a second Stuart arrives to warn that The Big Bang Theory characters caused the disaster. Regular Stuart and Bert must track down a quantum device at Caltech to restore order.",
+      "hashtag": "UniverseCo",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Stuart Fails",
+        "Save",
+        "Universe",
+        "Co-Creator Bill Prady Explains",
+        "Science Behind",
+        "Show"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.86,
+      "score": 0.412,
+      "popularity": 0,
+      "recency": 0.807,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "UK complacent about war threat, warns defence boss",
-      "summary": "The UK's defence spending is insufficient to counter the growing threat of foreign attack, warns Dr Charles Woodburn, boss of BAE Systems, with the level of threat being the highest he's seen in his lifetime. The country is not far from the use of autonomous lethal weapons by countries that may not follow the UK's policy of maintaining human control. To meet the government's commitment to spend 3.5% of GDP on defence by 2035, much more investment will be needed.",
-      "hashtag": "UK",
-      "badge": "GLOBAL",
-      "category": "crisis",
-      "url": "https://www.bbc.co.uk/news/articles/cx2lpjjpny9o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
+      "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
+      "summary": "A record June heatwave in England, with temperatures above 30C in some homes, has left parents like 36-year-old Tavia Watts feeling \"incredibly helpless\" over their children's safety. Watts, a stay-at-home mum in Cheltenham, shared her climate anxiety online, receiving 18,000 likes and sparking wider discussion. A 2022 University of Bath study estimates 4.6% of UK adults experience climate-related distress, particularly young people and women.",
+      "hashtag": "Heatwave",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/f773/live/c8220520-86a3-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/7120/live/766c17b0-86a4-11f1-b976-0b9c15b0ccfc.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/b82a/live/5e9d77e0-86a5-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
       ],
       "entityShots": [
         {
-          "name": "Europe's",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+          "name": "Heatwave",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
         }
       ],
       "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
       ],
       "entities": [
-        "Europe's",
-        "Dr Charles Woodburn"
+        "Heatwave",
+        "Extreme"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cx2lpjjpny9o?at_medium=RSS&at_campaign=rss"
+        "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
       ],
       "sourceName": "BBC",
       "sources": [
@@ -612,17 +544,55 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.79,
-      "score": 0.434,
+      "freshH": 2.76,
+      "score": 0.397,
       "popularity": 0,
-      "recency": 0.724,
-      "relevancy": 0.72,
+      "recency": 0.727,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Trump Administration to Impose New Tariffs of Around 10% on Over 80 Nations",
+      "summary": "The administration announced new duties tied to countries’ imports of goods made with forced labor, replacing a global 10 percent tariff set to expire at midnight.",
+      "hashtag": "ImposeNew",
+      "badge": "GLOBAL",
+      "category": "crisis",
+      "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Trump Administration",
+        "Impose New Tariffs",
+        "Around",
+        "Nations"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.91,
+      "score": 0.388,
+      "popularity": 0,
+      "recency": 0.901,
+      "relevancy": 0.292,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-      "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while the fate of the babies remains uncertain, with adoptive parents in Singapore awaiting a decision on whether they can keep their children. The Indonesian government has yet to confirm whether the babies will be returned to Indonesia.",
+      "summary": "Indonesian babies trafficked to Singapore for adoption have left adoptive parents in limbo after a court convicted 19 people for the crime. At least 12 babies were sent to Singapore as part of a syndicate that procured 34 children. Authorities in both countries now face urgent decisions on the children’s future.",
       "hashtag": "Indonesian",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -632,10 +602,18 @@
         "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
         "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
         "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Indonesian",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
+      ],
       "entities": [
         "Indonesian",
         "Singapore",
@@ -652,90 +630,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.53,
-      "score": 0.416,
+      "freshH": 3.53,
+      "score": 0.384,
       "popularity": 0,
-      "recency": 0.747,
-      "relevancy": 0.62,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-      "summary": "A record-breaking heatwave in England has left many feeling anxious, with a 36-year-old stay-at-home mother in Cheltenham sharing her fears on social media, garnering over 18,000 likes and 1,700 reposts. According to a 2022 study from the University of Bath, approximately 4.6% of people in the UK experience climate anxiety, a form of mental distress recognized by professional bodies and the NHS. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial to prevent feelings of helplessness.",
-      "hashtag": "Heatwave",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Heatwave",
-        "Extreme"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.76,
-      "score": 0.415,
-      "popularity": 0,
-      "recency": 0.816,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Scientists find building blocks of birdsong's 'spectacular diversity'",
-      "summary": "Scientists have discovered the fundamental building blocks of birdsong's spectacular diversity, identifying eight key types of sound, or \"motifs\", that are combined in various ways to create the complex songs of over 3,000 bird species worldwide. These motifs include trills, whistles, chaotic notes, and harmonies, which are found in birdsong across Asia, Africa, and the Amazon. The researchers' findings provide a new understanding of the global patterns and variations in birdsong, shedding light on one of nature's most sophisticated forms of sound-based communication.",
-      "hashtag": "Scientists",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cwy4eg5dpyzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Scientists"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cwy4eg5dpyzo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.94,
-      "score": 0.41,
-      "popularity": 0,
-      "recency": 0.799,
-      "relevancy": 0.52,
+      "recency": 0.665,
+      "relevancy": 0.605,
       "region": "usa",
       "geo": null
     },
     {
       "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-      "summary": "China's Moonshot AI has allegedly stolen capabilities from top US artificial intelligence model Anthropic's Fable AI, according to US President Donald Trump's Science and Technology adviser Michael Kratsios, who claims Moonshot used a process called distillation to extract answers from a stronger model. The stolen capabilities were used to develop Moonshot's K3 model, which has been touted as a rival to top US technology. The US government has information suggesting Moonshot also used Nvidia's restricted servers to train its models.",
+      "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from US firm Anthropic through a large-scale distillation campaign to develop its Kimi K3 model. Michael Kratsios claimed Moonshot accessed restricted Nvidia servers, including advanced GB300 chips, despite 2022 export controls, raising concerns over AI technology gaps. The allegations highlight escalating tensions in the global AI race as US officials warn of strategic risks from foreign competitors.",
       "hashtag": "MoonshotAI",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -764,54 +669,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.02,
-      "score": 0.407,
+      "freshH": 3.02,
+      "score": 0.377,
       "popularity": 0,
-      "recency": 0.792,
+      "recency": 0.706,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "What to Know About Peptides the FDA Is Considering for Use",
-      "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
-      "hashtag": "FDAIs",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Know About Peptides",
-        "FDA Is Considering",
-        "BPC-"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.34,
-      "score": 0.405,
-      "popularity": 0,
-      "recency": 0.961,
-      "relevancy": 0.274,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "US health panel recommends easing restrictions on controversial peptides",
-      "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that their safety and effectiveness have not been proven. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows this advice, telehealth companies are expected to increase marketing of these peptides for wellness and cosmetic uses.",
+      "summary": "A federal health advisory panel narrowly voted to ease restrictions on several peptides, including BPC-157 and TB-500, despite warnings from government scientists that the compounds lack proof of safety or effectiveness. The 8-6 decision, with one abstention, would allow pharmacies to compound injectable versions of the substances. If the FDA follows the recommendation, telehealth companies are expected to significantly expand marketing of the peptides for wellness and cosmetic use.",
       "hashtag": "US",
       "badge": "HEALTH",
       "category": "health",
@@ -853,17 +721,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.11,
-      "score": 0.399,
+      "freshH": 4.11,
+      "score": 0.373,
       "popularity": 0,
-      "recency": 0.698,
+      "recency": 0.622,
       "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Google fined €890m by EU for favouring its own apps over rivals",
-      "summary": "Google has been fined €890m by the EU for allegedly favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections on its services to comply with the EU's requirements.",
+      "summary": "We need to produce a punchy brief 2-3 complete sentences, 45-75 words. Must be entirely in English, no non-English words. Must lead with most important fact, include key who/what/where and number, date or consequence. Add one line of context or what happens next. Must fully cover story. No repeated words or sentences. No markdown, hashtags, brackets, quotes, emojis. No mention of article or outlet names. Must be plain text. We have source excerpt: Google fined €890m by EU for favouring its own apps over rivals. It's first major action under DMA. The fine comprises two separate breaches: €460m penalty after finding Google favoured its own services for helping people (cut off). We need to include number, date? No date given. Could mention that the fine was imposed recently (but no date). Could say \"the European Commission announced the fine\". Provide context: Google says it will have to strip features, EU says necessary. We need 2-3 sentences, 45-75 words. Let's craft 3 sentences. Sentence 1: The European Commission has fined Google €890 million for abusing its market power by giving its own apps and services preferential treatment over rivals, the first major penalty under the EU's Digital Markets Act. Sentence 2: The fine consists of a €460 million charge for favoring its own services in helping users find information and a second breach that together total the €890 million sanction. Sentence 3: Google argues the ruling forces it to remove popular real‑time search features and safety protections, while EU officials say the measures are needed to ensure fair competition. Now count words. Sentence1: \"The(1) European2 Commission3 has4 fined5 Google6 €8907 million8 for9 abusing10 its11 market12 power13 by14 giving15 its16 own17 apps18 and19 services20 preferential21 treatment22 over23 rivals,24 the25 first26 major27 penalty28 under29 the30 EU's31 Digital32 Markets33 Act34.\" That's 34 words.",
       "hashtag": "Google",
       "badge": "TECH",
       "category": "tech",
@@ -898,11 +766,48 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.69,
-      "score": 0.399,
+      "freshH": 3.69,
+      "score": 0.371,
       "popularity": 0,
-      "recency": 0.733,
+      "recency": 0.653,
       "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "What to Know About Peptides the FDA Is Considering for Use",
+      "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
+      "hashtag": "FDAIs",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Know About Peptides",
+        "FDA Is Considering",
+        "BPC-"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 1.34,
+      "score": 0.368,
+      "popularity": 0,
+      "recency": 0.857,
+      "relevancy": 0.274,
       "region": "usa",
       "geo": null
     },
@@ -915,10 +820,18 @@
       "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Deal",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+      ],
       "entities": [
         "Judge Extends Pause",
         "Paramount-Warner Bros",
@@ -936,11 +849,139 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.95,
-      "score": 0.38,
+      "freshH": 1.95,
+      "score": 0.359,
       "popularity": 0,
-      "recency": 0.896,
-      "relevancy": 0.268,
+      "recency": 0.798,
+      "relevancy": 0.318,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "King's Tardis entrance as Commonwealth Games begin",
+      "summary": "The Commonwealth Games opening ceremony in Glasgow featured a parade of nations that drew loud cheers for the Falkland Islands and Samoa, but the loudest reception greeted the Scotland team, who entered last in kilts to bagpipes and a rendition of Flower of Scotland. The event, held indoors before about 10,000 spectators, included theatrical performances celebrating Glasgow and the Commonwealth, with Scottish singer Nathan Evans and a dance under a replica of Glasgow Central Station's clock.",
+      "hashtag": "CommonwealthGames",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/articles/cvg79z237yvo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Glasgow",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
+      ],
+      "entities": [
+        "Tardis",
+        "Loch Ness Monster",
+        "Glasgow"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/articles/cvg79z237yvo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 4.98,
+      "score": 0.339,
+      "popularity": 0,
+      "recency": 0.563,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Hull KR inflict more derby misery on Hull FC",
+      "summary": "Out-of-form Super League champions Hull KR put a stop to their losing run as they battle back to beat city rivals Hull FC in a feisty derby. Betfred Super League Hull FC (12) 20 Tries: Batchelor, D Litten, Arthur Goals: Hardaker 4 Hull KR (12) 28 Tries: Amone, Mourgue, Broadbent, Burgess, Dezaria Goals: Mourgue 7 Out-of-form Super League champions Hull KR put a stop to their losing run as they battled back to beat city rivals Hull FC in a feisty derby.",
+      "hashtag": "HullKR",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Hull KR",
+        "Hull FC"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 4.82,
+      "score": 0.33,
+      "popularity": 0,
+      "recency": 0.573,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "India activist ends hunger strike after 26 days",
+      "summary": "We need to produce 2-3 complete sentences, 45-75 words total, for a short news video. Must lead with most important fact, include who/what/where and number/date/consequence. Add one line of context or what happens next. Each sentence must be complete and end with a full stop. No repeated words or sentences. No markdown, hashtags, brackets, quotes, emoji. No mention of \"the article\" or outlet names. Must translate foreign facts into natural English. Must not output any non-English words. Must not repeat words or sentences. Must be neutral, factual, no hype. Must fully cover story in those sentences so viewer needs no more. Must be 2-3 sentences, 45-75 words total. Must not repeat any words. That's tricky: cannot repeat any words across the whole output. So each word must be unique. Must be careful not to repeat \"the\", \"and\", \"a\", etc. But we need to avoid repeating any word. That includes common words like \"the\". So we must craft a text where each word appears only once. That's extremely restrictive. We need 45-75 words, each unique. Must be 2-3 sentences, each ending with a period. No repeated words across sentences. Also cannot repeat \"India\" maybe? But we can use it only once. Must include key who/what/where and number/date/consequence. Must include context or what happens next. Must be neutral factual. Must not mention outlet names. Must not use any non-English words. Must not use quotes. Must not use brackets. Must not use markdown. Must not use emojis. Must not repeat any word. So we need to craft a short paragraph with unique words only. We need 45-75 words total. Let's aim for 55 words. Must be 2-3 sentences. Let's do 3 sentences, each ending with period. Must ensure no word repeats. So we need to list 55 unique words. Let's count. We need to convey: India activist ends hunger strike after 26 days. He is a well-known name, ended after government assured no legal action, protests continue until minister resigns, protests ongoing after police crackdown, etc. Must include who/what/where and number/date/consequence.",
+      "hashtag": "India",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Sonam Wangchuk",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+      ],
+      "entities": [
+        "India",
+        "Sonam Wangchuk"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 5.41,
+      "score": 0.33,
+      "popularity": 0,
+      "recency": 0.535,
+      "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
@@ -976,49 +1017,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.61,
-      "score": 0.361,
+      "freshH": 2.6,
+      "score": 0.329,
       "popularity": 0,
-      "recency": 0.831,
+      "recency": 0.74,
       "relevancy": 0.28,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Hull KR inflict more derby misery on Hull FC",
-      "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side extend their winning run to nine games against their city rivals. The struggling Hull FC, who have now lost six straight matches, had taken an early 12-0 lead but were unable to hold on as Hull KR battled back to secure a crucial victory. This win moves Hull KR back into the play-off positions in fifth place.",
-      "hashtag": "HullKR",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Hull KR",
-        "Hull FC",
-        "Out-of-form Super League"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.83,
-      "score": 0.355,
-      "popularity": 0,
-      "recency": 0.643,
-      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -1051,10 +1054,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.84,
-      "score": 0.353,
+      "freshH": 2.84,
+      "score": 0.322,
       "popularity": 0,
-      "recency": 0.808,
+      "recency": 0.72,
       "relevancy": 0.279,
       "region": "usa",
       "geo": null
@@ -1091,52 +1094,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.84,
-      "score": 0.352,
+      "freshH": 2.83,
+      "score": 0.321,
       "popularity": 0,
-      "recency": 0.809,
+      "recency": 0.721,
       "relevancy": 0.276,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "King's Tardis entrance as Commonwealth Games begin",
-      "summary": "The Commonwealth Games officially kicked off with a spectacular opening ceremony at the venue in Glasgow, Scotland, featuring a rousing rendition of Scotland's unofficial anthem, \"Yes Sir, I Can Boogie,\" performed by singer Callum Beattie, which got the Scottish athletes dancing in their seats. The ceremony also included a theatrical performance billed as \"a love letter to Glasgow and the Commonwealth,\" and a lively display by the Scotland team, who entered the arena in their white shirts and kilts to a thunderous applause. The event drew a capacity crowd of around 10,000 people.",
-      "hashtag": "CommonwealthGames",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/articles/cvg79z237yvo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "King's Tardis",
-        "Commonwealth Games",
-        "King Charles III",
-        "Tardis",
-        "Loch Ness Monster",
-        "Glasgow"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/articles/cvg79z237yvo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.98,
-      "score": 0.351,
-      "popularity": 0,
-      "recency": 0.632,
-      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
@@ -1149,10 +1111,18 @@
       "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Dozens",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+      ],
       "entities": [
         "Health Care Agency Discontinues",
         "Dozens",
@@ -1172,50 +1142,11 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.53,
-      "score": 0.327,
+      "freshH": 3.53,
+      "score": 0.311,
       "popularity": 0,
-      "recency": 0.746,
-      "relevancy": 0.264,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Microsoft responds to LG monitors installing McAfee ads on Windows",
-      "summary": "Microsoft has responded to allegations that LG monitors are installing McAfee ads on Windows systems without user permission, a practice that has been ongoing for years and has raised concerns about user privacy. The LG Monitor App Installer, which is available on the Microsoft Store, allows the company to collect sensitive user data, including geolocation and online activity. Microsoft has yet to comment on whether it will take action to address this issue, but the incident has sparked questions about the permissions granted to peripherals' companion apps.",
-      "hashtag": "Microsoft",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://arstechnica.com/gadgets/2026/07/microsoft-responds-to-lg-monitors-installing-mcafee-ads-on-windows/",
-      "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2022/11/lg-UltraGear-27GR95QE-B-1152x648.jpg",
-      "images": [
-        "https://cdn.arstechnica.net/wp-content/uploads/2022/11/lg-UltraGear-27GR95QE-B-1152x648.jpg",
-        "https://cdn.arstechnica.net/wp-content/uploads/2026/07/LG-640x435.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Microsoft",
-        "McAfee",
-        "Windows",
-        "Windows Update"
-      ],
-      "sourceUrls": [
-        "https://arstechnica.com/gadgets/2026/07/microsoft-responds-to-lg-monitors-installing-mcafee-ads-on-windows/"
-      ],
-      "sourceName": "arstechnica.com",
-      "sources": [
-        "arstechnica.com"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 5.07,
-      "score": 0.325,
-      "popularity": 0,
-      "recency": 0.557,
-      "relevancy": 0.52,
+      "recency": 0.665,
+      "relevancy": 0.314,
       "region": "usa",
       "geo": null
     },
@@ -1249,10 +1180,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 3.7,
-      "score": 0.305,
+      "freshH": 4.69,
+      "score": 0.281,
       "popularity": 0,
-      "recency": 0.652,
+      "recency": 0.581,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
@@ -1289,10 +1220,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 7.01,
-      "score": 0.234,
+      "freshH": 8.01,
+      "score": 0.217,
       "popularity": 0,
-      "recency": 0.445,
+      "recency": 0.396,
       "relevancy": 0.312,
       "region": "usa",
       "geo": null
@@ -1301,90 +1232,37 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Stabbing suspect yells 'Allahu Akbar' before attacking 2 men in New York: police",
-        "summary": "A 51-year-old man was arrested Thursday after stabbing two men on New York’s Upper West Side while shouting “Allahu Akbar.” The victims, an Asian man and a Jewish man, were hospitalized with non-life-threatening injuries and are expected to survive. Police are investigating the attacks as a possible hate crime while assessing mental health factors in the suspect’s motive.",
-        "hashtag": "AllahuAkbar",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-        "imageUrl": "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-        "images": [
-          "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-          "https://nbc16.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-          "https://foxchattanooga.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-          "https://foxchattanooga.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
-          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
-          "https://media.townhall.com/cdn/hodl/2023/346/cac9bca4-b278-4d91-b1b6-f0454841e142-1200x630.jpg",
-          "https://media.townhall.com/cdn/hodl/2017/130/50b12da2-e6ff-48e1-84ba-5ba5eeb21b1b.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "New York"
-        ],
-        "sourceUrls": [
-          "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-          "https://foxchattanooga.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
-          "https://www.wrganews.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
-          "https://townhall.com/tipsheet/scott-mcclallen/2026/07/23/nypd-suspect-yelled-allahu-akbar-during-upper-west-side-stabbings-n2680048",
-          "https://hotair.com/john-s-2/2026/07/23/nyc-two-men-stabbed-by-suspect-yelling-allahu-akbar-n3817265"
-        ],
-        "sourceName": "KMTR",
-        "sources": [
-          "KMTR",
-          "wtvcfox",
-          "wrganews.com",
-          "townhall.com",
-          "hotair.com"
-        ],
-        "corr": 5,
-        "verified": true,
-        "trend": "Allahu Akbar",
-        "traffic": 98000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Dillon Dingler, James Outman deliver in clutch in Tigers' comeback win",
-        "summary": "The Detroit Tigers secured a 4-3 comeback win over the Kansas City Royals at Comerica Park, with Dillon Dingler delivering a clutch two-out RBI to break the tie and James Outman contributing a crucial swing. The Tigers trailed 2-0 after six innings but rallied to improve their July record to 12-5 and their overall record since June 1 to 27-16. The team will look to build on this momentum in the second game of the weekend series against the Royals.",
+        "title": "James Outman, Dillion Dingler lift surging Tigers to 4-3 win over Royals",
+        "summary": "James Outman’s three-run homer in the seventh inning and Dillon Dingler’s go-ahead RBI double in the eighth led the Detroit Tigers to a 4-3 win over the Kansas City Royals on Thursday night. The Tigers improved to 50-54, keeping their playoff hopes alive as the trade deadline approaches. Detroit starter Troy Melton allowed two runs over five innings in the victory.",
         "hashtag": "JamesOutman",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
-        "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
+        "url": "https://www.cbsnews.com/detroit/news/tigers-beat-royal-4-3/",
+        "imageUrl": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/07/24/0370da3d-27d3-42eb-9c2e-d26190d2312c/thumbnail/1200x630/9e86313a8f74c6a044d0dea2fa40f8bf/gettyimages-2287393931.jpg",
         "images": [
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031646007-20260723-rbtigersroyals-1364.jpg?crop=3397,1912,x0,y139&width=660&height=372&format=pjpg&auto=webp",
-          "https://platform.blessyouboys.com/wp-content/uploads/sites/37/2026/07/imagn-29440531.jpg?quality=90&strip=all&crop=0%2C10.750116498999%2C100%2C78.499767002001&w=1200"
+          "https://assets1.cbsnewsstatic.com/hub/i/r/2026/07/24/0370da3d-27d3-42eb-9c2e-d26190d2312c/thumbnail/1200x630/9e86313a8f74c6a044d0dea2fa40f8bf/gettyimages-2287393931.jpg",
+          "https://www.el-balad.com/uploads/2026/07/24/james-outman-2a0e765a_1200w.webp"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Dillon Dingler",
           "James Outman",
-          "Tigers"
+          "Dillion Dingler",
+          "Detroit Tigers"
         ],
         "sourceUrls": [
-          "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
-          "https://www.blessyouboys.com/detroit-tigers-scores-standings/95474/detroit-tigers-kansas-city-royals-troy-melton-randy-dobnak-james-outman-recap",
-          "https://www.mlive.com/tigers/2026/07/james-outmans-clutch-homer-sparks-tigers-comeback-win-over-royals.html"
+          "https://www.cbsnews.com/detroit/news/tigers-beat-royal-4-3/",
+          "https://www.el-balad.com/17035157"
         ],
-        "sourceName": "The Detroit News",
+        "sourceName": "CBS News",
         "sources": [
-          "The Detroit News",
-          "Bless You Boys",
-          "MLB.com",
-          "MLive.com"
+          "CBS News",
+          "El-Balad.com"
         ],
-        "corr": 4,
+        "corr": 2,
         "verified": true,
         "trend": "James Outman",
-        "traffic": 95000,
+        "traffic": 88000,
         "freshH": 0.5,
         "score": null,
         "popularity": null,
@@ -1394,103 +1272,47 @@
         "geo": "US"
       },
       {
-        "title": "Why Tom Hiddleston can’t stop thinking about Pompeii",
-        "summary": "Tom Hiddleston, a classical studies graduate and actor, explores the ancient Roman city of Pompeii in a new three-part series, tracing the stories of three real-life residents on the day Mount Vesuvius erupted in A.D. 79, killing thousands and preserving the city in time. The series, hosted by Hiddleston, delves into new insights into ancient Roman life, guided by experts and featuring scripted drama and documentary storytelling. This project marks a new creative venture for Hiddleston, who previously collaborated with Kevin Wright on the successful Disney+ series Loki.",
-        "hashtag": "Hiddleston",
+        "title": "Rapper YG Detained as Cops Execute Search Warrant Over Drakeo the Ruler Murder",
+        "summary": "Rapper YG was detained by police in Burbank, California, as they executed a search warrant related to the 2021 murder investigation of Drakeo the Ruler, with whom YG had a public feud despite denying involvement in the crime. The search warrant was served by the California Highway Patrol and the Burbank Police Department's SWAT team, but YG was released without being arrested. YG is scheduled to perform in a rap battle series, VERZUZ, later that evening, despite the morning's unexpected encounter with law enforcement.",
+        "hashtag": "Rapper",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
-        "imageUrl": "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+        "url": "https://www.tmz.com/2026/07/23/yg-detained-by-burbank-police/",
+        "imageUrl": "https://imagez.tmz.com/image/0e/16by9/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
         "images": [
-          "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
-          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/GettyImages-2286410201-H-2026.jpg?w=1296&h=730&crop=1",
-          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_020-H-2026.jpg?w=1296",
-          "https://www.hollywoodreporter.com/wp-content/uploads/2023/11/FCG2120_206_comp_FRA_v0296.1534_R-H-2023.jpg?w=1296",
-          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_CGI_058-H-2026.jpg?w=1296",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+          "https://imagez.tmz.com/image/0e/16by9/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+          "https://imagez.tmz.com/image/0e/4by3/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+          "https://imagez.tmz.com/image/0e/1by1/2026/07/23/0e8bf43862de49d69aac8fd4ffae85eb_xl.png",
+          "https://imagez.tmz.com/image/34/16by9/2026/07/23/344d29d316b7423a8306ca351536e3b4_xl.jpg",
+          "https://imagez.tmz.com/image/74/16by9/2026/07/23/746a4b0c50064a4bb508318d15da9d6a_xl.jpg",
+          "https://imagez.tmz.com/image/17/16by9/2026/07/23/1713db1021cf4237b2dea7aa3295477d_md.png",
+          "https://imagez.tmz.com/image/34/4by3/2026/07/23/344d29d316b7423a8306ca351536e3b4_md.jpg",
+          "https://imagez.tmz.com/image/74/4by3/2026/07/23/746a4b0c50064a4bb508318d15da9d6a_md.jpg",
+          "https://media.nbclosangeles.com/2026/07/GettyImages-2191886935.jpg?quality=85&strip=all&resize=1200%2C675",
+          "https://media.nbclosangeles.com/2019/09/LA_aerial-1-1.png?fit=2060%2C847&quality=85&strip=all&w=400&h=44&crop=1"
         ],
-        "entityShots": [
-          {
-            "name": "Tom Hiddleston",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Tom Hiddleston",
-          "Pompeii"
+          "Rapper YG Detained",
+          "Cops Execute Search Warrant",
+          "Drakeo",
+          "Ruler Murder"
         ],
         "sourceUrls": [
-          "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
-          "https://www.wsj.com/arts-culture/television/pompeii-out-of-time-with-tom-hiddleston-review-uncovering-survivors-d3e7f744",
-          "https://www.hollywoodreporter.com/tv/tv-features/loki-ep-kevin-r-wright-talks-pompeii-out-of-time-1236654094/"
+          "https://www.tmz.com/2026/07/23/yg-detained-by-burbank-police/",
+          "https://ktla.com/news/local-news/rapper-yg-briefly-detained-as-police-search-property-in-homicide-investigation/",
+          "https://www.nbclosangeles.com/news/local/rapper-yg-drakeo-the-ruler-burbank-murder-investigation/3921048/"
         ],
-        "sourceName": "nationalgeographic.com",
+        "sourceName": "tmz.com",
         "sources": [
-          "National Geographic",
-          "WSJ",
-          "The Hollywood Reporter"
+          "TMZ",
+          "KTLA",
+          "NBC Los Angeles"
         ],
         "corr": 3,
         "verified": true,
-        "trend": "tom hiddleston",
-        "traffic": 500,
-        "freshH": 1,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "Jerry O’Connell addresses brutal Giuliana Rancic breakup more than a decade after she blasted him in memoir",
-        "summary": "Jerry O'Connell has broken his silence on his 2004 breakup with Giuliana Rancic, confessing he doesn't recall his exact wording but acknowledging he may have said something similar to what Rancic described in her 2015 memoir, \"Going Off Script\". The \"Jerry Maguire\" star, 52, praised Rancic for using colorful dialogue in her book, which included a brutal description of their split. The couple's breakup occurred more than 20 years ago, with Rancic releasing her tell-all memoir over a decade later.",
-        "hashtag": "GiulianaRancic",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
-        "imageUrl": "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
-        "images": [
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/actor-jerry-oconnell-wife-giuliana-135023888.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/kelly-ripa-jerry-oconnell-attend-135023995.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/giuliana-rancic-signs-copies-new-135024001.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/american-women-radio-television-new-135023860.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-arriving-135023889.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/red-carpet-arrivals-graumans-chinese-135023887.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-pose-135023861.jpg",
-          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/new-york-daily-news-newsday-135023880.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Giuliana Rancic",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
-        ],
-        "entities": [
-          "Jerry",
-          "Connell",
-          "Giuliana Rancic"
-        ],
-        "sourceUrls": [
-          "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
-          "https://people.com/jerry-o-connell-terrible-boyfriend-ex-giuliana-rancic-intercom-breakup-12024007"
-        ],
-        "sourceName": "pagesix.com",
-        "sources": [
-          "Page Six",
-          "People.com"
-        ],
-        "corr": 2,
-        "verified": true,
-        "trend": "giuliana rancic",
+        "trend": "yg rapper",
         "traffic": 1000,
         "freshH": 1,
         "score": null,
@@ -1501,46 +1323,53 @@
         "geo": "US"
       },
       {
-        "title": "AUSL postseason is here! Cascade face Bandits in play-in game (9 ET, ESPN)",
-        "summary": "The 2026 Athletes Unlimited Softball League postseason has begun with the Chicago Bandits facing off against the Portland Cascade in a win-or-go-home play-in game on Thursday at 9 p.m. ET on ESPN, with the winner advancing to the AUSL Championship against the top-seeded Utah Talons. The AUSL Championship series will begin on Saturday at 1 p.m. ET on ABC, marking the first time a professional softball game has been televised on the network.",
-        "hashtag": "Ausl",
+        "title": "Satellite spots a 'hummingbird' in Antarctica photo of the day for July 23, 2026",
+        "summary": "A stunning satellite image captured by NISAR has revealed a unique feature resembling a hummingbird in Antarctica, but it's actually a mountaintop with crevasses and a stream of ice flowing northeast towards the ocean. The image shows Nunatak Zaterjavshijsja, a mountaintop in East Antarctica, with the dark belly of the \"bird\" being the mountain's surface and the \"feathers\" being crevasses formed by a glacier. This detailed view was made possible by NISAR's sophisticated radar instruments, which will continue to provide valuable data for researchers and users worldwide.",
+        "hashtag": "NisarSatellite",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
-        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
+        "url": "https://www.space.com/astronomy/earth/radar-satellite-spots-a-hummingbird-in-antarctica-space-photo-of-the-day-for-july-23-2026",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-2000-80.png",
         "images": [
-          "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
-          "https://espnpressroom.com/wp-content/uploads/2026-AUSL-Schedule-6.png",
-          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+          "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-2000-80.png",
+          "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi-1200-80.png",
+          "https://cdn.mos.cms.futurecdn.net/syo69FVotBznkxi63ezcLi.png",
+          "https://c.ndtvimg.com/2026-07/me628j4o_nasa_625x300_24_July_26.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
         ],
         "entityShots": [
           {
-            "name": "Cascade",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+            "name": "Satellite",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg"
+          },
+          {
+            "name": "July",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Satellite_tobacco_mosaic_virus_crystal.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Breviarium%20Grimani%20-%20Juli.jpg?width=1200"
         ],
         "entities": [
-          "AUSL",
-          "Cascade",
-          "Bandits",
-          "ESPN"
+          "Satellite",
+          "Antarctica",
+          "July"
         ],
         "sourceUrls": [
-          "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
-          "https://espnpressroom.com/press-release/espn-presents-2026-athletes-unlimited-softball-league-postseason-beginning-july-23/"
+          "https://www.space.com/astronomy/earth/radar-satellite-spots-a-hummingbird-in-antarctica-space-photo-of-the-day-for-july-23-2026",
+          "https://www.ndtv.com/science/nasas-nisar-captures-hummingbird-like-pattern-beneath-antarcticas-ice-11814081"
         ],
-        "sourceName": "mlb.com",
+        "sourceName": "space.com",
         "sources": [
-          "MLB.com",
-          "ESPN Press Room"
+          "Space",
+          "NDTV"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "ausl",
-        "traffic": 2000,
+        "trend": "nisar satellite antarctica image",
+        "traffic": 1000,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1550,43 +1379,42 @@
         "geo": "US"
       },
       {
-        "title": "'Big Brother' says goodbye to Traverse City pickleball coach",
-        "summary": "Rome Seymour, a pickleball coach from Traverse City, has become the second player to be voted off the CBS reality show \"Big Brother\" this season, with a near-unanimous 12-1 vote. Seymour was evicted despite his efforts to save himself in the BB Block Buster competition, where he was narrowly outperformed by former \"RuPaul's Drag Race\" standout Jason De Puy. Seymour has taken his early exit graciously, stating that he has no hard feelings towards his fellow houseguests.",
-        "hashtag": "BrotherSpoilers",
-        "badge": "TRENDING",
+        "title": "YG and The Game's 'VERZUZ': Travis Barker Pops Out for Opening Cut \"Dope Boys\"",
+        "summary": "Travis Barker joined YG and The Game’s VERZUZ livestream on July 23, drumming live during The Game’s opening performance of “Dope Boys.” The surprise appearance capped off a high-energy start to the Compton rappers’ long-awaited clash. The event is available to watch on Apple Music and YouTube.",
+        "hashtag": "Verzuz",
+        "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/",
-        "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "url": "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys",
+        "imageUrl": "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
         "images": [
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/16/PDTN/90945971007-97248-d-1745.JPG?crop=1996,1123,x0,y600&width=660&height=372&format=pjpg&auto=webp",
-          "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+          "https://images.complex.com/complex/image/upload/c_crop,h_1081,w_1920,x_0,y_0/g_auto:aoi_768_433_384_216,ar_1.91,c_fill,q_auto,w_1200/sanity-new%2Fygame1_oqc66z",
+          "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
         ],
         "entityShots": [
           {
-            "name": "Traverse City",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+            "name": "Travis Barker",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/a/af/Travis_Barker_2019_by_Glenn_Francis_%28tighter_portrait_crop%29.jpg"
         ],
         "entities": [
-          "Big Brother",
-          "Traverse City"
+          "Travis Barker",
+          "VERZUZ"
         ],
         "sourceUrls": [
-          "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/"
+          "https://www.complex.com/music/a/shawn-setaro/yg-game-verzuz-travis-barker-dope-boys"
         ],
-        "sourceName": "detroitnews.com",
+        "sourceName": "Complex",
         "sources": [
-          "The Detroit News"
+          "Complex"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "big brother spoilers",
-        "traffic": 2000,
-        "freshH": 1,
+        "trend": "#Verzuz",
+        "traffic": 99000,
+        "freshH": 0.5,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1596,7 +1424,7 @@
       },
       {
         "title": "YG vs. The Game: VERZUZ — Compton Forever",
-        "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering a 22-song setlist that included hits like \"Toxic\" and \"Godzilla\". The event, which celebrated the artists' impact on Compton culture, featured live voting from fans, with over 1 million votes cast in real-time. The VERZUZ battle marked a historic moment in hip-hop, bringing together two legendary artists for a night of music and celebration.",
+        "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering 12 songs, including hits like \"Toxic\" and \"Godzilla,\" while The Game performed 10 tracks, including \"Hate It or Love It\" and \"My Life.\" The event, which celebrated the artists' impact on hip-hop culture, featured live voting from fans, with results reflecting their real-time participation. The outcome of the battle remains unofficial, as the votes were cast to represent the fans' opinions rather than an official declaration of victory or defeat.",
         "hashtag": "Verzuz",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1630,6 +1458,43 @@
         "corr": 1,
         "verified": false,
         "trend": "verzuz",
+        "traffic": 2000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Week 8: Edmonton Elks at Saskatchewan Roughriders",
+        "summary": "The Edmonton Elks are set to face the Saskatchewan Roughriders in Week 8 of the 2026 Canadian Football League season, with kickoff scheduled for 9:00 pm ET. This matchup is available to international audiences on CFL+, while Canadian viewers can watch on TSN or RDS2, and U.S. audiences on CBS Sports. The game marks a key contest in the league's ongoing season.",
+        "hashtag": "Scores",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.cfl.ca/2026/07/22/week-8-edmonton-elks-at-saskatchewan-roughriders-2/",
+        "imageUrl": "https://static.cfl.ca/wp-content/uploads/CFLThumbnails-1920x1080-EDM-SSK.jpg",
+        "images": [
+          "https://static.cfl.ca/wp-content/uploads/CFLThumbnails-1920x1080-EDM-SSK.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Week",
+          "Edmonton Elks",
+          "Saskatchewan Roughriders"
+        ],
+        "sourceUrls": [
+          "https://www.cfl.ca/2026/07/22/week-8-edmonton-elks-at-saskatchewan-roughriders-2/"
+        ],
+        "sourceName": "cfl.ca",
+        "sources": [
+          "CFL.ca"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "cfl scores",
         "traffic": 500,
         "freshH": 1,
         "score": null,
@@ -1641,7 +1506,7 @@
       },
       {
         "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-        "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while the fate of the babies remains uncertain, with adoptive parents in Singapore awaiting a decision on whether they can keep their children. The Indonesian government has yet to confirm whether the babies will be returned to Indonesia.",
+        "summary": "Indonesian babies trafficked to Singapore for adoption have left adoptive parents in limbo after a court convicted 19 people for the crime. At least 12 babies were sent to Singapore as part of a syndicate that procured 34 children. Authorities in both countries now face urgent decisions on the children’s future.",
         "hashtag": "Indonesian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1651,10 +1516,18 @@
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/d9a4/live/b3961660-8666-11f1-93cb-95d7eb12ec49.jpg",
           "https://ichef.bbci.co.uk/ace/standard/1552/cpsprodpb/5e18/live/582434b0-8666-11f1-93cb-95d7eb12ec49.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/3de7/live/8c027200-8667-11f1-93cb-95d7eb12ec49.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Indonesian",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20map.png?width=1200"
+        ],
         "entities": [
           "Indonesian",
           "Singapore",
@@ -1671,7 +1544,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.53,
+        "freshH": 3.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1680,37 +1553,43 @@
         "geo": null
       },
       {
-        "title": "Microsoft responds to LG monitors installing McAfee ads on Windows",
-        "summary": "Microsoft has responded to allegations that LG monitors are installing McAfee ads on Windows systems without user permission, a practice that has been ongoing for years and has raised concerns about user privacy. The LG Monitor App Installer, which is available on the Microsoft Store, allows the company to collect sensitive user data, including geolocation and online activity. Microsoft has yet to comment on whether it will take action to address this issue, but the incident has sparked questions about the permissions granted to peripherals' companion apps.",
-        "hashtag": "Microsoft",
+        "title": "India activist ends hunger strike after 26 days",
+        "summary": "We need to produce 2-3 complete sentences, 45-75 words total, for a short news video. Must lead with most important fact, include who/what/where and number/date/consequence. Add one line of context or what happens next. Each sentence must be complete and end with a full stop. No repeated words or sentences. No markdown, hashtags, brackets, quotes, emoji. No mention of \"the article\" or outlet names. Must translate foreign facts into natural English. Must not output any non-English words. Must not repeat words or sentences. Must be neutral, factual, no hype. Must fully cover story in those sentences so viewer needs no more. Must be 2-3 sentences, 45-75 words total. Must not repeat any words. That's tricky: cannot repeat any words across the whole output. So each word must be unique. Must be careful not to repeat \"the\", \"and\", \"a\", etc. But we need to avoid repeating any word. That includes common words like \"the\". So we must craft a text where each word appears only once. That's extremely restrictive. We need 45-75 words, each unique. Must be 2-3 sentences, each ending with a period. No repeated words across sentences. Also cannot repeat \"India\" maybe? But we can use it only once. Must include key who/what/where and number/date/consequence. Must include context or what happens next. Must be neutral factual. Must not mention outlet names. Must not use any non-English words. Must not use quotes. Must not use brackets. Must not use markdown. Must not use emojis. Must not repeat any word. So we need to craft a short paragraph with unique words only. We need 45-75 words total. Let's aim for 55 words. Must be 2-3 sentences. Let's do 3 sentences, each ending with period. Must ensure no word repeats. So we need to list 55 unique words. Let's count. We need to convey: India activist ends hunger strike after 26 days. He is a well-known name, ended after government assured no legal action, protests continue until minister resigns, protests ongoing after police crackdown, etc. Must include who/what/where and number/date/consequence.",
+        "hashtag": "India",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://arstechnica.com/gadgets/2026/07/microsoft-responds-to-lg-monitors-installing-mcafee-ads-on-windows/",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2022/11/lg-UltraGear-27GR95QE-B-1152x648.jpg",
+        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
         "images": [
-          "https://cdn.arstechnica.net/wp-content/uploads/2022/11/lg-UltraGear-27GR95QE-B-1152x648.jpg",
-          "https://cdn.arstechnica.net/wp-content/uploads/2026/07/LG-640x435.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Sonam Wangchuk",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
+        ],
         "entities": [
-          "Microsoft",
-          "McAfee",
-          "Windows",
-          "Windows Update"
+          "India",
+          "Sonam Wangchuk"
         ],
         "sourceUrls": [
-          "https://arstechnica.com/gadgets/2026/07/microsoft-responds-to-lg-monitors-installing-mcafee-ads-on-windows/"
+          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
         ],
-        "sourceName": "arstechnica.com",
+        "sourceName": "BBC",
         "sources": [
-          "arstechnica.com"
+          "BBC"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 5.07,
+        "freshH": 5.41,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1722,7 +1601,7 @@
     "politics": [
       {
         "title": "Burnham to spend first day working from northern branch of No 10",
-        "summary": "Andy Burnham will spend his first day in office working from the new No 10 North branch in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee established in 2008 to address economic challenges across the UK. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, with up to 300 civil servants expected to join the new site by the end of next year. This marks a significant shift in power from Whitehall and Westminster to regional areas, as the prime minister aims to give more attention and investment to communities that have felt forgotten.",
+        "summary": "Mayor Andy Burnham will chair the National Economic Council in Manchester this Friday to mark the opening of the new Downing Street northern branch. This office aims to decentralize government power by moving key decision-making away from London and toward regional leaders. Up to 300 civil servants are expected to relocate to the site by the end of next year to support local economic growth.",
         "hashtag": "Burnham",
         "badge": "POLITICS",
         "category": "politics",
@@ -1731,22 +1610,22 @@
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
           "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
         ],
         "entityShots": [
           {
             "name": "Various",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200"
           },
           {
             "name": "Downing Street",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Feest%20der%20Letteren-%202015-1-17.jpg?width=1200",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Downing%20Street.jpg?width=1200"
         ],
         "entities": [
           "Burnham",
@@ -1764,7 +1643,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.12,
+        "freshH": 1.12,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1804,7 +1683,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.61,
+        "freshH": 2.6,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1841,7 +1720,43 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.84,
+        "freshH": 2.84,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "breaking": [
+      {
+        "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
+        "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan, and India, over claims they failed to properly stop forced labour imports. The new duties will take effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, as the US seeks to address human rights abuses and distortive trade practices.",
+        "hashtag": "US",
+        "badge": "BREAKING",
+        "category": "breaking",
+        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1853,7 +1768,7 @@
     "entertainment": [
       {
         "title": "Creepy Twins, Religious Fanaticism and a Loaded Gun Collide in Tense Chamber Drama ‘Godhead’ — Fantasia",
-        "summary": "A rural Catholic priest is being visited by two bizarre twins who claim to be part of a prophecy and need his help to fulfill it, but they also bring a gun to the meeting, adding to the tension. The film, \"Godhead,\" premiered at the Fantasia Festival in Montreal, where it received enthusiastic reviews for its masterful blend of faith, sex, lies, and discomfort. The director, Mark H. Rapaport, aimed to challenge authority figures and leave audiences with difficult questions.",
+        "summary": "A new chamber drama titled Godhead premiered at Montreal’s Fantasia Festival, blending faith, sex, and tension in black-and-white. A rural priest is visited by two bizarre twins who claim to be part of a prophecy and arrive with a gun. Director Mark H. Rapaport, whose debut Hippo also premiered at Fantasia, explores crooked authority and leaves audiences with challenging questions.",
         "hashtag": "TenseChamber",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1892,7 +1807,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.16,
+        "freshH": 1.16,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1902,7 +1817,7 @@
       },
       {
         "title": "‘Stuart Fails to Save the Universe’ Co-Creator Bill Prady Explains the Science Behind the Show’s Multiverse",
-        "summary": "A post-apocalyptic Pasadena has been ravaged by zombie hands, giant moths, and reality tears, with the only functioning business being a comic book shop run by Stuart Bloom. The show's multiverse is attributed to a quantum interference device built by \"The Big Bang Theory\" characters Leonard, Sheldon, and Howard, which has altered reality. Regular Stuart and his companions must now find the device at Cal Tech to potentially save the universe from further destruction.",
+        "summary": "Bill Prady, co-creator of Stuart Fails to Save the Universe, explains the show’s multiverse chaos in the series premiere now streaming on HBO Max. The post-apocalyptic Pasadena setting features zombie hands, giant moths and reality-tearing portals, while a second Stuart arrives to warn that The Big Bang Theory characters caused the disaster. Regular Stuart and Bert must track down a quantum device at Caltech to restore order.",
         "hashtag": "UniverseCo",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
@@ -1933,48 +1848,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "’72 Hours’ Review: Kevin Hart Tries to Be Down With the Kids in a Mediocre ‘Hangover’ Knockoff",
-        "summary": "Kevin Hart stars in the mediocre comedy \"72 Hours,\" a hangover-inspired film directed by Tim Story and written by Jon Hurwitz and Hayden Schlossberg, which attempts to revive the crime subplot formula that has often ruined even the most average comedies. The movie, a retread of the \"Hangover\" franchise, failed to impress critics despite its all-star cast. The film's lackluster performance is a reminder that even the most promising comedies can fall short of expectations.",
-        "hashtag": "HoursReview",
-        "badge": "ENTERTAINMENT",
-        "category": "entertainment",
-        "url": "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
-        "images": [
-          "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg?w=1000&h=563&crop=1"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Hours",
-          "Review",
-          "Kevin Hart Tries",
-          "Be Down With",
-          "Kids",
-          "Mediocre"
-        ],
-        "sourceUrls": [
-          "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/"
-        ],
-        "sourceName": "Variety",
-        "sources": [
-          "Variety"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.86,
+        "freshH": 1.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1983,24 +1857,79 @@
         "geo": null
       }
     ],
-    "breaking": [
+    "facts": [
       {
-        "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-        "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to properly stop forced labour imports. The new duties come into effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, with the US seeking to address human rights abuses and distortive trade practices.",
-        "hashtag": "US",
-        "badge": "BREAKING",
-        "category": "breaking",
-        "url": "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
+        "title": "Curiosity Blog, Sols 4954–4960: Celebrating Our Rover Engineers Past and Present",
+        "summary": "NASA’s Curiosity rover completed its latest science operations on Mars, analyzing five rock targets with its APXS instrument and MAHLI imager. Engineers successfully deployed the robotic arm despite dusty, uneven terrain by brushing surfaces and selecting safe contact points. The team now plans to continue exploring the area while celebrating the engineers behind the rover’s ongoing mission.",
+        "hashtag": "CuriosityBlog",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/",
+        "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/02b7/live/fa2c0bc0-86b1-11f1-bb58-d3ffca85db6d.jpg"
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg?w=1024&#038;h=512&#038;fit=clip&#038;crop=faces%2Cfocalpoint",
+          "https://assets.science.nasa.gov/content/dam/science/missions/msl/2026/curiosity-rover-updates/july/https___mars.nasa.gov_msl-raw-images_proj_msl_redops_ods_surface_sol_04955_opgs_edr_ncam_NRB_837362437EDR_S1231344NCAM00594M_.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [],
+        "entityShots": [
+          {
+            "name": "Curiosity rover",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg"
+        ],
+        "entities": [
+          "Curiosity rover"
+        ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cvgj61j6l08o?at_medium=RSS&at_campaign=rss"
+          "https://science.nasa.gov/blog/curiosity-blog-sols-4954-4960-celebrating-our-rover-engineers-past-and-present/"
+        ],
+        "sourceName": "NASA",
+        "sources": [
+          "NASA"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.49,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
+        "summary": "A record June heatwave in England, with temperatures above 30C in some homes, has left parents like 36-year-old Tavia Watts feeling \"incredibly helpless\" over their children's safety. Watts, a stay-at-home mum in Cheltenham, shared her climate anxiety online, receiving 18,000 likes and sparking wider discussion. A 2022 University of Bath study estimates 4.6% of UK adults experience climate-related distress, particularly young people and women.",
+        "hashtag": "Heatwave",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
+        ],
+        "entityShots": [
+          {
+            "name": "Heatwave",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Wcmax1%20JUL%2014%20-%20AUG%203%202019%20cr.png?width=1200"
+        ],
+        "entities": [
+          "Heatwave",
+          "Extreme"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
         ],
         "sourceName": "BBC",
         "sources": [
@@ -2010,7 +1939,44 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.19,
+        "freshH": 2.76,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "What to Know About Peptides the FDA Is Considering for Use",
+        "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
+        "hashtag": "FDAIs",
+        "badge": "SCIENCE",
+        "category": "facts",
+        "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Know About Peptides",
+          "FDA Is Considering",
+          "BPC-"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.34,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2021,48 +1987,36 @@
     ],
     "crisis": [
       {
-        "title": "UK complacent about war threat, warns defence boss",
-        "summary": "The UK's defence spending is insufficient to counter the growing threat of foreign attack, warns Dr Charles Woodburn, boss of BAE Systems, with the level of threat being the highest he's seen in his lifetime. The country is not far from the use of autonomous lethal weapons by countries that may not follow the UK's policy of maintaining human control. To meet the government's commitment to spend 3.5% of GDP on defence by 2035, much more investment will be needed.",
-        "hashtag": "UK",
+        "title": "Trump Administration to Impose New Tariffs of Around 10% on Over 80 Nations",
+        "summary": "The administration announced new duties tied to countries’ imports of goods made with forced labor, replacing a global 10 percent tariff set to expire at midnight.",
+        "hashtag": "ImposeNew",
         "badge": "GLOBAL",
         "category": "crisis",
-        "url": "https://www.bbc.co.uk/news/articles/cx2lpjjpny9o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
+        "url": "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg",
         "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/2048/cpsprodpb/8cf8/live/60e4b350-86a6-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/f773/live/c8220520-86a3-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/7120/live/766c17b0-86a4-11f1-b976-0b9c15b0ccfc.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/b82a/live/5e9d77e0-86a5-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-tariffs-01-wfcz/23dc-tariffs-01-wfcz-mediumSquareAt3X.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Europe's",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
-          "Europe's",
-          "Dr Charles Woodburn"
+          "Trump Administration",
+          "Impose New Tariffs",
+          "Around",
+          "Nations"
         ],
         "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cx2lpjjpny9o?at_medium=RSS&at_campaign=rss"
+          "https://www.nytimes.com/2026/07/23/business/economy/trump-tariffs.html"
         ],
-        "sourceName": "BBC",
+        "sourceName": "The New York Times",
         "sources": [
-          "BBC"
+          "The New York Times"
         ],
         "corr": 1,
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.79,
+        "freshH": 0.91,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2072,7 +2026,7 @@
       },
       {
         "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-        "summary": "China's Moonshot AI has allegedly stolen capabilities from top US artificial intelligence model Anthropic's Fable AI, according to US President Donald Trump's Science and Technology adviser Michael Kratsios, who claims Moonshot used a process called distillation to extract answers from a stronger model. The stolen capabilities were used to develop Moonshot's K3 model, which has been touted as a rival to top US technology. The US government has information suggesting Moonshot also used Nvidia's restricted servers to train its models.",
+        "summary": "A White House adviser has accused China's Moonshot AI of stealing capabilities from US firm Anthropic through a large-scale distillation campaign to develop its Kimi K3 model. Michael Kratsios claimed Moonshot accessed restricted Nvidia servers, including advanced GB300 chips, despite 2022 export controls, raising concerns over AI technology gaps. The allegations highlight escalating tensions in the global AI race as US officials warn of strategic risks from foreign competitors.",
         "hashtag": "MoonshotAI",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -2101,7 +2055,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.02,
+        "freshH": 3.02,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2141,119 +2095,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.84,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "facts": [
-      {
-        "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-        "summary": "A record-breaking heatwave in England has left many feeling anxious, with a 36-year-old stay-at-home mother in Cheltenham sharing her fears on social media, garnering over 18,000 likes and 1,700 reposts. According to a 2022 study from the University of Bath, approximately 4.6% of people in the UK experience climate anxiety, a form of mental distress recognized by professional bodies and the NHS. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial to prevent feelings of helplessness.",
-        "hashtag": "Heatwave",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Heatwave",
-          "Extreme"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.76,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Scientists find building blocks of birdsong's 'spectacular diversity'",
-        "summary": "Scientists have discovered the fundamental building blocks of birdsong's spectacular diversity, identifying eight key types of sound, or \"motifs\", that are combined in various ways to create the complex songs of over 3,000 bird species worldwide. These motifs include trills, whistles, chaotic notes, and harmonies, which are found in birdsong across Asia, Africa, and the Amazon. The researchers' findings provide a new understanding of the global patterns and variations in birdsong, shedding light on one of nature's most sophisticated forms of sound-based communication.",
-        "hashtag": "Scientists",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.bbc.co.uk/news/articles/cwy4eg5dpyzo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/53b1/live/6fe7bfe0-8684-11f1-b60e-a7e0943a9c78.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Scientists"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cwy4eg5dpyzo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.94,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "What to Know About Peptides the FDA Is Considering for Use",
-        "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
-        "hashtag": "FDAIs",
-        "badge": "SCIENCE",
-        "category": "facts",
-        "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Know About Peptides",
-          "FDA Is Considering",
-          "BPC-"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.34,
+        "freshH": 2.83,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2265,7 +2107,7 @@
     "health": [
       {
         "title": "US health panel recommends easing restrictions on controversial peptides",
-        "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that their safety and effectiveness have not been proven. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows this advice, telehealth companies are expected to increase marketing of these peptides for wellness and cosmetic uses.",
+        "summary": "A federal health advisory panel narrowly voted to ease restrictions on several peptides, including BPC-157 and TB-500, despite warnings from government scientists that the compounds lack proof of safety or effectiveness. The 8-6 decision, with one abstention, would allow pharmacies to compound injectable versions of the substances. If the FDA follows the recommendation, telehealth companies are expected to significantly expand marketing of the peptides for wellness and cosmetic use.",
         "hashtag": "US",
         "badge": "HEALTH",
         "category": "health",
@@ -2307,7 +2149,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.11,
+        "freshH": 4.11,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2324,10 +2166,18 @@
         "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Dozens",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+        ],
         "entities": [
           "Health Care Agency Discontinues",
           "Dozens",
@@ -2347,7 +2197,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.53,
+        "freshH": 3.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2387,7 +2237,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 7.01,
+        "freshH": 8.01,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2399,7 +2249,7 @@
     "tech": [
       {
         "title": "Google fined €890m by EU for favouring its own apps over rivals",
-        "summary": "Google has been fined €890m by the EU for allegedly favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections on its services to comply with the EU's requirements.",
+        "summary": "We need to produce a punchy brief 2-3 complete sentences, 45-75 words. Must be entirely in English, no non-English words. Must lead with most important fact, include key who/what/where and number, date or consequence. Add one line of context or what happens next. Must fully cover story. No repeated words or sentences. No markdown, hashtags, brackets, quotes, emojis. No mention of article or outlet names. Must be plain text. We have source excerpt: Google fined €890m by EU for favouring its own apps over rivals. It's first major action under DMA. The fine comprises two separate breaches: €460m penalty after finding Google favoured its own services for helping people (cut off). We need to include number, date? No date given. Could mention that the fine was imposed recently (but no date). Could say \"the European Commission announced the fine\". Provide context: Google says it will have to strip features, EU says necessary. We need 2-3 sentences, 45-75 words. Let's craft 3 sentences. Sentence 1: The European Commission has fined Google €890 million for abusing its market power by giving its own apps and services preferential treatment over rivals, the first major penalty under the EU's Digital Markets Act. Sentence 2: The fine consists of a €460 million charge for favoring its own services in helping users find information and a second breach that together total the €890 million sanction. Sentence 3: Google argues the ruling forces it to remove popular real‑time search features and safety protections, while EU officials say the measures are needed to ensure fair competition. Now count words. Sentence1: \"The(1) European2 Commission3 has4 fined5 Google6 €8907 million8 for9 abusing10 its11 market12 power13 by14 giving15 its16 own17 apps18 and19 services20 preferential21 treatment22 over23 rivals,24 the25 first26 major27 penalty28 under29 the30 EU's31 Digital32 Markets33 Act34.\" That's 34 words.",
         "hashtag": "Google",
         "badge": "TECH",
         "category": "tech",
@@ -2434,7 +2284,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.69,
+        "freshH": 3.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2451,10 +2301,18 @@
         "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Deal",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/2d/Uliveti_monte_cinto.JPG"
+        ],
         "entities": [
           "Judge Extends Pause",
           "Paramount-Warner Bros",
@@ -2472,7 +2330,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.95,
+        "freshH": 1.95,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2510,7 +2368,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.7,
+        "freshH": 4.69,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2521,46 +2379,8 @@
     ],
     "sports": [
       {
-        "title": "Hull KR inflict more derby misery on Hull FC",
-        "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side extend their winning run to nine games against their city rivals. The struggling Hull FC, who have now lost six straight matches, had taken an early 12-0 lead but were unable to hold on as Hull KR battled back to secure a crucial victory. This win moves Hull KR back into the play-off positions in fifth place.",
-        "hashtag": "HullKR",
-        "badge": "SPORTS",
-        "category": "sports",
-        "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Hull KR",
-          "Hull FC",
-          "Out-of-form Super League"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.83,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
         "title": "King's Tardis entrance as Commonwealth Games begin",
-        "summary": "The Commonwealth Games officially kicked off with a spectacular opening ceremony at the venue in Glasgow, Scotland, featuring a rousing rendition of Scotland's unofficial anthem, \"Yes Sir, I Can Boogie,\" performed by singer Callum Beattie, which got the Scottish athletes dancing in their seats. The ceremony also included a theatrical performance billed as \"a love letter to Glasgow and the Commonwealth,\" and a lively display by the Scotland team, who entered the arena in their white shirts and kilts to a thunderous applause. The event drew a capacity crowd of around 10,000 people.",
+        "summary": "The Commonwealth Games opening ceremony in Glasgow featured a parade of nations that drew loud cheers for the Falkland Islands and Samoa, but the loudest reception greeted the Scotland team, who entered last in kilts to bagpipes and a rendition of Flower of Scotland. The event, held indoors before about 10,000 spectators, included theatrical performances celebrating Glasgow and the Commonwealth, with Scottish singer Nathan Evans and a dance under a replica of Glasgow Central Station's clock.",
         "hashtag": "CommonwealthGames",
         "badge": "SPORTS",
         "category": "sports",
@@ -2568,14 +2388,19 @@
         "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
         "images": [
           "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg"
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ffe9/live/a599bc10-86e3-11f1-a4b5-5bff16c7b9ab.jpg",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Glasgow",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
+          }
+        ],
+        "entityImages": [
+          "https://commons.wikimedia.org/wiki/Special:FilePath/Glasgow%20-%20aerial%20-%202025-04-17%2012.jpg?width=1200"
+        ],
         "entities": [
-          "King's Tardis",
-          "Commonwealth Games",
-          "King Charles III",
           "Tardis",
           "Loch Ness Monster",
           "Glasgow"
@@ -2591,7 +2416,44 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 3.98,
+        "freshH": 4.98,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Hull KR inflict more derby misery on Hull FC",
+        "summary": "Out-of-form Super League champions Hull KR put a stop to their losing run as they battle back to beat city rivals Hull FC in a feisty derby. Betfred Super League Hull FC (12) 20 Tries: Batchelor, D Litten, Arthur Goals: Hardaker 4 Hull KR (12) 28 Tries: Amone, Mourgue, Broadbent, Burgess, Dezaria Goals: Mourgue 7 Out-of-form Super League champions Hull KR put a stop to their losing run as they battled back to beat city rivals Hull FC in a feisty derby.",
+        "hashtag": "HullKR",
+        "badge": "SPORTS",
+        "category": "sports",
+        "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Hull KR",
+          "Hull FC"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 4.82,
         "score": null,
         "popularity": null,
         "recency": null,
