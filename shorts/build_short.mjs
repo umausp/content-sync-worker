@@ -40,6 +40,11 @@ import {
 // text every surface (narration/captions/title/description) is derived from. These go PUBLIC +
 // monetized, so this runs on every channel before dedup/claim/render.
 import { guardStories, stripForSpeech } from './safety.mjs';
+// PER-COUNTRY audience preferences — weight the SINGLE-Short lead toward the categories each
+// country actually watches most (research-derived), then refresh a hot category with the
+// latest trend. Subsumes imageRichnessFirst (same blue-screen floor + image-rich tiers) and
+// degrades to it exactly when a channel has no prefs. Runs BEFORE the dedup stack in main().
+import { rankForChannel } from './country_prefs.mjs';
 
 const execFileP = promisify(execFile);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36';
@@ -269,42 +274,10 @@ function dedupeByTitle(stories) {
   return out;
 }
 
-// SINGLE-MODE IMAGE BIAS (user: "you are just showing 1 image … skipping deep research
-// with good content and images"). A single-story Short IS one story for the whole 30-45s,
-// so a lead with only 1 photo can't fill a lively image sequence. By the time the gather
-// returns, enrichSummary has populated story.images[] from every outlet that covered the
-// event — so the count of real photos is a direct proxy for "well-researched, well-
-// illustrated". STABLE-reorder the pool so image-rich stories lead, WITHOUT dropping any
-// (the channel must never blank): only promote a richer story ahead of a poorer one when it
-// clears a floor (≥ IMG_LEAD_FLOOR photos) and the incumbent is below it. Trend HEAT still
-// breaks ties among equally-illustrated stories, so "what's hot" wins when photos are equal.
-const IMG_LEAD_FLOOR = Number(process.env.SHORTS_IMG_LEAD_FLOOR || 3);
-function imageRichnessFirst(stories) {
-  const imgs = (s) => new Set([s?.imageUrl, ...(s?.images || [])].filter(Boolean)).size;
-  // Decorate-sort-undecorate on a COPY so the original heat order is the stable tiebreaker
-  // (Array.sort is stable in V8). A story clears the floor or it doesn't — we don't sort by
-  // raw count (that would let a 20-photo puff piece outrank a hot 4-photo lead); we only
-  // push stories BELOW the floor behind stories AT/above it.
-  const idx = new Map((stories || []).map((s, i) => [s, i]));
-  return [...(stories || [])].sort((a, b) => {
-    const na = imgs(a);
-    const nb = imgs(b);
-    // TIER 0 — NEVER let a ZERO-image story be the single lead when ANY story has a photo.
-    // A single-story Short with no image renders the blank brand gradient (the "blue screen":
-    // a hot trend like a JP merch story that resolved 0 photos was winning the one slot on
-    // heat alone). A story with ≥1 image always beats a 0-image one. Pure reorder — a pool
-    // where EVERY story has 0 images still ships (never blanks the channel).
-    const ha = na > 0 ? 1 : 0;
-    const hb = nb > 0 ? 1 : 0;
-    if (ha !== hb) return hb - ha;
-    // TIER 1 — among stories WITH photos, an image-RICH lead (≥ floor) beats a 1-2 photo one
-    // so the clip has a lively sequence, not a single frame.
-    const ra = na >= IMG_LEAD_FLOOR ? 1 : 0;
-    const rb = nb >= IMG_LEAD_FLOOR ? 1 : 0;
-    if (ra !== rb) return rb - ra; // above-floor stories lead
-    return idx.get(a) - idx.get(b); // else keep incoming (heat) order
-  });
-}
+// SINGLE-MODE lead ordering now lives in country_prefs.mjs `rankForChannel`, which keeps the
+// old image-bias tiers (never blue-screen; image-rich ≥ floor beats a single frame; trend HEAT
+// breaks ties) and inserts the per-country audience-preference tier between them. See that
+// module. SHORTS_IMG_LEAD_FLOOR (default 3) still tunes the image-rich floor there.
 
 // ── DEDICATED RESEARCH POOL (docs/research/world-<region>.json) ──────────────
 // The research-world.yml workflow does the SLOW, deep work on its own timeout-free
@@ -375,7 +348,10 @@ async function gatherStories(cfg) {
         // but guard again here so an older bundle can't ship a foreign clip on this English
         // channel. Drops any story we can't confidently make English.
         const english = keepEnglish(bundled);
-        const picked = english.slice(0, STORY_COUNT + CLAIM_BUFFER);
+        // SINGLE → rank the bundle for audience taste too (the bundle is trend-ranked, but a
+        // single Short still leads better with a preferred, image-rich, latest-trend story).
+        const orderedBundle = SINGLE ? rankForChannel(english, cfg) : english;
+        const picked = orderedBundle.slice(0, STORY_COUNT + CLAIM_BUFFER);
         picked.region = region;
         return picked;
       }
@@ -429,9 +405,10 @@ async function gatherStories(cfg) {
     // ENGLISH GUARD — EU-geo trends can be German/French/Italian/etc.; translate to English
     // or drop (the "Italian title + garbled TTS" bug) before claim/render on this channel.
     const english = keepEnglish(merged);
-    // SINGLE → prefer an image-rich lead so the one-story clip has a real photo sequence,
-    // not a single frame (stable reorder, drops nothing). Roundup/long-form keep heat order.
-    const ordered = SINGLE ? imageRichnessFirst(english) : english;
+    // SINGLE → rank for this country's audience taste: preferred categories lead (research-
+    // weighted), still image-rich over single-frame, still never a blue-screen, hot categories
+    // refreshed with the latest trend. Subsumes imageRichnessFirst. Roundup/long-form keep heat.
+    const ordered = SINGLE ? rankForChannel(english, cfg) : english;
     const picked = ordered.slice(0, STORY_COUNT + CLAIM_BUFFER);
     // Carry the run's region so main()/buildUploadMeta can tag meta.json → playlist.
     picked.region = region;
@@ -456,9 +433,10 @@ async function gatherStories(cfg) {
     // SINGLE → lead with the hottest trend (highest retention); LONGFORM/roundup → curated
     // categories lead so all slots are covered, trends fill. Identical to the world policy.
     const merged = SINGLE ? mergeByTitle(trending, round) : mergeByTitle(round, trending);
-    // SINGLE → prefer an image-rich lead (same policy as World) so the native one-story clip
-    // has a real photo sequence instead of a single frame. Stable reorder, drops nothing.
-    const ordered = SINGLE ? imageRichnessFirst(merged) : merged;
+    // SINGLE → rank for this country's audience taste (same policy as World): preferred
+    // categories lead, still image-rich over single-frame, never blue-screen, hot categories
+    // refreshed with the latest trend. Subsumes imageRichnessFirst. Stable reorder, drops nothing.
+    const ordered = SINGLE ? rankForChannel(merged, cfg) : merged;
     // Native channels have their OWN, non-overlapping playlists + audiences, so they don't
     // compete with world/bharat for the cross-run D1 claim; but two native runs of the SAME
     // language (a Short + a long-form in the same hour) still shouldn't dupe, so claimStories
