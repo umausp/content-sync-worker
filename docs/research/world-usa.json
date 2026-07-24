@@ -1,201 +1,352 @@
 {
-  "generatedAt": "2026-07-24T00:52:32.958Z",
+  "generatedAt": "2026-07-24T01:51:45.460Z",
   "region": "usa",
-  "count": 28,
+  "count": 30,
   "categoryCounts": {
-    "offbeat": 7,
+    "offbeat": 9,
+    "politics": 3,
     "entertainment": 3,
     "breaking": 1,
     "crisis": 3,
     "facts": 3,
-    "tech": 3,
     "health": 3,
-    "politics": 3,
+    "tech": 3,
     "sports": 2
   },
   "stories": [
     {
-      "title": "Ravens cut Heisman Trophy runner-up Diego Pavia on eve of rookie camp",
-      "summary": "The Baltimore Ravens cut Heisman Trophy runner-up Diego Pavia on Thursday, just before rookie camp began. Pavia, who led Vanderbilt to its first 10-win season, had signed as an undrafted free agent in April. Veteran Skylar Thompson and rookie Joe Fagnano will now compete for the third quarterback spot.",
-      "hashtag": "DiegoPavia",
-      "badge": "VIRAL",
-      "category": "offbeat",
-      "url": "https://www.orlandosentinel.com/2026/07/23/ravens-cut-heisman-trophy-runner-up-diego-pavia-on-eve-of-rookie-camp/",
-      "imageUrl": "https://www.orlandosentinel.com/wp-content/uploads/2026/07/Ravens_Pavia_Waived_Football_8_42.jpg?w=2000&h=1333",
-      "images": [
-        "https://www.orlandosentinel.com/wp-content/uploads/2026/07/Ravens_Pavia_Waived_Football_8_42.jpg?w=2000&h=1333",
-        "https://kvia.b-cdn.net/2023/10/nmsu-pavia-pow-pic-1.png",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/newspress-collage-c17tyxz6t-1784849261919.jpg?quality=75&strip=all&1784834903&w=1200",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/AP_Ravens_Pavia_Waived_Football_8_42-cdf43-0.jpg?w=1024",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/GettyImages-2257293014.jpg?w=683",
-        "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3358/files/2025/12/raw-vandytennfootball-pavia-1200x675.jpg",
-        "https://bettorsinsider.com/wp-content/uploads/2026/07/diego-pavia-vanderbilt-quarterback.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Diego Pavia",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "Diego Pavia",
-        "Baltimore Ravens"
-      ],
-      "sourceUrls": [
-        "https://www.orlandosentinel.com/2026/07/23/ravens-cut-heisman-trophy-runner-up-diego-pavia-on-eve-of-rookie-camp/",
-        "https://kvia.com/sports/2026/07/23/former-nmsu-qb-diego-pavia-released-by-baltimore-ravens/",
-        "https://nypost.com/2026/07/23/sports/ravens-waive-diego-pavia-just-days-before-training-camp/",
-        "https://www.newsradiokkob.com/2026/07/23/diego-pavia-waived-by-baltimore-ravens/",
-        "https://bettorsinsider.com/nfl/2026/07/23/diego-pavia-goes-undrafted-signs-with-ravens-after-wild-nfl-draft-fallout/",
-        "https://www.profootballnetwork.com/ufl-sends-cryptic-post-recruiting-diego-pavia/"
-      ],
-      "sourceName": "Orlando Sentinel",
-      "sources": [
-        "Orlando Sentinel",
-        "KVIA",
-        "New York Post",
-        "96.3 KKOB",
-        "Bettors Insider",
-        "PFSN"
-      ],
-      "corr": 6,
-      "verified": true,
-      "trend": "Diego Pavia",
-      "traffic": 97000,
-      "freshH": 0.5,
-      "score": 0.828,
-      "popularity": 0.666,
-      "recency": 0.944,
-      "relevancy": 0.927,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
-      "title": "NYC attacker yelled 'Allahu Akbar' as he randomly stabbed two men near Central Park, according to victim, witnesses: commish",
-      "summary": "We need to produce a brief 2-3 complete sentences, 45-75 words, read aloud. Must be English only, no non-English words. Lead with most important fact: attacker yelled \"Allahu Akbar\" while stabbing two men near Central Park. Include who/what/where and number, date or consequence. Add one line of context or what happens next. Must be neutral, factual, no hype, no opinion, no repeated words or sentences. No markdown, hashtags, brackets, quotes, emojis. No mention of article or outlet names. Must be plain text. We need to cross-check sources: New York Post says attacker Raul Morales, 51, stabbed two men: first victim 57-year-old Asian man near West 84th St and Central Park West, stabbed in back with knife around 1:30 p.m. Second victim 50-year-old man wearing a yarmulke attacked after leaving synagogue at Amsterdam Ave and West 86th St, stabbed in torso with screwdriver. Police Commissioner Jessica Tisch said investigating hate crime, mental health factor. JNS source gives witness accounts: someone heard yell Allahu Akbar, saw stabbing with screwdriver, etc. So we can combine: attacker Raul Morales, 51, yelled \"Allahu Akbar\" while stabbing two men near Central Park on Thursday afternoon; victims: a 57-year-old Asian man stabbed in the back with a knife near West 84th Street and Central Park West, and a 50-year-old Jewish man stabbed in the torso with a screwdriver after leaving a synagogue on Amsterdam Avenue and West 86th Street. Police say they are investigating possible hate crime and mental health factors. That's about maybe 2-3 sentences. We need 45-75 words. Let's craft 3 sentences. Sentence 1: On Thursday afternoon, 51‑year‑old Raul Morales yelled “Allahu Akbar” while stabbing two men near Central Park in Manhattan. (Word count: On(1) Thursday2 afternoon,3 51‑year‑old4 Raul5 Morales6 yelled7 “Allahu8 Akbar”9 while10 stabbing11 two12 men13 near14 Central15 Park16 in17 Manhattan18.",
+      "title": "Stabbing suspect yells 'Allahu Akbar' before attacking 2 men in New York: police",
+      "summary": "A 51-year-old man was arrested Thursday after stabbing two men on New York’s Upper West Side while shouting “Allahu Akbar.” The victims, an Asian man and a Jewish man, were hospitalized with non-life-threatening injuries and are expected to survive. Police are investigating the attacks as a possible hate crime while assessing mental health factors in the suspect’s motive.",
       "hashtag": "AllahuAkbar",
       "badge": "VIRAL",
       "category": "offbeat",
-      "url": "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-      "imageUrl": "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
+      "url": "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+      "imageUrl": "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
       "images": [
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/manhattan-shomrim-135308109.jpg?w=768",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305448.jpg?w=1024",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-police-responded-two-people-135307280.jpg?w=1024",
-        "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305446.jpg?w=1024",
-        "https://static.jns.org/dims4/default/8eab786/2147483647/strip/true/crop/6720x3780+0+350/resize/1440x810!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-        "https://static.jns.org/dims4/default/b2f1fa6/2147483647/strip/false/crop/6720x4480+0+0/resize/1486x991!/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-        "https://static.jns.org/dims4/default/28a7fe3/2147483647/strip/false/crop/6720x3780+0+350/resize/1200x675!/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-        "https://static.jns.org/dims4/default/aee5d8b/2147483647/strip/true/crop/3600x2400+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2026%2F03%2F53337359982_6088277370_o.jpg",
-        "https://static.jns.org/dims4/default/e69fe7e/2147483647/strip/true/crop/2700x1800+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fcb%2Fbf%2F2d4ff4604821ae44156ba0168ae6%2F55369684292-df27c9fabd-o.jpg"
+        "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+        "https://nbc16.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+        "https://foxchattanooga.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+        "https://foxchattanooga.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+        "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
+        "https://media.townhall.com/cdn/hodl/2023/346/cac9bca4-b278-4d91-b1b6-f0454841e142-1200x630.jpg",
+        "https://media.townhall.com/cdn/hodl/2017/130/50b12da2-e6ff-48e1-84ba-5ba5eeb21b1b.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Allahu Akbar",
-        "Central Park"
+        "New York"
       ],
       "sourceUrls": [
-        "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-        "https://www.jns.org/news/u-s-news/two-men-stabbed-on-manhattans-upper-west-side-in-what-is-reportedly-an-antisemitic-attack"
+        "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+        "https://foxchattanooga.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+        "https://www.wrganews.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+        "https://townhall.com/tipsheet/scott-mcclallen/2026/07/23/nypd-suspect-yelled-allahu-akbar-during-upper-west-side-stabbings-n2680048",
+        "https://hotair.com/john-s-2/2026/07/23/nyc-two-men-stabbed-by-suspect-yelling-allahu-akbar-n3817265"
       ],
-      "sourceName": "New York Post",
+      "sourceName": "KMTR",
       "sources": [
-        "New York Post",
-        "Fox News",
-        "JNS.org"
+        "KMTR",
+        "wtvcfox",
+        "wrganews.com",
+        "townhall.com",
+        "hotair.com"
       ],
-      "corr": 3,
+      "corr": 5,
       "verified": true,
       "trend": "Allahu Akbar",
       "traffic": 98000,
       "freshH": 0.5,
-      "score": 0.791,
-      "popularity": 0.526,
+      "score": 0.828,
+      "popularity": 0.631,
       "recency": 0.944,
+      "relevancy": 0.981,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Dillon Dingler, James Outman deliver in clutch in Tigers' comeback win",
+      "summary": "The Detroit Tigers secured a 4-3 comeback win over the Kansas City Royals at Comerica Park, with Dillon Dingler delivering a clutch two-out RBI to break the tie and James Outman contributing a crucial swing. The Tigers trailed 2-0 after six innings but rallied to improve their July record to 12-5 and their overall record since June 1 to 27-16. The team will look to build on this momentum in the second game of the weekend series against the Royals.",
+      "hashtag": "JamesOutman",
+      "badge": "VIRAL",
+      "category": "offbeat",
+      "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
+      "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
+      "images": [
+        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
+        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031646007-20260723-rbtigersroyals-1364.jpg?crop=3397,1912,x0,y139&width=660&height=372&format=pjpg&auto=webp",
+        "https://platform.blessyouboys.com/wp-content/uploads/sites/37/2026/07/imagn-29440531.jpg?quality=90&strip=all&crop=0%2C10.750116498999%2C100%2C78.499767002001&w=1200"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Dillon Dingler",
+        "James Outman",
+        "Tigers"
+      ],
+      "sourceUrls": [
+        "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
+        "https://www.blessyouboys.com/detroit-tigers-scores-standings/95474/detroit-tigers-kansas-city-royals-troy-melton-randy-dobnak-james-outman-recap",
+        "https://www.mlive.com/tigers/2026/07/james-outmans-clutch-homer-sparks-tigers-comeback-win-over-royals.html"
+      ],
+      "sourceName": "The Detroit News",
+      "sources": [
+        "The Detroit News",
+        "Bless You Boys",
+        "MLB.com",
+        "MLive.com"
+      ],
+      "corr": 4,
+      "verified": true,
+      "trend": "James Outman",
+      "traffic": 95000,
+      "freshH": 0.5,
+      "score": 0.773,
+      "popularity": 0.576,
+      "recency": 0.944,
+      "relevancy": 0.85,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Why Tom Hiddleston can’t stop thinking about Pompeii",
+      "summary": "Tom Hiddleston, a classical studies graduate and actor, explores the ancient Roman city of Pompeii in a new three-part series, tracing the stories of three real-life residents on the day Mount Vesuvius erupted in A.D. 79, killing thousands and preserving the city in time. The series, hosted by Hiddleston, delves into new insights into ancient Roman life, guided by experts and featuring scripted drama and documentary storytelling. This project marks a new creative venture for Hiddleston, who previously collaborated with Kevin Wright on the successful Disney+ series Loki.",
+      "hashtag": "Hiddleston",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
+      "imageUrl": "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+      "images": [
+        "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/GettyImages-2286410201-H-2026.jpg?w=1296&h=730&crop=1",
+        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_020-H-2026.jpg?w=1296",
+        "https://www.hollywoodreporter.com/wp-content/uploads/2023/11/FCG2120_206_comp_FRA_v0296.1534_R-H-2023.jpg?w=1296",
+        "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_CGI_058-H-2026.jpg?w=1296",
+        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Tom Hiddleston",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+      ],
+      "entities": [
+        "Tom Hiddleston",
+        "Pompeii"
+      ],
+      "sourceUrls": [
+        "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
+        "https://www.wsj.com/arts-culture/television/pompeii-out-of-time-with-tom-hiddleston-review-uncovering-survivors-d3e7f744",
+        "https://www.hollywoodreporter.com/tv/tv-features/loki-ep-kevin-r-wright-talks-pompeii-out-of-time-1236654094/"
+      ],
+      "sourceName": "nationalgeographic.com",
+      "sources": [
+        "National Geographic",
+        "WSJ",
+        "The Hollywood Reporter"
+      ],
+      "corr": 3,
+      "verified": true,
+      "trend": "tom hiddleston",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.653,
+      "popularity": 0.228,
+      "recency": 0.891,
       "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "'The Simpsons' returning to Fortnite next week. What we know",
-      "summary": "The Simpsons will return to Fortnite next week as part of a new \"Simpsons Reload\" game mode, which is a variation of the traditional Battle Royale game with smaller lobbies and maps. The mode is set to launch on Thursday, July 30, 2026, alongside the Fortnite v41.30 update, and will feature the Springfield map from Chapter 6: Mini Season 2. Players can expect to access the map after server maintenance downtime ends, likely in the morning of July 30.",
-      "hashtag": "Fortnite",
+      "title": "Jerry O’Connell addresses brutal Giuliana Rancic breakup more than a decade after she blasted him in memoir",
+      "summary": "Jerry O'Connell has broken his silence on his 2004 breakup with Giuliana Rancic, confessing he doesn't recall his exact wording but acknowledging he may have said something similar to what Rancic described in her 2015 memoir, \"Going Off Script\". The \"Jerry Maguire\" star, 52, praised Rancic for using colorful dialogue in her book, which included a brutal description of their split. The couple's breakup occurred more than 20 years ago, with Rancic releasing her tell-all memoir over a decade later.",
+      "hashtag": "GiulianaRancic",
       "badge": "TRENDING",
       "category": "offbeat",
-      "url": "https://www.northjersey.com/story/tech/gaming/2026/07/23/simpsons-returning-to-fortnite-next-week-what-we-know/91021279007/",
-      "imageUrl": "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/07/PNJM/87135500007-bart-1.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+      "url": "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
+      "imageUrl": "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
       "images": [
-        "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/07/PNJM/87135500007-bart-1.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-        "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/02/PNJM/87050750007-simpsons-7.jpg?crop=1919,1079,x0,y0&width=660&height=372&format=pjpg&auto=webp",
-        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/The-Simpsons-Fortnite-Map-Returns-in-Reload-Release-Date-Times-and-Leaks.jpg?w=1280",
-        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/the-simpsons-fortnite-reload-map.jpg?w=1024",
-        "https://www.vice.com/wp-content/uploads/sites/2/2026/07/fortnite-the-simpsons-wallpaper.jpg?w=1024"
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/actor-jerry-oconnell-wife-giuliana-135023888.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/kelly-ripa-jerry-oconnell-attend-135023995.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/giuliana-rancic-signs-copies-new-135024001.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/american-women-radio-television-new-135023860.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-arriving-135023889.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/red-carpet-arrivals-graumans-chinese-135023887.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-pose-135023861.jpg",
+        "https://pagesix.com/wp-content/uploads/sites/3/2026/07/new-york-daily-news-newsday-135023880.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Giuliana Rancic",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+      ],
       "entities": [
-        "Simpsons",
-        "Fortnite"
+        "Jerry",
+        "Connell",
+        "Giuliana Rancic"
       ],
       "sourceUrls": [
-        "https://www.northjersey.com/story/tech/gaming/2026/07/23/simpsons-returning-to-fortnite-next-week-what-we-know/91021279007/",
-        "https://www.vice.com/en/article/the-simpsons-fortnite-reload-release-date-times-leaks/"
+        "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
+        "https://people.com/jerry-o-connell-terrible-boyfriend-ex-giuliana-rancic-intercom-breakup-12024007"
       ],
-      "sourceName": "northjersey.com",
+      "sourceName": "pagesix.com",
       "sources": [
-        "Bergen Record",
-        "VICE"
+        "Page Six",
+        "People.com"
       ],
       "corr": 2,
       "verified": true,
-      "trend": "fortnite",
+      "trend": "giuliana rancic",
       "traffic": 1000,
       "freshH": 1,
-      "score": 0.608,
+      "score": 0.62,
       "popularity": 0.146,
       "recency": 0.891,
-      "relevancy": 0.95,
+      "relevancy": 1,
       "region": "usa",
       "geo": "US"
     },
     {
-      "title": "Men Flock to Microdramas, Romance Stories Rule and Sunday Nights are Prime Time for Viewing",
-      "summary": "Viewership of microdramas has surged 28-fold over the past two years, with more than two-thirds of users, both male and female, watching romance-based series. Sunday nights between 8-10 p.m. remain prime time for microdrama viewing, with heavy users consuming over three hours of content per week, including AI-generated material. This trend suggests a younger, more male audience is embracing the format, defying cultural concerns about AI-generated content.",
-      "hashtag": "MicrodramasRomance",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/microdramas-men-romance-sunday-holywater-my-drama-my-muse-1236819953/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg",
+      "title": "AUSL postseason is here! Cascade face Bandits in play-in game (9 ET, ESPN)",
+      "summary": "The 2026 Athletes Unlimited Softball League postseason has begun with the Chicago Bandits facing off against the Portland Cascade in a win-or-go-home play-in game on Thursday at 9 p.m. ET on ESPN, with the winner advancing to the AUSL Championship against the top-seeded Utah Talons. The AUSL Championship series will begin on Saturday at 1 p.m. ET on ABC, marking the first time a professional softball game has been televised on the network.",
+      "hashtag": "Ausl",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg",
-        "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg?crop=0px%2C7px%2C1000px%2C562px&resize=1000%2C563",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+        "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
+        "https://espnpressroom.com/wp-content/uploads/2026-AUSL-Schedule-6.png",
+        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
       ],
       "entityShots": [
         {
-          "name": "Men Flock",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+          "name": "Cascade",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
         }
       ],
       "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+        "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
       ],
       "entities": [
-        "Men Flock",
-        "Microdramas",
-        "Romance Stories Rule",
-        "Sunday Nights",
-        "Prime Time",
-        "Viewing"
+        "AUSL",
+        "Cascade",
+        "Bandits",
+        "ESPN"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/tv/news/microdramas-men-romance-sunday-holywater-my-drama-my-muse-1236819953/"
+        "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
+        "https://espnpressroom.com/press-release/espn-presents-2026-athletes-unlimited-softball-league-postseason-beginning-july-23/"
+      ],
+      "sourceName": "mlb.com",
+      "sources": [
+        "MLB.com",
+        "ESPN Press Room"
+      ],
+      "corr": 2,
+      "verified": true,
+      "trend": "ausl",
+      "traffic": 2000,
+      "freshH": 1,
+      "score": 0.584,
+      "popularity": 0.149,
+      "recency": 0.891,
+      "relevancy": 0.85,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "Burnham to spend first day working from northern branch of No 10",
+      "summary": "Andy Burnham will spend his first day in office working from the new No 10 North branch in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee established in 2008 to address economic challenges across the UK. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, with up to 300 civil servants expected to join the new site by the end of next year. This marks a significant shift in power from Whitehall and Westminster to regional areas, as the prime minister aims to give more attention and investment to communities that have felt forgotten.",
+      "hashtag": "Burnham",
+      "badge": "POLITICS",
+      "category": "politics",
+      "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Various",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+        },
+        {
+          "name": "Downing Street",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+      ],
+      "entities": [
+        "Burnham",
+        "Various",
+        "Downing Street"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.12,
+      "score": 0.5,
+      "popularity": 0,
+      "recency": 0.986,
+      "relevancy": 0.62,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Creepy Twins, Religious Fanaticism and a Loaded Gun Collide in Tense Chamber Drama ‘Godhead’ — Fantasia",
+      "summary": "A rural Catholic priest is being visited by two bizarre twins who claim to be part of a prophecy and need his help to fulfill it, but they also bring a gun to the meeting, adding to the tension. The film, \"Godhead,\" premiered at the Fantasia Festival in Montreal, where it received enthusiastic reviews for its masterful blend of faith, sex, lies, and discomfort. The director, Mark H. Rapaport, aimed to challenge authority figures and leave audiences with difficult questions.",
+      "hashtag": "TenseChamber",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/features/godhead-fantasia-festival-thriller-evil-twins-religious-1236819934/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Godhead.png",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/Godhead.png",
+        "https://variety.com/wp-content/uploads/2026/07/Godhead.png?crop=0px%2C116px%2C2970px%2C1671px&resize=1000%2C563",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
+      ],
+      "entityShots": [
+        {
+          "name": "Religious Fanaticism",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
+        }
+      ],
+      "entityImages": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
+      ],
+      "entities": [
+        "Creepy Twins",
+        "Religious Fanaticism",
+        "Loaded Gun Collide",
+        "Tense Chamber Drama",
+        "Godhead",
+        "Fantasia"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/features/godhead-fantasia-festival-thriller-evil-twins-religious-1236819934/"
       ],
       "sourceName": "Variety",
       "sources": [
@@ -205,17 +356,189 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.2,
-      "score": 0.485,
+      "freshH": 0.16,
+      "score": 0.486,
       "popularity": 0,
-      "recency": 0.977,
+      "recency": 0.981,
       "relevancy": 0.57,
       "region": "usa",
       "geo": null
     },
     {
+      "title": "'Big Brother' says goodbye to Traverse City pickleball coach",
+      "summary": "Rome Seymour, a pickleball coach from Traverse City, has become the second player to be voted off the CBS reality show \"Big Brother\" this season, with a near-unanimous 12-1 vote. Seymour was evicted despite his efforts to save himself in the BB Block Buster competition, where he was narrowly outperformed by former \"RuPaul's Drag Race\" standout Jason De Puy. Seymour has taken his early exit graciously, stating that he has no hard feelings towards his fellow houseguests.",
+      "hashtag": "BrotherSpoilers",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/",
+      "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+      "images": [
+        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/16/PDTN/90945971007-97248-d-1745.JPG?crop=1996,1123,x0,y600&width=660&height=372&format=pjpg&auto=webp",
+        "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Traverse City",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+      ],
+      "entities": [
+        "Big Brother",
+        "Traverse City"
+      ],
+      "sourceUrls": [
+        "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/"
+      ],
+      "sourceName": "detroitnews.com",
+      "sources": [
+        "The Detroit News"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "big brother spoilers",
+      "traffic": 2000,
+      "freshH": 1,
+      "score": 0.457,
+      "popularity": 0.006,
+      "recency": 0.891,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
+      "title": "‘Stuart Fails to Save the Universe’ Co-Creator Bill Prady Explains the Science Behind the Show’s Multiverse",
+      "summary": "A post-apocalyptic Pasadena has been ravaged by zombie hands, giant moths, and reality tears, with the only functioning business being a comic book shop run by Stuart Bloom. The show's multiverse is attributed to a quantum interference device built by \"The Big Bang Theory\" characters Leonard, Sheldon, and Howard, which has altered reality. Regular Stuart and his companions must now find the device at Cal Tech to potentially save the universe from further destruction.",
+      "hashtag": "UniverseCo",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Stuart Fails",
+        "Save",
+        "Universe",
+        "Co-Creator Bill Prady Explains",
+        "Science Behind",
+        "Show"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.447,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "’72 Hours’ Review: Kevin Hart Tries to Be Down With the Kids in a Mediocre ‘Hangover’ Knockoff",
+      "summary": "Kevin Hart stars in the mediocre comedy \"72 Hours,\" a hangover-inspired film directed by Tim Story and written by Jon Hurwitz and Hayden Schlossberg, which attempts to revive the crime subplot formula that has often ruined even the most average comedies. The movie, a retread of the \"Hangover\" franchise, failed to impress critics despite its all-star cast. The film's lackluster performance is a reminder that even the most promising comedies can fall short of expectations.",
+      "hashtag": "HoursReview",
+      "badge": "ENTERTAINMENT",
+      "category": "entertainment",
+      "url": "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/",
+      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
+      "images": [
+        "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
+        "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg?w=1000&h=563&crop=1"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Hours",
+        "Review",
+        "Kevin Hart Tries",
+        "Be Down With",
+        "Kids",
+        "Mediocre"
+      ],
+      "sourceUrls": [
+        "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/"
+      ],
+      "sourceName": "Variety",
+      "sources": [
+        "Variety"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.86,
+      "score": 0.447,
+      "popularity": 0,
+      "recency": 0.905,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "YG vs. The Game: VERZUZ — Compton Forever",
+      "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering a 22-song setlist that included hits like \"Toxic\" and \"Godzilla\". The event, which celebrated the artists' impact on Compton culture, featured live voting from fans, with over 1 million votes cast in real-time. The VERZUZ battle marked a historic moment in hip-hop, bringing together two legendary artists for a night of music and celebration.",
+      "hashtag": "Verzuz",
+      "badge": "TRENDING",
+      "category": "offbeat",
+      "url": "https://www.complex.com/verzuz/yg-vs-the-game",
+      "imageUrl": "https://images.complex.com/complex/image/upload/ar_1.91,c_fill,g_auto,q_auto,w_1200/sanity-new%2FVerzuz_YG_Game_2026_COMPLEX-VERUZ_SITE-LEAD_WITHOUTNAMES_16X9_1920X1080_csqf6m",
+      "images": [
+        "https://images.complex.com/complex/image/upload/ar_1.91,c_fill,g_auto,q_auto,w_1200/sanity-new%2FVerzuz_YG_Game_2026_COMPLEX-VERUZ_SITE-LEAD_WITHOUTNAMES_16X9_1920X1080_csqf6m",
+        "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Game",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+      ],
+      "entities": [
+        "Game",
+        "VERZUZ",
+        "Compton Forever"
+      ],
+      "sourceUrls": [
+        "https://www.complex.com/verzuz/yg-vs-the-game"
+      ],
+      "sourceName": "complex.com",
+      "sources": [
+        "Complex"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": "verzuz",
+      "traffic": 500,
+      "freshH": 1,
+      "score": 0.442,
+      "popularity": 0.002,
+      "recency": 0.891,
+      "relevancy": 0.52,
+      "region": "usa",
+      "geo": "US"
+    },
+    {
       "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-      "summary": "The US has imposed tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to stop forced labour imports. The new duties, which come into effect on Friday, target key economic partners accounting for the vast majority of US imports. This move is the latest escalation in the global trade war, following the US Supreme Court's ruling that many previous tariffs were illegally enacted.",
+      "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to properly stop forced labour imports. The new duties come into effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, with the US seeking to address human rights abuses and distortive trade practices.",
       "hashtag": "US",
       "badge": "BREAKING",
       "category": "breaking",
@@ -239,54 +562,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.2,
-      "score": 0.472,
+      "freshH": 1.19,
+      "score": 0.435,
       "popularity": 0,
-      "recency": 0.977,
+      "recency": 0.872,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Bertha weakens to tropical depression, but its moisture lives on, fueling a flood threat in the East",
-      "summary": "Bertha has weakened to a tropical depression, 10 miles north-northeast of Houston, but its moisture continues to fuel a flood threat in the East, with a plume of tropical moisture linked to the system bringing soaking rain to the Southeast. Heavy rain has prompted flash flood warnings in several states, including North Carolina, Virginia, and Tennessee, with some areas receiving a month's worth of rain in just a few days. The flooding threat is expected to continue through Friday, affecting areas from North and South Carolina to northern parts of Georgia and Alabama.",
-      "hashtag": "TropicalDepression",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.cnn.com/2026/07/23/weather/bertha-flood-threat-east-climate-hnk",
-      "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/app-flood-setup-0723-01.png?c=16x9&q=w_800,c_fill",
-      "images": [
-        "https://media.cnn.com/api/v1/images/stellar/prod/app-flood-setup-0723-01.png?c=16x9&q=w_800,c_fill",
-        "https://media.cnn.com/api/v1/images/stellar/prod/ap26203839548441.jpg?c=original&q=w_860,c_fill"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Bertha",
-        "East"
-      ],
-      "sourceUrls": [
-        "https://www.cnn.com/2026/07/23/weather/bertha-flood-threat-east-climate-hnk"
-      ],
-      "sourceName": "cnn.com",
-      "sources": [
-        "CNN"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": "tropical depression bertha",
-      "traffic": 20000,
-      "freshH": 1,
-      "score": 0.466,
-      "popularity": 0.061,
-      "recency": 0.891,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": "US"
-    },
-    {
       "title": "UK complacent about war threat, warns defence boss",
-      "summary": "The UK's defence chief has warned that the country is complacent about the threat of foreign attack, with the level of threat being the highest he's seen in his lifetime. Defence spending must increase to meet the government's commitment to spend 3.5% of GDP on defence by 2035, with a focus on countering the use of autonomous lethal weapons by countries like Russia and Ukraine. This shift in modern warfare requires the UK to adapt its defence capabilities to prevent aggression and maintain human control over military operations.",
+      "summary": "The UK's defence spending is insufficient to counter the growing threat of foreign attack, warns Dr Charles Woodburn, boss of BAE Systems, with the level of threat being the highest he's seen in his lifetime. The country is not far from the use of autonomous lethal weapons by countries that may not follow the UK's policy of maintaining human control. To meet the government's commitment to spend 3.5% of GDP on defence by 2035, much more investment will be needed.",
       "hashtag": "UK",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -299,10 +585,18 @@
         "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/f773/live/c8220520-86a3-11f1-a0b6-435e4178a497.jpg",
         "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/7120/live/766c17b0-86a4-11f1-b976-0b9c15b0ccfc.jpg",
         "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/b82a/live/5e9d77e0-86a5-11f1-926f-c90d1bcfbc84.jpg",
-        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
       ],
-      "entityShots": [],
-      "entityImages": [],
+      "entityShots": [
+        {
+          "name": "Europe's",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+      ],
       "entities": [
         "Europe's",
         "Dr Charles Woodburn"
@@ -318,95 +612,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.8,
-      "score": 0.464,
+      "freshH": 2.79,
+      "score": 0.434,
       "popularity": 0,
-      "recency": 0.812,
+      "recency": 0.724,
       "relevancy": 0.72,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Marvelous Mrs. Maisel’ Set Decorator Mary Kate Golding Fatally Stabbed in N.Y.",
-      "summary": "A 34-year-old set decorator for the TV show \"The Marvelous Mrs. Maisel\" has been fatally stabbed in her Queens, New York apartment, with police responding to a 911 call at 12:24 am on July 21, 2026. The victim, Mary Kate Golding, was pronounced dead at the scene, and her husband, Joseph Azzaretto, was later found dead by hanging at Astoria Park, sparking a suspected murder-suicide investigation. The couple's baby son was found unharmed at their home.",
-      "hashtag": "MarvelousMrs",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/tv/news/mary-kate-golding-dead-stabbed-mrs-maisel-1236819887/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg",
-      "images": [
-        "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg?crop=0px%2C33px%2C1395px%2C784px&resize=1000%2C563"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Marvelous Mrs",
-        "Maisel",
-        "Set Decorator Mary Kate",
-        "Golding Fatally Stabbed",
-        "Mary Kate Golding",
-        "Goosebumps"
-      ],
-      "sourceUrls": [
-        "https://variety.com/2026/tv/news/mary-kate-golding-dead-stabbed-mrs-maisel-1236819887/"
-      ],
-      "sourceName": "Variety",
-      "sources": [
-        "Variety"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.77,
-      "score": 0.45,
-      "popularity": 0,
-      "recency": 0.915,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-      "summary": "A record-breaking heatwave in England has left many residents, including stay-at-home mother Tavia Watts, feeling \"incredibly helpless\" with anxiety, with a 2022 study estimating that around 4.6% of people in the UK experience climate anxiety, a form of mental distress recognised by professional bodies and the NHS. Watts' emotional video on social media garnered over 18,000 likes and 1,700 reposts, highlighting the widespread concern. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial for those affected.",
-      "hashtag": "Heatwave",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Heatwave",
-        "Extreme"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 0.78,
-      "score": 0.45,
-      "popularity": 0,
-      "recency": 0.914,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-      "summary": "A Singapore court has been working with Indonesian authorities to reunite 12 babies trafficked to the city-state with their biological families in Indonesia. The babies were part of a human trafficking ring that was recently convicted of selling at least 34 children for adoption. The reunification process is expected to be completed in the coming weeks, bringing closure to the adoptive parents in Singapore who have been waiting anxiously for a decision.",
+      "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while the fate of the babies remains uncertain, with adoptive parents in Singapore awaiting a decision on whether they can keep their children. The Indonesian government has yet to confirm whether the babies will be returned to Indonesia.",
       "hashtag": "Indonesian",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -436,58 +652,54 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.54,
-      "score": 0.448,
+      "freshH": 2.53,
+      "score": 0.416,
       "popularity": 0,
-      "recency": 0.837,
+      "recency": 0.747,
       "relevancy": 0.62,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "‘Ebenezer: A Christmas Carol’ Trailer: Johnny Depp Transforms Into Grouchy, Snowball-Throwing Scrooge",
-      "summary": "We need to write a punchy brief 2-3 complete sentences, 45-75 words, read aloud. Must lead with most important fact, include who/what/where and number/date/consequence that matters. Add one line of context or what happens next. No repeated words or sentences. No non-English words. No mention of article or outlet names. No markdown, hashtags, brackets, quotes, emoji. Plain text only. We need to extract facts: Paramount Pictures released first trailer for \"Ebenezer: A Christmas Carol\", starring Johnny Depp as Scrooge, directed by Ti West, dark reimagining of Dickens classic. Trailer shows Depp throwing snowballs at passersby, says \"It's good to be back\". It's Depp's first major Hollywood role since his 2022 trial against Amber Heard. The trial details: both accused each other of domestic abuse, jury found both guilty of defamation. Depp awarded $10 million compensatory and $5 million punitive from Heard; Heard awarded $2 million compensatory. We need to pick facts that agree across outlets; only one source given (Variety). So we use those. We need to lead with most important fact: likely the trailer release and Depp's return. Include who/what/where: Paramount Pictures released trailer for Ebenezer: A Christmas Carol starring Johnny Depp as Scrooge. Include number/date/consequence: first major Hollywood role since 2022 trial; maybe mention damages? But the consequence that matters could be the trailer release date? Not given. Could mention that it's his first major Hollywood film since the 2022 defamation trial. That is a consequence. Add one line of context or what happens next: maybe that the film is set for holiday release, or that audiences will see his performance. We need 2-3 sentences, 45-75 words total. Let's craft 3 sentences. Sentence 1: Paramount Pictures has unveiled the first trailer for “Ebenezer: A Christmas Carol,” with Johnny Depp portraying Ebenezer Scrooge in a dark retelling of Charles Dickens’ tale.",
-      "hashtag": "EbenezerA",
-      "badge": "ENTERTAINMENT",
-      "category": "entertainment",
-      "url": "https://variety.com/2026/film/news/ebenezer-christmas-carol-trailer-johnny-depp-scrooge-1236801196/",
-      "imageUrl": "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg",
+      "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
+      "summary": "A record-breaking heatwave in England has left many feeling anxious, with a 36-year-old stay-at-home mother in Cheltenham sharing her fears on social media, garnering over 18,000 likes and 1,700 reposts. According to a 2022 study from the University of Bath, approximately 4.6% of people in the UK experience climate anxiety, a form of mental distress recognized by professional bodies and the NHS. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial to prevent feelings of helplessness.",
+      "hashtag": "Heatwave",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
       "images": [
-        "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg",
-        "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg?crop=0px%2C217px%2C4200px%2C2363px&resize=1000%2C563"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c174/live/c6425de0-851d-11f1-97e8-4f50dea2b016.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Ebenezer",
-        "Christmas Carol",
-        "Trailer",
-        "Johnny Depp Transforms Into",
-        "Grouchy",
-        "Snowball-Throwing Scrooge"
+        "Heatwave",
+        "Extreme"
       ],
       "sourceUrls": [
-        "https://variety.com/2026/film/news/ebenezer-christmas-carol-trailer-johnny-depp-scrooge-1236801196/"
+        "https://www.bbc.co.uk/news/articles/cgk4xrznxn5o?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "Variety",
+      "sourceName": "BBC",
       "sources": [
-        "Variety"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.89,
-      "score": 0.446,
+      "freshH": 1.76,
+      "score": 0.415,
       "popularity": 0,
-      "recency": 0.902,
+      "recency": 0.816,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Scientists find building blocks of birdsong's 'spectacular diversity'",
-      "summary": "Scientists have discovered the fundamental building blocks of birdsong, identifying eight key types of sound, known as \"motifs\", which are combined in various ways to create the incredible diversity of birdsong around the world. These motifs include trills, whistles, chaotic notes, and harmonies, and are found in over 116,000 songs from more than 3,000 bird species. The findings provide new insights into the complex communication systems of birds and could have significant implications for the study of animal behavior.",
+      "summary": "Scientists have discovered the fundamental building blocks of birdsong's spectacular diversity, identifying eight key types of sound, or \"motifs\", that are combined in various ways to create the complex songs of over 3,000 bird species worldwide. These motifs include trills, whistles, chaotic notes, and harmonies, which are found in birdsong across Asia, Africa, and the Amazon. The researchers' findings provide a new understanding of the global patterns and variations in birdsong, shedding light on one of nature's most sophisticated forms of sound-based communication.",
       "hashtag": "Scientists",
       "badge": "SCIENCE",
       "category": "facts",
@@ -513,17 +725,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.95,
-      "score": 0.444,
+      "freshH": 1.94,
+      "score": 0.41,
       "popularity": 0,
-      "recency": 0.896,
+      "recency": 0.799,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
       "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-      "summary": "China's Moonshot AI has been accused of stealing capabilities from top US artificial intelligence models, including Anthropic's Fable AI, to develop its K3 model, according to US President Donald Trump's Science and Technology adviser Michael Kratsios. The alleged theft involved distillation, where a weaker AI model extracts answers from a stronger one, and access to restricted Nvidia servers for training. The US government claims to have information on Moonshot's activities, which could have significant implications for the global AI landscape.",
+      "summary": "China's Moonshot AI has allegedly stolen capabilities from top US artificial intelligence model Anthropic's Fable AI, according to US President Donald Trump's Science and Technology adviser Michael Kratsios, who claims Moonshot used a process called distillation to extract answers from a stronger model. The stolen capabilities were used to develop Moonshot's K3 model, which has been touted as a rival to top US technology. The US government has information suggesting Moonshot also used Nvidia's restricted servers to train its models.",
       "hashtag": "MoonshotAI",
       "badge": "GLOBAL",
       "category": "crisis",
@@ -552,62 +764,54 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.03,
-      "score": 0.441,
+      "freshH": 2.02,
+      "score": 0.407,
       "popularity": 0,
-      "recency": 0.888,
+      "recency": 0.792,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Google fined €890m by EU for favouring its own apps over rivals",
-      "summary": "Google has been fined €890 million by the European Union for allegedly abusing its power by favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued Google's practices limited consumer choice and gave its own services an unfair advantage, with a €460 million penalty for one breach and an additional €430 million for a second. Google will now have to strip away features and dismantle safety protections to comply with the EU's requirements.",
-      "hashtag": "Google",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+      "title": "What to Know About Peptides the FDA Is Considering for Use",
+      "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
+      "hashtag": "FDAIs",
+      "badge": "SCIENCE",
+      "category": "facts",
+      "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
       "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Google",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
-        "Google",
-        "EU's"
+        "Know About Peptides",
+        "FDA Is Considering",
+        "BPC-"
       ],
       "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
+        "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
       ],
-      "sourceName": "BBC",
+      "sourceName": "The New York Times",
       "sources": [
-        "BBC"
+        "The New York Times"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.71,
-      "score": 0.43,
+      "freshH": 0.34,
+      "score": 0.405,
       "popularity": 0,
-      "recency": 0.821,
-      "relevancy": 0.57,
+      "recency": 0.961,
+      "relevancy": 0.274,
       "region": "usa",
       "geo": null
     },
     {
       "title": "US health panel recommends easing restrictions on controversial peptides",
-      "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that the chemicals have not been proven safe or effective. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows the advice, telehealth companies are expected to increase marketing of the peptides for wellness and cosmetic uses.",
+      "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that their safety and effectiveness have not been proven. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows this advice, telehealth companies are expected to increase marketing of these peptides for wellness and cosmetic uses.",
       "hashtag": "US",
       "badge": "HEALTH",
       "category": "health",
@@ -649,11 +853,94 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.12,
-      "score": 0.429,
+      "freshH": 3.11,
+      "score": 0.399,
       "popularity": 0,
-      "recency": 0.783,
+      "recency": 0.698,
       "relevancy": 0.62,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Google fined €890m by EU for favouring its own apps over rivals",
+      "summary": "Google has been fined €890m by the EU for allegedly favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections on its services to comply with the EU's requirements.",
+      "hashtag": "Google",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+      "images": [
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+      ],
+      "entityShots": [
+        {
+          "name": "Google",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+        }
+      ],
+      "entityImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
+      ],
+      "entities": [
+        "Google",
+        "EU's"
+      ],
+      "sourceUrls": [
+        "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
+      ],
+      "sourceName": "BBC",
+      "sources": [
+        "BBC"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 2.69,
+      "score": 0.399,
+      "popularity": 0,
+      "recency": 0.733,
+      "relevancy": 0.57,
+      "region": "usa",
+      "geo": null
+    },
+    {
+      "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
+      "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
+      "hashtag": "JudgeExtends",
+      "badge": "TECH",
+      "category": "tech",
+      "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
+      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+      "images": [
+        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+      ],
+      "entityShots": [],
+      "entityImages": [],
+      "entities": [
+        "Judge Extends Pause",
+        "Paramount-Warner Bros",
+        "Deal",
+        "August"
+      ],
+      "sourceUrls": [
+        "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
+      ],
+      "sourceName": "The New York Times",
+      "sources": [
+        "The New York Times"
+      ],
+      "corr": 1,
+      "verified": false,
+      "trend": null,
+      "traffic": 0,
+      "freshH": 0.95,
+      "score": 0.38,
+      "popularity": 0,
+      "recency": 0.896,
+      "relevancy": 0.268,
       "region": "usa",
       "geo": null
     },
@@ -689,55 +976,56 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.62,
-      "score": 0.396,
+      "freshH": 1.61,
+      "score": 0.361,
       "popularity": 0,
-      "recency": 0.931,
+      "recency": 0.831,
       "relevancy": 0.28,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "What to Know About Peptides the FDA Is Considering for Use",
-      "summary": "The agency is considering whether compounding pharmacies should be allowed to produce BPC-157, TB-500 and other previously banned peptides.",
-      "hashtag": "FDAIs",
-      "badge": "SCIENCE",
-      "category": "facts",
-      "url": "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg",
+      "title": "Hull KR inflict more derby misery on Hull FC",
+      "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side extend their winning run to nine games against their city rivals. The struggling Hull FC, who have now lost six straight matches, had taken an early 12-0 lead but were unable to hold on as Hull KR battled back to secure a crucial victory. This win moves Hull KR back into the play-off positions in fifth place.",
+      "hashtag": "HullKR",
+      "badge": "SPORTS",
+      "category": "sports",
+      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/23/well/23WELL-PEPTIDES-EXPLAINER1/23WELL-PEPTIDES-EXPLAINER1-mediumSquareAt3X.jpg"
+        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
+        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
       ],
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Know About Peptides",
-        "FDA Is Considering",
-        "BPC-"
+        "Hull KR",
+        "Hull FC",
+        "Out-of-form Super League"
       ],
       "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/well/peptides-fda-research.html"
+        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
       ],
-      "sourceName": "The New York Times",
+      "sourceName": "BBC",
       "sources": [
-        "The New York Times"
+        "BBC"
       ],
       "corr": 1,
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.76,
-      "score": 0.389,
+      "freshH": 3.83,
+      "score": 0.355,
       "popularity": 0,
-      "recency": 0.916,
-      "relevancy": 0.274,
+      "recency": 0.643,
+      "relevancy": 0.52,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "A Peptide Showdown: F.D.A. Scientists May Clash With R.F.K.’s Agenda",
+      "title": "FDA Panel Supports Lifting Restrictions on Four Peptides",
       "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
-      "hashtag": "APeptide",
+      "hashtag": "FDAPanel",
       "badge": "POLITICS",
       "category": "politics",
       "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
@@ -748,9 +1036,9 @@
       "entityShots": [],
       "entityImages": [],
       "entities": [
-        "Peptide Showdown",
-        "Scientists May Clash With",
-        "Agenda"
+        "FDA Panel Supports Lifting",
+        "Restrictions",
+        "Four Peptides"
       ],
       "sourceUrls": [
         "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
@@ -763,10 +1051,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.86,
-      "score": 0.387,
+      "freshH": 1.84,
+      "score": 0.353,
       "popularity": 0,
-      "recency": 0.906,
+      "recency": 0.808,
       "relevancy": 0.279,
       "region": "usa",
       "geo": null
@@ -803,146 +1091,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 0.85,
-      "score": 0.386,
+      "freshH": 1.84,
+      "score": 0.352,
       "popularity": 0,
-      "recency": 0.906,
+      "recency": 0.809,
       "relevancy": 0.276,
       "region": "usa",
       "geo": null
     },
     {
-      "title": "Hull KR inflict more derby misery on Hull FC",
-      "summary": "Hull KR inflicted more derby misery on Hull FC with a 28-20 win, ending their losing run and moving into fifth place in the Super League play-off positions. The away side came from behind to overcome a 12-0 lead by Hull FC, who have now lost six straight games and won just one of their past 11 matches. This victory extends Hull KR's winning run against their city rivals to nine in a row under coach Willie Peters.",
-      "hashtag": "HullKR",
-      "badge": "SPORTS",
-      "category": "sports",
-      "url": "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/855e/live/15b0eb10-86d8-11f1-bba7-35d3e67315de.jpg"
-      ],
-      "entityShots": [],
-      "entityImages": [],
-      "entities": [
-        "Hull KR",
-        "Hull FC",
-        "Out-of-form Super League"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/sport/rugby-league/articles/c1w1eznwgd0o?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 2.84,
-      "score": 0.382,
-      "popularity": 0,
-      "recency": 0.72,
-      "relevancy": 0.52,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
-      "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
-      "hashtag": "JudgeExtends",
-      "badge": "TECH",
-      "category": "tech",
-      "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Deal",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-      ],
-      "entities": [
-        "Judge Extends Pause",
-        "Paramount-Warner Bros",
-        "Deal",
-        "August"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.3,
-      "score": 0.381,
-      "popularity": 0,
-      "recency": 0.861,
-      "relevancy": 0.318,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "India activist ends hunger strike after 26 days",
-      "summary": "India activist Sonam Wangchuk has ended his 26-day hunger strike after the government assured no legal action would be taken against protesters at Janta Mantar site in India. This decision comes after state and health ministers visited Wangchuk in hospital, and mass protests continue in the Indian capital despite a brutal police crackdown on Monday's march to parliament. The youth movement, known as the Cockroach Jantar Mantar protest, demands the resignation of Education Minister Dharmendra Pradhan.",
-      "hashtag": "India",
-      "badge": "TRENDING",
-      "category": "offbeat",
-      "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-      "images": [
-        "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-        "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-      ],
-      "entityShots": [
-        {
-          "name": "Sonam Wangchuk",
-          "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-        }
-      ],
-      "entityImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-      ],
-      "entities": [
-        "India",
-        "Sonam Wangchuk"
-      ],
-      "sourceUrls": [
-        "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-      ],
-      "sourceName": "BBC",
-      "sources": [
-        "BBC"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 3.42,
-      "score": 0.378,
-      "popularity": 0,
-      "recency": 0.673,
-      "relevancy": 0.57,
-      "region": "usa",
-      "geo": null
-    },
-    {
       "title": "King's Tardis entrance as Commonwealth Games begin",
-      "summary": "We need to produce 2-3 complete sentences, 45-75 words, lead with most important fact, include key who/what/where and number, date or consequence that matters, add one line of context or what happens next. Must be neutral, factual, no hype. Must not repeat words or sentences. Must be plain text, no markdown, no quotes, no emojis. Must not mention \"the article\" or outlet names. Must translate foreign facts into natural English. Must not output non-English words. Must not stop mid-sentence. Must be 2-3 sentences, each ending with a full stop. Must be about 45-75 words total. Must lead with most important fact. Must include key who/what/where and number, date or consequence that matters. Must add one line of context or what happens next. Must not mention outlets. Must not use markdown. We need to craft a brief news video script: 2-3 sentences, 45-75 words. Let's aim for 3 sentences, about 60 words. Important fact: King's Tardis entrance as Commonwealth Games begin? Actually the headline: \"King's Tardis entrance as Commonwealth Games begin\". The story: The King (maybe King Charles?) made a Tardis entrance? Actually the excerpt mentions \"King's Tardis entrance as Commonwealth Games begin\". It seems the King entered like a TARDIS? Not sure. But the excerpt mentions loud cheers for Falklands Islands, Samoa team haka, Scotland team entering in white shirts and kilts, Loch Ness Monster representation, bagpipers, rendition of Flower of Scotland, theatrical performances, Nathan Evans, dance under Glasgow Central Station clock, Callum Beattie's rendition of Yes Sir, I Can Boogie, etc. The most important fact likely: The Scotland team entered in kilts and white shirts, causing loud cheers, and a Loch Ness Monster representation appeared, followed by a performance of Flower of Scotland and a show billed as a love letter to Glasgow and the Commonwealth. The King's Tardis entrance maybe refers to the King entering like a TARDIS? Actually \"King's Tardis entrance as Commonwealth Games begin\" suggests the King made a dramatic entrance perhaps in a TARDIS-like vehicle?",
+      "summary": "The Commonwealth Games officially kicked off with a spectacular opening ceremony at the venue in Glasgow, Scotland, featuring a rousing rendition of Scotland's unofficial anthem, \"Yes Sir, I Can Boogie,\" performed by singer Callum Beattie, which got the Scottish athletes dancing in their seats. The ceremony also included a theatrical performance billed as \"a love letter to Glasgow and the Commonwealth,\" and a lively display by the Scotland team, who entered the arena in their white shirts and kilts to a thunderous applause. The event drew a capacity crowd of around 10,000 people.",
       "hashtag": "CommonwealthGames",
       "badge": "SPORTS",
       "category": "sports",
@@ -973,10 +1132,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.99,
-      "score": 0.378,
+      "freshH": 3.98,
+      "score": 0.351,
       "popularity": 0,
-      "recency": 0.708,
+      "recency": 0.632,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -990,18 +1149,10 @@
       "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
       "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
       "images": [
-        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+        "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
       ],
-      "entityShots": [
-        {
-          "name": "Dozens",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-      ],
+      "entityShots": [],
+      "entityImages": [],
       "entities": [
         "Health Care Agency Discontinues",
         "Dozens",
@@ -1021,62 +1172,17 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 1.55,
-      "score": 0.371,
+      "freshH": 2.53,
+      "score": 0.327,
       "popularity": 0,
-      "recency": 0.836,
-      "relevancy": 0.314,
-      "region": "usa",
-      "geo": null
-    },
-    {
-      "title": "U.S. Withdraws Subpoenas Issued to New York Times Journalists",
-      "summary": "A federal judge raised questions about the government’s handling of the subpoenas, which The Times called an attempt to intimidate the free press.",
-      "hashtag": "US",
-      "badge": "POLITICS",
-      "category": "politics",
-      "url": "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html",
-      "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
-      "images": [
-        "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
-        "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
-      ],
-      "entityShots": [
-        {
-          "name": "Times",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
-        }
-      ],
-      "entityImages": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
-      ],
-      "entities": [
-        "Withdraws Subpoenas Issued",
-        "York Times Journalists",
-        "Times"
-      ],
-      "sourceUrls": [
-        "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html"
-      ],
-      "sourceName": "The New York Times",
-      "sources": [
-        "The New York Times"
-      ],
-      "corr": 1,
-      "verified": false,
-      "trend": null,
-      "traffic": 0,
-      "freshH": 1.93,
-      "score": 0.362,
-      "popularity": 0,
-      "recency": 0.8,
-      "relevancy": 0.329,
+      "recency": 0.746,
+      "relevancy": 0.264,
       "region": "usa",
       "geo": null
     },
     {
       "title": "Microsoft responds to LG monitors installing McAfee ads on Windows",
-      "summary": "Microsoft has responded to concerns over LG monitors installing McAfee ads on Windows without user permission, with some users finding the LG Monitor App Installer on their systems after purchasing the monitors. The app has been collecting user data, including geolocation and online activity, and has been installed via Windows Update. Microsoft has yet to comment on the specific case, but the incident raises questions about what Windows permits from peripherals' companion apps.",
+      "summary": "Microsoft has responded to allegations that LG monitors are installing McAfee ads on Windows systems without user permission, a practice that has been ongoing for years and has raised concerns about user privacy. The LG Monitor App Installer, which is available on the Microsoft Store, allows the company to collect sensitive user data, including geolocation and online activity. Microsoft has yet to comment on whether it will take action to address this issue, but the incident has sparked questions about the permissions granted to peripherals' companion apps.",
       "hashtag": "Microsoft",
       "badge": "TRENDING",
       "category": "offbeat",
@@ -1105,10 +1211,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 4.08,
-      "score": 0.348,
+      "freshH": 5.07,
+      "score": 0.325,
       "popularity": 0,
-      "recency": 0.624,
+      "recency": 0.557,
       "relevancy": 0.52,
       "region": "usa",
       "geo": null
@@ -1143,10 +1249,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 2.71,
-      "score": 0.333,
+      "freshH": 3.7,
+      "score": 0.305,
       "popularity": 0,
-      "recency": 0.731,
+      "recency": 0.652,
       "relevancy": 0.308,
       "region": "usa",
       "geo": null
@@ -1183,10 +1289,10 @@
       "verified": false,
       "trend": null,
       "traffic": 0,
-      "freshH": 6.02,
-      "score": 0.252,
+      "freshH": 7.01,
+      "score": 0.234,
       "popularity": 0,
-      "recency": 0.499,
+      "recency": 0.445,
       "relevancy": 0.312,
       "region": "usa",
       "geo": null
@@ -1195,102 +1301,43 @@
   "categories": {
     "offbeat": [
       {
-        "title": "Ravens cut Heisman Trophy runner-up Diego Pavia on eve of rookie camp",
-        "summary": "The Baltimore Ravens cut Heisman Trophy runner-up Diego Pavia on Thursday, just before rookie camp began. Pavia, who led Vanderbilt to its first 10-win season, had signed as an undrafted free agent in April. Veteran Skylar Thompson and rookie Joe Fagnano will now compete for the third quarterback spot.",
-        "hashtag": "DiegoPavia",
-        "badge": "VIRAL",
-        "category": "offbeat",
-        "url": "https://www.orlandosentinel.com/2026/07/23/ravens-cut-heisman-trophy-runner-up-diego-pavia-on-eve-of-rookie-camp/",
-        "imageUrl": "https://www.orlandosentinel.com/wp-content/uploads/2026/07/Ravens_Pavia_Waived_Football_8_42.jpg?w=2000&h=1333",
-        "images": [
-          "https://www.orlandosentinel.com/wp-content/uploads/2026/07/Ravens_Pavia_Waived_Football_8_42.jpg?w=2000&h=1333",
-          "https://kvia.b-cdn.net/2023/10/nmsu-pavia-pow-pic-1.png",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/newspress-collage-c17tyxz6t-1784849261919.jpg?quality=75&strip=all&1784834903&w=1200",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/AP_Ravens_Pavia_Waived_Football_8_42-cdf43-0.jpg?w=1024",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/GettyImages-2257293014.jpg?w=683",
-          "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3358/files/2025/12/raw-vandytennfootball-pavia-1200x675.jpg",
-          "https://bettorsinsider.com/wp-content/uploads/2026/07/diego-pavia-vanderbilt-quarterback.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Diego Pavia",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/85/Diego_Pavia_2022_Quick_Lane_Bowl_MVP_%28cropped%29.jpg"
-        ],
-        "entities": [
-          "Diego Pavia",
-          "Baltimore Ravens"
-        ],
-        "sourceUrls": [
-          "https://www.orlandosentinel.com/2026/07/23/ravens-cut-heisman-trophy-runner-up-diego-pavia-on-eve-of-rookie-camp/",
-          "https://kvia.com/sports/2026/07/23/former-nmsu-qb-diego-pavia-released-by-baltimore-ravens/",
-          "https://nypost.com/2026/07/23/sports/ravens-waive-diego-pavia-just-days-before-training-camp/",
-          "https://www.newsradiokkob.com/2026/07/23/diego-pavia-waived-by-baltimore-ravens/",
-          "https://bettorsinsider.com/nfl/2026/07/23/diego-pavia-goes-undrafted-signs-with-ravens-after-wild-nfl-draft-fallout/",
-          "https://www.profootballnetwork.com/ufl-sends-cryptic-post-recruiting-diego-pavia/"
-        ],
-        "sourceName": "Orlando Sentinel",
-        "sources": [
-          "Orlando Sentinel",
-          "KVIA",
-          "New York Post",
-          "96.3 KKOB",
-          "Bettors Insider",
-          "PFSN"
-        ],
-        "corr": 6,
-        "verified": true,
-        "trend": "Diego Pavia",
-        "traffic": 97000,
-        "freshH": 0.5,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": "US"
-      },
-      {
-        "title": "NYC attacker yelled 'Allahu Akbar' as he randomly stabbed two men near Central Park, according to victim, witnesses: commish",
-        "summary": "We need to produce a brief 2-3 complete sentences, 45-75 words, read aloud. Must be English only, no non-English words. Lead with most important fact: attacker yelled \"Allahu Akbar\" while stabbing two men near Central Park. Include who/what/where and number, date or consequence. Add one line of context or what happens next. Must be neutral, factual, no hype, no opinion, no repeated words or sentences. No markdown, hashtags, brackets, quotes, emojis. No mention of article or outlet names. Must be plain text. We need to cross-check sources: New York Post says attacker Raul Morales, 51, stabbed two men: first victim 57-year-old Asian man near West 84th St and Central Park West, stabbed in back with knife around 1:30 p.m. Second victim 50-year-old man wearing a yarmulke attacked after leaving synagogue at Amsterdam Ave and West 86th St, stabbed in torso with screwdriver. Police Commissioner Jessica Tisch said investigating hate crime, mental health factor. JNS source gives witness accounts: someone heard yell Allahu Akbar, saw stabbing with screwdriver, etc. So we can combine: attacker Raul Morales, 51, yelled \"Allahu Akbar\" while stabbing two men near Central Park on Thursday afternoon; victims: a 57-year-old Asian man stabbed in the back with a knife near West 84th Street and Central Park West, and a 50-year-old Jewish man stabbed in the torso with a screwdriver after leaving a synagogue on Amsterdam Avenue and West 86th Street. Police say they are investigating possible hate crime and mental health factors. That's about maybe 2-3 sentences. We need 45-75 words. Let's craft 3 sentences. Sentence 1: On Thursday afternoon, 51‑year‑old Raul Morales yelled “Allahu Akbar” while stabbing two men near Central Park in Manhattan. (Word count: On(1) Thursday2 afternoon,3 51‑year‑old4 Raul5 Morales6 yelled7 “Allahu8 Akbar”9 while10 stabbing11 two12 men13 near14 Central15 Park16 in17 Manhattan18.",
+        "title": "Stabbing suspect yells 'Allahu Akbar' before attacking 2 men in New York: police",
+        "summary": "A 51-year-old man was arrested Thursday after stabbing two men on New York’s Upper West Side while shouting “Allahu Akbar.” The victims, an Asian man and a Jewish man, were hospitalized with non-life-threatening injuries and are expected to survive. Police are investigating the attacks as a possible hate crime while assessing mental health factors in the suspect’s motive.",
         "hashtag": "AllahuAkbar",
         "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-        "imageUrl": "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
+        "url": "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+        "imageUrl": "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
         "images": [
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/comp-1003671586-1.jpg?quality=75&strip=all&w=1200",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/manhattan-shomrim-135308109.jpg?w=768",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305448.jpg?w=1024",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/2026-police-responded-two-people-135307280.jpg?w=1024",
-          "https://nypost.com/wp-content/uploads/sites/2/2026/07/general-view-crime-scene-near-135305446.jpg?w=1024",
-          "https://static.jns.org/dims4/default/8eab786/2147483647/strip/true/crop/6720x3780+0+350/resize/1440x810!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-          "https://static.jns.org/dims4/default/b2f1fa6/2147483647/strip/false/crop/6720x4480+0+0/resize/1486x991!/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-          "https://static.jns.org/dims4/default/28a7fe3/2147483647/strip/false/crop/6720x3780+0+350/resize/1200x675!/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2024%2F02%2Fshutterstock_2097855037.jpg",
-          "https://static.jns.org/dims4/default/aee5d8b/2147483647/strip/true/crop/3600x2400+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fuploads%2F2026%2F03%2F53337359982_6088277370_o.jpg",
-          "https://static.jns.org/dims4/default/e69fe7e/2147483647/strip/true/crop/2700x1800+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-jns-prod.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fcb%2Fbf%2F2d4ff4604821ae44156ba0168ae6%2F55369684292-df27c9fabd-o.jpg"
+          "https://nbc16.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+          "https://nbc16.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+          "https://foxchattanooga.com/resources/media2/16x9/821/1320/0x257/90/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+          "https://foxchattanooga.com/resources/media2/16x9/821/800/0x257/80/e8190a6b-2760-4da1-8383-5a04ca3ed930-6a85300299e3451b8aedff43079e7e50.png",
+          "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/931/523/allahu-akbar-scream-attack-nyc.jpg?ve=1&tl=1",
+          "https://media.townhall.com/cdn/hodl/2023/346/cac9bca4-b278-4d91-b1b6-f0454841e142-1200x630.jpg",
+          "https://media.townhall.com/cdn/hodl/2017/130/50b12da2-e6ff-48e1-84ba-5ba5eeb21b1b.jpg"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Allahu Akbar",
-          "Central Park"
+          "New York"
         ],
         "sourceUrls": [
-          "https://nypost.com/2026/07/23/us-news/2-men-stabbed-near-central-park-in-unprovoked-attack-sources/",
-          "https://www.jns.org/news/u-s-news/two-men-stabbed-on-manhattans-upper-west-side-in-what-is-reportedly-an-antisemitic-attack"
+          "https://nbc16.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+          "https://foxchattanooga.com/news/nation-world/stabbing-suspect-yells-allahu-akbar-before-attacking-2-men-in-new-york-police-department-hate-crime-investigation-assaut-assaults",
+          "https://www.wrganews.com/2026/07/23/suspect-arrested-after-allegedly-yelling-allahu-akbar-stabbing-2-men-in-nyc-attack/",
+          "https://townhall.com/tipsheet/scott-mcclallen/2026/07/23/nypd-suspect-yelled-allahu-akbar-during-upper-west-side-stabbings-n2680048",
+          "https://hotair.com/john-s-2/2026/07/23/nyc-two-men-stabbed-by-suspect-yelling-allahu-akbar-n3817265"
         ],
-        "sourceName": "New York Post",
+        "sourceName": "KMTR",
         "sources": [
-          "New York Post",
-          "Fox News",
-          "JNS.org"
+          "KMTR",
+          "wtvcfox",
+          "wrganews.com",
+          "townhall.com",
+          "hotair.com"
         ],
-        "corr": 3,
+        "corr": 5,
         "verified": true,
         "trend": "Allahu Akbar",
         "traffic": 98000,
@@ -1303,38 +1350,147 @@
         "geo": "US"
       },
       {
-        "title": "'The Simpsons' returning to Fortnite next week. What we know",
-        "summary": "The Simpsons will return to Fortnite next week as part of a new \"Simpsons Reload\" game mode, which is a variation of the traditional Battle Royale game with smaller lobbies and maps. The mode is set to launch on Thursday, July 30, 2026, alongside the Fortnite v41.30 update, and will feature the Springfield map from Chapter 6: Mini Season 2. Players can expect to access the map after server maintenance downtime ends, likely in the morning of July 30.",
-        "hashtag": "Fortnite",
-        "badge": "TRENDING",
+        "title": "Dillon Dingler, James Outman deliver in clutch in Tigers' comeback win",
+        "summary": "The Detroit Tigers secured a 4-3 comeback win over the Kansas City Royals at Comerica Park, with Dillon Dingler delivering a clutch two-out RBI to break the tie and James Outman contributing a crucial swing. The Tigers trailed 2-0 after six innings but rallied to improve their July record to 12-5 and their overall record since June 1 to 27-16. The team will look to build on this momentum in the second game of the weekend series against the Royals.",
+        "hashtag": "JamesOutman",
+        "badge": "VIRAL",
         "category": "offbeat",
-        "url": "https://www.northjersey.com/story/tech/gaming/2026/07/23/simpsons-returning-to-fortnite-next-week-what-we-know/91021279007/",
-        "imageUrl": "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/07/PNJM/87135500007-bart-1.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "url": "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
+        "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
         "images": [
-          "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/07/PNJM/87135500007-bart-1.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
-          "https://www.northjersey.com/gcdn/authoring/authoring-images/2025/11/02/PNJM/87050750007-simpsons-7.jpg?crop=1919,1079,x0,y0&width=660&height=372&format=pjpg&auto=webp",
-          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/The-Simpsons-Fortnite-Map-Returns-in-Reload-Release-Date-Times-and-Leaks.jpg?w=1280",
-          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/the-simpsons-fortnite-reload-map.jpg?w=1024",
-          "https://www.vice.com/wp-content/uploads/sites/2/2026/07/fortnite-the-simpsons-wallpaper.jpg?w=1024"
+          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031643007-20260723-rbtigersroyals-1342.jpg?crop=3396,1912,x0,y68&width=1600&height=800&format=pjpg&auto=webp",
+          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031646007-20260723-rbtigersroyals-1364.jpg?crop=3397,1912,x0,y139&width=660&height=372&format=pjpg&auto=webp",
+          "https://platform.blessyouboys.com/wp-content/uploads/sites/37/2026/07/imagn-29440531.jpg?quality=90&strip=all&crop=0%2C10.750116498999%2C100%2C78.499767002001&w=1200"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Simpsons",
-          "Fortnite"
+          "Dillon Dingler",
+          "James Outman",
+          "Tigers"
         ],
         "sourceUrls": [
-          "https://www.northjersey.com/story/tech/gaming/2026/07/23/simpsons-returning-to-fortnite-next-week-what-we-know/91021279007/",
-          "https://www.vice.com/en/article/the-simpsons-fortnite-reload-release-date-times-leaks/"
+          "https://www.detroitnews.com/story/sports/mlb/tigers/2026/07/23/tigers-bats-come-alive-late-in-series-opening-win-against-royals/91031594007/",
+          "https://www.blessyouboys.com/detroit-tigers-scores-standings/95474/detroit-tigers-kansas-city-royals-troy-melton-randy-dobnak-james-outman-recap",
+          "https://www.mlive.com/tigers/2026/07/james-outmans-clutch-homer-sparks-tigers-comeback-win-over-royals.html"
         ],
-        "sourceName": "northjersey.com",
+        "sourceName": "The Detroit News",
         "sources": [
-          "Bergen Record",
-          "VICE"
+          "The Detroit News",
+          "Bless You Boys",
+          "MLB.com",
+          "MLive.com"
+        ],
+        "corr": 4,
+        "verified": true,
+        "trend": "James Outman",
+        "traffic": 95000,
+        "freshH": 0.5,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Why Tom Hiddleston can’t stop thinking about Pompeii",
+        "summary": "Tom Hiddleston, a classical studies graduate and actor, explores the ancient Roman city of Pompeii in a new three-part series, tracing the stories of three real-life residents on the day Mount Vesuvius erupted in A.D. 79, killing thousands and preserving the city in time. The series, hosted by Hiddleston, delves into new insights into ancient Roman life, guided by experts and featuring scripted drama and documentary storytelling. This project marks a new creative venture for Hiddleston, who previously collaborated with Kevin Wright on the successful Disney+ series Loki.",
+        "hashtag": "Hiddleston",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
+        "imageUrl": "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+        "images": [
+          "https://i.natgeofe.com/n/df7b4ed4-81d0-4c75-996d-6058da4b2a26/SurvivingPompeii_110725_003065_RT_V3_16x9.jpg?w=1200",
+          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/GettyImages-2286410201-H-2026.jpg?w=1296&h=730&crop=1",
+          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_020-H-2026.jpg?w=1296",
+          "https://www.hollywoodreporter.com/wp-content/uploads/2023/11/FCG2120_206_comp_FRA_v0296.1534_R-H-2023.jpg?w=1296",
+          "https://www.hollywoodreporter.com/wp-content/uploads/2026/07/101_Tremors_PompeiiOutOfTimeWithTomHiddleston_CGI_058-H-2026.jpg?w=1296",
+          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Tom Hiddleston",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tom_Hiddleston_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        ],
+        "entities": [
+          "Tom Hiddleston",
+          "Pompeii"
+        ],
+        "sourceUrls": [
+          "https://www.nationalgeographic.com/history/article/tom-hiddleston-pompeii-interview",
+          "https://www.wsj.com/arts-culture/television/pompeii-out-of-time-with-tom-hiddleston-review-uncovering-survivors-d3e7f744",
+          "https://www.hollywoodreporter.com/tv/tv-features/loki-ep-kevin-r-wright-talks-pompeii-out-of-time-1236654094/"
+        ],
+        "sourceName": "nationalgeographic.com",
+        "sources": [
+          "National Geographic",
+          "WSJ",
+          "The Hollywood Reporter"
+        ],
+        "corr": 3,
+        "verified": true,
+        "trend": "tom hiddleston",
+        "traffic": 500,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "Jerry O’Connell addresses brutal Giuliana Rancic breakup more than a decade after she blasted him in memoir",
+        "summary": "Jerry O'Connell has broken his silence on his 2004 breakup with Giuliana Rancic, confessing he doesn't recall his exact wording but acknowledging he may have said something similar to what Rancic described in her 2015 memoir, \"Going Off Script\". The \"Jerry Maguire\" star, 52, praised Rancic for using colorful dialogue in her book, which included a brutal description of their split. The couple's breakup occurred more than 20 years ago, with Rancic releasing her tell-all memoir over a decade later.",
+        "hashtag": "GiulianaRancic",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
+        "imageUrl": "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
+        "images": [
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/JerryOConnelladdressesbrutalGiulianaRancicbreakup.jpg?quality=75&strip=all&w=1200",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/actor-jerry-oconnell-wife-giuliana-135023888.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/kelly-ripa-jerry-oconnell-attend-135023995.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/giuliana-rancic-signs-copies-new-135024001.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/american-women-radio-television-new-135023860.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-arriving-135023889.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/red-carpet-arrivals-graumans-chinese-135023887.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/jerry-oconnell-giuliana-depandi-pose-135023861.jpg",
+          "https://pagesix.com/wp-content/uploads/sites/3/2026/07/new-york-daily-news-newsday-135023880.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Giuliana Rancic",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Giuliana_Rancic_at_the_Time_100_Gala.jpg"
+        ],
+        "entities": [
+          "Jerry",
+          "Connell",
+          "Giuliana Rancic"
+        ],
+        "sourceUrls": [
+          "https://pagesix.com/2026/07/20/celebrity-news/jerry-oconnell-addresses-brutal-giuliana-rancic-breakup-after-she-blasted-him-in-memoir/",
+          "https://people.com/jerry-o-connell-terrible-boyfriend-ex-giuliana-rancic-intercom-breakup-12024007"
+        ],
+        "sourceName": "pagesix.com",
+        "sources": [
+          "Page Six",
+          "People.com"
         ],
         "corr": 2,
         "verified": true,
-        "trend": "fortnite",
+        "trend": "giuliana rancic",
         "traffic": 1000,
         "freshH": 1,
         "score": null,
@@ -1345,34 +1501,136 @@
         "geo": "US"
       },
       {
-        "title": "Bertha weakens to tropical depression, but its moisture lives on, fueling a flood threat in the East",
-        "summary": "Bertha has weakened to a tropical depression, 10 miles north-northeast of Houston, but its moisture continues to fuel a flood threat in the East, with a plume of tropical moisture linked to the system bringing soaking rain to the Southeast. Heavy rain has prompted flash flood warnings in several states, including North Carolina, Virginia, and Tennessee, with some areas receiving a month's worth of rain in just a few days. The flooding threat is expected to continue through Friday, affecting areas from North and South Carolina to northern parts of Georgia and Alabama.",
-        "hashtag": "TropicalDepression",
+        "title": "AUSL postseason is here! Cascade face Bandits in play-in game (9 ET, ESPN)",
+        "summary": "The 2026 Athletes Unlimited Softball League postseason has begun with the Chicago Bandits facing off against the Portland Cascade in a win-or-go-home play-in game on Thursday at 9 p.m. ET on ESPN, with the winner advancing to the AUSL Championship against the top-seeded Utah Talons. The AUSL Championship series will begin on Saturday at 1 p.m. ET on ABC, marking the first time a professional softball game has been televised on the network.",
+        "hashtag": "Ausl",
         "badge": "TRENDING",
         "category": "offbeat",
-        "url": "https://www.cnn.com/2026/07/23/weather/bertha-flood-threat-east-climate-hnk",
-        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/app-flood-setup-0723-01.png?c=16x9&q=w_800,c_fill",
+        "url": "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
+        "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
         "images": [
-          "https://media.cnn.com/api/v1/images/stellar/prod/app-flood-setup-0723-01.png?c=16x9&q=w_800,c_fill",
-          "https://media.cnn.com/api/v1/images/stellar/prod/ap26203839548441.jpg?c=original&q=w_860,c_fill"
+          "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/piuwhaggh3egewctal8w.jpg",
+          "https://espnpressroom.com/wp-content/uploads/2026-AUSL-Schedule-6.png",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Cascade",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG"
+        ],
         "entities": [
-          "Bertha",
-          "East"
+          "AUSL",
+          "Cascade",
+          "Bandits",
+          "ESPN"
         ],
         "sourceUrls": [
-          "https://www.cnn.com/2026/07/23/weather/bertha-flood-threat-east-climate-hnk"
+          "https://www.mlb.com/news/2026-ausl-postseason-schedule-scores",
+          "https://espnpressroom.com/press-release/espn-presents-2026-athletes-unlimited-softball-league-postseason-beginning-july-23/"
         ],
-        "sourceName": "cnn.com",
+        "sourceName": "mlb.com",
         "sources": [
-          "CNN"
+          "MLB.com",
+          "ESPN Press Room"
+        ],
+        "corr": 2,
+        "verified": true,
+        "trend": "ausl",
+        "traffic": 2000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "'Big Brother' says goodbye to Traverse City pickleball coach",
+        "summary": "Rome Seymour, a pickleball coach from Traverse City, has become the second player to be voted off the CBS reality show \"Big Brother\" this season, with a near-unanimous 12-1 vote. Seymour was evicted despite his efforts to save himself in the BB Block Buster competition, where he was narrowly outperformed by former \"RuPaul's Drag Race\" standout Jason De Puy. Seymour has taken his early exit graciously, stating that he has no hard feelings towards his fellow houseguests.",
+        "hashtag": "BrotherSpoilers",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/",
+        "imageUrl": "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+        "images": [
+          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/24/PDTN/91031270007-br-2807-sg-0017-b.jpg?crop=1919,1079,x0,y0&width=1600&height=800&format=pjpg&auto=webp",
+          "https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/07/16/PDTN/90945971007-97248-d-1745.JPG?crop=1996,1123,x0,y600&width=660&height=372&format=pjpg&auto=webp",
+          "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Traverse City",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/da/Grand_Traverse_County_Courthouse.jpg"
+        ],
+        "entities": [
+          "Big Brother",
+          "Traverse City"
+        ],
+        "sourceUrls": [
+          "https://www.detroitnews.com/story/entertainment/television/2026/07/23/big-brother-did-traverse-city-contestant-take-himself-off-block/91031177007/"
+        ],
+        "sourceName": "detroitnews.com",
+        "sources": [
+          "The Detroit News"
         ],
         "corr": 1,
         "verified": false,
-        "trend": "tropical depression bertha",
-        "traffic": 20000,
+        "trend": "big brother spoilers",
+        "traffic": 2000,
+        "freshH": 1,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": "US"
+      },
+      {
+        "title": "YG vs. The Game: VERZUZ — Compton Forever",
+        "summary": "Rappers YG and The Game faced off in a VERZUZ battle on July 23, with YG delivering a 22-song setlist that included hits like \"Toxic\" and \"Godzilla\". The event, which celebrated the artists' impact on Compton culture, featured live voting from fans, with over 1 million votes cast in real-time. The VERZUZ battle marked a historic moment in hip-hop, bringing together two legendary artists for a night of music and celebration.",
+        "hashtag": "Verzuz",
+        "badge": "TRENDING",
+        "category": "offbeat",
+        "url": "https://www.complex.com/verzuz/yg-vs-the-game",
+        "imageUrl": "https://images.complex.com/complex/image/upload/ar_1.91,c_fill,g_auto,q_auto,w_1200/sanity-new%2FVerzuz_YG_Game_2026_COMPLEX-VERUZ_SITE-LEAD_WITHOUTNAMES_16X9_1920X1080_csqf6m",
+        "images": [
+          "https://images.complex.com/complex/image/upload/ar_1.91,c_fill,g_auto,q_auto,w_1200/sanity-new%2FVerzuz_YG_Game_2026_COMPLEX-VERUZ_SITE-LEAD_WITHOUTNAMES_16X9_1920X1080_csqf6m",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Game",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gaming_Board_Inscribed_for_Amenhotep_III_with_Separate_Sliding_Drawer%2C_ca._1390-1353_B.C.E.%2C49.56a-b.jpg"
+        ],
+        "entities": [
+          "Game",
+          "VERZUZ",
+          "Compton Forever"
+        ],
+        "sourceUrls": [
+          "https://www.complex.com/verzuz/yg-vs-the-game"
+        ],
+        "sourceName": "complex.com",
+        "sources": [
+          "Complex"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": "verzuz",
+        "traffic": 500,
         "freshH": 1,
         "score": null,
         "popularity": null,
@@ -1383,7 +1641,7 @@
       },
       {
         "title": "Indonesian babies were trafficked to Singapore. What happens to them now?",
-        "summary": "A Singapore court has been working with Indonesian authorities to reunite 12 babies trafficked to the city-state with their biological families in Indonesia. The babies were part of a human trafficking ring that was recently convicted of selling at least 34 children for adoption. The reunification process is expected to be completed in the coming weeks, bringing closure to the adoptive parents in Singapore who have been waiting anxiously for a decision.",
+        "summary": "A Singapore court has ruled that 19 individuals are guilty of baby trafficking, with at least 34 babies being sold for adoption, 12 of whom were sent to Singapore. The convicted traffickers are now awaiting sentencing, while the fate of the babies remains uncertain, with adoptive parents in Singapore awaiting a decision on whether they can keep their children. The Indonesian government has yet to confirm whether the babies will be returned to Indonesia.",
         "hashtag": "Indonesian",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1413,52 +1671,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.54,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "India activist ends hunger strike after 26 days",
-        "summary": "India activist Sonam Wangchuk has ended his 26-day hunger strike after the government assured no legal action would be taken against protesters at Janta Mantar site in India. This decision comes after state and health ministers visited Wangchuk in hospital, and mass protests continue in the Indian capital despite a brutal police crackdown on Monday's march to parliament. The youth movement, known as the Cockroach Jantar Mantar protest, demands the resignation of Education Minister Dharmendra Pradhan.",
-        "hashtag": "India",
-        "badge": "TRENDING",
-        "category": "offbeat",
-        "url": "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/ddaa/live/b1690fb0-86d3-11f1-8749-89447c313de6.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Sonam Wangchuk",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/Sonam_Wangchuk%2C_2017_%28cropped%29.jpg"
-        ],
-        "entities": [
-          "India",
-          "Sonam Wangchuk"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cjwx4x04yqzo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 3.42,
+        "freshH": 2.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1468,7 +1681,7 @@
       },
       {
         "title": "Microsoft responds to LG monitors installing McAfee ads on Windows",
-        "summary": "Microsoft has responded to concerns over LG monitors installing McAfee ads on Windows without user permission, with some users finding the LG Monitor App Installer on their systems after purchasing the monitors. The app has been collecting user data, including geolocation and online activity, and has been installed via Windows Update. Microsoft has yet to comment on the specific case, but the incident raises questions about what Windows permits from peripherals' companion apps.",
+        "summary": "Microsoft has responded to allegations that LG monitors are installing McAfee ads on Windows systems without user permission, a practice that has been ongoing for years and has raised concerns about user privacy. The LG Monitor App Installer, which is available on the Microsoft Store, allows the company to collect sensitive user data, including geolocation and online activity. Microsoft has yet to comment on whether it will take action to address this issue, but the incident has sparked questions about the permissions granted to peripherals' companion apps.",
         "hashtag": "Microsoft",
         "badge": "TRENDING",
         "category": "offbeat",
@@ -1497,7 +1710,138 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 4.08,
+        "freshH": 5.07,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      }
+    ],
+    "politics": [
+      {
+        "title": "Burnham to spend first day working from northern branch of No 10",
+        "summary": "Andy Burnham will spend his first day in office working from the new No 10 North branch in Manchester, where he will chair a meeting of the National Economic Council, a cabinet committee established in 2008 to address economic challenges across the UK. The meeting will bring together senior ministers and regional mayors to focus on devolution and local economic growth, with up to 300 civil servants expected to join the new site by the end of next year. This marks a significant shift in power from Whitehall and Westminster to regional areas, as the prime minister aims to give more attention and investment to communities that have felt forgotten.",
+        "hashtag": "Burnham",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+        "images": [
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/14b9/live/8c842050-86c3-11f1-926f-c90d1bcfbc84.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+        ],
+        "entityShots": [
+          {
+            "name": "Various",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg"
+          },
+          {
+            "name": "Downing Street",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/RemcoCampert.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/81/Downing_Street_gates.jpg"
+        ],
+        "entities": [
+          "Burnham",
+          "Various",
+          "Downing Street"
+        ],
+        "sourceUrls": [
+          "https://www.bbc.co.uk/news/articles/ckgvyr76973o?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 0.12,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Number of U.S. Troop Deaths in Iran War Appears Lower on Pentagon Website",
+        "summary": "Three military officials and a Pentagon spokesman gave conflicting explanations for why the number of Americans killed in the Iran war had changed.",
+        "hashtag": "US",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/23/us/politics/iran-troop-deaths.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-troops-cvgb/23dc-troops-cvgb-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-troops-cvgb/23dc-troops-cvgb-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Number",
+          "Troop Deaths",
+          "Iran War Appears Lower",
+          "Pentagon Website",
+          "Three",
+          "Pentagon"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/us/politics/iran-troop-deaths.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.61,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "FDA Panel Supports Lifting Restrictions on Four Peptides",
+        "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
+        "hashtag": "FDAPanel",
+        "badge": "POLITICS",
+        "category": "politics",
+        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "FDA Panel Supports Lifting",
+          "Restrictions",
+          "Four Peptides"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 1.84,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1508,37 +1852,37 @@
     ],
     "entertainment": [
       {
-        "title": "Men Flock to Microdramas, Romance Stories Rule and Sunday Nights are Prime Time for Viewing",
-        "summary": "Viewership of microdramas has surged 28-fold over the past two years, with more than two-thirds of users, both male and female, watching romance-based series. Sunday nights between 8-10 p.m. remain prime time for microdrama viewing, with heavy users consuming over three hours of content per week, including AI-generated material. This trend suggests a younger, more male audience is embracing the format, defying cultural concerns about AI-generated content.",
-        "hashtag": "MicrodramasRomance",
+        "title": "Creepy Twins, Religious Fanaticism and a Loaded Gun Collide in Tense Chamber Drama ‘Godhead’ — Fantasia",
+        "summary": "A rural Catholic priest is being visited by two bizarre twins who claim to be part of a prophecy and need his help to fulfill it, but they also bring a gun to the meeting, adding to the tension. The film, \"Godhead,\" premiered at the Fantasia Festival in Montreal, where it received enthusiastic reviews for its masterful blend of faith, sex, lies, and discomfort. The director, Mark H. Rapaport, aimed to challenge authority figures and leave audiences with difficult questions.",
+        "hashtag": "TenseChamber",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/microdramas-men-romance-sunday-holywater-my-drama-my-muse-1236819953/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg",
+        "url": "https://variety.com/2026/film/features/godhead-fantasia-festival-thriller-evil-twins-religious-1236819934/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Godhead.png",
         "images": [
-          "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg",
-          "https://variety.com/wp-content/uploads/2025/10/Microdrama-collage.jpg?crop=0px%2C7px%2C1000px%2C562px&resize=1000%2C563",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+          "https://variety.com/wp-content/uploads/2026/07/Godhead.png",
+          "https://variety.com/wp-content/uploads/2026/07/Godhead.png?crop=0px%2C116px%2C2970px%2C1671px&resize=1000%2C563",
+          "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
         ],
         "entityShots": [
           {
-            "name": "Men Flock",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+            "name": "Religious Fanaticism",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Max%20Marschalk%20-%20Utstilling%20i%20Eqitable%20Palast%2C%20Berlin%201892-93%2C%20MM.D.01029%2C%20B1029F%20(cropped%20W278).jpg?width=1200"
+          "https://commons.wikimedia.org/wiki/Special:FilePath/2012%20Sydney%20protest.jpg?width=1200"
         ],
         "entities": [
-          "Men Flock",
-          "Microdramas",
-          "Romance Stories Rule",
-          "Sunday Nights",
-          "Prime Time",
-          "Viewing"
+          "Creepy Twins",
+          "Religious Fanaticism",
+          "Loaded Gun Collide",
+          "Tense Chamber Drama",
+          "Godhead",
+          "Fantasia"
         ],
         "sourceUrls": [
-          "https://variety.com/2026/tv/news/microdramas-men-romance-sunday-holywater-my-drama-my-muse-1236819953/"
+          "https://variety.com/2026/film/features/godhead-fantasia-festival-thriller-evil-twins-religious-1236819934/"
         ],
         "sourceName": "Variety",
         "sources": [
@@ -1548,7 +1892,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.2,
+        "freshH": 0.16,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1557,29 +1901,29 @@
         "geo": null
       },
       {
-        "title": "‘Marvelous Mrs. Maisel’ Set Decorator Mary Kate Golding Fatally Stabbed in N.Y.",
-        "summary": "A 34-year-old set decorator for the TV show \"The Marvelous Mrs. Maisel\" has been fatally stabbed in her Queens, New York apartment, with police responding to a 911 call at 12:24 am on July 21, 2026. The victim, Mary Kate Golding, was pronounced dead at the scene, and her husband, Joseph Azzaretto, was later found dead by hanging at Astoria Park, sparking a suspected murder-suicide investigation. The couple's baby son was found unharmed at their home.",
-        "hashtag": "MarvelousMrs",
+        "title": "‘Stuart Fails to Save the Universe’ Co-Creator Bill Prady Explains the Science Behind the Show’s Multiverse",
+        "summary": "A post-apocalyptic Pasadena has been ravaged by zombie hands, giant moths, and reality tears, with the only functioning business being a comic book shop run by Stuart Bloom. The show's multiverse is attributed to a quantum interference device built by \"The Big Bang Theory\" characters Leonard, Sheldon, and Howard, which has altered reality. Regular Stuart and his companions must now find the device at Cal Tech to potentially save the universe from further destruction.",
+        "hashtag": "UniverseCo",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
-        "url": "https://variety.com/2026/tv/news/mary-kate-golding-dead-stabbed-mrs-maisel-1236819887/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg",
+        "url": "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
         "images": [
-          "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/Mary-Kate-Golding-Dead-Murder-Suicide.jpg?crop=0px%2C33px%2C1395px%2C784px&resize=1000%2C563"
+          "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/kevin-sussman-john-ross-bowie-brian-posehn.jpg?w=1000&h=563&crop=1"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Marvelous Mrs",
-          "Maisel",
-          "Set Decorator Mary Kate",
-          "Golding Fatally Stabbed",
-          "Mary Kate Golding",
-          "Goosebumps"
+          "Stuart Fails",
+          "Save",
+          "Universe",
+          "Co-Creator Bill Prady Explains",
+          "Science Behind",
+          "Show"
         ],
         "sourceUrls": [
-          "https://variety.com/2026/tv/news/mary-kate-golding-dead-stabbed-mrs-maisel-1236819887/"
+          "https://variety.com/2026/tv/news/stuart-fails-to-save-the-universe-science-explained-1236818737/"
         ],
         "sourceName": "Variety",
         "sources": [
@@ -1589,7 +1933,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.77,
+        "freshH": 0.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1598,29 +1942,29 @@
         "geo": null
       },
       {
-        "title": "‘Ebenezer: A Christmas Carol’ Trailer: Johnny Depp Transforms Into Grouchy, Snowball-Throwing Scrooge",
-        "summary": "We need to write a punchy brief 2-3 complete sentences, 45-75 words, read aloud. Must lead with most important fact, include who/what/where and number/date/consequence that matters. Add one line of context or what happens next. No repeated words or sentences. No non-English words. No mention of article or outlet names. No markdown, hashtags, brackets, quotes, emoji. Plain text only. We need to extract facts: Paramount Pictures released first trailer for \"Ebenezer: A Christmas Carol\", starring Johnny Depp as Scrooge, directed by Ti West, dark reimagining of Dickens classic. Trailer shows Depp throwing snowballs at passersby, says \"It's good to be back\". It's Depp's first major Hollywood role since his 2022 trial against Amber Heard. The trial details: both accused each other of domestic abuse, jury found both guilty of defamation. Depp awarded $10 million compensatory and $5 million punitive from Heard; Heard awarded $2 million compensatory. We need to pick facts that agree across outlets; only one source given (Variety). So we use those. We need to lead with most important fact: likely the trailer release and Depp's return. Include who/what/where: Paramount Pictures released trailer for Ebenezer: A Christmas Carol starring Johnny Depp as Scrooge. Include number/date/consequence: first major Hollywood role since 2022 trial; maybe mention damages? But the consequence that matters could be the trailer release date? Not given. Could mention that it's his first major Hollywood film since the 2022 defamation trial. That is a consequence. Add one line of context or what happens next: maybe that the film is set for holiday release, or that audiences will see his performance. We need 2-3 sentences, 45-75 words total. Let's craft 3 sentences. Sentence 1: Paramount Pictures has unveiled the first trailer for “Ebenezer: A Christmas Carol,” with Johnny Depp portraying Ebenezer Scrooge in a dark retelling of Charles Dickens’ tale.",
-        "hashtag": "EbenezerA",
+        "title": "’72 Hours’ Review: Kevin Hart Tries to Be Down With the Kids in a Mediocre ‘Hangover’ Knockoff",
+        "summary": "Kevin Hart stars in the mediocre comedy \"72 Hours,\" a hangover-inspired film directed by Tim Story and written by Jon Hurwitz and Hayden Schlossberg, which attempts to revive the crime subplot formula that has often ruined even the most average comedies. The movie, a retread of the \"Hangover\" franchise, failed to impress critics despite its all-star cast. The film's lackluster performance is a reminder that even the most promising comedies can fall short of expectations.",
+        "hashtag": "HoursReview",
         "badge": "ENTERTAINMENT",
         "category": "entertainment",
-        "url": "https://variety.com/2026/film/news/ebenezer-christmas-carol-trailer-johnny-depp-scrooge-1236801196/",
-        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg",
+        "url": "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/",
+        "imageUrl": "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
         "images": [
-          "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg",
-          "https://variety.com/wp-content/uploads/2026/07/EBZR-02234R.jpg?crop=0px%2C217px%2C4200px%2C2363px&resize=1000%2C563"
+          "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg",
+          "https://variety.com/wp-content/uploads/2026/07/MCDSEHO_ZX001.jpg?w=1000&h=563&crop=1"
         ],
         "entityShots": [],
         "entityImages": [],
         "entities": [
-          "Ebenezer",
-          "Christmas Carol",
-          "Trailer",
-          "Johnny Depp Transforms Into",
-          "Grouchy",
-          "Snowball-Throwing Scrooge"
+          "Hours",
+          "Review",
+          "Kevin Hart Tries",
+          "Be Down With",
+          "Kids",
+          "Mediocre"
         ],
         "sourceUrls": [
-          "https://variety.com/2026/film/news/ebenezer-christmas-carol-trailer-johnny-depp-scrooge-1236801196/"
+          "https://variety.com/2026/film/reviews/72-hours-review-kevin-hart-1236819749/"
         ],
         "sourceName": "Variety",
         "sources": [
@@ -1630,7 +1974,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.89,
+        "freshH": 0.86,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1642,7 +1986,7 @@
     "breaking": [
       {
         "title": "US imposes tariffs on dozens of trade partners over 'forced labour' imports",
-        "summary": "The US has imposed tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to stop forced labour imports. The new duties, which come into effect on Friday, target key economic partners accounting for the vast majority of US imports. This move is the latest escalation in the global trade war, following the US Supreme Court's ruling that many previous tariffs were illegally enacted.",
+        "summary": "The US is imposing tariffs ranging from 10% to 12.5% on around 60 trading partners, including the UK, China, EU, Canada, Japan and India, over claims they failed to properly stop forced labour imports. The new duties come into effect on Friday, replacing a temporary 10% tax on foreign goods that expired earlier this year. This move marks the latest escalation in the global trade war, with the US seeking to address human rights abuses and distortive trade practices.",
         "hashtag": "US",
         "badge": "BREAKING",
         "category": "breaking",
@@ -1666,7 +2010,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.2,
+        "freshH": 1.19,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1678,7 +2022,7 @@
     "crisis": [
       {
         "title": "UK complacent about war threat, warns defence boss",
-        "summary": "The UK's defence chief has warned that the country is complacent about the threat of foreign attack, with the level of threat being the highest he's seen in his lifetime. Defence spending must increase to meet the government's commitment to spend 3.5% of GDP on defence by 2035, with a focus on countering the use of autonomous lethal weapons by countries like Russia and Ukraine. This shift in modern warfare requires the UK to adapt its defence capabilities to prevent aggression and maintain human control over military operations.",
+        "summary": "The UK's defence spending is insufficient to counter the growing threat of foreign attack, warns Dr Charles Woodburn, boss of BAE Systems, with the level of threat being the highest he's seen in his lifetime. The country is not far from the use of autonomous lethal weapons by countries that may not follow the UK's policy of maintaining human control. To meet the government's commitment to spend 3.5% of GDP on defence by 2035, much more investment will be needed.",
         "hashtag": "UK",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1691,10 +2035,18 @@
           "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/f773/live/c8220520-86a3-11f1-a0b6-435e4178a497.jpg",
           "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/7120/live/766c17b0-86a4-11f1-b976-0b9c15b0ccfc.jpg",
           "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/b82a/live/5e9d77e0-86a5-11f1-926f-c90d1bcfbc84.jpg",
-          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg"
+          "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/e281/live/cab6c450-86a4-11f1-926f-c90d1bcfbc84.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
         ],
-        "entityShots": [],
-        "entityImages": [],
+        "entityShots": [
+          {
+            "name": "Europe's",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+          }
+        ],
+        "entityImages": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2014._Camp_Nou._Barcelona_B37.jpg"
+        ],
         "entities": [
           "Europe's",
           "Dr Charles Woodburn"
@@ -1710,7 +2062,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.8,
+        "freshH": 2.79,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1720,7 +2072,7 @@
       },
       {
         "title": "China's Moonshot AI stole from Anthropic, Trump tech adviser says",
-        "summary": "China's Moonshot AI has been accused of stealing capabilities from top US artificial intelligence models, including Anthropic's Fable AI, to develop its K3 model, according to US President Donald Trump's Science and Technology adviser Michael Kratsios. The alleged theft involved distillation, where a weaker AI model extracts answers from a stronger one, and access to restricted Nvidia servers for training. The US government claims to have information on Moonshot's activities, which could have significant implications for the global AI landscape.",
+        "summary": "China's Moonshot AI has allegedly stolen capabilities from top US artificial intelligence model Anthropic's Fable AI, according to US President Donald Trump's Science and Technology adviser Michael Kratsios, who claims Moonshot used a process called distillation to extract answers from a stronger model. The stolen capabilities were used to develop Moonshot's K3 model, which has been touted as a rival to top US technology. The US government has information suggesting Moonshot also used Nvidia's restricted servers to train its models.",
         "hashtag": "MoonshotAI",
         "badge": "GLOBAL",
         "category": "crisis",
@@ -1749,7 +2101,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.03,
+        "freshH": 2.02,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1789,7 +2141,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.85,
+        "freshH": 1.84,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1801,7 +2153,7 @@
     "facts": [
       {
         "title": "Heatwave anxiety can make you feel 'incredibly helpless' - here's how to manage it",
-        "summary": "A record-breaking heatwave in England has left many residents, including stay-at-home mother Tavia Watts, feeling \"incredibly helpless\" with anxiety, with a 2022 study estimating that around 4.6% of people in the UK experience climate anxiety, a form of mental distress recognised by professional bodies and the NHS. Watts' emotional video on social media garnered over 18,000 likes and 1,700 reposts, highlighting the widespread concern. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial for those affected.",
+        "summary": "A record-breaking heatwave in England has left many feeling anxious, with a 36-year-old stay-at-home mother in Cheltenham sharing her fears on social media, garnering over 18,000 likes and 1,700 reposts. According to a 2022 study from the University of Bath, approximately 4.6% of people in the UK experience climate anxiety, a form of mental distress recognized by professional bodies and the NHS. As temperatures continue to soar, experts warn that managing heatwave anxiety is crucial to prevent feelings of helplessness.",
         "hashtag": "Heatwave",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1828,7 +2180,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.78,
+        "freshH": 1.76,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1838,7 +2190,7 @@
       },
       {
         "title": "Scientists find building blocks of birdsong's 'spectacular diversity'",
-        "summary": "Scientists have discovered the fundamental building blocks of birdsong, identifying eight key types of sound, known as \"motifs\", which are combined in various ways to create the incredible diversity of birdsong around the world. These motifs include trills, whistles, chaotic notes, and harmonies, and are found in over 116,000 songs from more than 3,000 bird species. The findings provide new insights into the complex communication systems of birds and could have significant implications for the study of animal behavior.",
+        "summary": "Scientists have discovered the fundamental building blocks of birdsong's spectacular diversity, identifying eight key types of sound, or \"motifs\", that are combined in various ways to create the complex songs of over 3,000 bird species worldwide. These motifs include trills, whistles, chaotic notes, and harmonies, which are found in birdsong across Asia, Africa, and the Amazon. The researchers' findings provide a new understanding of the global patterns and variations in birdsong, shedding light on one of nature's most sophisticated forms of sound-based communication.",
         "hashtag": "Scientists",
         "badge": "SCIENCE",
         "category": "facts",
@@ -1864,7 +2216,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.95,
+        "freshH": 1.94,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -1901,138 +2253,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 0.76,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      }
-    ],
-    "tech": [
-      {
-        "title": "Google fined €890m by EU for favouring its own apps over rivals",
-        "summary": "Google has been fined €890 million by the European Union for allegedly abusing its power by favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued Google's practices limited consumer choice and gave its own services an unfair advantage, with a €460 million penalty for one breach and an additional €430 million for a second. Google will now have to strip away features and dismantle safety protections to comply with the EU's requirements.",
-        "hashtag": "Google",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
-        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-        "images": [
-          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-        ],
-        "entityShots": [
-          {
-            "name": "Google",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-          }
-        ],
-        "entityImages": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
-        ],
-        "entities": [
-          "Google",
-          "EU's"
-        ],
-        "sourceUrls": [
-          "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
-        ],
-        "sourceName": "BBC",
-        "sources": [
-          "BBC"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.71,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
-        "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
-        "hashtag": "JudgeExtends",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-        ],
-        "entityShots": [
-          {
-            "name": "Deal",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Bacin%20zari%202015.jpg?width=1200"
-        ],
-        "entities": [
-          "Judge Extends Pause",
-          "Paramount-Warner Bros",
-          "Deal",
-          "August"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 1.3,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "Intel Benefits From a New Shift in A.I. Spending",
-        "summary": "The Silicon Valley chipmaker’s revenue rose 25 percent in the latest quarter, its fastest growth in 15 years, as A.I. firms increasingly bought chips known as central processing units.",
-        "hashtag": "AI",
-        "badge": "TECH",
-        "category": "tech",
-        "url": "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Intel Benefits From",
-          "Shift",
-          "Spending",
-          "Silicon Valley"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 2.71,
+        "freshH": 0.34,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2044,7 +2265,7 @@
     "health": [
       {
         "title": "US health panel recommends easing restrictions on controversial peptides",
-        "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that the chemicals have not been proven safe or effective. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows the advice, telehealth companies are expected to increase marketing of the peptides for wellness and cosmetic uses.",
+        "summary": "A US health panel has narrowly recommended easing restrictions on several peptides, including BPC-157, TB-500 and KPV, despite warnings from government scientists that their safety and effectiveness have not been proven. The panel's 8-6 vote, with one abstention, is not binding but may influence the health secretary's decision to overturn FDA restrictions. If the FDA follows this advice, telehealth companies are expected to increase marketing of these peptides for wellness and cosmetic uses.",
         "hashtag": "US",
         "badge": "HEALTH",
         "category": "health",
@@ -2086,7 +2307,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.12,
+        "freshH": 3.11,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2103,18 +2324,10 @@
         "url": "https://www.nytimes.com/2026/07/23/science/health-research-funding-ahrq.html",
         "imageUrl": "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
+          "https://static01.nyt.com/images/2026/07/24/multimedia/24SCI-HEALTH-CUTS-ljhf/24SCI-HEALTH-CUTS-ljhf-mediumSquareAt3X.jpg"
         ],
-        "entityShots": [
-          {
-            "name": "Dozens",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-          }
-        ],
-        "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Silverberg%202005.JPG?width=1200"
-        ],
+        "entityShots": [],
+        "entityImages": [],
         "entities": [
           "Health Care Agency Discontinues",
           "Dozens",
@@ -2134,7 +2347,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.55,
+        "freshH": 2.53,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2174,7 +2387,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 6.02,
+        "freshH": 7.01,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2183,112 +2396,73 @@
         "geo": null
       }
     ],
-    "politics": [
+    "tech": [
       {
-        "title": "Number of U.S. Troop Deaths in Iran War Appears Lower on Pentagon Website",
-        "summary": "Three military officials and a Pentagon spokesman gave conflicting explanations for why the number of Americans killed in the Iran war had changed.",
-        "hashtag": "US",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/23/us/politics/iran-troop-deaths.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-troops-cvgb/23dc-troops-cvgb-mediumSquareAt3X.jpg",
+        "title": "Google fined €890m by EU for favouring its own apps over rivals",
+        "summary": "Google has been fined €890m by the EU for allegedly favouring its own apps and services over those from rivals, the first major action under the EU's Digital Markets Act. The Commission argued this limited consumer choice and gave Google's services an unfair advantage, with the fine comprised of two separate breaches of the act. Google will now have to strip away features and dismantle safety protections on its services to comply with the EU's requirements.",
+        "hashtag": "Google",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss",
+        "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
         "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23dc-troops-cvgb/23dc-troops-cvgb-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Number",
-          "Troop Deaths",
-          "Iran War Appears Lower",
-          "Pentagon Website",
-          "Three",
-          "Pentagon"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/us/politics/iran-troop-deaths.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.62,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "A Peptide Showdown: F.D.A. Scientists May Clash With R.F.K.’s Agenda",
-        "summary": "In an all-day hearing, the agency’s scientists argued against allowing broad access to unproven drugs that the agency had banned three years ago.",
-        "hashtag": "APeptide",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/06/multimedia/23dc-peptides/06trump-news-uspstf-qlkf-mediumSquareAt3X.jpg"
-        ],
-        "entityShots": [],
-        "entityImages": [],
-        "entities": [
-          "Peptide Showdown",
-          "Scientists May Clash With",
-          "Agenda"
-        ],
-        "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/health/fda-scientists-rfk-peptides.html"
-        ],
-        "sourceName": "The New York Times",
-        "sources": [
-          "The New York Times"
-        ],
-        "corr": 1,
-        "verified": false,
-        "trend": null,
-        "traffic": 0,
-        "freshH": 0.86,
-        "score": null,
-        "popularity": null,
-        "recency": null,
-        "relevancy": null,
-        "region": "usa",
-        "geo": null
-      },
-      {
-        "title": "U.S. Withdraws Subpoenas Issued to New York Times Journalists",
-        "summary": "A federal judge raised questions about the government’s handling of the subpoenas, which The Times called an attempt to intimidate the free press.",
-        "hashtag": "US",
-        "badge": "POLITICS",
-        "category": "politics",
-        "url": "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html",
-        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
-        "images": [
-          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-nytimes1-fvmk/23biz-nytimes1-fvmk-mediumSquareAt3X.jpg",
-          "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
+          "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+          "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/f649/live/69a3a390-869f-11f1-a0b6-435e4178a497.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entityShots": [
           {
-            "name": "Times",
-            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
+            "name": "Google",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
           }
         ],
         "entityImages": [
-          "https://commons.wikimedia.org/wiki/Special:FilePath/New%20york%20times%20square-terabass.jpg?width=1200"
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg"
         ],
         "entities": [
-          "Withdraws Subpoenas Issued",
-          "York Times Journalists",
-          "Times"
+          "Google",
+          "EU's"
         ],
         "sourceUrls": [
-          "https://www.nytimes.com/2026/07/23/business/media/new-york-times-subpoenas-withdraw.html"
+          "https://www.bbc.co.uk/news/articles/cevmenngkzpo?at_medium=RSS&at_campaign=rss"
+        ],
+        "sourceName": "BBC",
+        "sources": [
+          "BBC"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 2.69,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Judge Extends Pause for Paramount-Warner Bros. Deal",
+        "summary": "The court blocked the companies from closing the acquisition through mid-August, as a judge considers two lawsuits challenging it.",
+        "hashtag": "JudgeExtends",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/23biz-paramount-1-bflz/23biz-paramount-1-bflz-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Judge Extends Pause",
+          "Paramount-Warner Bros",
+          "Deal",
+          "August"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/technology/judge-paramount-warner-bros-deal.html"
         ],
         "sourceName": "The New York Times",
         "sources": [
@@ -2298,7 +2472,45 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 1.93,
+        "freshH": 0.95,
+        "score": null,
+        "popularity": null,
+        "recency": null,
+        "relevancy": null,
+        "region": "usa",
+        "geo": null
+      },
+      {
+        "title": "Intel Benefits From a New Shift in A.I. Spending",
+        "summary": "The Silicon Valley chipmaker’s revenue rose 25 percent in the latest quarter, its fastest growth in 15 years, as A.I. firms increasingly bought chips known as central processing units.",
+        "hashtag": "AI",
+        "badge": "TECH",
+        "category": "tech",
+        "url": "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html",
+        "imageUrl": "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg",
+        "images": [
+          "https://static01.nyt.com/images/2026/07/23/multimedia/INTEL-EARNINGS-1-01-wqvh/INTEL-EARNINGS-1-01-wqvh-mediumSquareAt3X.jpg"
+        ],
+        "entityShots": [],
+        "entityImages": [],
+        "entities": [
+          "Intel Benefits From",
+          "Shift",
+          "Spending",
+          "Silicon Valley"
+        ],
+        "sourceUrls": [
+          "https://www.nytimes.com/2026/07/23/technology/intel-quarterly-results.html"
+        ],
+        "sourceName": "The New York Times",
+        "sources": [
+          "The New York Times"
+        ],
+        "corr": 1,
+        "verified": false,
+        "trend": null,
+        "traffic": 0,
+        "freshH": 3.7,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2310,7 +2522,7 @@
     "sports": [
       {
         "title": "Hull KR inflict more derby misery on Hull FC",
-        "summary": "Hull KR inflicted more derby misery on Hull FC with a 28-20 win, ending their losing run and moving into fifth place in the Super League play-off positions. The away side came from behind to overcome a 12-0 lead by Hull FC, who have now lost six straight games and won just one of their past 11 matches. This victory extends Hull KR's winning run against their city rivals to nine in a row under coach Willie Peters.",
+        "summary": "Hull KR inflicted more derby misery on Hull FC, winning 28-20 in a Super League match that saw the away side extend their winning run to nine games against their city rivals. The struggling Hull FC, who have now lost six straight matches, had taken an early 12-0 lead but were unable to hold on as Hull KR battled back to secure a crucial victory. This win moves Hull KR back into the play-off positions in fifth place.",
         "hashtag": "HullKR",
         "badge": "SPORTS",
         "category": "sports",
@@ -2338,7 +2550,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.84,
+        "freshH": 3.83,
         "score": null,
         "popularity": null,
         "recency": null,
@@ -2348,7 +2560,7 @@
       },
       {
         "title": "King's Tardis entrance as Commonwealth Games begin",
-        "summary": "We need to produce 2-3 complete sentences, 45-75 words, lead with most important fact, include key who/what/where and number, date or consequence that matters, add one line of context or what happens next. Must be neutral, factual, no hype. Must not repeat words or sentences. Must be plain text, no markdown, no quotes, no emojis. Must not mention \"the article\" or outlet names. Must translate foreign facts into natural English. Must not output non-English words. Must not stop mid-sentence. Must be 2-3 sentences, each ending with a full stop. Must be about 45-75 words total. Must lead with most important fact. Must include key who/what/where and number, date or consequence that matters. Must add one line of context or what happens next. Must not mention outlets. Must not use markdown. We need to craft a brief news video script: 2-3 sentences, 45-75 words. Let's aim for 3 sentences, about 60 words. Important fact: King's Tardis entrance as Commonwealth Games begin? Actually the headline: \"King's Tardis entrance as Commonwealth Games begin\". The story: The King (maybe King Charles?) made a Tardis entrance? Actually the excerpt mentions \"King's Tardis entrance as Commonwealth Games begin\". It seems the King entered like a TARDIS? Not sure. But the excerpt mentions loud cheers for Falklands Islands, Samoa team haka, Scotland team entering in white shirts and kilts, Loch Ness Monster representation, bagpipers, rendition of Flower of Scotland, theatrical performances, Nathan Evans, dance under Glasgow Central Station clock, Callum Beattie's rendition of Yes Sir, I Can Boogie, etc. The most important fact likely: The Scotland team entered in kilts and white shirts, causing loud cheers, and a Loch Ness Monster representation appeared, followed by a performance of Flower of Scotland and a show billed as a love letter to Glasgow and the Commonwealth. The King's Tardis entrance maybe refers to the King entering like a TARDIS? Actually \"King's Tardis entrance as Commonwealth Games begin\" suggests the King made a dramatic entrance perhaps in a TARDIS-like vehicle?",
+        "summary": "The Commonwealth Games officially kicked off with a spectacular opening ceremony at the venue in Glasgow, Scotland, featuring a rousing rendition of Scotland's unofficial anthem, \"Yes Sir, I Can Boogie,\" performed by singer Callum Beattie, which got the Scottish athletes dancing in their seats. The ceremony also included a theatrical performance billed as \"a love letter to Glasgow and the Commonwealth,\" and a lively display by the Scotland team, who entered the arena in their white shirts and kilts to a thunderous applause. The event drew a capacity crowd of around 10,000 people.",
         "hashtag": "CommonwealthGames",
         "badge": "SPORTS",
         "category": "sports",
@@ -2379,7 +2591,7 @@
         "verified": false,
         "trend": null,
         "traffic": 0,
-        "freshH": 2.99,
+        "freshH": 3.98,
         "score": null,
         "popularity": null,
         "recency": null,
