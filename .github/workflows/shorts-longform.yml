@@ -139,6 +139,7 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
           # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
+          YT_PLAYLIST_ENGLISH: ${{ secrets.YT_PLAYLIST_ENGLISH }}
           YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
           YT_PLAYLIST_EUROPE: ${{ secrets.YT_PLAYLIST_EUROPE }}
         run: |

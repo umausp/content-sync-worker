@@ -147,6 +147,9 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
           # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
+          # YT_PLAYLIST_ENGLISH is the single catch-all World playlist used when a region-
+          # specific one isn't set (user added it); USA/EUROPE take precedence when present.
+          YT_PLAYLIST_ENGLISH: ${{ secrets.YT_PLAYLIST_ENGLISH }}
           YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
           YT_PLAYLIST_EUROPE: ${{ secrets.YT_PLAYLIST_EUROPE }}
         # Skip cleanly if the token isn't set (env is allowed in `if`; `secrets` is not).

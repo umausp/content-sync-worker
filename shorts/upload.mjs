@@ -36,13 +36,28 @@ const PLAYLIST_ITEMS_URL =
 //   • WORLD channel carries meta.region (usa|europe) → YT_PLAYLIST_USA / _EUROPE (user:
 //     "add Europe-related news to the Europe playlist only").
 // Absent env → the add is skipped cleanly (upload already succeeded). Returns { id, label }.
+// A playlist ID looks like "PLxxxx…"; a full URL is https://youtube.com/playlist?list=PLxxxx.
+// Users paste whichever is handy into the secret, and a full URL sent as an "id" 404s
+// (playlistNotFound — the exact failure we hit). Extract the `list=` param if it's a URL.
+function playlistId(raw) {
+  const s = String(raw || '').trim();
+  if (!s) return '';
+  const m = s.match(/[?&]list=([^&]+)/);
+  return m ? decodeURIComponent(m[1]) : s;
+}
 function resolvePlaylist(meta) {
+  // NATIVE channels: per-language playlist by code (YT_PLAYLIST_DE / _JP / …).
   if (meta.playlist) {
     const code = String(meta.playlist).toUpperCase();
-    return { id: process.env[`YT_PLAYLIST_${code}`] || '', label: code };
+    return { id: playlistId(process.env[`YT_PLAYLIST_${code}`]), label: code };
   }
-  if (meta.region === 'usa') return { id: process.env.YT_PLAYLIST_USA || '', label: 'usa' };
-  if (meta.region === 'europe') return { id: process.env.YT_PLAYLIST_EUROPE || '', label: 'europe' };
+  // WORLD (English) channel: prefer the region-specific playlist (USA / EUROPE) when that
+  // secret is set, else fall back to the single ENGLISH playlist. So setting only
+  // YT_PLAYLIST_ENGLISH routes ALL World content there; adding USA/EUROPE enables the finer
+  // region split (user: "added english playlist id - YT_PLAYLIST_ENGLISH").
+  if (meta.region === 'usa' && process.env.YT_PLAYLIST_USA) return { id: playlistId(process.env.YT_PLAYLIST_USA), label: 'usa' };
+  if (meta.region === 'europe' && process.env.YT_PLAYLIST_EUROPE) return { id: playlistId(process.env.YT_PLAYLIST_EUROPE), label: 'europe' };
+  if (process.env.YT_PLAYLIST_ENGLISH) return { id: playlistId(process.env.YT_PLAYLIST_ENGLISH), label: 'english' };
   return { id: '', label: meta.region || meta.playlist || '' };
 }
 
