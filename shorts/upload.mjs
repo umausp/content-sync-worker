@@ -88,6 +88,13 @@ async function accessToken(refreshToken) {
   if (!r.ok) throw new Error(`token exchange ${r.status}: ${(await r.text()).slice(0, 200)}`);
   const j = await r.json();
   if (!j.access_token) throw new Error('no access_token in token response');
+  // DIAGNOSTIC: Google echoes the token's GRANTED scope on every refresh. Print it so a
+  // playlist 403 is unambiguous — if this omits `.../auth/youtube` (only youtube.upload),
+  // the refresh token was minted with too narrow a scope (re-run get_token.mjs and Allow on
+  // the consent screen). The scope is frozen at mint time; a code fix can't widen it.
+  const scope = j.scope || '(none returned)';
+  const canPlaylist = /\/auth\/youtube(\b|$)|youtube\.force-ssl/.test(scope);
+  console.log(`[upload] token scope: ${scope} — playlist-capable: ${canPlaylist ? 'YES' : 'NO (upload-only)'}`);
   return j.access_token;
 }
 
