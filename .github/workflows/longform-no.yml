@@ -137,10 +137,12 @@ jobs:
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          # Own channel token if minted (YT_REFRESH_TOKEN_NO), else the @AgyataWorld token.
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
           YT_PLAYLIST_NO: ${{ secrets.YT_PLAYLIST_NO }}
         run: |
-          if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          if [ -z "$YT_REFRESH_TOKEN_NO" ] && [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
           node shorts/upload.mjs no "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
 

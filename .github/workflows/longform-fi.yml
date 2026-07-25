@@ -1,8 +1,8 @@
-name: longform-da
+name: longform-fi
 
-# Render a native-language Danish long-form recap for the @AgyataWorld channel — sourced,
-# synthesised, voiced and captioned ENTIRELY IN DANISH (no translation),
-# then auto-uploaded PUBLIC to the DA playlist. TTS engine: piper. Nothing is
+# Render a native-language Finnish long-form recap for the @AgyataWorld channel — sourced,
+# synthesised, voiced and captioned ENTIRELY IN FINNISH (no translation),
+# then auto-uploaded PUBLIC to the FI playlist. TTS engine: piper. Nothing is
 # committed to the repo; the staged output is purged after upload.
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
@@ -10,7 +10,7 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: longform-da
+  group: longform-fi
   cancel-in-progress: false
 
 permissions:
@@ -27,7 +27,7 @@ env:
   # profanity/slurs before render, so going straight-to-public is monetization-safe.
   SHORTS_PRIVACY: public
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
-  # upload writes after a successful publish. Keyed by channel label so da is independent.
+  # upload writes after a successful publish. Keyed by channel label so fi is independent.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
@@ -77,7 +77,7 @@ jobs:
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-fijavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
 
       - uses: actions/setup-python@v5
         with:
@@ -92,9 +92,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/piper-voices
-          key: piper-voices-da-v1
+          key: piper-voices-fi-v1
 
-      # OLLAMA — local last-resort LLM so a clean Danish brief is ALWAYS synthesised even
+      # OLLAMA — local last-resort LLM so a clean Finnish brief is ALWAYS synthesised even
       # when every hosted provider 429s. Best-effort (non-fatal): hosted providers carry the run.
       - name: Install + start Ollama (last-resort LLM)
         timeout-minutes: 6
@@ -114,7 +114,7 @@ jobs:
       - name: Stamp
         run: echo "SHORTS_STAMP=lf-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
 
-      - name: Render Danish long-form recap
+      - name: Render Finnish long-form recap
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
@@ -123,13 +123,13 @@ jobs:
           HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
           PIPER_VOICES_DIR: /tmp/piper-voices
           # Cross-run dedup: claim story keys via api.agyata.com before rendering so two
-          # da runs (a Short + a long-form in the same window) never publish the same story.
+          # fi runs (a Short + a long-form in the same window) never publish the same story.
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-        run: node shorts/build_short.mjs da
+        run: node shorts/build_short.mjs fi
 
       # AUTO-UPLOAD to YouTube as PUBLIC (SHORTS_PRIVACY=public). Native channels are PLAYLISTS
-      # on @AgyataWorld, so they authenticate with YT_REFRESH_TOKEN_WORLD and land in the DA
-      # playlist (YT_PLAYLIST_DA). On success sets uploaded=true so the video is NOT also
+      # on @AgyataWorld, so they authenticate with YT_REFRESH_TOKEN_WORLD and land in the FI
+      # playlist (YT_PLAYLIST_FI). On success sets uploaded=true so the video is NOT also
       # published as a public artifact. Best-effort — never fails the run.
       - name: Auto-upload to YouTube (public)
         id: yt
@@ -137,13 +137,13 @@ jobs:
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          # Own channel token if minted (YT_REFRESH_TOKEN_DA), else the @AgyataWorld token.
-          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          # Own channel token if minted (YT_REFRESH_TOKEN_FI), else the @AgyataWorld token.
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
-          YT_PLAYLIST_DA: ${{ secrets.YT_PLAYLIST_DA }}
+          YT_PLAYLIST_FI: ${{ secrets.YT_PLAYLIST_FI }}
         run: |
-          if [ -z "$YT_REFRESH_TOKEN_DA" ] && [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
-          node shorts/upload.mjs da "$SHORTS_STAMP"
+          if [ -z "$YT_REFRESH_TOKEN_FI" ] && [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs fi "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
       # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC repo
@@ -153,8 +153,8 @@ jobs:
         if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: longform-da-${{ env.SHORTS_STAMP }}
-          path: docs/shorts/da/
+          name: longform-fi-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/fi/
           retention-days: 1
           if-no-files-found: warn
 
@@ -162,4 +162,4 @@ jobs:
       # lingers on GitHub. Always runs.
       - name: Purge staged output
         if: always()
-        run: rm -rf docs/shorts/da/* || true
+        run: rm -rf docs/shorts/fi/* || true
