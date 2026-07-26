@@ -77,7 +77,7 @@ jobs:
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-pljavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
 
       - uses: actions/setup-python@v5
         with:
