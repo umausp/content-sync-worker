@@ -94,7 +94,7 @@ jobs:
       - name: Install Kokoro TTS deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece
+          python -m pip install --quiet kokoro soundfile sentencepiece piper-tts
 
       - name: Cache HuggingFace models (Kokoro)
         uses: actions/cache@v4
