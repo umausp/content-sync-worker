@@ -1,0 +1,82 @@
+name: fetch-music
+
+# One-shot (manual): download claim-safe MUSIC beds from Pixabay with the PIXBAY_API_KEY secret
+# (lives on THIS public shell), then commit them + the licence manifest back to the PRIVATE code
+# repo (where shorts/assets/music/ lives and gets checked out by every render). Run from the Actions
+# tab. This replaces the synthesized sine-drone beds with real music.
+on:
+  workflow_dispatch:
+    inputs:
+      per:
+        description: 'Tracks to fetch per search query (total ≈ per × 13 queries)'
+        required: false
+        default: '3'
+      keep:
+        description: 'Keep existing fetched tracks and add more (true) vs replace them (false)'
+        required: false
+        default: 'false'
+      inspect:
+        description: 'Inspect-only: dump the Pixabay audio API response schema, download nothing'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: fetch-music
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # The downloader + licence gate live in the private code repo; check it out and work inside it.
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Download Pixabay music (or --inspect the API schema)
+        env:
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+        run: |
+          if [ "${{ inputs.inspect }}" = "true" ]; then
+            node shorts/fetch_music.mjs --inspect
+            exit 0
+          fi
+          ARGS="--per ${{ inputs.per }}"
+          if [ "${{ inputs.keep }}" = "true" ]; then ARGS="$ARGS --keep"; fi
+          node shorts/fetch_music.mjs $ARGS
+
+      - name: Verify every downloaded track passes the Rule-33 licence gate
+        if: inputs.inspect != 'true'
+        run: |
+          node -e "
+          const { readdirSync } = require('node:fs');
+          import('./shorts/music_license.mjs').then((m) => {
+            const dir = 'shorts/assets/music';
+            const files = readdirSync(dir).filter((f) => /\.(mp3|m4a|aac|wav|ogg)\$/i.test(f));
+            let bad = 0;
+            for (const f of files) { try { m.assertTrackLicensed(f, { where: 'verify' }); } catch (e) { console.error('UNLICENSED:', f, e.message.slice(0,80)); bad++; } }
+            if (bad) { console.error(bad + ' track(s) failed the gate'); process.exit(1); }
+            console.log('OK all ' + files.length + ' beds pass the licence gate');
+          });
+          "
+
+      - name: Commit the new music library to the private repo
+        if: inputs.inspect != 'true'
+        run: |
+          git config user.name 'umausp'
+          git config user.email '4384869+umausp@users.noreply.github.com'
+          git add shorts/assets/music/
+          if git diff --cached --quiet; then echo 'no music changes to commit'; exit 0; fi
+          git commit -m 'chore(music): refresh Pixabay bed library via fetch-music workflow'
+          git push origin HEAD:main
