@@ -93,6 +93,10 @@ env:
   EMBED_SIM_THRESHOLD: '0.80'
   EMBED_VERIFY: '1'
   EMBED_VERIFY_MIN: '0.4'
+  # WORLDMODEL Phase B/C/D — extract source-verified claims (+S-P-O) + resolve subjects to
+  # Wikidata QIDs, stored in prod D1 (claims/entities, 0018/0019). Enabled 2026-07-30; fail-open.
+  WM_EXTRACT_CLAIMS: '1'
+  WM_RESOLVE_ENTITIES: '1'
 
 jobs:
   run:
