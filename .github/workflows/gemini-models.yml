@@ -5,28 +5,20 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe Hindi synth LENGTH with a RICH vs THIN corpus
+      - name: Probe 3.5-flash-lite callability + which alias flash-lite-latest resolves to
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python3 - <<'PY'
-          import json, urllib.request, os
-          KEY=os.environ["GEMINI_API_KEY"]
-          def call(prompt):
-              body={"contents":[{"parts":[{"text":prompt}]}],"generationConfig":{"maxOutputTokens":1200,"temperature":0.2}}
-              req=urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key={KEY}",data=json.dumps(body).encode(),headers={"content-type":"application/json"})
-              d=json.loads(urllib.request.urlopen(req,timeout=45).read()); c=(d.get("candidates") or [{}])[0]
-              txt="".join(p.get("text","") for p in ((c.get("content") or {}).get("parts") or []))
-              b=txt.split("HOOK:")[-1]
-              return f"finish={c.get('finishReason')} bodyChars={len(b)} bodyWords={len(b.split())}"
-          base=("You are a sharp Hindi broadcast news writer. BEGIN with 'HOOK:' then ONE line of at most 12 words. "
-                "THEN write a brief of 5 to 7 COMPLETE sentences (AT LEAST 110-150 words). WRITE ENTIRELY IN HINDI.\n\n")
-          THIN="HEADLINE: Actor Kavin and Monika become parents of twins.\nSOURCES: Actor Kavin and Monika welcomed twins."
-          RICH=("HEADLINE: Your private Google/Meta AI chats may be searchable on Google\n"
-                "SOURCES: Users found their shared AI chatbot conversations indexed by Google Search. "
-                "The chats included personal and sensitive queries. Google said only explicitly shared links are indexed. "
-                "Privacy experts warned users to review sharing settings. The company is reviewing the feature. "
-                "Several thousand conversations were exposed. Regulators in the EU are examining the issue.")
-          print("THIN corpus →", call(base+THIN))
-          print("RICH corpus →", call(base+RICH))
-          PY
+          echo "== what does gemini-flash-lite-latest currently alias to? =="
+          curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest?key=${GEMINI_API_KEY}" \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print('displayName:', d.get('displayName'), '| version:', d.get('version'))" || true
+          echo ""
+          echo "== probe explicit IDs (200 = usable, 404 = new-user-locked) =="
+          for M in gemini-3.5-flash-lite gemini-3.5-flash gemini-3.6-flash gemini-2-flash gemini-2.0-flash gemini-flash-lite-latest; do
+            CODE=$(curl -s -o /tmp/r.json -w "%{http_code}" -X POST \
+              "https://generativelanguage.googleapis.com/v1beta/models/$M:generateContent?key=${GEMINI_API_KEY}" \
+              -H "content-type: application/json" \
+              -d '{"contents":[{"parts":[{"text":"Reply with the single word OK"}]}],"generationConfig":{"maxOutputTokens":2048}}')
+            TXT=$(python3 -c "import json;d=json.load(open('/tmp/r.json'));c=(d.get('candidates') or [{}])[0];print((((c.get('content') or {}).get('parts') or [{}])[0].get('text') or '').strip()[:20])" 2>/dev/null)
+            echo "$M -> HTTP $CODE ${TXT:+| $TXT}"
+          done
