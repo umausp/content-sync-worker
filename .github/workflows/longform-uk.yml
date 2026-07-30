@@ -37,6 +37,7 @@ env:
   #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
   #    what synthesises each story's clean, non-repetitive brief. ──
   PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
   PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
   WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
