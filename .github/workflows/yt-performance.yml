@@ -21,6 +21,10 @@ env:
   # Retention (averageViewPercentage) needs the yt-analytics.readonly scope on re-minted tokens; until
   # then the loop uses a views+engagement proxy. Flip YT_ANALYTICS=1 here once the tokens carry it.
   YT_ANALYTICS: '0'
+  # Persist the per-topic index to Upstash (WRITE-capable in CI — the git-commit path 403s under the
+  # read-only PRIVATE_REPO_TOKEN). The video runs READ it from Upstash via editorial.loadTopicPerformance.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
 
 jobs:
   fetch:
