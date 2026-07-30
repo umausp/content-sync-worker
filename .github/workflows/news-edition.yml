@@ -65,7 +65,7 @@ env:
   #    OWN language, so any provider produces native-language copy. ──
   PROVIDER_ORDER: 'sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,huggingface,gemini,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-  GEMINI_MODEL: 'gemini-flash-latest'
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}

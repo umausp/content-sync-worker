@@ -23,7 +23,7 @@ env:
   # NATIVE HINDI SYNTH (2026-07-30): bharat now SELF-GATHERS the India desks and synthesises the
   # brief + hook NATIVELY IN HINDI via Gemini (enrichSummary lang:'hi'), exactly like every other
   # native channel — NOT the old offline m2m100 word-splicer ("pre-book" → "पूर्व-पुस्तक"). So it
-  # needs the SAME provider ladder as the other channels. gemini-flash-latest is the only flash ID
+  # needs the SAME provider ladder as the other channels. gemini-flash-lite-latest is the only flash ID
   # the paid key can call (2.0/2.5 404 for new billing projects) and is a rot-proof alias.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
@@ -32,7 +32,7 @@ env:
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-  GEMINI_MODEL: 'gemini-flash-latest'
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
