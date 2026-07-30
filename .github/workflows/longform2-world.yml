@@ -32,6 +32,17 @@ env:
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-flash-lite-latest'
+  # DEPTH — 8-10 min target (user 2026-07-31). Raise beat ceilings + corpus so the arc CAN reach 11-12
+  # min; anti-padding still caps actual length to what the deep multi-outlet corpus supports.
+  LONGFORM_BEAT_SCALE: '1.8'
+  LONGFORM_CORPUS_CHARS: '32000'
+  LONGFORM_DEEPEN_OUTLETS: '16'   # re-scrape up to 16 grounded outlets (was 10) → deeper corpus
+  WORLD_SYNTH_PER_OUTLET: '2400'  # more prose kept per outlet (was 1200)
+  WORLD_ENRICH_OUTLETS: '16'      # enrichSummary pulls prose+images from more outlets
+  LONGFORM2_DEEPEN_CANDIDATES: '4'
+  # PUBLISH the deep pool to the news site D1 (all gathered stories are site-worthy).
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  WM_PUBLISH_MAX: '10'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
