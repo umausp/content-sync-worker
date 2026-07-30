@@ -1,0 +1,33 @@
+name: probe-grounding
+
+# One-off DIAGNOSTIC: does Gemini Google Search grounding actually work on our key, and on which
+# model ID? The longform editorial pass logged "GROUNDING RETURNED NOTHING" (200 OK, 0 searches) —
+# this probe (scripts/probe_grounding.mjs) asks a can't-know-from-training question across several
+# model IDs + both tool spellings and prints which one actually searches. workflow_dispatch only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Probe Gemini grounding across model IDs
+        run: node scripts/probe_grounding.mjs
