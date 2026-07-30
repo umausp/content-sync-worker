@@ -5,43 +5,35 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe models with a REALISTIC synth prompt for CLEAN output
+      - name: Probe flash-lite with the NEW deep synth spec (length + cleanliness)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 - <<'PY'
           import json, urllib.request, os
           KEY = os.environ["GEMINI_API_KEY"]
-          # A realistic Hindi synth prompt like enrichSummary sends (HOOK: instruction + word limit).
-          PROMPT = ("You are a Hindi news writer. BEGIN with a line 'HOOK:' then ONE opening line of AT MOST 12 words. "
-                    "THEN write a 3-sentence Hindi brief. WRITE ENTIRELY IN HINDI.\n\n"
-                    "HEADLINE: Government asks Meta to explain removal of PM Modi post\n"
-                    "SOURCES: The government has sought a response from Meta after a post was removed.")
-          def call(model, cfg):
-              body = {"contents":[{"parts":[{"text":PROMPT}]}], "generationConfig": cfg}
+          PROMPT = ("You are a sharp Hindi broadcast news writer. BEGIN with 'HOOK:' then ONE opening line of at most 12 words. "
+                    "THEN write a brief of 5 to 7 COMPLETE sentences (AT LEAST 110-150 words — this fills a 35-45 second video, do not stop short). "
+                    "WRITE ENTIRELY IN HINDI, natural and idiomatic. Each sentence complete. No markdown, only the HOOK: label.\n\n"
+                    "HEADLINE: Vedanta to demerge its real estate business into a separate listed company\n"
+                    "SOURCES: Vedanta announced it will spin off its real estate arm. Analysts say it unlocks value. The demerger needs shareholder and regulatory approval. Shares rose 3 percent.")
+          def call(model, maxtok):
+              body = {"contents":[{"parts":[{"text":PROMPT}]}], "generationConfig":{"maxOutputTokens":maxtok,"temperature":0.2}}
               req = urllib.request.Request(
                   f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}",
                   data=json.dumps(body).encode(), headers={"content-type":"application/json"})
               try:
-                  r = urllib.request.urlopen(req, timeout=40)
-                  d = json.loads(r.read())
+                  d = json.loads(urllib.request.urlopen(req, timeout=45).read())
                   c = (d.get("candidates") or [{}])[0]
-                  parts = ((c.get("content") or {}).get("parts") or [])
-                  txt = "".join(p.get("text","") for p in parts)
-                  fr = c.get("finishReason")
-                  # contamination markers
-                  bad = any(m in txt for m in ["(9)","(10)","(11)","(12)","(13)","words.","Shorter:","(No,","(no,"]) or txt.count("HOOK:")>1
-                  return f"finish={fr} len={len(txt)} clean={'NO' if bad else 'yes'} | {txt[:90].replace(chr(10),' ')}"
+                  txt = "".join(p.get("text","") for p in ((c.get("content") or {}).get("parts") or []))
+                  body_only = txt.split("HOOK:")[-1]
+                  # count Hindi words roughly (whitespace) after the hook line
+                  words = len(body_only.split())
+                  bad = any(m in txt for m in ["(9)","(10)","words.","Shorter:","(No,"]) or txt.count("HOOK:")>1
+                  return f"finish={c.get('finishReason')} words≈{words} clean={'NO' if bad else 'yes'} | {txt[:120].replace(chr(10),' ')}"
               except Exception as e:
                   return f"ERROR {e}"
-          configs = {
-              "plain-400": {"maxOutputTokens":400},
-              "plain-2048": {"maxOutputTokens":2048},
-              "think0-2048": {"maxOutputTokens":2048, "thinkingConfig":{"thinkingBudget":0}},
-              "think128-4096": {"maxOutputTokens":4096, "thinkingConfig":{"thinkingBudget":128}},
-          }
-          for model in ["gemini-flash-lite-latest","gemini-flash-lite-latest","gemini-2.5-flash-lite","gemma-4-31b-it"]:
-              print(f"\n=== {model} ===")
-              for name,cfg in configs.items():
-                  print(f"  [{name}] {call(model,cfg)}")
+          for model in ["gemini-flash-lite-latest","gemini-flash-latest"]:
+              print(f"\n=== {model} (maxtok=1200) ===")
+              print("  " + call(model, 1200))
           PY
