@@ -1,27 +1,26 @@
 name: gemini-models
-# DIAGNOSTIC (workflow_dispatch only): list every Gemini model THIS key can actually use for
-# generateContent, so we pin a real, available model ID instead of guessing. Prints name +
-# supportedGenerationMethods. No checkout, no deps — just a curl against ListModels.
 on:
   workflow_dispatch: {}
 jobs:
   list:
     runs-on: ubuntu-latest
     steps:
-      - name: List available Gemini models
+      - name: Probe gemini-flash-latest output behaviour
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          echo "== models supporting generateContent (v1beta) =="
-          curl -s "https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}&pageSize=200" \
-            | python3 -c "import json,sys; d=json.load(sys.stdin); [print(m['name'].replace('models/',''), '::', ','.join(m.get('supportedGenerationMethods',[]))) for m in d.get('models',[]) if 'generateContent' in m.get('supportedGenerationMethods',[])]" \
-            || echo "list failed"
+          echo "== which model does gemini-flash-latest alias to? =="
+          curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest?key=${GEMINI_API_KEY}" \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print('version:', d.get('version'), '| name:', d.get('displayName'))" || true
           echo ""
-          echo "== quick generateContent probe of the flash candidates =="
-          for M in gemini-flash-latest gemini-flash-latest gemini-2.5-flash gemini-1.5-flash gemini-flash-latest-001 gemini-2.5-flash-lite; do
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-              "https://generativelanguage.googleapis.com/v1beta/models/$M:generateContent?key=${GEMINI_API_KEY}" \
-              -H "content-type: application/json" \
-              -d '{"contents":[{"parts":[{"text":"Say OK"}]}],"generationConfig":{"maxOutputTokens":5}}')
-            echo "$M -> HTTP $CODE"
-          done
+          echo "== A: small budget (400), NO thinkingConfig (the OLD behaviour) =="
+          curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}" \
+            -H "content-type: application/json" \
+            -d '{"contents":[{"parts":[{"text":"Write one Hindi sentence about Indian Railways."}]}],"generationConfig":{"maxOutputTokens":400}}' \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); c=(d.get('candidates') or [{}])[0]; print('finishReason:', c.get('finishReason'), '| text:', (((c.get('content') or {}).get('parts') or [{}])[0].get('text') or '(EMPTY)')[:80])" || true
+          echo ""
+          echo "== B: budget 2048 + thinkingBudget:0 (the NEW behaviour) =="
+          curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}" \
+            -H "content-type: application/json" \
+            -d '{"contents":[{"parts":[{"text":"Write one Hindi sentence about Indian Railways."}]}],"generationConfig":{"maxOutputTokens":2048,"thinkingConfig":{"thinkingBudget":0}}}' \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); c=(d.get('candidates') or [{}])[0]; print('finishReason:', c.get('finishReason'), '| text:', (((c.get('content') or {}).get('parts') or [{}])[0].get('text') or '(EMPTY)')[:80])" || true
