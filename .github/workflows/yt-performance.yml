@@ -1,0 +1,80 @@
+name: yt-performance
+
+# YouTube ANALYTICS FEEDBACK LOOP (user 2026-07-30: "check what's working well; feed it into which
+# story goes to video"). For every channel with a YT_REFRESH_TOKEN_* secret, fetch recent uploads'
+# statistics → compute a per-topic performance index → commit docs/analytics/topic-performance-*.json.
+# The video runs read those files (editorial.loadTopicPerformance) and weight the story score by how
+# well each topic actually performs. Read-only against YouTube (no publish); commits only the JSON.
+#
+# CADENCE: agyata-cron-pinger dispatches it a few times a day (performance changes slowly). Public repo.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: yt-performance
+  cancel-in-progress: false
+
+permissions:
+  contents: write # commits the refreshed docs/analytics/*.json back
+
+env:
+  # Retention (averageViewPercentage) needs the yt-analytics.readonly scope on re-minted tokens; until
+  # then the loop uses a views+engagement proxy. Flip YT_ANALYTICS=1 here once the tokens carry it.
+  YT_ANALYTICS: '0'
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Node deps
+        run: npm install --no-audit --no-fund
+
+      - name: Fetch YouTube performance → per-topic index
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+        run: node shorts/yt_performance.mjs
+
+      - name: Commit topic-performance
+        run: |
+          git config user.name "agyata-analytics-bot"
+          git config user.email "analytics-bot@agyata.com"
+          git add docs/analytics/ || true
+          if git diff --cached --quiet; then
+            echo "no performance change — nothing to commit"
+          else
+            git commit -m "analytics: refresh per-topic YouTube performance [skip ci]"
+            for attempt in 1 2 3; do
+              if git push; then break; fi
+              echo "push rejected (attempt $attempt) — rebasing onto latest main…"
+              git pull --rebase --autostash origin main || true
+            done
+          fi
