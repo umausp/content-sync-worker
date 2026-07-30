@@ -123,7 +123,7 @@ jobs:
       - name: Install Kokoro TTS + m2m100 translation deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece
+          python -m pip install --quiet kokoro soundfile sentencepiece faster-whisper
 
       - name: Cache HuggingFace models (Kokoro + m2m100)
         uses: actions/cache@v4
