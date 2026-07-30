@@ -5,35 +5,28 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe flash-lite with the NEW deep synth spec (length + cleanliness)
+      - name: Probe Hindi synth LENGTH with a RICH vs THIN corpus
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 - <<'PY'
           import json, urllib.request, os
-          KEY = os.environ["GEMINI_API_KEY"]
-          PROMPT = ("You are a sharp Hindi broadcast news writer. BEGIN with 'HOOK:' then ONE opening line of at most 12 words. "
-                    "THEN write a brief of 5 to 7 COMPLETE sentences (AT LEAST 110-150 words — this fills a 35-45 second video, do not stop short). "
-                    "WRITE ENTIRELY IN HINDI, natural and idiomatic. Each sentence complete. No markdown, only the HOOK: label.\n\n"
-                    "HEADLINE: Vedanta to demerge its real estate business into a separate listed company\n"
-                    "SOURCES: Vedanta announced it will spin off its real estate arm. Analysts say it unlocks value. The demerger needs shareholder and regulatory approval. Shares rose 3 percent.")
-          def call(model, maxtok):
-              body = {"contents":[{"parts":[{"text":PROMPT}]}], "generationConfig":{"maxOutputTokens":maxtok,"temperature":0.2}}
-              req = urllib.request.Request(
-                  f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}",
-                  data=json.dumps(body).encode(), headers={"content-type":"application/json"})
-              try:
-                  d = json.loads(urllib.request.urlopen(req, timeout=45).read())
-                  c = (d.get("candidates") or [{}])[0]
-                  txt = "".join(p.get("text","") for p in ((c.get("content") or {}).get("parts") or []))
-                  body_only = txt.split("HOOK:")[-1]
-                  # count Hindi words roughly (whitespace) after the hook line
-                  words = len(body_only.split())
-                  bad = any(m in txt for m in ["(9)","(10)","words.","Shorter:","(No,"]) or txt.count("HOOK:")>1
-                  return f"finish={c.get('finishReason')} words≈{words} clean={'NO' if bad else 'yes'} | {txt[:120].replace(chr(10),' ')}"
-              except Exception as e:
-                  return f"ERROR {e}"
-          for model in ["gemini-flash-lite-latest","gemini-flash-latest"]:
-              print(f"\n=== {model} (maxtok=1200) ===")
-              print("  " + call(model, 1200))
+          KEY=os.environ["GEMINI_API_KEY"]
+          def call(prompt):
+              body={"contents":[{"parts":[{"text":prompt}]}],"generationConfig":{"maxOutputTokens":1200,"temperature":0.2}}
+              req=urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key={KEY}",data=json.dumps(body).encode(),headers={"content-type":"application/json"})
+              d=json.loads(urllib.request.urlopen(req,timeout=45).read()); c=(d.get("candidates") or [{}])[0]
+              txt="".join(p.get("text","") for p in ((c.get("content") or {}).get("parts") or []))
+              b=txt.split("HOOK:")[-1]
+              return f"finish={c.get('finishReason')} bodyChars={len(b)} bodyWords={len(b.split())}"
+          base=("You are a sharp Hindi broadcast news writer. BEGIN with 'HOOK:' then ONE line of at most 12 words. "
+                "THEN write a brief of 5 to 7 COMPLETE sentences (AT LEAST 110-150 words). WRITE ENTIRELY IN HINDI.\n\n")
+          THIN="HEADLINE: Actor Kavin and Monika become parents of twins.\nSOURCES: Actor Kavin and Monika welcomed twins."
+          RICH=("HEADLINE: Your private Google/Meta AI chats may be searchable on Google\n"
+                "SOURCES: Users found their shared AI chatbot conversations indexed by Google Search. "
+                "The chats included personal and sensitive queries. Google said only explicitly shared links are indexed. "
+                "Privacy experts warned users to review sharing settings. The company is reviewing the feature. "
+                "Several thousand conversations were exposed. Regulators in the EU are examining the issue.")
+          print("THIN corpus →", call(base+THIN))
+          print("RICH corpus →", call(base+RICH))
           PY
