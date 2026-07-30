@@ -19,6 +19,7 @@ permissions:
 
 env:
   API_BASE: https://api.agyata.com
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
   SHORTS_PY: python
   # NATIVE HINDI SYNTH (2026-07-30): bharat now SELF-GATHERS the India desks and synthesises the
   # brief + hook NATIVELY IN HINDI via Gemini (enrichSummary lang:'hi'), exactly like every other
