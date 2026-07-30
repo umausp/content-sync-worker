@@ -1,0 +1,35 @@
+name: gemini-models
+on:
+  workflow_dispatch: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe Gemini TTS callability (Japanese) on this key
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, os, base64
+          KEY=os.environ["GEMINI_API_KEY"]
+          # Gemini TTS = generateContent with responseModalities:["AUDIO"] + a voice config.
+          def tts(model, text):
+              body={"contents":[{"parts":[{"text":text}]}],
+                    "generationConfig":{"responseModalities":["AUDIO"],
+                      "speechConfig":{"voiceConfig":{"prebuiltVoiceConfig":{"voiceName":"Kore"}}}}}
+              req=urllib.request.Request(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}",
+                data=json.dumps(body).encode(), headers={"content-type":"application/json"})
+              try:
+                  d=json.loads(urllib.request.urlopen(req,timeout=45).read())
+                  c=(d.get("candidates") or [{}])[0]
+                  parts=((c.get("content") or {}).get("parts") or [])
+                  audio=next((p.get("inlineData",{}).get("data") for p in parts if p.get("inlineData")), None)
+                  return f"finish={c.get('finishReason')} audioBytes={len(base64.b64decode(audio)) if audio else 0}"
+              except urllib.error.HTTPError as e:
+                  return f"HTTP {e.code}: {e.read()[:120].decode(errors='replace')}"
+              except Exception as e:
+                  return f"ERR {e}"
+          for m in ["gemini-2.5-flash-preview-tts","gemini-2.5-flash-tts","gemini-3.1-flash-tts"]:
+              print(f"{m} -> {tts(m, 'こんにちは。今日のニュースをお伝えします。')}")
+          PY
