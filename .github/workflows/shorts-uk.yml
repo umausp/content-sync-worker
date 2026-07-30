@@ -43,6 +43,7 @@ env:
   #    absent; fail-fast (one try/provider, bench on failure, never retry). This is what
   #    turns the raw article body into a clean, non-repetitive brief per story. ──
   PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
   WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
@@ -92,12 +93,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       # Node deps — the shared extractor (src/extract.mjs) needs
       # @extractus/article-extractor for the Readability path. Without this the module
       # falls back to JSON-LD + og only (still works, but weaker on non-schema.org sites).
       - name: Install Node deps
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
         run: |
@@ -107,6 +109,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-v1
 
       - name: Install Kokoro TTS + m2m100 translation deps
         run: |
@@ -118,24 +125,6 @@ jobs:
         with:
           path: ~/.cache/huggingface
           key: hf-kokoro-m2m100-v1
-
-      # OLLAMA — the LOCAL last-resort LLM so a clean summary is ALWAYS synthesised even
-      # when every hosted provider 429s (the old "raw extractive → repeated words" path).
-      # Best-effort: if install/pull fails the run still proceeds (hosted providers carry it).
-      - name: Install + start Ollama (last-resort LLM)
-        timeout-minutes: 6
-        continue-on-error: true
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          ollama serve > /tmp/ollama.log 2>&1 &
-          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
-          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
-
-      - name: Cache Ollama model
-        uses: actions/cache@v4
-        with:
-          path: ~/.ollama/models
-          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"

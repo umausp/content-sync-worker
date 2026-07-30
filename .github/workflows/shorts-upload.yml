@@ -42,5 +42,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - name: Upload to YouTube
         run: node shorts/upload.mjs "${{ github.event.inputs.channel }}" "${{ github.event.inputs.stamp }}"

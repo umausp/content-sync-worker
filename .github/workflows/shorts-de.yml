@@ -34,6 +34,7 @@ env:
   #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body
   #    into a clean, non-repetitive brief per story — synthesised IN THE CHANNEL'S LANGUAGE.
   PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
   WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
@@ -79,9 +80,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install Node deps
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
         run: |
@@ -91,6 +93,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-v1
 
       - name: Install Piper TTS deps
         run: |
@@ -102,23 +109,6 @@ jobs:
         with:
           path: /tmp/piper-voices
           key: piper-voices-de-v1
-
-      # OLLAMA — local last-resort LLM so a clean German brief is ALWAYS synthesised even
-      # when every hosted provider 429s. Best-effort (non-fatal): hosted providers carry the run.
-      - name: Install + start Ollama (last-resort LLM)
-        timeout-minutes: 6
-        continue-on-error: true
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          ollama serve > /tmp/ollama.log 2>&1 &
-          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
-          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
-
-      - name: Cache Ollama model
-        uses: actions/cache@v4
-        with:
-          path: ~/.ollama/models
-          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
