@@ -2,8 +2,9 @@ name: shorts-bharat
 
 # Render ONE Hindi/Hinglish Short for the @agyata_dot_com channel (India audience).
 # bharat SELF-GATHERS the India desks (native_feeds 'hi' spec) and synthesises the brief +
-# hook NATIVELY IN HINDI via Gemini — like every other native channel — then TTS (Kokoro Hindi)
-# + captions. (Old flow: read the D1 India feed in English + offline m2m100 translate; that
+# hook NATIVELY IN HINDI via Gemini — like every other native channel — then TTS (PIPER Hindi,
+# hi_IN-pratham-medium — user-verified natural) + captions. (Old flow: read the D1 India feed in
+# English + offline m2m100 translate + robotic Kokoro-hi; that
 # word-spliced compounds and is now only the BHARAT_READ_D1=1 escape hatch.)
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch (offset from shorts-world). Public repo.
@@ -85,13 +86,20 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Kokoro TTS + m2m100 translation deps
+      - name: Install Piper TTS deps
         run: |
           python -m pip install --quiet --upgrade pip
-          # kokoro (TTS) + sentencepiece (m2m100 tokenizer). transformers comes via kokoro.
-          python -m pip install --quiet kokoro soundfile sentencepiece
+          # PIPER Hindi (hi_IN-pratham-medium) — user-verified natural, replaces robotic Kokoro-hi.
+          # kokoro + sentencepiece kept ONLY for the deprecated BHARAT_READ_D1=1 m2m100 escape hatch.
+          python -m pip install --quiet piper-tts numpy soundfile kokoro sentencepiece
 
-      - name: Cache HuggingFace models (Kokoro + m2m100)
+      - name: Cache Piper voices
+        uses: actions/cache@v4
+        with:
+          path: /tmp/piper-voices
+          key: piper-voices-hi-v1
+
+      - name: Cache HuggingFace models (Kokoro fallback)
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
@@ -125,6 +133,7 @@ jobs:
           # Authenticated HF downloads (faster/reliable; m2m100 is public, token optional).
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          PIPER_VOICES_DIR: /tmp/piper-voices   # cached Piper hi_IN voice model
         run: node shorts/build_short.mjs bharat
 
       - name: Auto-upload to YouTube (unlisted)
