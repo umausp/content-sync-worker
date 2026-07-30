@@ -1,9 +1,10 @@
 name: shorts-bharat
 
-# Render ONE Hindi/Hinglish Short for the @agyata_dot_com channel (India audience)
-# from the freshest India story. The English story is LLM-translated to Hinglish
-# (Devanagari + English proper nouns) before TTS + captions. Stages the MP4 + metadata
-# for the human-approve gate; nothing uploads here.
+# Render ONE Hindi/Hinglish Short for the @agyata_dot_com channel (India audience).
+# bharat SELF-GATHERS the India desks (native_feeds 'hi' spec) and synthesises the brief +
+# hook NATIVELY IN HINDI via Gemini — like every other native channel — then TTS (Kokoro Hindi)
+# + captions. (Old flow: read the D1 India feed in English + offline m2m100 translate; that
+# word-spliced compounds and is now only the BHARAT_READ_D1=1 escape hatch.)
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch (offset from shorts-world). Public repo.
 on:
@@ -19,13 +20,49 @@ permissions:
 env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
-  # EN→Hindi is now done OFFLINE by the m2m100 model (translate_hi.py) — no LLM API
-  # keys, no rate limits. (Old Gemini/SambaNova/OpenRouter/Groq keys no longer needed.)
+  # NATIVE HINDI SYNTH (2026-07-30): bharat now SELF-GATHERS the India desks and synthesises the
+  # brief + hook NATIVELY IN HINDI via Gemini (enrichSummary lang:'hi'), exactly like every other
+  # native channel — NOT the old offline m2m100 word-splicer ("pre-book" → "पूर्व-पुस्तक"). So it
+  # needs the SAME provider ladder as the other channels. gemini-flash-latest is the only flash ID
+  # the paid key can call (2.0/2.5 404 for new billing projects) and is a rot-proof alias.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  WM_RENDER_CLAIMS: '1'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-flash-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: llama3.1:8b
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
 
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # 40m like the other native channels: native Hindi synth (Gemini) + cold ffmpeg/Kokoro caches
+    # were clipping the old 20m ceiling → runs cancelled mid-render.
+    timeout-minutes: 40
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -58,6 +95,23 @@ jobs:
         with:
           path: ~/.cache/huggingface
           key: hf-kokoro-m2m100-v1
+
+      # OLLAMA — local last-resort LLM so a clean Hindi brief is ALWAYS synthesised even when every
+      # hosted provider 429s. Best-effort (non-fatal): the hosted ladder (Gemini-first) carries the run.
+      - name: Install + start Ollama (last-resort LLM)
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:3b}" || echo "ollama pull failed — hosted providers carry the run"
+
+      - name: Cache Ollama model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ env.OLLAMA_MODEL || 'qwen2.5:3b' }}-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
