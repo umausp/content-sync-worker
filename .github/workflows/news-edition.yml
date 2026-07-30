@@ -63,7 +63,7 @@ env:
   #    Fail-fast: one try/provider, bench on failure, never retry. The synth CHARTER
   #    (editions.mjs) tells the model to WRITE the title/summary/body in the edition's
   #    OWN language, so any provider produces native-language copy. ──
-  PROVIDER_ORDER: 'nvidia,gemini,sambanova,cohere,openrouter,mistral,gitmodels,huggingface,openai,ollama'
+  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,huggingface,ollama'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-2.0-flash'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
