@@ -43,6 +43,17 @@ env:
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  # LONGFORM VOICE → batched Gemini 2-host dialogue (user confirmed 2-host audio is good) inside the
+  # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
+  SHORTS_LONGFORM_ENGINE: 'gemini'
+  SHORTS_TTS_BATCH: '1'            # batch API = 50% cheaper (gemini-3.1-flash-tts-preview)
+  SHORTS_GEMINI_VOICES: 'Charon,Kore'   # anchor, co-host — two distinct voices share the explainer
+  # DEPTH — 8-10 min target: raise beat ceilings + corpus; anti-padding still caps to real material.
+  LONGFORM_BEAT_SCALE: '1.8'
+  LONGFORM_CORPUS_CHARS: '32000'
+  LONGFORM_DEEPEN_OUTLETS: '16'
+  WORLD_SYNTH_PER_OUTLET: '2400'
+  WORLD_ENRICH_OUTLETS: '16'
   GEMINI_MODEL: 'gemini-flash-lite-latest'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
@@ -114,7 +125,7 @@ jobs:
       - name: Install Kokoro TTS + m2m100 translation deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet piper-tts numpy kokoro soundfile sentencepiece  # piper = English longform HIGH voice
+          python -m pip install --quiet piper-tts numpy kokoro soundfile sentencepiece faster-whisper  # piper = English longform HIGH voice
 
       - name: Cache HuggingFace models (Kokoro + m2m100)
         uses: actions/cache@v4
