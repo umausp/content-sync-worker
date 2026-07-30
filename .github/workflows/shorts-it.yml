@@ -99,10 +99,17 @@ jobs:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-py312-v1
 
-      - name: Install Kokoro TTS deps
+      - name: Install Piper TTS deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece
+          # PIPER (natural, free) — replaces robotic Kokoro non-English voice for this channel.
+          python -m pip install --quiet piper-tts numpy soundfile
+
+      - name: Cache Piper voices
+        uses: actions/cache@v4
+        with:
+          path: /tmp/piper-voices
+          key: piper-voices-it-v1
 
       - name: Cache HuggingFace models (Kokoro)
         uses: actions/cache@v4
@@ -116,6 +123,7 @@ jobs:
       - name: Render Italian Short
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIPER_VOICES_DIR: /tmp/piper-voices
           PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
