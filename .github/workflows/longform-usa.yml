@@ -46,6 +46,7 @@ env:
   # LONGFORM VOICE → batched Gemini 2-host dialogue (user confirmed 2-host audio is good) inside the
   # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
   SHORTS_LONGFORM_ENGINE: 'gemini'
+  ALIGN_WHISPER_MODEL: 'tiny'    # 5-10x faster than base; enough for word boundaries (avoids the timeout)
   SHORTS_TTS_BATCH: '1'            # batch API = 50% cheaper (gemini-3.1-flash-tts-preview)
   SHORTS_GEMINI_VOICES: 'Charon,Kore'   # anchor, co-host — two distinct voices share the explainer
   # DEPTH — 8-10 min target: raise beat ceilings + corpus; anti-padding still caps to real material.
