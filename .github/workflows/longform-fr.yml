@@ -41,6 +41,15 @@ env:
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   GEMINI_MODEL: 'gemini-flash-lite-latest'
+  # LONGFORM VOICE → batched Gemini TTS (user 2026-07-31: French longform test on Gemini batch)
+  SHORTS_LONGFORM_ENGINE: 'gemini'
+  SHORTS_TTS_BATCH: '1'                 # Gemini BATCH API (50% cheaper, gemini-3.1-flash-tts-preview)
+  SHORTS_GEMINI_VOICE_FR: 'Charon'      # single-voice narrator (fr script → Gemini reads French)
+  SHORTS_LONGFORM_HOSTS: '1'            # single voice (no handoff mute)
+  SHORTS_LONGFORM_FORCE: '1'            # always build the single-story explainer
+  SHORTS_ARTICLE_IMAGES_ONLY: '1'       # only real article photos, no stock/keyword search
+  ALIGN_WHISPER_MODEL: 'tiny'           # fast caption alignment (avoids timeout)
+  LONGFORM_MIN_BEATS: '6'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
@@ -69,7 +78,7 @@ env:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -103,7 +112,7 @@ jobs:
       - name: Install Kokoro TTS deps
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece piper-tts
+          python -m pip install --quiet kokoro soundfile sentencepiece piper-tts faster-whisper
 
       - name: Cache HuggingFace models (Kokoro)
         uses: actions/cache@v4
