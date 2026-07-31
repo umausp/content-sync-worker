@@ -1,0 +1,166 @@
+name: longform-bharat
+
+# Render a HINDI/HINGLISH long-form daily recap for the @agyata_dot_com (भारत) channel — sourced,
+# synthesised, voiced and captioned natively in Hindi (Devanagari + English proper nouns), then
+# auto-uploaded PUBLIC to its OWN channel (YT_REFRESH_TOKEN_BHARAT — a standalone channel, NOT a
+# playlist). TTS: Gemini BATCH (human-grade Hindi) → Piper hi_IN fallback. Nothing is committed;
+# the staged output is purged after upload.
+#
+# PUBLIC SHELL: checks out the PRIVATE agyata-pipeline-private repo (all render code) then runs it.
+# CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: longform-bharat
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+  SHORTS_ORIENTATION: landscape # 1920x1080, multi-story recap
+  # PUBLIC + monetized. build_short reads SHORTS_PRIVACY into meta.privacyStatus → upload.mjs sets it
+  # on videos.insert, so the video is public the moment it's uploaded. A DEMONETIZATION GUARD
+  # (shorts/safety.mjs) drops policy-unsafe stories + masks strong profanity before render.
+  SHORTS_PRIVACY: public
+  # LONGFORM → Gemini BATCH TTS (config longformEngine:'gemini' for bharat), 50% off; Piper hi_IN fallback.
+  SHORTS_LONGFORM_ENGINE: gemini
+  SHORTS_TTS_BATCH: '1'
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
+  # upload writes after a successful publish. Keyed by channel label (bharat) so it is independent.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses (src/providers.mjs).
+  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
+  WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: llama3.1:8b
+  PROVIDER_HOSTED_TIMEOUT_MS: '60000'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Install system deps (ffmpeg + librsvg + espeak-ng + Devanagari fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-v1
+
+      - name: Install TTS deps (Gemini batch numpy/soundfile + Piper hi_IN fallback)
+        run: |
+          python -m pip install --quiet --upgrade pip
+          # Gemini BATCH TTS (batch_tts.py) needs only numpy + soundfile (pure HTTP to Gemini).
+          # Piper hi_IN-pratham-medium is the fail-open fallback if Gemini errors / caps.
+          python -m pip install --quiet piper-tts numpy soundfile faster-whisper
+
+      - name: Cache Piper voices
+        uses: actions/cache@v4
+        with:
+          path: /tmp/piper-voices
+          key: piper-voices-bharat-v1
+
+      - name: Cache HuggingFace models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-bharat-lf-v1
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=lf-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render Hindi long-form recap
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIPER_VOICES_DIR: /tmp/piper-voices
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Cross-run dedup: claim story keys via api.agyata.com before rendering so a bharat Short
+          # and this long-form in the same window never publish the same story.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/build_short.mjs bharat
+
+      # AUTO-UPLOAD to YouTube as PUBLIC. bharat is its OWN channel (YT_REFRESH_TOKEN_BHARAT), NOT a
+      # playlist on @AgyataWorld. Best-effort — never fails the run.
+      - name: Auto-upload to YouTube (public)
+        id: yt
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_BHARAT" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs bharat "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC repo an
+      # artifact is publicly downloadable, so once the video is on YouTube we never publish it here.
+      - name: Upload staged artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-bharat-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/bharat/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner after upload. Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/bharat/* || true
