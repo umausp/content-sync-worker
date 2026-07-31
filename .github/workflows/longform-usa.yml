@@ -46,12 +46,12 @@ env:
   # LONGFORM VOICE → batched Gemini 2-host dialogue (user confirmed 2-host audio is good) inside the
   # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
   SHORTS_LONGFORM_ENGINE: 'piper'   # FREE local TTS while testing the magazine format (flip to gemini once proven)
-  SHORTS_LONGFORM_FORMAT: 'magazine'   # headline montage + 5 deep-dives (news-magazine)
+  # SHORTS_LONGFORM_FORMAT unset → SINGLE-STORY 8-beat explainer (user's dream: ONE 5-min topic explainer)
   SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
   MAGAZINE_DIVES: '5'
   MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,close'   # lean 4-beat dive (~90-110s)
   MAGAZINE_HEADLINES: '10'
-  LONGFORM_MIN_BEATS: '3'   # a deep-dive is a 4-beat arc → lower the survivor floor
+  LONGFORM_MIN_BEATS: '6'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
   ALIGN_WHISPER_MODEL: 'tiny'    # 5-10x faster than base; enough for word boundaries (avoids the timeout)
   SHORTS_TTS_BATCH: '0'            # SYNC flash TTS per beat (fast ~5-10s/call). Batch was called PER
