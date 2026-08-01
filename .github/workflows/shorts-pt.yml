@@ -103,7 +103,7 @@ jobs:
         run: |
           python -m pip install --quiet --upgrade pip
           # PIPER (natural, free) — replaces robotic Kokoro non-English voice for this channel.
-          python -m pip install --quiet piper-tts numpy soundfile faster-whisper
+          python -m pip install --quiet piper-tts numpy soundfile faster-whisper edge-tts
 
       - name: Cache Piper voices
         uses: actions/cache@v4
