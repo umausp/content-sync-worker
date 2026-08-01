@@ -17,6 +17,14 @@ permissions:
   contents: read
 
 env:
+  SHORTS_LONGFORM_FORCE: '1'
+  LONGFORM_MIN_BEATS: '6'
+  MAGAZINE_DIVES: '5'
+  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,close'
+  MAGAZINE_HEADLINES: '10'
+  LONGFORM_CORPUS_CHARS: '32000'
+  LONGFORM_DEEPEN_OUTLETS: '16'
+  SHORTS_DEBUG: '1'
   LONGFORM_BEAT_SCALE: '1.8'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
