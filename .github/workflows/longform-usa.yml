@@ -22,6 +22,7 @@ permissions:
   contents: read
 
 env:
+  LONGFORM_BEAT_SCALE: '1.8'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
