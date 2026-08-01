@@ -54,10 +54,8 @@ env:
   LONGFORM_MIN_BEATS: '6'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
   ALIGN_WHISPER_MODEL: 'tiny'    # 5-10x faster than base; enough for word boundaries (avoids the timeout)
-  SHORTS_TTS_BATCH: '0'            # SYNC flash TTS per beat (fast ~5-10s/call). Batch was called PER
                                    # BEAT (~30 submit+poll cycles = the 90-min timeout) — batch only
                                    # wins as ONE job, which per-beat render can't do. Correctness > 50%.
-  SHORTS_GEMINI_VOICES: 'Charon,Kore'   # anchor, co-host — two distinct voices share the explainer
   # DEPTH — 8-10 min target: raise beat ceilings + corpus; anti-padding still caps to real material.
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
