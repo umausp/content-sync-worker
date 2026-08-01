@@ -45,7 +45,6 @@ env:
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   # LONGFORM VOICE → batched Gemini 2-host dialogue (user confirmed 2-host audio is good) inside the
   # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
-  SHORTS_LONGFORM_ENGINE: 'piper'   # FREE local TTS while testing the magazine format (flip to gemini once proven)
   # SHORTS_LONGFORM_FORMAT unset → SINGLE-STORY 8-beat explainer (user's dream: ONE 5-min topic explainer)
   SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
   MAGAZINE_DIVES: '5'
