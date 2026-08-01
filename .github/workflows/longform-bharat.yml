@@ -3,7 +3,7 @@ name: longform-bharat
 # Render a HINDI/HINGLISH long-form daily recap for the @agyata_dot_com (भारत) channel — sourced,
 # synthesised, voiced and captioned natively in Hindi (Devanagari + English proper nouns), then
 # auto-uploaded PUBLIC to its OWN channel (YT_REFRESH_TOKEN_BHARAT — a standalone channel, NOT a
-# playlist). TTS: Gemini BATCH (human-grade Hindi) → Piper hi_IN fallback. Nothing is committed;
+# playlist). TTS: edge-tts newsroom (multivoice) → Piper hi_IN fallback (Gemini eliminated). Nothing is committed;
 # the staged output is purged after upload.
 #
 # PUBLIC SHELL: checks out the PRIVATE agyata-pipeline-private repo (all render code) then runs it.
