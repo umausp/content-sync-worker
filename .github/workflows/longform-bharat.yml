@@ -27,7 +27,6 @@ env:
   # (shorts/safety.mjs) drops policy-unsafe stories + masks strong profanity before render.
   SHORTS_PRIVACY: public
   # LONGFORM → Gemini BATCH TTS (config longformEngine:'gemini' for bharat), 50% off; Piper hi_IN fallback.
-  SHORTS_LONGFORM_ENGINE: gemini
   SHORTS_TTS_BATCH: '1'
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
   # upload writes after a successful publish. Keyed by channel label (bharat) so it is independent.
