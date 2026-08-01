@@ -103,7 +103,7 @@ jobs:
       - name: Install Kokoro TTS deps (+ Japanese G2P)
         run: |
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece
+          python -m pip install --quiet kokoro soundfile sentencepiece edge-tts
           python -m pip install --quiet pyopenjtalk-plus
           python -m pip install --quiet misaki fugashi unidic-lite jaconv mojimoji
 
