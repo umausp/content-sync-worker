@@ -105,7 +105,7 @@ jobs:
           python -m pip install --quiet --upgrade pip
           # Gemini BATCH TTS (batch_tts.py) needs only numpy + soundfile (pure HTTP to Gemini).
           # Piper hi_IN-pratham-medium is the fail-open fallback if Gemini errors / caps.
-          python -m pip install --quiet piper-tts numpy soundfile faster-whisper
+          python -m pip install --quiet piper-tts numpy soundfile faster-whisper edge-tts
 
       - name: Cache Piper voices
         uses: actions/cache@v4
