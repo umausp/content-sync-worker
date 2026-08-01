@@ -98,7 +98,7 @@ jobs:
           python -m pip install --quiet --upgrade pip
           # PIPER Hindi (hi_IN-pratham-medium) — user-verified natural, replaces robotic Kokoro-hi.
           # kokoro + sentencepiece kept ONLY for the deprecated BHARAT_READ_D1=1 m2m100 escape hatch.
-          python -m pip install --quiet piper-tts numpy soundfile kokoro sentencepiece faster-whisper
+          python -m pip install --quiet piper-tts numpy soundfile kokoro sentencepiece faster-whisper edge-tts
 
       - name: Cache Piper voices
         uses: actions/cache@v4
