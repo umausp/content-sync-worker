@@ -39,7 +39,8 @@ env:
   # ── LLM PROVIDER LADDER — same shared router as the news pipeline + shorts-world
   #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
   #    what synthesises each story's clean, non-repetitive brief. ──
-  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  PROVIDER_ORDER: 'cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  LONGFORM_ONE_CALL: '1'  # free-70B only (no Gemini billing): trust the ONE whole-arc call, skip per-beat backfill+regen so a video is 1 LLM call, not 15-25 (free-tier budget)
   SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
   PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
   WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
