@@ -21,8 +21,8 @@ env:
   SHORTS_LONGFORM_HOSTS: '6'
   SHORTS_LONGFORM_FORCE: '1'
   LONGFORM_MIN_BEATS: '6'
-  MAGAZINE_DIVES: '5'
-  MAGAZINE_DIVE_BEATS: 'hook,promise,context,evidence,background,meaning,close'
+  MAGAZINE_DIVES: '1'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,stakes,context,history,conflict,evidence,case_study,host_reaction,background,counterpoint,debate,analysis,meaning,future,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
@@ -31,6 +31,7 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # 1920x1080, multi-story recap
+  LONGFORM_PIPELINE: '1' # single-story pipeline (select→research→script→visuals→narrate→assemble)
   # PUBLIC + monetized (user: "make all native language crons at direct public with right
   # playlist"). build_short reads SHORTS_PRIVACY into meta.privacyStatus → upload.mjs sets it
   # on videos.insert, so the video is public the moment it's uploaded (no manual Studio flip).
