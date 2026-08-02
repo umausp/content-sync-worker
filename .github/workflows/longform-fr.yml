@@ -17,8 +17,9 @@ permissions:
   contents: read
 
 env:
+  SHORTS_LONGFORM_FORMAT: magazine
   MAGAZINE_DIVES: '5'
-  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,close'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,context,evidence,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
@@ -50,7 +51,7 @@ env:
   GEMINI_MODEL: 'gemini-flash-lite-latest'
   # LONGFORM VOICE → batched Gemini TTS (user 2026-07-31: French longform test on Gemini batch)
   SHORTS_GEMINI_VOICE_FR: 'Charon'      # single-voice narrator (fr script → Gemini reads French)
-  SHORTS_LONGFORM_HOSTS: '1'            # single voice (no handoff mute)
+  SHORTS_LONGFORM_HOSTS: '6'
   SHORTS_LONGFORM_FORCE: '1'            # always build the single-story explainer
   SHORTS_ARTICLE_IMAGES_ONLY: '1'       # only real article photos, no stock/keyword search
   ALIGN_WHISPER_MODEL: 'tiny'           # fast caption alignment (avoids timeout)
