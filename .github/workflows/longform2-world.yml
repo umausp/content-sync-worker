@@ -21,13 +21,14 @@ permissions:
 env:
   SHORTS_LONGFORM_FORCE: '1'
   LONGFORM_MIN_BEATS: '6'
-  MAGAZINE_DIVES: '5'
-  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,close'
+  MAGAZINE_DIVES: '1'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,stakes,context,history,conflict,evidence,case_study,host_reaction,background,counterpoint,debate,analysis,meaning,future,close'
   MAGAZINE_HEADLINES: '10'
   SHORTS_DEBUG: '1'
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape
+  LONGFORM_PIPELINE: '1' # single-story pipeline (select→research→script→visuals→narrate→assemble)
   SHORTS_PRIVACY: unlisted   # pilot — keep unlisted until the output is reviewed
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
