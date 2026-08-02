@@ -48,7 +48,6 @@ env:
   GEMINI_GROUNDING: '0'  # Gemini billing removed — skip the paid grounded-search call; the whole-arc script runs off the scraped corpus / TMDB facts
   PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud (Pro, flat $20/mo) is PRIMARY now
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
-  OLLAMA_DAILY_CAP: '40'  # spill to free-70B overflow before hitting Ollama's 5h session cap (user: ~90-100 vids/day across channels)
   WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
