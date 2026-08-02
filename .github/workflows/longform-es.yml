@@ -17,10 +17,12 @@ permissions:
   contents: read
 
 env:
+  SHORTS_LONGFORM_FORMAT: magazine
+  SHORTS_LONGFORM_HOSTS: '6'
   SHORTS_LONGFORM_FORCE: '1'
   LONGFORM_MIN_BEATS: '6'
   MAGAZINE_DIVES: '5'
-  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,close'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,context,evidence,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
