@@ -32,7 +32,7 @@ env:
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
   SHORTS_DEBUG: '1'
-  LONGFORM_BEAT_SCALE: '2.2'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
+  LONGFORM_BEAT_SCALE: '2.2'   # 10-beat arc x ~48s = ~8min: clears the YouTube mid-roll threshold; ceiling only (thin story stays >3min, still monetizable)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
