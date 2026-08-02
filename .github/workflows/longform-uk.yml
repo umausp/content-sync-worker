@@ -54,7 +54,6 @@ env:
   SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
   PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud (Pro, flat $20/mo) is PRIMARY now
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
-  OLLAMA_DAILY_CAP: '40'  # spill to free-70B overflow before hitting Ollama's 5h session cap (user: ~90-100 vids/day across channels)
   WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
