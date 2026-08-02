@@ -23,7 +23,7 @@ permissions:
 
 env:
   SHORTS_LONGFORM_HOSTS: '6'
-  LONGFORM_BEAT_SCALE: '1.8'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
+  LONGFORM_BEAT_SCALE: '2.2'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
@@ -51,7 +51,7 @@ env:
   SHORTS_LONGFORM_FORMAT: magazine
   SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
   MAGAZINE_DIVES: '1'
-  MAGAZINE_DIVE_BEATS: 'hook,promise,stakes,context,history,conflict,evidence,case_study,host_reaction,background,counterpoint,debate,analysis,meaning,future,close'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_MIN_BEATS: '6'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
