@@ -27,6 +27,7 @@ env:
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
+  LONGFORM_PIPELINE: '1' # single-story pipeline (select→research→script→visuals→narrate→assemble)
   # PUBLIC + monetized — English long-form (@AgyataWorld) publishes live like the native
   # channels (was 'unlisted' by default). build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs sets it on videos.insert. Long-form is the higher-RPM
@@ -49,8 +50,8 @@ env:
   # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
   SHORTS_LONGFORM_FORMAT: magazine
   SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
-  MAGAZINE_DIVES: '5'
-  MAGAZINE_DIVE_BEATS: 'hook,promise,context,evidence,background,meaning,close'
+  MAGAZINE_DIVES: '1'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,stakes,context,history,conflict,evidence,case_study,host_reaction,background,counterpoint,debate,analysis,meaning,future,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_MIN_BEATS: '6'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
