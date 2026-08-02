@@ -19,12 +19,12 @@ permissions:
 env:
   SHORTS_LONGFORM_FORMAT: magazine
   MAGAZINE_DIVES: '1'
-  MAGAZINE_DIVE_BEATS: 'hook,promise,stakes,context,history,conflict,evidence,case_study,host_reaction,background,counterpoint,debate,analysis,meaning,future,close'
+  MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
   SHORTS_DEBUG: '1'
-  LONGFORM_BEAT_SCALE: '1.8'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
+  LONGFORM_BEAT_SCALE: '2.2'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # 1920x1080, multi-story recap
