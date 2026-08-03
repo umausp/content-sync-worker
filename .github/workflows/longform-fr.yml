@@ -59,7 +59,7 @@ env:
   SHORTS_LONGFORM_FORCE: '1'            # always build the single-story explainer
   SHORTS_ARTICLE_IMAGES_ONLY: '1'       # only real article photos, no stock/keyword search
   ALIGN_WHISPER_MODEL: 'tiny'           # fast caption alignment (avoids timeout)
-  LONGFORM_MIN_BEATS: '6'
+  LONGFORM_MIN_BEATS: '5'
   SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
   SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
   COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
@@ -75,6 +75,7 @@ env:
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
   OLLAMA_MODEL: gpt-oss:120b  # Ollama Cloud 120B (reasoning model; adapter floors num_predict to 2048)
+  OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
