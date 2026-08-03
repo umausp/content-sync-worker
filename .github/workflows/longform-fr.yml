@@ -32,6 +32,8 @@ permissions:
 env:
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
+  TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+  TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
   SHORTS_LONGFORM_FORMAT: magazine
   MAGAZINE_DIVES: '1'
   MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
