@@ -1,6 +1,6 @@
 name: verify-integrations
 
-# One-shot smoke test: verify Ollama Cloud (OLLAMA_API_KEY → gpt-oss:120b) and TMDB
+# One-shot smoke test: verify Ollama Cloud (OLLAMA_API_KEY → qwen3.5:397b-cloud) and TMDB
 # (TMDB_ACCESS_TOKEN/TMDB_API_KEY) are LIVE on the runner before wiring them across the
 # entertainment workflows. Runs the two acceptance probes and prints their verdicts.
 # workflow_dispatch only — not scheduled. Cheap (no render, no upload).
@@ -18,7 +18,7 @@ on:
       model:
         description: 'Ollama Cloud model id to test'
         required: false
-        default: 'gpt-oss:120b'
+        default: 'qwen3.5:397b-cloud'
 
 permissions:
   contents: read
@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Verify Ollama Cloud (gpt-oss:120b)
+      - name: Verify Ollama Cloud (qwen3.5:397b-cloud)
         env:
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
           OLLAMA_MODEL: ${{ github.event.inputs.model }}
