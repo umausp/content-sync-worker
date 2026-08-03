@@ -48,8 +48,8 @@ env:
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama last.
   #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body
   #    into a clean, non-repetitive brief per story — synthesised IN THE CHANNEL'S LANGUAGE.
-  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
-  PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
+  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud primary (user 2026-08-03: ollama first, free tiers fallback)
   WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
@@ -69,7 +69,9 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
-  OLLAMA_MODEL: llama3.1:8b
+  OLLAMA_MODEL: gpt-oss:120b
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
