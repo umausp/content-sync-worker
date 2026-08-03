@@ -30,6 +30,10 @@ permissions:
   contents: read
 
 env:
+  LONGFORM_MIN_ASSETS: '5'
+  LONGFORM_MIN_MATERIAL: '1500'
+  LONGFORM_MIN_BODIES: '2'
+  LONGFORM_MIN_CORR: '2'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
