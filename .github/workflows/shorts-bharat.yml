@@ -9,7 +9,20 @@ name: shorts-bharat
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch (offset from shorts-world). Public repo.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Comma list of allowed categories/topics (SHORTS_CATEGORY_FILTER)'
+        required: false
+        default: ''
+      content_mode:
+        description: 'Entertainment content mode (movie-review/retro-movie/top10 → CONTENT_MODE)'
+        required: false
+        default: ''
+      region:
+        description: 'Region for world channel (usa/europe)'
+        required: false
+        default: ''
 
 concurrency:
   group: shorts-bharat
@@ -19,6 +32,8 @@ permissions:
   contents: read
 
 env:
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   API_BASE: https://api.agyata.com
   NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
   SHORTS_PY: python
