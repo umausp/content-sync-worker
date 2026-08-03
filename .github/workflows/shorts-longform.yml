@@ -42,6 +42,7 @@ env:
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
   SHORTS_DEBUG: '1'
+  LONGFORM_RAG_TRACE: '1'
   LONGFORM_BEAT_SCALE: '1.8'   # deep-editorial length: ~10-12min ceiling (anti-padding fills only from real corpus)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
