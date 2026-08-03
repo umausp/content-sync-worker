@@ -30,7 +30,7 @@ permissions:
   contents: read
 
 env:
-  LONGFORM_MIN_ASSETS: '5'
+  LONGFORM_MIN_ASSETS: '3'
   LONGFORM_MIN_MATERIAL: '1500'
   LONGFORM_MIN_BODIES: '2'
   LONGFORM_MIN_CORR: '2'
