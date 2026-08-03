@@ -81,7 +81,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '40'
-  OLLAMA_MODEL: qwen3.5:397b-cloud
+  OLLAMA_MODEL: deepseek-v4-flash:cloud
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
   OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
