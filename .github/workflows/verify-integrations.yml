@@ -18,7 +18,7 @@ on:
       model:
         description: 'Ollama Cloud model id to test'
         required: false
-        default: 'qwen3.5:397b-cloud'
+        default: 'deepseek-v4-flash:cloud'
 
 permissions:
   contents: read
