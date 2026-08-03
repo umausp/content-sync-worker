@@ -56,7 +56,7 @@ env:
   MAGAZINE_DIVES: '1'
   MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
-  LONGFORM_MIN_BEATS: '6'   # single-story explainer needs a full arc
+  LONGFORM_MIN_BEATS: '5'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
   ALIGN_WHISPER_MODEL: 'tiny'    # 5-10x faster than base; enough for word boundaries (avoids the timeout)
                                    # BEAT (~30 submit+poll cycles = the 90-min timeout) — batch only
@@ -82,6 +82,7 @@ env:
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '40'
   OLLAMA_MODEL: gpt-oss:120b  # Ollama Cloud 120B (reasoning model; adapter floors num_predict to 2048)
+  OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
