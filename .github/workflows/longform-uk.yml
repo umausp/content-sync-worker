@@ -48,7 +48,7 @@ env:
   LONGFORM_CORPUS_CHARS: '32000'
   LONGFORM_DEEPEN_OUTLETS: '16'
   SHORTS_DEBUG: '1'
-  LONGFORM_BEAT_SCALE: '2.2'   # 10-beat arc x ~48s = ~8min: clears the YouTube mid-roll threshold; ceiling only (thin story stays >3min, still monetizable)
+  LONGFORM_BEAT_SCALE: '1.6'   # ~5-6min: >3min floor, and renders within the 90-min cap (2.2/8min hit the timeout at ~3min/clip x 8 clips)
   API_BASE: https://api.agyata.com
   SHORTS_PY: python
   SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
