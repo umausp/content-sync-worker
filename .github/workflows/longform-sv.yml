@@ -20,7 +20,7 @@ env:
   SHORTS_LONGFORM_FORMAT: magazine
   SHORTS_LONGFORM_HOSTS: '6'
   SHORTS_LONGFORM_FORCE: '1'
-  LONGFORM_MIN_BEATS: '6'
+  LONGFORM_MIN_BEATS: '5'
   MAGAZINE_DIVES: '1'
   MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
   MAGAZINE_HEADLINES: '10'
@@ -71,6 +71,7 @@ env:
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
   OLLAMA_MODEL: gpt-oss:120b  # Ollama Cloud 120B (reasoning model; adapter floors num_predict to 2048)
+  OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
