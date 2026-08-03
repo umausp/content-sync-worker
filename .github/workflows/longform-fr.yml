@@ -7,7 +7,20 @@ name: longform-fr
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Comma list of allowed categories/topics (SHORTS_CATEGORY_FILTER)'
+        required: false
+        default: ''
+      content_mode:
+        description: 'Entertainment content mode (movie-review/retro-movie/top10 → CONTENT_MODE)'
+        required: false
+        default: ''
+      region:
+        description: 'Region for world channel (usa/europe)'
+        required: false
+        default: ''
 
 concurrency:
   group: longform-fr
@@ -17,6 +30,8 @@ permissions:
   contents: read
 
 env:
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   SHORTS_LONGFORM_FORMAT: magazine
   MAGAZINE_DIVES: '1'
   MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
