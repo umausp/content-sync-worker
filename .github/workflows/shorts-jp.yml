@@ -30,6 +30,8 @@ permissions:
   contents: read
 
 env:
+  SHORTS_DEBUG: '1'
+  LONGFORM_RAG_TRACE: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   API_BASE: https://api.agyata.com
