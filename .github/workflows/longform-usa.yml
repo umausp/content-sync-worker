@@ -70,7 +70,7 @@ env:
   SHORTS_LONGFORM_FORMAT: magazine
   SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
   MAGAZINE_DIVES: '1'
-  MAGAZINE_DIVE_BEATS: 'hook,promise,context,stakes,evidence,conflict,analysis,background,meaning,close'
+  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,stakes,analysis,background,close'
   MAGAZINE_HEADLINES: '10'
   LONGFORM_MIN_BEATS: '5'   # single-story explainer needs a full arc
   SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
@@ -97,7 +97,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '40'
-  OLLAMA_MODEL: qwen3.5:397b-cloud  # Ollama Cloud qwen3.5:397b (reasoning model; adapter reserves thinking tokens)
+  OLLAMA_MODEL: deepseek-v4-flash:cloud  # Ollama Cloud qwen3.5:397b (reasoning model; adapter reserves thinking tokens)
   OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
