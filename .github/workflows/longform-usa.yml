@@ -9,6 +9,14 @@ name: longform-usa
 on:
   workflow_dispatch:
     inputs:
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
       region:
         description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
         required: false
@@ -22,6 +30,8 @@ permissions:
   contents: read
 
 env:
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   SHORTS_LONGFORM_HOSTS: '6'
   LONGFORM_BEAT_SCALE: '2.2'   # 10-beat arc x ~48s = ~8min: clears the YouTube mid-roll threshold; ceiling only (thin story stays >3min, still monetizable)
   API_BASE: https://api.agyata.com
