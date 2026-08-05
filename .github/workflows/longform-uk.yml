@@ -90,7 +90,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '40'
-  OLLAMA_MODEL: deepseek-v4-flash:cloud  # Ollama Cloud deepseek-v4-flash (fast/cheap; verified live 2026-08-04)
+  OLLAMA_MODEL: deepseek-v4-pro:cloud  # Ollama Cloud deepseek-v4-flash (fast/cheap; verified live 2026-08-04)
   OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
