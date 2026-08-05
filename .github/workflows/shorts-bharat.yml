@@ -32,6 +32,9 @@ permissions:
   contents: read
 
 env:
+  # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
+  # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.
+  SHORTS_PRIVACY: public
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   SHORTS_DEPTH_3D: '1'
