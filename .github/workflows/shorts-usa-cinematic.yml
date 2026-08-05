@@ -1,0 +1,210 @@
+name: shorts-usa-cinematic
+
+# TEST clone of shorts-usa that pins the private-pipeline checkout to the `cinematic-engine`
+# BRANCH and turns the $0 cinematic engine ON (film grade + depth parallax + subject-cutout
+# occlusion dolly) for a PORTRAIT 1080x1920 Short. Purpose: see the engine on a real Short.
+#
+# SAFETY (TEST, not production):
+#   • Renders from branch `cinematic-engine` (NOT main) — production shorts-usa is untouched.
+#   • SHORTS_PRIVACY: unlisted + the YouTube upload step is REMOVED (no token passed) →
+#     artifact-only, never a public post on @AgyataWorld.
+#   • Manual only (workflow_dispatch); no cron-pinger entry.
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
+      region:
+        description: 'Target region (usa | europe).'
+        required: false
+        default: ''
+
+concurrency:
+  group: shorts-usa-cinematic
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SHORTS_DEBUG: '1'
+  LONGFORM_RAG_TRACE: '1'
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+
+  # ── CINEMATIC ENGINE (the point of this test) — PORTRAIT (no SHORTS_ORIENTATION=landscape) ─────
+  # Film finish + depth parallax + occlusion dolly. Depth/occlusion are fail-open (missing model / bad
+  # photo → Ken-Burns). Portrait tuning: Shorts shots are shorter & faster-paced, so a slow behind-
+  # subject dolly needs to be reserved for the 1-2 HERO shots (OCCLUSION_MAX_PER_CLIP=2), and shots
+  # under PARALLAX_MIN_SEC stay Ken-Burns (a dolly can't develop in <1.5s). ASSEMBLE_CONCURRENCY only
+  # matters for multi-beat longform; a single-story Short has few clips but it's harmless.
+  SHORTS_CINEMATIC: '1'
+  SHORTS_DEPTH_3D: '1'
+  SHORTS_DEPTH_OCCLUSION: '1'
+  DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
+  MATTE_MODEL: /tmp/models/u2net.onnx
+  DEPTH_SIZE: '392'
+  DEPTH_CACHE_DIR: /tmp/agyata-depth
+  MATTE_CACHE_DIR: /tmp/agyata-matte
+  PARALLAX_CACHE_DIR: /tmp/agyata-parallax
+  DEPTH_MAX_IMAGES: '12'
+  MATTE_MAX_IMAGES: '12'
+  DEPTH_BUDGET_MS: '20000'
+  MATTE_BUDGET_MS: '20000'
+  DEPTH_THREADS: '2'
+  MATTE_THREADS: '2'
+  OCCLUSION_MAX_PER_CLIP: '2'   # Shorts: reserve the expensive behind-subject dolly for the hero shots
+  ASSEMBLE_CONCURRENCY: '2'
+
+  # TEST stays UNLISTED even though upload is removed below.
+  SHORTS_PRIVACY: unlisted
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  SHORTS_RESEARCH_BUNDLE: '0'
+  PROVIDER_USE_OLLAMA: '1'
+  WM_RENDER_CLAIMS: '1'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: deepseek-v4-flash:cloud
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_MAX_TRIES: '6'
+  PROVIDER_HOSTED_TIMEOUT_MS: '60000'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout private pipeline code (cinematic-engine branch)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: cinematic-engine
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
+        timeout-minutes: 8   # an apt mirror hang must NOT burn the ceiling (learned on longform-usa-cinematic)
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          set -e
+          for i in 1 2 3; do timeout 120 sudo -E apt-get update && break || { echo "apt-get update retry $i"; sleep 5; }; done
+          timeout 300 sudo -E apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-cinematic-v1
+
+      - name: Install Kokoro TTS + ONNX cinematic deps
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet kokoro soundfile sentencepiece faster-whisper
+          python -m pip install --quiet onnxruntime pillow
+
+      - name: Cache HuggingFace models (Kokoro + m2m100)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-kokoro-m2m100-v1
+
+      - name: Cache cinematic ONNX models (depth + matte)
+        id: cine-models
+        uses: actions/cache@v4
+        with:
+          path: /tmp/models
+          key: cinematic-onnx-depthv2small-u2net-v1
+
+      - name: Fetch cinematic ONNX models (if not cached)
+        if: steps.cine-models.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/models
+          curl -fsSL --retry 3 -o /tmp/models/depth_anything_v2_vits.onnx \
+            "https://huggingface.co/onnx-community/depth-anything-v2-small/resolve/main/onnx/model.onnx"
+          curl -fsSL --retry 3 -o /tmp/models/u2net.onnx \
+            "https://huggingface.co/tomjackson2023/rembg/resolve/main/u2net.onnx"
+          for f in depth_anything_v2_vits.onnx u2net.onnx; do
+            sz=$(stat -c%s "/tmp/models/$f" 2>/dev/null || echo 0)
+            echo "$f = $sz bytes"
+            [ "$sz" -gt 1000000 ] || { echo "::error::$f download too small ($sz)"; exit 1; }
+          done
+
+      - name: Cache cinematic render caches (depth/matte/parallax) across runs
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-rendercache-shorts-usa-${{ github.run_id }}
+          restore-keys: |
+            cinematic-rendercache-shorts-usa-
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=cine-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render English Short (cinematic)
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          WORLD_REGION: usa
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/build_short.mjs usa
+
+      # UPLOAD DISABLED for the test — artifact only, never posts to the live channel.
+      - name: Upload staged Short artifact (test review copy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-usa-cinematic-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/usa/
+          retention-days: 3
+          if-no-files-found: warn
