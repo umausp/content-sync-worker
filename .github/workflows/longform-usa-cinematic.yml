@@ -68,6 +68,9 @@ env:
   MATTE_BUDGET_MS: '20000'
   DEPTH_THREADS: '2'
   MATTE_THREADS: '2'
+  # Render beats concurrently (bounded pool) — 2 is the sweet spot on a 4-vCPU runner. This is the
+  # measurement run for the optimized assembly path (CE-12); the parallax cache + hero-cap are auto-on.
+  ASSEMBLE_CONCURRENCY: '2'
 
   # PUBLIC prod publishes live; this TEST stays UNLISTED even if upload were enabled.
   SHORTS_PRIVACY: unlisted
