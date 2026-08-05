@@ -1,0 +1,219 @@
+name: longform-usa-cinematic
+
+# TEST clone of longform-usa that pins the private-pipeline checkout to the `cinematic-engine`
+# BRANCH and turns the $0 cinematic engine ON (film grade + depth parallax + subject-cutout
+# occlusion dolly). Purpose: render the engine on the REAL runner (ffmpeg ~6.x) so we can see it.
+#
+# SAFETY (this is a TEST, not production):
+#   • Renders from branch `cinematic-engine` (NOT main) — production longform-usa is untouched.
+#   • SHORTS_PRIVACY: unlisted, and the YouTube upload is DISABLED (no YT refresh token passed) →
+#     the run produces a downloadable ARTIFACT only, never a public post on @AgyataWorld.
+#   • Manual only (workflow_dispatch); no cron-pinger entry.
+# Everything else mirrors longform-usa so the render path is identical apart from the cinematic flags.
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
+      region:
+        description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
+        required: false
+        default: ''
+
+concurrency:
+  group: longform-usa-cinematic
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  LONGFORM_MIN_ASSETS: '3'
+  LONGFORM_MIN_MATERIAL: '1500'
+  LONGFORM_MIN_BODIES: '2'
+  LONGFORM_MIN_CORR: '2'
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
+  TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+  TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+  SHORTS_LONGFORM_HOSTS: '6'
+  LONGFORM_BEAT_SCALE: '1.6'
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+  SHORTS_ORIENTATION: landscape
+
+  # ── CINEMATIC ENGINE (the point of this test) — all three flags ON ─────────────────────────────
+  # Film finish + depth parallax + subject-cutout occlusion dolly. Depth/occlusion are fail-open (a
+  # missing model / bad photo → Ken-Burns). The FINISH is spliced into the main graph — this test is
+  # exactly how we learn whether the runner's ffmpeg accepts it. Models fetched + cached below.
+  SHORTS_CINEMATIC: '1'
+  SHORTS_DEPTH_3D: '1'
+  SHORTS_DEPTH_OCCLUSION: '1'
+  DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
+  MATTE_MODEL: /tmp/models/u2net.onnx
+  DEPTH_SIZE: '392'
+  DEPTH_CACHE_DIR: /tmp/agyata-depth
+  MATTE_CACHE_DIR: /tmp/agyata-matte
+  # Bound the extra render time on a 10-story longform (each eligible still = depth+matte inference +
+  # an extra parallax encode). Cap keeps the test inside the 120-min ceiling; over the cap → Ken-Burns.
+  DEPTH_MAX_IMAGES: '18'
+  MATTE_MAX_IMAGES: '18'
+  DEPTH_BUDGET_MS: '20000'
+  MATTE_BUDGET_MS: '20000'
+  DEPTH_THREADS: '2'
+  MATTE_THREADS: '2'
+
+  # PUBLIC prod publishes live; this TEST stays UNLISTED even if upload were enabled.
+  SHORTS_PRIVACY: unlisted
+  LONGFORM_PIPELINE: '1'
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  LONGFORM_ONE_CALL: '1'
+  GEMINI_GROUNDING: '0'
+  SHORTS_RESEARCH_BUNDLE: '0'
+  PROVIDER_USE_OLLAMA: '1'
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  WM_RENDER_CLAIMS: '1'
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  SHORTS_LONGFORM_FORMAT: magazine
+  SHORTS_DEBUG: '1'
+  MAGAZINE_DIVES: '1'
+  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,stakes,analysis,background,close'
+  MAGAZINE_HEADLINES: '10'
+  LONGFORM_MIN_BEATS: '5'
+  SHORTS_LONGFORM_FORCE: '1'
+  ALIGN_WHISPER_MODEL: 'tiny'
+  LONGFORM_CORPUS_CHARS: '32000'
+  LONGFORM_DEEPEN_OUTLETS: '16'
+  WORLD_SYNTH_PER_OUTLET: '2400'
+  WORLD_ENRICH_OUTLETS: '16'
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: deepseek-v4-pro:cloud
+  OLLAMA_MAX_TRIES: '6'
+  PROVIDER_HOSTED_TIMEOUT_MS: '60000'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout private pipeline code (cinematic-engine branch)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: cinematic-engine   # ← the whole point: test the engine branch, not main
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-cinematic-v1
+
+      - name: Install Kokoro TTS + m2m100 + ONNX cinematic deps
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet piper-tts numpy kokoro soundfile sentencepiece faster-whisper
+          # Cinematic engine: depth (Depth-Anything) + matte (u2net) run on CPU ONNX Runtime, no torch/GPU.
+          python -m pip install --quiet onnxruntime pillow
+
+      - name: Cache HuggingFace models (Kokoro + m2m100)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-kokoro-m2m100-v2
+
+      - name: Cache cinematic ONNX models (depth + matte)
+        id: cine-models
+        uses: actions/cache@v4
+        with:
+          path: /tmp/models
+          key: cinematic-onnx-depthv2small-u2net-v1
+
+      - name: Fetch cinematic ONNX models (if not cached)
+        if: steps.cine-models.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/models
+          # Depth-Anything-V2-small (~99MB) — WHITE=near. Fail the step LOUD if the download is short.
+          curl -fsSL --retry 3 -o /tmp/models/depth_anything_v2_vits.onnx \
+            "https://huggingface.co/onnx-community/depth-anything-v2-small/resolve/main/onnx/model.onnx"
+          # u2net subject cutout (~176MB) — WHITE=subject.
+          curl -fsSL --retry 3 -o /tmp/models/u2net.onnx \
+            "https://huggingface.co/tomjackson2023/rembg/resolve/main/u2net.onnx"
+          for f in depth_anything_v2_vits.onnx u2net.onnx; do
+            sz=$(stat -c%s "/tmp/models/$f" 2>/dev/null || echo 0)
+            echo "$f = $sz bytes"
+            [ "$sz" -gt 1000000 ] || { echo "::error::$f download too small ($sz) — got an error page, not the model"; exit 1; }
+          done
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=lfcine-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render long-form recap (cinematic)
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIPER_VOICES_DIR: /tmp/piper-voices
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          WORLD_REGION: usa
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/build_short.mjs usa
+
+      # UPLOAD DISABLED for the test — no YT refresh token passed, so upload.mjs is skipped and the
+      # run keeps the MP4 as a downloadable artifact instead of posting to the live channel.
+      - name: Upload staged long-form artifact (test review copy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-usa-cinematic-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/usa/
+          retention-days: 3
+          if-no-files-found: warn
