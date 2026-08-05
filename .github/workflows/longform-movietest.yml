@@ -51,7 +51,7 @@ env:
   # channels (was 'unlisted' by default). build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs sets it on videos.insert. Long-form is the higher-RPM
   # format, so publishing straight-to-public matters most here. safety.mjs guards it.
-  SHORTS_PRIVACY: public
+  SHORTS_PRIVACY: unlisted   # PILOT: upload UNLISTED for review, not public
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — see shorts-world.yml. Render reads, upload writes.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
@@ -192,7 +192,7 @@ jobs:
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN_USA: ''   # PILOT: intentionally blank → upload step self-skips (artifact only, nothing public)
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}   # PILOT: uploads UNLISTED (see SHORTS_PRIVACY) — reviewable, not public
           # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
           YT_PLAYLIST_ENGLISH: ${{ secrets.YT_PLAYLIST_ENGLISH }}
           YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
