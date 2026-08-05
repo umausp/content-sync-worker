@@ -1,0 +1,221 @@
+name: longform-movietest (artifact-only B-roll/keymoment pilot)
+
+# Render a LONG-FORM (16:9, ~3 min, 10-story) news recap for the @AgyataWorld channel,
+# then auto-upload it PUBLIC (SHORTS_PRIVACY=public). Long-form is the higher-RPM
+# monetization format (long-form ad RPM ≈ 15-30x Shorts). Same engine as the Shorts,
+# flipped to landscape via SHORTS_ORIENTATION=landscape. MP4 purged after upload.
+#
+# CADENCE: agyata-cron-pinger workflow_dispatch (e.g. once/day). Public repo = free.
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
+      region:
+        description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
+        required: false
+        default: ''
+
+concurrency:
+  group: longform-usa
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  LONGFORM_MIN_ASSETS: '3'
+  LONGFORM_MIN_MATERIAL: '1500'
+  LONGFORM_MIN_BODIES: '2'
+  LONGFORM_MIN_CORR: '2'
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode || 'retro-movie' }}
+  TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+  TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+  SHORTS_LONGFORM_HOSTS: '6'
+  LONGFORM_BEAT_SCALE: '1.6'   # ~5-6min: >3min floor, and renders within the 90-min cap (2.2/8min hit the timeout at ~3min/clip x 8 clips)
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+  SHORTS_ORIENTATION: landscape # ← the switch: 1920x1080, 10 stories, 2 sentences each
+  LONGFORM_PIPELINE: '1' # single-story pipeline (select→research→script→visuals→narrate→assemble)
+  # ── C.1c-f PILOT (artifact-only test; nothing published) ──────────────────────────────
+  MOVIE_VIDEO_BROLL: '1'   # Commons + Archive.org PD/CC B-roll, entity-keyed + license/relevance-gated
+  KEYMOMENT_DETECT: '1'    # scene/black detect → seek clip to a content moment
+  # PUBLIC + monetized — English long-form (@AgyataWorld) publishes live like the native
+  # channels (was 'unlisted' by default). build_short reads SHORTS_PRIVACY into
+  # meta.privacyStatus → upload.mjs sets it on videos.insert. Long-form is the higher-RPM
+  # format, so publishing straight-to-public matters most here. safety.mjs guards it.
+  SHORTS_PRIVACY: public
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — see shorts-world.yml. Render reads, upload writes.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  # ── LLM PROVIDER LADDER — same shared router as the news pipeline + shorts-world
+  #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
+  #    what synthesises each story's clean, non-repetitive brief. ──
+  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  LONGFORM_ONE_CALL: '1'  # free-70B only (no Gemini billing): trust the ONE whole-arc call, skip per-beat backfill+regen so a video is 1 LLM call, not 15-25 (free-tier budget)
+  GEMINI_GROUNDING: '0'  # Gemini billing removed — skip the paid grounded-search call; the whole-arc script runs off the scraped corpus / TMDB facts
+  SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
+  PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud (Pro, flat $20/mo) is PRIMARY now
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  # LONGFORM VOICE → batched Gemini 2-host dialogue (user confirmed 2-host audio is good) inside the
+  # existing premium format (chrome + fluid captions + data cards). resolveEngineForFormat flips it.
+  SHORTS_LONGFORM_FORMAT: magazine
+  SHORTS_DEBUG: '1'   # verbose tracing while testing (pool/sources/images/TTS/stages)
+  MAGAZINE_DIVES: '1'
+  MAGAZINE_DIVE_BEATS: 'hook,context,evidence,meaning,stakes,analysis,background,close'
+  MAGAZINE_HEADLINES: '10'
+  LONGFORM_MIN_BEATS: '5'   # single-story explainer needs a full arc
+  SHORTS_LONGFORM_FORCE: '1'   # always build the single-story explainer, never the 25-clip roundup
+  ALIGN_WHISPER_MODEL: 'tiny'    # 5-10x faster than base; enough for word boundaries (avoids the timeout)
+                                   # BEAT (~30 submit+poll cycles = the 90-min timeout) — batch only
+                                   # wins as ONE job, which per-beat render can't do. Correctness > 50%.
+  # DEPTH — 8-10 min target: raise beat ceilings + corpus; anti-padding still caps to real material.
+  LONGFORM_CORPUS_CHARS: '32000'
+  LONGFORM_DEEPEN_OUTLETS: '16'
+  WORLD_SYNTH_PER_OUTLET: '2400'
+  WORLD_ENRICH_OUTLETS: '16'
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free'
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '40'
+  OLLAMA_MODEL: deepseek-v4-flash:cloud  # Ollama Cloud deepseek-v4-flash (fast/cheap; verified live 2026-08-04)
+  OLLAMA_MAX_TRIES: '6'  # Ollama is the sole working provider (free tiers exhausted) — ride out transient 503/empty
+  PROVIDER_HOSTED_TIMEOUT_MS: '60000'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    # Long-form is the heavy render (10-story, ~3 min video, Kokoro TTS + ffmpeg). The
+    # 30-min ceiling was KILLING near-complete runs at 30m15s (user: "it was almost
+    # completing"). Cron fires every ~3h so there's zero contention — give it a wide
+    # ceiling: apt deps + Kokoro + (cold) Ollama pull + 10× multi-source extract/synth +
+    # ffmpeg concat. cancel-in-progress:false → only this ceiling can kill it, so make it
+    # the real deadline, not a clip point.
+    timeout-minutes: 120
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # Node deps — the shared extractor (src/extract.mjs) needs
+      # @extractus/article-extractor for the Readability path. Without this the module
+      # falls back to JSON-LD + og only (still works, but weaker on non-schema.org sites).
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-py312-v1
+
+      - name: Install Kokoro TTS + m2m100 translation deps
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet piper-tts numpy kokoro soundfile sentencepiece faster-whisper  # piper = English longform HIGH voice
+
+      - name: Cache HuggingFace models (Kokoro + m2m100)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-kokoro-m2m100-v1
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=lf-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render long-form recap
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIPER_VOICES_DIR: /tmp/piper-voices
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Region (usa | europe) chosen by the cron-pinger; blank on a manual run → the
+          # renderer falls back to wall-clock alternation.
+          WORLD_REGION: usa
+          # Cross-run dedup: claim story keys via api.agyata.com before rendering so
+          # overlapping Short/long-form runs never publish the same story.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: node shorts/build_short.mjs usa
+
+      # AUTO-UPLOAD to YouTube (public). On success sets uploaded=true so the video is
+      # NOT also published as a public artifact (user: delete results after upload).
+      - name: Auto-upload to YouTube (public)
+        id: yt
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_USA: ''   # PILOT: intentionally blank → upload step self-skips (artifact only, nothing public)
+          # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
+          YT_PLAYLIST_ENGLISH: ${{ secrets.YT_PLAYLIST_ENGLISH }}
+          YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
+          YT_PLAYLIST_EUROPE: ${{ secrets.YT_PLAYLIST_EUROPE }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_USA" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs usa "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC
+      # repo an artifact is publicly downloadable, so once the video is on YouTube we never
+      # publish it here. 1-day retention even then.
+      - name: Upload staged long-form artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-usa-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/usa/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner after upload — nothing rendered
+      # lingers on GitHub. Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/usa/* || true
