@@ -147,9 +147,14 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
+        timeout-minutes: 8   # an apt mirror hang must NOT burn the 120-min ceiling (run 31022876855 hung 1h+ here)
+        env:
+          DEBIAN_FRONTEND: noninteractive   # never block on an interactive prompt
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
+          set -e
+          # Retry apt-get update (transient mirror timeouts are the usual hang); short per-call timeout.
+          for i in 1 2 3; do timeout 120 sudo -E apt-get update && break || { echo "apt-get update retry $i"; sleep 5; }; done
+          timeout 300 sudo -E apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
 
       - uses: actions/setup-python@v5
         with:
