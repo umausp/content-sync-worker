@@ -30,7 +30,13 @@ permissions:
   contents: read
 
 env:
-  LONGFORM_MIN_ASSETS: '3'
+  LONGFORM_MIN_ASSETS: '8'
+  # Early PRE-LLM visual-supply gate (user 2026-08-05: "who watches an 8-min video with 3 images?").
+  # A candidate with < this many distinct images/videos (own photos + entity portraits + license-safe
+  # B-roll) is SKIPPED for a richer story at selection, before the script LLM call. 8 = the Bible §4.3
+  # gate #4 count; movie titles carry 20-34 TMDB stills so this only skips genuinely image-starved ones.
+  # Set to 0 to disable the early gate.
+  LONGFORM_MIN_VISUALS: '8'
   LONGFORM_MIN_MATERIAL: '1500'
   LONGFORM_MIN_BODIES: '2'
   LONGFORM_MIN_CORR: '2'
