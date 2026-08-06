@@ -1,14 +1,17 @@
 name: shorts-usa-cinematic
 
-# TEST clone of shorts-usa that pins the private-pipeline checkout to the `cinematic-engine`
-# BRANCH and turns the $0 cinematic engine ON (film grade + depth parallax + subject-cutout
-# occlusion dolly) for a PORTRAIT 1080x1920 Short. Purpose: see the engine on a real Short.
+# CINEMATIC + FOLEY test cron for a PORTRAIT 1080x1920 Short. Pins the private-pipeline checkout to
+# the `cinematic-engine` BRANCH (now carries the merged foley from main) and turns the $0 cinematic
+# engine ON (film grade + depth parallax + subject-cutout occlusion dolly) WITH diegetic foley
+# (SHORTS_FOLEY=1). Purpose: hear the sound design + see the engine on a real Short, once a day, on
+# the live channel as an UNLISTED (link-only) review copy — before enabling foley on production.
 #
 # SAFETY (TEST, not production):
-#   • Renders from branch `cinematic-engine` (NOT main) — production shorts-usa is untouched.
-#   • SHORTS_PRIVACY: unlisted + the YouTube upload step is REMOVED (no token passed) →
-#     artifact-only, never a public post on @AgyataWorld.
-#   • Manual only (workflow_dispatch); no cron-pinger entry.
+#   • Renders from branch `cinematic-engine` (NOT main) — production shorts-usa is untouched. The
+#     branch = main (incl. foley) + 3 perf commits (concurrent assemble, parallax cache, debug logs).
+#   • SHORTS_PRIVACY: unlisted → upload.mjs publishes UNLISTED (link-only, not on the channel page)
+#     and NO YT_PLAYLIST_* is passed, so it never enters the real USA/English playlists.
+#   • Scheduled once/day via the cron-pinger (UTC 06:10); still fires on manual workflow_dispatch too.
 on:
   workflow_dispatch:
     inputs:
@@ -64,7 +67,16 @@ env:
   OCCLUSION_MAX_PER_CLIP: '2'   # Shorts: reserve the expensive behind-subject dolly for the hero shots
   ASSEMBLE_CONCURRENCY: '2'
 
-  # TEST stays UNLISTED even though upload is removed below.
+  # ── DIEGETIC FOLEY (the reason this is now a CRON) — event-synced $0 self-synthesized SFX ──────
+  # Clicks on text-appear, clunks on image-slide, risers/whooshes on camera-push, all on the KNOWN
+  # render timestamps. Fail-open (missing bank → clean video, no foley), voice band untouched
+  # (transient high-passed at 1200 Hz, riser sidechain-ducked under narration). Proven FO-4/FO-5 on
+  # the cinematic-engine branch this workflow checks out. This is the surface for LISTENING to the
+  # sound design before enabling SHORTS_FOLEY on production channels.
+  SHORTS_FOLEY: '1'
+
+  # Cinematic+foley TEST publishes as UNLISTED (privacyStatus in meta → upload.mjs), so it's a
+  # link-only review copy that never appears on the public channel page or in a playlist.
   SHORTS_PRIVACY: unlisted
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
@@ -200,11 +212,36 @@ jobs:
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs usa
 
-      # UPLOAD DISABLED for the test — artifact only, never posts to the live channel.
-      - name: Upload staged Short artifact (test review copy)
+      # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus=unlisted from SHORTS_PRIVACY in the meta).
+      # This is the LISTEN surface — an unlisted link plays on any phone so the foley can be heard.
+      # NO YT_PLAYLIST_* is passed, so upload.mjs skips the playlist-add: the review copy never enters
+      # the real USA/English playlists. Best-effort (continue-on-error): a token/scope problem keeps the
+      # artifact below instead. On success uploaded=true suppresses the public artifact.
+      - name: Auto-upload to YouTube (UNLISTED review copy)
+        id: yt
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_USA" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs usa "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # ARTIFACT is the fallback review copy — kept only when the unlisted upload did NOT happen
+      # (no token, or upload errored). On a PUBLIC repo an artifact is publicly downloadable, so once
+      # the unlisted video is on YouTube we don't also publish it here. Short retention either way.
+      - name: Upload staged Short artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: short-usa-cinematic-${{ env.SHORTS_STAMP }}
           path: docs/shorts/usa/
           retention-days: 3
           if-no-files-found: warn
+
+      # PURGE the rendered MP4 from the runner after upload — nothing lingers on GitHub.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/usa/* || true
