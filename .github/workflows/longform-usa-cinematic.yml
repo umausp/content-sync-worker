@@ -86,6 +86,7 @@ env:
   # Cinematic+foley TEST publishes as UNLISTED (privacyStatus in meta → upload.mjs), link-only.
   SHORTS_PRIVACY: unlisted
   LONGFORM_PIPELINE: '1'
+  CONTEXT_AWARE_VOICE: '1'   # LISTEN-FIRST: content-aware prosody ON for this unlisted review copy (CAV Phase 5)
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
