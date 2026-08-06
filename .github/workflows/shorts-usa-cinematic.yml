@@ -11,7 +11,8 @@ name: shorts-usa-cinematic
 #     branch = main (incl. foley) + 3 perf commits (concurrent assemble, parallax cache, debug logs).
 #   • SHORTS_PRIVACY: unlisted → upload.mjs publishes UNLISTED (link-only, not on the channel page)
 #     and NO YT_PLAYLIST_* is passed, so it never enters the real USA/English playlists.
-#   • Scheduled once/day via the cron-pinger (UTC 06:10); still fires on manual workflow_dispatch too.
+#   • MANUAL one-off (workflow_dispatch), NOT on the cron-pinger — dispatched by hand to review the
+#     foley before it's rolled out to the production channels. No WORKFLOWS entry.
 on:
   workflow_dispatch:
     inputs:
