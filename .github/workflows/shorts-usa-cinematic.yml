@@ -53,6 +53,7 @@ env:
   SHORTS_CINEMATIC: '1'
   SHORTS_DEPTH_3D: '1'
   SHORTS_DEPTH_OCCLUSION: '1'
+  SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
   DEPTH_SIZE: '392'
