@@ -212,6 +212,15 @@ jobs:
             [ "$sz" -gt 1000000 ] || { echo "::error::$f download too small ($sz) — got an error page, not the model"; exit 1; }
           done
 
+      - name: Restore cinematic ONNX depth/matte maps + parallax clips (shared across ALL channels/runs)
+        if: env.SHORTS_DEPTH_3D == '1'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
       - name: Stamp
         run: echo "SHORTS_STAMP=lfcine-$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
 
@@ -255,6 +264,15 @@ jobs:
           if-no-files-found: warn
 
       # PURGE the rendered MP4 from the runner after upload — nothing lingers on GitHub.
+      - name: Save cinematic ONNX depth/matte maps + parallax clips (grows the shared cache for every channel)
+        if: always() && env.SHORTS_DEPTH_3D == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
       - name: Purge staged output
         if: always()
         run: rm -rf docs/shorts/usa/* || true
