@@ -1,14 +1,17 @@
 name: longform-usa-cinematic
 
-# TEST clone of longform-usa that pins the private-pipeline checkout to the `cinematic-engine`
-# BRANCH and turns the $0 cinematic engine ON (film grade + depth parallax + subject-cutout
-# occlusion dolly). Purpose: render the engine on the REAL runner (ffmpeg ~6.x) so we can see it.
+# CINEMATIC + FOLEY test cron for a LANDSCAPE magazine long-form. Pins the private-pipeline checkout
+# to the `cinematic-engine` BRANCH (now carries the merged foley from main) and turns the $0 cinematic
+# engine ON (film grade + depth parallax + subject-cutout occlusion dolly) WITH diegetic foley
+# (SHORTS_FOLEY=1). Purpose: hear the sound design + see the engine on the REAL runner (ffmpeg ~6.x),
+# once a day, on the live channel as an UNLISTED (link-only) review copy — before enabling in prod.
 #
 # SAFETY (this is a TEST, not production):
-#   • Renders from branch `cinematic-engine` (NOT main) — production longform-usa is untouched.
-#   • SHORTS_PRIVACY: unlisted, and the YouTube upload is DISABLED (no YT refresh token passed) →
-#     the run produces a downloadable ARTIFACT only, never a public post on @AgyataWorld.
-#   • Manual only (workflow_dispatch); no cron-pinger entry.
+#   • Renders from branch `cinematic-engine` (NOT main) — production longform-usa is untouched. The
+#     branch = main (incl. foley) + 3 perf commits (concurrent assemble keeps the run inside 120 min).
+#   • SHORTS_PRIVACY: unlisted → upload.mjs publishes UNLISTED (link-only, not on the channel page)
+#     and NO YT_PLAYLIST_* is passed, so it never enters the real USA/English playlists.
+#   • Scheduled once/day via the cron-pinger (UTC 07:10); still fires on manual workflow_dispatch too.
 # Everything else mirrors longform-usa so the render path is identical apart from the cinematic flags.
 on:
   workflow_dispatch:
@@ -72,7 +75,14 @@ env:
   # measurement run for the optimized assembly path (CE-12); the parallax cache + hero-cap are auto-on.
   ASSEMBLE_CONCURRENCY: '2'
 
-  # PUBLIC prod publishes live; this TEST stays UNLISTED even if upload were enabled.
+  # ── DIEGETIC FOLEY (the reason this is now a CRON) — event-synced $0 self-synthesized SFX ──────
+  # Wired into the longform build path too (prepareFoleyTracks → meta.foley). Clicks on text-appear,
+  # clunks on image-slide, risers/whooshes on beat transitions, all on the KNOWN render timestamps.
+  # Fail-open (missing bank → clean video), voice band untouched (transient high-passed, riser
+  # sidechain-ducked). This is the surface for LISTENING before enabling SHORTS_FOLEY in production.
+  SHORTS_FOLEY: '1'
+
+  # Cinematic+foley TEST publishes as UNLISTED (privacyStatus in meta → upload.mjs), link-only.
   SHORTS_PRIVACY: unlisted
   LONGFORM_PIPELINE: '1'
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
@@ -216,12 +226,34 @@ jobs:
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: node shorts/build_short.mjs usa
 
-      # UPLOAD DISABLED for the test — no YT refresh token passed, so upload.mjs is skipped and the
-      # run keeps the MP4 as a downloadable artifact instead of posting to the live channel.
-      - name: Upload staged long-form artifact (test review copy)
+      # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus=unlisted from SHORTS_PRIVACY in the meta).
+      # This is the LISTEN surface — an unlisted link plays on any device so the foley can be heard.
+      # NO YT_PLAYLIST_* is passed, so upload.mjs skips the playlist-add: the review copy never enters
+      # the real USA/English playlists. Best-effort: a token/scope problem keeps the artifact below.
+      - name: Auto-upload to YouTube (UNLISTED review copy)
+        id: yt
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_USA" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs usa "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # ARTIFACT is the fallback review copy — kept only when the unlisted upload did NOT happen
+      # (no token, or upload errored). Once the unlisted video is on YouTube we don't also publish here.
+      - name: Upload staged long-form artifact (only if NOT uploaded to YouTube)
+        if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: longform-usa-cinematic-${{ env.SHORTS_STAMP }}
           path: docs/shorts/usa/
           retention-days: 3
           if-no-files-found: warn
+
+      # PURGE the rendered MP4 from the runner after upload — nothing lingers on GitHub.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/usa/* || true
