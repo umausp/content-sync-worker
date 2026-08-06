@@ -36,6 +36,8 @@ env:
   SHORTS_CINEMATIC: '1'
   SHORTS_DEPTH_3D: '1'
   SHORTS_DEPTH_OCCLUSION: '1'
+  SHORTS_DOF: '1'   # depth-keyed rack focus (docs/SPATIAL_RENDER.md #1), fail-open
+  SHORTS_SPATIAL_GFX: '1'   # graphics-behind-subject compositing primitive (docs/SPATIAL_RENDER.md #2), fail-open; render.mjs auto-wiring (picking a per-window graphic) is a separate not-yet-built task, so this is currently inert until that lands
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
   DEPTH_SIZE: '392'
