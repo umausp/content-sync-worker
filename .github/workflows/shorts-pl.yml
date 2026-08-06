@@ -30,6 +30,7 @@ permissions:
   contents: read
 
 env:
+  SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   SHORTS_DEPTH_3D: '1'
