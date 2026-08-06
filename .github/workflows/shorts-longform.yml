@@ -148,6 +148,16 @@ jobs:
 
       - name: Provision cinematic engine (onnxruntime + ONNX models, fail-open)
         run: bash scripts/setup_cinematic.sh
+      - name: Restore cinematic ONNX depth/matte maps + parallax clips (shared across ALL channels/runs)
+        if: env.SHORTS_DEPTH_3D == '1'
+        id: cinematic-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -219,6 +229,15 @@ jobs:
 
       # PURGE the rendered MP4 + metadata from the runner after upload — nothing rendered
       # lingers on GitHub. Always runs.
+      - name: Save cinematic ONNX depth/matte maps + parallax clips (grows the shared cache for every channel)
+        if: always() && env.SHORTS_DEPTH_3D == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
       - name: Purge staged output
         if: always()
         run: rm -rf docs/shorts/world/* || true
