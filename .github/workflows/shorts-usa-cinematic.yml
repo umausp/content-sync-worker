@@ -53,6 +53,8 @@ env:
   SHORTS_CINEMATIC: '1'
   SHORTS_DEPTH_3D: '1'
   SHORTS_DEPTH_OCCLUSION: '1'
+  SHORTS_RVM_MATTE: '1'   # Phase 1a: RVM hair/face-accurate matte (kills the mid-face cut). TEST wf only.
+  SHORTS_GROUNDEDNESS_GATE: '1'   # Phase 1b: drop cross-story on-screen text bleed. TEST wf only.
   SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
