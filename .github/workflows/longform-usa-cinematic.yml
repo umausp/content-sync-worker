@@ -150,7 +150,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: umausp/agyata-pipeline-private
-          ref: main   # ← the whole point: test the engine branch, not main
+          ref: main   # render-validation checks out main (was ref:cinematic-engine — that stale branch false-greened Phase 1)
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           persist-credentials: true
       - uses: actions/setup-node@v4
