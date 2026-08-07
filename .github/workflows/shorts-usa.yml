@@ -126,25 +126,17 @@ jobs:
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           persist-credentials: true
 
-      - uses: actions/setup-node@v4
+      # ── SHARED SETUP (perf): node+npm, apt+fonts, python+pip cache, cinematic ONNX provisioning,
+      # + the ONNX model-WEIGHTS cache — ONE composite action (private repo; resolves after the
+      # checkout above). Replaces the per-channel setup; all deps preserved verbatim as inputs.
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
         with:
-          node-version: '22'
-          cache: 'npm'
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper'
+          apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
 
-      # Node deps — the shared extractor (src/extract.mjs) needs
-      # @extractus/article-extractor for the Readability path. Without this the module
-      # falls back to JSON-LD + og only (still works, but weaker on non-schema.org sites).
-      - name: Install Node deps
-        run: npm ci --no-audit --no-fund
-
-      - name: Install system deps (ffmpeg + librsvg + espeak-ng + fonts)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra
-
-
-      - name: Provision cinematic engine (onnxruntime + ONNX models, fail-open)
-        run: bash scripts/setup_cinematic.sh
       - name: Restore cinematic ONNX depth/matte maps + parallax clips (shared across ALL channels/runs)
         if: env.SHORTS_DEPTH_3D == '1'
         id: cinematic-cache-restore
@@ -155,25 +147,6 @@ jobs:
             /tmp/agyata-matte
             /tmp/agyata-parallax
           key: cinematic-maps-${{ runner.os }}-v1
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-py312-v1
-
-      - name: Install Kokoro TTS + m2m100 translation deps
-        run: |
-          python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet kokoro soundfile sentencepiece faster-whisper
-
-      - name: Cache HuggingFace models (Kokoro + m2m100)
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-kokoro-m2m100-v1
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
