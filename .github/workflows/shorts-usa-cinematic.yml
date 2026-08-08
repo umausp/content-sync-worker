@@ -68,7 +68,7 @@ env:
   MATTE_BUDGET_MS: '20000'
   DEPTH_THREADS: '2'
   MATTE_THREADS: '2'
-  OCCLUSION_MAX_PER_CLIP: '2'   # Shorts: reserve the expensive behind-subject dolly for the hero shots
+  OCCLUSION_MAX_PER_CLIP: '4'   # Shorts: reserve the expensive behind-subject dolly for the hero shots
   ASSEMBLE_CONCURRENCY: '2'
 
   # ── DIEGETIC FOLEY (the reason this is now a CRON) — event-synced $0 self-synthesized SFX ──────
