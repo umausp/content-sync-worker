@@ -129,7 +129,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '40'
-  OLLAMA_MODEL: deepseek-v4-pro:cloud
+  OLLAMA_MODEL: gpt-oss:120b  # switched from deepseek-v4-pro:cloud (user 2026-08-09: "use gpt-oss:120b everywhere")
   OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
