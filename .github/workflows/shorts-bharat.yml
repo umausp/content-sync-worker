@@ -1,11 +1,17 @@
 name: shorts-bharat
 
 # Render ONE Hindi/Hinglish Short for the @agyata_dot_com channel (India audience).
-# bharat SELF-GATHERS the India desks (native_feeds 'hi' spec) and synthesises the brief +
-# hook NATIVELY IN HINDI via Gemini — like every other native channel — then TTS (PIPER Hindi,
-# hi_IN-pratham-medium — user-verified natural) + captions. (Old flow: read the D1 India feed in
-# English + offline m2m100 translate + robotic Kokoro-hi; that
-# word-spliced compounds and is now only the BHARAT_READ_D1=1 escape hatch.)
+# bharat SELF-GATHERS the India desks (native_feeds 'hi' spec) and synthesises the brief + hook
+# NATIVELY IN HINDI via the LLM router — like every other native channel — then TTS.
+# VOICE (verified 2026-08-29, re-enable pass): docs/voice/channel-voices.json PINS bharat to two
+# edge-tts grade-B neural voices ONLY (hi-IN-SwaraNeural female, hi-IN-MadhurNeural male) —
+# castForVideo/castNewsroom draw from this pinned list (shorts/voice/index.mjs), so the primary
+# voice is always a real Microsoft neural voice, NEVER the config's raw fallback `voice` field
+# (hi_IN-pratham-medium, Piper MEDIUM — that id is the LAST-RESORT-only synth id if edge itself is
+# unreachable, not what listeners normally hear; the line below describing it as "user-verified
+# natural" was stale from before the pinned-allowlist fix and is corrected here). (Old flow: read
+# the D1 India feed in English + offline m2m100 translate + robotic Kokoro-hi; that word-spliced
+# compounds and is now only the BHARAT_READ_D1=1 escape hatch.)
 #
 # CADENCE: agyata-cron-pinger workflow_dispatch (offset from shorts-world). Public repo.
 on:

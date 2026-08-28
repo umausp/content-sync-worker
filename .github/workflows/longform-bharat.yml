@@ -7,9 +7,20 @@ name: longform-bharat
 # the staged output is purged after upload.
 #
 # PUBLIC SHELL: checks out the PRIVATE agyata-pipeline-private repo (all render code) then runs it.
-# CADENCE: agyata-cron-pinger workflow_dispatch. Public repo = free minutes.
+# CADENCE: agyata-cron-pinger workflow_dispatch (re-enabled 2026-08-29, unified 2-shorts+1-longform/day
+# cadence alongside every other channel — this workflow now needs the SAME category/content_mode
+# inputs longform-usa.yml etc. already declare, or the pinger's dispatch call fails outright).
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
 
 concurrency:
   group: longform-bharat
@@ -21,9 +32,13 @@ permissions:
 env:
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
-  SHORTS_DEPTH_3D: '1'
-  SHORTS_DEPTH_OCCLUSION: '1'
-  SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
+  # ROLLED BACK 2026-08-29 (same fix as every shorts-*.yml on 2026-08-28 — distorted first frames;
+  # missed on longform-*.yml the first pass) - render.mjs now uses a plain left-right slide pan
+  # (media/window.mjs) for every still; DOF+SPATIAL_GFX below are sub-gated on this flag and go
+  # inert with it.
+  SHORTS_DEPTH_3D: '0'
+  SHORTS_DEPTH_OCCLUSION: '0'
+  SHORTS_SPATIAL_GFX: '0'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
   DEPTH_SIZE: '392'
@@ -58,14 +73,19 @@ env:
   # on videos.insert, so the video is public the moment it's uploaded. A DEMONETIZATION GUARD
   # (shorts/safety.mjs) drops policy-unsafe stories + masks strong profanity before render.
   SHORTS_PRIVACY: public
-  # LONGFORM → Gemini BATCH TTS (config longformEngine:'gemini' for bharat), 50% off; Piper hi_IN fallback.
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — render reads (drop already-made stories),
   # upload writes after a successful publish. Keyed by channel label (bharat) so it is independent.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
-  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses (src/providers.mjs).
-  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
-  PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
+  # ── LLM PROVIDER LADDER — Ollama Cloud PRIMARY (same fix as every other currently-active channel;
+  # this file hadn't been touched since it was disabled 2026-08-08, so it was still Gemini-first —
+  # re-enabling it as-is would have quietly resumed PAID Gemini billing the user removed elsewhere).
+  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud (Pro, flat $20/mo) is PRIMARY now
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_MAX_TRIES: '6'
   WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
@@ -85,7 +105,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
-  OLLAMA_MODEL: llama3.1:8b
+  OLLAMA_MODEL: gpt-oss:120b  # match every other active channel (user 2026-08-09: "use gpt-oss:120b everywhere")
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
   DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
