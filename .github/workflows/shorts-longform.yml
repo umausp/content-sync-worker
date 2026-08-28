@@ -32,9 +32,14 @@ permissions:
 env:
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
-  SHORTS_DEPTH_3D: '1'
-  SHORTS_DEPTH_OCCLUSION: '1'
-  SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
+  # ROLLED BACK 2026-08-29 (missed in both earlier passes - this file matches neither the shorts-<lang>
+  # list nor the longform-*.yml prefix, so it slipped through twice. This channel's landscape longform
+  # was still running the full depth/matte/inpaint/ESRGAN/RIFE pipeline per still window, across every
+  # beat - a real contributor to ffmpeg render timeouts on the 4-vCPU runner, on top of the distorted
+  # first frame the other passes fixed). render.mjs now uses a plain left-right slide pan instead.
+  SHORTS_DEPTH_3D: '0'
+  SHORTS_DEPTH_OCCLUSION: '0'
+  SHORTS_SPATIAL_GFX: '0'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
   DEPTH_SIZE: '392'
