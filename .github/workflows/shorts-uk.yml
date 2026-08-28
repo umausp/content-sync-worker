@@ -34,9 +34,12 @@ env:
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
-  SHORTS_DEPTH_3D: '1'
-  SHORTS_DEPTH_OCCLUSION: '1'
-  SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
+  # ROLLED BACK 2026-08-28 (user: distorted first frames + shorts landing 20-30s, not 45-60s) —
+  # render.mjs now uses a plain left-right slide pan (media/window.mjs) for every still; DOF and
+  # SPATIAL_GFX below are sub-gated on SHORTS_DEPTH_3D and go inert with it.
+  SHORTS_DEPTH_3D: '0'
+  SHORTS_DEPTH_OCCLUSION: '0'
+  SHORTS_SPATIAL_GFX: '0'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
   DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
   MATTE_MODEL: /tmp/models/u2net.onnx
   DEPTH_SIZE: '392'
