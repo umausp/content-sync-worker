@@ -32,7 +32,7 @@ env:
   SHORTS_PRIVACY: unlisted   # pilot — keep unlisted until the output is reviewed
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
-  PROVIDER_ORDER: 'gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai,ollama'
+  PROVIDER_ORDER: 'ollama,gemini,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,hfspace,huggingface,huggingface1,deepinfra,deepinfra1,cerebras,openai'
   PROVIDER_USE_OLLAMA: '0'
   WM_RENDER_CLAIMS: '0'
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
