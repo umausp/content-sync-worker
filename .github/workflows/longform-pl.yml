@@ -32,7 +32,8 @@ permissions:
 env:
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
-  # ROLLED BACK 2026-08-29 (same fix as every shorts-*.yml on 2026-08-28 — distorted first frames;
+  SHORTS_LONGFORM_BEAT_FINISH: '0'  # perf fix (2026-08-29, built 2026-08-08 but never deployed): per-beat finish blew the 12-min composite timeout on 70-116s/14-26-shot beats
+  SHORTS_CINEMATIC_CONCAT: '1'  # same grade applied ONCE over the full concatenated video instead — same look, a fraction of the time
   # missed on longform-*.yml the first pass) - render.mjs now uses a plain left-right slide pan
   # (media/window.mjs) for every still; DOF+SPATIAL_GFX below are sub-gated on this flag and go
   # inert with it.
