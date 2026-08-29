@@ -98,6 +98,7 @@ env:
   SHORTS_RESEARCH_BUNDLE: '0'
   PROVIDER_USE_OLLAMA: '1'
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   WM_RENDER_CLAIMS: '1'
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
