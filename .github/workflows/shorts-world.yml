@@ -22,10 +22,6 @@ on:
         description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
         required: false
         default: ''
-      privacy:
-        description: 'YouTube privacy for this run (unlisted | public | private). Default unlisted for safe review.'
-        required: false
-        default: 'unlisted'
 
 concurrency:
   group: shorts-world
@@ -69,7 +65,13 @@ env:
   # upload.mjs sets it on videos.insert, so the Short is public the moment it uploads (no
   # manual Studio flip). The shorts/safety.mjs demonetization guard runs first, so
   # straight-to-public is monetization-safe.
-  SHORTS_PRIVACY: ${{ inputs.privacy || 'public' }}
+  # HARDCODED public (2026-08-29 fix): a 'privacy' workflow_dispatch input used to shadow
+  # this with a default of 'unlisted' ('inputs.privacy || public' resolves the input's OWN
+  # declared default when the dispatcher — agyata-cron-pinger — doesn't pass one, so it was
+  # NEVER falling through to 'public'). cron-pinger never sends a privacy input, so every
+  # scheduled run silently uploaded unlisted despite this comment block always having said
+  # PUBLIC. Removed the input entirely — matches shorts-usa.yml/shorts-uk.yml/shorts-longform.yml.
+  SHORTS_PRIVACY: public
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — the renderer's OWN "already made a video of
   # this story?" memory, separate from the website's CF news_dedup_claims. Render step reads
   # it (drop already-published stories); upload step writes it after a successful upload.
