@@ -108,6 +108,7 @@ env:
   OPENAI_DAILY_CAP: '40'
   OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gpt-oss:120b' }}  # switched from deepseek-v4-flash:cloud (dropped off live tag list, #10 model-ID rot; user 2026-08-09)
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
