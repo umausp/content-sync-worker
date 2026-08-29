@@ -32,7 +32,8 @@ permissions:
 env:
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
-  # ROLLED BACK 2026-08-29 (missed in both earlier passes - this file matches neither the shorts-<lang>
+  SHORTS_LONGFORM_BEAT_FINISH: '0'  # perf fix (2026-08-29, built 2026-08-08 but never deployed): per-beat finish blew the 12-min composite timeout on 70-116s/14-26-shot beats
+  SHORTS_CINEMATIC_CONCAT: '1'  # same grade applied ONCE over the full concatenated video instead — same look, a fraction of the time
   # list nor the longform-*.yml prefix, so it slipped through twice. This channel's landscape longform
   # was still running the full depth/matte/inpaint/ESRGAN/RIFE pipeline per still window, across every
   # beat - a real contributor to ffmpeg render timeouts on the 4-vCPU runner, on top of the distorted
