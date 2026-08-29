@@ -32,6 +32,8 @@ permissions:
 env:
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
+  SHORTS_LONGFORM_BEAT_FINISH: '0'  # perf fix (2026-08-29, built 2026-08-08 but never deployed): per-beat finish blew the 12-min composite timeout on 70-116s/14-26-shot beats
+  SHORTS_CINEMATIC_CONCAT: '1'  # same grade applied ONCE over the full concatenated video instead — same look, a fraction of the time
   SHORTS_DEPTH_3D: '1'
   SHORTS_DEPTH_OCCLUSION: '1'
   SHORTS_SPATIAL_GFX: '1'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
