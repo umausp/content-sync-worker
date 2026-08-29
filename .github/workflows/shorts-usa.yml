@@ -100,7 +100,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
-  OLLAMA_MODEL: gpt-oss:120b  # switched from deepseek-v4-flash:cloud (dropped off live tag list, #10 model-ID rot; user 2026-08-09)
+  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gpt-oss:120b' }}  # switched from deepseek-v4-flash:cloud (dropped off live tag list, #10 model-ID rot; user 2026-08-09)
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
   OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
