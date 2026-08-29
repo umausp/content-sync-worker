@@ -59,7 +59,7 @@ env:
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline + renders use
   #    (src/providers.mjs), NVIDIA-first, huggingface in the middle, local Ollama last.
   #    This synthesises each story's clean, corroborated, non-repetitive brief. ──
-  PROVIDER_ORDER: 'sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,huggingface,gemini,ollama'
+  PROVIDER_ORDER: 'ollama,sambanova,openrouter,groq,cohere,nvidia,mistral,gitmodels,huggingface,gemini'
   PROVIDER_USE_OLLAMA: '0'  # Gemini+free tiers carry every run; drop the 153s ollama install
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
   NVIDIA_MODEL: 'meta/llama-3.1-8b-instruct' # fast NIM model (70b free-tier consistently timed out >30s → NVIDIA never won its primary slot; matches the proven news-p1 pipeline)
