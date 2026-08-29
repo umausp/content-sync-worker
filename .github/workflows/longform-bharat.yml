@@ -86,6 +86,7 @@ env:
   PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
   PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud (Pro, flat $20/mo) is PRIMARY now
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   OLLAMA_MAX_TRIES: '6'
   WM_RENDER_CLAIMS: '1' # Worldmodel graph-backed render (claims/divergence) — noise-filtered content
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
