@@ -35,9 +35,7 @@ env:
   # ── CHATTERBOX TTS (Modal GPU) — staged rollout, usa (EN) first (2026-08-30) ──
   # Natural-voice engine on Modal (services/chatterbox/modal_app.py, scale-to-zero, $0 within the $30/mo
   # credit). ttsForStory fail-opens to the offline engine (kokoro/piper) on any Modal outage/unset secret,
-  # so it can NEVER drop a video. Default-OFF everywhere else; CHATTERBOX_CHANNELS is the rollout allow-list.
   CHATTERBOX_TTS: '1'
-  CHATTERBOX_CHANNELS: 'usa'
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
