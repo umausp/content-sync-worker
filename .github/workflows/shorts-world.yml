@@ -31,6 +31,11 @@ permissions:
   contents: read # renders upload as artifacts (below), not committed to the repo
 
 env:
+  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
+  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
+  CHATTERBOX_TTS: '1'
+  CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
+  CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
