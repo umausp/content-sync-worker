@@ -152,7 +152,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'kokoro soundfile sentencepiece edge-tts'
+          tts-pip: 'kokoro soundfile sentencepiece edge-tts num2words'
           extra-pip: 'pyopenjtalk-plus ;; misaki fugashi unidic-lite jaconv mojimoji'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '~/.cache/huggingface'
