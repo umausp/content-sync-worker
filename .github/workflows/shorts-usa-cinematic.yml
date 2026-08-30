@@ -37,6 +37,11 @@ permissions:
   contents: read
 
 env:
+  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
+  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
+  CHATTERBOX_TTS: '1'
+  CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
+  CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_DEBUG: '1'
   LONGFORM_RAG_TRACE: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
