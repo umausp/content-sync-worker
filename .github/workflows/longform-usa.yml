@@ -30,6 +30,11 @@ permissions:
   contents: read
 
 env:
+  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
+  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
+  CHATTERBOX_TTS: '1'
+  CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
+  CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   SHORTS_LONGFORM_BEAT_FINISH: '0'  # perf fix (2026-08-29, built 2026-08-08 but never deployed): per-beat finish blew the 12-min composite timeout on 70-116s/14-26-shot beats
