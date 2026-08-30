@@ -38,6 +38,11 @@ permissions:
   contents: read
 
 env:
+  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
+  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
+  CHATTERBOX_TTS: '1'
+  CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
+  CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.
