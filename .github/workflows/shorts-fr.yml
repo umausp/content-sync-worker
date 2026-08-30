@@ -131,7 +131,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'kokoro soundfile sentencepiece piper-tts faster-whisper edge-tts'
+          tts-pip: 'kokoro soundfile sentencepiece piper-tts faster-whisper edge-tts num2words'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-fr-v1'
