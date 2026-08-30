@@ -152,7 +152,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'piper-tts numpy edge-tts'
+          tts-pip: 'piper-tts numpy edge-tts num2words'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '/tmp/piper-voices'
           voice-cache-key: 'piper-voices-sv-v1'
