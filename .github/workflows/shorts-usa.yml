@@ -39,6 +39,7 @@ env:
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   CBX_QC: '1'   # QC safety net: ASR-verify Chatterbox beats, fail-open on persistent gibberish (es/pt/EN only; bharat excluded, 2026-08-31)
+  CBX_QC_RESCUE: '1'   # content-fix rescue (3b): on a persistent ASR mismatch, ask Ollama Cloud gemma4:31b for a targeted respelling before giving up (2026-08-31)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   # ROLLED BACK 2026-08-28 (user: distorted first frames + shorts landing 20-30s, not 45-60s) —
