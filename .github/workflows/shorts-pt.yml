@@ -35,6 +35,7 @@ env:
   CHATTERBOX_TTS: '1'
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
+  CBX_QC: '1'   # QC safety net: ASR-verify Chatterbox beats, fail-open on persistent gibberish (es/pt/EN only; bharat excluded, 2026-08-31)
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
