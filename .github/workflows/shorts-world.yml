@@ -66,6 +66,12 @@ env:
   OCCLUSION_MAX_PER_CLIP: '4'
   ASSEMBLE_CONCURRENCY: '2'
   SHORTS_DEBUG: '1'
+  # FLEET ROLLOUT (2026-09-01, user: "this is much better beats. lets use this longer beats to
+  # all channels now" — after a real render, omFdA_kpEdw, confirmed the deep-tier 150-180s/6-beat
+  # micro-arc works well). Still gated per-story by isDepthWorthy (research_script.mjs) — a thin
+  # story ships at today's normal length regardless of this flag, only a story with enough real
+  # material gets the longer treatment.
+  SHORTS_LONG_MICROARC: '1'
   LONGFORM_RAG_TRACE: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
@@ -137,7 +143,10 @@ jobs:
     # A Short is 1 story but the run still does: apt deps + Kokoro install + (cold) Ollama
     # pull + multi-source extraction/synth + ffmpeg. 20m was clipping cold runs; 40m means
     # once it starts it finishes. cancel-in-progress:false → only this ceiling can kill it.
-    timeout-minutes: 40
+    # BUMPED 40->60 (2026-09-01, fleet rollout of SHORTS_LONG_MICROARC): a deep-tier 6-beat/150-180s
+    # micro-arc needs more render wall-time than the 3-beat/45-90s baseline this 40min budget was
+    # sized for.
+    timeout-minutes: 60
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
