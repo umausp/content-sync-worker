@@ -80,6 +80,11 @@ env:
   # upload writes after a successful publish. Keyed by channel label so it is independent.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  # AUTHENTICATED WIKIMEDIA SESSION (2026-09-02, user created a bot account specifically for
+  # this: "we have 200 request/sec limit, use it"). Fail-open: unset/wrong and every entity-
+  # image call proceeds exactly as before this existed (anonymous, same as today).
+  WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+  WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama last.
   #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body

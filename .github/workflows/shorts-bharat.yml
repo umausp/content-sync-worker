@@ -62,6 +62,13 @@ env:
   CBX_QC_RESCUE: '1'
   WHISPER_ENDPOINT: ${{ secrets.WHISPER_ENDPOINT }}
   WHISPER_TOKEN: ${{ secrets.WHISPER_TOKEN }}
+  # ── AUTHENTICATED WIKIMEDIA SESSION (2026-09-02, user created a bot account specifically for
+  # this: "we have 200 request/sec limit, use it"). src/entity_images.mjs logs in once per
+  # Wikimedia host and reuses the session, moving off the anonymous shared-IP rate tier that
+  # produced 365 429s in a single render this session. Fail-open: unset/wrong credentials and
+  # every call proceeds exactly as before this existed (anonymous, same as today).
+  WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+  WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.
