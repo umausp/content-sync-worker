@@ -69,6 +69,10 @@ env:
   # every call proceeds exactly as before this existed (anonymous, same as today).
   WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  # NATIVE-LANGUAGE WIKIPEDIA (2026-09-02, real evidence: Devanagari entity names were being
+  # looked up against en.wikipedia.org and 404ing every time — src/entity_images.mjs's
+  # WIKI_LANG defaults to 'en' unless told otherwise). Matches this channel's scriptLang.
+  ENTITY_WIKI_LANG: 'hi'
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.

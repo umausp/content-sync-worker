@@ -85,6 +85,10 @@ env:
   # image call proceeds exactly as before this existed (anonymous, same as today).
   WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  # NATIVE-LANGUAGE WIKIPEDIA (2026-09-02, real evidence: Devanagari entity names were being
+  # looked up against en.wikipedia.org and 404ing every time — src/entity_images.mjs's
+  # WIKI_LANG defaults to 'en' unless told otherwise). Matches this channel's scriptLang.
+  ENTITY_WIKI_LANG: 'id'
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama last.
   #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body
