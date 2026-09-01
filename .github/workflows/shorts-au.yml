@@ -60,6 +60,11 @@ env:
   ASSEMBLE_CONCURRENCY: '2'
   SHORTS_DEBUG: '1'
   LONGFORM_RAG_TRACE: '1'
+  # SCOPED TEST (2026-09-01, voice-QC follow-up — "3.5 g of methylamphetamine" read flat): word-level
+  # emphasis on edge-tts via WordBoundary timing (tts_dsp.mjs's planWordEmphasis). Gain-only, default
+  # OFF everywhere else — au is the ONE channel testing this before any wider rollout (see
+  # build_short.mjs's ttsForStory for the full mechanism + why splitting calls/SSML were rejected).
+  EDGE_TTS_WORD_EMPHASIS: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   API_BASE: https://api.agyata.com
