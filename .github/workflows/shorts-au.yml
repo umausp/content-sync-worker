@@ -65,6 +65,11 @@ env:
   # OFF everywhere else — au is the ONE channel testing this before any wider rollout (see
   # build_short.mjs's ttsForStory for the full mechanism + why splitting calls/SSML were rejected).
   EDGE_TTS_WORD_EMPHASIS: '1'
+  # SCOPED TEST (2026-09-01, user: "extend our video limit for shorts to 180sec"): the deep-tier
+  # micro-arc (research_script.mjs SHORT_ARC extension, up to 6 beats) — default OFF everywhere else,
+  # STILL gated per-story by isDepthWorthy even here (a thin story ships at today's normal length
+  # regardless of this flag). au is the one channel testing this before any wider rollout.
+  SHORTS_LONG_MICROARC: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   API_BASE: https://api.agyata.com
@@ -121,7 +126,11 @@ env:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # BUMPED 40->60 (2026-09-01, SCOPED TEST): a deep-tier 6-beat/150-180s micro-arc (SHORTS_LONG_MICROARC
+    # below) needs proportionally more render wall-time than the 3-beat/45-90s baseline this 40min budget
+    # was sized for — raised so a job timeout doesn't mask whether the FEATURE itself works. Revert to 40
+    # once this test is done (or if the deep tier proves it fits comfortably under 40 anyway).
+    timeout-minutes: 60
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
