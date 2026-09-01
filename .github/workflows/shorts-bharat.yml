@@ -50,6 +50,18 @@ env:
   CHATTERBOX_TTS: '1'
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
+  # ── ASR-VERIFY QC GATE (2026-09-01, user: "GPU Whisper-large QC pass for native-language channels
+  # is good idea") — first time this turns ON for bharat. Previously never enabled here at all: the
+  # QC gate's transcribe step ran local CPU faster-whisper "tiny", which mis-hears Devanagari badly
+  # enough that false-mismatch noise would exceed real signal (see project_chatterbox_modal memory).
+  # shorts/whisper_client.py now routes the QC transcription through services/whisper/modal_app.py's
+  # large-v3 GPU model (same shared Modal workspace/budget as Chatterbox) — verified live against a
+  # real Hindi clip before this was wired in. Fail-open: unset/unreachable → the client falls back to
+  # the same local "tiny" model, so this can never make a render worse than before it existed.
+  CBX_QC: '1'
+  CBX_QC_RESCUE: '1'
+  WHISPER_ENDPOINT: ${{ secrets.WHISPER_ENDPOINT }}
+  WHISPER_TOKEN: ${{ secrets.WHISPER_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.
