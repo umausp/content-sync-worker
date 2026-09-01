@@ -40,11 +40,14 @@ permissions:
 env:
   # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
   # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
-  # SCOPED TEST (2026-09-01, user: "bring back english and hindi to edge tts... analyse and rate") — disabled
-  # here so this channel actually runs the edge voice just pinned in config.mjs/channel-voices.json
-  # instead of Chatterbox's tier-gate override (voice/chatterbox.mjs treats hi/en as a "PROVEN
-  # dedicated variant" and would otherwise take over regardless of this flag). Revert: '1'.
-  CHATTERBOX_TTS: '0'
+  # RE-CONFIRMED for Hindi (2026-09-01): the edge-tts A/B test (SCOPED TEST, briefly '0' above) produced
+  # a real render (NBX3RqtcIlA) with edge-tts's hi-IN-MadhurNeural badly mispronouncing correctly-written
+  # text — "75" (पचहत्तर, verified spoken_form() converts it correctly) came out as the nonsense
+  # "पच्छटर", plus मिडफील्डर/समृद्ध/महत्वाकांक्षाओं/सर्वश्रेष्ठ all garbled despite correct spelling on
+  # screen — confirmed via a real ASR transcript, not impression. Chatterbox's dedicated Hindi
+  # finetune (voice/chatterbox.mjs's tier gate) is back on for bharat. world/usa/uk stay on edge — their
+  # test renders showed no such issue.
+  CHATTERBOX_TTS: '1'
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
