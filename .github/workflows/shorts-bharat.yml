@@ -222,7 +222,7 @@ jobs:
         with:
           name: short-bharat-${{ env.SHORTS_STAMP }}
           path: docs/shorts/bharat/
-          retention-days: 7
+          retention-days: 1
           if-no-files-found: warn
       - name: Save cinematic ONNX depth/matte maps + parallax clips (grows the shared cache for every channel)
         if: always() && env.SHORTS_DEPTH_3D == '1'
