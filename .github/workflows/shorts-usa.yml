@@ -31,6 +31,20 @@ permissions:
   contents: read # renders upload as artifacts (below), not committed to the repo
 
 env:
+  # ── IMAGE CORPUS WIDTH (2026-09-02, user: "large corpus of valid URLs which is related to story").
+  # Real render 33599163224 showed only 8 DISTINCT images cycled across 18 windows ("looks like ~5").
+  # Root causes fixed together: (1) LLM judge rank-to-tail in code (shorts/visuals.mjs); (2) the 648px
+  # full-frame width gate rejecting real sub-threshold photos -> 0.4*W (432px), a slightly-soft REAL
+  # on-topic photo beats a #kb re-frame; (3) OPENVERSE was a DARK FLAG -- the secrets existed but were
+  # never in any workflow env, so it ran UNAUTHENTICATED (page_size 20, 500s); wired now -> authed
+  # (page_size 50, higher rate) = a much bigger, more reliable per-entity pool; (4) raise the pool caps
+  # so a big story keeps its big pool. All fail-open (unset = prior behavior).
+  SHORTS_FULLFRAME_MIN_IMG_FRAC: '0.4'
+  OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+  OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  WORLD_MAX_STORY_IMAGES: '40'
+  ENTITY_IMG_POOL_MAX: '12'
+  ENTITY_IMG_MAX: '8'
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   # ── CHATTERBOX TTS (Modal GPU) — staged rollout, usa (EN) first (2026-08-30) ──
   # Natural-voice engine on Modal (services/chatterbox/modal_app.py, scale-to-zero, $0 within the $30/mo
