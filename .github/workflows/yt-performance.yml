@@ -11,7 +11,8 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: yt-performance
+  # unique per run so same-workflow dispatches run in PARALLEL, never queue (user 2026-09-02)
+  group: yt-performance-${{ github.run_id }}
   cancel-in-progress: false
 
 permissions:

@@ -24,7 +24,8 @@ on:
         default: ''
 
 concurrency:
-  group: shorts-world
+  # unique per run so same-workflow dispatches run in PARALLEL, never queue (user 2026-09-02)
+  group: shorts-world-${{ github.run_id }}
   cancel-in-progress: false
 
 permissions:
