@@ -31,6 +31,7 @@ permissions:
   contents: read
 
 env:
+  EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
   # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
   CHATTERBOX_TTS: '1'
