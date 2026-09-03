@@ -32,6 +32,7 @@ permissions:
   contents: read # renders upload as artifacts (below), not committed to the repo
 
 env:
+  SHORTS_SAFE_MOTION: '1'  # subject-bbox-aware Ken-Burns replacing slidePan (2026-09-03, Phase 1 of the pipeline rewrite) — single-channel rollout, watch this run before fleet-wide
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   # ── IMAGE CORPUS WIDTH (2026-09-02, user: "large corpus of valid URLs which is related to story").
   # Real render 33599163224 showed only 8 DISTINCT images cycled across 18 windows ("looks like ~5").
