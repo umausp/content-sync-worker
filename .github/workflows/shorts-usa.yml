@@ -54,6 +54,7 @@ env:
   SHORTS_FULLFRAME_MIN_IMG_FRAC: '0.4'
   OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
   OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  SHORTS_OPENVERSE_PAGE_SIZE: '100'  # authed tier (Openverse app email verified 2026-09-05); anon caps at 20. Effective = min(this, limit*3) in shorts/media/openverse.mjs; fail-open on any 4xx.
   WORLD_MAX_STORY_IMAGES: '40'
   ENTITY_IMG_POOL_MAX: '12'
   ENTITY_IMG_MAX: '8'
