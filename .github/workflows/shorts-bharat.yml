@@ -82,6 +82,7 @@ env:
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
   OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
   OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  SHORTS_OPENVERSE_PAGE_SIZE: '100'  # authed tier (Openverse app email verified 2026-09-05); anon caps at 20. Effective = min(this, limit*3) in shorts/media/openverse.mjs; fail-open on any 4xx.
   # NATIVE-LANGUAGE WIKIPEDIA (2026-09-02, real evidence: Devanagari entity names were being
   # looked up against en.wikipedia.org and 404ing every time — src/entity_images.mjs's
   # WIKI_LANG defaults to 'en' unless told otherwise). Matches this channel's scriptLang.
