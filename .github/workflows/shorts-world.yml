@@ -112,6 +112,7 @@ env:
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
   OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
   OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  SHORTS_OPENVERSE_PAGE_SIZE: '100'  # authed tier (Openverse app email verified 2026-09-05); anon caps at 20. Effective = min(this, limit*3) in shorts/media/openverse.mjs; fail-open on any 4xx.
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama
   #    last (user: "use AI model with NVidia following others and fallback to ollama").
