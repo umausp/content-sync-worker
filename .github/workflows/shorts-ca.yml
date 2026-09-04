@@ -87,6 +87,8 @@ env:
   # image call proceeds exactly as before this existed (anonymous, same as today).
   WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+  OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
   # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
   #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama last.
   #    A provider is skipped if its key is absent; fail-fast. This turns the raw article body

@@ -92,6 +92,8 @@ env:
   # image call proceeds exactly as before this existed (anonymous, same as today).
   WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
   WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+  OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
   # ── LLM PROVIDER LADDER — same shared router as the news pipeline + shorts-world
   #    (src/providers.mjs via shorts/llm.mjs), NVIDIA-first, local Ollama last. This is
   #    what synthesises each story's clean, non-repetitive brief. ──
