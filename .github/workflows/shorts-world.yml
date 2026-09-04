@@ -32,6 +32,15 @@ permissions:
   contents: read # renders upload as artifacts (below), not committed to the repo
 
 env:
+  # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
+  # rerank + top-N contextual re-synth (Ph7) all run on qwen3.5:397b-cloud via the per-call model
+  # override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
+  # rot) is a 1-line workflow fix, never a silent fallback to gpt-oss:120b. Feature gates
+  # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
+  SHORTS_LLM_RERANK_MODEL: 'qwen3.5:397b-cloud'
+  SHORTS_LLM_ASSEMBLY_MODEL: 'qwen3.5:397b-cloud'
+  SHORTS_RESEARCH_MODEL: 'qwen3.5:397b-cloud'
+  SHORTS_RESEARCH_SYNTH_MODEL: 'qwen3.5:397b-cloud'
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
   # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
