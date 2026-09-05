@@ -43,6 +43,7 @@ env:
   SHORTS_RESEARCH_SYNTH_MODEL: 'qwen3.5:397b-cloud'
   SHORTS_SAFE_MOTION: '1'  # subject-bbox-aware Ken-Burns replacing slidePan (2026-09-03, Phase 1 of the pipeline rewrite) — single-channel rollout, watch this run before fleet-wide
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
+  EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
   # ── IMAGE CORPUS WIDTH (2026-09-02, user: "large corpus of valid URLs which is related to story").
   # Real render 33599163224 showed only 8 DISTINCT images cycled across 18 windows ("looks like ~5").
   # Root causes fixed together: (1) LLM judge rank-to-tail in code (shorts/visuals.mjs); (2) the 648px
