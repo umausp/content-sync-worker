@@ -1,0 +1,114 @@
+name: shorts-reupload
+
+# Re-upload an ALREADY-RENDERED Short from a prior run's artifact WITHOUT re-rendering. Reuses a good
+# render and avoids the paid LLM/TTS/Modal spend of a fresh build. Use when a render succeeded and passed
+# the CONTENT_BIBLE §10 quality gate but the UPLOAD step failed for a transient/credential reason (real
+# case: the 2026-09-06 bharat CHANNEL-IDENTITY guard false-positive after @agyata_dot_com was renamed in
+# Studio, "Agyata भारत" -> "Agyata News Hindi").
+#
+# This is NOT a gate bypass: it stages the artifact back to docs/shorts/<channel>/<stamp>/ and runs the
+# SAME shorts/upload.mjs, so the §10 gate re-check, the render re-validation, and the (now id-pinned)
+# channel-identity guard all still run. It checks out the PRIVATE repo's default branch, so it always
+# uses the latest upload fix.
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Channel id (bharat, vi, world, de, jp, ...)'
+        required: true
+        default: 'bharat'
+      run_id:
+        description: 'GitHub Actions run id that produced the artifact (e.g. 34037842678)'
+        required: true
+      stamp:
+        description: 'Render stamp - the artifact is short-<channel>-<stamp> (e.g. 20260906T1403)'
+        required: true
+
+concurrency:
+  group: shorts-reupload-${{ github.event.inputs.channel }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read   # download-artifact reads a DIFFERENT run's artifact -> needs actions:read
+
+env:
+  API_BASE: https://api.agyata.com
+  # Best-effort post-publish hooks (video-dedup ledger lock + news<->video cross-link). Absent -> skipped,
+  # never fatal.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+
+jobs:
+  reupload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private pipeline code (has the upload fix)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      # Node deps + ffmpeg (upload.mjs re-validates the MP4 with ffprobe). Skip ONNX/CLIP/TTS provisioning:
+      # a re-upload renders nothing.
+      - name: Setup (node deps + ffmpeg only)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: ''
+          provision-cinematic: 'false'
+          provision-clip-images: 'false'
+
+      - name: Download the staged artifact from the prior run
+        uses: actions/download-artifact@v4
+        with:
+          name: short-${{ github.event.inputs.channel }}-${{ github.event.inputs.stamp }}
+          path: _artifact
+          run-id: ${{ github.event.inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stage artifact -> docs/shorts/<channel>/<stamp>/
+        run: |
+          set -euo pipefail
+          CH='${{ github.event.inputs.channel }}'
+          ST='${{ github.event.inputs.stamp }}'
+          DEST="docs/shorts/${CH}/${ST}"
+          mkdir -p "$DEST"
+          MP4="$(find _artifact -name short.mp4 | head -1 || true)"
+          if [ -z "$MP4" ]; then
+            echo "ERROR: no short.mp4 found in the downloaded artifact"; find _artifact -type f | head -80; exit 1
+          fi
+          SRC="$(dirname "$MP4")"
+          cp -a "$SRC/." "$DEST/"
+          echo "staged files in $DEST:"; ls -la "$DEST"
+
+      - name: Re-upload to YouTube (same upload.mjs - gate + id-pinned identity guard still apply)
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+        run: node shorts/upload.mjs "${{ github.event.inputs.channel }}" "${{ github.event.inputs.stamp }}"
