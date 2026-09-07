@@ -10,6 +10,10 @@ name: shorts-world
 on:
   workflow_dispatch:
     inputs:
+      fastpath:
+        description: 'SHORTS_FASTPATH (1 = only render if the lead story clears the high-stakes fast-path bar; empty/normal run otherwise)'
+        required: false
+        default: ''
       category:
         description: 'SHORTS_CATEGORY_FILTER'
         required: false
@@ -87,6 +91,7 @@ env:
   LONGFORM_RAG_TRACE: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
+  SHORTS_FASTPATH: ${{ github.event.inputs.fastpath }}
   API_BASE: https://api.agyata.com
   SHORTS_PY: python # the workflow's venv python (set on PATH below)
   # PUBLIC + monetized — English (@AgyataWorld) publishes live like the native channels
