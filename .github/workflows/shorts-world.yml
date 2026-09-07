@@ -59,6 +59,7 @@ env:
   CBX_QC: '1'   # QC safety net: ASR-verify Chatterbox beats, fail-open on persistent gibberish (es/pt/EN only; bharat excluded, 2026-08-31)
   CBX_QC_RESCUE: '1'   # content-fix rescue (3b): on a persistent ASR mismatch, ask Ollama Cloud gemma4:31b for a targeted respelling before giving up (2026-08-31)
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
+  SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM image gate (Ollama Cloud gemma4:31b) — prune hallucinated off-topic photos before planShots; fail-open, staged world/au first (never bharat) 2026-09-07
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
