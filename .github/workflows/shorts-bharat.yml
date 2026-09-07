@@ -93,6 +93,8 @@ env:
   # WIKI_LANG defaults to 'en' unless told otherwise). Matches this channel's scriptLang.
   ENTITY_WIKI_LANG: 'hi'
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
+  SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (gemma4:31b), fail-open (fleet rollout 2026-09-07)
+  SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
   # PUBLIC upload (user 2026-08-05: "all channels public") — build_short reads SHORTS_PRIVACY into
   # meta.privacyStatus → upload.mjs. bharat previously had no line (defaulted unlisted); made public.
   SHORTS_PRIVACY: public
