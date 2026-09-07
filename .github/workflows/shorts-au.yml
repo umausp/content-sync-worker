@@ -82,6 +82,13 @@ env:
   # STILL gated per-story by isDepthWorthy even here (a thin story ships at today's normal length
   # regardless of this flag). au is the one channel testing this before any wider rollout.
   SHORTS_LONG_MICROARC: '1'
+  # SCOPED TEST (2026-09-07, real incident on THIS channel — run 34023683369 shipped an 83.3s video
+  # whose stated "150-180s" target mismatched its actual 6-beat count, tripped the clipTooHeavy
+  # cinematic-finish skip, and froze): assessStoryValue/durationTargetFor keep the prompt's stated
+  # duration consistent with the real beat count instead of a fixed binary string. See
+  # docs/acceptance/shorts-intelligent-duration.json. au is the one channel proving this before wider
+  # rollout, same convention as SHORTS_LONG_MICROARC above.
+  SHORTS_INTELLIGENT_DURATION: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   API_BASE: https://api.agyata.com
