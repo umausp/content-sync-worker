@@ -93,6 +93,12 @@ env:
   # docs/acceptance/shorts-intelligent-duration.json. au is the one channel proving this before wider
   # rollout, same convention as SHORTS_LONG_MICROARC above.
   SHORTS_INTELLIGENT_DURATION: '1'
+  # SCOPED TEST (2026-09-07, real incident on THIS channel — run 34104108639 shipped a real 55s freeze
+  # on an unrelated image, frame-verified). Replaces the multi-window chained-xfade composite with
+  # per-window trivial clips + a hard-cut concat (render.mjs's buildBackgroundTrack) — fail-open to
+  # today's path on any error. au proves this before wider rollout, same convention as the two flags
+  # above.
+  SHORTS_BG_PRERENDER: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   SHORTS_FASTPATH: ${{ github.event.inputs.fastpath }}
