@@ -61,7 +61,7 @@ env:
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM image gate (Ollama Cloud gemma4:31b) — prune hallucinated off-topic photos before planShots; fail-open, staged world/au first (never bharat) 2026-09-07
-  RESEARCH_POD: '1'      # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, adds early "So What?" civilian stake + real counterpoint + grounded facts. Fail-open; Modal grounding/rerank degrade to null until deployed. Staged world first (never bharat) 2026-09-08. RESEARCH_POD_STAKE_DROP left OFF (observe quality first).
+  RESEARCH_POD: '0'      # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, adds early "So What?" civilian stake + real counterpoint + grounded facts. Fail-open; Modal grounding/rerank degrade to null until deployed. Staged world first (never bharat) 2026-09-08. RESEARCH_POD_STAKE_DROP left OFF (observe quality first).
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   # ROLLED BACK 2026-08-28 (user: distorted first frames + shorts landing 20-30s, not 45-60s) —
