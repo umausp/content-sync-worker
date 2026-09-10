@@ -255,9 +255,9 @@ jobs:
       # LAST content-generating step: SEO-friendly title/description/hashtags for Facebook,
       # Instagram and X, derived from the SAME meta.json used for the YouTube upload above.
       # Generation only — nothing is posted to any platform (no app review, no new secrets).
-      # Writes docs/shorts/world/<stamp>/social.json (thumbnail bundled as base64) and prints
-      # a preview to the job's step summary, so the pack survives the purge step below even
-      # though the staged file itself doesn't. Best-effort: never blocks the pipeline.
+      # Writes docs/shorts/world/<stamp>/social.json (meta+thumbnail+video bundled as base64) and
+      # prints a caption preview to the job's step summary, so the pack survives the purge step
+      # below even though the staged file itself doesn't. Best-effort: never blocks the pipeline.
       - name: Generate social captions (Facebook/Instagram/X)
         if: always()
         continue-on-error: true
