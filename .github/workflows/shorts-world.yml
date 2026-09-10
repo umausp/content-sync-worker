@@ -252,6 +252,17 @@ jobs:
           node shorts/upload.mjs world "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
+      # LAST content-generating step: SEO-friendly title/description/hashtags for Facebook,
+      # Instagram and X, derived from the SAME meta.json used for the YouTube upload above.
+      # Generation only — nothing is posted to any platform (no app review, no new secrets).
+      # Writes docs/shorts/world/<stamp>/social.json (thumbnail bundled as base64) and prints
+      # a preview to the job's step summary, so the pack survives the purge step below even
+      # though the staged file itself doesn't. Best-effort: never blocks the pipeline.
+      - name: Generate social captions (Facebook/Instagram/X)
+        if: always()
+        continue-on-error: true
+        run: node shorts/social_meta.mjs world "$SHORTS_STAMP"
+
       # ARTIFACT is a REVIEW COPY only — kept solely when the YouTube upload did NOT happen
       # (no token yet, or upload errored). On a PUBLIC repo an artifact is publicly
       # downloadable, so once the video is safely on YouTube (public) we never publish it
