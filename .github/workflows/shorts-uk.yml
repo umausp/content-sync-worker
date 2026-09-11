@@ -240,6 +240,31 @@ jobs:
           node shorts/upload.mjs uk "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
+      # Ship the finished Short to the private-pipeline repo: mp4 + SEO Facebook/Instagram/X
+      # post text (with hashtags), built straight from meta.json (independent of the "Generate
+      # social captions" preview step above). Runs right after the YouTube upload so a render
+      # that never got this far never lands here either. Best-effort: a push failure is logged,
+      # never fails the run (the video is already live on YouTube).
+      - name: Publish video + social posts to private repo
+        if: always()
+        continue-on-error: true
+        run: |
+          node shorts/publish_video.mjs uk "$SHORTS_STAMP"
+          if [ -n "$(git status --porcelain -- video/shorts 2>/dev/null)" ]; then
+            git config user.name "umausp"
+            git config user.email "4384869+umausp@users.noreply.github.com"
+            git add video/shorts
+            git commit -m "chore(shorts): publish uk short + social posts ($SHORTS_STAMP)"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase origin main && git push origin main; then ok=1; break; fi
+              echo "[publish:uk] push attempt $i failed — retrying"; sleep $((i * 5))
+            done
+            if [ "$ok" != "1" ]; then echo "[publish:uk] push FAILED after retries — video stayed on YouTube, artifacts not pushed"; fi
+          else
+            echo "[publish:uk] nothing to publish"
+          fi
+
       # ARTIFACT is a REVIEW COPY only — kept solely when the YouTube upload did NOT happen
       # (no token yet, or upload errored). On a PUBLIC repo an artifact is publicly
       # downloadable, so once the video is safely on YouTube (public) we never publish it
