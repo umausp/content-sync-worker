@@ -154,6 +154,7 @@ env:
   OPENAI_DAILY_CAP: '30'
   OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gemma4:31b' }}  # global default (user 2026-09-12: gpt-oss:120b removed, non-reasoning gemma4). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to gemma4:31b via gh secret set.
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_GLOBAL_CONCURRENCY: '0'  # 2026-09-12: DISABLE cross-job Ollama D1 semaphore (0=off). Its per-LLM-call acquire/release via api-gateway->news-svc, plus a 120s backoff poll storm under contention (providers.mjs acquireGlobalOllama), was flooding those Workers toward the 100k/day free-tier cap. Fail-open: in-process gate + 6-retry adapter still protect a single job. Re-enable with a positive cap.
   SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   OLLAMA_MAX_TRIES: '6'
   PROVIDER_HOSTED_TIMEOUT_MS: '60000'
