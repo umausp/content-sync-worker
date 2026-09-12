@@ -136,7 +136,7 @@ env:
   #    shorts/llm.mjs is now a thin adapter over it. A provider is skipped if its key is
   #    absent; fail-fast (one try/provider, bench on failure, never retry). This is what
   #    turns the raw article body into a clean, non-repetitive brief per story. ──
-  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY (user 2026-09-12: "it should first hit the ollama cloud only"). Free-tier fallbacks were all dead (cerebras 402, nvidia 410, gitmodels retired, sambanova/mistral 429, openrouter/cohere timeout) — pure latency+log-noise. Ollama Max is the sole engine (project_ollama_max_switch); the 6-retry adapter + pipeline fail-open handle a transient blip.
   SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
   PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud primary (user 2026-08-03: ollama first, free tiers fallback)
   WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.

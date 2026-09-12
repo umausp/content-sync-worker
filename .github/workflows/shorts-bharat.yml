@@ -149,7 +149,7 @@ env:
   # the paid key can call (2.0/2.5 404 for new billing projects) and is a rot-proof alias.
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
-  PROVIDER_ORDER: 'ollama,cerebras,openrouter,sambanova,nvidia,cohere,mistral,gitmodels,huggingface,huggingface1'
+  PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY (user 2026-09-12: "it should first hit the ollama cloud only"). Free-tier fallbacks were all dead (cerebras 402, nvidia 410, gitmodels retired, sambanova/mistral 429, openrouter/cohere timeout) — pure latency+log-noise. Ollama Max is the sole engine (project_ollama_max_switch); the 6-retry adapter + pipeline fail-open handle a transient blip.
   PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud primary (user 2026-08-03: ollama first, free tiers fallback)
   WM_RENDER_CLAIMS: '1'
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
