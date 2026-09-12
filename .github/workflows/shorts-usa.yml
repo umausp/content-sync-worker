@@ -37,14 +37,15 @@ permissions:
 
 env:
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
-  # rerank + top-N contextual re-synth (Ph7) all run on qwen3.5:397b-cloud via the per-call model
-  # override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
+  # image rerank + contextual assembly run on qwen3.5:397b-cloud; the two RESEARCH stages
+  # (lead-pick rerank + deep synth) run on gpt-oss:120b (user 2026-09-12: research → gpt-oss,
+  # content stays qwen) — all via the per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
   # rot) is a 1-line workflow fix, never a silent fallback to gpt-oss:120b. Feature gates
   # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
   SHORTS_LLM_RERANK_MODEL: 'qwen3.5:397b-cloud'
   SHORTS_LLM_ASSEMBLY_MODEL: 'qwen3.5:397b-cloud'
-  SHORTS_RESEARCH_MODEL: 'qwen3.5:397b-cloud'
-  SHORTS_RESEARCH_SYNTH_MODEL: 'qwen3.5:397b-cloud'
+  SHORTS_RESEARCH_MODEL: 'gpt-oss:120b'  # research lead-pick rerank (user 2026-09-12: research → cheap gpt-oss)
+  SHORTS_RESEARCH_SYNTH_MODEL: 'gpt-oss:120b'  # deep research brief (user 2026-09-12: both research stages)
   SHORTS_SAFE_MOTION: '1'  # subject-bbox-aware Ken-Burns replacing slidePan (2026-09-03, Phase 1 of the pipeline rewrite) — single-channel rollout, watch this run before fleet-wide
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
