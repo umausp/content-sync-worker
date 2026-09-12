@@ -242,31 +242,6 @@ jobs:
           if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
           node shorts/social_publish.mjs ca "$SHORTS_STAMP"
 
-      # Ship the finished Short to the private-pipeline repo: mp4 + SEO Facebook/Instagram/X
-      # post text (with hashtags), built straight from meta.json (independent of the "Generate
-      # social captions" preview step above). Runs right after the YouTube upload so a render
-      # that never got this far never lands here either. Best-effort: a push failure is logged,
-      # never fails the run (the video is already live on YouTube).
-      - name: Publish video + social posts to private repo
-        if: always()
-        continue-on-error: true
-        run: |
-          node shorts/publish_video.mjs ca "$SHORTS_STAMP"
-          if [ -n "$(git status --porcelain -- video/shorts 2>/dev/null)" ]; then
-            git config user.name "umausp"
-            git config user.email "4384869+umausp@users.noreply.github.com"
-            git add video/shorts
-            git commit -m "chore(shorts): publish ca short + social posts ($SHORTS_STAMP)"
-            ok=0
-            for i in 1 2 3 4 5; do
-              if git pull --rebase origin main && git push origin main; then ok=1; break; fi
-              echo "[publish:ca] push attempt $i failed — retrying"; sleep $((i * 5))
-            done
-            if [ "$ok" != "1" ]; then echo "[publish:ca] push FAILED after retries — video stayed on YouTube, artifacts not pushed"; fi
-          else
-            echo "[publish:ca] nothing to publish"
-          fi
-
       # REVIEW COPY only — kept solely when the YouTube upload did NOT happen. On a PUBLIC repo
       # an artifact is publicly downloadable, so once the video is on YouTube we never publish
       # it here. 1-day retention even then.
