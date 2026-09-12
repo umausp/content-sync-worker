@@ -38,14 +38,14 @@ permissions:
 env:
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
   # image rerank + contextual assembly run on qwen3.5:397b-cloud; the two RESEARCH stages
-  # (lead-pick rerank + deep synth) run on gpt-oss:120b (user 2026-09-12: research → gpt-oss,
+  # (lead-pick rerank + deep synth) run on gemma4:31b (user 2026-09-12: non-reasoning gemma4,
   # content stays qwen) — all via the per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
-  # rot) is a 1-line workflow fix, never a silent fallback to gpt-oss:120b. Feature gates
+  # rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
   # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
   SHORTS_LLM_RERANK_MODEL: 'qwen3.5:397b-cloud'
   SHORTS_LLM_ASSEMBLY_MODEL: 'qwen3.5:397b-cloud'
-  SHORTS_RESEARCH_MODEL: 'gpt-oss:120b'  # research lead-pick rerank (user 2026-09-12: research → cheap gpt-oss)
-  SHORTS_RESEARCH_SYNTH_MODEL: 'gpt-oss:120b'  # deep research brief (user 2026-09-12: both research stages)
+  SHORTS_RESEARCH_MODEL: 'gemma4:31b'  # research lead-pick rerank (user 2026-09-12: non-reasoning gemma4; gpt-oss:120b removed — empty reasoning responses)
+  SHORTS_RESEARCH_SYNTH_MODEL: 'gemma4:31b'  # deep research brief (user 2026-09-12: both research stages, non-reasoning gemma4)
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
   # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
@@ -151,7 +151,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
-  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gpt-oss:120b' }}  # switched from deepseek-v4-flash:cloud (dropped off live tag list, #10 model-ID rot; user 2026-08-09)
+  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gemma4:31b' }}  # global default (user 2026-09-12: gpt-oss:120b removed, non-reasoning gemma4). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to gemma4:31b via gh secret set.
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
   SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   OLLAMA_MAX_TRIES: '6'
