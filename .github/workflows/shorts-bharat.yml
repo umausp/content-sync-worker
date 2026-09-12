@@ -43,6 +43,7 @@ permissions:
   contents: read
 
 env:
+  RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
   # image rerank + contextual assembly run on qwen3.5:397b-cloud; the two RESEARCH stages
   # (lead-pick rerank + deep synth) run on gemma4:31b (user 2026-09-12: non-reasoning gemma4,

@@ -49,6 +49,10 @@ jobs:
 
       - name: Fetch YouTube performance → per-topic index
         env:
+          # D1 persistence (2026-09-12): perfStore() writes agyata:ytperf:<channel> to Cloudflare D1 via
+          # api-gateway (Bearer NEWS_INGEST_TOKEN), the reliable store the video runs READ. Without this the
+          # D1 write no-ops and the loop relies only on the committed docs/analytics/*.json git fallback.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
