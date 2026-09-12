@@ -241,6 +241,7 @@ jobs:
         continue-on-error: true
         env:
           SHORTS_SOCIAL_PUBLISH: '1'
+          META_PAGE_ES: '1297861113416822'  # → Agyata Spanish (per-channel routing, user 2026-09-12)
           META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
           META_APP_ID: ${{ secrets.META_APP_ID }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
