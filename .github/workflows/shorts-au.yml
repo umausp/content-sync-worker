@@ -87,7 +87,14 @@ env:
   # micro-arc (research_script.mjs SHORT_ARC extension, up to 6 beats) — default OFF everywhere else,
   # STILL gated per-story by isDepthWorthy even here (a thin story ships at today's normal length
   # regardless of this flag). au is the one channel testing this before any wider rollout.
-  SHORTS_LONG_MICROARC: '1'
+  SHORTS_LONG_MICROARC: '0'  # 2026-09-12: reverted to the normal 3-beat 45-60s tier — user wants <=1 min for FB/IG/YT (was '1' deep 6-beat/150-180s; build_short.mjs 55s narration cap backstops)
+  # SELECTION (user 2026-09-12: "select and produce most blazing and in demand stories"). Reward
+  # slot:'trending' provenance (was inert at weight 0) + lift the hook/attractiveness rerank so
+  # genuinely hot, high-retention picks win. Paired with the widened live-trending pull
+  # (SHORTS_TRENDS_PERGEO/SHORTS_X_PERGEO code defaults). Fact-corroboration gate unchanged (primary).
+  EDITORIAL_W_TRENDING: '6'
+  EDITORIAL_W_HOOK: '5'
+  EDITORIAL_W_ATTRACTIVENESS: '4'
   # SCOPED TEST (2026-09-07, real incident on THIS channel — run 34023683369 shipped an 83.3s video
   # whose stated "150-180s" target mismatched its actual 6-beat count, tripped the clipTooHeavy
   # cinematic-finish skip, and froze): assessStoryValue/durationTargetFor keep the prompt's stated
