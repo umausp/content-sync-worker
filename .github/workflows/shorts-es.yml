@@ -38,14 +38,14 @@ env:
   RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
   # image rerank + contextual assembly run on qwen3.5:397b-cloud; the two RESEARCH stages
-  # (lead-pick rerank + deep synth) run on gemma4:31b (user 2026-09-12: non-reasoning gemma4,
+  # (lead-pick rerank + deep synth) run on deepseek-v4-pro:0813-cloud (user 2026-09-13: off gemma4,
   # content stays qwen) — all via the per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
   # rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
   # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
   SHORTS_LLM_RERANK_MODEL: 'qwen3.5:397b-cloud'
   SHORTS_LLM_ASSEMBLY_MODEL: 'qwen3.5:397b-cloud'
-  SHORTS_RESEARCH_MODEL: 'gemma4:31b'  # research lead-pick rerank (user 2026-09-12: non-reasoning gemma4; gpt-oss:120b removed — empty reasoning responses)
-  SHORTS_RESEARCH_SYNTH_MODEL: 'gemma4:31b'  # deep research brief (user 2026-09-12: both research stages, non-reasoning gemma4)
+  SHORTS_RESEARCH_MODEL: 'deepseek-v4-pro:0813-cloud'  # research lead-pick rerank (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud; adapter sends think:false so no reasoning leak / empty responses; ~5x gemma token cost, user-approved §8)
+  SHORTS_RESEARCH_SYNTH_MODEL: 'deepseek-v4-pro:0813-cloud'  # deep research brief (user 2026-09-13: both research stages on deepseek-v4-pro:0813-cloud, off gemma4:31b)
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
   # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
@@ -148,7 +148,7 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: 'gpt-4o-mini'
   OPENAI_DAILY_CAP: '30'
-  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'gemma4:31b' }}  # global default (user 2026-09-12: gpt-oss:120b removed, non-reasoning gemma4). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to gemma4:31b via gh secret set.
+  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}  # global default (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to deepseek-v4-pro:0813-cloud via gh secret set.
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
   OLLAMA_GLOBAL_CONCURRENCY: '0'  # 2026-09-12: DISABLE cross-job Ollama D1 semaphore (0=off). Its per-LLM-call acquire/release via api-gateway->news-svc, plus a 120s backoff poll storm under contention (providers.mjs acquireGlobalOllama), was flooding those Workers toward the 100k/day free-tier cap. Fail-open: in-process gate + 6-retry adapter still protect a single job. Re-enable with a positive cap.
   SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
