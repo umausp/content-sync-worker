@@ -247,6 +247,25 @@ jobs:
           node shorts/upload.mjs uk "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
 
+      # AUTO-POST to Facebook Pages + their linked Instagram accounts via the Meta Graph API — the
+      # same token-based model as the YouTube upload above (user 2026-09-12: "use graph API and post
+      # like you are doing for youtube ... post on all pages that it has with post and video"). Reads
+      # the staged Short from STAGE_DIR (before the purge below) and posts the video with an SEO
+      # caption + hashtags. Skips cleanly until META_USER_TOKEN is set; best-effort — never fails run.
+      - name: Auto-post to Facebook + Instagram (Graph API)
+        if: always()
+        continue-on-error: true
+        env:
+          SHORTS_SOCIAL_PUBLISH: '1'
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_APP_ID: ${{ secrets.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          THREADS_USER_TOKEN: ${{ secrets.THREADS_USER_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        run: |
+          if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
+          node shorts/social_publish.mjs uk "$SHORTS_STAMP"
+
       # Ship the finished Short to the private-pipeline repo: mp4 + SEO Facebook/Instagram/X
       # post text (with hashtags), built straight from meta.json (independent of the "Generate
       # social captions" preview step above). Runs right after the YouTube upload so a render
