@@ -55,6 +55,7 @@ env:
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (gemma4:31b), fail-open (fleet rollout 2026-09-07)
+  SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-09-13: replace gemma4:31b on the pixel-truth image gate with a flagship-flash multimodal model (both vision-capable; deepseek-flash ~2.3s/img vs gemma ~1.6s; qwen3.5:397b ~5.1s = too slow for a 24-image gate). think:false already set (visual_gate.mjs). Fail-open; revert to gemma4:31b if pruning regresses.
   SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
