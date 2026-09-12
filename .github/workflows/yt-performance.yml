@@ -6,6 +6,11 @@ name: yt-performance
 # The video runs read those files (editorial.loadTopicPerformance) and weight the story score by how
 # well each topic actually performs. Read-only against YouTube (no publish); commits only the JSON.
 #
+# ALSO runs the Meta (Facebook + Instagram) half — shorts/social_performance.mjs — so the picker learns
+# from EVERY platform a Short posts to, not YouTube alone (user 2026-09-12: "add fb and insta (meta)
+# analytics as well … use them in scoring"). Same normalisation, so editorial.loadTopicPerformance can
+# MERGE the YT + FB/IG per-topic maps into one weight-8 performance term. Read-only against Meta too.
+#
 # CADENCE: agyata-cron-pinger dispatches it a few times a day (performance changes slowly). Public repo.
 on:
   workflow_dispatch: {}
@@ -73,6 +78,35 @@ jobs:
           YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
         run: node shorts/yt_performance.mjs
 
+      - name: Fetch social (FB+IG) performance → per-topic index
+        # The Meta half of the loop: enumerate each channel's recent FB Page videos + linked-IG reels,
+        # pull insights, classify by caption, write agyata:socialperf:<chan> to D1 (NEWS_INGEST_TOKEN) +
+        # docs/analytics/social-performance-*.json (committed below). Read-only; fail-open (never throws),
+        # continue-on-error so a Meta hiccup can never redden the YouTube refresh above.
+        continue-on-error: true
+        env:
+          SHORTS_SOCIAL_PUBLISH: '1'   # gate: only measure social while we're actually posting there
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_APP_ID: ${{ secrets.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          # Per-channel Page routing — the SAME literals each shorts-<chan>.yml posts through
+          # (resolvePagesForChannel). The English channels share the Agyata World Page.
+          META_PAGE_WORLD: '1402811506238024'
+          META_PAGE_USA: '1402811506238024'
+          META_PAGE_UK: '1402811506238024'
+          META_PAGE_CA: '1402811506238024'
+          META_PAGE_AU: '1402811506238024'
+          META_PAGE_BHARAT: '1128779813662597'
+          META_PAGE_FR: '1211796125361321'
+          META_PAGE_JP: '1303550579508550'
+          META_PAGE_ES: '1297861113416822'
+          META_PAGE_SV: '1458580263997062'
+          META_PAGE_PL: '1256328030904703'
+          META_PAGE_TR: '1303613346172249'
+          META_PAGE_AR: '1345843468605430'
+        run: node shorts/social_performance.mjs
+
       - name: Commit topic-performance
         run: |
           git config user.name "agyata-analytics-bot"
@@ -81,7 +115,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "no performance change — nothing to commit"
           else
-            git commit -m "analytics: refresh per-topic YouTube performance [skip ci]"
+            git commit -m "analytics: refresh per-topic YouTube + FB/IG performance [skip ci]"
             for attempt in 1 2 3; do
               if git push; then break; fi
               echo "push rejected (attempt $attempt) — rebasing onto latest main…"
