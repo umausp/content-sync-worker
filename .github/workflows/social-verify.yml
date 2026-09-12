@@ -1,0 +1,26 @@
+# Manual auth check for the Meta Graph API auto-poster (shorts/social_publish.mjs). Posts NOTHING —
+# it just proves META_USER_TOKEN works and lists every managed Facebook Page + linked Instagram
+# account (with ids), so per-channel META_PAGE_<CHAN> routing secrets can be built. Run via the
+# Actions tab (workflow_dispatch) or `gh workflow run social-verify.yml`.
+name: Verify social auth (Meta Graph API)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+
+      - name: List managed Pages + Instagram accounts (posts nothing)
+        env:
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_APP_ID: ${{ secrets.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+        run: node shorts/social_publish.mjs --list
