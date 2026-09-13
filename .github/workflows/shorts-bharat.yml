@@ -175,7 +175,7 @@ env:
   OPENAI_DAILY_CAP: '30'
   OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}  # global default (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to deepseek-v4-pro:0813-cloud via gh secret set.
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
-  OLLAMA_GLOBAL_CONCURRENCY: '0'  # 2026-09-12: DISABLE cross-job Ollama D1 semaphore (0=off). Its per-LLM-call acquire/release via api-gateway->news-svc, plus a 120s backoff poll storm under contention (providers.mjs acquireGlobalOllama), was flooding those Workers toward the 100k/day free-tier cap. Fail-open: in-process gate + 6-retry adapter still protect a single job. Re-enable with a positive cap.
+  OLLAMA_GLOBAL_CONCURRENCY: '10'  # 2026-09-13: RE-ENABLED cross-job Ollama D1 semaphore (cap=10 = Ollama Max concurrency) after the Cloudflare free-tier quota reset (was '0' since 2026-09-12, when per-LLM-call acquire/release via api-gateway->news-svc + a 120s backoff poll storm under contention flooded those Workers toward the 100k/day cap). Fail-open on D1 error; the poll-storm amplifier under contention is still unfixed — watch news-svc request volume.
   SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
   OLLAMA_MAX_TRIES: '6'
   CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
