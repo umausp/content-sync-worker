@@ -26,7 +26,7 @@ on:
       days:
         description: 'Recency window in days (default 8 = weekly + 1d overlap)'
         required: false
-        default: ''
+        default: '60'  # TEMP 2026-09-15: 2-month window to drain the comment backlog; REVERT to '' (→8, weekly) once cleared
       max:
         description: 'Max replies per channel per run (quota guard; default 20)'
         required: false
