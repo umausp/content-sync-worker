@@ -259,8 +259,8 @@ jobs:
         if: always()
         continue-on-error: true
         env:
-          SHORTS_SOCIAL_PUBLISH: '0'
-          META_PAGE_AU: '1402811506238024'  # → Agyata World (per-channel routing, user 2026-09-12)
+          SHORTS_SOCIAL_PUBLISH: '1'
+          META_PAGE_AU: ''  # un-mapped from Agyata World 2026-09-14 per user (only shorts-usa -> Agyata World; no other English Page, so FB posts nowhere; YouTube unaffected)
           META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
           META_APP_ID: ${{ secrets.META_APP_ID }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
