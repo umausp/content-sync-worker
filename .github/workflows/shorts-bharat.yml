@@ -43,6 +43,7 @@ permissions:
   contents: read
 
 env:
+  CURIOSITY_SHORTS: '1'  # curiosity-essay vertical — the daily SINGLE slot leads with a grounded per-region curiosity/hidden-logic essay (gather_stories.mjs first branch, SINGLE-only), FAIL-OPEN to news when no topic clears the anti-pseudoscience gate (auditGrounding). 2 flat-rate Ollama calls/video (scout+script, $0 on Ollama Max, never paid Gemini). Fleet-wide go-live 2026-09-14.
   SHORTS_CAPTIONS: '1'  # synced karaoke captions — real edge WordBoundary word timings threaded end-to-end (captionWords uses verbatim words, no syllable-estimate drift). Fleet-wide go-live 2026-09-14 after render-proven sync fix (was OFF: the estimate ran ahead = fast-forward). Fail-open: no real words -> caption track omitted.
   RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
