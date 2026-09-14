@@ -1,0 +1,116 @@
+name: shorts-reply-comments
+
+# WEEKLY comment-reply bot (user 2026-09-14: "create a script which will weekly go through all the
+# comments and reply only on new comments ... reply with dynamic comments ... run as a workflow weekly
+# for all the channels using cloudflare pinger"). One job, ALL channels: shorts/reply_comments.mjs --all
+# walks every config, DEDUPES by the refresh token each resolves to (native playlists share
+# YT_REFRESH_TOKEN_WORLD → @AgyataWorld's comment stream is scanned once, not once per playlist), and
+# posts ONE short, warm reply to each NEW top-level comment it hasn't already answered.
+#
+# DYNAMIC replies via Ollama Cloud (PROVIDER_ORDER='ollama' → flat-rate, NEVER paid Gemini — CLAUDE.md
+# §8). Each reply is generated per comment (SHORTS_REPLY_MODEL), sanitised (no links/@mentions/claims),
+# and falls back to a localized template bank on any LLM failure so the bot never posts junk or breaks.
+#
+# COST/QUOTA guard: comments.insert = 50 quota units; a hard --max cap (default 20/channel) bounds both
+# YouTube quota and Ollama Cloud calls per run. STATELESS: the "already replied?" check reads each
+# thread's own inline replies, so nothing is committed back (CLAUDE.md §6 — no CI state).
+#
+# SCOPE: posting a reply REQUIRES the youtube.force-ssl OAuth scope. Tokens minted before 2026-09-14
+# lack it → every reply 403s (logged, non-fatal). Re-mint via shorts/get_token.mjs to activate.
+#
+# CADENCE: dispatched WEEKLY by the agyata-cron-pinger (parent repo services/cron-pinger). --days=8 so a
+# weekly run overlaps the previous window and never misses a comment on the seam. Public repo = free minutes.
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Recency window in days (default 8 = weekly + 1d overlap)'
+        required: false
+        default: ''
+      max:
+        description: 'Max replies per channel per run (quota guard; default 20)'
+        required: false
+        default: ''
+      dry:
+        description: 'Set to 1 to PREVIEW replies without posting (no LLM spend, no writes)'
+        required: false
+        default: ''
+
+concurrency:
+  # unique per run so a manual dispatch never queues behind the scheduled one (project convention)
+  group: shorts-reply-comments-${{ github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read # stateless — reads comments, posts replies; commits nothing
+
+env:
+  # GATE (CLAUDE.md §2 — no dark flags): the scheduled path is live only when this is set. It IS set here.
+  SHORTS_REPLY: '1'
+  # Dynamic-reply model on Ollama Cloud. Kept in workflow env (not only the code default) so a rotted
+  # Ollama Cloud tag (§10 model-ID rot) is a 1-line fix here, never a silent fallback. Cheap cloud tier.
+  SHORTS_REPLY_MODEL: 'deepseek-v4-pro:0813-cloud'
+  # LLM router: Ollama Cloud ONLY — reply_comments also pins order:['ollama'] per call, so paid Gemini is
+  # never reachable even if a future edit forgets the pin. Matches the shorts-*.yml provider ladder.
+  PROVIDER_ORDER: 'ollama'
+  PROVIDER_USE_OLLAMA: '1'
+  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_MAX_TRIES: '6'
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Reply to new comments across every channel
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          # Every channel's refresh token. An unset one resolves to YT_REFRESH_TOKEN_WORLD (playlist mode)
+          # and is deduped by --all, so listing all 23 is safe: present tokens each become one scan target.
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+        run: |
+          ARGS="--all"
+          if [ -n "${{ github.event.inputs.days }}" ]; then ARGS="$ARGS --days=${{ github.event.inputs.days }}"; fi
+          if [ -n "${{ github.event.inputs.max }}" ]; then ARGS="$ARGS --max=${{ github.event.inputs.max }}"; fi
+          if [ "${{ github.event.inputs.dry }}" = "1" ]; then ARGS="$ARGS --dry"; fi
+          echo "running: node shorts/reply_comments.mjs $ARGS"
+          node shorts/reply_comments.mjs $ARGS
