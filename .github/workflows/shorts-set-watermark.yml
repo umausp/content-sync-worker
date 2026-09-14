@@ -1,0 +1,87 @@
+name: shorts-set-watermark
+
+# ON-DEMAND admin one-shot (NOT scheduled — no cron-pinger entry). Sets the channel BRANDING WATERMARK
+# (YouTube watermarks.set) — the persistent subscribe button pinned in every video's corner, back-
+# catalogue included. shorts/set_watermark.mjs generates the brand A-roundel PNG ($0, sharp) and posts it,
+# deduping by refresh token (@AgyataWorld's shared token → set ONCE). One API call brands all uploads; no
+# re-render. See shorts/set_watermark.mjs header for the full contract.
+#
+# SCOPE: needs youtube/force-ssl (all 23 re-minted 2026-09-15). A per-channel failure is logged, never fatal.
+# Run --dry first (resolves channel + checks scope, POSTs nothing), then live on ONE channel, then --all.
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Single channel code (e.g. uk, world); leave empty for --all (every unique channel)'
+        required: false
+        default: ''
+      dry:
+        description: 'Set to 1 to PREVIEW (resolve channel + scope, POST nothing)'
+        required: false
+        default: ''
+      unset:
+        description: 'Set to 1 to REMOVE the watermark instead of setting it (reversible)'
+        required: false
+        default: ''
+
+concurrency:
+  group: shorts-set-watermark-${{ github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read # stateless — sets a channel-level watermark, commits nothing
+
+jobs:
+  watermark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Set the subscribe branding watermark
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+        run: |
+          ARGS="${{ github.event.inputs.channel }}"
+          if [ -z "$ARGS" ]; then ARGS="--all"; fi
+          if [ "${{ github.event.inputs.dry }}" = "1" ]; then ARGS="$ARGS --dry"; fi
+          if [ "${{ github.event.inputs.unset }}" = "1" ]; then ARGS="$ARGS --unset"; fi
+          echo "running: node shorts/set_watermark.mjs $ARGS"
+          node shorts/set_watermark.mjs $ARGS
