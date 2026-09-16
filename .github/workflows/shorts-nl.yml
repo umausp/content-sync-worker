@@ -9,6 +9,11 @@ name: shorts-nl
 on:
   workflow_dispatch:
     inputs:
+      curiosity_long:
+        description: 'Render the LANDSCAPE long-form curiosity deep-dive (4-8 min, watch-hours lane) this run — same as the cron-pinger morning slot. Leave unchecked for a news Short. The cron path uses the separate curiosity field; setting either to true renders long-form.'
+        type: boolean
+        required: false
+        default: false
       curiosity:
         description: 'CURIOSITY_SHORTS (1 = render a curiosity essay this run; empty = news). Set by the cron-pinger morning slot; empty on the evening news slot, fast-path, and manual runs.'
         required: false
@@ -39,9 +44,9 @@ permissions:
   contents: read
 
 env:
-  CURIOSITY_SHORTS: ${{ github.event.inputs.curiosity }}  # per-slot curiosity vertical (2/day news+curiosity, 2026-09-14): the cron-pinger MORNING slot (08:00 local) passes curiosity=1 -> a grounded per-region curiosity essay (gather_stories.mjs first branch, SINGLE-only, FAIL-OPEN to news if none clears auditGrounding); the EVENING news slot (19:00) + fast-path + manual runs leave it empty -> news. $0 (2 Ollama calls/video, never paid Gemini).
-  CURIOSITY_LONG: ${{ github.event.inputs.curiosity }}  # 2026-09-16: the MORNING slot (08:00 local, curiosity=1) now renders the LANDSCAPE deep-dive LONG-FORM (4-8 min, watch-hours lane) instead of a Short. gather_stories CURIOSITY_LONG branch -> poolCuriosityDeep single-topic essay; fail-open to curiosity-short then news. Empty on the evening news slot.
-  SHORTS_ORIENTATION: ${{ github.event.inputs.curiosity == '1' && 'landscape' || '' }}  # 16:9 dims for the morning long slot AND exemption from the 180s Shorts duration ceiling; portrait/news otherwise.
+  CURIOSITY_SHORTS: ${{ (github.event.inputs.curiosity == '1' || github.event.inputs.curiosity_long == 'true') && '1' || '' }}  # per-slot curiosity vertical (2/day news+curiosity, 2026-09-14): the cron-pinger MORNING slot (08:00 local) passes curiosity=1 -> a grounded per-region curiosity essay (gather_stories.mjs first branch, SINGLE-only, FAIL-OPEN to news if none clears auditGrounding); the EVENING news slot (19:00) + fast-path + manual runs leave it empty -> news. $0 (2 Ollama calls/video, never paid Gemini).
+  CURIOSITY_LONG: ${{ (github.event.inputs.curiosity == '1' || github.event.inputs.curiosity_long == 'true') && '1' || '' }}  # 2026-09-16: the MORNING slot (08:00 local, curiosity=1) now renders the LANDSCAPE deep-dive LONG-FORM (4-8 min, watch-hours lane) instead of a Short. gather_stories CURIOSITY_LONG branch -> poolCuriosityDeep single-topic essay; fail-open to curiosity-short then news. Empty on the evening news slot.
+  SHORTS_ORIENTATION: ${{ (github.event.inputs.curiosity == '1' || github.event.inputs.curiosity_long == 'true') && 'landscape' || '' }}  # 16:9 dims for the morning long slot AND exemption from the 180s Shorts duration ceiling; portrait/news otherwise.
   SHORTS_CAPTIONS: '1'  # synced karaoke captions — real edge WordBoundary word timings threaded end-to-end (captionWords uses verbatim words, no syllable-estimate drift). Fleet-wide go-live 2026-09-14 after render-proven sync fix (was OFF: the estimate ran ahead = fast-forward). Fail-open: no real words -> caption track omitted.
   RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
   # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
