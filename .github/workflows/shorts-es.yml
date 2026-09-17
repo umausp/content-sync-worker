@@ -182,7 +182,9 @@ jobs:
     # BUMPED 40->60 (2026-09-01, fleet rollout of SHORTS_LONG_MICROARC): a deep-tier 6-beat/150-180s
     # micro-arc needs more render wall-time than the 3-beat/45-90s baseline this 40min budget was
     # sized for.
-    timeout-minutes: 60
+    # 120min for every run (user 2026-09-17, "for simplicity make all job 120 minutes"): the morning
+    # curiosity deep-dive overran the old 60min cap mid-encode (shorts-pl 2026-09-16 cancelled at ~61min).
+    timeout-minutes: 120
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4

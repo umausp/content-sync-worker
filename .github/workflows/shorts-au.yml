@@ -194,7 +194,9 @@ jobs:
     # below) needs proportionally more render wall-time than the 3-beat/45-90s baseline this 40min budget
     # was sized for — raised so a job timeout doesn't mask whether the FEATURE itself works. Revert to 40
     # once this test is done (or if the deep tier proves it fits comfortably under 40 anyway).
-    timeout-minutes: 60
+    # 120min for every run (user 2026-09-17, "for simplicity make all job 120 minutes"): the morning
+    # curiosity deep-dive overran the old 60min cap mid-encode (shorts-pl 2026-09-16 cancelled at ~61min).
+    timeout-minutes: 120
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
