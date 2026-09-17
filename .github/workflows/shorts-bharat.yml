@@ -69,16 +69,24 @@ env:
   SHORTS_RESEARCH_SYNTH_MODEL: 'deepseek-v4-pro:0813-cloud'  # deep research brief (user 2026-09-13: both research stages on deepseek-v4-pro:0813-cloud, off gemma4:31b)
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
   EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
-  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
-  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
-  # RE-CONFIRMED for Hindi (2026-09-01): the edge-tts A/B test (SCOPED TEST, briefly '0' above) produced
-  # a real render (NBX3RqtcIlA) with edge-tts's hi-IN-MadhurNeural badly mispronouncing correctly-written
-  # text — "75" (पचहत्तर, verified spoken_form() converts it correctly) came out as the nonsense
-  # "पच्छटर", plus मिडफील्डर/समृद्ध/महत्वाकांक्षाओं/सर्वश्रेष्ठ all garbled despite correct spelling on
-  # screen — confirmed via a real ASR transcript, not impression. Chatterbox's dedicated Hindi
-  # finetune (voice/chatterbox.mjs's tier gate) is back on for bharat. world/usa/uk stay on edge — their
-  # test renders showed no such issue.
-  CHATTERBOX_TTS: '1'
+  # ── TTS ENGINE: edge-tts ONLY for bharat — Chatterbox OMITTED (2026-09-17) ──
+  # HISTORY: Chatterbox (Modal GPU, dedicated Hindi finetune) was ON here from 2026-09-01 after an edge-tts
+  # A/B render (NBX3RqtcIlA) showed hi-IN-MadhurNeural (the MALE voice) garbling Hindi — "75" → the nonsense
+  # "पच्छटर", plus मिडफील्डर/समृद्ध/महत्वाकांक्षाओं garbled despite correct on-screen spelling (real ASR transcript).
+  # ROOT CAUSE of the "very robotic" bharat curiosity Shorts (2026-09-17, run 35176543344): a curiosity
+  # DEEP-DIVE is ONE 60+-chunk single Chatterbox job, and bharat essays are heavily CODE-SWITCHED Hinglish
+  # ("trypsin inhibitors को partially deactivate"). Chatterbox synthesised ~30 chunks fine, then a
+  # code-switched chunk tripped the ZERO-tolerance Whisper QC (CBX_QC_MAX_FAILED_PER_JOB=0) → chatterbox_tts.py
+  # returned mid-loop → the WHOLE 60-chunk essay's audio was discarded and fail-opened to the LAST-RESORT
+  # Piper MEDIUM voice → the entire ~4-min video shipped ROBOTIC. Feeding Hinglish to Chatterbox will always
+  # trip this. User 2026-09-17: "chatterbox will always fail as we are feeding hinglish to it. let's omit
+  # chatterbox and use edge tts." So bharat now speaks edge-tts directly (ttsEngine=edge, primary
+  # edgeVoice=hi-IN-SwaraNeural — the FEMALE voice, which did NOT show the 2026-09-01 male-voice
+  # mispronunciation). build_short.mjs's ttsFallbackChain still routes a Chatterbox failure on ANY
+  # edge-primary channel to edge BEFORE robotic offline piper/kokoro, protecting world/usa/uk (English
+  # Chatterbox turbo) and bharat if ever re-enabled. To re-enable: set '1' — but only once Chatterbox
+  # handles code-switched Hinglish per-chunk instead of failing the whole job.
+  CHATTERBOX_TTS: '0'
   CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   # ── ASR-VERIFY QC GATE (2026-09-01, user: "GPU Whisper-large QC pass for native-language channels
