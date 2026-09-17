@@ -237,6 +237,10 @@ jobs:
         id: yt
         continue-on-error: true
         env:
+          # Durable video-dedup ledger WRITE — upload.mjs calls markPublished/markTopicsPublished/
+          # markCuriosityTopicsPublished here; without this token d1Enabled() is false and every
+          # ledger write silently no-ops → the render step reads an empty ledger → duplicates ship.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           # Own channel token if minted (YT_REFRESH_TOKEN_MX), else the @AgyataWorld token.
