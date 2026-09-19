@@ -55,14 +55,16 @@ env:
   SHORTS_ORIENTATION: ${{ (github.event.inputs.curiosity == '1' || github.event.inputs.curiosity_long == 'true') && 'landscape' || '' }}  # 16:9 dims for the morning long slot AND exemption from the 180s Shorts duration ceiling; portrait/news otherwise.
   CURIOSITY_RESEARCHED: ${{ (github.event.inputs.curiosity == '1' || github.event.inputs.curiosity_long == 'true') && '1' || '' }}  # 2026-09-17: the morning curiosity-long slot now RESEARCHES each scouted topic (full-article Wikipedia corpus) and writes the deep-dive from that source material instead of free-writing from LLM recall. curiosity_shorts poolCuriosityResearched: scout -> research each -> region-value select -> grounded write; fails open to the recall essay then curiosity-short then news. $0 (Ollama + bot-tier Wikipedia, never paid Gemini). Empty on the evening news slot.
   SHORTS_CAPTIONS: '1'  # synced karaoke captions — real edge WordBoundary word timings threaded end-to-end (captionWords uses verbatim words, no syllable-estimate drift). Fleet-wide go-live 2026-09-14 after render-proven sync fix (was OFF: the estimate ran ahead = fast-forward). Fail-open: no real words -> caption track omitted.
-  # ── Phase 6/7 LLM STAGES model tag (2026-09-05) — image rerank+assembly (Ph6) and research
-  # image rerank + contextual assembly run on qwen3.5:397b-cloud; the two RESEARCH stages
-  # (lead-pick rerank + deep synth) run on deepseek-v4-pro:0813-cloud (user 2026-09-13: off gemma4,
-  # content stays qwen) — all via the per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10 model-ID
-  # rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
+  # ── Phase 6/7 LLM STAGES model tag (2026-09-05, retagged 2026-09-19) — image rerank+assembly (Ph6)
+  # and research stages. qwen3.5:397b-cloud RETIRED 2026-09-19 (5-day notice) -> glm-5.3:cloud for every
+  # text-only call (image rerank + contextual assembly read CAPTIONS/metadata, never raw pixels — the
+  # actual vision role is SHORTS_VLM_GATE_MODEL below, untouched). The two RESEARCH stages (lead-pick
+  # rerank + deep synth) stay on deepseek-v4-pro:0813-cloud (user 2026-09-13: off gemma4) — all via the
+  # per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10
+  # model-ID rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
   # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
-  SHORTS_LLM_RERANK_MODEL: 'qwen3.5:397b-cloud'
-  SHORTS_LLM_ASSEMBLY_MODEL: 'qwen3.5:397b-cloud'
+  SHORTS_LLM_RERANK_MODEL: 'glm-5.3:cloud'
+  SHORTS_LLM_ASSEMBLY_MODEL: 'glm-5.3:cloud'
   SHORTS_RESEARCH_MODEL: 'deepseek-v4-pro:0813-cloud'  # research lead-pick rerank (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud; adapter sends think:false so no reasoning leak / empty responses; ~5x gemma token cost, user-approved §8)
   SHORTS_RESEARCH_SYNTH_MODEL: 'deepseek-v4-pro:0813-cloud'  # deep research brief (user 2026-09-13: both research stages on deepseek-v4-pro:0813-cloud, off gemma4:31b)
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
