@@ -78,6 +78,21 @@ env:
   SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM image gate (Ollama Cloud, via SHORTS_VLM_GATE_MODEL) — prune hallucinated off-topic photos before planShots; fail-open, staged world/au first (never bharat) 2026-09-07
   SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-09-13: replace gemma4:31b on the pixel-truth image gate with a flagship-flash multimodal model (both vision-capable; deepseek-flash ~2.3s/img vs gemma ~1.6s; qwen3.5:397b ~5.1s = too slow for a 24-image gate). think:false already set (visual_gate.mjs). Fail-open; revert to gemma4:31b if pruning regresses.
+  # ── FACT-INTEGRITY + ENTITY-RELEVANCE FLEET ROLLOUT (2026-09-20, render-verified across usa/vi/jp/pl/ar,
+  # 2367/2367 tests) — root-caused via a real RAF-13/technical-fall confabulation + a Moscow/Japan render
+  # review. SHORTS_STORY_FACTCHECK/SHORTS_FACTCHECK: reuse the existing factCheckBeats corpus-check to gate
+  # a story's own synthesized claim (not just generated script beats) before it can become a video, and to
+  # drop any script beat the source material doesn't support. SHORTS_ENTITY_RESOLVE_WIDE/
+  # SHORTS_VISUAL_ENTITY_PLAN/SHORTS_VLM_ENTITY_CTX/SHORTS_STILL_ENTITY_GATE: widen+disambiguate entity
+  # portraits and thread named entities into the VLM/caption/still relevance judges — fixed a real wrong-
+  # country image bug (a UK political conference + a Hong Kong charity event survived into a Japan render
+  # before this). Fail-open throughout; each independently render-verified this session.
+  SHORTS_STORY_FACTCHECK: '1'
+  SHORTS_FACTCHECK: '1'
+  SHORTS_ENTITY_RESOLVE_WIDE: '1'
+  SHORTS_VISUAL_ENTITY_PLAN: '1'
+  SHORTS_VLM_ENTITY_CTX: '1'
+  SHORTS_STILL_ENTITY_GATE: '1'
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
   # ROLLED BACK 2026-08-28 (user: distorted first frames + shorts landing 20-30s, not 45-60s) —
