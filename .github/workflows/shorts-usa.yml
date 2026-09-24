@@ -86,6 +86,9 @@ env:
   SHORTS_FULLFRAME_MIN_IMG_FRAC: '0.4'
   OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
   OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}  # 2026-09-24: TMDB organic-story adoption (shorts/media/tmdb.mjs adoptTmdbImagesForStory) — a trending story about a movie/TV title now gets real, licence-clear poster/backdrop/cast art instead of falling back to generic stock b-roll (local-video-editorial-review finding: a Dark/Netflix recap rendered with zero real show imagery). SHORTS_TMDB_ADOPT defaults ON in code; wiring the secret here is what makes it actually reachable (was previously a dark flag for Shorts — the secret existed but only longform's paused CONTENT_MODE calendar ever read it). Fail-open: no key -> unchanged behavior.
+  TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+
   SHORTS_OPENVERSE_PAGE_SIZE: '100'  # authed tier (Openverse app email verified 2026-09-05); anon caps at 20. Effective = min(this, limit*3) in shorts/media/openverse.mjs; fail-open on any 4xx.
   WORLD_MAX_STORY_IMAGES: '40'
   ENTITY_IMG_POOL_MAX: '12'
