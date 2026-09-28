@@ -131,6 +131,8 @@ env:
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (gemma4:31b), fail-open (fleet rollout 2026-09-07)
   SHORTS_VLM_GATE_MODEL: 'gemma4:31b-cloud'  # 2026-09-27 (user directive): standardized VLM tag fleet-wide to gemma4:31b-cloud
+  SHORTS_LOOP_ENDING: '1'  # 2026-09-28: retention Initiative B -- silent end-card becomes a rewatch-inviting line + reuses the opening image at the close (explainer path) / speaks the same loop-bait line (regular short path, fixed same day) so YouTube's Shorts auto-replay is no longer forfeited. Config consistency (channel disabled; never dispatched to verify per standing convention).
+  SHORTS_DEPTH_STRICT: '1'  # 2026-09-28: retention Initiative C -- the deep/dense tier also requires >=2 distinct corroborating outlets (not just corpus length). Config consistency only.
   # ── FACT-INTEGRITY + ENTITY-RELEVANCE FLEET ROLLOUT (2026-09-20, render-verified across usa/vi/jp/pl/ar,
   # 2367/2367 tests) — root-caused via a real RAF-13/technical-fall confabulation + a Moscow/Japan render
   # review. SHORTS_STORY_FACTCHECK/SHORTS_FACTCHECK: reuse the existing factCheckBeats corpus-check to gate
