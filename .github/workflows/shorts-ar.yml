@@ -68,8 +68,8 @@ env:
   # per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10
   # model-ID rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
   # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
-  SHORTS_LLM_RERANK_MODEL: 'glm-5.3:cloud'
-  SHORTS_LLM_ASSEMBLY_MODEL: 'glm-5.3:cloud'
+  SHORTS_LLM_RERANK_MODEL: 'deepseek-v4-pro:0813-cloud'  # 2026-09-27 (user directive): standardized Ollama-Cloud LLM tag -- glm-5.3:cloud had shown reliability issues (visible chain-of-thought instead of terse output)
+  SHORTS_LLM_ASSEMBLY_MODEL: 'deepseek-v4-pro:0813-cloud'  # 2026-09-27 (user directive): standardized Ollama-Cloud LLM tag -- glm-5.3:cloud had shown reliability issues (visible chain-of-thought instead of terse output)
   SHORTS_RESEARCH_MODEL: 'deepseek-v4-pro:0813-cloud'  # research lead-pick rerank (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud; adapter sends think:false so no reasoning leak / empty responses; ~5x gemma token cost, user-approved §8)
   SHORTS_RESEARCH_SYNTH_MODEL: 'deepseek-v4-pro:0813-cloud'  # deep research brief (user 2026-09-13: both research stages on deepseek-v4-pro:0813-cloud, off gemma4:31b)
   EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
@@ -81,7 +81,7 @@ env:
   CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (gemma4:31b), fail-open (fleet rollout 2026-09-07)
-  SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-09-13: replace gemma4:31b on the pixel-truth image gate with a flagship-flash multimodal model (both vision-capable; deepseek-flash ~2.3s/img vs gemma ~1.6s; qwen3.5:397b ~5.1s = too slow for a 24-image gate). think:false already set (visual_gate.mjs). Fail-open; revert to gemma4:31b if pruning regresses.
+  SHORTS_VLM_GATE_MODEL: 'gemma4:31b-cloud'  # 2026-09-27 (user directive): standardized VLM tag fleet-wide to gemma4:31b-cloud
   SHORTS_VLM_TIER: '1'  # 2026-09-27: 4-tier relevance verdict (EXACT/CONTEXTUAL/GENERIC/WRONG) -- the binary gate was measured at 98/100 CONTEXTUAL over-drops + 11/11 EXACT false-drops in the offline eval (agyata_findings/vlm_visual_selection_fix_plan.md §0.6), and a real usa/it/ar render review confirmed the live symptom: heavy image repetition (a single image held 8-20+s across unrelated beats) because the survivor pool after the binary gate was far smaller than the fetched/dedup'd distinct count. Fail-open + byte-identical when off (visual_gate.mjs's own TIER() flag); this flips it on fleet-wide per its documented rollout plan (same path SHORTS_VLM_ENTITY_CTX/CORP_CTX already followed).
   # ── FACT-INTEGRITY + ENTITY-RELEVANCE FLEET ROLLOUT (2026-09-20, render-verified across usa/vi/jp/pl/ar,
   # 2367/2367 tests) — root-caused via a real RAF-13/technical-fall confabulation + a Moscow/Japan render
