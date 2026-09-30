@@ -1,0 +1,79 @@
+name: sync-sections
+
+# channelSections.insert — add the channel's own auto-populated homepage shelves (feature #3 of the
+# 2026-09-30 YouTube Data API v3 gap analysis: "build all 1,2,3,4 ... available to all 23 channels").
+# Standalone from the render pipeline. Cheap (list=1 unit, insert=50 units/call, max 2 inserts/channel
+# ever — idempotent, shorts/channel_sections.mjs's missingSectionTypes skips a shelf already present).
+#
+# DRY-RUN BY DEFAULT: leave "apply" unchecked to only log which shelves would be added, with NO write.
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Channel code (world|usa|uk|bharat|de|nl|fr|jp|sv|no|da|it|es|pt|fi|pl|ar|au|ca|id|mx|tr|vi) or "all"'
+        required: true
+        default: 'usa'
+      apply:
+        description: 'Actually call channelSections.insert (unchecked = dry run only, no write)'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: sync-sections-${{ github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Sync channel homepage sections (channelSections.insert)
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+        run: |
+          ARGS="${{ inputs.channel }}"
+          if [ "${{ inputs.apply }}" = "true" ]; then ARGS="$ARGS --apply"; fi
+          node shorts/sections_sync.mjs $ARGS
