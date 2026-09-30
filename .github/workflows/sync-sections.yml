@@ -18,6 +18,10 @@ on:
         type: boolean
         required: false
         default: false
+      delete:
+        description: 'Maintenance: delete one specific section by its exact id instead of syncing (leave blank for normal sync)'
+        required: false
+        default: ''
 
 concurrency:
   group: sync-sections-${{ github.run_id }}
@@ -74,6 +78,10 @@ jobs:
           YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
           YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
         run: |
-          ARGS="${{ inputs.channel }}"
-          if [ "${{ inputs.apply }}" = "true" ]; then ARGS="$ARGS --apply"; fi
-          node shorts/sections_sync.mjs $ARGS
+          if [ -n "${{ inputs.delete }}" ]; then
+            node shorts/sections_sync.mjs "${{ inputs.channel }}" --delete="${{ inputs.delete }}"
+          else
+            ARGS="${{ inputs.channel }}"
+            if [ "${{ inputs.apply }}" = "true" ]; then ARGS="$ARGS --apply"; fi
+            node shorts/sections_sync.mjs $ARGS
+          fi
