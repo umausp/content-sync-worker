@@ -79,6 +79,7 @@ jobs:
           YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
           YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
           YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          SECTIONS_DEBUG: '1'
         run: |
           ARGS="${{ inputs.channel }} --mechanism=${{ inputs.mechanism }}"
           if [ "${{ inputs.apply }}" = "true" ]; then ARGS="$ARGS --apply"; fi
