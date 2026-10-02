@@ -1,0 +1,33 @@
+name: check-page
+
+# One-off diagnostic: is a given Facebook Page id actually accessible to META_USER_TOKEN (i.e. assigned
+# to the Business/System User), independent of whether it shows up in /me/accounts? Posts nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      page_id:
+        description: 'Facebook Page id to check'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check page accessibility (read-only, posts nothing)
+        env:
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+        run: |
+          node -e "
+          const token = process.env.META_USER_TOKEN;
+          const id = '${{ inputs.page_id }}';
+          fetch('https://graph.facebook.com/v25.0/' + id + '?fields=id,name,access_token&access_token=' + token)
+            .then(r => r.text().then(t => ({status: r.status, body: t})))
+            .then(({status, body}) => {
+              console.log('HTTP', status);
+              console.log(body.replace(/\"access_token\":\"[^\"]+\"/, '\"access_token\":\"[REDACTED]\"'));
+            });
+          "
