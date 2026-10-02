@@ -34,6 +34,11 @@ on:
         description: 'Region for world channel (usa/europe)'
         required: false
         default: ''
+      roundup:
+        description: 'EVENING ROUNDUP (2026-10-02): render one multi-category roundup video (politics/crime/sports/entertainment/tech/finance + a trivia segment, up to 3min) instead of a single-story Short. Drives SHORTS_SINGLE=0 + SHORTS_ROUNDUP_SLATE=1 + SHORTS_ROUNDUP_TRIVIA=1 + SHORTS_STORY_COUNT=6. Set by the cron-pinger evening slot on staged channels; leave unchecked for a normal single-story Short.'
+        type: boolean
+        required: false
+        default: false
 
 concurrency:
   # unique per run so same-workflow dispatches run in PARALLEL, never queue (user 2026-09-02)
@@ -138,6 +143,11 @@ env:
   EDITORIAL_W_ATTRACTIVENESS: '4'
   LONGFORM_RAG_TRACE: '1'
   SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  # EVENING ROUNDUP (2026-10-02) — see the `roundup` input above; same 4-flag mapping as shorts-usa.yml.
+  SHORTS_SINGLE: ${{ github.event.inputs.roundup == 'true' && '0' || '' }}
+  SHORTS_ROUNDUP_SLATE: ${{ github.event.inputs.roundup == 'true' && '1' || '' }}
+  SHORTS_ROUNDUP_TRIVIA: ${{ github.event.inputs.roundup == 'true' && '1' || '' }}
+  SHORTS_STORY_COUNT: ${{ github.event.inputs.roundup == 'true' && '6' || '' }}
   CONTENT_MODE: ${{ github.event.inputs.content_mode }}
   SHORTS_FASTPATH: ${{ github.event.inputs.fastpath }}
   API_BASE: https://api.agyata.com
