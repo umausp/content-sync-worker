@@ -292,6 +292,7 @@ jobs:
         continue-on-error: true
         env:
           SHORTS_SOCIAL_PUBLISH: '1'
+          META_PAGE_IT: '1362698600254584'  # → Agyata Italia (page exists, was never wired — fixed 2026-10-02)
           META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
           META_APP_ID: ${{ secrets.META_APP_ID }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
