@@ -134,8 +134,8 @@ env:
   # WIKI_LANG defaults to 'en' unless told otherwise). Matches this channel's scriptLang.
   ENTITY_WIKI_LANG: 'hi'
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
-  SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (gemma4:31b), fail-open (fleet rollout 2026-09-07)
-  SHORTS_VLM_GATE_MODEL: 'gemma4:31b-cloud'  # 2026-09-27 (user directive): standardized VLM tag fleet-wide to gemma4:31b-cloud
+  SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (deepseek-v4.1-flash:cloud, via SHORTS_VLM_GATE_MODEL below), fail-open (fleet rollout 2026-09-07)
+  SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-10-06 (user, repeated explicit directive -- "VLM = deepseek-v4.1-flash:cloud ... no other model please"): this workflow-level override had drifted back to the 2026-09-27 gemma4:31b-cloud value and silently shadowed the 2026-10-04 code-level revert (visual_gate.mjs's MODEL() default already read deepseek-v4.1-flash:cloud, but this override took priority) -- matches the code default now, this line is a redundant pin, not an override
   SHORTS_DEPTH_STRICT: '1'  # 2026-09-28: retention Initiative C -- the deep/dense tier also requires >=2 distinct corroborating outlets (not just corpus length). Config consistency only.
   # ── FACT-INTEGRITY + ENTITY-RELEVANCE FLEET ROLLOUT (2026-09-20, render-verified across usa/vi/jp/pl/ar,
   # 2367/2367 tests) — root-caused via a real RAF-13/technical-fall confabulation + a Moscow/Japan render
