@@ -277,6 +277,13 @@ jobs:
           # Cross-run dedup: claim story keys via api.agyata.com before rendering so two
           # pl runs (a Short + a long-form in the same window) never publish the same story.
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+          # Cosmetic-only (verified: nothing reads this value back for actual auth — upload.mjs
+          # independently re-resolves channel(id).uploadSecret in its OWN step/process with its
+          # OWN env). Without it, config.mjs sees YT_REFRESH_TOKEN_PL as unset AT RENDER TIME and
+          # bakes the WORLD-fallback name into meta.json.uploadSecret, which is misleading when a
+          # human inspects meta.json to debug an upload issue (the real 2026-10-08 incident this
+          # fixes) even though the actual upload always used the correct per-channel token.
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
         run: node shorts/build_short.mjs pl
 
       # AUTO-UPLOAD to YouTube as PUBLIC (SHORTS_PRIVACY=public). Native channels are PLAYLISTS
