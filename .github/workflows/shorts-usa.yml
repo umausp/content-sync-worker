@@ -380,6 +380,7 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN_USA: ${{ secrets.TIKTOK_REFRESH_TOKEN_USA }}
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}   # write-access to persist a rotated token back to the secret
         run: |
           if [ -z "$TIKTOK_REFRESH_TOKEN_USA" ]; then echo "no TIKTOK_REFRESH_TOKEN_USA — skipping TikTok auto-post (run shorts/tiktok_bootstrap.mjs usa, then add the secret)"; exit 0; fi
           node shorts/tiktok_publish.mjs usa "$SHORTS_STAMP"
