@@ -365,6 +365,25 @@ jobs:
           if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
           node shorts/social_publish.mjs usa "$SHORTS_STAMP"
 
+      # AUTO-POST to TikTok via the Content Posting API — same per-account OAuth refresh-token model as
+      # YouTube/FB above (shorts/tiktok_publish.mjs). Posts SELF_ONLY (a draft to the account's own
+      # TikTok inbox, not public) until TIKTOK_AUDITED=1 is set, because the app has not yet passed
+      # TikTok's review for public auto-posting — resolvePrivacyLevel() enforces this in code, so this
+      # cannot silently go public early. Skips cleanly until TIKTOK_REFRESH_TOKEN_USA exists (agyata_usp
+      # completes the one-time Login Kit OAuth via shorts/tiktok_bootstrap.mjs, then `gh secret set`).
+      # usa-only for now (first channel on this surface) — best-effort, never fails the run.
+      - name: Auto-post to TikTok (Content Posting API)
+        if: always()
+        continue-on-error: true
+        env:
+          SHORTS_TIKTOK_PUBLISH: '1'
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN_USA: ${{ secrets.TIKTOK_REFRESH_TOKEN_USA }}
+        run: |
+          if [ -z "$TIKTOK_REFRESH_TOKEN_USA" ]; then echo "no TIKTOK_REFRESH_TOKEN_USA — skipping TikTok auto-post (run shorts/tiktok_bootstrap.mjs usa, then add the secret)"; exit 0; fi
+          node shorts/tiktok_publish.mjs usa "$SHORTS_STAMP"
+
       # LAST content-generating step: SEO-friendly title/description/hashtags for Facebook,
       # Instagram and X, derived from the SAME meta.json used for the YouTube upload above.
       # Generation only — nothing is posted to any platform (no app review, no new secrets).
