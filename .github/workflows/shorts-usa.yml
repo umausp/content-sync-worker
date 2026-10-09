@@ -356,6 +356,11 @@ jobs:
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
           THREADS_USER_TOKEN: ${{ secrets.THREADS_USER_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          # $0 PUBLIC cover host for IG Reels: reuse the repo-scoped PAT (it can write this public shell
+          # repo) so social_cover_host.mjs can PUT thumb.jpg to the `covers` branch and pin the DESIGNED
+          # cover via cover_url. GITHUB_REPOSITORY is already umausp/content-sync-worker (this shell), so
+          # the host repo resolves correctly with no extra var. Fail-open: no token ⇒ thumb_offset=0.
+          COVER_HOST_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
         run: |
           if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
           node shorts/social_publish.mjs usa "$SHORTS_STAMP"
