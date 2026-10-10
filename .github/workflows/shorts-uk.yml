@@ -337,6 +337,26 @@ jobs:
           if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
           node shorts/social_publish.mjs uk "$SHORTS_STAMP"
 
+      # AUTO-POST to TikTok via the Content Posting API — same per-account OAuth refresh-token model as
+      # YouTube/FB above (shorts/tiktok_publish.mjs). Posts SELF_ONLY (a draft to the account's own
+      # TikTok inbox, not public) until TIKTOK_AUDITED=1 is set, because the app has not yet passed
+      # TikTok's review for public auto-posting — resolvePrivacyLevel() enforces this in code, so this
+      # cannot silently go public early. Skips cleanly until TIKTOK_REFRESH_TOKEN_UK exists (agyata.uk
+      # completes the one-time Login Kit OAuth via shorts/tiktok_bootstrap.mjs, then `gh secret set`).
+      # Mirrors the usa wiring (first channel on this surface) — best-effort, never fails the run.
+      - name: Auto-post to TikTok (Content Posting API)
+        if: always()
+        continue-on-error: true
+        env:
+          SHORTS_TIKTOK_PUBLISH: '1'
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN_UK: ${{ secrets.TIKTOK_REFRESH_TOKEN_UK }}
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}   # write-access to persist a rotated token back to the secret
+        run: |
+          if [ -z "$TIKTOK_REFRESH_TOKEN_UK" ]; then echo "no TIKTOK_REFRESH_TOKEN_UK — skipping TikTok auto-post (run shorts/tiktok_bootstrap.mjs uk, then add the secret)"; exit 0; fi
+          node shorts/tiktok_publish.mjs uk "$SHORTS_STAMP"
+
       # ARTIFACT is a REVIEW COPY only — kept solely when the YouTube upload did NOT happen
       # (no token yet, or upload errored). On a PUBLIC repo an artifact is publicly
       # downloadable, so once the video is safely on YouTube (public) we never publish it
