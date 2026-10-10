@@ -271,6 +271,7 @@ jobs:
           PIPER_VOICES_DIR: /tmp/piper-voices
           PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
           # Cross-run dedup: claim story keys via api.agyata.com before rendering so two
