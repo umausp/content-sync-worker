@@ -45,6 +45,11 @@ jobs:
       UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+      # Hindi TTS: Edge neural voice primary; use setup-python's interpreter if an offline fallback is needed.
+      SHORTS_PY: python
+      SHORTS_LONGFORM_ENGINE: edge
+      # The live block is a multi-story roundup, not an 8-beat single-story deep dive.
+      SHORTS_LONGFORM_FORMAT: roundup
       # Bharat production-quality flags used by the existing Shorts workflows.
       SHORTS_FACTS_FIRST: "1"
       SHORTS_DENSE_SCRIPT: "1"
