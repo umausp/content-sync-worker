@@ -41,6 +41,12 @@ jobs:
       PIXABAY_API_KEY: ${{ secrets.PIXBAY_API_KEY || secrets.PIXABAY_API_KEY }}
       PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY || secrets.PIXABAY_API_KEY }}
       UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      # Existing licensed media/image search credentials. These are retrieval-only, not LLM keys.
+      OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+      OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+      WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+      WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+      SHORTS_OPENVERSE_PAGE_SIZE: "50"
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
       # Prevent old single-story/long-form mode flags from leaking into the Live source adapter.
@@ -105,6 +111,10 @@ jobs:
       - name: Verify private checkout and Ollama secrets without exposing values
         env:
           PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+          WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+          WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
         shell: bash
         run: |
           set +x
@@ -112,6 +122,9 @@ jobs:
           [[ -n "$OLLAMA_API_KEY" ]] || { echo "::error::OLLAMA_API_KEY is missing"; exit 1; }
           echo "Private feature-branch checkout token: configured"
           echo "Ollama Cloud key: configured"
+          for name in OPENVERSE_CLIENT_ID OPENVERSE_CLIENT_SECRET WIKIMEDIA_BOT_USER WIKIMEDIA_BOT_PASSWORD PEXELS_API_KEY PIXABAY_API_KEY UNSPLASH_ACCESS_KEY; do
+            if [[ -n "${!name:-}" ]]; then echo "$name: configured"; else echo "$name: missing (visual retrieval may be reduced; no quality gate is bypassed)"; fi
+          done
           echo "YouTube credentials: intentionally not supplied"
 
       - name: Syntax-check isolated World Live modules
