@@ -8,3 +8,5 @@ Validation retry after fixing the isolated segment producer's zoompan filter-str
 Retry syntax + real segment validation after the isolated RTMPS URL parser fix.
 
 Retry isolated render after authenticating licensed visual sources, enabling encoder stderr, and setting a 24-hour story freshness gate.
+
+Retry USA desk after adding caption-matched licensed visual recovery, independent visual-query review and bounded script compression.
