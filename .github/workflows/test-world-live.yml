@@ -58,6 +58,15 @@ jobs:
           echo "Private checkout token: configured"
           echo "Ollama Cloud key: configured"
 
+      - name: Syntax-check every new World Live module
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in shorts/live/world/*.mjs; do
+            echo "Checking $file"
+            node --check "$file"
+          done
+
       - name: Run World Live isolated unit tests
         run: node --test test/world_live_test.mjs
 
