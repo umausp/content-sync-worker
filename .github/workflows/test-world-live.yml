@@ -1,0 +1,74 @@
+name: Test Agyata World Live (isolated, no streaming)
+
+# This workflow owns ONLY the World Live module's tests. It checks out the source feature branch,
+# never source main. No RTMP key is injected and no YouTube event or ordinary video can be created.
+on:
+  push:
+    branches:
+      - test/live-broadcast-module
+    paths:
+      - ".github/workflows/test-world-live.yml"
+      - ".broadcast-world/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-world-live-module
+  cancel-in-progress: false
+
+jobs:
+  test-world-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROVIDER_ORDER: ollama
+      PROVIDER_USE_OLLAMA: "1"
+      OLLAMA_API_KEY: \${{ secrets.OLLAMA_API_KEY }}
+      OLLAMA_MODEL: \${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+      OLLAMA_HOST: https://ollama.com
+    steps:
+      - name: Checkout isolated source feature branch
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: feat/live-broadcast-module
+          token: \${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install source dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify required secrets exist without exposing values
+        env:
+          PRIVATE_REPO_TOKEN: \${{ secrets.PRIVATE_REPO_TOKEN }}
+          OLLAMA_API_KEY: \${{ secrets.OLLAMA_API_KEY }}
+        shell: bash
+        run: |
+          set +x
+          [[ -n "$PRIVATE_REPO_TOKEN" ]] || { echo "::error::PRIVATE_REPO_TOKEN is missing"; exit 1; }
+          [[ -n "$OLLAMA_API_KEY" ]] || { echo "::error::OLLAMA_API_KEY is missing"; exit 1; }
+          echo "Private checkout token: configured"
+          echo "Ollama Cloud key: configured"
+
+      - name: Run World Live isolated unit tests
+        run: node --test test/world_live_test.mjs
+
+      - name: Verify Ollama Cloud is available and is the only LLM provider
+        run: node shorts/live/ollama_cloud_preflight.mjs
+
+      - name: Confirm that no streaming action was attempted
+        shell: bash
+        run: |
+          echo "World Live test-only workflow completed."
+          echo "Source ref: agyata-pipeline-private@feat/live-broadcast-module"
+          echo "YouTube Live event: not created"
+          echo "RTMP publisher: not started"
+          echo "Ordinary Shorts upload: not invoked"
