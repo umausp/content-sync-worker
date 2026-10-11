@@ -13,3 +13,5 @@ Retry USA desk after adding caption-matched licensed visual recovery, independen
 
 
 Retry the isolated end-to-end country programme test after switching the Live adapter to the established build_short renderer. This remains render-only and does not receive YouTube credentials.
+
+Retry the isolated build_short renderer integration after adding the missing private-adapter filesystem import.
