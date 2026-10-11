@@ -1,0 +1,201 @@
+name: Test Bharat Live News (feature branch only)
+
+# Lives in content-sync-worker because that repository owns the Actions secrets.
+# It ALWAYS checks out agyata-pipeline-private@feat/live-broadcast-module (never main).
+# First push is a non-streaming preflight. A deliberate marker commit starting with
+# [UNLISTED-LIVE-TEST] runs the full production + UNLISTED YouTube test stream. No daily/public schedule.
+
+on:
+  push:
+    branches:
+      - test/live-broadcast-module
+    paths:
+      - ".github/workflows/test-live-news-bharat.yml"
+      - ".broadcast-test/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-live-news-bharat
+  cancel-in-progress: false
+
+jobs:
+  test-bharat-live:
+    name: "Bharat Live test (${{ github.event.head_commit.message }})"
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      # ONLY Ollama Cloud is allowed. No Gemini/OpenAI/other provider keys are passed to this job.
+      PROVIDER_ORDER: ollama
+      PROVIDER_USE_OLLAMA: "1"
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+      OLLAMA_HOST: https://ollama.com
+      OLLAMA_MAX_TRIES: "6"
+      OLLAMA_THINK: "0"
+      OLLAMA_GLOBAL_CONCURRENCY: "10"
+      API_BASE: https://api.agyata.com
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      # Non-LLM retrieval credentials used by the existing Shorts production pipeline.
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+      # Bharat production-quality flags used by the existing Shorts workflows.
+      SHORTS_FACTS_FIRST: "1"
+      SHORTS_DENSE_SCRIPT: "1"
+      SHORTS_EDITORIAL_CARDS: "1"
+      SHORTS_OPENING_CARD: "1"
+      SHORTS_VISUAL_DIVERSITY: "1"
+      SHORTS_GROUND_SUBJECT_CAP: "1"
+      SHORTS_VLM_CORP_CTX: "1"
+      SHORTS_VLM_CLIP_LANG_GATE: "1"
+      SHORTS_ENTITY_FROM_BODY: "1"
+      SHORTS_STORY_FACTCHECK: "1"
+      SHORTS_PRIVACY: private
+      SHORTS_DEBUG: "0"
+      LONGFORM_RAG_TRACE: "0"
+      SHORTS_STAGE_DIR: ${{ github.workspace }}/.live-stage
+      SHORTS_WORK_DIR: ${{ github.workspace }}/.live-shorts-work
+      LIVE_NEWS_OUTPUT: ${{ github.workspace }}/.live-stage/assembled/bharat-live-program.mp4
+      LIVE_NEWS_BLOCKS: "4"
+      LIVE_NEWS_MIN_BLOCKS: "4"
+      LIVE_NEWS_MAX_ATTEMPTS: "8"
+
+    steps:
+      - name: Checkout the requested private feature branch only
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: feat/live-broadcast-module
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+          lfs: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify required GitHub secret names without showing values
+        env:
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          YOUTUBE_STREAM_KEY: ${{ secrets.YOUTUBE_STREAM_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+        shell: bash
+        run: |
+          set +x
+          missing=()
+          for name in PRIVATE_REPO_TOKEN OLLAMA_API_KEY YOUTUBE_STREAM_KEY YT_CLIENT_ID YT_CLIENT_SECRET YT_REFRESH_TOKEN_BHARAT; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::Missing repository secret: $name"
+              missing+=("$name")
+            else
+              echo "$name: configured"
+            fi
+          done
+          if (("${#missing[@]}" > 0)); then
+            echo "::error::Add the missing secrets in content-sync-worker → Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      - name: Run isolated broadcast and Hindi quality tests
+        run: node --test test/live_broadcast_test.mjs
+
+      - name: Verify Ollama Cloud works and is the only LLM provider
+        run: node shorts/live/ollama_cloud_preflight.mjs
+
+      - name: Verify YouTube Live API access and Bharat stream-key mapping (no broadcast)
+        env:
+          YOUTUBE_STREAM_KEY: ${{ secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_STREAM_KEY_BHARAT: ${{ secrets.YOUTUBE_STREAM_KEY_BHARAT || secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_LIVE_STREAM_ID: ${{ secrets.YOUTUBE_LIVE_STREAM_ID }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+        run: node shorts/live/youtube_live.mjs preflight
+
+      - name: Install the same renderer dependencies used by Bharat Shorts
+        if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: "piper-tts numpy soundfile kokoro sentencepiece faster-whisper edge-tts"
+          apt-packages: "ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra"
+          voice-cache-path: "/tmp/piper-voices"
+          voice-cache-key: "piper-voices-hi-v1"
+          provision-cinematic: "true"
+          provision-clip-images: "true"
+
+      - name: Produce a fresh Hindi news programme through the Shorts renderer
+        id: program
+        if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
+        run: node shorts/live/produce_program.mjs
+
+      - name: Create an UNLISTED test Live event for Bharat
+        id: live_event
+        if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
+        env:
+          YOUTUBE_STREAM_KEY: ${{ secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_STREAM_KEY_BHARAT: ${{ secrets.YOUTUBE_STREAM_KEY_BHARAT || secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_LIVE_STREAM_ID: ${{ secrets.YOUTUBE_LIVE_STREAM_ID }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YOUTUBE_LIVE_PRIVACY: unlisted
+          PROGRAM_PATH: ${{ steps.program.outputs.program_path }}
+        run: node shorts/live/youtube_live.mjs create "$PROGRAM_PATH"
+
+      - name: Stream the programme to the UNLISTED YouTube Live event
+        if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
+        env:
+          BROADCAST_COUNTRY: bharat
+          BROADCAST_FILE: ${{ steps.program.outputs.program_path }}
+          BROADCAST_DURATION_MINUTES: "30"
+          BROADCAST_PLATFORMS: youtube
+          LIVE_BROADCAST_SCHEDULED: "false"
+          YOUTUBE_STREAM_KEY: ${{ secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_STREAM_KEY_BHARAT: ${{ secrets.YOUTUBE_STREAM_KEY_BHARAT || secrets.YOUTUBE_STREAM_KEY }}
+        run: node shorts/live/broadcast.mjs
+
+      - name: Clean up an interrupted test Live event
+        if: failure() && steps.live_event.outputs.broadcast_id != ''
+        env:
+          YOUTUBE_STREAM_KEY: ${{ secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_STREAM_KEY_BHARAT: ${{ secrets.YOUTUBE_STREAM_KEY_BHARAT || secrets.YOUTUBE_STREAM_KEY }}
+          YOUTUBE_LIVE_STREAM_ID: ${{ secrets.YOUTUBE_LIVE_STREAM_ID }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          BROADCAST_ID: ${{ steps.live_event.outputs.broadcast_id }}
+        run: node shorts/live/youtube_live.mjs cleanup "$BROADCAST_ID"
+
+      - name: Report result without printing credentials
+        if: always()
+        env:
+          TEST_MODE: ${{ contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]') && 'unlisted-test-live' || 'preflight' }}
+          LIVE_URL: ${{ steps.live_event.outputs.video_url }}
+          BLOCKS: ${{ steps.program.outputs.blocks }}
+          STORY_SLOTS: ${{ steps.program.outputs.story_slots }}
+          DURATION: ${{ steps.program.outputs.duration_sec }}
+        run: |
+          echo "Mode: $TEST_MODE"
+          echo "Source code ref: agyata-pipeline-private@feat/live-broadcast-module"
+          if [[ -n "$LIVE_URL" ]]; then echo "Unlisted test Live: $LIVE_URL"; fi
+          if [[ -n "$BLOCKS" ]]; then echo "Approved blocks: $BLOCKS"; fi
+          if [[ -n "$STORY_SLOTS" ]]; then echo "Story slots: $STORY_SLOTS"; fi
+          if [[ -n "$DURATION" ]]; then echo "Programme seconds: $DURATION"; fi
+
+      - name: Purge generated news and render work files
+        if: always()
+        run: rm -rf .live-stage .live-shorts-work || true
