@@ -142,6 +142,19 @@ jobs:
         if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
         run: node shorts/live/produce_program.mjs
 
+      - name: Verify assembled programme exists before creating Live
+        if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
+        env:
+          PROGRAM_PATH: ${{ steps.program.outputs.program_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$PROGRAM_PATH" || ! -s "$PROGRAM_PATH" ]]; then
+            echo "::error::Programme producer did not create a non-empty MP4; refusing to create a Live event."
+            exit 1
+          fi
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of compact=p=0 "$PROGRAM_PATH"
+
       - name: Create an UNLISTED test Live event for Bharat
         id: live_event
         if: contains(github.event.head_commit.message, '[UNLISTED-LIVE-TEST]')
