@@ -10,3 +10,6 @@ Retry syntax + real segment validation after the isolated RTMPS URL parser fix.
 Retry isolated render after authenticating licensed visual sources, enabling encoder stderr, and setting a 24-hour story freshness gate.
 
 Retry USA desk after adding caption-matched licensed visual recovery, independent visual-query review and bounded script compression.
+
+
+Retry the isolated end-to-end country programme test after switching the Live adapter to the established build_short renderer. This remains render-only and does not receive YouTube credentials.
