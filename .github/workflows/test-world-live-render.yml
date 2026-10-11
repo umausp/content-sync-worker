@@ -80,6 +80,8 @@ jobs:
       WORLD_LIVE_EDGE_VOICE: en-GB-LibbyNeural
       WORLD_LIVE_RENDER_THREADS: "2"
       WORLD_LIVE_RENDER_FILTER_THREADS: "2"
+      # Reuse the production render setup's cached ONNX/CLIP model location in the isolated child.
+      CINEMATIC_MODELS_DIR: /tmp/models
 
     steps:
       - name: Checkout source feature branch only
@@ -91,32 +93,16 @@ jobs:
           persist-credentials: false
           lfs: true
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up the existing renderer and visual-model assets
+        uses: ./.github/actions/render-setup
         with:
           node-version: "22"
-          cache: npm
-
-      - name: Install Node dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Set up Python for Edge TTS
-        uses: actions/setup-python@v5
-        with:
           python-version: "3.12"
-
-      - name: Install renderer system dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin fonts-dejavu-core fonts-noto-core fonts-noto-cjk
-          python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet edge-tts
-          command -v ffmpeg
-          command -v ffprobe
-          command -v rsvg-convert
-          command -v edge-tts
+          apt-packages: "ffmpeg librsvg2-bin espeak-ng fonts-dejavu-core fonts-noto-core fonts-noto-cjk"
+          tts-pip: "edge-tts"
+          provision-cinematic: "true"
+          provision-clip-images: "true"
+          models-dir: "/tmp/models"
 
       - name: Verify private checkout and Ollama secrets without exposing values
         env:
