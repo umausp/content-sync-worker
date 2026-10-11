@@ -1,0 +1,13 @@
+Intentional test trigger for the isolated Bharat live-news workflow.
+
+The runner will check out only:
+  umausp/agyata-pipeline-private@feat/live-broadcast-module
+
+It must:
+1. verify Ollama Cloud only and YouTube Live credentials,
+2. render four fresh Hindi news explainers using the existing Shorts production engine,
+3. require the existing production gate plus the additional Hindi quality and deduplication checks,
+4. create an UNLISTED YouTube Live event only after the full programme is ready,
+5. stream the finished programme and clean up generated files.
+
+This marker is kept on test/live-broadcast-module and must never be merged to main.
