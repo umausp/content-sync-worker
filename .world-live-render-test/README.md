@@ -6,3 +6,5 @@ The workflow checks out agyata-pipeline-private@feat/live-broadcast-module and d
 Validation retry after fixing the isolated segment producer's zoompan filter-string syntax.
 
 Retry syntax + real segment validation after the isolated RTMPS URL parser fix.
+
+Retry isolated render after authenticating licensed visual sources, enabling encoder stderr, and setting a 24-hour story freshness gate.
