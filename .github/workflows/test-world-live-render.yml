@@ -11,6 +11,16 @@ on:
       - ".github/workflows/test-world-live-render.yml"
       - ".world-live-render-test/**"
   workflow_dispatch:
+    inputs:
+      test_desk:
+        description: "World Live desk to validate"
+        type: choice
+        required: true
+        default: usa
+        options:
+          - usa
+          - uk
+          - bharat
 
 permissions:
   contents: read
@@ -62,7 +72,7 @@ jobs:
       SHORTS_ENTITY_FROM_BODY: "1"
       SHORTS_STORY_FACTCHECK: "1"
       WORLD_LIVE_ENABLE_STREAM: "0"
-      WORLD_LIVE_TEST_DESK: bharat
+      WORLD_LIVE_TEST_DESK: ${{ github.event.inputs.test_desk || 'usa' }}
       WORLD_LIVE_STORIES_PER_COUNTRY: "2"
       WORLD_LIVE_MAX_STORY_AGE_HOURS: "24"
       WORLD_LIVE_MIN_VISUAL_ASSETS: "6"
@@ -139,7 +149,7 @@ jobs:
       - name: Run World Live contract, queue and playlist tests
         run: node --test test/world_live_test.mjs
 
-      - name: Produce and validate one real English segment (Bharat desk)
+      - name: Produce and validate one real English segment (selected desk)
         if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[WORLD-LIVE-RENDER-TEST]')
         run: node shorts/live/world/validate_one_desk.mjs
 
