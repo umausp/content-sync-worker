@@ -1,0 +1,141 @@
+name: Validate Agyata World Live rendering (no streaming)
+
+# Separate integration test for the permanent World Live programme path.
+# It checks out only agyata-pipeline-private@feat/live-broadcast-module.
+# No YouTube credentials are injected: this workflow cannot create a Live event or open RTMPS.
+on:
+  push:
+    branches:
+      - test/live-broadcast-module
+    paths:
+      - ".github/workflows/test-world-live-render.yml"
+      - ".world-live-render-test/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-world-live-render
+  cancel-in-progress: false
+
+jobs:
+  render-one-desk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      # Ollama Cloud is the only LLM provider for this process.
+      PROVIDER_ORDER: ollama
+      PROVIDER_USE_OLLAMA: "1"
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+      OLLAMA_HOST: https://ollama.com
+      OLLAMA_MAX_TRIES: "6"
+      OLLAMA_THINK: "0"
+      OLLAMA_GLOBAL_CONCURRENCY: "4"
+      API_BASE: https://api.agyata.com
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      PIXABAY_API_KEY: ${{ secrets.PIXBAY_API_KEY || secrets.PIXABAY_API_KEY }}
+      PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY || secrets.PIXABAY_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+      # Prevent old single-story/long-form mode flags from leaking into the Live source adapter.
+      SHORTS_SINGLE: "0"
+      SHORTS_STORY_COUNT: "24"
+      SHORTS_PY: python3
+      SHORTS_ENABLE_STOCK: "1"
+      SHORTS_FACTS_FIRST: "1"
+      SHORTS_DENSE_SCRIPT: "1"
+      SHORTS_VISUAL_DIVERSITY: "1"
+      SHORTS_VLM_CORP_CTX: "1"
+      SHORTS_VLM_CLIP_LANG_GATE: "1"
+      SHORTS_ENTITY_FROM_BODY: "1"
+      SHORTS_STORY_FACTCHECK: "1"
+      WORLD_LIVE_ENABLE_STREAM: "0"
+      WORLD_LIVE_TEST_DESK: bharat
+      WORLD_LIVE_STORIES_PER_COUNTRY: "2"
+      WORLD_LIVE_MAX_STORY_AGE_HOURS: "36"
+      WORLD_LIVE_MIN_VISUAL_ASSETS: "6"
+      WORLD_LIVE_MAX_VISUAL_ASSETS: "12"
+      WORLD_LIVE_EDGE_VOICE: en-GB-LibbyNeural
+      WORLD_LIVE_RENDER_THREADS: "2"
+      WORLD_LIVE_RENDER_FILTER_THREADS: "2"
+
+    steps:
+      - name: Checkout source feature branch only
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: feat/live-broadcast-module
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+          lfs: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Set up Python for Edge TTS
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install renderer system dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin fonts-dejavu-core fonts-noto-core fonts-noto-cjk
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet edge-tts
+          command -v ffmpeg
+          command -v ffprobe
+          command -v rsvg-convert
+          command -v edge-tts
+
+      - name: Verify private checkout and Ollama secrets without exposing values
+        env:
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        shell: bash
+        run: |
+          set +x
+          [[ -n "$PRIVATE_REPO_TOKEN" ]] || { echo "::error::PRIVATE_REPO_TOKEN is missing"; exit 1; }
+          [[ -n "$OLLAMA_API_KEY" ]] || { echo "::error::OLLAMA_API_KEY is missing"; exit 1; }
+          echo "Private feature-branch checkout token: configured"
+          echo "Ollama Cloud key: configured"
+          echo "YouTube credentials: intentionally not supplied"
+
+      - name: Syntax-check isolated World Live modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in shorts/live/world/*.mjs; do
+            echo "Checking $file"
+            node --check "$file"
+          done
+
+      - name: Run World Live contract, queue and playlist tests
+        run: node --test test/world_live_test.mjs
+
+      - name: Produce and validate one real English segment (Bharat desk)
+        if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[WORLD-LIVE-RENDER-TEST]')
+        run: node shorts/live/world/validate_one_desk.mjs
+
+      - name: Report isolation guarantees
+        if: always()
+        run: |
+          echo "Source ref: agyata-pipeline-private@feat/live-broadcast-module"
+          echo "World Live stream mode: disabled"
+          echo "YouTube Live event: not created"
+          echo "RTMPS publisher: not started"
+          echo "Ordinary Shorts upload: not invoked"
+          echo "Current production workflows: untouched"
