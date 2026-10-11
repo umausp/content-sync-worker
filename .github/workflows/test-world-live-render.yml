@@ -51,7 +51,7 @@ jobs:
       HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
       # Prevent old single-story/long-form mode flags from leaking into the Live source adapter.
       SHORTS_SINGLE: "0"
-      SHORTS_STORY_COUNT: "24"
+      SHORTS_STORY_COUNT: "12"
       SHORTS_PY: python3
       SHORTS_ENABLE_STOCK: "1"
       SHORTS_FACTS_FIRST: "1"
