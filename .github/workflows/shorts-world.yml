@@ -116,6 +116,8 @@ env:
   SHORTS_VISUAL_ENTITY_PLAN: '1'
   SHORTS_VLM_ENTITY_CTX: '1'
   SHORTS_STILL_ENTITY_GATE: '1'
+  SHORTS_QUERY_ENRICH: '1'  # 2026-10-12 (user: "no dark flag please"): intended-PROD-ON query enrichment -- richer natural-language retrieval queries from the already-parsed scene (zero added LLM cost, reuses the Ollama scene) to widen the distinct visual-concept pool. Flipped on after a world render showed only 6/63 distinct query-concepts (ratio 0.10 at floor) -> 8 distinct assets < Rule 18's 9 -> SKIPPED. retrieval/config.mjs queryEnrichEnabled().
+  SHORTS_PROVIDER_QUERY_ADAPT: '1'  # 2026-10-12 (user: "no dark flag please"): intended-PROD-ON per-provider query shaping (Commons/Openverse/stock) so fewer off-topic hits enter the corpus (the same world render had the VLM gate drop 17/21 as Unrelated/Foreign-Text). retrieval/config.mjs providerQueryAdaptEnabled().
   RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
   # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
   SHORTS_CINEMATIC: '1'
