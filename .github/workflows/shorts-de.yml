@@ -54,6 +54,9 @@ permissions:
   contents: read
 
 env:
+  EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}  # 2026-10-13: edge-tts via Cloudflare egress relay — the CI runner's datacenter IP is 403-blocked by Microsoft on the edge-tts WS handshake, CF egress gets 101 (proven e2e). Default-ON; empty var => direct path. Worker: services/edge-tts-relay.
+  EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}  # bearer for the relay POST (relay 401s without it).
+  EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}  # kill-switch per CLAUDE.md §2 (set this repo var to 1 to force the direct path fleet-wide; empty = relay on).
   SHORTS_FACTS_FIRST: '1'  # 2026-09-19: pure facts-first story SELECTION (docs plan zany-inventing-lecun Phase 1) — select the lead on story/fact-quality gates only, no per-candidate image probe; the winner's visuals are fetched ONCE at render (kills the double media-fetch the user flagged as "very very wrong"). Fail-open: an image-less winner is still caught by the render-time blue-screen guard. Exercised across every render-verify this session (pl) — always gate PASSED, real on-topic images, no blue-screens.
   SHORTS_DENSE_SCRIPT: '1'  # 2026-09-19 (user directive): density-engine script — buildDensePrompt does fact-extract->rank->dense beats + internal density audit in ONE call replacing the micro-arc (call-neutral, Ollama-metered ~5x). Branches news vs curiosity internally; breaking arm on isBreakingNews. Fail-open to buildShortPrompt on any gap.
   SHORTS_EDITORIAL_CARDS: '1'  # 2026-09-19 (user directive): editorial verification + number cards — llmAssignWindows picks WHICH beat earns a source-meter (WHAT/HOW-MANY/WHICH) or number card; placement editorial, copy deterministic real-data. Additive+fail-open. Render-verified tr (f8a19d4).
