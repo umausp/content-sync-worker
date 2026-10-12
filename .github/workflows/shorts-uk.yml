@@ -45,6 +45,14 @@ on:
         type: boolean
         required: false
         default: false
+      pipeline_ref:
+        description: 'Private-repo ref (branch/tag/SHA) to render from. Empty = default branch (main). MANUAL branch verification only; cron-pinger leaves this empty so scheduled runs always render main.'
+        required: false
+        default: ''
+      privacy:
+        description: 'Override SHORTS_PRIVACY for this run (public | unlisted | private). Empty = the workflow default (public). Use unlisted for a branch verification render.'
+        required: false
+        default: ''
 
 concurrency:
   # unique per run so same-workflow dispatches run in PARALLEL, never queue (user 2026-09-02)
@@ -171,7 +179,7 @@ env:
   # upload.mjs sets it on videos.insert, so the Short is public the moment it uploads (no
   # manual Studio flip). The shorts/safety.mjs demonetization guard runs first, so
   # straight-to-public is monetization-safe.
-  SHORTS_PRIVACY: public
+  SHORTS_PRIVACY: ${{ github.event.inputs.privacy || 'public' }}  # default public (cron runs); overridable to unlisted for a branch verification
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — the renderer's OWN "already made a video of
   # this story?" memory, separate from the website's CF news_dedup_claims. Render step reads
   # it (drop already-published stories); upload step writes it after a successful upload.
@@ -246,6 +254,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: umausp/agyata-pipeline-private
+          ref: ${{ github.event.inputs.pipeline_ref || '' }}  # empty = default branch (main); set only for a manual branch verification
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           persist-credentials: true
 
