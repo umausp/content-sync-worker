@@ -2,20 +2,14 @@
 set -u
 
 repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
-  echo "Graphify post-commit: cannot determine repository root." >&2
+  echo "Post-commit refresh: cannot determine repository root." >&2
   exit 0
 }
 
-export PATH="$HOME/.local/bin:$PATH"
-if ! command -v graphify >/dev/null 2>&1; then
-  echo "Graphify post-commit: graphify CLI not found; index was not refreshed." >&2
+refresh_script="$(dirname "$repo_root")/agyata-workspace-rag/scripts/post-commit-refresh.sh"
+if [[ ! -x "$refresh_script" ]]; then
+  echo "Post-commit refresh: shared refresh script is missing or not executable: $refresh_script" >&2
   exit 0
 fi
 
-mkdir -p "$repo_root/graphify-out"
-if graphify update "$repo_root" >"$repo_root/graphify-out/.last-update.log" 2>&1; then
-  echo "Graphify index refreshed for $repo_root."
-else
-  status=$?
-  echo "Graphify post-commit: update failed (exit $status); see graphify-out/.last-update.log." >&2
-fi
+"$refresh_script" "$repo_root"

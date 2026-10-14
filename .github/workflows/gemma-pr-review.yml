@@ -1,0 +1,59 @@
+name: Gemma 4 PR review
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gemma-pr-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout trusted base revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+
+      - name: Fetch pull request head without checking it out
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/pull/${PR_NUMBER}/head"
+
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start local Ollama and download Gemma 4
+        timeout-minutes: 15
+        env:
+          MODEL: gemma4:12b
+        run: |
+          ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:11434/api/tags >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:11434/api/tags >/dev/null || {
+            cat "$RUNNER_TEMP/ollama.log"
+            exit 1
+          }
+          ollama pull "$MODEL"
+
+      - name: Review changed code with Gemma 4
+        env:
+          GEMMA_REVIEW_BASE: ${{ github.event.pull_request.base.sha }}
+          GEMMA_REVIEW_HEAD: ${{ github.event.pull_request.head.sha }}
+          GEMMA_REVIEW_MODEL: gemma4:12b
+        run: python3 .github/scripts/gemma_pr_review.py
