@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "agyata-workspace": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--experimental-strip-types",
+        "${CLAUDE_PROJECT_DIR}/../agyata-workspace-rag/src/mcp/server.ts"
+      ]
+    },
+    "agyata-qoff": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--experimental-strip-types",
+        "${CLAUDE_PROJECT_DIR}/../agyata-workspace-rag/src/mcp/server.ts",
+        "--qoff"
+      ]
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp/oauth"
+    }
+  }
+}

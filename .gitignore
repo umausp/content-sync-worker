@@ -10,3 +10,4 @@ __pycache__/
 # Actions run page), so main stays code-only + push collisions are avoided.
 .shorts-work/
 docs/shorts/
+graphify-out/

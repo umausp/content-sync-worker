@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -u
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "Graphify post-commit: cannot determine repository root." >&2
+  exit 0
+}
+
+export PATH="$HOME/.local/bin:$PATH"
+if ! command -v graphify >/dev/null 2>&1; then
+  echo "Graphify post-commit: graphify CLI not found; index was not refreshed." >&2
+  exit 0
+fi
+
+mkdir -p "$repo_root/graphify-out"
+if graphify update "$repo_root" >"$repo_root/graphify-out/.last-update.log" 2>&1; then
+  echo "Graphify index refreshed for $repo_root."
+else
+  status=$?
+  echo "Graphify post-commit: update failed (exit $status); see graphify-out/.last-update.log." >&2
+fi
