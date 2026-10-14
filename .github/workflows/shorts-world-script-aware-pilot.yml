@@ -1,0 +1,400 @@
+name: shorts-world-script-aware-pilot
+# Temporary review pilot for feat/script-aware-image-retrieval.
+# Publishing is disabled; retain the review artifact for one day for local editorial QA.
+on:
+  workflow_dispatch:
+    inputs:
+      curiosity_long:
+        description: 'Render the LANDSCAPE long-form curiosity deep-dive (4-8 min, watch-hours lane) this run — same as the cron-pinger morning slot. Leave unchecked for a news Short. The cron path uses the separate curiosity field; setting either to true renders long-form.'
+        type: boolean
+        required: false
+        default: false
+      curiosity:
+        description: 'CURIOSITY_SHORTS (1 = render a curiosity essay this run; empty = news). Set by the cron-pinger morning slot; empty on the evening news slot, fast-path, and manual runs.'
+        required: false
+        default: ''
+      fastpath:
+        description: 'SHORTS_FASTPATH (1 = only render if the lead story clears the high-stakes fast-path bar; empty/normal run otherwise)'
+        required: false
+        default: ''
+      category:
+        description: 'SHORTS_CATEGORY_FILTER'
+        required: false
+        default: ''
+      content_mode:
+        description: 'CONTENT_MODE'
+        required: false
+        default: ''
+      region:
+        description: 'Target region for this run (usa | europe). Decides trend geos + playlist.'
+        required: false
+        default: ''
+      roundup:
+        description: 'EVENING ROUNDUP (2026-10-02): render one multi-category roundup video (politics/crime/sports/entertainment/tech/finance + a trivia segment, up to 3min) instead of a single-story Short. Drives SHORTS_SINGLE=0 + SHORTS_ROUNDUP_SLATE=1 + SHORTS_ROUNDUP_TRIVIA=1 + SHORTS_STORY_COUNT=6. Set by the cron-pinger evening slot on staged channels; leave unchecked for a normal single-story Short.'
+        type: boolean
+        required: false
+        default: false
+      category_sequence:
+        description: 'FIXED CATEGORY SEQUENCE (2026-10-06, manual test only): one story per category, strictly in the order given by `category` above (e.g. finance,tech,realestate,legal,sports,politics), no reorder, no padding -- a category with no healthy-image candidate is simply dropped. Requires roundup=true + a `category` list. Drives SHORTS_CATEGORY_SEQUENCE=1.'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  # unique per run so same-workflow dispatches run in PARALLEL, never queue (user 2026-09-02)
+  group: shorts-world-${{ github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read # renders upload as artifacts (below), not committed to the repo
+
+env:
+  EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}  # 2026-10-13: edge-tts via Cloudflare egress relay — the CI runner's datacenter IP is 403-blocked by Microsoft on the edge-tts WS handshake, CF egress gets 101 (proven e2e). Default-ON; empty var => direct path. Worker: services/edge-tts-relay.
+  EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}  # bearer for the relay POST (relay 401s without it).
+  EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}  # kill-switch per CLAUDE.md §2 (set this repo var to 1 to force the direct path fleet-wide; empty = relay on).
+  SHORTS_FACTS_FIRST: '1'  # 2026-09-19: pure facts-first story SELECTION (docs plan zany-inventing-lecun Phase 1) — select the lead on story/fact-quality gates only, no per-candidate image probe; the winner's visuals are fetched ONCE at render (kills the double media-fetch the user flagged as "very very wrong"). Fail-open: an image-less winner is still caught by the render-time blue-screen guard. Exercised across every render-verify this session (pl) — always gate PASSED, real on-topic images, no blue-screens.
+  SHORTS_DENSE_SCRIPT: '1'  # 2026-09-19 (user directive): density-engine script — buildDensePrompt does fact-extract->rank->dense beats + internal density audit in ONE call replacing the micro-arc (call-neutral, Ollama-metered ~5x). Branches news vs curiosity internally; breaking arm on isBreakingNews. Fail-open to buildShortPrompt on any gap.
+  SHORTS_EDITORIAL_CARDS: '1'  # 2026-09-19 (user directive): editorial verification + number cards — llmAssignWindows picks WHICH beat earns a source-meter (WHAT/HOW-MANY/WHICH) or number card; placement editorial, copy deterministic real-data. Additive+fail-open. Render-verified tr (f8a19d4).
+  SHORTS_OPENING_CARD: '1'  # 2026-09-19: the editorial hook gate (BREAKING_NEWS_MODE.md §HOOK) — opens on a designed card that STATES the news (headline, or an identity WHO+WHAT card when a protagonist resolves) only when the lead shot doesn't already depict the event; self-evident footage/evidence/reaction/consequence still leads unconditionally. Render-verified tr (VW/Porsche, 6539204) + pl (Pezeshkian/Domanski identity-card fix, f7fd030) — quality gate PASSED, no regression on any lead-role case.
+  SHORTS_VISUAL_DIVERSITY: '1'  # 2026-09-19: same-SUBJECT repetition pass (diversifySubjects, shot_roles.mjs) — breaks adjacent same-subject shots (invisible to the role taxonomy alone, since two photos of one subject both classify as generic 'footage') and caps a dominant subject's share, swapping in an unused pool image. Render-verified pl (59cc61b): 2 same-subject adjacencies broken, longest same-subject run reduced to 1.
+  SHORTS_ENGAGE: '1'  # 2026-09-25 (viewer-momentum tips): post the channel's own first comment on a freshly-uploaded video — an LLM-authored, localized, story-specific DISCUSSION QUESTION (meta.firstComment, shorts/formats/explainer.mjs buildDiscussionQuestion), never a generic template line. Dark until now: the posting plumbing (shorts/engage.mjs) already existed but meta.firstComment was never emitted, and this flag was never set anywhere. BEST-EFFORT + NON-FATAL: a token missing the youtube.force-ssl scope, or comments disabled on a video, just skips with a log hint — never fails the upload.
+  SHORTS_GROUND_SUBJECT_CAP: '1'  # 2026-09-22: beat-grounding subject-aware cap (perceptual-hash cluster inside groundBeatsToWindows; caps one visual SUBJECT's share of grounded beats) -- fixes a same-subject-different-FILE monopoly the plain distinct-KEY preference missed (5 game-art files of one character grounding 6/7 beats while a real exec photo sat unused, never reaching a card). Unit-proven (6 network-free tests, beat_grounding_subject_cap_test.mjs) + render-verified usa (Activision/Halo layoffs story: capped correctly, no regression; a product-photo-rich Beats-headphones story grounded 7/9 beats cleanly with the flag on). Fleet go-live 2026-09-22.
+  SHORTS_VLM_CORP_CTX: '1'  # 2026-09-22 (carried from the prior "deepen fix" cycle): corporate/institutional context on the TEXT image-relevance judge + floor re-admission (visuals.mjs reAdmitToFloor) -- prioritizes a story's named-entity portraits/HQ so an executive/company photo reaches the VLM pixel gate instead of losing to visually-striking but generic key-art on caption relevance alone. Render-verified usa (3 entity-priority floor re-admits fired). Fleet go-live 2026-09-22.
+  SHORTS_VLM_CLIP_LANG_GATE: '1'  # 2026-09-22 (carried from the prior "deepen fix" cycle): b-roll LANGUAGE guard -- the VLM video judge reads on-screen burned-in caption language and drops a clip whose text doesn't match this render's own script language, so a foreign-subtitled clip can't leak into an off-language channel. Render-verified usa (dropped an Arabic-caption clip: "Foreign-Language Caption×1"). Fleet go-live 2026-09-22.
+  SHORTS_ENTITY_FROM_BODY: '1'  # 2026-09-22: entity extraction also reads the article BODY (not just title/summary), decomposing per-named-org so a story mentioning several distinct companies/people gets one entity per proper name instead of one merged blob -- feeds the corp-ctx/entity-portrait fetch above with more/better-targeted names. Fleet go-live 2026-09-22.
+  CURIOSITY_SHORTS: ${{ github.event.inputs.curiosity == '1' && '1' || '' }}  # 2026-09-22: DECOUPLED from curiosity_long (user: "curiosity_long we can do every week 3" -- a fixed 3x/week cadence, separate from the daily morning curiosity-SHORT). curiosity=1 (cron-pinger's daily morning slot on its 4 non-long-form days) -> a grounded per-region curiosity essay (gather_stories.mjs first branch, SINGLE-only, FAIL-OPEN to news); curiosity_long='true' (the cron-pinger's dedicated 3x/week dispatch) takes the landscape branch below instead of this one. Afternoon/evening news + fast-path + manual runs leave both empty -> news. $0 (2 Ollama calls/video, never paid Gemini).
+  CURIOSITY_LONG: ${{ github.event.inputs.curiosity_long == 'true' && '1' || '' }}  # 2026-09-22: DECOUPLED -- only the dedicated curiosity_long input triggers the LANDSCAPE deep-dive now (cron-pinger dispatches it 3x/week on its own cadence, not tied to the daily curiosity=1 slot). gather_stories CURIOSITY_LONG branch -> poolCuriosityResearched (CURIOSITY_RESEARCHED below) single-topic essay; fail-open to curiosity-short then news.
+  SHORTS_ORIENTATION: ${{ github.event.inputs.curiosity_long == 'true' && 'landscape' || '' }}  # 16:9 dims for the curiosity_long run only (exemption from the 180s Shorts ceiling too); portrait for every curiosity-SHORT/news run.
+  CURIOSITY_RESEARCHED: ${{ github.event.inputs.curiosity_long == 'true' && '1' || '' }}  # 2026-09-17, re-scoped 2026-09-22: RESEARCHES each scouted topic (full-article Wikipedia corpus) and writes the LANDSCAPE deep-dive from that source material instead of free-writing from LLM recall -- scoped to curiosity_long only now (decoupled from the daily curiosity-SHORT, which keeps its own recall-pool path). $0 (Ollama + bot-tier Wikipedia, never paid Gemini).
+  SHORTS_CAPTIONS: '1'  # synced karaoke captions — real edge WordBoundary word timings threaded end-to-end (captionWords uses verbatim words, no syllable-estimate drift). Fleet-wide go-live 2026-09-14 after render-proven sync fix (was OFF: the estimate ran ahead = fast-forward). Fail-open: no real words -> caption track omitted.
+  # ── Phase 6/7 LLM STAGES model tag (2026-09-05, retagged 2026-09-19) — image rerank+assembly (Ph6)
+  # and research stages. qwen3.5:397b-cloud RETIRED 2026-09-19 (5-day notice) -> glm-5.3:cloud for every
+  # text-only call (image rerank + contextual assembly read CAPTIONS/metadata, never raw pixels — the
+  # actual vision role is SHORTS_VLM_GATE_MODEL below, untouched). The two RESEARCH stages (lead-pick
+  # rerank + deep synth) stay on deepseek-v4-pro:0813-cloud (user 2026-09-13: off gemma4) — all via the
+  # per-call model override. Kept in env (not only the code default) so a rotted Ollama Cloud tag (§10
+  # model-ID rot) is a 1-line workflow fix, never a silent fallback to a stale default. Feature gates
+  # (SHORTS_LLM_RERANK / SHORTS_LLM_ASSEMBLY / SHORTS_RESEARCH_SYNTH) default ON in code.
+  SHORTS_LLM_RERANK_MODEL: 'deepseek-v4-pro:0813-cloud'  # 2026-09-27 (user directive): standardized Ollama-Cloud LLM tag -- glm-5.3:cloud had shown reliability issues (visible chain-of-thought instead of terse output)
+  SHORTS_LLM_ASSEMBLY_MODEL: 'deepseek-v4-pro:0813-cloud'  # 2026-09-27 (user directive): standardized Ollama-Cloud LLM tag -- glm-5.3:cloud had shown reliability issues (visible chain-of-thought instead of terse output)
+  SHORTS_RESEARCH_MODEL: 'deepseek-v4-pro:0813-cloud'  # research lead-pick rerank (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud; adapter sends think:false so no reasoning leak / empty responses; ~5x gemma token cost, user-approved §8)
+  SHORTS_RESEARCH_SYNTH_MODEL: 'deepseek-v4-pro:0813-cloud'  # deep research brief (user 2026-09-13: both research stages on deepseek-v4-pro:0813-cloud, off gemma4:31b)
+  EDITOR_ATTRACTIVENESS: '1'  # editor pool-level attractiveness rating (2026-09-03, Ollama-headroom quality plan) — near-zero extra cost, adds a field to the existing single editor call
+  EDITOR_STAKES: '1'  # stakes gate (retention Initiative A, 2026-09-06) — LLM-judged human-stakes 0-5 rides the SAME editor call; demotes a rated sub-3 video pick and promotes the best higher-stakes eligible alt. Fail-open (unjudged never blocks).
+  # ── CHATTERBOX TTS (Modal GPU) — natural voice, all channels (2026-08-30) ──
+  # Fail-opens to the offline engine (kokoro/piper) on any Modal outage, so it can never drop a video.
+  # SCOPED TEST (2026-09-01, user: "bring back english and hindi to edge tts... analyse and rate") — disabled
+  # here so this channel actually runs the edge voice just pinned in config.mjs/channel-voices.json
+  # instead of Chatterbox's tier-gate override (voice/chatterbox.mjs treats hi/en as a "PROVEN
+  # dedicated variant" and would otherwise take over regardless of this flag). Revert: '1'.
+  CHATTERBOX_TTS: '0'
+  CHATTERBOX_ENDPOINT: ${{ secrets.CHATTERBOX_ENDPOINT }}
+  CHATTERBOX_TOKEN: ${{ secrets.CHATTERBOX_TOKEN }}
+  CBX_QC: '1'   # QC safety net: ASR-verify Chatterbox beats, fail-open on persistent gibberish (es/pt/EN only; bharat excluded, 2026-08-31)
+  CBX_QC_RESCUE: '1'   # content-fix rescue (3b): on a persistent ASR mismatch, ask Ollama Cloud (OLLAMA_MODEL default) for a targeted respelling before giving up (2026-08-31)
+  SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
+  SHORTS_GDELT: '1'      # GDELT breaking-news gather source (GKG-first, fail-open) (2026-09-07)
+  SHORTS_VLM_GATE: '1'   # pixel-truth VLM image gate (Ollama Cloud, via SHORTS_VLM_GATE_MODEL) — prune hallucinated off-topic photos before planShots; fail-open, staged world/au first (never bharat) 2026-09-07
+  SHORTS_ALLOW_STOCK: '1'  # 2026-10-14 (user directive): free Pexels/Pixabay stock stills+video as an additional image-supply tier, re-enabled now that SHORTS_VLM_GATE (above) polices every candidate by pixels regardless of source -- was off by an earlier explicit user constraint ("fetch original story related images only, not unrelated pexel") made before the VLM gate existed. Funnel still ranks stock LAST behind Commons/institutional/story-own tiers.
+  SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-10-06 (user, repeated explicit directive -- "VLM = deepseek-v4.1-flash:cloud ... no other model please"): this workflow-level override had drifted back to the 2026-09-27 gemma4:31b-cloud value and silently shadowed the 2026-10-04 code-level revert (visual_gate.mjs's MODEL() default already read deepseek-v4.1-flash:cloud, but this override took priority) -- matches the code default now, this line is a redundant pin, not an override
+  SHORTS_VLM_TIER: '1'  # 2026-09-27: 4-tier relevance verdict (EXACT/CONTEXTUAL/GENERIC/WRONG) -- the binary gate was measured at 98/100 CONTEXTUAL over-drops + 11/11 EXACT false-drops in the offline eval (agyata_findings/vlm_visual_selection_fix_plan.md §0.6), and a real usa/it/ar render review confirmed the live symptom: heavy image repetition (a single image held 8-20+s across unrelated beats) because the survivor pool after the binary gate was far smaller than the fetched/dedup'd distinct count. Fail-open + byte-identical when off (visual_gate.mjs's own TIER() flag); this flips it on fleet-wide per its documented rollout plan (same path SHORTS_VLM_ENTITY_CTX/CORP_CTX already followed).
+  SHORTS_DEPTH_STRICT: '1'  # 2026-09-28: retention Initiative C -- the deep/dense tier also requires >=2 distinct corroborating outlets (not just corpus length), so a single long-winded uncorroborated source no longer gets padded to the 150-180s tier. Fleet-wide rollout.
+  # ── FACT-INTEGRITY + ENTITY-RELEVANCE FLEET ROLLOUT (2026-09-20, render-verified across usa/vi/jp/pl/ar,
+  # 2367/2367 tests) — root-caused via a real RAF-13/technical-fall confabulation + a Moscow/Japan render
+  # review. SHORTS_STORY_FACTCHECK/SHORTS_FACTCHECK: reuse the existing factCheckBeats corpus-check to gate
+  # a story's own synthesized claim (not just generated script beats) before it can become a video, and to
+  # drop any script beat the source material doesn't support. SHORTS_ENTITY_RESOLVE_WIDE/
+  # SHORTS_VISUAL_ENTITY_PLAN/SHORTS_VLM_ENTITY_CTX/SHORTS_STILL_ENTITY_GATE: widen+disambiguate entity
+  # portraits and thread named entities into the VLM/caption/still relevance judges — fixed a real wrong-
+  # country image bug (a UK political conference + a Hong Kong charity event survived into a Japan render
+  # before this). Fail-open throughout; each independently render-verified this session.
+  SHORTS_STORY_FACTCHECK: '1'
+  SHORTS_FACTCHECK: '1'
+  SHORTS_ENTITY_RESOLVE_WIDE: '1'
+  SHORTS_VISUAL_ENTITY_PLAN: '1'
+  SHORTS_VLM_ENTITY_CTX: '1'
+  SHORTS_STILL_ENTITY_GATE: '1'
+  SHORTS_QUERY_ENRICH: '1'  # 2026-10-12 (user: "no dark flag please"): intended-PROD-ON query enrichment -- richer natural-language retrieval queries from the already-parsed scene (zero added LLM cost, reuses the Ollama scene) to widen the distinct visual-concept pool. Flipped on after a world render showed only 6/63 distinct query-concepts (ratio 0.10 at floor) -> 8 distinct assets < Rule 18's 9 -> SKIPPED. retrieval/config.mjs queryEnrichEnabled().
+  SHORTS_PROVIDER_QUERY_ADAPT: '1'  # 2026-10-12 (user: "no dark flag please"): intended-PROD-ON per-provider query shaping (Commons/Openverse/stock) so fewer off-topic hits enter the corpus (the same world render had the VLM gate drop 17/21 as Unrelated/Foreign-Text). retrieval/config.mjs providerQueryAdaptEnabled().
+  RESEARCH_POD: '1'  # multi-agent research pod (Fact-Finder + Devil's-Advocate + Localizer) on the finalised lead — Ollama-Cloud generation, fail-open (Modal grounding/rerank degrade to null until deployed). Enabled FLEET-WIDE 2026-09-12 (user lock; Ollama flat-rate, no incremental cost).
+  # ── CINEMATIC ENGINE (setup_cinematic.sh provisions the models; all fail-open) ──
+  SHORTS_CINEMATIC: '1'
+  # ROLLED BACK 2026-08-28 (user: distorted first frames + shorts landing 20-30s, not 45-60s) —
+  # render.mjs now uses a plain left-right slide pan (media/window.mjs) for every still; DOF and
+  # SPATIAL_GFX below are sub-gated on SHORTS_DEPTH_3D and go inert with it.
+  SHORTS_DEPTH_3D: '0'
+  SHORTS_DEPTH_OCCLUSION: '0'
+  SHORTS_SPATIAL_GFX: '0'   # story-keyword graphic behind the matted subject (occlusion route); fail-open, $0. render.mjs auto-wiring landed (shorts/visual/spatial_keyword.mjs).
+  DEPTH_MODEL: /tmp/models/depth_anything_v2_vits.onnx
+  MATTE_MODEL: /tmp/models/u2net.onnx
+  DEPTH_SIZE: '392'
+  DEPTH_CACHE_DIR: /tmp/agyata-depth
+  MATTE_CACHE_DIR: /tmp/agyata-matte
+  PARALLAX_CACHE_DIR: /tmp/agyata-parallax
+  DEPTH_MAX_IMAGES: '12'
+  MATTE_MAX_IMAGES: '12'
+  DEPTH_BUDGET_MS: '20000'
+  MATTE_BUDGET_MS: '20000'
+  DEPTH_THREADS: '2'
+  MATTE_THREADS: '2'
+  OCCLUSION_MAX_PER_CLIP: '4'
+  ASSEMBLE_CONCURRENCY: '2'
+  SHORTS_DEBUG: '1'
+  SHORTS_RETRIEVAL_DEBUG: '1'
+  # FLEET ROLLOUT (2026-09-01, user: "this is much better beats. lets use this longer beats to
+  # all channels now" — after a real render, omFdA_kpEdw, confirmed the deep-tier 150-180s/6-beat
+  # micro-arc works well). Still gated per-story by isDepthWorthy (research_script.mjs) — a thin
+  # story ships at today's normal length regardless of this flag, only a story with enough real
+  # material gets the longer treatment.
+  SHORTS_LONG_MICROARC: '0'  # 2026-09-12: reverted to the normal 3-beat 45-60s tier — user wants <=1 min for FB/IG/YT (was '1' deep 6-beat/150-180s; build_short.mjs 55s narration cap backstops)
+  # SELECTION (user 2026-09-12: "select and produce most blazing and in demand stories"). Reward
+  # slot:'trending' provenance (was inert at weight 0) + lift the hook/attractiveness rerank so
+  # genuinely hot, high-retention picks win. Paired with the widened live-trending pull
+  # (SHORTS_TRENDS_PERGEO/SHORTS_X_PERGEO code defaults). Fact-corroboration gate unchanged (primary).
+  EDITORIAL_W_TRENDING: '6'
+  EDITORIAL_W_HOOK: '5'
+  EDITORIAL_W_ATTRACTIVENESS: '4'
+  LONGFORM_RAG_TRACE: '1'
+  SHORTS_CATEGORY_FILTER: ${{ github.event.inputs.category }}
+  # EVENING ROUNDUP (2026-10-02) — see the `roundup` input above; same 4-flag mapping as shorts-usa.yml/shorts-pl.yml.
+  SHORTS_SINGLE: ${{ github.event.inputs.roundup == 'true' && '0' || '' }}
+  SHORTS_ROUNDUP_SLATE: ${{ github.event.inputs.roundup == 'true' && '1' || '' }}
+  SHORTS_ROUNDUP_TRIVIA: ${{ github.event.inputs.roundup == 'true' && '1' || '' }}
+  SHORTS_STORY_COUNT: ${{ github.event.inputs.roundup == 'true' && '6' || '' }}
+  # FIXED CATEGORY SEQUENCE (2026-10-06, manual test only) -- see the `category_sequence` input above.
+  SHORTS_CATEGORY_SEQUENCE: ${{ github.event.inputs.category_sequence == 'true' && '1' || '' }}
+  CONTENT_MODE: ${{ github.event.inputs.content_mode }}
+  SHORTS_FASTPATH: ${{ github.event.inputs.fastpath }}
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python # the workflow's venv python (set on PATH below)
+  # PUBLIC + monetized — English (@AgyataWorld) publishes live like the native channels
+  # (was 'unlisted' by default). build_short reads SHORTS_PRIVACY into meta.privacyStatus →
+  # upload.mjs sets it on videos.insert, so the Short is public the moment it uploads (no
+  # manual Studio flip). The shorts/safety.mjs demonetization guard runs first, so
+  # straight-to-public is monetization-safe.
+  # HARDCODED public (2026-08-29 fix): a 'privacy' workflow_dispatch input used to shadow
+  # this with a default of 'unlisted' ('inputs.privacy || public' resolves the input's OWN
+  # declared default when the dispatcher — agyata-cron-pinger — doesn't pass one, so it was
+  # NEVER falling through to 'public'). cron-pinger never sends a privacy input, so every
+  # scheduled run silently uploaded unlisted despite this comment block always having said
+  # PUBLIC. Removed the input entirely — matches shorts-usa.yml/shorts-uk.yml/shorts-longform.yml.
+  SHORTS_PRIVACY: public
+  # Durable VIDEO-DEDUP ledger (Upstash Redis) — the renderer's OWN "already made a video of
+  # this story?" memory, separate from the website's CF news_dedup_claims. Render step reads
+  # it (drop already-published stories); upload step writes it after a successful upload.
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  # AUTHENTICATED WIKIMEDIA SESSION (2026-09-02, user created a bot account specifically for
+  # this: "we have 200 request/sec limit, use it"). Fail-open: unset/wrong and every entity-
+  # image call proceeds exactly as before this existed (anonymous, same as today).
+  WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+  WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+  OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  SHORTS_OPENVERSE_PAGE_SIZE: '100'  # authed tier (Openverse app email verified 2026-09-05); anon caps at 20. Effective = min(this, limit*3) in shorts/media/openverse.mjs; fail-open on any 4xx.
+  # ── LLM PROVIDER LADDER — the SAME shared router the news pipeline uses
+  #    (src/providers.mjs), NVIDIA-first then the rest of the free tier, local Ollama
+  #    last (user: "use AI model with NVidia following others and fallback to ollama").
+  #    shorts/llm.mjs is now a thin adapter over it. A provider is skipped if its key is
+  #    absent; fail-fast (one try/provider, bench on failure, never retry). This is what
+  #    turns the raw article body into a clean, non-repetitive brief per story. ──
+  PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY (user 2026-09-12: "it should first hit the ollama cloud only"). Free-tier fallbacks were all dead (cerebras 402, nvidia 410, gitmodels retired, sambanova/mistral 429, openrouter/cohere timeout) — pure latency+log-noise. Ollama Max is the sole engine (project_ollama_max_switch); the 6-retry adapter + pipeline fail-open handle a transient blip.
+  SHORTS_RESEARCH_BUNDLE: '0'  # research-world cron is paused (video-only) → bundle is stale; live-gather (multiSource) instead
+  PROVIDER_USE_OLLAMA: '1'  # Ollama Cloud primary (user 2026-08-03: ollama first, free tiers fallback)
+  WM_RENDER_CLAIMS: '1' # Worldmodel: extract claims into the render (Beat 5 divergence, source-meter consensus, groundedness). Gemini 2.0 Flash paid.
+  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+  NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: 'gemini-flash-lite-latest'
+  SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+  SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+  COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+  COHERE_MODEL: 'command-r-08-2024'
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_MODEL: 'openrouter/free' # auto-router to a free model — immune to model-ID rot
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+  MISTRAL_MODEL: 'mistral-small-latest'
+  GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+  GITMODELS_MODEL: 'openai/gpt-4o-mini'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: 'gpt-4o-mini'
+  OPENAI_DAILY_CAP: '30'
+  OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}  # global default (user 2026-09-13: gemma4:31b → deepseek-v4-pro:0813-cloud). NOTE: the OLLAMA_MODEL repo secret OVERRIDES this default — repointed to deepseek-v4-pro:0813-cloud via gh secret set.
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_GLOBAL_CONCURRENCY: '10'  # 2026-09-13: RE-ENABLED cross-job Ollama D1 semaphore (cap=10 = Ollama Max concurrency) after the Cloudflare free-tier quota reset (was '0' since 2026-09-12, when per-LLM-call acquire/release via api-gateway->news-svc + a 120s backoff poll storm under contention flooded those Workers toward the 100k/day cap). Fail-open on D1 error; the poll-storm amplifier under contention is still unfixed — watch news-svc request volume.
+  SHOWRUNNER: '1'  # late-night-show rewrite pass (Stage 1b, enabled 2026-08-29 after real-render verification)
+  OLLAMA_MAX_TRIES: '6'
+  PROVIDER_HOSTED_TIMEOUT_MS: '60000'
+  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+  DEEPINFRA_API_KEY: ${{ secrets.DEEPINFRA_API_KEY }}
+  DEEPINFRA1_API_KEY: ${{ secrets.DEEPINFRA1_API_KEY }}
+  COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF1_TOKEN: ${{ secrets.HF1_TOKEN }}
+  HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+  HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    # Cron fires every ~2h, so there's no contention — give the render room to finish.
+    # A Short is 1 story but the run still does: apt deps + Kokoro install + (cold) Ollama
+    # pull + multi-source extraction/synth + ffmpeg. 20m was clipping cold runs; 40m means
+    # once it starts it finishes. cancel-in-progress:false → only this ceiling can kill it.
+    # BUMPED 40->60 (2026-09-01, fleet rollout of SHORTS_LONG_MICROARC): a deep-tier 6-beat/150-180s
+    # micro-arc needs more render wall-time than the 3-beat/45-90s baseline this 40min budget was
+    # sized for.
+    # 120min for every run (user 2026-09-17, "for simplicity make all job 120 minutes"): the morning
+    # curiosity deep-dive overran the old 60min cap mid-encode (shorts-pl 2026-09-16 cancelled at ~61min).
+    timeout-minutes: 120
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: feat/script-aware-image-retrieval
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      # ── SHARED SETUP (perf): node+npm, apt+fonts, python+pip cache, cinematic ONNX provisioning,
+      # + the ONNX model-WEIGHTS cache — ONE composite action (private repo; resolves after the
+      # checkout above). Replaces the per-channel setup; all deps preserved verbatim as inputs.
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper edge-tts'
+          apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      - name: Restore cinematic ONNX depth/matte maps + parallax clips (shared across ALL channels/runs)
+        if: env.SHORTS_DEPTH_3D == '1'
+        id: cinematic-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+      - name: Verify script-aware retrieval tests
+        env:
+          SHORTS_VLM_CORP_CTX: '0'
+        run: |
+          node --test test/scene_context_test.mjs test/script_aware_retrieval_test.mjs test/visual_gate_test.mjs
+          node tools/acceptance/check_acceptance.mjs docs/acceptance/script-aware-image-retrieval.json
+
+
+      - name: Render English Short
+        id: render
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Region (usa | europe) chosen by the cron-pinger; blank on a manual run → the
+          # renderer falls back to wall-clock alternation.
+          WORLD_REGION: ${{ inputs.region }}
+          # Cross-run dedup: the renderer claims story keys via api.agyata.com before
+          # rendering so overlapping runs never publish the same story. Same token as ingest.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+          # Research pod discriminative models (Modal GPU). Empty until `modal deploy` + the secrets are set
+          # (see services/research_pod/modal_app.py); the Node client fail-opens to null when unset, so the
+          # Ollama generation agents still run and only grounding/rerank degrade. Wired once, here.
+          RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+          RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+        run: node shorts/build_short.mjs world
+
+      # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus in the meta). Runs only when
+      # the channel's refresh token secret is set — until then the render just produces
+      # the artifact below. Never fails the run if upload errors (best-effort). On success
+      # it sets uploaded=true so the steps below DON'T publish the video as a public
+      # artifact (user: "don't keep the results on public github, delete after upload").
+      - name: Auto-upload to YouTube (disabled for review-only pilot)
+        if: false
+        id: yt
+        continue-on-error: true
+        env:
+          # Durable video-dedup ledger WRITE — upload.mjs calls markPublished/markTopicsPublished/
+          # markCuriosityTopicsPublished here; without this token d1Enabled() is false and every
+          # ledger write silently no-ops → the render step reads an empty ledger → duplicates ship.
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          # Region → playlist (user: USA news → USA playlist, Europe news → Europe playlist).
+          # YT_PLAYLIST_ENGLISH is the single catch-all World playlist used when a region-
+          # specific one isn't set (user added it); USA/EUROPE take precedence when present.
+          YT_PLAYLIST_ENGLISH: ${{ secrets.YT_PLAYLIST_ENGLISH }}
+          YT_PLAYLIST_USA: ${{ secrets.YT_PLAYLIST_USA }}
+          YT_PLAYLIST_EUROPE: ${{ secrets.YT_PLAYLIST_EUROPE }}
+        # Skip cleanly if the token isn't set (env is allowed in `if`; `secrets` is not).
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_WORLD" ]; then echo "no refresh token — skipping upload (artifact only)"; exit 0; fi
+          node shorts/upload.mjs world "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # AUTO-POST to Facebook Pages + their linked Instagram accounts via the Meta Graph API — the
+      # same token-based model as the YouTube upload above (user 2026-09-12: "use graph API and post
+      # like you are doing for youtube ... post on all pages that it has with post and video"). Reads
+      # the staged Short from STAGE_DIR (before the purge below) and posts the video with an SEO
+      # caption + hashtags. Skips cleanly until META_USER_TOKEN is set; best-effort — never fails run.
+      - name: Auto-post to Facebook + Instagram (disabled for review-only pilot)
+        if: false
+        continue-on-error: true
+        env:
+          SHORTS_SOCIAL_PUBLISH: '1'
+          META_PAGE_WORLD: ''  # un-mapped from Agyata World 2026-09-14 per user (only shorts-usa -> Agyata World; no other English Page, so FB posts nowhere; YouTube unaffected)
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_APP_ID: ${{ secrets.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          THREADS_USER_TOKEN: ${{ secrets.THREADS_USER_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        run: |
+          if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post (run shorts/social_bootstrap.mjs, then add the secret)"; exit 0; fi
+          node shorts/social_publish.mjs world "$SHORTS_STAMP"
+
+      # LAST content-generating step: SEO-friendly title/description/hashtags for Facebook,
+      # Instagram and X, derived from the SAME meta.json used for the YouTube upload above.
+      # Generation only — nothing is posted to any platform (no app review, no new secrets).
+      # Writes docs/shorts/world/<stamp>/social.json (meta+thumbnail+video bundled as base64) and
+      # prints a caption preview to the job's step summary, so the pack survives the purge step
+      # below even though the staged file itself doesn't. Best-effort: never blocks the pipeline.
+      - name: Generate social captions (disabled for review-only pilot)
+        if: false
+        continue-on-error: true
+        run: node shorts/social_meta.mjs world "$SHORTS_STAMP"
+
+      # ARTIFACT is a REVIEW COPY only — kept solely when the YouTube upload did NOT happen
+      # (no token yet, or upload errored). On a PUBLIC repo an artifact is publicly
+      # downloadable, so once the video is safely on YouTube (public) we never publish it
+      # here. 1-day retention even then (user: delete the results, don't keep them around).
+      - name: Upload staged Short artifact for local review
+        if: always() && steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-world-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/world/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # PURGE the rendered MP4 + metadata from the runner workspace after upload — nothing
+      # rendered ever lingers on GitHub (repo or artifact). Always runs.
+      - name: Save cinematic ONNX depth/matte maps + parallax clips (grows the shared cache for every channel)
+        if: always() && env.SHORTS_DEPTH_3D == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            /tmp/agyata-depth
+            /tmp/agyata-matte
+            /tmp/agyata-parallax
+          key: cinematic-maps-${{ runner.os }}-v1
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/world/* || true
