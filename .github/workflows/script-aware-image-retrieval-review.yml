@@ -1,7 +1,7 @@
 name: script-aware-image-retrieval-review
 # Render ONE English Short for the @AgyataWorld channel (tier-1 audience) from the
-# freshest global-interest story, then auto-upload it PUBLIC (SHORTS_PRIVACY=public),
-# same as the native-language channels. The MP4 is purged from the runner after upload.
+# freshest global-interest story. Video and social publishing steps are removed; the
+# rendered MP4 is retained as a one-day review artifact, then purged from the runner.
 #
 # CADENCE: driven by the agyata-cron-pinger Cloudflare Worker (workflow_dispatch),
 # same as the news pipeline. Add a line to the pinger's WORKFLOWS to schedule it.
@@ -175,17 +175,7 @@ env:
   SHORTS_FASTPATH: ${{ github.event.inputs.fastpath }}
   API_BASE: https://api.agyata.com
   SHORTS_PY: python # the workflow's venv python (set on PATH below)
-  # PUBLIC + monetized — English (@AgyataWorld) publishes live like the native channels
-  # (was 'unlisted' by default). build_short reads SHORTS_PRIVACY into meta.privacyStatus →
-  # upload.mjs sets it on videos.insert, so the Short is public the moment it uploads (no
-  # manual Studio flip). The shorts/safety.mjs demonetization guard runs first, so
-  # straight-to-public is monetization-safe.
-  # HARDCODED public (2026-08-29 fix): a 'privacy' workflow_dispatch input used to shadow
-  # this with a default of 'unlisted' ('inputs.privacy || public' resolves the input's OWN
-  # declared default when the dispatcher — agyata-cron-pinger — doesn't pass one, so it was
-  # NEVER falling through to 'public'). cron-pinger never sends a privacy input, so every
-  # scheduled run silently uploaded unlisted despite this comment block always having said
-  # PUBLIC. Removed the input entirely — matches shorts-usa.yml/shorts-uk.yml/shorts-longform.yml.
+  # Review workflow does not run any video or social publishing steps.
   SHORTS_PRIVACY: unlisted
   # Durable VIDEO-DEDUP ledger (Upstash Redis) — the renderer's OWN "already made a video of
   # this story?" memory, separate from the website's CF news_dedup_claims. Render step reads
@@ -311,11 +301,7 @@ jobs:
           RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
         run: node shorts/build_short.mjs world
 
-      # AUTO-UPLOAD to YouTube as UNLISTED (privacyStatus in the meta). Runs only when
-      # the channel's refresh token secret is set — until then the render just produces
-      # the artifact below. Never fails the run if upload errors (best-effort). On success
-      # it sets uploaded=true so the steps below DON'T publish the video as a public
-      # artifact (user: "don't keep the results on public github, delete after upload").
+      # Review artifact only; all public publishing steps are omitted.
       - name: Upload staged Short artifact for review
         if: always()
         uses: actions/upload-artifact@v4
