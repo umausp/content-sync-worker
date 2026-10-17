@@ -72,6 +72,9 @@ env:
   SHORTS_DDG_IMAGE_LICENSE: ShareCommercially  # DDG licence filter; origin-page/Commons verification still decides
   SHORTS_DDG_VIDEO_LICENSE: creativeCommon
   SHORTS_DDG_RETRIES: '3'           # exponential backoff on 202/403/429 (Azure runner IPs are throttled)
+  SHORTS_VLM_STRICT: '1'            # news fails CLOSED: no third-party still/clip without a pixel verdict (else the video is skipped)
+  SHORTS_VLM_GATE_FALLBACK_MODELS: gemma4:31b-cloud  # tried when the primary VLM returns no verdict
+  SHORTS_CLAIM_BUFFER: '15'         # review experiment: candidate pool was WANT+5=6, geo-gate dropped 6/6; larger pre-gate pool (cost: more candidates downstream)
   SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}  # optional; applied to DDG calls only, empty => direct
   EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}  # 2026-10-13: edge-tts via Cloudflare egress relay — the CI runner's datacenter IP is 403-blocked by Microsoft on the edge-tts WS handshake, CF egress gets 101 (proven e2e). Default-ON; empty var => direct path. Worker: services/edge-tts-relay.
   EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}  # bearer for the relay POST (relay 401s without it).
