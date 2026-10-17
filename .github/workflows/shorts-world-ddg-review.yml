@@ -10,6 +10,7 @@ name: shorts-world-ddg-review
 # CADENCE: driven by the agyata-cron-pinger Cloudflare Worker (workflow_dispatch),
 # same as the news pipeline. Add a line to the pinger's WORKFLOWS to schedule it.
 # Public repo = free minutes. Never on pull_request.
+# Rerun marker: DDG image yield check (query cap 10, host prefilter).
 on:
   # Lets this review workflow run from its own branch (workflow_dispatch needs the file on main).
   push:
