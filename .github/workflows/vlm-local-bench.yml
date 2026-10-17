@@ -1,0 +1,76 @@
+name: vlm-local-bench
+# One-off benchmark: can gemma-4-E2B (QAT q4_0 GGUF) judge images on a 4-vCPU GitHub runner,
+# and how fast? Measures cold load + per-image latency + correctness. Not a production workflow.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      LLAMA_TAG: b11714
+      HF_REPO: google/gemma-4-E2B-it-qat-q4_0-gguf
+    steps:
+      - name: Cache models
+        id: models
+        uses: actions/cache@v4
+        with:
+          path: models
+          key: gemma4-e2b-qat-q4_0-gguf-v1
+
+      - name: Download models
+        if: steps.models.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p models
+          for f in gemma-4-E2B_q4_0-it.gguf gemma-4-E2B-it-mmproj.gguf; do
+            curl -fL --retry 3 -o "models/$f" "https://huggingface.co/${HF_REPO}/resolve/main/$f"
+          done
+          ls -l models
+
+      - name: Install llama.cpp (CPU build)
+        run: |
+          curl -fL --retry 3 -o llama.tgz "https://github.com/ggml-org/llama.cpp/releases/download/${LLAMA_TAG}/llama-${LLAMA_TAG}-bin-ubuntu-x64.tar.gz"
+          mkdir -p llama && tar -xzf llama.tgz -C llama --strip-components=1
+          ls llama | head -20
+          nproc; free -m | head -2
+
+      - name: Start llama-server
+        run: |
+          nohup ./llama/llama-server -m models/gemma-4-E2B_q4_0-it.gguf \
+            --mmproj models/gemma-4-E2B-it-mmproj.gguf \
+            --port 8080 -c 4096 -t "$(nproc)" --image-max-tokens 280 > server.log 2>&1 &
+          start=$(date +%s)
+          for i in $(seq 1 120); do
+            if curl -sf localhost:8080/health >/dev/null; then echo "ready after $(( $(date +%s) - start ))s"; exit 0; fi
+            sleep 2
+          done
+          echo "server never became ready"; tail -40 server.log; exit 1
+
+      - name: Judge sample images
+        run: |
+          set -u
+          judge() { # $1=name $2=url $3=question
+            curl -sfL -A "Mozilla/5.0 vlm-bench" -o img.jpg "$2" || { echo "SKIP $1 (download failed)"; return; }
+            b64=$(base64 -w0 img.jpg)
+            body=$(jq -n --arg q "$3" --arg d "data:image/jpeg;base64,$b64" \
+              '{messages:[{role:"user",content:[{type:"image_url",image_url:{url:$d}},{type:"text",text:($q+" Reply ONLY with JSON {\"relevant\":true|false,\"confidence\":0-1,\"depicts\":\"short\"}")}]}],max_tokens:80,temperature:0}')
+            t0=$(date +%s.%N)
+            out=$(curl -s localhost:8080/v1/chat/completions -H 'content-type: application/json' -d "$body" | jq -r '.choices[0].message.content // "NO-ANSWER"')
+            t1=$(date +%s.%N)
+            printf '%-10s %6.1fs  %s\n' "$1" "$(echo "$t1 - $t0" | bc)" "$(echo "$out" | tr '\n' ' ' | cut -c1-160)"
+          }
+          W=https://commons.wikimedia.org/wiki/Special:FilePath
+          Q='Does this photo depict the Eiffel Tower in Paris?'
+          judge eiffel   "$W/Tour_Eiffel_Wikimedia_Commons.jpg?width=512" "$Q"   # expect true
+          judge cat      "$W/Cat_August_2010-4.jpg?width=512" "$Q"                # expect false
+          judge mona     "$W/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg?width=512" "$Q"  # expect false
+          judge eiffel2  "$W/Tour_Eiffel_Wikimedia_Commons.jpg?width=512" "$Q"   # warm repeat
+          judge cat2     "$W/Cat_August_2010-4.jpg?width=512" "$Q"                # warm repeat
+
+      - name: Server log tail
+        if: always()
+        run: tail -25 server.log || true
