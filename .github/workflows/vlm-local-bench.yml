@@ -45,7 +45,7 @@ jobs:
         run: |
           nohup ./llama/llama-server -m models/gemma-4-E2B_q4_0-it.gguf \
             --mmproj models/gemma-4-E2B-it-mmproj.gguf \
-            --port 8080 -c 4096 -t "$(nproc)" --image-max-tokens 280 > server.log 2>&1 &
+            --port 8080 -c 4096 -t "$(nproc)" --image-max-tokens 100 > server.log 2>&1 &
           start=$(date +%s)
           for i in $(seq 1 120); do
             if curl -sf localhost:8080/health >/dev/null; then echo "ready after $(( $(date +%s) - start ))s"; exit 0; fi
