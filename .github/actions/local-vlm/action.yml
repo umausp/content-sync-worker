@@ -1,0 +1,44 @@
+name: local-vlm
+description: >
+  Start a local llama.cpp server with Gemma-4-E2B (vision, QAT q4_0) on the runner so the pipeline can
+  RERANK image candidates before the cloud VLM gate. Never fails the job: if anything goes wrong the
+  server is simply absent and the pipeline skips the rerank (fail-open). Exports LOCAL_VLM_URL.
+inputs:
+  llama-tag:
+    description: llama.cpp release tag
+    default: b11714
+runs:
+  using: composite
+  steps:
+    - name: Cache Gemma-4-E2B GGUF
+      id: lvlm-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/local-vlm/models
+        key: gemma4-e2b-qat-q4_0-gguf-v1
+    - name: Start local VLM server (fail-open)
+      shell: bash
+      env:
+        LLAMA_TAG: ${{ inputs.llama-tag }}
+        HF_REPO: google/gemma-4-E2B-it-qat-q4_0-gguf
+      run: |
+        set +e
+        D="$HOME/local-vlm"; mkdir -p "$D/models"; cd "$D"
+        for f in gemma-4-E2B_q4_0-it.gguf gemma-4-E2B-it-mmproj.gguf; do
+          [ -s "models/$f" ] || curl -fsSL --retry 3 -o "models/$f" "https://huggingface.co/${HF_REPO}/resolve/main/$f" || { echo "::warning::local-vlm: model download failed ($f); rerank disabled"; exit 0; }
+        done
+        curl -fsSL --retry 3 -o llama.tgz "https://github.com/ggml-org/llama.cpp/releases/download/${LLAMA_TAG}/llama-${LLAMA_TAG}-bin-ubuntu-x64.tar.gz" \
+          && mkdir -p llama && tar -xzf llama.tgz -C llama --strip-components=1 \
+          || { echo "::warning::local-vlm: llama.cpp download failed; rerank disabled"; exit 0; }
+        nohup ./llama/llama-server -m models/gemma-4-E2B_q4_0-it.gguf --mmproj models/gemma-4-E2B-it-mmproj.gguf \
+          --port 8080 -c 4096 -t "$(nproc)" --image-max-tokens 100 > server.log 2>&1 &
+        for i in $(seq 1 90); do
+          if curl -sf localhost:8080/health >/dev/null; then
+            echo "local-vlm ready after $((i*2))s"
+            echo "LOCAL_VLM_URL=http://127.0.0.1:8080" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          sleep 2
+        done
+        echo "::warning::local-vlm: server never became ready; rerank disabled"; tail -20 server.log
+        exit 0

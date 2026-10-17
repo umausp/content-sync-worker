@@ -109,6 +109,20 @@ env:
   CBX_QC_RESCUE: '1'   # content-fix rescue (3b): on a persistent ASR mismatch, ask Ollama Cloud (OLLAMA_MODEL default) for a targeted respelling before giving up (2026-08-31)
   SHORTS_FOLEY: '1'   # diegetic foley — event-synced $0/CPU SFX, fail-open (rolled out to all shorts 2026-08-06)
   SHORTS_VLM_GATE: '1'   # pixel-truth VLM relevance gate (deepseek-v4.1-flash:cloud, via SHORTS_VLM_GATE_MODEL below), fail-open (fleet rollout 2026-09-07)
+  # --- DDG grounding / world-class image pipeline (2026-10-18, all 23 channels; see agyata-pipeline-private PR feat/ddg-grounding-world) ---
+  SHORTS_DDG_RESEARCH: '1'          # DDG web results + scraped article text join the outlet corpus before scripting
+  SHORTS_DDG_RESEARCH_RECENCY: 'w'
+  SHORTS_DDG_IMAGE_LICENSE: ShareCommercially  # DDG licence filter; origin-page/Commons verification still decides (fail-closed)
+  SHORTS_DDG_VIDEO_LICENSE: creativeCommon
+  SHORTS_DDG_RETRIES: '3'           # exponential backoff on 202/403/429 (Azure runner IPs are throttled)
+  SHORTS_DDG_NEWS: '1'              # DDG news vertical (finance/tech/real-estate, per-channel region + language)
+  SHORTS_DDG_PRIMARY: '1'           # DDG news leads the merge; other sources fill
+  SHORTS_VLM_STRICT: '1'            # news fails CLOSED: no third-party still/clip without a pixel verdict
+  SHORTS_VLM_GATE_FALLBACK_MODELS: gemma4:31b-cloud  # tried when the primary VLM returns no verdict
+  SHORTS_LOCAL_VLM_RANK: '1'        # local Gemma-4-E2B reranks image candidates before the cloud VLM gate (never rejects; fail-open)
+  SHORTS_TMDB_ADOPT: '0'            # no entertainment news; keep TMDB images out
+  SHORTS_CLAIM_BUFFER: '15'         # larger candidate pool so the country gate cannot starve the claim
+  SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}  # optional; applied to DDG calls only, empty => direct
   SHORTS_ALLOW_STOCK: '1'  # 2026-10-14 (user directive): free Pexels/Pixabay stock stills+video as an additional image-supply tier, re-enabled now that SHORTS_VLM_GATE (above) polices every candidate by pixels regardless of source -- was off by an earlier explicit user constraint ("fetch original story related images only, not unrelated pexel") made before the VLM gate existed. Funnel still ranks stock LAST behind Commons/institutional/story-own tiers.
   SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # 2026-10-06 (user, repeated explicit directive -- "VLM = deepseek-v4.1-flash:cloud ... no other model please"): this workflow-level override had drifted back to the 2026-09-27 gemma4:31b-cloud value and silently shadowed the 2026-10-04 code-level revert (visual_gate.mjs's MODEL() default already read deepseek-v4.1-flash:cloud, but this override took priority) -- matches the code default now, this line is a redundant pin, not an override
   SHORTS_VLM_TIER: '1'  # 2026-09-27: 4-tier relevance verdict (EXACT/CONTEXTUAL/GENERIC/WRONG) -- the binary gate was measured at 98/100 CONTEXTUAL over-drops + 11/11 EXACT false-drops in the offline eval (agyata_findings/vlm_visual_selection_fix_plan.md §0.6), and a real usa/it/ar render review confirmed the live symptom: heavy image repetition (a single image held 8-20+s across unrelated beats) because the survivor pool after the binary gate was far smaller than the fetched/dedup'd distinct count. Fail-open + byte-identical when off (visual_gate.mjs's own TIER() flag); this flips it on fleet-wide per its documented rollout plan (same path SHORTS_VLM_ENTITY_CTX/CORP_CTX already followed).
@@ -283,6 +297,9 @@ jobs:
             /tmp/agyata-matte
             /tmp/agyata-parallax
           key: cinematic-maps-${{ runner.os }}-v1
+
+      - name: Local VLM (Gemma-4-E2B reranker, fail-open)
+        uses: umausp/content-sync-worker/.github/actions/local-vlm@main
 
       - name: Stamp
         run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
