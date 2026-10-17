@@ -60,9 +60,9 @@ jobs:
             curl -sfL -A "Mozilla/5.0 vlm-bench" -o img.jpg "$2" || { echo "SKIP $1 (download failed)"; return; }
             base64 -w0 img.jpg > b64.txt
             jq -n --arg q "$3" --rawfile d b64.txt \
-              '{messages:[{role:"user",content:[{type:"image_url",image_url:{url:("data:image/jpeg;base64," + $d)}},{type:"text",text:($q+" Reply ONLY with JSON {\"relevant\":true|false,\"confidence\":0-1,\"depicts\":\"short\"}")}]}],max_tokens:80,temperature:0}' > body.json
+              '{messages:[{role:"user",content:[{type:"image_url",image_url:{url:("data:image/jpeg;base64," + $d)}},{type:"text",text:($q+" Reply ONLY with JSON {\"relevant\":true|false,\"confidence\":0-1,\"depicts\":\"short\"}")}]}],max_tokens:150,temperature:0,chat_template_kwargs:{enable_thinking:false}}' > body.json
             t0=$(date +%s.%N)
-            out=$(curl -s localhost:8080/v1/chat/completions -H 'content-type: application/json' -d @body.json | jq -r '.choices[0].message.content // "NO-ANSWER"')
+            out=$(curl -s localhost:8080/v1/chat/completions -H 'content-type: application/json' -d @body.json | jq -c '.choices[0] | {f:.finish_reason, c:.message.content, r:(.message.reasoning_content // "" | .[0:80])}')
             t1=$(date +%s.%N)
             printf '%-10s %6.1fs  %s\n' "$1" "$(echo "$t1 - $t0" | bc)" "$(echo "$out" | tr '\n' ' ' | cut -c1-160)"
           }
