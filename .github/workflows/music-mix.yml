@@ -53,7 +53,9 @@ jobs:
         uses: ./.github/actions/render-setup
         with:
           tts-pip: ''
-          apt-packages: 'ffmpeg fonts-dejavu fonts-noto-core'
+          # fluidsynth + fluid-soundfont-gm (FluidR3_GM, MIT): music engine v2 renders a fresh
+          # algorithmic track set per mix. The SoundFont's sha256 is pinned in licenses.json.
+          apt-packages: 'ffmpeg fonts-dejavu fonts-noto-core fluidsynth fluid-soundfont-gm'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
 
