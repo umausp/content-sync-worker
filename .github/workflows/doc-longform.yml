@@ -1,0 +1,216 @@
+name: doc-longform
+
+# Render ONE long-form documentary for a doc channel (no | da | nl) and upload it to that
+# channel's own YouTube token. Dispatched by agyata-cron-pinger (DOC_SLOTS). Public repo =
+# free minutes. Never on pull_request.
+#
+# script_only=true runs only the front half (topic -> research -> writer/critic script) via
+# tools/acceptance/probes/doc_script_live.mjs, skips render/upload, and still publishes the
+# script/critic/validation JSON as the doc-script artifact for quality review.
+
+run-name: doc ${{ inputs.channel }} ${{ inputs.format }}${{ inputs.script_only && ' script-only' || '' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Doc channel (no | da | nl)'
+        type: choice
+        options: [no, da, nl]
+        required: true
+      format:
+        description: 'mid (watch-hours lane) or flagship (weekly long-form)'
+        type: choice
+        options: [mid, flagship]
+        default: mid
+        required: false
+      privacy:
+        description: 'YouTube privacy for the upload'
+        type: choice
+        options: [public, unlisted, private]
+        default: unlisted
+        required: false
+      script_only:
+        description: 'Run only the script front half (no ffmpeg/TTS, no render, no upload); still uploads work/doc/*.json'
+        type: boolean
+        default: false
+        required: false
+
+concurrency:
+  # one doc run per channel at a time; a second dispatch for the same channel queues behind it
+  group: doc-${{ inputs.channel }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read # artifacts only, nothing committed back to the repo
+
+env:
+  DOC_MODE: '1'
+  DOC_FORMAT: ${{ inputs.format }}
+  SHORTS_ORIENTATION: landscape
+  LONGFORM_PIPELINE: '1'
+  SHORTS_PRIVACY: ${{ inputs.privacy }}
+  SHORTS_DEBUG: '1'
+  SHORTS_CINEMATIC: '1'
+  # LLM ladder: Ollama Cloud ONLY. Gemini is a paid key and is deliberately NOT wired here.
+  PROVIDER_ORDER: 'ollama'
+  PROVIDER_USE_OLLAMA: '1'
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  OLLAMA_MAX_TRIES: '6'
+  OLLAMA_GLOBAL_CONCURRENCY: '10'
+  DOC_WRITER_MODEL: 'deepseek-v4-pro:0813-cloud'
+  DOC_CRITIC_MODEL: 'gpt-oss:120b'
+  DOC_RESEARCH_MODEL: 'gpt-oss:120b'
+  # Durable video-dedup ledger + Upstash (same as shorts-world)
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  # Image-source keys (same set as shorts-world)
+  PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+  PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+  UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+  EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+  WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+  WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+  OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+  OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+  SHORTS_OPENVERSE_PAGE_SIZE: '100'
+  SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
+  SHORTS_DDG_RESEARCH: '1'
+  SHORTS_DDG_RESEARCH_RECENCY: 'w'
+  SHORTS_DDG_IMAGE_LICENSE: ShareCommercially
+  SHORTS_DDG_VIDEO_LICENSE: creativeCommon
+  SHORTS_DDG_RETRIES: '3'
+  SHORTS_VLM_GATE: '1'
+  SHORTS_VLM_STRICT: '1'
+  SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'
+  SHORTS_ALLOW_STOCK: '1'
+  # Edge-TTS via the Cloudflare egress relay (CI datacenter IPs are 403-blocked by Microsoft)
+  EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}
+  EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
+  EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}
+  RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+  RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+  API_BASE: https://api.agyata.com
+  SHORTS_PY: python
+  YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+  YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    # Flagship runs can take up to 150 min (script + multi-pass critic + full render + encode).
+    # cancel-in-progress:false, so only this ceiling can stop a run.
+    timeout-minutes: 150
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      # Full render toolchain (ffmpeg, fonts, kokoro/edge-tts, ...) only when rendering.
+      - name: Render setup (cached)
+        if: ${{ !inputs.script_only }}
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper edge-tts'
+          apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      # Script-only: Node + npm ci is all the probe needs (no ffmpeg, no TTS).
+      - name: Node (script-only)
+        if: ${{ inputs.script_only }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install npm deps (script-only)
+        if: ${{ inputs.script_only }}
+        run: npm ci --no-audit --no-fund
+
+      - name: Local VLM (Gemma-4-E2B reranker, fail-open)
+        if: ${{ !inputs.script_only }}
+        uses: umausp/content-sync-worker/.github/actions/local-vlm@main
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      # SCRIPT ONLY: topic -> live research -> writer + critic; fails the run if the script
+      # does not clear the validator and the critic bar. Writes work/doc/*.json.
+      - name: Script only (doc_script_live probe)
+        if: ${{ inputs.script_only }}
+        run: node tools/acceptance/probes/doc_script_live.mjs ${{ inputs.channel }} ${{ inputs.format }}
+
+      - name: Render doc long-form
+        if: ${{ !inputs.script_only }}
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: node shorts/build_short.mjs ${{ inputs.channel }}
+
+      # Resolve the ONE refresh token for this channel. Each secret is mapped here and only the
+      # matching YT_REFRESH_TOKEN_<CHANNEL> is exported. No WORLD fallback: a doc channel must
+      # upload to its own channel, or not at all.
+      - name: Select channel YouTube token
+        id: yt_token
+        if: ${{ !inputs.script_only }}
+        env:
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+        run: |
+          case "${{ inputs.channel }}" in
+            no) TOKEN="$YT_REFRESH_TOKEN_NO"; VAR=YT_REFRESH_TOKEN_NO ;;
+            da) TOKEN="$YT_REFRESH_TOKEN_DA"; VAR=YT_REFRESH_TOKEN_DA ;;
+            nl) TOKEN="$YT_REFRESH_TOKEN_NL"; VAR=YT_REFRESH_TOKEN_NL ;;
+            *) echo "unknown channel"; exit 1 ;;
+          esac
+          if [ -z "$TOKEN" ]; then
+            echo "no $VAR secret — upload will be skipped (artifact only)"
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::add-mask::$TOKEN"
+          echo "$VAR=$TOKEN" >> "$GITHUB_ENV"
+          echo "has_token=true" >> "$GITHUB_OUTPUT"
+
+      # AUTO-UPLOAD to the channel's own YouTube channel. Best-effort: never fails the run.
+      - name: Auto-upload to YouTube
+        id: yt
+        if: ${{ !inputs.script_only && steps.yt_token.outputs.has_token == 'true' }}
+        continue-on-error: true
+        env:
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: |
+          node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      # ARTIFACT = review copy, kept ONLY when the YouTube upload did not happen.
+      # Public repo: an uploaded video is never published as an artifact.
+      - name: Upload staged doc artifact (only if NOT uploaded)
+        if: ${{ !inputs.script_only && steps.yt.outputs.uploaded != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-${{ inputs.channel }}-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/${{ inputs.channel }}/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # Script quality review: script/critic/validation JSON is small and always kept 7 days.
+      - name: Upload doc script JSON (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-script-${{ inputs.channel }}-${{ env.SHORTS_STAMP }}
+          path: work/doc/*.json
+          retention-days: 7
+          if-no-files-found: warn
+
+      # PURGE rendered output from the runner. Always runs.
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/${{ inputs.channel }}/* || true

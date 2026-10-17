@@ -1,0 +1,100 @@
+name: music-mix
+
+# Render ONE long music mix for the fi channel (Agyata Music) from the licensed track pool,
+# then upload it with the fi channel's own YouTube token. Dispatched by agyata-cron-pinger
+# (fi, Mon/Wed/Fri). Public repo = free minutes. Never on pull_request.
+
+run-name: music fi ${{ inputs.minutes }}min
+
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'Mix length in minutes (30-60)'
+        type: string
+        default: '45'
+        required: false
+      privacy:
+        description: 'YouTube privacy for the upload'
+        type: choice
+        options: [public, unlisted, private]
+        default: unlisted
+        required: false
+
+concurrency:
+  group: music-fi
+  cancel-in-progress: false
+
+permissions:
+  contents: read # artifacts only, nothing committed back to the repo
+
+env:
+  SHORTS_PRIVACY: ${{ inputs.privacy }}
+  SHORTS_DEBUG: '1'
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+  YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+
+jobs:
+  music:
+    runs-on: ubuntu-latest
+    # 60-min mix: render (crossfade + two-pass loudnorm + ambient loop) plus the audio gate
+    # and upload. cancel-in-progress:false, so only this ceiling can stop a run.
+    timeout-minutes: 120
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: ''
+          apt-packages: 'ffmpeg fonts-dejavu fonts-noto-core'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      - name: Stamp
+        run: echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
+
+      - name: Render music mix
+        run: node shorts/music_mix/build_mix.mjs fi --minutes "${{ inputs.minutes }}"
+
+      # Only the fi token, no WORLD fallback. Empty secret = artifact only.
+      - name: Select channel YouTube token
+        id: yt_token
+        env:
+          YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+        run: |
+          if [ -z "$YT_REFRESH_TOKEN_FI" ]; then
+            echo "no YT_REFRESH_TOKEN_FI secret — upload will be skipped (artifact only)"
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::add-mask::$YT_REFRESH_TOKEN_FI"
+          echo "YT_REFRESH_TOKEN_FI=$YT_REFRESH_TOKEN_FI" >> "$GITHUB_ENV"
+          echo "has_token=true" >> "$GITHUB_OUTPUT"
+
+      - name: Auto-upload to YouTube
+        id: yt
+        if: ${{ steps.yt_token.outputs.has_token == 'true' }}
+        continue-on-error: true
+        run: |
+          node shorts/upload.mjs fi "$SHORTS_STAMP"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+
+      - name: Upload staged mix artifact (only if NOT uploaded)
+        if: ${{ steps.yt.outputs.uploaded != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: music-fi-${{ env.SHORTS_STAMP }}
+          path: docs/shorts/fi/
+          retention-days: 1
+          if-no-files-found: warn
+
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/fi/* || true
