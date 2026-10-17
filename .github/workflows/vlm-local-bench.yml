@@ -3,6 +3,9 @@ name: vlm-local-bench
 # and how fast? Measures cold load + per-image latency + correctness. Not a production workflow.
 on:
   workflow_dispatch:
+  push:
+    branches: [feat/ddg-grounding-world-review]
+    paths: [".github/workflows/vlm-local-bench.yml"]
 
 permissions:
   contents: read
