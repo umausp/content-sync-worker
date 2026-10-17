@@ -16,7 +16,7 @@ on:
       channel:
         description: 'Doc channel (no | da | nl)'
         type: choice
-        options: [no, da, nl]
+        options: ['no', 'da', 'nl']
         required: true
       format:
         description: 'mid (watch-hours lane) or flagship (weekly long-form)'
