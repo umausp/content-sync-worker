@@ -72,6 +72,7 @@ env:
   SHORTS_DDG_IMAGE_LICENSE: ShareCommercially  # DDG licence filter; origin-page/Commons verification still decides
   SHORTS_DDG_VIDEO_LICENSE: creativeCommon
   SHORTS_DDG_RETRIES: '3'           # exponential backoff on 202/403/429 (Azure runner IPs are throttled)
+  SHORTS_IMG_POOL_HEADROOM: '4'     # review experiment: run 39044571631 admitted 12 imgs, pixel gate cut 9 -> 3 left while 62 on-topic-by-caption stayed unused; 4x admits ~24 so >=5 distinct survive (VLM cost ~2x, CLAUDE.md s8)
   SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}  # optional; applied to DDG calls only, empty => direct
   EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}  # 2026-10-13: edge-tts via Cloudflare egress relay — the CI runner's datacenter IP is 403-blocked by Microsoft on the edge-tts WS handshake, CF egress gets 101 (proven e2e). Default-ON; empty var => direct path. Worker: services/edge-tts-relay.
   EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}  # bearer for the relay POST (relay 401s without it).
