@@ -1,0 +1,260 @@
+name: music-visual-preview
+
+# Photoreal music-visual preview.
+#  gen    - (optional) generate FLUX.1-schnell stills on CPU with stable-diffusion.cpp
+#  render - motion.sh loop render + loop check + thumbnail + report, per scene
+# Pipeline code is checked out from the PRIVATE repo; this public shell only holds the workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: "agyata-pipeline-private ref to check out"
+        required: false
+        default: feat/photoreal-scenes
+        type: string
+      generate:
+        description: "comma list of scene ids to (re)generate stills for on CI"
+        required: false
+        default: beta_work
+        type: string
+  push:
+    branches: [feat/photoreal-preview]
+    paths: [.github/workflows/music-visual-preview.yml]
+
+permissions:
+  contents: read
+
+env:
+  SDCPP_TAG: master-975-95b3090
+  PIPELINE_DIR: pipeline/shorts/music_mix/photoreal
+
+jobs:
+  setup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      gen: ${{ steps.matrix.outputs.gen }}
+    steps:
+      - id: matrix
+        env:
+          GEN_INPUT: ${{ github.event.inputs.generate }}
+        run: |
+          LIST="${GEN_INPUT:-beta_work}"
+          JSON=$(printf '%s' "$LIST" | jq -R -c 'split(",") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
+          echo "gen=$JSON" >> "$GITHUB_OUTPUT"
+          echo "generate list: $JSON"
+
+  gen:
+    needs: setup
+    if: ${{ needs.setup.outputs.gen != '[]' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: ${{ fromJSON(needs.setup.outputs.gen) }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ github.event.inputs.pipeline_ref || 'feat/photoreal-scenes' }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+
+      - name: Free disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - name: Install ffmpeg, jq, unzip
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq unzip
+
+      - name: Download pinned stable-diffusion.cpp release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DL="$RUNNER_TEMP/sdcpp"
+          mkdir -p "$DL/x"
+          gh release download "$SDCPP_TAG" -R leejet/stable-diffusion.cpp \
+            -p '*-bin-Linux-Ubuntu-24.04-x86_64.zip' -D "$DL"
+          unzip -q "$DL"/*.zip -d "$DL/x"
+          BIN=""
+          for name in sd-cli sd; do
+            found=$(find "$DL/x" -type f -name "$name" | head -1)
+            if [ -n "$found" ]; then BIN="$found"; break; fi
+          done
+          if [ -z "$BIN" ]; then echo "no sd-cli/sd binary in release zip"; find "$DL/x" | head -50; exit 1; fi
+          chmod +x "$BIN"
+          echo "SD_BIN=$BIN" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=$(dirname "$BIN"):${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"
+          echo "found binary: $BIN"
+          ls -la "$(dirname "$BIN")"
+          LD_LIBRARY_PATH="$(dirname "$BIN")" ldd "$BIN" | grep -i 'not found' && exit 1 || true
+
+      - name: Download FLUX.1-schnell weights
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          M="$HOME/sdmodels"
+          mkdir -p "$M"
+          dl() { curl -fL --retry 3 -H "Authorization: Bearer $HF_TOKEN" -o "$M/$2" "$1"; }
+          dl https://huggingface.co/city96/FLUX.1-schnell-gguf/resolve/main/flux1-schnell-Q4_K_S.gguf flux1-schnell-Q4_K_S.gguf
+          dl https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/main/t5-v1_1-xxl-encoder-Q5_K_M.gguf t5-v1_1-xxl-encoder-Q5_K_M.gguf
+          dl https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors clip_l.safetensors
+          dl https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors ae.safetensors
+          ls -la "$M"
+          df -h /
+
+      - name: Generate still
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          set -o pipefail
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/gen_still.sh" "$SCENE" \
+            "$GITHUB_WORKSPACE/out/$SCENE.png" "$HOME/sdmodels" 2>&1 | tee "$GITHUB_WORKSPACE/out/gen_$SCENE.log"
+          ls -la "$GITHUB_WORKSPACE/out"
+
+      - name: Upload still
+        uses: actions/upload-artifact@v4
+        with:
+          name: still-${{ matrix.scene }}
+          path: |
+            out/${{ matrix.scene }}.png
+            out/${{ matrix.scene }}.webp
+            out/gen_${{ matrix.scene }}.log
+          retention-days: 3
+          if-no-files-found: error
+
+  render:
+    needs: gen
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: [ceo_dawn, rain_forest, beta_work]
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ github.event.inputs.pipeline_ref || 'feat/photoreal-scenes' }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+
+      - name: Install ffmpeg, jq, time
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq time
+
+      - name: Download generated still (if any)
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ matrix.scene }}
+          path: gen
+
+      - name: Resolve still and scene metadata
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          SCENES="$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+          get() { jq -r --arg id "$SCENE" ".[] | select(.id == \$id) | $1" "$SCENES"; }
+          PROFILE=$(get .profile)
+          WORDS=$(get .thumb_words)
+          TAG=$(get .thumb_tag)
+          COMMITTED=$(get .still)
+          if [ "$PROFILE" = "null" ] || [ -z "$PROFILE" ]; then echo "scene $SCENE not in scenes.json"; exit 1; fi
+
+          SRC=""
+          if [ -s "$GITHUB_WORKSPACE/gen/$SCENE.png" ]; then
+            STILL="$GITHUB_WORKSPACE/gen/$SCENE.png"; SRC="generated-on-ci"
+          elif [ -s "$GITHUB_WORKSPACE/gen/$SCENE.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/gen/$SCENE.webp"; SRC="generated-on-ci"
+          elif [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED" ]; then
+            STILL="$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED"; SRC="committed:$COMMITTED"
+          elif [ "$SCENE" = "beta_work" ] && [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp"; SRC="draft:beta_work_zerogpu_draft.webp"
+          else
+            echo "no still available for $SCENE"; exit 1
+          fi
+          {
+            echo "PROFILE=$PROFILE"
+            echo "WORDS=$WORDS"
+            echo "TAG=$TAG"
+            echo "STILL=$STILL"
+            echo "STILL_SRC=$SRC"
+          } >> "$GITHUB_ENV"
+          echo "still: $STILL ($SRC) profile: $PROFILE"
+
+      - name: Render loop segment (1920x1080, L=120, DUR=120)
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          OUT="$GITHUB_WORKSPACE/out/$SCENE"
+          mkdir -p "$OUT"
+          SEG="$RUNNER_TEMP/seg_$SCENE.mp4"
+          /usr/bin/time -v -o "$RUNNER_TEMP/time_$SCENE.txt" \
+            bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/motion.sh" "$STILL" "$SEG" 1920 1080 120 120 "$PROFILE"
+          ELAPSED=$(grep 'Elapsed (wall clock)' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
+          RENDER_S=$(echo "$ELAPSED" | awk -F: '{s=0; for(i=1;i<=NF;i++) s=s*60+$i; print s}')
+          RSS_KB=$(grep 'Maximum resident set size' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
+          echo "RENDER_S=$RENDER_S" >> "$GITHUB_ENV"
+          echo "RSS_KB=$RSS_KB" >> "$GITHUB_ENV"
+          echo "SEG=$SEG" >> "$GITHUB_ENV"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          ls -la "$SEG"
+
+      - name: Preview clip, loop check, thumbnail
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR"
+          ffmpeg -v error -y -i "$SEG" -t 30 -c copy "$OUT/preview_30s.mp4"
+          bash "$P/thumb.sh" "$STILL" "$OUT/thumb.jpg" "$WORDS" "$TAG"
+          cp "$STILL" "$OUT/still_used.${STILL##*.}"
+          # loop check is informational here; its result is recorded in report.txt
+          set +e
+          bash "$P/check_loop.sh" "$SEG" 120 30 > "$RUNNER_TEMP/loop_$SCENE.txt" 2>&1
+          echo "LOOP_RC=$?" >> "$GITHUB_ENV"
+          set -e
+          cat "$RUNNER_TEMP/loop_$SCENE.txt"
+
+      - name: Write report
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          RT=$(awk -v r="$RENDER_S" 'BEGIN{printf "%.2f", r/120}')
+          RSS_MB=$(awk -v k="${RSS_KB:-0}" 'BEGIN{printf "%.0f", k/1024}')
+          VERDICT=$(grep -E '^loop verdict' "$RUNNER_TEMP/loop_$SCENE.txt" || echo "loop verdict: UNKNOWN (check_loop did not complete)")
+          PROBE=$(ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height,avg_frame_rate \
+                    -of compact "$OUT/preview_30s.mp4" 2>&1 || echo "ffprobe failed")
+          {
+            echo "scene: $SCENE  profile: $PROFILE  still: $STILL_SRC"
+            echo "render_seconds: $RENDER_S  (output 120s; render/output = $RT, <1.0 is faster than realtime)"
+            echo "max_rss_mb: $RSS_MB"
+            echo "$VERDICT"
+            grep -E 'seam_psnr|gop_boundary_psnr|looped' "$RUNNER_TEMP/loop_$SCENE.txt" || true
+            echo "preview_30s.mp4: $PROBE"
+            echo "check_loop_rc: $LOOP_RC"
+          } | tee "$OUT/report.txt"
+          cat "$OUT/report.txt" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload preview
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ matrix.scene }}
+          path: |
+            out/${{ matrix.scene }}/preview_30s.mp4
+            out/${{ matrix.scene }}/thumb.jpg
+            out/${{ matrix.scene }}/still_used.*
+            out/${{ matrix.scene }}/report.txt
+          retention-days: 3
+          if-no-files-found: warn
