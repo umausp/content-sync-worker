@@ -708,11 +708,11 @@ jobs:
             "[0:v]scale=1280:720,drawtext=$DT:text='v1 (current)'[a];[1:v]scale=1280:720,drawtext=$DT:text='v2 (depth+masks)'[b];[a][b]vstack=inputs=2[v]" \
             -map "[v]" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -movflags +faststart "$OUT/ab_30s.mp4"
           # small review files (slow links): 12 s side-by-side at 960x270 each, frame sheets, v2 motion map
-          ffmpeg -v error -y -i "$OUT/ab_30s.mp4" -t 12 -vf "scale=960:-2" -an -c:v libx264 -preset veryfast -crf 30 -movflags +faststart "$OUT/ab_small.mp4"
+          ffmpeg -v error -y -i "$OUT/ab_30s.mp4" -t 12 -vf "scale=960:-2" -an -c:v libx264 -preset veryfast -crf 23 -movflags +faststart "$OUT/ab_small.mp4"
           ffmpeg -v error -y -i "$OUT/preview_30s_v1.mp4" -i "$OUT/preview_30s_v2.mp4" -filter_complex \
             "[0:v]select='eq(n\,150)',scale=960:-2[a];[1:v]select='eq(n\,150)',scale=960:-2[b];[a][b]hstack[v]" -map "[v]" -frames:v 1 -q:v 3 "$OUT/ab_frame.jpg"
-          ffmpeg -v error -y -i "$OUT/preview_30s_v2.mp4" -filter_complex \
-            "[0:v]split[x][y];[x]select='eq(n\,150)'[p];[y]select='eq(n\,165)'[q];[p][q]blend=all_mode=difference,eq=contrast=6:brightness=0.05,scale=960:-2[v]" -map "[v]" -frames:v 1 -q:v 3 "$OUT/v2_motion.jpg" || true
+          ffmpeg -v error -y -ss 5 -i "$OUT/preview_30s_v2.mp4" -ss 5.5 -i "$OUT/preview_30s_v2.mp4" -filter_complex \
+            "[0:v]format=gbrp[p];[1:v]format=gbrp[q];[p][q]blend=all_mode=difference,lutrgb=r=val*6:g=val*6:b=val*6,scale=960:-2[v]" -map "[v]" -frames:v 1 -q:v 3 "$OUT/v2_motion.jpg" || true
           ffmpeg -v error -y -ss 10 -i "$OUT/preview_30s_v2.mp4" -vf "crop=640:360:640:540,fps=6" -t 2 -q:v 4 "$OUT/v2_crop_%02d.jpg" || true
           ls -la "$OUT"
 
