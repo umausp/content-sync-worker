@@ -55,7 +55,8 @@ on:
         default: ''
 
 concurrency:
-  group: music-live-${{ (inputs.mode == 'stream' || inputs.mode == 'test') && 'stream' || github.run_id }}
+  # Only the SAME channel+slot queues; other slots, other modes and other workflows run in parallel.
+  group: music-live-${{ inputs.mode == 'audit' && github.run_id || format('{0}-{1}', inputs.channel || 'WORLD', inputs.slot || github.run_id) }}
   cancel-in-progress: false
 
 permissions:
