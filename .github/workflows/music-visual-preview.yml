@@ -59,7 +59,7 @@ on:
         default: ''
         type: string
       gen_opts:
-        description: "space-separated KEY=VAL env for the gen job; allowed keys: SD_VAE_TILING (0|1), UPSCALER (lanczos|swinir), SR_MODEL"
+        description: "space-separated KEY=VAL env for the gen job; allowed keys: SD_VAE_TILING (0|1), UPSCALER (lanczos|swinir), SR_MODEL, MOTION_ENGINE (v1|v2; also used by e2e)"
         required: false
         default: ''
         type: string
@@ -175,7 +175,7 @@ jobs:
           for kv in $GEN_OPTS; do
             k="${kv%%=*}"; v="${kv#*=}"
             case "$k" in
-              SD_VAE_TILING|UPSCALER|SR_MODEL) ;;
+              SD_VAE_TILING|UPSCALER|SR_MODEL|MOTION_ENGINE) ;;
               *) echo "gen_opts: key '$k' not allowed (SD_VAE_TILING, UPSCALER, SR_MODEL)"; exit 1 ;;
             esac
             [[ "$kv" == *=* && "$v" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "gen_opts: bad value in '$kv'"; exit 1; }
@@ -774,6 +774,8 @@ jobs:
     env:
       SHORTS_DEBUG: '1'
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+      # gen_opts may carry MOTION_ENGINE=v2 to prove the real build_mix path with motion v2
+      MOTION_ENGINE: ${{ contains(github.event.inputs.gen_opts, 'MOTION_ENGINE=v2') && 'v2' || 'v1' }}
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -793,7 +795,8 @@ jobs:
           echo "SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)" >> "$GITHUB_ENV"
           export SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)
           mkdir -p "$RUNNER_TEMP/prog"
-          /usr/bin/time -v -o "$RUNNER_TEMP/time.txt" node shorts/music_mix/build_mix.mjs fi --minutes "${{ github.event.inputs.e2e_minutes }}" --live-profile --slot focus --progress-dir "$RUNNER_TEMP/prog"
+          /usr/bin/time -v -o "$RUNNER_TEMP/time.txt" node shorts/music_mix/build_mix.mjs fi --minutes "${{ github.event.inputs.e2e_minutes }}" --live-profile --slot focus --progress-dir "$RUNNER_TEMP/prog" 2>&1 | tee "$RUNNER_TEMP/build.log"
+          grep -E '\[photoreal\]|\[motion\]|motion_v2 frames' "$RUNNER_TEMP/build.log" || true
           grep -E 'Elapsed|Maximum resident' "$RUNNER_TEMP/time.txt"
       - name: Check output
         run: |
