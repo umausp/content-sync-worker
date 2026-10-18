@@ -18,6 +18,16 @@ on:
         required: false
         default: beta_work
         type: string
+      render:
+        description: "comma list of scene ids to render previews for; empty = the generate list (or the 3 original scenes)"
+        required: false
+        default: ''
+        type: string
+      gen_size:
+        description: "FLUX generation size WxH (multiples of 16), upscaled to 1920x1080"
+        required: false
+        default: 1344x768
+        type: string
       e2e_minutes:
         description: "minutes for the end-to-end build_mix run (live profile, focus slot); 0 = skip"
         required: false
@@ -40,16 +50,23 @@ jobs:
     timeout-minutes: 5
     outputs:
       gen: ${{ steps.matrix.outputs.gen }}
+      render: ${{ steps.matrix.outputs.render }}
     steps:
       - id: matrix
         env:
           GEN_INPUT: ${{ github.event.inputs.generate }}
+          RENDER_INPUT: ${{ github.event.inputs.render }}
         run: |
+          tojson() { printf '%s' "$1" | jq -R -c 'split(",") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))'; }
           LIST="${GEN_INPUT:-beta_work}"
           [ "$LIST" = none ] && LIST=""
-          JSON=$(printf '%s' "$LIST" | jq -R -c 'split(",") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
+          JSON=$(tojson "$LIST")
+          RLIST="${RENDER_INPUT:-$LIST}"
+          [ -z "$RLIST" ] && RLIST="ceo_dawn,rain_forest,beta_work"
+          RJSON=$(tojson "$RLIST")
           echo "gen=$JSON" >> "$GITHUB_OUTPUT"
-          echo "generate list: $JSON"
+          echo "render=$RJSON" >> "$GITHUB_OUTPUT"
+          echo "generate list: $JSON  render list: $RJSON"
 
   gen:
     needs: setup
@@ -118,8 +135,10 @@ jobs:
       - name: Generate still
         env:
           SCENE: ${{ matrix.scene }}
+          GEN_SIZE: ${{ github.event.inputs.gen_size || '1344x768' }}
         run: |
           set -o pipefail
+          export GEN_W="${GEN_SIZE%x*}" GEN_H="${GEN_SIZE#*x}"
           mkdir -p "$GITHUB_WORKSPACE/out"
           bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/gen_still.sh" "$SCENE" \
             "$GITHUB_WORKSPACE/out/$SCENE.png" "$HOME/sdmodels" 2>&1 | tee "$GITHUB_WORKSPACE/out/gen_$SCENE.log"
@@ -137,14 +156,14 @@ jobs:
           if-no-files-found: error
 
   render:
-    needs: gen
-    if: ${{ always() }}
+    needs: [setup, gen]
+    if: ${{ always() && needs.setup.result == 'success' && needs.setup.outputs.render != '[]' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
-        scene: [ceo_dawn, rain_forest, beta_work]
+        scene: ${{ fromJSON(needs.setup.outputs.render) }}
     steps:
       - name: Checkout pipeline (private)
         uses: actions/checkout@v4
