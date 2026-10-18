@@ -191,11 +191,25 @@ jobs:
           ls -la "$M"
           df -h /
 
+      - name: Python venv (CPU torch) for Real-ESRGAN + depth/region maps
+        run: |
+          python3 -m venv "$HOME/venv"
+          . "$HOME/venv/bin/activate"
+          pip install -q --upgrade pip
+          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -q transformers==5.20.1 timm==1.0.30 accelerate==1.15.0 pillow numpy opencv-python-headless
+          python -c "from transformers import AutoImageProcessor, AutoModelForDepthEstimation, DPTForSemanticSegmentation; import cv2, timm; print('venv ok')"
+          echo "$HOME/venv/bin" >> "$GITHUB_PATH"
+
       - name: Generate still
         env:
           SCENE: ${{ matrix.scene }}
           GEN_W: '1344'
           GEN_H: '768'
+          # sharpen the native 1344x768 still with Real-ESRGAN x2 (gen_still falls back to lanczos on failure)
+          UPSCALER: swinir
+          SR_MODEL: realesrgan_x2plus
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -o pipefail
           export GEN_W GEN_H
@@ -203,6 +217,21 @@ jobs:
           bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/gen_still.sh" "$SCENE" \
             "$GITHUB_WORKSPACE/out/$SCENE.png" "$HOME/sdmodels" 2>&1 | tee "$GITHUB_WORKSPACE/out/gen_$SCENE.log"
           ls -la "$GITHUB_WORKSPACE/out"
+
+      - name: Depth + region maps (motion v2 inputs)
+        # a maps failure must not lose the candidate: motion.sh then renders v1 and commit warns
+        continue-on-error: true
+        env:
+          SCENE: ${{ matrix.scene }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          O="$GITHUB_WORKSPACE/out"
+          python "$GITHUB_WORKSPACE/$PIPELINE_DIR/make_maps.py" "$O/$SCENE.png" "$O/$SCENE.tmp"
+          # committed format: 8-bit depth (white = near) + RGBA mask, named after the still
+          ffmpeg -v error -y -i "$O/$SCENE.tmp.depth.png" -pix_fmt gray -compression_level 9 "$O/$SCENE.depth.png"
+          mv "$O/$SCENE.tmp.mask.png" "$O/$SCENE.mask.png"
+          ls -la "$O"
 
       - name: Read scene metadata
         env:
@@ -290,6 +319,8 @@ jobs:
           name: candidate-${{ matrix.scene }}
           path: |
             out/${{ matrix.scene }}.webp
+            out/${{ matrix.scene }}.depth.png
+            out/${{ matrix.scene }}.mask.png
             out/${{ matrix.scene }}/preview_30s.mp4
             out/${{ matrix.scene }}/thumb.jpg
             out/${{ matrix.scene }}/report.txt
@@ -351,6 +382,11 @@ jobs:
             src="$GITHUB_WORKSPACE/cand/candidate-$id/$id.webp"
             if [ -s "$src" ]; then
               cp "$src" "$P/stills/$id.webp"
+              # motion v2 maps travel with the still (motion.sh falls back to v1 without them)
+              for m in depth mask; do
+                mf="$GITHUB_WORKSPACE/cand/candidate-$id/$id.$m.png"
+                if [ -s "$mf" ]; then cp "$mf" "$P/stills/$id.$m.png"; else echo "WARNING: no $m map for $id (v1 motion until added)"; fi
+              done
               echo "$id" >> "$RUNNER_TEMP/keep.txt"
             else
               echo "$id" >> "$RUNNER_TEMP/failed.txt"

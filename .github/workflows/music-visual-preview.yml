@@ -165,6 +165,15 @@ jobs:
           ls -la "$M"
           df -h /
 
+      - name: Python venv (CPU torch) for Real-ESRGAN
+        run: |
+          python3 -m venv "$HOME/venv"
+          . "$HOME/venv/bin/activate"
+          pip install -q --upgrade pip
+          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -q timm==1.0.30 pillow numpy opencv-python-headless
+          echo "$HOME/venv/bin" >> "$GITHUB_PATH"
+
       - name: Generate still
         env:
           SCENE: ${{ matrix.scene }}
@@ -173,6 +182,8 @@ jobs:
         run: |
           set -o pipefail
           export GEN_W="${GEN_SIZE%x*}" GEN_H="${GEN_SIZE#*x}"
+          # production default (as music-scene-refresh): Real-ESRGAN x2 on the native still; gen_opts may override
+          export UPSCALER=swinir SR_MODEL=realesrgan_x2plus
           # gen_opts: space-separated KEY=VAL, allow-listed keys only (value charset restricted)
           for kv in $GEN_OPTS; do
             k="${kv%%=*}"; v="${kv#*=}"
@@ -614,7 +625,7 @@ jobs:
           mkdir -p "$OUT"
           SEG="$RUNNER_TEMP/seg_$SCENE.mp4"
           /usr/bin/time -v -o "$RUNNER_TEMP/time_$SCENE.txt" \
-            bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/motion.sh" "$STILL" "$SEG" 1920 1080 120 120 "$PROFILE"
+            env MOTION_ENGINE="${{ github.event.inputs.motion_ab == 'true' && 'v1' || 'v2' }}" bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/motion.sh" "$STILL" "$SEG" 1920 1080 120 120 "$PROFILE"
           ELAPSED=$(grep 'Elapsed (wall clock)' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
           RENDER_S=$(echo "$ELAPSED" | awk -F: '{s=0; for(i=1;i<=NF;i++) s=s*60+$i; print s}')
           RSS_KB=$(grep 'Maximum resident set size' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
@@ -776,8 +787,8 @@ jobs:
     env:
       SHORTS_DEBUG: '1'
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-      # gen_opts may carry MOTION_ENGINE=v2 to prove the real build_mix path with motion v2
-      MOTION_ENGINE: ${{ contains(github.event.inputs.gen_opts, 'MOTION_ENGINE=v2') && 'v2' || 'v1' }}
+      # production default is v2; gen_opts MOTION_ENGINE=v1 runs the kill-switch path
+      MOTION_ENGINE: ${{ contains(github.event.inputs.gen_opts, 'MOTION_ENGINE=v1') && 'v1' || 'v2' }}
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -816,6 +827,8 @@ jobs:
           cp "$D/meta.json" "$RUNNER_TEMP/prog/ready.jsonl" e2e/
           [ -f "$D/thumb.jpg" ] && cp "$D/thumb.jpg" e2e/ || echo "no thumb.jpg"
           jq -e '.visual.kind == "photoreal"' "$META"
+          # the engine that actually rendered must be the one requested (v2 = production default)
+          jq -e --arg e "$MOTION_ENGINE" '.visual.engine == $e' "$META" || { echo "engine mismatch: wanted $MOTION_ENGINE, got $(jq -c '.visual' "$META")"; exit 1; }
       - name: Upload e2e artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
