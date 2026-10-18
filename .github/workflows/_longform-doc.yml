@@ -25,6 +25,9 @@ env:
   SHORTS_PRIVACY: ${{ inputs.privacy }}
   SHORTS_DEBUG: '1'
   SHORTS_CINEMATIC: '1'
+  # Burned-in karaoke captions (real edge WordBoundary timings). Off by default in captions_fluid.mjs; every
+  # shorts workflow sets it, the doc workflow never did → docs shipped with no captions (CI 39147389689).
+  SHORTS_CAPTIONS: '1'
   SHORTS_WORK_DIR: ${{ github.workspace }}/.shorts-work
   # LLM ladder: Ollama Cloud ONLY. Gemini is a paid key and is deliberately NOT wired here.
   PROVIDER_ORDER: 'ollama'
