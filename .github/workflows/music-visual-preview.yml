@@ -14,7 +14,7 @@ on:
         default: feat/photoreal-scenes
         type: string
       generate:
-        description: "comma list of scene ids to (re)generate stills for on CI"
+        description: "comma list of scene ids to (re)generate stills for on CI, or none"
         required: false
         default: beta_work
         type: string
@@ -41,6 +41,7 @@ jobs:
           GEN_INPUT: ${{ github.event.inputs.generate }}
         run: |
           LIST="${GEN_INPUT:-beta_work}"
+          [ "$LIST" = none ] && LIST=""
           JSON=$(printf '%s' "$LIST" | jq -R -c 'split(",") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
           echo "gen=$JSON" >> "$GITHUB_OUTPUT"
           echo "generate list: $JSON"
