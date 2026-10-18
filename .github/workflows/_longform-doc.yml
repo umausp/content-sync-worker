@@ -28,6 +28,16 @@ env:
   # Burned-in karaoke captions (real edge WordBoundary timings). Off by default in captions_fluid.mjs; every
   # shorts workflow sets it, the doc workflow never did → docs shipped with no captions (CI 39147389689).
   SHORTS_CAPTIONS: '1'
+  # Provider-shaped queries (shared media/retrieval/query_adapt): Commons/Pixabay get concise nouns without
+  # photo-style words. Same switch shorts-world runs with.
+  SHORTS_PROVIDER_QUERY_ADAPT: '1'
+  # Shorts' still chain for docs: wider DDG pull per query -> ffmpeg/sanity check -> local Gemma-4 rerank (the
+  # Local VLM step below starts the server) -> cloud VLM gate -> per-sentence grounding. Same flags as shorts-*.yml.
+  SHORTS_LOCAL_VLM_RANK: '1'
+  SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
+  SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
+  SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
+  SHORTS_DDG_IMAGE_STORY_CAP: '120'      # per-story admitted DDG pool (default 48)
   SHORTS_WORK_DIR: ${{ github.workspace }}/.shorts-work
   # LLM ladder: Ollama Cloud ONLY. Gemini is a paid key and is deliberately NOT wired here.
   PROVIDER_ORDER: 'ollama'
