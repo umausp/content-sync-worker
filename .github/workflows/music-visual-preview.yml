@@ -74,6 +74,8 @@ permissions:
 env:
   SDCPP_TAG: master-975-95b3090
   PIPELINE_DIR: pipeline/shorts/music_mix/photoreal
+  # authenticated HF downloads (higher rate limits) for transformers/diffusers/hf_hub in every job
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
 jobs:
   setup:
