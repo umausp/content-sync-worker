@@ -260,8 +260,9 @@ jobs:
           python3 -m venv "$HOME/venv"
           . "$HOME/venv/bin/activate"
           pip install -q --upgrade pip
-          pip install -q torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
           pip install -q transformers==5.20.1 pillow numpy opencv-python-headless timm==1.0.30 accelerate==1.15.0
+          python -c "from transformers import AutoImageProcessor, AutoModelForDepthEstimation, DPTForSemanticSegmentation; print('transformers imports ok')"
           pip list 2>/dev/null | grep -iE '^(torch|transformers|timm|pillow|numpy|opencv)' || true
 
       - name: Depth + masks (make_maps.py)
@@ -390,7 +391,7 @@ jobs:
           python3 -m venv "$HOME/venv"
           . "$HOME/venv/bin/activate"
           pip install -q --upgrade pip
-          pip install -q torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
           pip install -q diffusers==0.41.0 transformers==5.20.1 accelerate==1.15.0 sentencepiece==0.2.2 safetensors pillow numpy protobuf
           pip list 2>/dev/null | grep -iE '^(torch|diffusers|transformers|accelerate|sentencepiece|huggingface)' || true
 
