@@ -5,7 +5,8 @@ name: music-live
 #   prepare  daily 16:30 America/New_York → renders TOMORROW's sessions (matrix), uploads them to the
 #            private HF dataset, creates the scheduled YouTube broadcasts ("Upcoming").
 #   stream   T-15 min per slot → downloads that session's mix and copy-streams it over RTMPS.
-#   test     prepare + stream in one job, short mix, starts in ~8 min (manual smoke test).
+#   live     ONE job per slot at T-30: render while streaming (go live at >= 5 min buffered). Default.
+#   test     prepare + stream in one job, short mix, starts in ~8 min (legacy smoke test).
 #   audit    lists the channel's music-live broadcasts + archives (acceptance evidence).
 # Guard-rails (GitHub Actions terms): fixed slots only, never chained/24-7, stream timeout 150 min,
 # one stream at a time. Public repo = free minutes. Never on pull_request.
@@ -17,8 +18,8 @@ on:
     inputs:
       mode:
         type: choice
-        options: [prepare, stream, test, audit]
-        default: test
+        options: [live, prepare, stream, test, audit]
+        default: live
       channel:
         description: 'WORLD, PL = private test channels; FI = Agyata Music'
         type: choice
@@ -49,6 +50,10 @@ on:
         type: choice
         options: ['0', '1']
         default: '0'
+      start_at:
+        description: 'live: "now" = start in ~2 min (tests); ISO time; empty = the slot time'
+        type: string
+        default: ''
       pipeline_ref:
         description: 'agyata-pipeline-private ref (empty = default branch)'
         type: string
@@ -201,6 +206,127 @@ jobs:
             live_out/**/manifest.json
             live_out/**/quota.json
             live_out/**/session.json
+            live_out/**/probe.jsonl
+            live_out/**/ffmpeg.log
+          retention-days: 30
+          if-no-files-found: warn
+
+  # mode=live: ONE job per slot (render-while-streaming). Start at T-30 min: audio first (whole mix,
+  # quality-gated), then video pieces; go live once >= 5 min is buffered and the slot time arrives;
+  # rendering continues during the stream. On a build failure it re-airs this slot's last good mix.
+  live:
+    needs: resolve
+    if: inputs.mode == 'live'
+    runs-on: ubuntu-latest
+    # 30 min lead + 120 min session + final mux/gate + HF fallback upload.
+    timeout-minutes: 200
+    env:
+      LIVE_DATE: ${{ needs.resolve.outputs.date }}
+      LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
+      LIVE_SLOT: ${{ inputs.slot }}
+      YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+      YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+    steps:
+      - name: Free runner disk (pieces + final mix ~13 GB at 6.8 Mbps)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h / | tail -1
+
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: ''
+          apt-packages: 'ffmpeg librsvg2-bin fonts-dejavu fonts-noto-core fluidsynth fluid-soundfont-gm'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      - name: Install HF CLI
+        run: python -m pip install --quiet 'huggingface_hub[cli]>=0.34'
+
+      - name: Live session (render while streaming)
+        id: session
+        run: |
+          set +e
+          CHAOS=()
+          [ -n "${{ inputs.chaos_kill_at_min }}" ] && CHAOS=(--chaos-kill-at-min "${{ inputs.chaos_kill_at_min }}")
+          START=()
+          [ -n "${{ inputs.start_at }}" ] && START=(--start-at "${{ inputs.start_at }}")
+          MIN="${{ inputs.minutes }}"
+          if [ "${{ inputs.force_missing_mix }}" = "1" ]; then
+            echo "force_missing_mix=1: skipping the build (fallback proof)"; code=2
+          else
+            node live/run_session.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
+              --privacy "$LIVE_PRIVACY" --minutes "${MIN:-120}" --out live_out/session "${START[@]}" "${CHAOS[@]}"
+            code=$?
+          fi
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          df -h / | tail -1
+          [ "$code" = 2 ] && exit 0   # build failed before go-live: the fallback step takes over
+          exit "$code"
+
+      - name: Fetch this slot's fallback mix
+        if: steps.session.outputs.code == '2'
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi, hf_hub_download
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo, ch, slot = os.environ["HF_REPO"], os.environ["LIVE_CHANNEL"], os.environ["LIVE_SLOT"]
+          files = set(api.list_repo_files(repo, repo_type="dataset"))
+          src = f"{ch}/fallback/{slot}"
+          if f"{src}/mix.mp4" not in files:
+              # Legacy prepare-mode layout: <ch>/<date>/<slot>/mix.mp4 — take the newest.
+              prior = sorted(d for d in {f.rsplit("/", 1)[0] for f in files if f.endswith("/mix.mp4")}
+                             if d.startswith(f"{ch}/") and d.endswith(f"/{slot}") and "/fallback/" not in d)
+              if not prior:
+                  raise SystemExit(f"build failed and no fallback mix exists for {ch}/{slot}")
+              src = prior[-1]
+          print(f"FALLBACK: re-airing {src}")
+          os.makedirs("live_in", exist_ok=True)
+          for name in ("mix.mp4", "manifest.json"):
+              p = hf_hub_download(repo, f"{src}/{name}", repo_type="dataset", token=os.environ["HF_TOKEN"], local_dir="hf_cache")
+              os.replace(p, f"live_in/{name}")
+          PY
+
+      - name: Stream fallback (a visible failure, exits 1)
+        if: steps.session.outputs.code == '2'
+        run: |
+          set -euo pipefail
+          node live/stream.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
+            --in live_in --out live_out/stream --start scheduled --fallback-used 1 --privacy "$LIVE_PRIVACY"
+
+      - name: Refresh this slot's fallback on HF (only a good session + gated final mix)
+        if: steps.session.outputs.code == '0'
+        run: |
+          set -euo pipefail
+          F=live_out/session/fallback.json
+          [ -f "$F" ] || { echo "no fallback.json"; exit 0; }
+          if [ "$(jq -r .ok "$F")" != "true" ]; then echo "fallback not refreshed: $(cat "$F")"; exit 0; fi
+          mkdir -p hf_up && ln -f "$(jq -r .mp4 "$F")" hf_up/mix.mp4 2>/dev/null || cp "$(jq -r .mp4 "$F")" hf_up/mix.mp4
+          cp live_out/session/manifest.json hf_up/manifest.json
+          hf repo create "$HF_REPO" --repo-type dataset --private --exist-ok >/dev/null 2>&1 || true
+          hf upload "$HF_REPO" hf_up "$LIVE_CHANNEL/fallback/$LIVE_SLOT" --repo-type dataset \
+            --commit-message "fallback $LIVE_CHANNEL $LIVE_SLOT from $LIVE_DATE"
+
+      - name: Upload evidence artifact (no media)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: music-live-${{ env.LIVE_CHANNEL }}-${{ env.LIVE_DATE }}-${{ inputs.slot }}-live${{ inputs.chaos_kill_at_min != '' && '-chaos' || '' }}${{ inputs.force_missing_mix == '1' && '-fallback' || '' }}-${{ github.run_id }}
+          path: |
+            live_out/**/manifest.json
+            live_out/**/quota.json
+            live_out/**/session.json
+            live_out/**/fallback.json
             live_out/**/probe.jsonl
             live_out/**/ffmpeg.log
           retention-days: 30
