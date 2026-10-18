@@ -74,8 +74,9 @@ env:
   YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
   HF_REPO: umausp/agyata-music-live
-  # News channels never show public music: every channel except FI (Agyata Music) is forced private.
-  LIVE_PRIVACY: ${{ inputs.channel != 'FI' && 'private' || inputs.privacy }}
+  # Only FI (Agyata Music) and WORLD (Agyata World) may go unlisted/public; PL and every other channel is forced private.
+  # Mirrors PUBLIC_LIVE_CHANNELS in live/stream.mjs (the CLIs re-check it). Empty channel falls back to WORLD like the concurrency group.
+  LIVE_PRIVACY: ${{ (inputs.channel == 'FI' || inputs.channel == 'WORLD' || inputs.channel == '') && (inputs.privacy || 'private') || 'private' }}
 
 jobs:
   resolve:
