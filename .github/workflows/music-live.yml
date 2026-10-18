@@ -147,6 +147,13 @@ jobs:
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
 
+      # Engine v3 CC0 sample set (VSCO-2 CE, ~400 MB), pinned to commit 6dd651d5. Saves a ~4 min download.
+      - name: Cache engine v3 samples
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/agyata/vsco2ce
+          key: vsco2ce-6dd651d5
+
       - name: Install HF CLI
         run: python -m pip install --quiet 'huggingface_hub[cli]>=0.34'
 
@@ -247,6 +254,13 @@ jobs:
           apt-packages: 'ffmpeg librsvg2-bin fonts-dejavu fonts-noto-core fluidsynth fluid-soundfont-gm'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      # Engine v3 CC0 sample set (VSCO-2 CE, ~400 MB), pinned to commit 6dd651d5. Saves a ~4 min download.
+      - name: Cache engine v3 samples
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/agyata/vsco2ce
+          key: vsco2ce-6dd651d5
 
       - name: Install HF CLI
         run: python -m pip install --quiet 'huggingface_hub[cli]>=0.34'
