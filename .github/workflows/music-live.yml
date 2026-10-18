@@ -20,9 +20,9 @@ on:
         options: [prepare, stream, test, audit]
         default: test
       channel:
-        description: 'WORLD = private P0 test channel; FI = Agyata Music'
+        description: 'WORLD, PL = private test channels; FI = Agyata Music'
         type: choice
-        options: [WORLD, FI]
+        options: [WORLD, PL, FI]
         default: WORLD
       date:
         description: 'Session date YYYY-MM-DD (America/New_York). Empty = tomorrow (prepare) / today (others)'
@@ -69,8 +69,8 @@ env:
   YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
   HF_REPO: umausp/agyata-music-live
-  # The news channel never shows public music: WORLD is forced private regardless of the input.
-  LIVE_PRIVACY: ${{ inputs.channel == 'WORLD' && 'private' || inputs.privacy }}
+  # News channels never show public music: every channel except FI (Agyata Music) is forced private.
+  LIVE_PRIVACY: ${{ inputs.channel != 'FI' && 'private' || inputs.privacy }}
 
 jobs:
   resolve:
@@ -124,6 +124,7 @@ jobs:
       LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
       LIVE_SLOT: ${{ matrix.slot }}
       YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
     steps:
       - name: Checkout private pipeline code
@@ -216,6 +217,7 @@ jobs:
       LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
       LIVE_SLOT: ${{ inputs.slot }}
       YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
     steps:
       - uses: actions/checkout@v4
@@ -295,6 +297,7 @@ jobs:
     env:
       LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
       YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
     steps:
       - uses: actions/checkout@v4
