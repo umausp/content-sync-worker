@@ -4,7 +4,8 @@ name: music-visual-preview
 #  gen    - (optional) generate FLUX.1-schnell stills on CPU with stable-diffusion.cpp
 #  maps   - (optional, motion_ab or sr) CPU depth + semantic masks (make_maps.py) and super-resolution
 #           comparison (sr_swinir.py, 3 models) per scene
-#  i2v    - (optional, i2v_scene) LTX-Video 2B image-to-video CPU feasibility probe
+#  i2v    - (optional, i2v_scene; 'all' = every scene of the render list in ONE warm process) LTX-Video 2B
+#           image-to-video CPU probe; prompt embeddings cached across runs so T5 is skipped on a hit
 #  render - motion.sh loop render + loop check + thumbnail + report, per scene
 #           (motion_ab=true also renders motion v2 and a v1-over-v2 comparison clip)
 # Pipeline code is checked out from the PRIVATE repo; this public shell only holds the workflow.
@@ -53,7 +54,12 @@ on:
         default: 'false'
         type: string
       i2v_scene:
-        description: "scene id to run the LTX-Video image-to-video CPU probe on; empty = skip"
+        description: "scene id to run the LTX-Video image-to-video CPU probe on, or 'all' = every scene in the render list (one warm process); empty = skip"
+        required: false
+        default: ''
+        type: string
+      gen_opts:
+        description: "space-separated KEY=VAL env for the gen job; allowed keys: SD_VAE_TILING (0|1), UPSCALER (lanczos|swinir), SR_MODEL"
         required: false
         default: ''
         type: string
@@ -161,9 +167,20 @@ jobs:
         env:
           SCENE: ${{ matrix.scene }}
           GEN_SIZE: ${{ github.event.inputs.gen_size || '1344x768' }}
+          GEN_OPTS: ${{ github.event.inputs.gen_opts }}
         run: |
           set -o pipefail
           export GEN_W="${GEN_SIZE%x*}" GEN_H="${GEN_SIZE#*x}"
+          # gen_opts: space-separated KEY=VAL, allow-listed keys only (value charset restricted)
+          for kv in $GEN_OPTS; do
+            k="${kv%%=*}"; v="${kv#*=}"
+            case "$k" in
+              SD_VAE_TILING|UPSCALER|SR_MODEL) ;;
+              *) echo "gen_opts: key '$k' not allowed (SD_VAE_TILING, UPSCALER, SR_MODEL)"; exit 1 ;;
+            esac
+            [[ "$kv" == *=* && "$v" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "gen_opts: bad value in '$kv'"; exit 1; }
+            export "$k=$v"; echo "gen_opts: $k=$v"
+          done
           mkdir -p "$GITHUB_WORKSPACE/out"
           bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/gen_still.sh" "$SCENE" \
             "$GITHUB_WORKSPACE/out/$SCENE.png" "$HOME/sdmodels" 2>&1 | tee "$GITHUB_WORKSPACE/out/gen_$SCENE.log"
@@ -176,6 +193,7 @@ jobs:
           path: |
             out/${{ matrix.scene }}.png
             out/${{ matrix.scene }}.webp
+            out/${{ matrix.scene }}.raw.png
             out/gen_${{ matrix.scene }}.log
           retention-days: 3
           if-no-files-found: error
@@ -246,23 +264,45 @@ jobs:
           echo "STILL_SRC=$SRC" >> "$GITHUB_ENV"
           echo "still: $STILL ($SRC)"
 
-      - name: Cache pip + Hugging Face + SwinIR weights
+      # SR weights only (Real-ESRGAN ~67 MB, SwinIR). HF model weights (DA2-small, dpt-large-ade ~1.5 GB) are NOT
+      # cached: the HF CDN download is fast and the repo cache is at its 10 GB cap.
+      - name: Cache SR weights
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/pip
-            ~/.cache/huggingface
-            ~/.cache/sr_swinir
-          key: maps-models-v1-torch2.14.1-tf5.20.1
+          path: ~/.cache/sr_swinir
+          key: maps-sr-weights-v1
+
+      - name: Pinned requirements (venv cache key)
+        run: |
+          R="$GITHUB_WORKSPACE/.venv-reqs"; mkdir -p "$R"
+          PYV=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+          printf '%s\n' "# python $PYV" '--index-url https://download.pytorch.org/whl/cpu' 'torch==2.14.1' 'torchvision' > "$R/maps-torch.txt"
+          printf '%s\n' "# python $PYV" 'transformers==5.20.1' 'pillow' 'numpy' 'opencv-python-headless' 'timm==1.0.30' 'accelerate==1.15.0' > "$R/maps-rest.txt"
+
+      - name: Cache venv
+        id: venv
+        uses: actions/cache@v4
+        with:
+          path: ~/venv
+          key: venv-maps-v1-${{ runner.os }}-${{ hashFiles('.venv-reqs/maps-*.txt') }}
 
       - name: Python venv + CPU torch stack
+        env:
+          VENV_HIT: ${{ steps.venv.outputs.cache-hit }}
         run: |
-          python3 -m venv "$HOME/venv"
+          CHECK='from transformers import AutoImageProcessor, AutoModelForDepthEstimation, DPTForSemanticSegmentation; import torch, timm, cv2, PIL, numpy; print("imports ok", torch.__version__)'
+          if [ "$VENV_HIT" = true ] && "$HOME/venv/bin/python" -c "$CHECK"; then
+            echo "venv cache hit: skipping pip install"
+          else
+            rm -rf "$HOME/venv"
+            python3 -m venv "$HOME/venv"
+            . "$HOME/venv/bin/activate"
+            pip install -q --upgrade pip
+            pip install -q -r "$GITHUB_WORKSPACE/.venv-reqs/maps-torch.txt"
+            pip install -q -r "$GITHUB_WORKSPACE/.venv-reqs/maps-rest.txt"
+            python -c "$CHECK"
+          fi
           . "$HOME/venv/bin/activate"
-          pip install -q --upgrade pip
-          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
-          pip install -q transformers==5.20.1 pillow numpy opencv-python-headless timm==1.0.30 accelerate==1.15.0
-          python -c "from transformers import AutoImageProcessor, AutoModelForDepthEstimation, DPTForSemanticSegmentation; print('transformers imports ok')"
           pip list 2>/dev/null | grep -iE '^(torch|transformers|timm|pillow|numpy|opencv)' || true
 
       - name: Depth + masks (make_maps.py)
@@ -327,6 +367,7 @@ jobs:
     timeout-minutes: 90
     env:
       I2V_SCENE: ${{ github.event.inputs.i2v_scene }}
+      RENDER_JSON: ${{ needs.setup.outputs.render }}
     steps:
       - name: Checkout pipeline (private)
         uses: actions/checkout@v4
@@ -351,62 +392,118 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y ffmpeg jq time
 
-      - name: Download generated still (if any)
+      # merge-multiple: stills of every scene land flat in gen/ (<scene>.png etc. are unique per scene)
+      - name: Download generated stills (if any)
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
-          name: still-${{ github.event.inputs.i2v_scene }}
+          pattern: still-*
+          merge-multiple: true
           path: gen
 
-      - name: Download still from earlier run (stills_run_id)
+      - name: Download stills from earlier run (stills_run_id)
         if: ${{ github.event.inputs.stills_run_id != '' }}
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
-          name: still-${{ github.event.inputs.i2v_scene }}
+          pattern: still-*
+          merge-multiple: true
           path: prev
           run-id: ${{ github.event.inputs.stills_run_id }}
           github-token: ${{ github.token }}
 
-      - name: Resolve still
+      - name: Resolve stills
         run: |
-          SCENE="$I2V_SCENE"
           SCENES="$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
-          COMMITTED=$(jq -r --arg id "$SCENE" '.[] | select(.id == $id) | .still' "$SCENES")
-          for c in "gen/$SCENE.png" "gen/$SCENE.webp" "prev/$SCENE.png" "prev/$SCENE.webp" "$PIPELINE_DIR/$COMMITTED" "$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp"; do
-            if [ -s "$GITHUB_WORKSPACE/$c" ] && [ "${c##*/}" != "null" ]; then STILL="$GITHUB_WORKSPACE/$c"; break; fi
+          if [ "$I2V_SCENE" = all ]; then LIST=$(printf '%s' "$RENDER_JSON" | jq -r '.[]'); else LIST="$I2V_SCENE"; fi
+          ITEMS='[]'
+          for SCENE in $LIST; do
+            COMMITTED=$(jq -r --arg id "$SCENE" '.[] | select(.id == $id) | .still' "$SCENES")
+            STILL=""
+            for c in "gen/$SCENE.png" "gen/$SCENE.webp" "prev/$SCENE.png" "prev/$SCENE.webp" "$PIPELINE_DIR/$COMMITTED" "$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp"; do
+              if [ -s "$GITHUB_WORKSPACE/$c" ] && [ "${c##*/}" != "null" ]; then STILL="$GITHUB_WORKSPACE/$c"; break; fi
+            done
+            if [ -z "$STILL" ]; then echo "no still available for $SCENE, skipping"; continue; fi
+            echo "still: $SCENE -> $STILL"
+            echo "STILL=$STILL" >> "$GITHUB_ENV"   # last one wins; only used by the single-scene path
+            ITEMS=$(jq -c --arg s "$STILL" --arg o "$GITHUB_WORKSPACE/out/i2v_$SCENE/i2v.mp4" '. + [{still: $s, out: $o}]' <<<"$ITEMS")
           done
-          [ -n "${STILL:-}" ] || { echo "no still available for $SCENE"; exit 1; }
-          echo "STILL=$STILL" >> "$GITHUB_ENV"
-          echo "still: $STILL"
+          [ "$ITEMS" != '[]' ] || { echo "no still available for any scene"; exit 1; }
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          printf '%s' "$ITEMS" > "$GITHUB_WORKSPACE/out/i2v_items.json"
+          echo "i2v items: $(jq -c 'map(.out)' <<<"$ITEMS")"
 
-      - name: Cache pip
+      - name: Pinned requirements (venv cache key)
+        run: |
+          R="$GITHUB_WORKSPACE/.venv-reqs"; mkdir -p "$R"
+          PYV=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+          printf '%s\n' "# python $PYV" '--index-url https://download.pytorch.org/whl/cpu' 'torch==2.14.1' 'torchvision' > "$R/i2v-torch.txt"
+          printf '%s\n' "# python $PYV" 'diffusers==0.41.0' 'transformers==5.20.1' 'accelerate==1.15.0' 'sentencepiece==0.2.2' 'safetensors' 'pillow' 'numpy' 'protobuf' > "$R/i2v-rest.txt"
+
+      # venv only (CPU torch ~1 GB). HF model weights (T5 9.5 GB, LTX 6.3 GB) are deliberately NOT cached.
+      - name: Cache venv
+        id: venv
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip
-          key: i2v-pip-v1-torch2.14.1-diffusers0.41.0
+          path: ~/venv
+          key: venv-i2v-v1-${{ runner.os }}-${{ hashFiles('.venv-reqs/i2v-*.txt') }}
 
       - name: Python venv + diffusers stack (pinned)
+        env:
+          VENV_HIT: ${{ steps.venv.outputs.cache-hit }}
         run: |
-          python3 -m venv "$HOME/venv"
+          CHECK='import torch, diffusers, transformers, sentencepiece, accelerate, PIL, numpy; print("imports ok", torch.__version__, diffusers.__version__)'
+          if [ "$VENV_HIT" = true ] && "$HOME/venv/bin/python" -c "$CHECK"; then
+            echo "venv cache hit: skipping pip install"
+          else
+            rm -rf "$HOME/venv"
+            python3 -m venv "$HOME/venv"
+            . "$HOME/venv/bin/activate"
+            pip install -q --upgrade pip
+            pip install -q -r "$GITHUB_WORKSPACE/.venv-reqs/i2v-torch.txt"
+            pip install -q -r "$GITHUB_WORKSPACE/.venv-reqs/i2v-rest.txt"
+            python -c "$CHECK"
+          fi
           . "$HOME/venv/bin/activate"
-          pip install -q --upgrade pip
-          pip install -q torch==2.14.1 torchvision --index-url https://download.pytorch.org/whl/cpu
-          pip install -q diffusers==0.41.0 transformers==5.20.1 accelerate==1.15.0 sentencepiece==0.2.2 safetensors pillow numpy protobuf
           pip list 2>/dev/null | grep -iE '^(torch|diffusers|transformers|accelerate|sentencepiece|huggingface)' || true
+
+      # Prompt-embedding cache (tiny .pt files): a hit skips the 215 s T5 download+load+encode. Accumulates across runs.
+      - name: Prepare embed cache dir
+        run: mkdir -p "$HOME/.cache/agyata/ltx_embeds"
+
+      - name: Cache i2v prompt embeddings
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/agyata/ltx_embeds
+          key: i2v-embeds-v1-${{ hashFiles('pipeline/shorts/music_mix/photoreal/i2v_ltx_probe.py') }}-${{ github.run_id }}
+          restore-keys: |
+            i2v-embeds-v1-
 
       - name: LTX-Video 2B image-to-video probe
         run: |
           . "$HOME/venv/bin/activate"
-          D="$GITHUB_WORKSPACE/out/i2v_$I2V_SCENE"
-          mkdir -p "$D"
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR/i2v_ltx_probe.py"
+          E="$HOME/.cache/agyata/ltx_embeds"
           set +e
-          python "$GITHUB_WORKSPACE/$PIPELINE_DIR/i2v_ltx_probe.py" "$STILL" "$D/i2v.mp4" \
-            --width 768 --height 432 --frames 49 --steps 8 --budget-min 70 --report "$D/i2v_report.json" 2>&1 | tee "$D/i2v.log"
-          echo "probe rc=${PIPESTATUS[0]}"
-          set -e
-          { echo "### i2v $I2V_SCENE"; echo '```'; cat "$D/i2v_report.json" 2>/dev/null || echo "no report"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
-          ls -la "$D"; df -h /
+          if [ "$I2V_SCENE" = all ]; then
+            # warm mode: one process, transformer + VAE loaded once, embeds cached per prompt
+            python "$P" --prompts-json "$GITHUB_WORKSPACE/out/i2v_items.json" --embed-cache "$E" \
+              --width 768 --height 432 --frames 49 --steps 8 --budget-min 70 \
+              --report "$GITHUB_WORKSPACE/out/i2v_batch.report.json" 2>&1 | tee "$GITHUB_WORKSPACE/out/i2v_batch.log"
+            echo "probe rc=${PIPESTATUS[0]}"
+            set -e
+            { echo "### i2v all"; echo '```'; jq -c '.items[] | {out, status, gen_s, item_s, sec_per_step}' "$GITHUB_WORKSPACE/out/i2v_batch.report.json" 2>/dev/null || echo "no report"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            ls -laR "$GITHUB_WORKSPACE/out" | head -60; df -h /
+          else
+            D="$GITHUB_WORKSPACE/out/i2v_$I2V_SCENE"
+            mkdir -p "$D"
+            python "$P" "$STILL" "$D/i2v.mp4" --embed-cache "$E" \
+              --width 768 --height 432 --frames 49 --steps 8 --budget-min 70 --report "$D/i2v_report.json" 2>&1 | tee "$D/i2v.log"
+            echo "probe rc=${PIPESTATUS[0]}"
+            set -e
+            { echo "### i2v $I2V_SCENE"; echo '```'; cat "$D/i2v_report.json" 2>/dev/null || echo "no report"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            ls -la "$D"; df -h /
+          fi
 
       - name: Upload i2v
         if: ${{ always() }}
@@ -414,9 +511,12 @@ jobs:
         with:
           name: i2v-${{ github.event.inputs.i2v_scene }}
           path: |
-            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v.mp4
-            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v_report.json
-            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v.log
+            out/i2v_*/i2v.mp4
+            out/i2v_*/i2v_report.json
+            out/i2v_*/i2v.report.json
+            out/i2v_*/i2v.log
+            out/i2v_batch.report.json
+            out/i2v_batch.log
           retention-days: 3
           if-no-files-found: warn
 
@@ -605,6 +705,13 @@ jobs:
           ffmpeg -v error -y -i "$OUT/preview_30s_v1.mp4" -i "$OUT/preview_30s_v2.mp4" -filter_complex \
             "[0:v]scale=1280:720,drawtext=$DT:text='v1 (current)'[a];[1:v]scale=1280:720,drawtext=$DT:text='v2 (depth+masks)'[b];[a][b]vstack=inputs=2[v]" \
             -map "[v]" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -movflags +faststart "$OUT/ab_30s.mp4"
+          # small review files (slow links): 12 s side-by-side at 960x270 each, frame sheets, v2 motion map
+          ffmpeg -v error -y -i "$OUT/ab_30s.mp4" -t 12 -vf "scale=960:-2" -an -c:v libx264 -preset veryfast -crf 30 -movflags +faststart "$OUT/ab_small.mp4"
+          ffmpeg -v error -y -i "$OUT/preview_30s_v1.mp4" -i "$OUT/preview_30s_v2.mp4" -filter_complex \
+            "[0:v]select='eq(n\,150)',scale=960:-2[a];[1:v]select='eq(n\,150)',scale=960:-2[b];[a][b]hstack[v]" -map "[v]" -frames:v 1 -q:v 3 "$OUT/ab_frame.jpg"
+          ffmpeg -v error -y -i "$OUT/preview_30s_v2.mp4" -filter_complex \
+            "[0:v]split[x][y];[x]select='eq(n\,150)'[p];[y]select='eq(n\,165)'[q];[p][q]blend=all_mode=difference,eq=contrast=6:brightness=0.05,scale=960:-2[v]" -map "[v]" -frames:v 1 -q:v 3 "$OUT/v2_motion.jpg" || true
+          ffmpeg -v error -y -ss 10 -i "$OUT/preview_30s_v2.mp4" -vf "crop=640:360:640:540,fps=6" -t 2 -q:v 4 "$OUT/v2_crop_%02d.jpg" || true
           ls -la "$OUT"
 
       - name: Append A/B report
@@ -636,6 +743,24 @@ jobs:
             out/${{ matrix.scene }}/preview_30s_v2.mp4
             out/${{ matrix.scene }}/ab_30s.mp4
             out/${{ matrix.scene }}/thumb.jpg
+            out/${{ matrix.scene }}/ab_small.mp4
+            out/${{ matrix.scene }}/ab_frame.jpg
+            out/${{ matrix.scene }}/v2_motion.jpg
+            out/${{ matrix.scene }}/v2_crop_*.jpg
+          retention-days: 3
+          if-no-files-found: warn
+
+      - name: Upload review (small)
+        if: ${{ always() && github.event.inputs.motion_ab == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-${{ matrix.scene }}
+          path: |
+            out/${{ matrix.scene }}/ab_small.mp4
+            out/${{ matrix.scene }}/ab_frame.jpg
+            out/${{ matrix.scene }}/v2_motion.jpg
+            out/${{ matrix.scene }}/v2_crop_*.jpg
+            out/${{ matrix.scene }}/report.txt
             out/${{ matrix.scene }}/still_used.*
             out/${{ matrix.scene }}/report.txt
           retention-days: 3
