@@ -1,0 +1,310 @@
+name: music-live
+
+# Scheduled 2 h live music sessions (Agyata Music; P0 tests run PRIVATE on shorts-world).
+# Plan: agyata-pipeline-private docs/music/LIVE_STREAM_PLAN.md. Dispatched by agyata-cron-pinger:
+#   prepare  daily 16:30 America/New_York → renders TOMORROW's sessions (matrix), uploads them to the
+#            private HF dataset, creates the scheduled YouTube broadcasts ("Upcoming").
+#   stream   T-15 min per slot → downloads that session's mix and copy-streams it over RTMPS.
+#   test     prepare + stream in one job, short mix, starts in ~8 min (manual smoke test).
+#   audit    lists the channel's music-live broadcasts + archives (acceptance evidence).
+# Guard-rails (GitHub Actions terms): fixed slots only, never chained/24-7, stream timeout 150 min,
+# one stream at a time. Public repo = free minutes. Never on pull_request.
+
+run-name: music-live ${{ inputs.mode }} ${{ inputs.channel }} ${{ inputs.date }} ${{ inputs.slot }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [prepare, stream, test, audit]
+        default: test
+      channel:
+        description: 'WORLD = private P0 test channel; FI = Agyata Music'
+        type: choice
+        options: [WORLD, FI]
+        default: WORLD
+      date:
+        description: 'Session date YYYY-MM-DD (America/New_York). Empty = tomorrow (prepare) / today (others)'
+        type: string
+        default: ''
+      slot:
+        description: 'focus | slowmorning | unwind | sleep (stream/test). Empty for prepare = all slots of the date'
+        type: string
+        default: ''
+      privacy:
+        type: choice
+        options: [private, unlisted, public]
+        default: private
+      minutes:
+        description: 'Mix length (prepare default 120; test default 10)'
+        type: string
+        default: ''
+      chaos_kill_at_min:
+        description: 'stream/test: SIGKILL ffmpeg once at this minute (recovery proof). Empty = off'
+        type: string
+        default: ''
+      force_missing_mix:
+        description: 'stream: 1 = pretend the mix is missing and use the fallback (fallback proof)'
+        type: choice
+        options: ['0', '1']
+        default: '0'
+      pipeline_ref:
+        description: 'agyata-pipeline-private ref (empty = default branch)'
+        type: string
+        default: ''
+
+concurrency:
+  group: music-live-${{ (inputs.mode == 'stream' || inputs.mode == 'test') && 'stream' || github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SHORTS_DEBUG: '1'
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+  YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF_REPO: umausp/agyata-music-live
+  # The news channel never shows public music: WORLD is forced private regardless of the input.
+  LIVE_PRIVACY: ${{ inputs.channel == 'WORLD' && 'private' || inputs.privacy }}
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      date: ${{ steps.r.outputs.date }}
+      slots: ${{ steps.r.outputs.slots }}
+      channel: ${{ steps.r.outputs.channel }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          sparse-checkout: live
+      - id: r
+        env:
+          IN_DATE: ${{ inputs.date }}
+          IN_SLOT: ${{ inputs.slot }}
+          IN_MODE: ${{ inputs.mode }}
+          IN_CHANNEL: ${{ inputs.channel }}
+        run: |
+          node --input-type=module -e "
+            import { etDateOf, addDays, slotsForDate, slotById } from './live/slots.mjs';
+            const mode = process.env.IN_MODE;
+            const today = etDateOf(new Date());
+            const date = process.env.IN_DATE || (mode === 'prepare' ? addDays(today, 1) : today);
+            let slots;
+            if (process.env.IN_SLOT) slots = [slotById(process.env.IN_SLOT).id];
+            else if (mode === 'prepare') slots = slotsForDate(date).map((s) => s.id);
+            else if (mode === 'audit') slots = ['none'];
+            else throw new Error('slot is required for mode ' + mode);
+            const out = ['date=' + date, 'slots=' + JSON.stringify(slots), 'channel=' + process.env.IN_CHANNEL.toLowerCase()];
+            console.log(out.join('\n'));
+            await import('node:fs').then((fs) => fs.appendFileSync(process.env.GITHUB_OUTPUT, out.join('\n') + '\n'));
+          "
+
+  prepare:
+    needs: resolve
+    if: inputs.mode == 'prepare' || inputs.mode == 'test'
+    runs-on: ubuntu-latest
+    # 120-min mix: engine v2 synthesis + per-track scenery at 1080p24 CBR 3 Mbps. Measured in P0.
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        slot: ${{ fromJSON(needs.resolve.outputs.slots) }}
+    env:
+      LIVE_DATE: ${{ needs.resolve.outputs.date }}
+      LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
+      LIVE_SLOT: ${{ matrix.slot }}
+      YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: ''
+          apt-packages: 'ffmpeg fonts-dejavu fonts-noto-core fluidsynth fluid-soundfont-gm'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      - name: Install HF CLI
+        run: python -m pip install --quiet 'huggingface_hub[cli]>=0.34'
+
+      - name: Prepare session (render + gate + scheduled broadcast)
+        run: |
+          set -euo pipefail
+          MIN="${{ inputs.minutes }}"
+          START_ARGS=()
+          if [ "${{ inputs.mode }}" = "test" ]; then
+            MIN="${MIN:-10}"
+            START_ARGS=(--start-at "$(date -u -d '+12 minutes' +%Y-%m-%dT%H:%M:00Z)")
+          fi
+          MIN="${MIN:-120}"
+          node live/prepare.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
+            --privacy "$LIVE_PRIVACY" --minutes "$MIN" --out live_out/prepare "${START_ARGS[@]}"
+
+      - name: Upload session to HF (private dataset)
+        run: |
+          set -euo pipefail
+          hf repo create "$HF_REPO" --repo-type dataset --private --exist-ok >/dev/null 2>&1 || true
+          hf upload "$HF_REPO" "live_out/prepare/$LIVE_SLOT" "$LIVE_CHANNEL/$LIVE_DATE/$LIVE_SLOT" \
+            --repo-type dataset --commit-message "live $LIVE_CHANNEL $LIVE_DATE $LIVE_SLOT"
+
+      - name: Prune HF sessions older than 4 days
+        if: inputs.mode == 'prepare'
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import os, datetime
+          from huggingface_hub import HfApi
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo, ch = os.environ["HF_REPO"], os.environ["LIVE_CHANNEL"]
+          cutoff = (datetime.date.fromisoformat(os.environ["LIVE_DATE"]) - datetime.timedelta(days=4)).isoformat()
+          dates = sorted({f.split("/")[1] for f in api.list_repo_files(repo, repo_type="dataset") if f.startswith(ch + "/") and f.count("/") >= 2})
+          for d in dates:
+              if d < cutoff:
+                  api.delete_folder(path_in_repo=f"{ch}/{d}", repo_id=repo, repo_type="dataset", commit_message=f"prune {ch}/{d}")
+                  print("pruned", ch, d)
+          PY
+
+      # Stream inline for mode=test (prepare + stream in one job, ~8 min after prepare finishes).
+      - name: Stream (test mode)
+        if: inputs.mode == 'test'
+        run: |
+          set -euo pipefail
+          CHAOS=()
+          [ -n "${{ inputs.chaos_kill_at_min }}" ] && CHAOS=(--chaos-kill-at-min "${{ inputs.chaos_kill_at_min }}")
+          node live/stream.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
+            --in "live_out/prepare/$LIVE_SLOT" --out live_out/stream --start scheduled "${CHAOS[@]}"
+
+      - name: Upload evidence artifact (no media)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: music-live-${{ env.LIVE_CHANNEL }}-${{ env.LIVE_DATE }}-${{ matrix.slot }}-${{ inputs.mode }}
+          path: |
+            live_out/**/manifest.json
+            live_out/**/quota.json
+            live_out/**/session.json
+            live_out/**/probe.jsonl
+            live_out/**/ffmpeg.log
+          retention-days: 30
+          if-no-files-found: warn
+
+  stream:
+    needs: resolve
+    if: inputs.mode == 'stream'
+    runs-on: ubuntu-latest
+    # Dispatched at T-15 min: ≤ 15 min wait + 120 min session + setup/teardown.
+    timeout-minutes: 150
+    env:
+      LIVE_DATE: ${{ needs.resolve.outputs.date }}
+      LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
+      LIVE_SLOT: ${{ inputs.slot }}
+      YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          sparse-checkout: live
+
+      - name: Install ffmpeg + HF CLI
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          python -m pip install --quiet 'huggingface_hub[cli]>=0.34'
+
+      - name: Fetch session mix (or fallback)
+        id: fetch
+        env:
+          FORCE_MISSING: ${{ inputs.force_missing_mix }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os, json
+          from huggingface_hub import HfApi, hf_hub_download
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo, ch, date, slot = os.environ["HF_REPO"], os.environ["LIVE_CHANNEL"], os.environ["LIVE_DATE"], os.environ["LIVE_SLOT"]
+          files = set(api.list_repo_files(repo, repo_type="dataset"))
+          want = f"{ch}/{date}/{slot}"
+          fallback = False
+          if os.environ.get("FORCE_MISSING") == "1" or f"{want}/mix.mp4" not in files or f"{want}/manifest.json" not in files:
+              prior = sorted(d for d in {f.rsplit("/", 1)[0] for f in files if f.endswith("/mix.mp4")}
+                             if d.startswith(f"{ch}/") and d.endswith(f"/{slot}") and d != want)
+              if not prior:
+                  raise SystemExit(f"no mix for {want} and no fallback for slot {slot}")
+              src, fallback = prior[-1], True
+              print(f"FALLBACK: {want} missing -> re-airing {src}")
+          else:
+              src = want
+          os.makedirs("live_in", exist_ok=True)
+          for name in ("mix.mp4", "manifest.json"):
+              p = hf_hub_download(repo, f"{src}/{name}", repo_type="dataset", token=os.environ["HF_TOKEN"], local_dir="hf_cache")
+              os.replace(p, f"live_in/{name}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as o:
+              o.write(f"fallback={'1' if fallback else '0'}\nsrc={src}\n")
+          PY
+
+      # A fallback re-air needs today's broadcast: the scheduled one prepare created for `want` may not
+      # exist (prepare failed), so stream.mjs creates one when --fallback-used 1 and the manifest's
+      # date/slot differ from the target.
+      - name: Stream session
+        run: |
+          set -euo pipefail
+          CHAOS=()
+          [ -n "${{ inputs.chaos_kill_at_min }}" ] && CHAOS=(--chaos-kill-at-min "${{ inputs.chaos_kill_at_min }}")
+          node live/stream.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
+            --in live_in --out live_out/stream --start scheduled \
+            --fallback-used "${{ steps.fetch.outputs.fallback }}" --privacy "$LIVE_PRIVACY" "${CHAOS[@]}"
+
+      - name: Upload evidence artifact (no media)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: music-live-${{ env.LIVE_CHANNEL }}-${{ env.LIVE_DATE }}-${{ inputs.slot }}-stream${{ inputs.chaos_kill_at_min != '' && '-chaos' || '' }}${{ inputs.force_missing_mix == '1' && '-fallback' || '' }}
+          path: |
+            live_in/manifest.json
+            live_out/**/quota.json
+            live_out/**/session.json
+            live_out/**/probe.jsonl
+            live_out/**/ffmpeg.log
+          retention-days: 30
+          if-no-files-found: warn
+
+  audit:
+    needs: resolve
+    if: inputs.mode == 'audit'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
+      YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+      YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          sparse-checkout: live
+      - run: node live/audit.mjs --channel "$LIVE_CHANNEL" --out live_out/audit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: music-live-${{ env.LIVE_CHANNEL }}-audit-${{ github.run_id }}
+          path: live_out/audit/audit.json
+          retention-days: 30
