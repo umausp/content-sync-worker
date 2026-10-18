@@ -1,0 +1,450 @@
+name: music-scene-refresh
+
+# Weekly photoreal scene refresh. Candidates are committed approved:false to branch
+# scene-candidates/<week> of the private repo for human approval (see
+# shorts/music_mix/photoreal/README.md in the private repo).
+#  pick   - choose N candidate scenes for the week, write scenes.json, upload it
+#  gen    - per candidate: FLUX.1-schnell still on CPU, motion render, preview, thumb, loop check
+#  commit - keep the candidates that rendered, push the branch, write candidates/<week>.md
+# Pipeline code is checked out from the PRIVATE repo; this public shell only holds the workflow.
+# Uses GitHub `schedule:` on purpose (weekly, timing-tolerant) instead of cron-pinger.
+
+on:
+  schedule:
+    - cron: '17 4 * * 0'
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: "agyata-pipeline-private ref to check out"
+        required: false
+        default: main
+        type: string
+      count:
+        description: "number of candidate scenes to pick"
+        required: false
+        default: '3'
+        type: string
+      week:
+        description: "ISO week like 2026w42; empty = current week"
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: music-scene-refresh
+  cancel-in-progress: false
+
+env:
+  SDCPP_TAG: master-975-95b3090
+  PIPELINE_DIR: pipeline/shorts/music_mix/photoreal
+  PIPELINE_REF: ${{ github.event.inputs.pipeline_ref || 'main' }}
+
+jobs:
+  pick:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      week: ${{ steps.pick.outputs.week }}
+      ids: ${{ steps.pick.outputs.ids }}
+      count: ${{ steps.pick.outputs.count }}
+      sha: ${{ steps.pick.outputs.sha }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ env.PIPELINE_REF }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Resolve week and count
+        env:
+          INPUT_WEEK: ${{ github.event.inputs.week }}
+          INPUT_COUNT: ${{ github.event.inputs.count || '3' }}
+        run: |
+          set -euo pipefail
+          if [ -n "$INPUT_WEEK" ]; then
+            WEEK="$INPUT_WEEK"
+          else
+            WEEK=$(cd "$PIPELINE_DIR" && node refresh.mjs week)
+          fi
+          case "$WEEK" in
+            [0-9][0-9][0-9][0-9]w[0-9][0-9]) ;;
+            *) echo "bad week: $WEEK"; exit 1 ;;
+          esac
+          case "$INPUT_COUNT" in
+            ''|*[!0-9]*) echo "bad count: $INPUT_COUNT"; exit 1 ;;
+          esac
+          echo "WEEK=$WEEK" >> "$GITHUB_ENV"
+          echo "COUNT=$INPUT_COUNT" >> "$GITHUB_ENV"
+          echo "week=$WEEK count=$INPUT_COUNT"
+
+      - name: Pick candidate scenes
+        id: pick
+        run: |
+          set -euo pipefail
+          (cd "$PIPELINE_DIR" && node refresh.mjs pick --week "$WEEK" --count "$COUNT" --write) > "$RUNNER_TEMP/pick.json"
+          IDS=$(jq -c .ids "$RUNNER_TEMP/pick.json")
+          N=$(jq '.ids | length' "$RUNNER_TEMP/pick.json")
+          echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git -C pipeline rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "ids=$IDS" >> "$GITHUB_OUTPUT"
+          echo "count=$N" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Picked candidates ($WEEK)"
+            echo '```json'
+            cat "$RUNNER_TEMP/pick.json"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/pick.json"
+
+      - name: Upload scenes.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-scenes
+          path: pipeline/shorts/music_mix/photoreal/scenes.json
+          retention-days: 14
+
+  gen:
+    needs: pick
+    if: ${{ needs.pick.outputs.ids != '[]' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      WEEK: ${{ needs.pick.outputs.week }}
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: ${{ fromJSON(needs.pick.outputs.ids) }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          # pinned to the commit pick used, so a push to main mid-run cannot be reverted
+          ref: ${{ needs.pick.outputs.sha }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+          persist-credentials: false
+
+      - name: Download picked scenes.json
+        uses: actions/download-artifact@v4
+        with:
+          name: refresh-scenes
+          path: ${{ runner.temp }}/rs
+
+      - name: Install picked scenes.json over checkout
+        run: cp "$RUNNER_TEMP/rs/scenes.json" "$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+
+      - name: Free disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - name: Install ffmpeg, jq, unzip, time
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq unzip time
+
+      - name: Download pinned stable-diffusion.cpp release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DL="$RUNNER_TEMP/sdcpp"
+          mkdir -p "$DL/x"
+          gh release download "$SDCPP_TAG" -R leejet/stable-diffusion.cpp \
+            -p '*-bin-Linux-Ubuntu-24.04-x86_64.zip' -D "$DL"
+          unzip -q "$DL"/*.zip -d "$DL/x"
+          BIN=""
+          for name in sd-cli sd; do
+            found=$(find "$DL/x" -type f -name "$name" | head -1)
+            if [ -n "$found" ]; then BIN="$found"; break; fi
+          done
+          if [ -z "$BIN" ]; then echo "no sd-cli/sd binary in release zip"; find "$DL/x" | head -50; exit 1; fi
+          chmod +x "$BIN"
+          echo "SD_BIN=$BIN" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=$(dirname "$BIN"):${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"
+          echo "found binary: $BIN"
+          ls -la "$(dirname "$BIN")"
+          LD_LIBRARY_PATH="$(dirname "$BIN")" ldd "$BIN" | grep -i 'not found' && exit 1 || true
+
+      - name: Download FLUX.1-schnell weights
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          M="$HOME/sdmodels"
+          mkdir -p "$M"
+          dl() { curl -fL --retry 3 -H "Authorization: Bearer $HF_TOKEN" -o "$M/$2" "$1"; }
+          dl https://huggingface.co/city96/FLUX.1-schnell-gguf/resolve/main/flux1-schnell-Q4_K_S.gguf flux1-schnell-Q4_K_S.gguf
+          dl https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/main/t5-v1_1-xxl-encoder-Q5_K_M.gguf t5-v1_1-xxl-encoder-Q5_K_M.gguf
+          dl https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors clip_l.safetensors
+          dl https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors ae.safetensors
+          ls -la "$M"
+          df -h /
+
+      - name: Generate still
+        env:
+          SCENE: ${{ matrix.scene }}
+          GEN_W: '1344'
+          GEN_H: '768'
+        run: |
+          set -o pipefail
+          export GEN_W GEN_H
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/gen_still.sh" "$SCENE" \
+            "$GITHUB_WORKSPACE/out/$SCENE.png" "$HOME/sdmodels" 2>&1 | tee "$GITHUB_WORKSPACE/out/gen_$SCENE.log"
+          ls -la "$GITHUB_WORKSPACE/out"
+
+      - name: Read scene metadata
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          SCENES="$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+          get() { jq -r --arg id "$SCENE" ".[] | select(.id == \$id) | $1" "$SCENES"; }
+          PROFILE=$(get .profile)
+          WORDS=$(get .thumb_words)
+          TAG=$(get .thumb_tag)
+          SEED=$(get .seed)
+          MOODS=$(get '(.moods | if type == "array" then join(", ") else tostring end)')
+          if [ "$PROFILE" = "null" ] || [ -z "$PROFILE" ]; then echo "scene $SCENE not in scenes.json"; exit 1; fi
+          STILL="$GITHUB_WORKSPACE/out/$SCENE.png"
+          if [ ! -s "$STILL" ]; then echo "no generated still for $SCENE"; exit 1; fi
+          {
+            echo "PROFILE=$PROFILE"
+            echo "WORDS=$WORDS"
+            echo "TAG=$TAG"
+            echo "SEED=$SEED"
+            echo "MOODS=$MOODS"
+            echo "STILL=$STILL"
+          } >> "$GITHUB_ENV"
+          echo "scene $SCENE profile $PROFILE moods $MOODS seed $SEED still $STILL"
+
+      - name: Render loop segment (1920x1080, L=120, DUR=120)
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          OUT="$GITHUB_WORKSPACE/out/$SCENE"
+          mkdir -p "$OUT"
+          SEG="$RUNNER_TEMP/seg_$SCENE.mp4"
+          MOTION_SEED="$WEEK" /usr/bin/time -v -o "$RUNNER_TEMP/time_$SCENE.txt" \
+            bash "$GITHUB_WORKSPACE/$PIPELINE_DIR/motion.sh" "$STILL" "$SEG" 1920 1080 120 120 "$PROFILE"
+          ELAPSED=$(grep 'Elapsed (wall clock)' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
+          RENDER_S=$(echo "$ELAPSED" | awk -F: '{s=0; for(i=1;i<=NF;i++) s=s*60+$i; print s}')
+          RSS_KB=$(grep 'Maximum resident set size' "$RUNNER_TEMP/time_$SCENE.txt" | awk '{print $NF}')
+          echo "RENDER_S=$RENDER_S" >> "$GITHUB_ENV"
+          echo "RSS_KB=$RSS_KB" >> "$GITHUB_ENV"
+          echo "SEG=$SEG" >> "$GITHUB_ENV"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          ls -la "$SEG"
+
+      - name: Preview clip, thumbnail, loop check
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR"
+          ffmpeg -v error -y -i "$SEG" -t 30 -c copy "$OUT/preview_30s.mp4"
+          bash "$P/thumb.sh" "$STILL" "$OUT/thumb.jpg" "$WORDS" "$TAG"
+          # loop check is informational here; its result is recorded in report.txt
+          set +e
+          bash "$P/check_loop.sh" "$SEG" 120 30 > "$RUNNER_TEMP/loop_$SCENE.txt" 2>&1
+          echo "LOOP_RC=$?" >> "$GITHUB_ENV"
+          set -e
+          cat "$RUNNER_TEMP/loop_$SCENE.txt"
+
+      - name: Write report
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          RT=$(awk -v r="$RENDER_S" 'BEGIN{printf "%.2f", r/120}')
+          RSS_MB=$(awk -v k="${RSS_KB:-0}" 'BEGIN{printf "%.0f", k/1024}')
+          GEN_S=$(grep -o 'elapsed_s=[0-9.]*' "$GITHUB_WORKSPACE/out/gen_$SCENE.log" | tail -1 | cut -d= -f2 || true)
+          VERDICT=$(grep -E '^loop verdict' "$RUNNER_TEMP/loop_$SCENE.txt" || echo "loop verdict: UNKNOWN (check_loop did not complete)")
+          PROBE=$(ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height,avg_frame_rate \
+                    -of compact "$OUT/preview_30s.mp4" 2>&1 || echo "ffprobe failed")
+          {
+            echo "scene: $SCENE  week: $WEEK  profile: $PROFILE  moods: $MOODS"
+            echo "seed: $SEED  motion_seed: $WEEK"
+            echo "gen_seconds: ${GEN_S:-n/a}  (gen_still elapsed_s)"
+            echo "render_seconds: $RENDER_S  (output 120s; render/output = $RT, <1.0 is faster than realtime)"
+            echo "max_rss_mb: $RSS_MB"
+            echo "$VERDICT"
+            grep -E 'seam_psnr|gop_boundary_psnr|looped' "$RUNNER_TEMP/loop_$SCENE.txt" || true
+            echo "preview_30s.mp4: $PROBE"
+            echo "check_loop_rc: $LOOP_RC"
+          } | tee "$OUT/report.txt"
+          cat "$OUT/report.txt" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload candidate
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-${{ matrix.scene }}
+          path: |
+            out/${{ matrix.scene }}.webp
+            out/${{ matrix.scene }}/preview_30s.mp4
+            out/${{ matrix.scene }}/thumb.jpg
+            out/${{ matrix.scene }}/report.txt
+            out/gen_${{ matrix.scene }}.log
+          retention-days: 14
+          if-no-files-found: warn
+
+  commit:
+    needs: [pick, gen]
+    if: ${{ always() && needs.pick.result == 'success' && needs.pick.outputs.ids != '[]' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      WEEK: ${{ needs.pick.outputs.week }}
+      IDS: ${{ needs.pick.outputs.ids }}
+      RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          # pinned to the commit pick used, so a push to main mid-run cannot be reverted
+          ref: ${{ needs.pick.outputs.sha }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+          persist-credentials: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download picked scenes.json
+        uses: actions/download-artifact@v4
+        with:
+          name: refresh-scenes
+          path: ${{ runner.temp }}/rs
+
+      - name: Install picked scenes.json over checkout
+        run: cp "$RUNNER_TEMP/rs/scenes.json" "$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+
+      - name: Download candidate artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: candidate-*
+          path: cand
+
+      - name: Keep rendered candidates, reject the rest
+        run: |
+          set -euo pipefail
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR"
+          mkdir -p "$P/stills"
+          : > "$RUNNER_TEMP/keep.txt"
+          : > "$RUNNER_TEMP/failed.txt"
+          while read -r id; do
+            [ -n "$id" ] || continue
+            src="$GITHUB_WORKSPACE/cand/candidate-$id/$id.webp"
+            if [ -s "$src" ]; then
+              cp "$src" "$P/stills/$id.webp"
+              echo "$id" >> "$RUNNER_TEMP/keep.txt"
+            else
+              echo "$id" >> "$RUNNER_TEMP/failed.txt"
+            fi
+          done < <(jq -r '.[]' <<< "$IDS")
+          echo "kept: $(paste -sd' ' "$RUNNER_TEMP/keep.txt")"
+          echo "failed: $(paste -sd' ' "$RUNNER_TEMP/failed.txt")"
+          if [ ! -s "$RUNNER_TEMP/keep.txt" ]; then
+            echo "no candidate survived rendering; not pushing"
+            exit 1
+          fi
+          if [ -s "$RUNNER_TEMP/failed.txt" ]; then
+            mapfile -t FAILED < "$RUNNER_TEMP/failed.txt"
+            (cd "$P" && node refresh.mjs reject "${FAILED[@]}")
+          fi
+
+      - name: Collect artifact links
+        env:
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          gh api "repos/$REPO/actions/runs/$RUN_ID/artifacts" --paginate \
+            --jq '.artifacts[] | [.name, .id] | @tsv' > "$RUNNER_TEMP/artifacts.tsv"
+          cat "$RUNNER_TEMP/artifacts.tsv"
+
+      - name: Write candidates md
+        env:
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR"
+          SCENES="$P/scenes.json"
+          MD="$P/candidates/$WEEK.md"
+          mkdir -p "$P/candidates"
+          {
+            printf '# Photoreal scene candidates: %s\n\n' "$WEEK"
+            printf 'Run: %s\n\n' "$RUN_URL"
+            printf 'Candidates are approved:false until a human approves them. Branch: scene-candidates/%s\n\n' "$WEEK"
+            echo "| id | moods | profile | seed | brief | loop | preview |"
+            echo "|---|---|---|---|---|---|---|"
+            while read -r id; do
+              [ -n "$id" ] || continue
+              MOODS=$(jq -r --arg id "$id" '.[] | select(.id == $id) | (.moods | if type == "array" then join(", ") else tostring end)' "$SCENES")
+              PROF=$(jq -r --arg id "$id" '.[] | select(.id == $id) | .profile' "$SCENES")
+              SEED=$(jq -r --arg id "$id" '.[] | select(.id == $id) | (.seed | tostring)' "$SCENES")
+              BRIEF=$(jq -r --arg id "$id" '.[] | select(.id == $id) | (.brief // "")' "$SCENES" | tr '\n|' '  ')
+              LOOP=$(grep -E '^loop verdict' "$GITHUB_WORKSPACE/cand/candidate-$id/$id/report.txt" 2>/dev/null | head -1 || true)
+              [ -n "$LOOP" ] || LOOP="loop verdict: UNKNOWN"
+              ART_ID=$(awk -F'\t' -v n="candidate-$id" '$1 == n { print $2; exit }' "$RUNNER_TEMP/artifacts.tsv")
+              if [ -n "$ART_ID" ]; then
+                LINK="[preview](https://github.com/$REPO/actions/runs/$RUN_ID/artifacts/$ART_ID)"
+              else
+                LINK="(no artifact)"
+              fi
+              echo "| $id | $MOODS | $PROF | $SEED | $BRIEF | $LOOP | $LINK |"
+            done < "$RUNNER_TEMP/keep.txt"
+            echo
+            echo "## Prompts"
+            echo
+            while read -r id; do
+              [ -n "$id" ] || continue
+              echo "### $id"
+              echo
+              printf '%s\n' '```text'
+              jq -r --arg id "$id" '.[] | select(.id == $id) | (.prompt // "(no prompt field in scenes.json)")' "$SCENES"
+              printf '%s\n\n' '```'
+            done < "$RUNNER_TEMP/keep.txt"
+            echo "## Failed candidates"
+            echo
+            if [ -s "$RUNNER_TEMP/failed.txt" ]; then
+              while read -r id; do echo "- $id (rejected: no still rendered)"; done < "$RUNNER_TEMP/failed.txt"
+            else
+              echo "none"
+            fi
+            echo
+            echo "## Approve / reject"
+            echo
+            echo "Review the previews, then from the private repo root run:"
+            echo
+            printf '%s\n' '```bash'
+            echo "node shorts/music_mix/photoreal/refresh.mjs approve <id...>"
+            echo "node shorts/music_mix/photoreal/refresh.mjs reject <id...>"
+            printf '%s\n\n' '```'
+            echo "See shorts/music_mix/photoreal/README.md for the approval flow."
+          } > "$MD"
+          cat "$MD"
+
+      - name: Commit and push candidate branch
+        run: |
+          set -euo pipefail
+          git -C pipeline checkout -b "scene-candidates/$WEEK"
+          git -C pipeline add shorts/music_mix/photoreal
+          git -C pipeline -c user.name=umausp -c user.email=4384869+umausp@users.noreply.github.com \
+            commit -m "chore(photoreal): weekly scene candidates $WEEK (approved=false)" -m "run: $RUN_URL"
+          git -C pipeline push -f origin "scene-candidates/$WEEK"
+          cat "$PIPELINE_DIR/candidates/$WEEK.md" >> "$GITHUB_STEP_SUMMARY"
