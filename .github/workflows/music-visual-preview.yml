@@ -59,7 +59,7 @@ on:
         default: ''
         type: string
       gen_opts:
-        description: "space-separated KEY=VAL env for the gen job; allowed keys: SD_VAE_TILING (0|1), UPSCALER (lanczos|swinir), SR_MODEL, MOTION_ENGINE (v1|v2; also used by e2e)"
+        description: "space-separated KEY=VAL env for the gen job; allowed keys: SD_VAE_TILING (0|1), UPSCALER (lanczos|swinir), SR_MODEL, MOTION_ENGINE (v1|v2; also used by e2e), SD_CACHE_MODE (easycache|dbcache|cache-dit), SD_FLASH_ATTN"
         required: false
         default: ''
         type: string
@@ -177,7 +177,7 @@ jobs:
           for kv in $GEN_OPTS; do
             k="${kv%%=*}"; v="${kv#*=}"
             case "$k" in
-              SD_VAE_TILING|UPSCALER|SR_MODEL|MOTION_ENGINE) ;;
+              SD_VAE_TILING|UPSCALER|SR_MODEL|MOTION_ENGINE|SD_CACHE_MODE|SD_FLASH_ATTN) ;;
               *) echo "gen_opts: key '$k' not allowed (SD_VAE_TILING, UPSCALER, SR_MODEL)"; exit 1 ;;
             esac
             [[ "$kv" == *=* && "$v" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "gen_opts: bad value in '$kv'"; exit 1; }
