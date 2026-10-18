@@ -2,7 +2,11 @@ name: music-visual-preview
 
 # Photoreal music-visual preview.
 #  gen    - (optional) generate FLUX.1-schnell stills on CPU with stable-diffusion.cpp
+#  maps   - (optional, motion_ab or sr) CPU depth + semantic masks (make_maps.py) and super-resolution
+#           comparison (sr_swinir.py, 3 models) per scene
+#  i2v    - (optional, i2v_scene) LTX-Video 2B image-to-video CPU feasibility probe
 #  render - motion.sh loop render + loop check + thumbnail + report, per scene
+#           (motion_ab=true also renders motion v2 and a v1-over-v2 comparison clip)
 # Pipeline code is checked out from the PRIVATE repo; this public shell only holds the workflow.
 
 on:
@@ -33,12 +37,33 @@ on:
         required: false
         default: '0'
         type: string
+      motion_ab:
+        description: "'true' = also render motion v2 (depth+masks) and an A/B clip (v1 top / v2 bottom)"
+        required: false
+        default: 'false'
+        type: string
+      stills_run_id:
+        description: "run id of a previous run of this workflow to pull still-<scene> artifacts from when no still is generated in this run"
+        required: false
+        default: ''
+        type: string
+      sr:
+        description: "'true' = run the super-resolution comparison (3 models) in the maps job"
+        required: false
+        default: 'false'
+        type: string
+      i2v_scene:
+        description: "scene id to run the LTX-Video image-to-video CPU probe on; empty = skip"
+        required: false
+        default: ''
+        type: string
   push:
     branches: [feat/photoreal-preview]
     paths: [.github/workflows/music-visual-preview.yml]
 
 permissions:
   contents: read
+  actions: read   # cross-run artifact download (stills_run_id)
 
 env:
   SDCPP_TAG: master-975-95b3090
@@ -155,9 +180,9 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
-  render:
+  maps:
     needs: [setup, gen]
-    if: ${{ always() && needs.setup.result == 'success' && needs.setup.outputs.render != '[]' }}
+    if: ${{ always() && needs.setup.result == 'success' && needs.setup.outputs.render != '[]' && (github.event.inputs.motion_ab == 'true' || github.event.inputs.sr == 'true') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     strategy:
@@ -185,6 +210,262 @@ jobs:
           name: still-${{ matrix.scene }}
           path: gen
 
+      - name: Download still from earlier run (stills_run_id)
+        if: ${{ github.event.inputs.stills_run_id != '' }}
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ matrix.scene }}
+          path: prev
+          run-id: ${{ github.event.inputs.stills_run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Resolve still
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          SCENES="$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+          COMMITTED=$(jq -r --arg id "$SCENE" '.[] | select(.id == $id) | .still' "$SCENES")
+          SRC=""
+          if [ -s "$GITHUB_WORKSPACE/gen/$SCENE.png" ]; then
+            STILL="$GITHUB_WORKSPACE/gen/$SCENE.png"; SRC="generated-on-ci"
+          elif [ -s "$GITHUB_WORKSPACE/gen/$SCENE.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/gen/$SCENE.webp"; SRC="generated-on-ci"
+          elif [ -s "$GITHUB_WORKSPACE/prev/$SCENE.png" ]; then
+            STILL="$GITHUB_WORKSPACE/prev/$SCENE.png"; SRC="run:${{ github.event.inputs.stills_run_id }}"
+          elif [ -s "$GITHUB_WORKSPACE/prev/$SCENE.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/prev/$SCENE.webp"; SRC="run:${{ github.event.inputs.stills_run_id }}"
+          elif [ -n "$COMMITTED" ] && [ "$COMMITTED" != null ] && [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED" ]; then
+            STILL="$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED"; SRC="committed:$COMMITTED"
+          elif [ "$SCENE" = "beta_work" ] && [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp"; SRC="draft:beta_work_zerogpu_draft.webp"
+          else
+            echo "no still available for $SCENE"; exit 1
+          fi
+          echo "STILL=$STILL" >> "$GITHUB_ENV"
+          echo "STILL_SRC=$SRC" >> "$GITHUB_ENV"
+          echo "still: $STILL ($SRC)"
+
+      - name: Cache pip + Hugging Face + SwinIR weights
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/huggingface
+            ~/.cache/sr_swinir
+          key: maps-models-v1-torch2.14.1-tf5.20.1
+
+      - name: Python venv + CPU torch stack
+        run: |
+          python3 -m venv "$HOME/venv"
+          . "$HOME/venv/bin/activate"
+          pip install -q --upgrade pip
+          pip install -q torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q transformers==5.20.1 pillow numpy opencv-python-headless timm==1.0.30 accelerate==1.15.0
+          pip list 2>/dev/null | grep -iE '^(torch|transformers|timm|pillow|numpy|opencv)' || true
+
+      - name: Depth + masks (make_maps.py)
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          . "$HOME/venv/bin/activate"
+          D="$GITHUB_WORKSPACE/out/maps_$SCENE"
+          mkdir -p "$D"
+          /usr/bin/time -v -o "$D/maps_time.txt" \
+            python "$GITHUB_WORKSPACE/$PIPELINE_DIR/make_maps.py" "$STILL" "$D/m" 2>&1 | tee "$D/maps.log"
+          mv "$D/m.depth.png" "$D/depth.png"
+          mv "$D/m.mask.png" "$D/mask.png"
+          mv "$D/m.maps_preview.jpg" "$D/maps_preview.jpg"
+          grep -E 'Elapsed|Maximum resident' "$D/maps_time.txt" | tee -a "$D/timing.txt"
+          { echo "### maps $SCENE"; grep -E 'maps elapsed_s|group ' "$D/maps.log"; } >> "$GITHUB_STEP_SUMMARY"
+          ls -la "$D"
+
+      - name: Super-resolution comparison (3 models)
+        if: ${{ github.event.inputs.sr == 'true' }}
+        continue-on-error: true
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          . "$HOME/venv/bin/activate"
+          D="$GITHUB_WORKSPACE/out/maps_$SCENE"
+          for M in realsr_m_x2_gan classical_m_x2 realesrgan_x2plus; do
+            echo "== $M"
+            /usr/bin/time -v -o "$D/sr_$M.time.txt" \
+              python "$GITHUB_WORKSPACE/$PIPELINE_DIR/sr_swinir.py" "$STILL" "$D/sr_$M.png" --model "$M" 2>&1 | tee "$D/sr_$M.log" \
+              || echo "sr $M FAILED"
+            {
+              echo "[$M]"
+              grep -E '^sr elapsed_s' "$D/sr_$M.log" || echo "no result"
+              grep -E 'Elapsed|Maximum resident' "$D/sr_$M.time.txt" || true
+            } >> "$D/sr_timing.txt"
+          done
+          cat "$D/sr_timing.txt"
+          { echo "### sr $SCENE"; echo '```'; cat "$D/sr_timing.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          ls -la "$D"
+
+      - name: Upload maps
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: maps-${{ matrix.scene }}
+          path: |
+            out/maps_${{ matrix.scene }}/depth.png
+            out/maps_${{ matrix.scene }}/mask.png
+            out/maps_${{ matrix.scene }}/maps_preview.jpg
+            out/maps_${{ matrix.scene }}/sr_*.png
+            out/maps_${{ matrix.scene }}/*.compare.png
+            out/maps_${{ matrix.scene }}/*.txt
+            out/maps_${{ matrix.scene }}/*.log
+          retention-days: 3
+          if-no-files-found: warn
+
+  i2v:
+    needs: [setup, gen]
+    if: ${{ always() && needs.setup.result == 'success' && github.event.inputs.i2v_scene != '' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      I2V_SCENE: ${{ github.event.inputs.i2v_scene }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ github.event.inputs.pipeline_ref || 'feat/photoreal-scenes' }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+
+      - name: Free disk and add swap
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL \
+            /usr/local/share/boost /usr/share/swift /usr/local/.ghcup /usr/local/lib/node_modules || true
+          sudo apt-get clean || true
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          sudo swapoff -a || true
+          sudo fallocate -l 12G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile || true
+          df -h /; free -g
+
+      - name: Install ffmpeg, jq, time
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq time
+
+      - name: Download generated still (if any)
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ github.event.inputs.i2v_scene }}
+          path: gen
+
+      - name: Download still from earlier run (stills_run_id)
+        if: ${{ github.event.inputs.stills_run_id != '' }}
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ github.event.inputs.i2v_scene }}
+          path: prev
+          run-id: ${{ github.event.inputs.stills_run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Resolve still
+        run: |
+          SCENE="$I2V_SCENE"
+          SCENES="$GITHUB_WORKSPACE/$PIPELINE_DIR/scenes.json"
+          COMMITTED=$(jq -r --arg id "$SCENE" '.[] | select(.id == $id) | .still' "$SCENES")
+          for c in "gen/$SCENE.png" "gen/$SCENE.webp" "prev/$SCENE.png" "prev/$SCENE.webp" "$PIPELINE_DIR/$COMMITTED" "$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp"; do
+            if [ -s "$GITHUB_WORKSPACE/$c" ] && [ "${c##*/}" != "null" ]; then STILL="$GITHUB_WORKSPACE/$c"; break; fi
+          done
+          [ -n "${STILL:-}" ] || { echo "no still available for $SCENE"; exit 1; }
+          echo "STILL=$STILL" >> "$GITHUB_ENV"
+          echo "still: $STILL"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: i2v-pip-v1-torch2.14.1-diffusers0.41.0
+
+      - name: Python venv + diffusers stack (pinned)
+        run: |
+          python3 -m venv "$HOME/venv"
+          . "$HOME/venv/bin/activate"
+          pip install -q --upgrade pip
+          pip install -q torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q diffusers==0.41.0 transformers==5.20.1 accelerate==1.15.0 sentencepiece==0.2.2 safetensors pillow numpy protobuf
+          pip list 2>/dev/null | grep -iE '^(torch|diffusers|transformers|accelerate|sentencepiece|huggingface)' || true
+
+      - name: LTX-Video 2B image-to-video probe
+        run: |
+          . "$HOME/venv/bin/activate"
+          D="$GITHUB_WORKSPACE/out/i2v_$I2V_SCENE"
+          mkdir -p "$D"
+          set +e
+          python "$GITHUB_WORKSPACE/$PIPELINE_DIR/i2v_ltx_probe.py" "$STILL" "$D/i2v.mp4" \
+            --width 768 --height 432 --frames 49 --steps 8 --budget-min 70 --report "$D/i2v_report.json" 2>&1 | tee "$D/i2v.log"
+          echo "probe rc=${PIPESTATUS[0]}"
+          set -e
+          { echo "### i2v $I2V_SCENE"; echo '```'; cat "$D/i2v_report.json" 2>/dev/null || echo "no report"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          ls -la "$D"; df -h /
+
+      - name: Upload i2v
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: i2v-${{ github.event.inputs.i2v_scene }}
+          path: |
+            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v.mp4
+            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v_report.json
+            out/i2v_${{ github.event.inputs.i2v_scene }}/i2v.log
+          retention-days: 3
+          if-no-files-found: warn
+
+  render:
+    needs: [setup, gen, maps]
+    if: ${{ always() && needs.setup.result == 'success' && needs.setup.outputs.render != '[]' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: ${{ fromJSON(needs.setup.outputs.render) }}
+    steps:
+      - name: Checkout pipeline (private)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ github.event.inputs.pipeline_ref || 'feat/photoreal-scenes' }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+
+      - name: Install ffmpeg, jq, time
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq time
+
+      - name: Install motion v2 prerequisites (fonts, python deps)
+        if: ${{ github.event.inputs.motion_ab == 'true' }}
+        run: |
+          sudo apt-get install -y fonts-dejavu python3 python3-pip
+          python3 -m pip install -q --user --break-system-packages opencv-python-headless numpy
+          python3 -c 'import cv2, numpy; print("cv2", cv2.__version__, "numpy", numpy.__version__)'
+
+      - name: Download generated still (if any)
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ matrix.scene }}
+          path: gen
+
+      - name: Download still from earlier run (stills_run_id)
+        if: ${{ github.event.inputs.stills_run_id != '' }}
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: still-${{ matrix.scene }}
+          path: prev
+          run-id: ${{ github.event.inputs.stills_run_id }}
+          github-token: ${{ github.token }}
+
       - name: Resolve still and scene metadata
         env:
           SCENE: ${{ matrix.scene }}
@@ -202,6 +483,10 @@ jobs:
             STILL="$GITHUB_WORKSPACE/gen/$SCENE.png"; SRC="generated-on-ci"
           elif [ -s "$GITHUB_WORKSPACE/gen/$SCENE.webp" ]; then
             STILL="$GITHUB_WORKSPACE/gen/$SCENE.webp"; SRC="generated-on-ci"
+          elif [ -s "$GITHUB_WORKSPACE/prev/$SCENE.png" ]; then
+            STILL="$GITHUB_WORKSPACE/prev/$SCENE.png"; SRC="run:${{ github.event.inputs.stills_run_id }}"
+          elif [ -s "$GITHUB_WORKSPACE/prev/$SCENE.webp" ]; then
+            STILL="$GITHUB_WORKSPACE/prev/$SCENE.webp"; SRC="run:${{ github.event.inputs.stills_run_id }}"
           elif [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED" ]; then
             STILL="$GITHUB_WORKSPACE/$PIPELINE_DIR/$COMMITTED"; SRC="committed:$COMMITTED"
           elif [ "$SCENE" = "beta_work" ] && [ -s "$GITHUB_WORKSPACE/$PIPELINE_DIR/stills/beta_work_zerogpu_draft.webp" ]; then
@@ -271,6 +556,74 @@ jobs:
           } | tee "$OUT/report.txt"
           cat "$OUT/report.txt" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Download maps (motion_ab)
+        if: ${{ github.event.inputs.motion_ab == 'true' }}
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: maps-${{ matrix.scene }}
+          path: maps
+
+      - name: Motion v2 render, loop check, A/B clip
+        if: ${{ github.event.inputs.motion_ab == 'true' }}
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          set -o pipefail
+          P="$GITHUB_WORKSPACE/$PIPELINE_DIR"
+          secs() { grep 'Elapsed (wall clock)' "$1" | awk '{print $NF}' | awk -F: '{s=0; for(i=1;i<=NF;i++) s=s*60+$i; print s}'; }
+
+          # v1 outputs under their A/B names (v1 = the render above, default engine)
+          cp "$OUT/preview_30s.mp4" "$OUT/preview_30s_v1.mp4"
+
+          export MOTION_ENGINE=v2
+          export MOTION_DEPTH="$GITHUB_WORKSPACE/maps/depth.png"
+          export MOTION_MASK="$GITHUB_WORKSPACE/maps/mask.png"
+          export MOTION_SCENE_OPTS=$(jq -c --arg id "$SCENE" '.[] | select(.id == $id) | .motion // {}' "$P/scenes.json")
+          echo "maps: $(ls -la "$GITHUB_WORKSPACE/maps" 2>&1 | tr '\n' ' ')"
+          [ -s "$MOTION_DEPTH" ] || echo "WARNING: depth map missing - motion.sh will fall back to v1 (A/B is then v1 vs v1)"
+          echo "scene opts: $MOTION_SCENE_OPTS"
+
+          SEG2="$RUNNER_TEMP/seg2_$SCENE.mp4"
+          /usr/bin/time -v -o "$RUNNER_TEMP/time2_$SCENE.txt" \
+            bash "$P/motion.sh" "$STILL" "$SEG2" 1920 1080 120 120 "$PROFILE" 2>&1 | tee "$RUNNER_TEMP/v2_$SCENE.log"
+          unset MOTION_ENGINE MOTION_DEPTH MOTION_MASK MOTION_SCENE_OPTS
+          echo "RENDER2_S=$(secs "$RUNNER_TEMP/time2_$SCENE.txt")" >> "$GITHUB_ENV"
+          ls -la "$SEG2"
+
+          ffmpeg -v error -y -i "$SEG2" -t 30 -c copy "$OUT/preview_30s_v2.mp4"
+          set +e
+          bash "$P/check_loop.sh" "$SEG2" 120 30 > "$RUNNER_TEMP/loop2_$SCENE.txt" 2>&1
+          echo "LOOP2_RC=$?" >> "$GITHUB_ENV"
+          set -e
+          cat "$RUNNER_TEMP/loop2_$SCENE.txt"
+
+          # v1 on top, v2 below, 1280x720 each -> 1280x1440
+          F=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+          DT="fontfile=$F:x=24:y=20:fontsize=40:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=10"
+          ffmpeg -v error -y -i "$OUT/preview_30s_v1.mp4" -i "$OUT/preview_30s_v2.mp4" -filter_complex \
+            "[0:v]scale=1280:720,drawtext=$DT:text='v1 (current)'[a];[1:v]scale=1280:720,drawtext=$DT:text='v2 (depth+masks)'[b];[a][b]vstack=inputs=2[v]" \
+            -map "[v]" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -movflags +faststart "$OUT/ab_30s.mp4"
+          ls -la "$OUT"
+
+      - name: Append A/B report
+        if: ${{ github.event.inputs.motion_ab == 'true' }}
+        env:
+          SCENE: ${{ matrix.scene }}
+        run: |
+          {
+            echo "--- motion A/B (v1 current vs v2 depth+masks) ---"
+            echo "v1 render_seconds: $RENDER_S"
+            grep -E '^loop verdict|seam_psnr|gop_boundary_psnr|looped' "$RUNNER_TEMP/loop_$SCENE.txt" | sed 's/^/v1 /' || true
+            echo "v2 render_seconds: ${RENDER2_S:-unknown}  (target <= ~450 on 4 vCPU for 120 s)"
+            grep -E '^loop verdict' "$RUNNER_TEMP/loop2_$SCENE.txt" | sed 's/^/v2 /' || echo "v2 loop verdict: UNKNOWN"
+            grep -E 'seam_psnr|gop_boundary_psnr|looped' "$RUNNER_TEMP/loop2_$SCENE.txt" | sed 's/^/v2 /' || true
+            echo "v2 check_loop_rc: ${LOOP2_RC:-?}"
+            grep -E 'motion_v2 frames=|falling back|\[motion\]' "$RUNNER_TEMP/v2_$SCENE.log" | sed 's/^/v2 log: /' | tail -5 || true
+            echo "v2 maps present: $([ -s "$GITHUB_WORKSPACE/maps/depth.png" ] && echo yes || echo NO)"
+          } | tee -a "$OUT/report.txt"
+          { echo '```'; tail -12 "$OUT/report.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload preview
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -278,6 +631,9 @@ jobs:
           name: preview-${{ matrix.scene }}
           path: |
             out/${{ matrix.scene }}/preview_30s.mp4
+            out/${{ matrix.scene }}/preview_30s_v1.mp4
+            out/${{ matrix.scene }}/preview_30s_v2.mp4
+            out/${{ matrix.scene }}/ab_30s.mp4
             out/${{ matrix.scene }}/thumb.jpg
             out/${{ matrix.scene }}/still_used.*
             out/${{ matrix.scene }}/report.txt
