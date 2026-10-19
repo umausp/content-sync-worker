@@ -1,0 +1,69 @@
+name: longform-feedback
+
+# longform-studio Phase 9 — the retention feedback loop for the three documentary channels (longform-tech 'nl',
+# longform-business 'da', longform-money 'no'). For every uploaded doc with a stored shot timeline (D1
+# agyata:studio:timeline:<videoId>) it pulls the YouTube Analytics retention CURVE, aligns it to the shots, stores
+# agyata:studio:retention:<videoId> + agyata:studio:weights:<channel> (planner weights that only ever tighten) and
+# uploads the JSON reports as an artefact. Weekly via agyata-cron-pinger (WORKFLOWS entry, minute multiple of 5);
+# workflow_dispatch for a manual run. Private videos have no analytics rows → "noData" until a public video exists.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: 'agyata-pipeline-private branch/ref (empty = default branch)'
+        type: string
+        default: ''
+        required: false
+      days:
+        description: 'Look-back window in days'
+        type: string
+        default: '90'
+        required: false
+
+concurrency:
+  group: longform-feedback
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  YT_ANALYTICS: '1'
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+  YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+
+jobs:
+  feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retention feedback (tech / business / money)
+        env:
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+        run: |
+          set -e
+          for ch in nl da no; do
+            node tools/studio_feedback.mjs --channel "$ch" --days "${{ inputs.days || '90' }}" --out "docs/longform-runs/retention/$ch" || echo "[studio:feedback] $ch failed (see above)"
+          done
+      - name: Upload retention reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-feedback-${{ github.run_id }}
+          path: docs/longform-runs/retention/
+          if-no-files-found: ignore
+          retention-days: 30
