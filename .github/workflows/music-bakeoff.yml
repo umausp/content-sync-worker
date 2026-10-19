@@ -305,7 +305,7 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
-          python -m pip install audiobox_aesthetics==0.0.4
+          python -m pip install audiobox_aesthetics==0.0.4 requests
           python -c "import inspect; from audiobox_aesthetics.infer import initialize_predictor; print('aes import ok', inspect.signature(initialize_predictor))"
 
       - name: Score every mp3 (CE, CU, PC, PQ)
