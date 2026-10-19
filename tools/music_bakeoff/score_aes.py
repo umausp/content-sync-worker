@@ -1,7 +1,7 @@
 """Score every mp3 in a directory with Meta Audiobox Aesthetics (CE, CU, PC, PQ; 1-10 scale).
 
-Writes <out> (aes.json) = {basename: {CE, CU, PC, PQ}}. Batch scoring first; if the batch call
-raises, each file is decoded to 16 kHz mono wav with ffmpeg and scored on its own.
+Writes <out> (aes.json) = {basename: {CE, CU, PC, PQ}}. Each clip is decoded to 16 kHz mono wav
+with ffmpeg and scored in its own forward() call.
 """
 import argparse
 import glob
@@ -42,22 +42,24 @@ def main():
     pred = initialize_predictor()
     print(f"[aes] signature forward{inspect.signature(pred.forward)}", flush=True)
 
+    # One clip per forward call, decoded to 16 kHz mono wav first. A single batch over all clips
+    # was killed by the runner (shutdown signal, exit 143) twice, so keep memory per call small.
+    import resource
+
     scores = {}
-    try:
-        rows = _to_rows(pred.forward([{"path": os.path.abspath(f)} for f in files]), len(files))
-        print(f"[aes] batch forward ok; return type {type(rows).__name__}, first item {rows[0]!r}", flush=True)
-        for f, r in zip(files, rows):
-            scores[os.path.basename(f)] = _floats(r)
-    except Exception as e:  # decode or batch failure: fall back to per-file 16 kHz wav
-        print(f"[aes] batch forward failed ({type(e).__name__}: {e}); per-file 16 kHz wav fallback", flush=True)
-        scores = {}
-        with tempfile.TemporaryDirectory() as td:
-            for f in files:
-                wav = os.path.join(td, os.path.splitext(os.path.basename(f))[0] + ".wav")
-                subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", f,
-                                "-ac", "1", "-ar", "16000", wav], check=True)
-                rows = _to_rows(pred.forward([{"path": wav}]), 1)
-                scores[os.path.basename(f)] = _floats(rows[0])
+    with tempfile.TemporaryDirectory() as td:
+        for f in files:
+            name = os.path.basename(f)
+            wav = os.path.join(td, os.path.splitext(name)[0] + ".wav")
+            subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", f,
+                            "-ac", "1", "-ar", "16000", wav], check=True)
+            rows = _to_rows(pred.forward([{"path": wav}]), 1)
+            if name == os.path.basename(files[0]):
+                print(f"[aes] first result type {type(rows).__name__}: {rows[0]!r}", flush=True)
+            scores[name] = _floats(rows[0])
+            os.remove(wav)
+            rss_mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
+            print(f"[aes] {name} scored; peak_rss_mb={rss_mb:.0f}", flush=True)
 
     for name in sorted(scores):
         s = scores[name]
