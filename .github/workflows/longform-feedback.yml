@@ -30,6 +30,9 @@ permissions:
 
 env:
   YT_ANALYTICS: '1'
+  # D1 kv (src/d1kv.mjs): timelines are read and retention/weights written through api-gateway with this token.
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  API_BASE: https://api.agyata.com
   UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
   UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
   YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
