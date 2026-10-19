@@ -33,6 +33,7 @@ for e in $EDITIONS_LIST; do
   fi
   n="$(node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log(Array.isArray(d)?d.length:(d.stories||[]).length)' "$prev" 2>/dev/null || echo 0)"
   [ "$e" != world ] || [ "$n" -gt 0 ] || fails+=("world: 0 stories (pipeline starved)")
+  [ "$e" = world ] || [ "$n" -gt 0 ] || qa_warn "$e: 0 stories passed the publish bar (edition would stay empty; held: $(grep -c '▽ hold' "$log" 2>/dev/null) candidates, see review_$e.log)"
   summary+=("$e=$n stories")
   node "$QA_ROOT/.github/qa/validate_cloud.mjs" "$prev" --model "$QA_VALIDATOR_MODEL" --out "$QA_OUT/validation_$e.json" > "$QA_OUT/validate_$e.log" 2>&1
   vrc=$?
