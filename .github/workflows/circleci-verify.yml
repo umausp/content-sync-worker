@@ -30,19 +30,31 @@ on:
       script_only:
         description: doc mode only — script front half
         default: "false"
+# On CircleCI `inputs.*` arrive EMPTY (API parameters are rejected by the translation), so every knob falls back to a
+# PROJECT env var VERIFY_<KNOB> (set with the API before triggering), then to the default. On GitHub the inputs win.
 env:
-  MODE: ${{ inputs.mode }}
-  PIPELINE_REF: ${{ inputs.pipeline_ref }}
-  CHANNEL: ${{ inputs.channel }}
-  RUN_ID: ${{ inputs.run_id }}
-  GROUND: ${{ inputs.ground }}
-  SCRIPT_ONLY: ${{ inputs.script_only }}
+  IN_MODE: ${{ inputs.mode }}
+  IN_PIPELINE_REF: ${{ inputs.pipeline_ref }}
+  IN_CHANNEL: ${{ inputs.channel }}
+  IN_RUN_ID: ${{ inputs.run_id }}
+  IN_GROUND: ${{ inputs.ground }}
+  IN_SCRIPT_ONLY: ${{ inputs.script_only }}
   PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
 jobs:
   verify:
     runs-on: ubuntu-24.04
     timeout-minutes: 240
     steps:
+      - name: Knobs (inputs → VERIFY_* project env vars → defaults)
+        run: |
+          {
+            echo "MODE=${IN_MODE:-${VERIFY_MODE:-validate}}"
+            echo "PIPELINE_REF=${IN_PIPELINE_REF:-${VERIFY_PIPELINE_REF:-main}}"
+            echo "CHANNEL=${IN_CHANNEL:-${VERIFY_CHANNEL:-nl}}"
+            echo "RUN_ID=${IN_RUN_ID:-${VERIFY_RUN_ID:-39271726523}}"
+            echo "GROUND=${IN_GROUND:-${VERIFY_GROUND:-p:0.3}}"
+            echo "SCRIPT_ONLY=${IN_SCRIPT_ONLY:-${VERIFY_SCRIPT_ONLY:-false}}"
+          } | tee -a "$GITHUB_ENV"
       - name: Machine
         run: |
           echo "mode=$MODE ref=$PIPELINE_REF channel=$CHANNEL run=$RUN_ID ground=$GROUND"
@@ -67,8 +79,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra python3-venv jq unzip
       - name: Script artifact (script.json, packet.json, topic.json)
-        if: ${{ inputs.mode != 'doc' }}
         run: |
+          [ "$MODE" != doc ] || exit 0
           set -e
           mkdir -p run
           NAME="longform-${CHANNEL}-${RUN_ID}-script"
@@ -77,8 +89,8 @@ jobs:
           curl -sSL -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" -o run/script.zip "https://api.github.com/repos/umausp/content-sync-worker/actions/artifacts/${ID}/zip"
           cd run && unzip -o -q script.zip && ls -la
       - name: Unit suites + probes
-        if: ${{ inputs.mode != 'doc' }}
         run: |
+          [ "$MODE" != doc ] || exit 0
           set -e; cd pipeline
           node --test 'test/doc_*test.mjs' 2>&1 | tail -3
           node --test 'packages/longform-studio/test/*_test.mjs' 2>&1 | tail -3
@@ -87,15 +99,15 @@ jobs:
           node tools/acceptance/probes/studio_graphics_frames.mjs
           node tools/acceptance/probes/studio_prune_samples.mjs --n 200 --seed 7 | tail -2
       - name: Offline replay (density without a render)
-        if: ${{ inputs.mode != 'doc' }}
         run: |
+          [ "$MODE" != doc ] || exit 0
           cd pipeline
           for g in deny "$GROUND" all; do
             node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work /tmp/replay | grep -v '^\[replay:ch\]'
           done
       - name: Preview — real clip renders + concat + contact sheet
-        if: ${{ inputs.mode == 'preview' }}
         run: |
+          [ "$MODE" = preview ] || exit 0
           set -e; cd pipeline
           DOC_MOTION_CONCURRENCY=$(nproc) STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs \
             --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json \
@@ -111,7 +123,6 @@ jobs:
           ffmpeg -v error -y -i /tmp/out/preview.mp4 -vf "fps=1/40,scale=480:-2,tile=4x4" -frames:v 1 /tmp/out/sheet.png
           ffprobe -v error -show_entries format=duration -of csv=p=0 /tmp/out/preview.mp4
       - name: Doc — pipeline env from the shell workflow (flags identical to the cron)
-        if: ${{ inputs.mode == 'doc' }}
         env:
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -132,12 +143,13 @@ jobs:
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
         run: |
+          [ "$MODE" = doc ] || exit 0
           cd pipeline
           node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$HOME/pipeline.env"
           echo "pipeline env exports: $(grep -c '^export' "$HOME/pipeline.env")"
       - name: Doc — Python TTS/whisper stack + ONNX provisioning
-        if: ${{ inputs.mode == 'doc' }}
         run: |
+          [ "$MODE" = doc ] || exit 0
           set -e
           python3 -m venv "$HOME/venv" && . "$HOME/venv/bin/activate"
           pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts
@@ -145,8 +157,8 @@ jobs:
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"
           bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
       - name: Doc — prepare → render → finalize (NO upload)
-        if: ${{ inputs.mode == 'doc' }}
         run: |
+          [ "$MODE" = doc ] || exit 0
           set -o pipefail
           . "$HOME/venv/bin/activate"; . "$HOME/pipeline.env"
           cd pipeline
@@ -171,9 +183,9 @@ jobs:
           cp -r docs/shorts/$CHANNEL/* /tmp/out/ 2>/dev/null || true
           grep -hE '\[studio:[a-z0-9_-]+\]|\[doc' /tmp/out/prepare.log /tmp/out/finalize.log | tail -40
       - name: Artifacts
-        if: ${{ always() && inputs.mode != 'validate' }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: verify-${{ inputs.mode }}-${{ inputs.channel }}
+          name: verify-output
           path: /tmp/out
           if-no-files-found: warn
