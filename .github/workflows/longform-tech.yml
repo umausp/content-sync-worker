@@ -35,10 +35,17 @@ on:
         type: boolean
         default: false
         required: false
+      parallel:
+        description: 'Run alongside another run of this workflow instead of queueing behind it (own concurrency group)'
+        type: boolean
+        default: false
+        required: false
 
 concurrency:
-  # one doc run per channel per ref at a time; a second dispatch queues behind it
-  group: ${{ github.workflow }}-${{ github.ref_name }}
+  # one doc run per channel per ref at a time; a second dispatch queues behind it — unless dispatched with
+  # parallel=true, which gives that run its own group (user 2026-10-19: a Phase 5 verify render must not wait
+  # ~1.5 h behind the previous one). Cron never sets it.
+  group: ${{ github.workflow }}-${{ github.ref_name }}${{ inputs.parallel && format('-{0}', github.run_id) || '' }}
   cancel-in-progress: false
 
 permissions:
