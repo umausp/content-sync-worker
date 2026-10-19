@@ -1,0 +1,91 @@
+name: longform-reconcile
+
+# Saturday reconcile for the weekly long-form slots. Dispatched by agyata-cron-pinger (06:05 UTC) and by hand.
+# Why reconcile and not retry: a failed slot otherwise means a silent empty week for that channel. Retrying
+# inside the failing run would double-post on partial failures (the upload may already have happened), so a
+# missed channel gets a NEW longform-weekly run instead. At most one re-dispatch per channel per week: a channel
+# whose runs this week already number 2 or more is left alone.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: 'agyata-pipeline-private branch/ref (empty = default branch; cron leaves it empty)'
+        type: string
+        default: ''
+        required: false
+      dry_run:
+        description: 'list what would be re-dispatched, dispatch nothing'
+        type: boolean
+        default: false
+        required: false
+
+concurrency:
+  group: longform-reconcile
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconcile this week
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PIPELINE_REF: ${{ inputs.pipeline_ref }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -eo pipefail
+          WEEK_START=$(date -u -d "$(date -u +%Y-%m-%d) -$(( ($(date -u +%u) - 1) )) days" +%Y-%m-%dT00:00:00Z)
+          IDS=$(node tools/longform_schedule.mjs print --enabled-ids)
+          RUNS="$RUNNER_TEMP/runs.tsv"
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/longform-weekly.yml/runs?created=>=$WEEK_START&per_page=100" --paginate -q '.workflow_runs[] | [.id, .display_title, .status, .conclusion, .created_at] | @tsv' > "$RUNS"
+          {
+            echo "## longform reconcile — week of $WEEK_START"
+            echo ""
+            echo "| channel | runs this week | reached upload | action |"
+            echo "|---|---|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          for id in $IDS; do
+            UPLOADED=false
+            MATCH=$(awk -F'\t' -v p="longform $id " 'index($2,p)==1' "$RUNS")
+            COUNT=$(printf '%s' "$MATCH" | grep -c . || true)
+            RUNNING=false
+            if printf '%s\n' "$MATCH" | awk -F'\t' '$3=="queued" || $3=="in_progress" {f=1} END {exit !f}'; then RUNNING=true; fi
+            NEWEST=$(printf '%s\n' "$MATCH" | head -1 | cut -f1)
+            if [ -n "$NEWEST" ]; then
+              if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$NEWEST/jobs" --paginate -q '[.jobs[] | select(.name | test("finalize")) | .steps[] | select(.name == "Auto-upload to YouTube") | .conclusion] | index("success") != null' | grep -q true; then
+                UPLOADED=true
+              fi
+            fi
+            ROW=$(node tools/longform_schedule.mjs print --row "$id")
+            FORMAT=$(echo "$ROW" | jq -r .format)
+            PRIVACY=$(echo "$ROW" | jq -r .privacy)
+            if [ "$RUNNING" = true ]; then
+              ACTION=skipped-running
+            elif [ "$UPLOADED" = true ]; then
+              ACTION=skipped-ok
+            elif [ "$COUNT" -ge 2 ]; then
+              ACTION=skipped-already-reconciled
+            elif [ "$DRY_RUN" = true ]; then
+              ACTION=dry-run
+            else
+              gh workflow run longform-weekly.yml --ref "$GITHUB_REF_NAME" -f channel="$id" -f format="$FORMAT" -f privacy="$PRIVACY" -f pipeline_ref="$PIPELINE_REF"
+              ACTION=dispatched
+            fi
+            echo "[reconcile] channel=$id runs=$COUNT uploaded=$UPLOADED action=$ACTION"
+            echo "| $id | $COUNT | $UPLOADED | $ACTION |" >> "$GITHUB_STEP_SUMMARY"
+          done

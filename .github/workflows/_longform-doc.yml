@@ -1,6 +1,6 @@
 name: _longform-doc (reusable)
 
-# Fan-out / fan-in doc long-form render, called by longform-money/business/tech.yml.
+# Fan-out / fan-in doc long-form render, called by longform-weekly.yml (one channel per run).
 #   prepare  : topic -> research -> script -> visuals -> narration -> plan + gate #5 preflight.
 #              Saves a checkpoint + the work dir as an artifact. Fails fast (no render) on a bad plan.
 #   render   : one job per chapter (matrix), each on its own runner with a fresh render budget.
@@ -10,11 +10,10 @@ name: _longform-doc (reusable)
 on:
   workflow_call:
     inputs:
-      channel: { type: string, required: true }        # no | da | nl
-      name: { type: string, required: true }           # longform-money | longform-business | longform-tech
+      channel: { type: string, required: true }        # any registry id (shorts/doc/registry/channels.json)
       pipeline_ref: { type: string, required: false, default: '' }
       format: { type: string, required: false, default: mid }
-      privacy: { type: string, required: false, default: unlisted }
+      privacy: { type: string, required: false, default: private }
       script_only: { type: boolean, required: false, default: false }
 
 env:
@@ -150,9 +149,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-script-${{ github.run_id }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-script
           path: work/doc/*.json
-          retention-days: 7
+          retention-days: 14
           if-no-files-found: warn
 
   prepare:
@@ -188,7 +187,18 @@ jobs:
           echo "SHORTS_STAMP=$S" >> "$GITHUB_ENV"
           echo "stamp=$S" >> "$GITHUB_OUTPUT"
       - name: Prepare (script, visuals, narration, plan, preflight)
-        run: node shorts/build_short.mjs ${{ inputs.channel }}
+        run: |
+          set -o pipefail
+          node shorts/build_short.mjs ${{ inputs.channel }} 2>&1 | tee "$RUNNER_TEMP/prepare.log"
+      - name: Summary (prepare)
+        if: always()
+        run: |
+          {
+            echo "## longform ${{ inputs.channel }} ${{ inputs.format }} — prepare"
+            grep -E '\[studio:[a-z0-9_-]+\]' "$RUNNER_TEMP/prepare.log" | sed 's/^/- /' || echo "- (no [studio:*] lines)"
+          } > "$RUNNER_TEMP/summary-prepare.md"
+          cat "$RUNNER_TEMP/summary-prepare.md" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/[summary] /' "$RUNNER_TEMP/summary-prepare.md"
       - id: plan
         name: Read render plan
         run: |
@@ -204,18 +214,18 @@ jobs:
         if: steps.plan.outputs.ready == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-state-${{ github.run_id }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
           path: .shorts-work/${{ inputs.channel }}/
           include-hidden-files: true
-          retention-days: 1
+          retention-days: 14
           compression-level: 0
       - name: Upload doc script JSON (always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-script-${{ steps.stamp.outputs.stamp }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-script
           path: work/doc/*.json
-          retention-days: 7
+          retention-days: 14
           if-no-files-found: warn
 
   render:
@@ -248,19 +258,19 @@ jobs:
       - name: Download run state
         uses: actions/download-artifact@v4
         with:
-          name: ${{ inputs.name }}-state-${{ github.run_id }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
           path: .shorts-work/${{ inputs.channel }}/
       - name: Render chapter ${{ matrix.beat }}
         run: node shorts/build_short.mjs ${{ inputs.channel }}
       - name: Upload chapter clip
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-clip-${{ github.run_id }}-${{ matrix.beat }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-clip-${{ matrix.beat }}
           path: |
             .shorts-work/${{ inputs.channel }}/${{ needs.prepare.outputs.stamp }}/pipeline/clip-*
             .shorts-work/${{ inputs.channel }}/${{ needs.prepare.outputs.stamp }}/pipeline/lf_render_*
           include-hidden-files: true
-          retention-days: 1
+          retention-days: 3
           compression-level: 0
           if-no-files-found: warn
 
@@ -289,33 +299,53 @@ jobs:
       - name: Download run state
         uses: actions/download-artifact@v4
         with:
-          name: ${{ inputs.name }}-state-${{ github.run_id }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
           path: .shorts-work/${{ inputs.channel }}/
       - name: Download chapter clips
         uses: actions/download-artifact@v4
         with:
-          pattern: ${{ inputs.name }}-clip-${{ github.run_id }}-*
+          pattern: longform-${{ inputs.channel }}-${{ github.run_id }}-clip-*
           merge-multiple: true
           path: .shorts-work/${{ inputs.channel }}/${{ needs.prepare.outputs.stamp }}/pipeline/
       - name: Finalize (concat, release gate, stage)
-        run: node shorts/build_short.mjs ${{ inputs.channel }}
-      # The ONE refresh token for this channel. No WORLD fallback: a doc channel uploads to its own channel or not at all.
+        run: |
+          set -o pipefail
+          node shorts/build_short.mjs ${{ inputs.channel }} 2>&1 | tee "$RUNNER_TEMP/finalize.log"
+      # The ONE refresh token for this channel, by convention YT_REFRESH_TOKEN_<ID> (one line per registry channel
+      # below: data, no logic). A missing secret FAILS this job (visible); a doc never uploads to any other channel.
       - name: Select channel YouTube token
         id: yt_token
         env:
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
           YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
           YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
-          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
         run: |
-          case "${{ inputs.channel }}" in
-            no) TOKEN="$YT_REFRESH_TOKEN_NO"; VAR=YT_REFRESH_TOKEN_NO ;;
-            da) TOKEN="$YT_REFRESH_TOKEN_DA"; VAR=YT_REFRESH_TOKEN_DA ;;
-            nl) TOKEN="$YT_REFRESH_TOKEN_NL"; VAR=YT_REFRESH_TOKEN_NL ;;
-            *) echo "unknown channel"; exit 1 ;;
-          esac
+          CH="${{ inputs.channel }}"
+          VAR="YT_REFRESH_TOKEN_$(printf '%s' "$CH" | tr '[:lower:]' '[:upper:]')"
+          TOKEN="${!VAR:-}"
           if [ -z "$TOKEN" ]; then
-            echo "no $VAR secret — upload will be skipped (artifact only)"
-            echo "has_token=false" >> "$GITHUB_OUTPUT"; exit 0
+            echo "::error::no token for $CH — secret $VAR is empty; upload refused, staged artifact kept (no fallback to any other channel)"
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            exit 1
           fi
           echo "::add-mask::$TOKEN"
           echo "$VAR=$TOKEN" >> "$GITHUB_ENV"
@@ -325,26 +355,39 @@ jobs:
         if: steps.yt_token.outputs.has_token == 'true'
         continue-on-error: true
         run: |
-          node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP"
+          set -o pipefail
+          node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP" 2>&1 | tee "$RUNNER_TEMP/upload.log"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
+      - name: Summary (finalize)
+        if: always()
+        run: |
+          {
+            echo "## longform ${{ inputs.channel }} ${{ inputs.format }} — finalize"
+            grep -hE '\[studio:[a-z0-9_-]+\]' "$RUNNER_TEMP/finalize.log" "$RUNNER_TEMP/upload.log" 2>/dev/null | sed 's/^/- /' || echo "- (no [studio:*] lines)"
+            grep -hoE 'https://youtube\.com/watch\?v=[A-Za-z0-9_-]+' "$RUNNER_TEMP/upload.log" 2>/dev/null | head -1 | sed 's/^/- YouTube: /' || true
+            [ "${{ steps.yt_token.outputs.has_token }}" = "true" ] || echo "- upload refused: no token for ${{ inputs.channel }}"
+          } > "$RUNNER_TEMP/summary-finalize.md"
+          cat "$RUNNER_TEMP/summary-finalize.md" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/[summary] /' "$RUNNER_TEMP/summary-finalize.md"
       # longform-studio: the small metadata the user reviews (SEO description, tags, localizations, first
       # comment, growth plan) — always uploaded, never the video (local disk rule).
       - name: Upload studio meta (always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-studio-meta-${{ github.run_id }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-studio-meta
           path: |
             docs/shorts/${{ inputs.channel }}/*/meta.json
             docs/shorts/${{ inputs.channel }}/*/growth_plan.json
+          retention-days: 14
           if-no-files-found: warn
       - name: Upload staged doc artifact (only if NOT uploaded)
-        if: steps.yt.outputs.uploaded != 'true'
+        if: always() && steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.name }}-${{ env.SHORTS_STAMP }}
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
           path: docs/shorts/${{ inputs.channel }}/
-          retention-days: 1
+          retention-days: 14
           if-no-files-found: warn
       - name: Purge staged output
         if: always()
