@@ -5,6 +5,7 @@ name: music-library
 # checked out at pipeline_ref. Output: tracks/ + index/<mood>.json in the private HF dataset
 # umausp/agyata-music-library (HF_LIBRARY_REPO).
 #
+# Finish gate: loudnorm TP -1.5, reject only decoded true peak > -0.5 dBTP (see finish_track.py).
 # Jobs: plan (shard matrix) -> gen (per mood x model x shard: expand briefs, generate, finish, AES score,
 # upload lib-* artifact) -> publish (merge artifacts, upload tracks, prune >30 days, rebuild indexes).
 #
