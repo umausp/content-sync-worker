@@ -98,9 +98,18 @@ async function runPage(browser, path, vp, res, shotDir) {
   const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, colorScheme: 'light' });
   await ctx.addInitScript(() => {
     window.__cls = 0;
+    window.__shifts = [];
     try {
       new PerformanceObserver((list) => {
-        for (const e of list.getEntries()) if (!e.hadRecentInput) window.__cls += e.value;
+        for (const e of list.getEntries()) {
+          if (e.hadRecentInput) continue;
+          window.__cls += e.value;
+          window.__shifts.push({ v: +e.value.toFixed(3), t: Math.round(e.startTime), s: (e.sources || []).slice(0, 3).map((x) => {
+            const n = x.node;
+            const name = n && n.nodeType === 1 ? `${n.tagName.toLowerCase()}.${String(n.className || '').split(' ')[0]}` : '?';
+            return `${name} y${Math.round(x.previousRect.y)}->${Math.round(x.currentRect.y)} h${Math.round(x.previousRect.height)}->${Math.round(x.currentRect.height)}`;
+          }) });
+        }
       }).observe({ type: 'layout-shift', buffered: true });
     } catch {
       // layout-shift not supported: CLS check will read 0
@@ -122,7 +131,9 @@ async function runPage(browser, path, vp, res, shotDir) {
   await page.waitForTimeout(3000);
   const cls1 = await page.evaluate(() => window.__cls);
   const cls = cls1 - cls0;
-  add(res, 'cls-3s', cls <= 0.1 ? 'pass' : 'fail', `CLS ${cls.toFixed(3)} over 3 s after load (limit 0.1)`);
+  const shifts = await page.evaluate(() => window.__shifts || []);
+  const top = shifts.sort((a, b) => b.v - a.v).slice(0, 3).map((x) => `${x.v}@${x.t}ms ${x.s.join(' & ')}`).join(' || ');
+  add(res, 'cls-3s', cls <= 0.1 ? 'pass' : 'fail', `CLS ${cls.toFixed(3)} over 3 s after load (limit 0.1)${cls > 0.1 ? ` worst: ${top}` : ''}`);
 
   add(res, 'page-errors', pageErrors.length ? 'fail' : 'pass', pageErrors.join(' | ') || 'none');
   const bad = consoleErrors.filter(isBadConsole);
@@ -151,7 +162,7 @@ async function runPage(browser, path, vp, res, shotDir) {
     const serious = axe.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
     const minor = axe.violations.filter((v) => !serious.includes(v));
     add(res, 'axe-serious', serious.length ? 'fail' : 'pass',
-      serious.map((v) => `${v.id}(${v.impact}, ${v.nodes.length} nodes)`).join(', ') || 'none');
+      serious.map((v) => `${v.id}(${v.impact}, ${v.nodes.length} nodes: ${v.nodes.slice(0, 3).map((nd) => `${nd.target.join(' ')} ${String(nd.any?.[0]?.message || '').replace(/\s+/g, ' ').slice(0, 110)}`).join(' ; ')})`).join(', ') || 'none');
     if (minor.length) add(res, 'axe-minor', 'warn', minor.map((v) => `${v.id}(${v.impact})`).join(', '));
   } catch (e) {
     add(res, 'axe-serious', 'fail', `axe could not run: ${e.message.split('\n')[0]}`);

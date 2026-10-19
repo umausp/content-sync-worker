@@ -10,12 +10,16 @@ import { pathToFileURL } from 'node:url';
 
 export async function openDb(driverFrom) {
   if (driverFrom) {
-    try {
-      const req = createRequire(join(resolve(driverFrom), 'package.json'));
-      const BetterSqlite3 = req('better-sqlite3');
-      return { kind: 'better-sqlite3', db: new BetterSqlite3(':memory:') };
-    } catch {
-      // not installed or native binding unavailable: fall back to node:sqlite
+    // better-sqlite3 lives in a workspace package, not the repo root: try the usual homes.
+    const root = resolve(driverFrom);
+    for (const sub of ['', 'services/news-svc', 'services/api-gateway', 'services/admin', 'apps/web']) {
+      try {
+        const req = createRequire(join(root, sub, 'package.json'));
+        const BetterSqlite3 = req('better-sqlite3');
+        return { kind: 'better-sqlite3', db: new BetterSqlite3(':memory:') };
+      } catch {
+        // not here, or native binding unavailable: try the next
+      }
     }
   }
   const { DatabaseSync } = await import('node:sqlite');
