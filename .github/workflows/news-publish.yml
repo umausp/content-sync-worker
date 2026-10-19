@@ -1,0 +1,124 @@
+name: news-publish
+
+# Cloud-only text-news publish: one matrix job per edition, running the private
+# pipeline entry point `node src/review.mjs` with EDITION=<code> on the GitHub
+# runner (no local machine). Publishes to /news/ingest.
+#
+# workflow_dispatch ONLY. There is deliberately NO schedule: cadence is driven
+# externally (agyata-cron-pinger), which dispatches this workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      editions:
+        description: 'Comma-separated edition codes, e.g. world,de,fr. Allowed: world in de nl fr jp sv no da it es pt fi pl us uk au ca mx id vi tr ar'
+        required: true
+        default: 'world'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    name: plan (validate editions)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.build.outputs.matrix }}
+    steps:
+      - name: Validate editions and build matrix
+        id: build
+        shell: bash
+        env:
+          EDITIONS_INPUT: ${{ inputs.editions }}
+          ALLOWED_EDITIONS: 'world in de nl fr jp sv no da it es pt fi pl us uk au ca mx id vi tr ar'
+        run: |
+          set -euo pipefail
+          items=()
+          IFS=',' read -r -a raw <<< "$EDITIONS_INPUT"
+          for e in "${raw[@]}"; do
+            code="$(printf '%s' "$e" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')"
+            if [ -z "$code" ]; then continue; fi
+            case " $ALLOWED_EDITIONS " in
+              *" $code "*) items+=("$code") ;;
+              *) echo "::error::unknown edition code '$code' (allowed: $ALLOWED_EDITIONS)"; exit 1 ;;
+            esac
+          done
+          if [ "${#items[@]}" -eq 0 ]; then echo "::error::no edition codes given"; exit 1; fi
+          matrix="$(printf '%s\n' "${items[@]}" | awk '!seen[$0]++' | jq -R -s -c 'split("\n") | map(select(length > 0)) | {edition: .}')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "editions to publish: $matrix"
+
+  publish:
+    name: publish ${{ matrix.edition }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    concurrency:
+      group: news-publish-${{ matrix.edition }}
+      cancel-in-progress: false
+    env:
+      EDITION: ${{ matrix.edition }}
+      SOURCE_MODE: both
+      INGEST_URL: ${{ secrets.INGEST_URL }}
+      STORIES_URL: ${{ secrets.STORIES_URL }}
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+      # LLM provider ladder (ollama intentionally excluded: no local model on this runner).
+      PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai'
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: 'gemini-2.0-flash'
+      SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
+      SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
+      COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+      COHERE_MODEL: 'command-r-08-2024'
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      MISTRAL_MODEL: 'mistral-small-latest'
+      GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
+      GITMODELS_MODEL: 'openai/gpt-4o-mini'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: 'gpt-4o-mini'
+      OPENAI_DAILY_CAP: '80'
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install npm deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Run review (publish edition)
+        id: review
+        shell: bash
+        run: |
+          set -o pipefail
+          LOG="$RUNNER_TEMP/review.log"
+          node src/review.mjs 2>&1 | tee "$LOG"
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          set +e +o pipefail
+          LOG="$RUNNER_TEMP/review.log"
+          line="$(grep -a 'REVIEW DONE' "$LOG" 2>/dev/null | tail -n 1)"
+          if [ -z "$line" ]; then line="no REVIEW DONE line (see log)"; fi
+          msg="news-publish edition=$EDITION outcome=${{ steps.review.outcome }} | $line"
+          echo "$msg"
+          echo "$msg" >> "$GITHUB_STEP_SUMMARY"
