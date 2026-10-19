@@ -56,6 +56,12 @@ env:
   STUDIO_SHOT_MAX_HOLD: '4'
   STUDIO_CHAPTER_CARDS: '1'
   SAFE_MOTION_MAX_PER_CLIP: '12'
+  # longform-studio Phase 7: real footage for real-thing sentences (≤ 12 s clips, 3 keyframes each judged by the
+  # unchanged gate, ≥ 2 of 3 must pass), bounded chapter concurrency and a run-wide grounding budget.
+  STUDIO_FOOTAGE: '1'
+  SHORTS_MEDIA_VIDEO_SEC: '12'
+  DOC_MOTION_CONCURRENCY: '3'
+  DOC_GROUND_BUDGET: '120'
   SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
   SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
   SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
