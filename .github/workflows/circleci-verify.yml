@@ -66,6 +66,8 @@ jobs:
           git clone --depth 1 --branch "$PIPELINE_REF" "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/agyata-pipeline-private.git" pipeline
           git clone --depth 1 --branch main "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/content-sync-worker.git" shell
           cd pipeline && git log -1 --format='pipeline %h %s'
+          # studio_gate_lines.mjs diffs the grounding lines against origin/feat/doc-motion-kit (the frozen gate reference).
+          git fetch --depth 1 origin feat/doc-motion-kit:refs/remotes/origin/feat/doc-motion-kit
       - name: Node 22 + deps
         run: |
           set -e
