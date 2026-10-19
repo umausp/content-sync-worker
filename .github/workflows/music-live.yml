@@ -129,6 +129,7 @@ jobs:
       LIVE_DATE: ${{ needs.resolve.outputs.date }}
       LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
       LIVE_SLOT: ${{ matrix.slot }}
+      HF_LIBRARY_REPO: umausp/agyata-music-library
       YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
       YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
@@ -161,6 +162,7 @@ jobs:
       - name: Prepare session (render + gate + scheduled broadcast)
         run: |
           set -euo pipefail
+          export NEURAL_USED_OUT="$RUNNER_TEMP/neural_used.json"
           MIN="${{ inputs.minutes }}"
           START_ARGS=()
           if [ "${{ inputs.mode }}" = "test" ]; then
@@ -170,6 +172,22 @@ jobs:
           MIN="${MIN:-120}"
           node live/prepare.mjs --channel "$LIVE_CHANNEL" --slot "$LIVE_SLOT" --date "$LIVE_DATE" \
             --privacy "$LIVE_PRIVACY" --minutes "$MIN" --out live_out/prepare "${START_ARGS[@]}"
+
+      # Neural usage: the ids of the mix this job shipped go to usage/<mood>/ on the library dataset, so
+      # the picker skips them for 7 days. No file = no neural mix this run (fallback or not built): no-op.
+      - name: Record neural usage (7-day no-repeat)
+        if: always()
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          F="$RUNNER_TEMP/neural_used.json"
+          [ -f "$F" ] || { echo "no neural usage file (no neural mix shipped)"; exit 0; }
+          MOOD=$(node --input-type=module -e "import { slotById } from './live/slots.mjs'; process.stdout.write(slotById(process.env.LIVE_SLOT).mood)")
+          UP="$RUNNER_TEMP/neural_usage_up.json"
+          jq --arg d "$LIVE_DATE" --arg r "$GITHUB_RUN_ID" '. + {date: $d, run_id: $r}' "$F" > "$UP"
+          NAME="usage/$MOOD/$(date -u +%Y%m%dT%H%M)-$LIVE_SLOT-$GITHUB_RUN_ID.json"
+          hf upload "$HF_LIBRARY_REPO" "$UP" "$NAME" --repo-type dataset --commit-message "neural usage $LIVE_SLOT $LIVE_DATE"
+          echo "uploaded $NAME"
 
       - name: Upload session to HF (private dataset)
         run: |
@@ -232,6 +250,7 @@ jobs:
       LIVE_DATE: ${{ needs.resolve.outputs.date }}
       LIVE_CHANNEL: ${{ needs.resolve.outputs.channel }}
       LIVE_SLOT: ${{ inputs.slot }}
+      HF_LIBRARY_REPO: umausp/agyata-music-library
       YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
       YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
@@ -270,6 +289,7 @@ jobs:
         id: session
         run: |
           set +e
+          export NEURAL_USED_OUT="$RUNNER_TEMP/neural_used.json"
           CHAOS=()
           [ -n "${{ inputs.chaos_kill_at_min }}" ] && CHAOS=(--chaos-kill-at-min "${{ inputs.chaos_kill_at_min }}")
           START=()
@@ -286,6 +306,22 @@ jobs:
           df -h / | tail -1
           [ "$code" = 2 ] && exit 0   # build failed before go-live: the fallback step takes over
           exit "$code"
+
+      # Neural usage: the ids of the mix this job shipped go to usage/<mood>/ on the library dataset, so
+      # the picker skips them for 7 days. No file = no neural mix this run (fallback or not built): no-op.
+      - name: Record neural usage (7-day no-repeat)
+        if: always()
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          F="$RUNNER_TEMP/neural_used.json"
+          [ -f "$F" ] || { echo "no neural usage file (no neural mix shipped)"; exit 0; }
+          MOOD=$(node --input-type=module -e "import { slotById } from './live/slots.mjs'; process.stdout.write(slotById(process.env.LIVE_SLOT).mood)")
+          UP="$RUNNER_TEMP/neural_usage_up.json"
+          jq --arg d "$LIVE_DATE" --arg r "$GITHUB_RUN_ID" '. + {date: $d, run_id: $r}' "$F" > "$UP"
+          NAME="usage/$MOOD/$(date -u +%Y%m%dT%H%M)-$LIVE_SLOT-$GITHUB_RUN_ID.json"
+          hf upload "$HF_LIBRARY_REPO" "$UP" "$NAME" --repo-type dataset --commit-message "neural usage $LIVE_SLOT $LIVE_DATE"
+          echo "uploaded $NAME"
 
       - name: Fetch this slot's fallback mix
         if: steps.session.outputs.code == '2'
