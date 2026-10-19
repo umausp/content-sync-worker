@@ -5,11 +5,8 @@ SECTION=pipeline
 qa_want pipeline || { qa_record SKIP "not in QA_SECTIONS"; exit 0; }
 REPO=umausp/agyata-pipeline-private
 
-run_suite() { # <dir> <tap-out>: TAP to the file; falls back to an explicit glob when the dir form runs zero tests
-  ( cd "$1" && node --test --test-reporter=tap test/ ) > "$2" 2> "$2.err"; echo $? > "$2.rc"
-  if grep -q '^# tests 0' "$2"; then
-    ( cd "$1" && node --test --test-reporter=tap test/*.mjs ) > "$2" 2> "$2.err"; echo $? > "$2.rc"
-  fi
+run_suite() { # <dir> <tap-out>: TAP to the file. Files are test/*_test.mjs; the bare-directory form runs 1 bogus test.
+  ( cd "$1" && node --test --test-reporter=tap test/*_test.mjs ) > "$2" 2> "$2.err"; echo $? > "$2.rc"
 }
 
 for side in branch base; do
@@ -18,6 +15,8 @@ for side in branch base; do
   ( cd "$dir" && npm ci --no-audit --no-fund --cache "$QA_WORK/npm-cache" ) > "$QA_OUT/pipeline_npm_$side.log" 2>&1 \
     || { qa_record FAIL "npm ci failed on $side ($ref), see pipeline_npm_$side.log"; exit 0; }
   run_suite "$dir" "$QA_OUT/pipeline_$side.tap"
+  n=$(grep -E '^# tests ' "$QA_OUT/pipeline_$side.tap" | awk '{print $3}'); [ "${n:-0}" -ge 50 ] \
+    || { qa_record FAIL "$side ran only ${n:-0} tests: the suite did not run (see pipeline_$side.tap.err)"; exit 0; }
   echo "pipeline $side ($ref): $(grep -E '^# (tests|pass|fail) ' "$QA_OUT/pipeline_$side.tap" | tr '\n' ' ') exit=$(cat "$QA_OUT/pipeline_$side.tap.rc")"
 done
 
