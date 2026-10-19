@@ -1,0 +1,21 @@
+name: Purge Old Workflow Runs
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch:    # Allows manual execution from the Actions tab
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Delete workflow runs older than 7 days
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 7
+          keep_minimum_runs: 0
