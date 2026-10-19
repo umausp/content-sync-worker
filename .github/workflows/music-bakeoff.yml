@@ -1,8 +1,9 @@
 name: music-bakeoff
 
-# CPU bake-off: ACE-Step 1.5 turbo (DiT only) vs Stable Audio 3 small-music, same 4 live slot moods.
+# CPU bake-off: ACE-Step 1.5 turbo (DiT only) vs Stable Audio 3 small-music, same 4 live slot moods,
+# plus the current production engine (baseline) and Meta Audiobox Aesthetics scores for every clip.
 # Briefs come from tools/music_bakeoff/prompts.json. Clips are uploaded as artifacts only (never
-# committed). Each run is one 8-job matrix plus a collect job that writes results.md.
+# committed). Jobs: gen (8) + baseline (4) -> score -> collect (results.md + AES tables).
 
 run-name: music-bakeoff ${{ github.event.inputs.seconds || '120' }}s seed ${{ github.event.inputs.seed || '42' }}
 
@@ -49,6 +50,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | sed -n 1p
 
       # ---------------- ACE-Step 1.5 (DiT only) ----------------
       - name: ACE clone and pin
@@ -159,8 +167,164 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        mood: [focus, unwind, sleep, slowmorning]
+    steps:
+      - name: Checkout pipeline (private, main)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: main
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: true
+
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: ''
+          apt-packages: 'ffmpeg librsvg2-bin fonts-dejavu fonts-noto-core fluidsynth fluid-soundfont-gm'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+
+      - name: Install ffmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | sed -n 1p
+
+      - name: build_mix audio-only (current engine, slot ${{ matrix.mood }})
+        run: |
+          set -euo pipefail
+          export SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)
+          start=$(date +%s)
+          node shorts/music_mix/build_mix.mjs fi --minutes 4 --audio-only --out "$RUNNER_TEMP/base" --slot "${{ matrix.mood }}" 2>&1 | tee "$RUNNER_TEMP/build.log"
+          end=$(date +%s)
+          echo "BUILD_S=$((end-start))" >> "$GITHUB_ENV"
+          grep -E '\[music_mix\] engine:' "$RUNNER_TEMP/build.log"
+          ls -la "$RUNNER_TEMP/base"
+
+      - name: Cut 120 s from 60 s, encode mp3 (two-pass loudnorm), write json
+        env:
+          MOOD: ${{ matrix.mood }}
+          TARGET_I: ${{ matrix.mood == 'sleep' && '-18' || '-14' }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          mood = os.environ["MOOD"]
+          tgt = os.environ["TARGET_I"]
+          src = os.path.join(os.environ["RUNNER_TEMP"], "base", "mix.m4a")
+          name = f"baseline_{mood}"
+          wav, mp3, js = f"out/{name}.wav", f"out/{name}.mp3", f"out/{name}.json"
+          subprocess.run(["ffmpeg", "-hide_banner", "-y", "-ss", "60", "-t", "120", "-i", src,
+                          "-ac", "2", "-ar", "44100", "-c:a", "pcm_s16le", wav], check=True)
+          # pass 1: measure
+          r1 = subprocess.run(
+              ["ffmpeg", "-hide_banner", "-nostats", "-i", wav,
+               "-af", f"loudnorm=I={tgt}:TP=-1:LRA=11:print_format=json", "-f", "null", "-"],
+              capture_output=True, text=True, check=True)
+          blobs = re.findall(r"\{[^{}]*\}", r1.stderr)
+          st = json.loads(blobs[-1])
+          print(f"[bakeoff] input {name}: I={st['input_i']} LUFS  LRA={st['input_lra']}  TP={st['input_tp']} dBTP  target I={tgt}")
+          # pass 2: apply linear gain with measured values
+          af = (f"loudnorm=I={tgt}:TP=-1:LRA=11:measured_I={st['input_i']}:measured_TP={st['input_tp']}:"
+                f"measured_LRA={st['input_lra']}:measured_thresh={st['input_thresh']}:"
+                f"offset={st['target_offset']}:linear=true")
+          subprocess.run(
+              ["ffmpeg", "-hide_banner", "-y", "-i", wav, "-af", af,
+               "-ar", "44100", "-ac", "2", "-c:a", "libmp3lame", "-b:a", "192k", mp3],
+              check=True)
+          os.remove(wav)
+          log = open(os.path.join(os.environ["RUNNER_TEMP"], "build.log")).read()
+          eng = re.findall(r"\[music_mix\] engine:.*", log)
+          meta = {
+              "model": "baseline", "mood": mood, "seed": None, "seconds": 120,
+              "load_s": None, "gen_s": float(os.environ["BUILD_S"]),
+              "rtf": round(float(os.environ["BUILD_S"]) / 120.0, 4),
+              "peak_rss_mb": None, "engine": eng[-1] if eng else "not logged",
+              "start_s": 60, "source": "build_mix.mjs fi --minutes 4 --audio-only --slot " + mood,
+              "input_lufs": float(st["input_i"]), "input_lra": float(st["input_lra"]),
+              "input_tp": float(st["input_tp"]), "target_lufs": float(tgt),
+              "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=os.getcwd(),
+                                       capture_output=True, text=True).stdout.strip(),
+          }
+          json.dump(meta, open(js, "w"), indent=2)
+          print(f"[bakeoff] baseline engine: {meta['engine']}")
+          print(f"[bakeoff] wrote {mp3}")
+          PY
+          ls -la out
+
+      - name: Upload baseline clip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clip-baseline-${{ matrix.mood }}
+          path: |
+            out/*.mp3
+            out/*.json
+          retention-days: 7
+          if-no-files-found: error
+
+  score:
+    needs: [gen, baseline]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | sed -n 1p
+
+      - name: Download all clip artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: clip-*
+          path: clips
+          merge-multiple: true
+
+      - name: Install Audiobox Aesthetics (CPU torch 2.7.1)
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install audiobox_aesthetics==0.0.4
+          python -c "import inspect; from audiobox_aesthetics.infer import initialize_predictor; print('aes import ok', inspect.signature(initialize_predictor))"
+
+      - name: Score every mp3 (CE, CU, PC, PQ)
+        run: |
+          set -euo pipefail
+          ls -la clips
+          python tools/music_bakeoff/score_aes.py --clips clips --out aes.json
+          cat aes.json
+
+      - name: Upload AES scores
+        uses: actions/upload-artifact@v4
+        with:
+          name: aes-scores
+          path: aes.json
+          retention-days: 7
+          if-no-files-found: error
+
   collect:
-    needs: gen
+    needs: [gen, baseline, score]
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -173,33 +337,61 @@ jobs:
           path: clips
           merge-multiple: true
 
+      - name: Download AES scores
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: aes-scores
+          path: aes
+
       - name: Build results.md
         run: |
           set -euo pipefail
           mkdir -p clips
           python3 - <<'PY'
-          import json, os
-          models = [("ace", "ACE-Step 1.5 turbo"), ("sa3", "Stable Audio 3 small-music")]
+          import json, os, shutil
+          models = [("baseline", "current production engine (build_mix)"),
+                    ("ace", "ACE-Step 1.5 turbo"),
+                    ("sa3", "Stable Audio 3 small-music")]
           moods = ["focus", "unwind", "sleep", "slowmorning"]
+          aes = {}
+          if os.path.exists("aes/aes.json"):
+              aes = json.load(open("aes/aes.json"))
+              shutil.copy("aes/aes.json", "clips/aes.json")
+          def f(v, nd=3):
+              return "n/a" if v is None else (f"{v:.{nd}f}" if isinstance(v, float) else str(v))
           lines = [
               "# Music bake-off results",
               "",
-              "| model | mood | load_s | gen_s | rtf | peak_rss_mb | input LUFS |",
-              "|---|---|---|---|---|---|---|",
+              "| model | mood | load_s | gen_s | rtf | peak_rss_mb | input LUFS | CE | CU | PC | PQ |",
+              "|---|---|---|---|---|---|---|---|---|---|---|",
           ]
+          means = {k: {"CE": [], "PQ": []} for k, _ in models}
           for key, _label in models:
               for mood in moods:
                   path = f"clips/{key}_{mood}.json"
+                  s = aes.get(f"{key}_{mood}.mp3")
+                  sc = [f(s[k]) if s else "n/a" for k in ("CE", "CU", "PC", "PQ")]
+                  if s:
+                      means[key]["CE"].append(s["CE"]); means[key]["PQ"].append(s["PQ"])
                   if not os.path.exists(path):
-                      lines.append(f"| {key} | {mood} | FAILED | | | | |")
+                      lines.append(f"| {key} | {mood} | FAILED | | | | | {' | '.join(sc)} |")
                       continue
                   m = json.load(open(path))
                   lines.append(
-                      f"| {key} | {mood} | {m['load_s']} | {m['gen_s']} | {m['rtf']} | "
-                      f"{m['peak_rss_mb']} | {m.get('input_lufs', 'n/a')} |")
+                      f"| {key} | {mood} | {f(m.get('load_s'), 2)} | {f(m.get('gen_s'), 2)} | {f(m.get('rtf'), 4)} | "
+                      f"{f(m.get('peak_rss_mb'), 1)} | {f(m.get('input_lufs'), 1)} | {' | '.join(sc)} |")
+          lines += ["", "## Mean AES per model (across the four moods)", "",
+                    "| model | n | mean CE | mean PQ |", "|---|---|---|---|"]
+          for key, label in models:
+              ce, pq = means[key]["CE"], means[key]["PQ"]
+              mc = f"{sum(ce)/len(ce):.3f}" if ce else "n/a"
+              mp = f"{sum(pq)/len(pq):.3f}" if pq else "n/a"
+              lines.append(f"| {key} ({label}) | {len(ce)} | {mc} | {mp} |")
           lines += ["", "Models: " + "; ".join(f"`{k}` = {l}" for k, l in models),
                     "Loudness targets: I=-14 LUFS, sleep I=-18 LUFS, TP=-1 dBTP, LRA=11.",
-                    "rtf = gen_s / seconds (lower is faster)."]
+                    "rtf = gen_s / seconds (lower is faster). Baseline gen_s is the build_mix wall time for a 4 min audio-only mix.",
+                    "AES: Meta Audiobox Aesthetics, 1-10 scale (CE content enjoyment, CU content usefulness, PC production complexity, PQ production quality)."]
           text = "\n".join(lines) + "\n"
           open("clips/results.md", "w").write(text)
           print(text)
@@ -216,5 +408,6 @@ jobs:
           path: |
             clips/*.mp3
             clips/results.md
+            clips/aes.json
           retention-days: 7
           if-no-files-found: warn

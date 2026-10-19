@@ -88,11 +88,15 @@ def main():
         audio_raw, sr = out[0], out[1]
     else:
         audio_raw = out
-        sr = getattr(m, "sample_rate", None)
+        # generate() itself reads self.model.sample_rate (stable_audio_3/model.py), so that is
+        # the authoritative value; model_config["sample_rate"] is the JSON fallback.
+        inner = getattr(getattr(m, "model", None), "sample_rate", None)
+        cfg_sr = (getattr(m, "model_config", None) or {}).get("sample_rate")
+        print(f"[bakeoff] sample_rate: m.model.sample_rate={inner} model_config['sample_rate']={cfg_sr}", flush=True)
+        sr = inner if inner is not None else cfg_sr
         if sr is None:
-            sr = getattr(getattr(m, "config", None), "sample_rate", None)
-    if sr is None:
-        sys.exit("could not determine sample rate from generate() output or model")
+            print("[bakeoff] WARNING: no sample rate attribute found; falling back to 44100", flush=True)
+            sr = 44100
     sr = int(sr)
     print(f"[bakeoff] output type={type(out).__name__} sr={sr}", flush=True)
 
