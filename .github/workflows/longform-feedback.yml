@@ -19,6 +19,22 @@ on:
         type: string
         default: '90'
         required: false
+      admin_action:
+        description: 'planner-weights row admin (none = run the feedback loop): get | set | del the agyata:studio:weights:<admin_channel> row (set expires after 1 h)'
+        type: choice
+        options: ['none', 'get', 'set', 'del']
+        default: 'none'
+        required: false
+      admin_channel:
+        description: 'registry channel id for admin_action'
+        type: string
+        default: ''
+        required: false
+      admin_json:
+        description: 'weights JSON for admin_action=set, e.g. {"maxHold":4,"rehookSec":75,"kindPenalty":{},"basedOn":777}'
+        type: string
+        default: ''
+        required: false
 
 concurrency:
   group: longform-feedback
@@ -26,6 +42,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read   # longform_report.mjs lists this week's longform-weekly runs and reads their job logs
 
 env:
   YT_ANALYTICS: '1'
@@ -51,7 +68,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Retention feedback (registry-enabled channels)
+      - name: Planner-weights admin (seed / inspect / remove one row)
+        if: inputs.admin_action != 'none' && inputs.admin_action != ''
+        env:
+          ADMIN_ACTION: ${{ inputs.admin_action }}
+          ADMIN_CHANNEL: ${{ inputs.admin_channel }}
+          ADMIN_JSON: ${{ inputs.admin_json }}
+        run: |
+          set -eo pipefail
+          node tools/studio_weights_admin.mjs "$ADMIN_ACTION" --channel "$ADMIN_CHANNEL" --json "$ADMIN_JSON"
+      - name: Retention feedback (all registry-enabled channels)
+        if: inputs.admin_action == 'none' || inputs.admin_action == ''
         env:
           YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
           YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
@@ -75,12 +102,16 @@ jobs:
           YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
           YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
           YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+          FEEDBACK_DAYS: ${{ inputs.days }}
         run: |
-          set -e
-          IDS=$(node tools/longform_schedule.mjs print --enabled-ids)   # fails the step if the registry is unreadable
-          for ch in $IDS; do
-            node tools/studio_feedback.mjs --channel "$ch" --days "${{ inputs.days || '90' }}" --out "docs/longform-runs/retention/$ch" || echo "[studio:feedback] $ch failed (see above)"
-          done
+          set -eo pipefail
+          # --all-enabled reads the registry itself: one [studio:feedback] line per channel + [studio:feedback:summary]
+          node tools/studio_feedback.mjs --all-enabled --days "${FEEDBACK_DAYS:-90}" --out docs/longform-runs/retention
+      - name: Long-form weekly report
+        if: always() && (inputs.admin_action == 'none' || inputs.admin_action == '')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/longform_report.mjs --out docs/longform-runs/retention/report
       - name: Upload retention reports
         if: always()
         uses: actions/upload-artifact@v4

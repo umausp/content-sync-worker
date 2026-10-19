@@ -13,6 +13,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read   # the Long-form (weekly) step lists longform-weekly runs and their job logs
 
 jobs:
   report:
@@ -62,6 +63,15 @@ jobs:
           YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
           YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
         run: node shorts/channel_report.mjs
+
+      - name: Long-form (weekly)
+        # One row per registry-enabled doc channel: this week's longform-weekly run, video, gate soft-passes, density2
+        # bars, grounding budget, prep minutes, retention worst shot; flags NO_RUN / NO_SUCCESSFUL_RUN (reconcile signal).
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+          API_BASE: https://api.agyata.com
+        run: node tools/longform_report.mjs --out docs/analytics/longform
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
