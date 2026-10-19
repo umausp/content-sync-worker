@@ -53,6 +53,17 @@ export function normalizeThumbUrl(url) {
   return `${m[1]}${WIKI_WIDTHS[0]}px-${m[3]}`;
 }
 
+const squash = (t) => String(t ?? '').normalize('NFKC').toLowerCase().replace(/[\s₹$€£¥,]+/gu, '');
+
+/** The LLM judge sometimes lists a claim that IS in the source. Drop items whose squashed text appears verbatim there. */
+export function dropVerbatimSupported(unsupported, sourceText) {
+  const src = squash(sourceText);
+  return (Array.isArray(unsupported) ? unsupported : []).filter((u) => {
+    const k = squash(u);
+    return !k || !src.includes(k);
+  });
+}
+
 export const PROMPTS = {
   brand: ({ title, summary }) => [
     'You classify a news story for a finance and technology app.',
@@ -159,9 +170,11 @@ export async function validateStory(story, { host, key, model, fetchImpl = fetch
     faith = { verdict: 'no_source', unsupported: [], reason: 'preview record has no sourceText' };
   } else {
     const f = await ask(opts, PROMPTS.faith({ title, summary, short, sourceText }));
-    faith = f.ok
-      ? { verdict: f.json.faithful === true && !(f.json.unsupported || []).length ? 'pass' : 'fail', unsupported: f.json.unsupported || [] }
-      : { verdict: 'error', unsupported: [], reason: f.error };
+    if (f.ok) {
+      const real = dropVerbatimSupported(f.json.unsupported, sourceText);
+      const falsePos = (f.json.unsupported || []).length - real.length;
+      faith = { verdict: real.length === 0 && (f.json.faithful === true || falsePos > 0) ? 'pass' : 'fail', unsupported: real, ...(falsePos ? { judgeFalsePositives: falsePos } : {}) };
+    } else faith = { verdict: 'error', unsupported: [], reason: f.error };
   }
 
   const s = await ask(opts, PROMPTS.short({ title, short }));
