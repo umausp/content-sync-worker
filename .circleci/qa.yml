@@ -1,17 +1,70 @@
+# Native CircleCI QA lane. Plan caps resource classes at `large` (4 vCPU / 8 GB docker); xlarge and above are
+# "not in plan", so speed comes from running the sections as parallel jobs. Section logic lives in .github/qa/.
 version: 2.1
-jobs:
-  probe:
-    parameters:
-      rc: {type: string}
+
+parameters:
+  pipeline_ref: {type: string, default: "feat/news-ddg-finance-tech"}
+  pipeline_base: {type: string, default: "main"}
+  site_ref: {type: string, default: "feat/revenue-mvp"}
+  site_base: {type: string, default: "master"}
+  editions: {type: string, default: "world,in,jp"}
+  validator_model: {type: string, default: "gemma4:31b-cloud"}
+
+executors:
+  big:
     docker:
-      - image: cimg/node:22.12
-    resource_class: << parameters.rc >>
+      - image: cimg/node:22.12-browsers
+    resource_class: large
+    environment:
+      QA_PIPELINE_REF: << pipeline.parameters.pipeline_ref >>
+      QA_PIPELINE_BASE: << pipeline.parameters.pipeline_base >>
+      QA_SITE_REF: << pipeline.parameters.site_ref >>
+      QA_SITE_BASE: << pipeline.parameters.site_base >>
+      QA_EDITIONS: << pipeline.parameters.editions >>
+      QA_VALIDATOR_MODEL: << pipeline.parameters.validator_model >>
+      QA_OUT: /tmp/qa-out
+      QA_WORK: /tmp/qa-work
+
+commands:
+  section:
+    parameters:
+      names: {type: string}
+      script: {type: string}
     steps:
-      - run: nproc && free -g | head -2
+      - checkout
+      - run:
+          name: QA << parameters.names >>
+          no_output_timeout: 30m
+          command: |
+            export QA_SECTIONS="<< parameters.names >>"
+            sudo corepack enable 2>/dev/null || true
+            for s in $(echo "$QA_SECTIONS" | tr ',' ' '); do bash .github/qa/section_$s.sh; done
+      - store_artifacts:
+          path: /tmp/qa-out
+          destination: qa-out
+      - run:
+          name: Gate
+          command: |
+            node -e '
+              const fs=require("fs"),d="/tmp/qa-out";let bad=0;
+              for(const f of fs.readdirSync(d).filter(f=>/^result_.*\.json$/.test(f))){
+                const j=JSON.parse(fs.readFileSync(d+"/"+f));console.log(j.status.padEnd(5),j.section.padEnd(9),j.detail);
+                (j.warnings||[]).slice(0,10).forEach(w=>console.log("   warn:",w));
+                if(j.status==="FAIL")bad++;}
+              if(!fs.readdirSync(d).some(f=>f.startsWith("result_"))){console.log("no results");bad++}
+              process.exit(bad?1:0)'
+
+jobs:
+  qa-pipeline:
+    executor: big
+    steps: [{section: {names: pipeline, script: pipeline}}]
+  qa-dryrun:
+    executor: big
+    steps: [{section: {names: dryrun, script: dryrun}}]
+  qa-site-browser:
+    executor: big
+    steps: [{section: {names: "site,browser", script: site}}]
+
 workflows:
-  probe:
-    jobs:
-      - probe: {name: d-2xlargeplus, rc: 2xlarge+}
-      - probe: {name: d-2xlarge, rc: 2xlarge}
-      - probe: {name: d-xlarge, rc: xlarge}
-      - probe: {name: d-large, rc: large}
+  qa:
+    jobs: [qa-pipeline, qa-dryrun, qa-site-browser]
