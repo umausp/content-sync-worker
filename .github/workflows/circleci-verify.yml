@@ -1,0 +1,179 @@
+# longform-studio VERIFICATION lane, written as a GitHub Actions workflow because the connected CircleCI project runs
+# GitHub Actions workflow files on CircleCI compute ("GitHub Actions on CircleCI", pipeline definition longform-verify).
+# It never runs on push (workflow_dispatch only). On CircleCI the inputs arrive as pipeline parameters:
+#   curl -X POST https://circleci.com/api/v2/project/circleci/2VrSFkVyw8fGZMZHoRDiPC/MFz6EiqU1v5AbPS5GkY2hc/pipeline/run \
+#     -H "Circle-Token: $CCI_API_KEY" -H 'Content-Type: application/json' \
+#     -d '{"definition_id":"5749c072-88c0-46aa-ba4d-4c8537b83562","config":{"branch":"main"},"checkout":{"branch":"main"},
+#          "parameters":{"mode":"validate","pipeline_ref":"feat/longform-studio"}}'
+# Secrets come from the CircleCI PROJECT environment variables (synced by circleci-sync-secrets.yml); on GitHub the same
+# names come from repository secrets, so this file also works as a plain GitHub Actions fallback.
+# modes: validate (suites + probes + offline replay, minutes) · preview (real clip renders → preview.mp4 + contact sheet)
+#        doc (prepare → render → finalize for one channel, NO upload; mp4 + logs as artifacts)
+name: circleci-verify
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: validate | preview | doc
+        default: validate
+      pipeline_ref:
+        description: ref of umausp/agyata-pipeline-private to test
+        default: main
+      channel:
+        default: nl
+      run_id:
+        description: GitHub run id whose longform-<channel>-<run>-script artifact feeds replay/preview
+        default: "39271726523"
+      ground:
+        description: replay grounding policy deny | all | p:<ratio>
+        default: "p:0.3"
+      script_only:
+        description: doc mode only — script front half
+        default: "false"
+env:
+  MODE: ${{ inputs.mode }}
+  PIPELINE_REF: ${{ inputs.pipeline_ref }}
+  CHANNEL: ${{ inputs.channel }}
+  RUN_ID: ${{ inputs.run_id }}
+  GROUND: ${{ inputs.ground }}
+  SCRIPT_ONLY: ${{ inputs.script_only }}
+  PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Machine
+        run: |
+          echo "mode=$MODE ref=$PIPELINE_REF channel=$CHANNEL run=$RUN_ID ground=$GROUND"
+          nproc; free -g | head -2; df -h / | tail -1; node --version || true; python3 --version || true; ffmpeg -version 2>/dev/null | head -1 || echo "no ffmpeg yet"
+      - name: Clone private pipeline + public shell
+        run: |
+          set -e
+          [ -n "$PRIVATE_REPO_TOKEN" ] || { echo "::error::PRIVATE_REPO_TOKEN is empty (project env var missing)"; exit 1; }
+          git clone --depth 1 --branch "$PIPELINE_REF" "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/agyata-pipeline-private.git" pipeline
+          git clone --depth 1 --branch main "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/content-sync-worker.git" shell
+          cd pipeline && git log -1 --format='pipeline %h %s'
+      - name: Node 22 + deps
+        run: |
+          set -e
+          if ! node --version 2>/dev/null | grep -q '^v2[2-9]'; then
+            curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt-get install -y nodejs
+          fi
+          node --version
+          cd pipeline && npm ci --no-audit --no-fund
+      - name: Render deps (the cron's render-setup apt line)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra python3-venv jq unzip
+      - name: Script artifact (script.json, packet.json, topic.json)
+        if: ${{ inputs.mode != 'doc' }}
+        run: |
+          set -e
+          mkdir -p run
+          NAME="longform-${CHANNEL}-${RUN_ID}-script"
+          ID=$(curl -sS -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" "https://api.github.com/repos/umausp/content-sync-worker/actions/runs/${RUN_ID}/artifacts" | jq -r --arg n "$NAME" '.artifacts[] | select(.name==$n) | .id' | head -1)
+          [ -n "$ID" ] || { echo "::error::artifact $NAME not found"; exit 1; }
+          curl -sSL -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" -o run/script.zip "https://api.github.com/repos/umausp/content-sync-worker/actions/artifacts/${ID}/zip"
+          cd run && unzip -o -q script.zip && ls -la
+      - name: Unit suites + probes
+        if: ${{ inputs.mode != 'doc' }}
+        run: |
+          set -e; cd pipeline
+          node --test 'test/doc_*test.mjs' 2>&1 | tail -3
+          node --test 'packages/longform-studio/test/*_test.mjs' 2>&1 | tail -3
+          node --test test/motion_dispatch_test.mjs 'test/*safe_motion*test.mjs' 2>&1 | tail -3
+          node tools/acceptance/probes/studio_gate_lines.mjs
+          node tools/acceptance/probes/studio_graphics_frames.mjs
+          node tools/acceptance/probes/studio_prune_samples.mjs --n 200 --seed 7 | tail -2
+      - name: Offline replay (density without a render)
+        if: ${{ inputs.mode != 'doc' }}
+        run: |
+          cd pipeline
+          for g in deny "$GROUND" all; do
+            node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work /tmp/replay | grep -v '^\[replay:ch\]'
+          done
+      - name: Preview — real clip renders + concat + contact sheet
+        if: ${{ inputs.mode == 'preview' }}
+        run: |
+          set -e; cd pipeline
+          DOC_MOTION_CONCURRENCY=$(nproc) STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs \
+            --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json \
+            --ground "$GROUND" --render real --work /tmp/replay | grep -v '^\[replay:ch\]'
+          mkdir -p /tmp/out
+          node -e '
+            const fs=require("fs");const p="/tmp/replay/motion";const s=JSON.parse(fs.readFileSync("../run/script.json","utf8"));
+            const ch=s.chapters.map(c=>c.id);const key=n=>{const i=ch.findIndex(c=>n.startsWith(c+"-"));const r=i>=0?n.slice(ch[i].length+1):n;
+            const seg=parseInt(r)||0;const suf=r.includes("-")?r.split("-").slice(1).join("-"):"";const m=/^[dk](\d+)/.exec(suf);return [i<0?999:i,seg,m?1+Number(m[1]):0,n]};
+            const files=fs.readdirSync(p).filter(f=>f.endsWith(".mp4")&&fs.statSync(p+"/"+f).size>0).sort((a,b)=>{const x=key(a),y=key(b);for(let k=0;k<4;k++){if(x[k]<y[k])return -1;if(x[k]>y[k])return 1}return 0});
+            fs.writeFileSync("/tmp/out/list.txt",files.map(f=>`file '"'"'${p}/${f}'"'"'`).join("\n")+"\n");console.log(files.length+" clips")'
+          ffmpeg -v error -y -f concat -safe 0 -i /tmp/out/list.txt -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -an /tmp/out/preview.mp4
+          ffmpeg -v error -y -i /tmp/out/preview.mp4 -vf "fps=1/40,scale=480:-2,tile=4x4" -frames:v 1 /tmp/out/sheet.png
+          ffprobe -v error -show_entries format=duration -of csv=p=0 /tmp/out/preview.mp4
+      - name: Doc — pipeline env from the shell workflow (flags identical to the cron)
+        if: ${{ inputs.mode == 'doc' }}
+        env:
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+          WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+          WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+          DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
+          EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
+          EDGE_TTS_RELAY_URL: ${{ secrets.EDGE_TTS_RELAY_URL }}
+          RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+          RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+        run: |
+          cd pipeline
+          node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$HOME/pipeline.env"
+          echo "pipeline env exports: $(grep -c '^export' "$HOME/pipeline.env")"
+      - name: Doc — Python TTS/whisper stack + ONNX provisioning
+        if: ${{ inputs.mode == 'doc' }}
+        run: |
+          set -e
+          python3 -m venv "$HOME/venv" && . "$HOME/venv/bin/activate"
+          pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts
+          cd pipeline && export CINEMATIC_MODELS_DIR=/tmp/models
+          bash scripts/setup_image_clip.sh || echo "clip setup failed open"
+          bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
+      - name: Doc — prepare → render → finalize (NO upload)
+        if: ${{ inputs.mode == 'doc' }}
+        run: |
+          set -o pipefail
+          . "$HOME/venv/bin/activate"; . "$HOME/pipeline.env"
+          cd pipeline
+          export SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models SHORTS_PRIVACY=private
+          export DOC_MOTION_CONCURRENCY=$(( $(nproc) > 12 ? 12 : $(nproc) )) DOC_VISUALS_CONCURRENCY=6
+          mkdir -p /tmp/out
+          if [ "$SCRIPT_ONLY" = "true" ]; then
+            node tools/acceptance/probes/doc_script_live.mjs "$CHANNEL" mid 2>&1 | tee /tmp/out/script.log
+            cp work/doc/*.json /tmp/out/ 2>/dev/null || true; exit 0
+          fi
+          export SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)
+          SHORTS_PHASE=prepare node shorts/build_short.mjs "$CHANNEL" 2>&1 | tee /tmp/out/prepare.log
+          P=$(ls .shorts-work/$CHANNEL/*/lf_plan.json 2>/dev/null | head -1)
+          [ -n "$P" ] || { echo "no render plan — gate/preflight stopped the run"; exit 0; }
+          N=$(( $(nproc) / 3 )); [ "$N" -ge 2 ] || N=2
+          for i in $(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).plans.map(p=>p.i).join(" "))' "$P"); do
+            SHORTS_PHASE=render LF_BEATS=$i node shorts/build_short.mjs "$CHANNEL" > /tmp/out/render-$i.log 2>&1 &
+            while [ "$(jobs -rp | wc -l)" -ge "$N" ]; do sleep 5; done
+          done
+          wait
+          SHORTS_PHASE=finalize node shorts/build_short.mjs "$CHANNEL" 2>&1 | tee /tmp/out/finalize.log
+          cp -r docs/shorts/$CHANNEL/* /tmp/out/ 2>/dev/null || true
+          grep -hE '\[studio:[a-z0-9_-]+\]|\[doc' /tmp/out/prepare.log /tmp/out/finalize.log | tail -40
+      - name: Artifacts
+        if: ${{ always() && inputs.mode != 'validate' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-${{ inputs.mode }}-${{ inputs.channel }}
+          path: /tmp/out
+          if-no-files-found: warn
