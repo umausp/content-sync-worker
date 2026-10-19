@@ -69,6 +69,16 @@ env:
   SHORTS_VLM_GATE: '1'
   SHORTS_VLM_STRICT: '1'
   SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'
+  # Same VLM gate flags as shorts-*.yml. Without TIER the strict gate is the binary news prompt, which
+  # rejected 145/149 on-topic photos as "Unrelated Content" (run 39159448988). Tier still hard-rejects a
+  # confident WRONG; entity/corp/still-entity guards stay strict on wrong people, brands and places, and
+  # every placed photo still needs per-sentence grounding at 0.75.
+  SHORTS_VLM_TIER: '1'
+  SHORTS_VLM_ENTITY_CTX: '1'
+  SHORTS_VLM_CORP_CTX: '1'
+  SHORTS_VLM_CLIP_LANG_GATE: '1'
+  SHORTS_STILL_ENTITY_GATE: '1'
+  SHORTS_VLM_GATE_FALLBACK_MODELS: gemma4:31b-cloud
   SHORTS_ALLOW_STOCK: '1'
   EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}
   EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
