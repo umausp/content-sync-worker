@@ -1,0 +1,43 @@
+# Manual: start a CircleCI verification pipeline (.circleci/config.yml) with the CCI_API_KEY secret, so the key never
+# leaves GitHub. `gh workflow run circleci-trigger.yml -f mode=validate -f pipeline_ref=feat/longform-studio`.
+name: circleci-trigger
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: validate | preview | doc
+        default: validate
+      pipeline_ref:
+        description: ref of umausp/agyata-pipeline-private to test
+        default: main
+      channel:
+        default: nl
+      run_id:
+        description: GitHub run id whose -script artifact feeds replay/preview
+        default: "39271726523"
+      ground:
+        default: "p:0.3"
+      script_only:
+        description: doc mode only — script front half only
+        default: "false"
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: POST pipeline
+        env:
+          CCI_API_KEY: ${{ secrets.CCI_API_KEY }}
+        run: |
+          set -e
+          [ -n "$CCI_API_KEY" ] || { echo "::error::CCI_API_KEY secret is empty"; exit 1; }
+          BODY=$(jq -n --arg m "${{ inputs.mode }}" --arg r "${{ inputs.pipeline_ref }}" --arg c "${{ inputs.channel }}" \
+            --arg id "${{ inputs.run_id }}" --arg g "${{ inputs.ground }}" --argjson so ${{ inputs.script_only }} \
+            '{branch:"main", parameters:{mode:$m, pipeline_ref:$r, channel:$c, run_id:$id, ground:$g, script_only:$so}}')
+          for SLUG in gh/umausp/content-sync-worker github/umausp/content-sync-worker; do
+            OUT=$(curl -sS -X POST -H "Circle-Token: $CCI_API_KEY" -H 'Content-Type: application/json' \
+              "https://circleci.com/api/v2/project/$SLUG/pipeline" -d "$BODY")
+            echo "$OUT" | jq -e .number >/dev/null 2>&1 && { echo "$OUT" | jq '{number,id,state}'; N=$(echo "$OUT" | jq -r .number); echo "https://app.circleci.com/pipelines/$SLUG/$N" ; exit 0; }
+            echo "$SLUG: $OUT" | head -c 300; echo
+          done
+          echo "::error::pipeline not started"; exit 1

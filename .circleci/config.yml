@@ -1,0 +1,257 @@
+# CircleCI verification lane for the longform-studio documentary engine (the weekly PRODUCTION cron stays on the $0
+# GitHub shell; this lane is for fast validation on big machines). Source of truth for the PUBLIC shell's
+# .circleci/config.yml (umausp/content-sync-worker) — keep the two identical.
+#
+# Trigger ONLY through the API (pushes never run it):
+#   curl -s -X POST https://circleci.com/api/v2/project/gh/umausp/content-sync-worker/pipeline \
+#     -H "Circle-Token: $CCI_API_KEY" -H 'Content-Type: application/json' \
+#     -d '{"branch":"main","parameters":{"mode":"validate","pipeline_ref":"feat/longform-studio"}}'
+#   modes: validate (unit suites + probes + offline replay, xlarge, ~5 min)
+#          preview  (validate + REAL clip renders of a saved run's script → preview.mp4 artifact, xlarge)
+#          doc      (the full pipeline prepare → render → finalize for one channel, NO upload, 2xlarge; mp4 + logs as artifacts)
+# Context `longform-keys` (Organization Settings → Contexts) must hold: PRIVATE_REPO_TOKEN (clone of
+# umausp/agyata-pipeline-private + artifact download) and the pipeline secrets the shell workflow names
+# (OLLAMA_API_KEY, PEXELS_API_KEY, PIXBAY_API_KEY, UNSPLASH_ACCESS_KEY, EUROPEANA_API_KEY, WIKIMEDIA_BOT_USER,
+# WIKIMEDIA_BOT_PASSWORD, OPENVERSE_CLIENT_ID, OPENVERSE_CLIENT_SECRET, DDG_PROXY_URL, EDGE_TTS_RELAY_TOKEN,
+# RESEARCH_POD_ENDPOINT, RESEARCH_POD_TOKEN, HF_TOKEN, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, NEWS_INGEST_TOKEN).
+# No YouTube token is ever read here: this lane cannot upload.
+version: 2.1
+
+parameters:
+  mode:
+    type: enum
+    enum: [validate, preview, doc]
+    default: validate
+  pipeline_ref:
+    type: string
+    default: main            # ref of umausp/agyata-pipeline-private to test
+  channel:
+    type: string
+    default: nl
+  run_id:
+    type: string
+    default: "39271726523"   # GitHub run whose longform-<ch>-<run>-script artifact feeds the replay / preview
+  ground:
+    type: string
+    default: "p:0.3"         # replay grounding policy: deny | all | p:<ratio>
+  script_only:
+    type: boolean
+    default: false
+
+commands:
+  checkout_pipeline:
+    description: Clone the private pipeline repo at pipeline_ref into ./pipeline and the public shell at ./shell
+    steps:
+      - run:
+          name: Clone private pipeline + public shell
+          command: |
+            set -e
+            git clone --depth 1 --branch "<< pipeline.parameters.pipeline_ref >>" \
+              "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/agyata-pipeline-private.git" pipeline
+            git clone --depth 1 --branch main "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/content-sync-worker.git" shell
+            cd pipeline && git log -1 --format='pipeline %h %s'
+  node_deps:
+    steps:
+      - restore_cache:
+          keys:
+            - npm-v1-{{ checksum "pipeline/package-lock.json" }}
+      - run:
+          name: npm ci
+          command: cd pipeline && npm ci --no-audit --no-fund
+      - save_cache:
+          key: npm-v1-{{ checksum "pipeline/package-lock.json" }}
+          paths: [~/.npm]
+  render_deps:
+    description: The cron's render-setup apt line (ffmpeg, rsvg, espeak, fonts)
+    steps:
+      - run:
+          name: apt render deps
+          command: |
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra python3-venv
+  script_artifact:
+    description: Download the saved run's script artifact (script.json, packet.json, topic.json) into ./run
+    steps:
+      - run:
+          name: Download longform-<< pipeline.parameters.channel >>-<< pipeline.parameters.run_id >>-script
+          command: |
+            set -e
+            mkdir -p run
+            NAME="longform-<< pipeline.parameters.channel >>-<< pipeline.parameters.run_id >>-script"
+            ID=$(curl -sS -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" \
+              "https://api.github.com/repos/umausp/content-sync-worker/actions/runs/<< pipeline.parameters.run_id >>/artifacts" \
+              | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const a=JSON.parse(s).artifacts.find(x=>x.name===process.argv[1]);if(!a){console.error("no artifact "+process.argv[1]);process.exit(1)}console.log(a.id)})' "$NAME")
+            curl -sSL -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" -o run/script.zip \
+              "https://api.github.com/repos/umausp/content-sync-worker/actions/artifacts/${ID}/zip"
+            cd run && unzip -o -q script.zip && ls -la
+  pipeline_env:
+    description: Export the shell workflow's env block (flags identical to the cron; secrets from the context)
+    steps:
+      - run:
+          name: Pipeline env from _longform-doc.yml
+          command: |
+            cd pipeline
+            node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$HOME/pipeline.env"
+            grep -c '^export' "$HOME/pipeline.env"
+            echo 'source "$HOME/pipeline.env"' >> "$BASH_ENV"
+
+executors:
+  xl:
+    docker:
+      - image: cimg/node:22.12
+    resource_class: xlarge      # 8 vCPU / 16 GB
+  xxl:
+    docker:
+      - image: cimg/node:22.12
+    resource_class: 2xlarge     # 16 vCPU / 32 GB
+
+jobs:
+  validate:
+    executor: xl
+    steps:
+      - checkout_pipeline
+      - node_deps
+      - render_deps
+      - script_artifact
+      - run:
+          name: Unit suites
+          command: |
+            cd pipeline
+            node --test 'test/doc_*test.mjs' 2>&1 | tail -4
+            node --test 'packages/longform-studio/test/*_test.mjs' 2>&1 | tail -4
+            node --test test/motion_dispatch_test.mjs 'test/*safe_motion*test.mjs' 2>&1 | tail -4
+      - run:
+          name: Probes (gate lines byte-identical, graphics, prune samples)
+          command: |
+            cd pipeline
+            node tools/acceptance/probes/studio_gate_lines.mjs
+            node tools/acceptance/probes/studio_graphics_frames.mjs
+            node tools/acceptance/probes/studio_prune_samples.mjs --n 200 --seed 7 | tail -3
+      - run:
+          name: Offline replay (density without a render)
+          command: |
+            cd pipeline
+            for g in deny "<< pipeline.parameters.ground >>" all; do
+              node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work /tmp/replay | grep -v '^\[replay:ch\]'
+            done
+
+  preview:
+    executor: xl
+    steps:
+      - checkout_pipeline
+      - node_deps
+      - render_deps
+      - script_artifact
+      - run:
+          name: Replay with REAL clip renders (all chapters)
+          no_output_timeout: 40m
+          command: |
+            cd pipeline
+            DOC_MOTION_CONCURRENCY=6 STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs \
+              --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json \
+              --ground "<< pipeline.parameters.ground >>" --render real --work /tmp/replay | grep -v '^\[replay:ch\]'
+            ls /tmp/replay/motion | wc -l
+      - run:
+          name: Concat clips → preview.mp4 + contact sheet
+          command: |
+            mkdir -p /tmp/out
+            node -e '
+              const fs=require("fs");const p="/tmp/replay/motion";const s=JSON.parse(fs.readFileSync("run/script.json","utf8"));
+              const ch=s.chapters.map(c=>c.id);const key=n=>{const i=ch.findIndex(c=>n.startsWith(c+"-"));const r=i>=0?n.slice(ch[i].length+1):n;
+              const seg=parseInt(r)||0;const suf=r.includes("-")?r.split("-").slice(1).join("-"):"";const m=/^[dk](\d+)/.exec(suf);return [i<0?999:i,seg,m?1+Number(m[1]):0,n]};
+              const files=fs.readdirSync(p).filter(f=>f.endsWith(".mp4")&&fs.statSync(p+"/"+f).size>0).sort((a,b)=>{const x=key(a),y=key(b);for(let k=0;k<4;k++){if(x[k]<y[k])return -1;if(x[k]>y[k])return 1}return 0});
+              fs.writeFileSync("/tmp/out/list.txt",files.map(f=>`file '${p}/${f}'`).join("\n")+"\n");console.log(files.length+" clips")'
+            ffmpeg -v error -y -f concat -safe 0 -i /tmp/out/list.txt -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -an /tmp/out/preview.mp4
+            ffmpeg -v error -y -i /tmp/out/preview.mp4 -vf "fps=1/40,scale=480:-2,tile=4x4" -frames:v 1 /tmp/out/sheet.png
+            ffprobe -v error -show_entries format=duration -of csv=p=0 /tmp/out/preview.mp4
+      - store_artifacts:
+          path: /tmp/out
+          destination: preview
+
+  doc:
+    executor: xxl
+    steps:
+      - checkout_pipeline
+      - node_deps
+      - render_deps
+      - pipeline_env
+      - run:
+          name: Python TTS / whisper stack (the cron's tts-pip line)
+          command: |
+            python3 -m venv ~/venv && . ~/venv/bin/activate
+            pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts
+            echo 'source ~/venv/bin/activate' >> "$BASH_ENV"
+      - run:
+          name: ONNX provisioning (CLIP scorer + cinematic)
+          command: |
+            cd pipeline
+            export CINEMATIC_MODELS_DIR=/tmp/models
+            bash scripts/setup_image_clip.sh || echo "clip setup failed open"
+            bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
+      - when:
+          condition: << pipeline.parameters.script_only >>
+          steps:
+            - run:
+                name: Script only (doc_script_live)
+                no_output_timeout: 45m
+                command: |
+                  cd pipeline
+                  node tools/acceptance/probes/doc_script_live.mjs << pipeline.parameters.channel >> mid 2>&1 | tee /tmp/script.log
+                  mkdir -p /tmp/out && cp work/doc/*.json /tmp/out/ 2>/dev/null || true
+      - unless:
+          condition: << pipeline.parameters.script_only >>
+          steps:
+            - run:
+                name: Prepare (script, visuals, narration, plan)
+                no_output_timeout: 75m
+                command: |
+                  cd pipeline
+                  export SHORTS_PHASE=prepare SHORTS_STAMP=$(date -u +%Y%m%dT%H%M) SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models
+                  echo "export SHORTS_STAMP=$SHORTS_STAMP" >> "$BASH_ENV"
+                  node shorts/build_short.mjs << pipeline.parameters.channel >> 2>&1 | tee /tmp/prepare.log
+            - run:
+                name: Render every chapter (4 at a time on 16 vCPU)
+                no_output_timeout: 90m
+                command: |
+                  cd pipeline
+                  export SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models
+                  P=$(ls .shorts-work/<< pipeline.parameters.channel >>/*/lf_plan.json 2>/dev/null | head -1)
+                  [ -n "$P" ] || { echo "no render plan — gate/preflight stopped the run"; exit 0; }
+                  for i in $(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).plans.map(p=>p.i).join(" "))' "$P"); do
+                    SHORTS_PHASE=render LF_BEATS=$i node shorts/build_short.mjs << pipeline.parameters.channel >> > /tmp/render-$i.log 2>&1 &
+                    while [ "$(jobs -rp | wc -l)" -ge 4 ]; do sleep 5; done
+                  done
+                  wait
+                  tail -n 5 /tmp/render-*.log
+            - run:
+                name: Finalize (concat, release gate, stage — NO upload)
+                no_output_timeout: 60m
+                command: |
+                  cd pipeline
+                  export SHORTS_PHASE=finalize SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models
+                  [ -d .shorts-work/<< pipeline.parameters.channel >> ] || exit 0
+                  node shorts/build_short.mjs << pipeline.parameters.channel >> 2>&1 | tee /tmp/finalize.log
+                  mkdir -p /tmp/out && cp -r docs/shorts/<< pipeline.parameters.channel >>/* /tmp/out/ 2>/dev/null || true
+                  cp /tmp/prepare.log /tmp/finalize.log /tmp/render-*.log /tmp/out/ 2>/dev/null || true
+                  grep -hE '\[studio:[a-z0-9_-]+\]|\[doc' /tmp/prepare.log /tmp/finalize.log | tail -40
+      - store_artifacts:
+          path: /tmp/out
+          destination: doc
+
+workflows:
+  verify:
+    when:
+      equal: [api, << pipeline.trigger_source >>]
+    jobs:
+      - validate:
+          context: longform-keys
+          filters: { branches: { only: main } }
+          # validate also runs ahead of preview/doc so a broken suite never burns a big machine
+      - preview:
+          context: longform-keys
+          requires: [validate]
+          filters: { branches: { only: main } }
+      - doc:
+          context: longform-keys
+          requires: [validate]
+          filters: { branches: { only: main } }
