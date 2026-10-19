@@ -164,9 +164,14 @@ jobs:
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"
           bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
       - name: Doc — prepare → render → finalize (NO upload)
+        # Pipeline 22 was cancelled at exactly 10 min although the job says 240: the GHA translation caps a STEP
+        # at 10 min (or at 10 min without output). Step-level timeout + a 30 s heartbeat cover both readings.
+        timeout-minutes: 240
         run: |
           [ "$MODE" = doc ] || exit 0
           set -o pipefail
+          ( while sleep 30; do echo "[heartbeat] $(date -u +%H:%M:%S) $(ls /tmp/out 2>/dev/null | tr '\n' ' ')"; done ) &
+          HB=$!; trap 'kill $HB 2>/dev/null' EXIT
           . "$HOME/venv/bin/activate"; . "$HOME/pipeline.env"
           cd pipeline
           export SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models SHORTS_PRIVACY=private
