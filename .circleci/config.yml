@@ -37,6 +37,12 @@ parameters:
   script_only:
     type: boolean
     default: false
+  big_class:
+    type: string
+    default: 2xlarge+        # 20 vCPU / 40 GB — the largest Docker class; pass 2xlarge if the plan refuses it
+  mid_class:
+    type: string
+    default: 2xlarge         # 16 vCPU / 32 GB for validate + preview
 
 commands:
   checkout_pipeline:
@@ -99,11 +105,11 @@ executors:
   xl:
     docker:
       - image: cimg/node:22.12
-    resource_class: xlarge      # 8 vCPU / 16 GB
+    resource_class: << pipeline.parameters.mid_class >>
   xxl:
     docker:
       - image: cimg/node:22.12
-    resource_class: 2xlarge     # 16 vCPU / 32 GB
+    resource_class: << pipeline.parameters.big_class >>
 
 jobs:
   validate:
@@ -147,7 +153,7 @@ jobs:
           no_output_timeout: 40m
           command: |
             cd pipeline
-            DOC_MOTION_CONCURRENCY=6 STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs \
+            DOC_MOTION_CONCURRENCY=12 STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs \
               --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json \
               --ground "<< pipeline.parameters.ground >>" --render real --work /tmp/replay | grep -v '^\[replay:ch\]'
             ls /tmp/replay/motion | wc -l
@@ -207,10 +213,11 @@ jobs:
                 command: |
                   cd pipeline
                   export SHORTS_PHASE=prepare SHORTS_STAMP=$(date -u +%Y%m%dT%H%M) SHORTS_WORK_DIR="$PWD/.shorts-work" CINEMATIC_MODELS_DIR=/tmp/models
+                  export DOC_MOTION_CONCURRENCY=12 DOC_VISUALS_CONCURRENCY=6   # 20 vCPU: twice the cron's concurrency, same budgets
                   echo "export SHORTS_STAMP=$SHORTS_STAMP" >> "$BASH_ENV"
                   node shorts/build_short.mjs << pipeline.parameters.channel >> 2>&1 | tee /tmp/prepare.log
             - run:
-                name: Render every chapter (4 at a time on 16 vCPU)
+                name: Render every chapter (6 at a time on 20 vCPU)
                 no_output_timeout: 90m
                 command: |
                   cd pipeline
@@ -219,7 +226,7 @@ jobs:
                   [ -n "$P" ] || { echo "no render plan — gate/preflight stopped the run"; exit 0; }
                   for i in $(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).plans.map(p=>p.i).join(" "))' "$P"); do
                     SHORTS_PHASE=render LF_BEATS=$i node shorts/build_short.mjs << pipeline.parameters.channel >> > /tmp/render-$i.log 2>&1 &
-                    while [ "$(jobs -rp | wc -l)" -ge 4 ]; do sleep 5; done
+                    while [ "$(jobs -rp | wc -l)" -ge 6 ]; do sleep 5; done
                   done
                   wait
                   tail -n 5 /tmp/render-*.log
