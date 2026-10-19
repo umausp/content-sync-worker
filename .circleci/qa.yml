@@ -37,7 +37,7 @@ commands:
           no_output_timeout: 30m
           command: |
             export QA_SECTIONS="<< parameters.names >>"
-            sudo corepack enable 2>/dev/null || true
+            sudo npm i -g pnpm@9.12.3 --silent
             for s in $(echo "$QA_SECTIONS" | tr ',' ' '); do bash .github/qa/section_$s.sh; done
       - store_artifacts:
           path: /tmp/qa-out
