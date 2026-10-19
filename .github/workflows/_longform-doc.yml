@@ -49,6 +49,13 @@ env:
   # 0.75 grounding gate is unchanged — more candidates, same judge.
   STUDIO_QUERY_LLM: '1'
   DOC_SEG_SEARCH_MAX: '80'
+  # longform-studio Phase 5 (DENSITY_ENGINE_PLAN.md): no still longer than 4 s (cuts on real word boundaries, split
+  # parts move differently), a 1.5 s chapter card per chapter, density report in OBSERVE mode on the first real run
+  # (STUDIO_DENSITY_BARS flips to '1' once the measured numbers are seen). More windows per clip → more safe-motion plans.
+  STUDIO_DENSITY_BARS: '0'
+  STUDIO_SHOT_MAX_HOLD: '4'
+  STUDIO_CHAPTER_CARDS: '1'
+  SAFE_MOTION_MAX_PER_CLIP: '12'
   SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
   SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
   SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
