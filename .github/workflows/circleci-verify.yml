@@ -73,7 +73,8 @@ jobs:
             curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt-get install -y nodejs
           fi
           node --version
-          cd pipeline && npm ci --no-audit --no-fund
+          # The runner's ~/.npm cache is not writable by this user (EACCES on cacache rename): use a private cache dir.
+          cd pipeline && npm ci --no-audit --no-fund --cache /tmp/npm-cache
       - name: Render deps (the cron's render-setup apt line)
         run: |
           sudo apt-get update -qq
