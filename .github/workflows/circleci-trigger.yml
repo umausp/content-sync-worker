@@ -34,10 +34,11 @@ jobs:
           BODY=$(jq -n --arg m "${{ inputs.mode }}" --arg r "${{ inputs.pipeline_ref }}" --arg c "${{ inputs.channel }}" \
             --arg id "${{ inputs.run_id }}" --arg g "${{ inputs.ground }}" --argjson so ${{ inputs.script_only }} \
             '{branch:"main", parameters:{mode:$m, pipeline_ref:$r, channel:$c, run_id:$id, ground:$g, script_only:$so}}')
-          for SLUG in gh/umausp/content-sync-worker github/umausp/content-sync-worker; do
-            OUT=$(curl -sS -X POST -H "Circle-Token: $CCI_API_KEY" -H 'Content-Type: application/json' \
-              "https://circleci.com/api/v2/project/$SLUG/pipeline" -d "$BODY")
-            echo "$OUT" | jq -e .number >/dev/null 2>&1 && { echo "$OUT" | jq '{number,id,state}'; N=$(echo "$OUT" | jq -r .number); echo "https://app.circleci.com/pipelines/$SLUG/$N" ; exit 0; }
-            echo "$SLUG: $OUT" | head -c 300; echo
-          done
-          echo "::error::pipeline not started"; exit 1
+          # CircleCI-hosted project "agyata" (slug + pipeline definition "longform-verify" whose config source is this
+          # repo's .circleci/config.yml on main). /pipeline/run is the endpoint for definition-based projects.
+          SLUG=circleci/2VrSFkVyw8fGZMZHoRDiPC/MFz6EiqU1v5AbPS5GkY2hc
+          DEF=5749c072-88c0-46aa-ba4d-4c8537b83562
+          RUN=$(echo "$BODY" | jq --arg d "$DEF" '{definition_id:$d, config:{branch:"main"}, checkout:{branch:"main"}, parameters:.parameters}')
+          OUT=$(curl -sS -X POST -H "Circle-Token: $CCI_API_KEY" -H 'Content-Type: application/json' "https://circleci.com/api/v2/project/$SLUG/pipeline/run" -d "$RUN")
+          echo "$OUT" | jq -e .number >/dev/null 2>&1 && { echo "$OUT" | jq '{number,id,state}'; N=$(echo "$OUT" | jq -r .number); echo "https://app.circleci.com/pipelines/$SLUG/$N"; exit 0; }
+          echo "$OUT" | head -c 400; echo; echo "::error::pipeline not started"; exit 1
