@@ -43,6 +43,12 @@ env:
   # Story rules + host persona are default-on in the private repo (STUDIO_STORY_RULES / STUDIO_PERSONA = 0 to disable).
   STUDIO_LOCALIZE: '1'
   SHORTS_ENGAGE: '1'
+  # longform-studio Phase 3: per-sentence query expansion is default-on in the private repo
+  # (STUDIO_QUERY_EXPAND=0 disables); the LLM variant adds one Ollama call per chapter; the per-segment
+  # search budget doubles (DOC_SEG_SEARCH_MAX, default 40) so the extra queries actually get run. The
+  # 0.75 grounding gate is unchanged — more candidates, same judge.
+  STUDIO_QUERY_LLM: '1'
+  DOC_SEG_SEARCH_MAX: '80'
   SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
   SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
   SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
