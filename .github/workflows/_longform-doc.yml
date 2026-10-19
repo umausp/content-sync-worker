@@ -59,10 +59,10 @@ env:
   # unchanged gate, ≥ 2 of 3 must pass), bounded chapter concurrency and a run-wide grounding budget.
   STUDIO_FOOTAGE: '1'
   SHORTS_MEDIA_VIDEO_SEC: '12'
-  DOC_MOTION_CONCURRENCY: '3'
+  DOC_MOTION_CONCURRENCY: '6'
   # per-beat visuals gather/rank/fetch run 3 beats at a time (shorts/longform/visuals.mjs); the draw/VLM-gate phase stays sequential
   DOC_VISUALS_CONCURRENCY: '3'
-  DOC_GROUND_BUDGET: '120'
+  DOC_GROUND_BUDGET: '200'
   # longform-studio Phase 8: story density rules v2 (info units, re-hook ≤ 75 s, mid-video turn, no restated stats).
   STUDIO_STORY_V2: '1'
   # Script gate soft pass (run 39237213163 shipped nothing on rotating near-misses): after the last revision, a
