@@ -91,6 +91,7 @@ jobs:
               if m not in ALL:
                   raise SystemExit(f"unknown mood {m!r}; have {ALL}")
           date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d")
+          run = os.environ["GITHUB_RUN_ID"]  # salt: a second fill on the same day must not regenerate the same ids
 
           def shard_seed(*parts):
               return int(hashlib.sha256("|".join(str(p) for p in parts).encode("utf-8")).hexdigest()[:8], 16)
@@ -100,13 +101,13 @@ jobs:
               for i in range(int(os.environ["ACE_SHARDS_IN"])):
                   include.append({"mood": m, "model": "ace", "shard": i,
                                   "count": int(os.environ["ACE_PER_SHARD_IN"]),
-                                  "seed": shard_seed(date, m, "ace", i), "date": date})
+                                  "seed": shard_seed(date, run, m, "ace", i), "date": date})
               if m == "sleep":
                   continue  # sa3 skips sleep (bake-off CE 4.46)
               for i in range(int(os.environ["SA3_SHARDS_IN"])):
                   include.append({"mood": m, "model": "sa3", "shard": i,
                                   "count": int(os.environ["SA3_PER_SHARD_IN"]),
-                                  "seed": shard_seed(date, m, "sa3", i), "date": date})
+                                  "seed": shard_seed(date, run, m, "sa3", i), "date": date})
           print(json.dumps(include, indent=1))
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
               fh.write(f"matrix={json.dumps(include)}\n")
