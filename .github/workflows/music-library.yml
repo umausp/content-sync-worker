@@ -133,6 +133,9 @@ jobs:
       DATE: ${{ matrix.date }}
       PIPELINE_REF: ${{ needs.plan.outputs.pipeline_ref }}
       UPSTREAM_COMMIT: ${{ matrix.model == 'ace' && 'ca1e85fe9430179831e6bc6be790c332190a3866' || '77e0398c26f7d22d801ec1bb036307e8b231f741' }}
+      # ACE's generate_music timeout (acestep/core/generation/handler/generate_music_execute.py, read at import):
+      # 600 s was too short on CPU (955 s per track observed). Raised to 3600 s.
+      ACESTEP_GENERATION_TIMEOUT: '3600'
     steps:
       - name: Checkout private pipeline (shorts/music_neural)
         uses: actions/checkout@v4
@@ -213,7 +216,16 @@ jobs:
           set -euo pipefail
           mkdir -p out
           if [ "$MODEL" = "ace" ]; then
-            python pipeline/shorts/music_neural/gen_ace.py --repo ace --specs specs.json --out out
+            # ACE aborts the process (exit 134) after a timeout; gen_ace.py is restartable: it skips finished
+            # tracks and rejects the in-flight one, so retry with the remaining specs (bounded).
+            for attempt in 1 2 3 4; do
+              set +e
+              python pipeline/shorts/music_neural/gen_ace.py --repo ace --specs specs.json --out out
+              rc=$?
+              set -e
+              [ "$rc" -eq 0 ] && break
+              echo "gen_ace exit $rc on attempt $attempt; restarting with remaining specs"
+            done
           else
             python pipeline/shorts/music_neural/gen_sa3.py --specs specs.json --out out
           fi
