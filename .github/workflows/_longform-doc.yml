@@ -38,6 +38,11 @@ env:
   # against the spoken text — logs [studio:tts-audit] lines (number/lexicon misses). Fail-open; the
   # pronunciation pre-pass itself is default-on (STUDIO_TTS_PREPASS=0 disables).
   STUDIO_TTS_AUDIT: '1'
+  # longform-studio Phase 2: per-market localized title+description (≤8 Ollama calls, fail-open) and the
+  # payoff's polarising question posted as the channel's first comment (shorts/engage.mjs, best-effort).
+  # Story rules + host persona are default-on in the private repo (STUDIO_STORY_RULES / STUDIO_PERSONA = 0 to disable).
+  STUDIO_LOCALIZE: '1'
+  SHORTS_ENGAGE: '1'
   SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
   SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
   SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
