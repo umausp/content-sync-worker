@@ -8,6 +8,9 @@
 #     -d '{"branch":"main","parameters":{"mode":"validate","pipeline_ref":"feat/longform-studio"}}'
 #   modes: validate (unit suites + probes + offline replay, xlarge, ~5 min)
 #          preview  (validate + REAL clip renders of a saved run's script → preview.mp4 artifact, xlarge)
+#          prepare  (SPLIT LANE stage 1: the cron's prepare phase on 2xlarge+, then tools/ci/pack_state.sh uploads the state to the
+#                    Modal Volume longform-state; stage 2 = `tools/modal/run.sh render <channel> <state_id>`; chain: tools/ci/verify_split.sh.
+#                    Needs MODAL_TOKEN_ID/MODAL_TOKEN_SECRET in the context — circleci-sync-secrets.yml copies them)
 #          doc      (the full pipeline prepare → render → finalize for one channel, NO upload, 2xlarge; mp4 + logs as artifacts)
 # Context `longform-keys` (Organization Settings → Contexts) must hold: PRIVATE_REPO_TOKEN (clone of
 # umausp/agyata-pipeline-private + artifact download) and the pipeline secrets the shell workflow names
@@ -20,7 +23,7 @@ version: 2.1
 parameters:
   mode:
     type: enum
-    enum: [validate, preview, doc]
+    enum: [validate, preview, doc, prepare]
     default: validate
   pipeline_ref:
     type: string
@@ -37,6 +40,9 @@ parameters:
   script_only:
     type: boolean
     default: false
+  state_id:
+    type: string
+    default: ""              # prepare mode: hand-over id → Modal Volume longform-state:/<channel>/<state_id>/
   big_class:
     type: string
     default: 2xlarge+        # 20 vCPU / 40 GB — the largest Docker class; pass 2xlarge if the plan refuses it
@@ -245,10 +251,79 @@ jobs:
           path: /tmp/out
           destination: doc
 
+  prepare_split:
+    executor: xxl
+    steps:
+      - run:
+          name: Clone pipeline at /repo (the state holds absolute paths; Modal render runs from /repo too) + shell
+          command: |
+            set -e
+            sudo mkdir -p /repo && sudo chown "$(id -u):$(id -g)" /repo
+            git clone --depth 1 --branch "<< pipeline.parameters.pipeline_ref >>" \
+              "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/agyata-pipeline-private.git" /repo
+            git clone --depth 1 --branch main "https://x-access-token:${PRIVATE_REPO_TOKEN}@github.com/umausp/content-sync-worker.git" "$HOME/shell"
+            cd /repo && git log -1 --format='pipeline %h %s'
+      - run:
+          name: npm ci
+          command: cd /repo && npm ci --no-audit --no-fund
+      - render_deps
+      - run:
+          name: Pipeline env from _longform-doc.yml (cron flags) + Python TTS stack + Modal CLI
+          command: |
+            set -e
+            cd /repo
+            node tools/ci/shell_env.mjs "$HOME/shell/.github/workflows/_longform-doc.yml" > "$HOME/pipeline.env"
+            echo "env lines: $(grep -c '^export' "$HOME/pipeline.env")"
+            echo 'source "$HOME/pipeline.env"' >> "$BASH_ENV"
+            python3 -m venv ~/venv && . ~/venv/bin/activate
+            pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts modal
+            echo 'source ~/venv/bin/activate' >> "$BASH_ENV"
+      - run:
+          name: ONNX provisioning (CLIP scorer + cinematic)
+          command: |
+            cd /repo
+            export CINEMATIC_MODELS_DIR=/tmp/models
+            bash scripts/setup_image_clip.sh || echo "clip setup failed open"
+            bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
+      - run:
+          name: Prepare (script, visuals, narration, plan) — as the cron
+          no_output_timeout: 75m
+          command: |
+            cd /repo
+            export SHORTS_PHASE=prepare SHORTS_STAMP=$(date -u +%Y%m%dT%H%M) SHORTS_WORK_DIR=/repo/.shorts-work CINEMATIC_MODELS_DIR=/tmp/models
+            export DOC_VISUALS_CONCURRENCY=6   # network-bound fetch/ground: 2x the cron's 3, same budgets and gates
+            S=$(date +%s)
+            node shorts/build_short.mjs << pipeline.parameters.channel >> 2>&1 | tee /tmp/prepare.log
+            echo $(( $(date +%s) - S )) > /tmp/prepare.secs
+      - run:
+          name: Pack state → Modal Volume longform-state
+          command: |
+            cd /repo
+            test -n "<< pipeline.parameters.state_id >>"
+            tools/ci/pack_state.sh << pipeline.parameters.channel >> << pipeline.parameters.state_id >> "$(cat /tmp/prepare.secs)" << pipeline.parameters.pipeline_ref >>
+      - run:
+          name: Summary
+          when: always
+          command: grep -hE '\[studio:[a-z0-9_-]+\]|\[doc|nothing shipped' /tmp/prepare.log | tail -30 || true
+      - store_artifacts:
+          path: /tmp/prepare.log
+          destination: prepare
+
 workflows:
+  split_prepare:
+    when:
+      and:
+        - equal: [api, << pipeline.trigger_source >>]
+        - equal: [prepare, << pipeline.parameters.mode >>]
+    jobs:
+      - prepare_split:
+          context: longform-keys
+          filters: { branches: { only: main } }
   verify:
     when:
-      equal: [api, << pipeline.trigger_source >>]
+      and:
+        - equal: [api, << pipeline.trigger_source >>]
+        - not: { equal: [prepare, << pipeline.parameters.mode >>] }
     jobs:
       - validate:
           context: longform-keys
