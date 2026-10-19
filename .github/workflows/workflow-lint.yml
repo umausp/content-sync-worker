@@ -44,6 +44,10 @@ jobs:
         run: |
           OPT="$(cd private && node tools/longform_schedule.mjs print --dispatch-options)"
           grep -qF -- "options: $OPT" .github/workflows/longform-weekly.yml || { echo "::error::longform-weekly.yml channel options differ from the registry; expected: options: $OPT"; exit 1; }
+      - name: Run name matches the registry
+        run: |
+          RN="$(cd private && node tools/longform_schedule.mjs print --run-name)"
+          grep -qF -- "$RN" .github/workflows/longform-weekly.yml || { echo "::error::longform-weekly.yml run-name differs from the registry; expected: $RN"; exit 1; }
       - name: Pinger drift probe
         env:
           GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}

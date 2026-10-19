@@ -60,8 +60,12 @@ jobs:
             echo "|---|---|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
           for id in $IDS; do
+            ROW=$(node tools/longform_schedule.mjs print --row "$id")
+            NAME=$(echo "$ROW" | jq -r .name)
+            FORMAT=$(echo "$ROW" | jq -r .format)
+            PRIVACY=$(echo "$ROW" | jq -r .privacy)
             UPLOADED=false
-            MATCH=$(awk -F'\t' -v p="longform $id " 'index($2,p)==1' "$RUNS")
+            MATCH=$(awk -F'\t' -v p="longform $NAME [$id] " 'index($2,p)==1' "$RUNS")
             COUNT=$(printf '%s' "$MATCH" | grep -c . || true)
             RUNNING=false
             if printf '%s\n' "$MATCH" | awk -F'\t' '$3=="queued" || $3=="in_progress" {f=1} END {exit !f}'; then RUNNING=true; fi
@@ -71,9 +75,6 @@ jobs:
                 UPLOADED=true
               fi
             fi
-            ROW=$(node tools/longform_schedule.mjs print --row "$id")
-            FORMAT=$(echo "$ROW" | jq -r .format)
-            PRIVACY=$(echo "$ROW" | jq -r .privacy)
             if [ "$RUNNING" = true ]; then
               ACTION=skipped-running
             elif [ "$UPLOADED" = true ]; then
