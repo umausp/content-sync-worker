@@ -77,7 +77,8 @@ jobs:
           YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
         run: |
           set -e
-          for ch in $(node tools/longform_schedule.mjs print --enabled-ids); do
+          IDS=$(node tools/longform_schedule.mjs print --enabled-ids)   # fails the step if the registry is unreadable
+          for ch in $IDS; do
             node tools/studio_feedback.mjs --channel "$ch" --days "${{ inputs.days || '90' }}" --out "docs/longform-runs/retention/$ch" || echo "[studio:feedback] $ch failed (see above)"
           done
       - name: Upload retention reports
