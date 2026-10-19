@@ -62,6 +62,8 @@ env:
   SHORTS_MEDIA_VIDEO_SEC: '12'
   DOC_MOTION_CONCURRENCY: '3'
   DOC_GROUND_BUDGET: '120'
+  # longform-studio Phase 8: story density rules v2 (info units, re-hook ≤ 75 s, mid-video turn, no restated stats).
+  STUDIO_STORY_V2: '1'
   SHORTS_DDG_IMAGE_PER_QUERY: '20'       # raw DDG hits per query (shorts default 6)
   SHORTS_DDG_IMAGE_QUERIES: '16'         # sentence queries + keywords sent to DDG per gather (default 10)
   SHORTS_DDG_IMAGE_LICENSE_CHECKS: '60'  # origin-licence verifications per gather (default 20); rights-host gate unchanged
