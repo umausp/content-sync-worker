@@ -3,14 +3,15 @@ jobs:
   probe:
     parameters:
       rc: {type: string}
-    machine:
-      image: ubuntu-2404:current
+    docker:
+      - image: cimg/node:22.12
     resource_class: << parameters.rc >>
     steps:
       - run: nproc && free -g | head -2
 workflows:
   probe:
     jobs:
-      - probe: {name: p-2xlargeplus, rc: 2xlarge+}
-      - probe: {name: p-2xlarge, rc: 2xlarge}
-      - probe: {name: p-xlarge, rc: xlarge}
+      - probe: {name: d-2xlargeplus, rc: 2xlarge+}
+      - probe: {name: d-2xlarge, rc: 2xlarge}
+      - probe: {name: d-xlarge, rc: xlarge}
+      - probe: {name: d-large, rc: large}
