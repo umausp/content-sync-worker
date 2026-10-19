@@ -171,7 +171,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'kokoro soundfile sentencepiece faster-whisper edge-tts'
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
@@ -237,7 +237,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'kokoro soundfile sentencepiece faster-whisper edge-tts'
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
@@ -278,7 +278,7 @@ jobs:
       - name: Render setup (cached)
         uses: ./.github/actions/render-setup
         with:
-          tts-pip: 'kokoro soundfile sentencepiece faster-whisper edge-tts'
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts'
           apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
           voice-cache-path: '~/.cache/huggingface'
           voice-cache-key: 'hf-kokoro-m2m100-v1'
