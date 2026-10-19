@@ -1,0 +1,319 @@
+name: music-library
+
+# Neural music library generator (ACE-Step 1.5 turbo + Stable Audio 3 small-music, CPU), see
+# neural-music-impl-spec.md. Generator code lives in the PRIVATE repo under shorts/music_neural/ and is
+# checked out at pipeline_ref. Output: tracks/ + index/<mood>.json in the private HF dataset
+# umausp/agyata-music-library (HF_LIBRARY_REPO).
+#
+# Jobs: plan (shard matrix) -> gen (per mood x model x shard: expand briefs, generate, finish, AES score,
+# upload lib-* artifact) -> publish (merge artifacts, upload tracks, prune >30 days, rebuild indexes).
+#
+# DEVIATION (intentional): the nightly cron is '15 4 * * *' instead of the cron-pinger convention, because
+# the cron-pinger has another session's uncommitted edits. Note that `schedule:` only fires from the
+# default branch, so the nightly run starts working when this file is merged to main.
+
+run-name: music-library ${{ github.event.inputs.moods || 'focus,unwind,sleep,slowmorning' }} (${{ github.event_name }})
+
+on:
+  schedule:
+    - cron: '15 4 * * *'
+  workflow_dispatch:
+    inputs:
+      moods:
+        description: 'Comma-separated moods (focus, unwind, sleep, slowmorning)'
+        type: string
+        default: 'focus,unwind,sleep,slowmorning'
+        required: false
+      ace_shards:
+        description: 'ACE-Step shards per mood'
+        type: string
+        default: '6'
+        required: false
+      ace_per_shard:
+        description: 'ACE-Step tracks per shard'
+        type: string
+        default: '3'
+        required: false
+      sa3_shards:
+        description: 'Stable Audio 3 shards per mood (sleep is skipped for sa3)'
+        type: string
+        default: '2'
+        required: false
+      sa3_per_shard:
+        description: 'Stable Audio 3 tracks per shard'
+        type: string
+        default: '12'
+        required: false
+      pipeline_ref:
+        description: 'Private repo ref holding shorts/music_neural/'
+        type: string
+        default: 'feat/neural-music'
+        required: false
+  push:
+    branches: [feat/neural-music-gen]
+    paths:
+      - '.github/workflows/music-library.yml'
+
+permissions:
+  contents: read
+
+env:
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF_HUB_ENABLE_HF_TRANSFER: 0
+  HF_LIBRARY_REPO: umausp/agyata-music-library
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+      date: ${{ steps.mk.outputs.date }}
+      pipeline_ref: ${{ steps.mk.outputs.pipeline_ref }}
+    env:
+      # FIRST-PUSH SMOKE DEFAULTS (push trigger only). Restore the spec defaults in the next commit
+      # (moods focus,unwind,sleep,slowmorning; ace 6x3; sa3 2x12) so the full initial fill runs.
+      MOODS_IN: ${{ github.event.inputs.moods || 'focus' }}
+      ACE_SHARDS_IN: ${{ github.event.inputs.ace_shards || '1' }}
+      ACE_PER_SHARD_IN: ${{ github.event.inputs.ace_per_shard || '1' }}
+      SA3_SHARDS_IN: ${{ github.event.inputs.sa3_shards || '1' }}
+      SA3_PER_SHARD_IN: ${{ github.event.inputs.sa3_per_shard || '2' }}
+      PIPELINE_REF_IN: ${{ github.event.inputs.pipeline_ref || 'feat/neural-music' }}
+    steps:
+      - id: mk
+        name: Build shard matrix
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime, hashlib, json, os
+          ALL = ["focus", "unwind", "sleep", "slowmorning"]
+          moods = [m.strip() for m in os.environ["MOODS_IN"].split(",") if m.strip()]
+          for m in moods:
+              if m not in ALL:
+                  raise SystemExit(f"unknown mood {m!r}; have {ALL}")
+          date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d")
+
+          def shard_seed(*parts):
+              return int(hashlib.sha256("|".join(str(p) for p in parts).encode("utf-8")).hexdigest()[:8], 16)
+
+          include = []
+          for m in moods:
+              for i in range(int(os.environ["ACE_SHARDS_IN"])):
+                  include.append({"mood": m, "model": "ace", "shard": i,
+                                  "count": int(os.environ["ACE_PER_SHARD_IN"]),
+                                  "seed": shard_seed(date, m, "ace", i), "date": date})
+              if m == "sleep":
+                  continue  # sa3 skips sleep (bake-off CE 4.46)
+              for i in range(int(os.environ["SA3_SHARDS_IN"])):
+                  include.append({"mood": m, "model": "sa3", "shard": i,
+                                  "count": int(os.environ["SA3_PER_SHARD_IN"]),
+                                  "seed": shard_seed(date, m, "sa3", i), "date": date})
+          print(json.dumps(include, indent=1))
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"matrix={json.dumps(include)}\n")
+              fh.write(f"date={date}\n")
+              fh.write(f"pipeline_ref={os.environ['PIPELINE_REF_IN']}\n")
+          PY
+
+  gen:
+    needs: plan
+    if: needs.plan.outputs.matrix != '[]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    name: gen ${{ matrix.model }} ${{ matrix.mood }} #${{ matrix.shard }}
+    env:
+      MOOD: ${{ matrix.mood }}
+      MODEL: ${{ matrix.model }}
+      COUNT: ${{ matrix.count }}
+      SEED: ${{ matrix.seed }}
+      DATE: ${{ matrix.date }}
+      PIPELINE_REF: ${{ needs.plan.outputs.pipeline_ref }}
+      UPSTREAM_COMMIT: ${{ matrix.model == 'ace' && 'ca1e85fe9430179831e6bc6be790c332190a3866' || '77e0398c26f7d22d801ec1bb036307e8b231f741' }}
+    steps:
+      - name: Checkout private pipeline (shorts/music_neural)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ env.PIPELINE_REF }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+          persist-credentials: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | sed -n 1p
+
+      - name: Expand briefs into track specs
+        run: |
+          set -euo pipefail
+          python pipeline/shorts/music_neural/expand_brief.py --mood "$MOOD" --model "$MODEL" \
+            --count "$COUNT" --seed "$SEED" --date "$DATE" > specs.json
+          python -c "import json; s=json.load(open('specs.json')); print(len(s), 'specs'); [print(x['id'], '|', x['title'], '|', x['bpm'], '|', x['key'], '|', x['duration_s'], '|', x['brief_id']) for x in s]"
+
+      # ---------------- ACE-Step 1.5 (DiT only), same install as the bake-off ----------------
+      - name: ACE clone and pin
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          git clone https://github.com/ace-step/ACE-Step-1.5 ace
+          git -C ace checkout ca1e85fe9430179831e6bc6be790c332190a3866
+          git -C ace rev-parse HEAD
+
+      - name: ACE install
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.10.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-deps -e ace
+          python -m pip install "transformers>=4.51.0,<4.58.0" "diffusers>=0.37.0" scipy soundfile loguru einops accelerate diskcache numba vector-quantize-pytorch "torchao>=0.16.0,<0.17.0" toml modelscope pytorch-wavelets pywavelets "huggingface_hub[cli]"
+          python -c "import inspect, acestep.handler, acestep.inference; print('ace import ok')"
+
+      - name: ACE weights (DiT, VAE, text encoder; no 5Hz LM)
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          hf download ACE-Step/Ace-Step1.5 --local-dir ace/checkpoints --exclude "acestep-5Hz-lm-1.7B/*"
+          du -sh ace/checkpoints
+
+      # ---------------- Stable Audio 3 small-music, same install as the bake-off ----------------
+      - name: SA3 clone and pin
+        if: matrix.model == 'sa3'
+        run: |
+          set -euo pipefail
+          git clone https://github.com/Stability-AI/stable-audio-3 sa3
+          git -C sa3 checkout 77e0398c26f7d22d801ec1bb036307e8b231f741
+          git -C sa3 rev-parse HEAD
+
+      - name: SA3 install
+        if: matrix.model == 'sa3'
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-deps -e sa3
+          python -m pip install "einops>=0.8.2" "einops-exts>=0.0.4" "numpy>=2.2.6" packaging safetensors tqdm "huggingface-hub>=1.7.1" "transformers>=5.8.0" soundfile sentencepiece
+          python -c "from stable_audio_3 import StableAudioModel; print('sa3 import ok')"
+
+      # ---------------- Generate (model loaded once per shard, tracks rendered sequentially) ----------------
+      - name: Generate ${{ matrix.model }} ${{ matrix.mood }} #${{ matrix.shard }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          if [ "$MODEL" = "ace" ]; then
+            python pipeline/shorts/music_neural/gen_ace.py --repo ace --specs specs.json --out out
+          else
+            python pipeline/shorts/music_neural/gen_sa3.py --specs specs.json --out out
+          fi
+          ls -la out
+
+      # ---------------- Finish: two-pass loudnorm, 3 s fades, AAC 256k m4a, gates ----------------
+      - name: Finish tracks (loudnorm, fades, AAC, gates)
+        if: always() && hashFiles('specs.json') != ''
+        run: |
+          set -uo pipefail
+          python3 - <<'PY'
+          import glob, json, os, subprocess, sys
+          pipe = "pipeline/shorts/music_neural"
+          mood = os.environ["MOOD"]
+          lufs = json.load(open(f"{pipe}/briefs.json"))["moods"][mood]["lufs"]
+          specs = json.load(open("specs.json"))
+          for s in specs:
+              wav = f"out/{s['id']}.wav"
+              if not os.path.exists(wav):
+                  continue  # gen failure already has a reject json
+              r = subprocess.run([sys.executable, f"{pipe}/finish_track.py", "--wav", wav,
+                                  "--spec", json.dumps(s), "--lufs", str(lufs), "--out-dir", "out"])
+              if r.returncode != 0:
+                  print(f"finish exit {r.returncode} for {s['id']}")
+          print("finished:", len(glob.glob("out/*.m4a")), "m4a;", len(glob.glob("out/*.reject.json")), "rejects so far")
+          PY
+          ls -la out
+
+      # ---------------- Score: Audiobox Aesthetics in its own venv (sidecars written here) ----------------
+      - name: Score (Audiobox Aesthetics) and write sidecars
+        if: always() && hashFiles('specs.json') != ''
+        run: |
+          set -euo pipefail
+          if ! ls out/*.m4a >/dev/null 2>&1; then
+            echo "no finished tracks in this shard; nothing to score"
+            exit 0
+          fi
+          python -m venv score-venv
+          score-venv/bin/python -m pip install --upgrade pip
+          score-venv/bin/python -m pip install torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          score-venv/bin/python -m pip install audiobox_aesthetics==0.0.4 requests
+          score-venv/bin/python -c "import inspect; from audiobox_aesthetics.infer import initialize_predictor; print('aes import ok', inspect.signature(initialize_predictor))"
+          score-venv/bin/python pipeline/shorts/music_neural/score_aes.py --dir out --specs specs.json --model-commit "$UPSTREAM_COMMIT"
+          ls -la out
+
+      - name: Upload shard artifact
+        if: always() && hashFiles('specs.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib-${{ matrix.mood }}-${{ matrix.model }}-${{ matrix.shard }}
+          path: |
+            out/*.m4a
+            out/*.json
+            !out/*.finish.json
+            out/*.reject.json
+          retention-days: 3
+          if-no-files-found: warn
+
+  publish:
+    needs: [plan, gen]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    concurrency:
+      group: music-library
+      cancel-in-progress: false
+    env:
+      PIPELINE_REF: ${{ needs.plan.outputs.pipeline_ref }}
+    steps:
+      - name: Checkout private pipeline (shorts/music_neural)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ env.PIPELINE_REF }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+          persist-credentials: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download shard artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: lib-*
+          path: staging
+          merge-multiple: true
+
+      - name: Install Hugging Face client
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install "huggingface_hub>=1.7.1"
+
+      - name: Publish tracks, prune, rebuild indexes
+        run: |
+          set -euo pipefail
+          mkdir -p staging
+          python pipeline/shorts/music_neural/publish_index.py --repo "$HF_LIBRARY_REPO" --staging staging
