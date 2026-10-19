@@ -1,0 +1,50 @@
+name: workflow-lint
+
+# One shared longform-weekly.yml now serves all 22 registry channels, so a bad edit breaks every channel at once.
+# This runs on every PR that touches .github/workflows/ and checks: actionlint, the registry schedule rules, that the
+# dispatch `channel` options match the registry, and that the pinger schedule has not drifted. Lint must pass
+# before the workflow can be dispatched.
+
+on:
+  pull_request:
+    paths: ['.github/workflows/**']
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: 'agyata-pipeline-private branch/ref to lint against (empty = default branch)'
+        type: string
+        default: ''
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref || '' }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: private
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: actionlint
+        run: bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash) 1.7.7 && ./actionlint -color
+      - name: Schedule lint (registry)
+        run: cd private && node tools/longform_schedule.mjs lint
+      - name: Dispatch options match the registry
+        run: |
+          OPT="$(cd private && node tools/longform_schedule.mjs print --dispatch-options)"
+          grep -qF -- "options: $OPT" .github/workflows/longform-weekly.yml || { echo "::error::longform-weekly.yml channel options differ from the registry; expected: options: $OPT"; exit 1; }
+      - name: Pinger drift probe
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: cd private && node tools/acceptance/probes/weekly_schedule_drift.mjs
