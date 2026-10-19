@@ -1,0 +1,220 @@
+name: music-bakeoff
+
+# CPU bake-off: ACE-Step 1.5 turbo (DiT only) vs Stable Audio 3 small-music, same 4 live slot moods.
+# Briefs come from tools/music_bakeoff/prompts.json. Clips are uploaded as artifacts only (never
+# committed). Each run is one 8-job matrix plus a collect job that writes results.md.
+
+run-name: music-bakeoff ${{ github.event.inputs.seconds || '120' }}s seed ${{ github.event.inputs.seed || '42' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: 'Clip length in seconds (max 120)'
+        type: string
+        default: '120'
+        required: false
+      seed:
+        description: 'Generation seed'
+        type: string
+        default: '42'
+        required: false
+  push:
+    branches: [feat/music-bakeoff]
+    paths:
+      - 'tools/music_bakeoff/**'
+      - '.github/workflows/music-bakeoff.yml'
+
+permissions:
+  contents: read
+
+env:
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  HF_HUB_ENABLE_HF_TRANSFER: 0
+
+jobs:
+  gen:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 200
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [ace, sa3]
+        mood: [focus, unwind, sleep, slowmorning]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ---------------- ACE-Step 1.5 (DiT only) ----------------
+      - name: ACE clone and pin
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          git clone https://github.com/ace-step/ACE-Step-1.5 ace
+          git -C ace checkout ca1e85fe9430179831e6bc6be790c332190a3866
+          git -C ace rev-parse HEAD
+
+      - name: ACE install
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.10.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-deps -e ace
+          python -m pip install "transformers>=4.51.0,<4.58.0" "diffusers>=0.37.0" scipy soundfile loguru einops accelerate diskcache numba vector-quantize-pytorch "torchao>=0.16.0,<0.17.0" toml modelscope pytorch-wavelets pywavelets "huggingface_hub[cli]"
+          python -c "import inspect, acestep.handler, acestep.inference; print('ace import ok')"
+
+      - name: ACE weights (DiT, VAE, text encoder; no 5Hz LM)
+        if: matrix.model == 'ace'
+        run: |
+          set -euo pipefail
+          hf download ACE-Step/Ace-Step1.5 --local-dir ace/checkpoints --exclude "acestep-5Hz-lm-1.7B/*"
+          du -sh ace/checkpoints
+
+      # ---------------- Stable Audio 3 small-music ----------------
+      - name: SA3 clone and pin
+        if: matrix.model == 'sa3'
+        run: |
+          set -euo pipefail
+          git clone https://github.com/Stability-AI/stable-audio-3 sa3
+          git -C sa3 checkout 77e0398c26f7d22d801ec1bb036307e8b231f741
+          git -C sa3 rev-parse HEAD
+
+      - name: SA3 install
+        if: matrix.model == 'sa3'
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.7.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-deps -e sa3
+          python -m pip install "einops>=0.8.2" "einops-exts>=0.0.4" "numpy>=2.2.6" packaging safetensors tqdm "huggingface-hub>=1.7.1" "transformers>=5.8.0" soundfile sentencepiece
+          python -c "from stable_audio_3 import StableAudioModel; print('sa3 import ok')"
+
+      # ---------------- Generate ----------------
+      - name: Generate ${{ matrix.model }} ${{ matrix.mood }}
+        env:
+          UPSTREAM_COMMIT: ${{ matrix.model == 'ace' && 'ca1e85fe9430179831e6bc6be790c332190a3866' || '77e0398c26f7d22d801ec1bb036307e8b231f741' }}
+          SECONDS_IN: ${{ github.event.inputs.seconds || '120' }}
+          SEED_IN: ${{ github.event.inputs.seed || '42' }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          if [ "${{ matrix.model }}" = "ace" ]; then
+            python tools/music_bakeoff/gen_ace.py --repo ace --mood "${{ matrix.mood }}" --prompts tools/music_bakeoff/prompts.json --out out --seed "$SEED_IN" --seconds "$SECONDS_IN"
+          else
+            python tools/music_bakeoff/gen_sa3.py --mood "${{ matrix.mood }}" --prompts tools/music_bakeoff/prompts.json --out out --seed "$SEED_IN" --seconds "$SECONDS_IN"
+          fi
+          ls -la out
+
+      # ---------------- Encode: two-pass loudnorm, 44.1 kHz stereo MP3 192k ----------------
+      - name: Encode mp3 (two-pass loudnorm)
+        env:
+          NAME: ${{ matrix.model }}_${{ matrix.mood }}
+          TARGET_I: ${{ matrix.mood == 'sleep' && '-18' || '-14' }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          name = os.environ["NAME"]
+          tgt = os.environ["TARGET_I"]
+          wav, mp3, js = f"out/{name}.wav", f"out/{name}.mp3", f"out/{name}.json"
+          # pass 1: measure
+          r1 = subprocess.run(
+              ["ffmpeg", "-hide_banner", "-nostats", "-i", wav,
+               "-af", f"loudnorm=I={tgt}:TP=-1:LRA=11:print_format=json", "-f", "null", "-"],
+              capture_output=True, text=True, check=True)
+          blobs = re.findall(r"\{[^{}]*\}", r1.stderr)
+          st = json.loads(blobs[-1])
+          print(f"[bakeoff] input {name}: I={st['input_i']} LUFS  LRA={st['input_lra']}  TP={st['input_tp']} dBTP  target I={tgt}")
+          # pass 2: apply linear gain with measured values
+          af = (f"loudnorm=I={tgt}:TP=-1:LRA=11:measured_I={st['input_i']}:measured_TP={st['input_tp']}:"
+                f"measured_LRA={st['input_lra']}:measured_thresh={st['input_thresh']}:"
+                f"offset={st['target_offset']}:linear=true")
+          subprocess.run(
+              ["ffmpeg", "-hide_banner", "-y", "-i", wav, "-af", af,
+               "-ar", "44100", "-ac", "2", "-c:a", "libmp3lame", "-b:a", "192k", mp3],
+              check=True)
+          # record measured input loudness for results.md, then drop the wav
+          meta = json.load(open(js))
+          meta.update({"input_lufs": float(st["input_i"]), "input_lra": float(st["input_lra"]),
+                       "input_tp": float(st["input_tp"]), "target_lufs": float(tgt)})
+          json.dump(meta, open(js, "w"), indent=2)
+          os.remove(wav)
+          print(f"[bakeoff] wrote {mp3}")
+          PY
+          ls -la out
+
+      - name: Upload clip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clip-${{ matrix.model }}-${{ matrix.mood }}
+          path: |
+            out/*.mp3
+            out/*.json
+          retention-days: 7
+          if-no-files-found: error
+
+  collect:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Download clip artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: clip-*
+          path: clips
+          merge-multiple: true
+
+      - name: Build results.md
+        run: |
+          set -euo pipefail
+          mkdir -p clips
+          python3 - <<'PY'
+          import json, os
+          models = [("ace", "ACE-Step 1.5 turbo"), ("sa3", "Stable Audio 3 small-music")]
+          moods = ["focus", "unwind", "sleep", "slowmorning"]
+          lines = [
+              "# Music bake-off results",
+              "",
+              "| model | mood | load_s | gen_s | rtf | peak_rss_mb | input LUFS |",
+              "|---|---|---|---|---|---|---|",
+          ]
+          for key, _label in models:
+              for mood in moods:
+                  path = f"clips/{key}_{mood}.json"
+                  if not os.path.exists(path):
+                      lines.append(f"| {key} | {mood} | FAILED | | | | |")
+                      continue
+                  m = json.load(open(path))
+                  lines.append(
+                      f"| {key} | {mood} | {m['load_s']} | {m['gen_s']} | {m['rtf']} | "
+                      f"{m['peak_rss_mb']} | {m.get('input_lufs', 'n/a')} |")
+          lines += ["", "Models: " + "; ".join(f"`{k}` = {l}" for k, l in models),
+                    "Loudness targets: I=-14 LUFS, sleep I=-18 LUFS, TP=-1 dBTP, LRA=11.",
+                    "rtf = gen_s / seconds (lower is faster)."]
+          text = "\n".join(lines) + "\n"
+          open("clips/results.md", "w").write(text)
+          print(text)
+          summary = os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary:
+              open(summary, "a").write(text)
+          PY
+          ls -la clips
+
+      - name: Upload bakeoff-clips
+        uses: actions/upload-artifact@v4
+        with:
+          name: bakeoff-clips
+          path: |
+            clips/*.mp3
+            clips/results.md
+          retention-days: 7
+          if-no-files-found: warn

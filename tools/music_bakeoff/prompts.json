@@ -1,0 +1,30 @@
+{
+  "_note": "Bake-off briefs, one per live slot mood. `caption` is shared by both models. ACE-Step also gets bpm/keyscale/timesignature as metadata; Stable Audio 3 gets `caption` + ', <bpm> BPM' (it reads tempo from text).",
+  "seconds": 120,
+  "moods": {
+    "focus": {
+      "caption": "Deep focus instrumental for studying. Warm felt piano playing a simple, memorable motif over soft Rhodes chords, a round upright bass, and quiet brushed drums with a relaxed swing. Gentle analog pad underneath, subtle tape warmth. The arrangement slowly evolves, adding a muted guitar counter-melody in the second half. Calm, steady, unobtrusive, no vocals, polished studio mix with wide stereo.",
+      "bpm": 76,
+      "keyscale": "D major",
+      "timesignature": "4"
+    },
+    "unwind": {
+      "caption": "Evening chill instrumental to unwind. Fingerpicked nylon-string guitar and mellow Rhodes trade a lyrical melody over a laid-back hip-hop groove with a soft kick, rimshot snare and lazy swing. Deep warm bass, light vinyl crackle, slow ambient pad swells, occasional soft flugelhorn phrase. Relaxed, warm and spacious, no vocals, rich professional mix.",
+      "bpm": 82,
+      "keyscale": "F major",
+      "timesignature": "4"
+    },
+    "sleep": {
+      "caption": "Slow ambient sleep music. Long sustained warm analog synth pads, a low soft drone, and sparse distant piano notes with long reverb tails. Very slow harmonic changes, gentle swells like breathing, soft rolled-off highs. No drums, no percussion, no vocals. Dark, soothing, deeply peaceful, high-fidelity.",
+      "bpm": 60,
+      "keyscale": "Db major",
+      "timesignature": "4"
+    },
+    "slowmorning": {
+      "caption": "Gentle slow-morning acoustic instrumental. Fingerpicked steel-string acoustic guitar, soft upright piano and a warm cello melody, light shaker and soft hand percussion. Hopeful, fresh and unhurried like sunlight through a window, natural room ambience, no vocals, warm organic production.",
+      "bpm": 86,
+      "keyscale": "G major",
+      "timesignature": "4"
+    }
+  }
+}
