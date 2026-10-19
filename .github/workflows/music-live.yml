@@ -256,6 +256,7 @@ jobs:
       YT_REFRESH_TOKEN_FI: ${{ secrets.YT_REFRESH_TOKEN_FI }}
       LIVE_FACEBOOK_PAGE_ID: '1402811506238024'
       META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+      META_LIVE_USER_TOKEN: ${{ secrets.META_LIVE_USER_TOKEN }}
       META_APP_ID: ${{ secrets.META_APP_ID }}
       META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
     steps:
@@ -318,6 +319,7 @@ jobs:
         env:
           FB_REPOST_PAGE_ID: '1346624568531932'
           META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_LIVE_USER_TOKEN: ${{ secrets.META_LIVE_USER_TOKEN }}
           META_APP_ID: ${{ secrets.META_APP_ID }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
         run: node live/facebook_repost.mjs --out live_out/session
