@@ -1,0 +1,91 @@
+name: longform-feedback
+
+# longform-studio Phase 9 — the retention feedback loop for every registry-enabled doc channel. For every uploaded doc with a stored shot timeline (D1
+# agyata:studio:timeline:<videoId>) it pulls the YouTube Analytics retention CURVE, aligns it to the shots, stores
+# agyata:studio:retention:<videoId> + agyata:studio:weights:<channel> (planner weights that only ever tighten) and
+# uploads the JSON reports as an artefact. Weekly via agyata-cron-pinger (WORKFLOWS entry, minute multiple of 5);
+# workflow_dispatch for a manual run. Private videos have no analytics rows → "noData" until a public video exists.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref:
+        description: 'agyata-pipeline-private branch/ref (empty = default branch)'
+        type: string
+        default: ''
+        required: false
+      days:
+        description: 'Look-back window in days'
+        type: string
+        default: '90'
+        required: false
+
+concurrency:
+  group: longform-feedback
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  YT_ANALYTICS: '1'
+  # D1 kv (src/d1kv.mjs): timelines are read and retention/weights written through api-gateway with this token.
+  NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+  API_BASE: https://api.agyata.com
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+  YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+
+jobs:
+  feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retention feedback (registry-enabled channels)
+        env:
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+        run: |
+          set -e
+          IDS=$(node tools/longform_schedule.mjs print --enabled-ids)   # fails the step if the registry is unreadable
+          for ch in $IDS; do
+            node tools/studio_feedback.mjs --channel "$ch" --days "${{ inputs.days || '90' }}" --out "docs/longform-runs/retention/$ch" || echo "[studio:feedback] $ch failed (see above)"
+          done
+      - name: Upload retention reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-feedback-${{ github.run_id }}
+          path: docs/longform-runs/retention/
+          if-no-files-found: ignore
+          retention-days: 30
