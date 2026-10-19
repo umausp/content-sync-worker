@@ -308,6 +308,17 @@ jobs:
         run: |
           node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
+      # longform-studio: the small metadata the user reviews (SEO description, tags, localizations, first
+      # comment, growth plan) — always uploaded, never the video (local disk rule).
+      - name: Upload studio meta (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.name }}-studio-meta-${{ github.run_id }}
+          path: |
+            docs/shorts/${{ inputs.channel }}/*/meta.json
+            docs/shorts/${{ inputs.channel }}/*/growth_plan.json
+          if-no-files-found: warn
       - name: Upload staged doc artifact (only if NOT uploaded)
         if: steps.yt.outputs.uploaded != 'true'
         uses: actions/upload-artifact@v4
