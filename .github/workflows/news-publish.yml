@@ -14,6 +14,11 @@ on:
         required: true
         default: 'world'
         type: string
+      dry_run:
+        description: 'Preview only: run the full pipeline (gates, LLM summary, VLM image gate) but POST nothing, claim no dedup keys and send no push. Preview JSON is uploaded as the news-preview-<edition> artifact.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -109,6 +114,24 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: 'gpt-4o-mini'
       OPENAI_DAILY_CAP: '30'
+      # NEWS_DRY_RUN=1 only when dispatched with dry_run=true (anything else is '0', which the pipeline ignores).
+      NEWS_DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+      # ── Website news summary + licence-free images (STAGE 1/2). Production values.
+      NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
+      NEWS_SUMMARY_MODEL: 'deepseek-v4.1-flash:cloud'  # same model family as the VLM gate; pinned here so a model-ID change is a reviewed diff
+      NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
+      NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
+      NEWS_IMAGES_VLM: '1'  # pixel relevance gate on the picker's candidates; fail-closed (no verdict -> no images)
+      NEWS_IMAGES_MAX_STORIES: '25'  # cap on stories that run the image picker per run
+      NEWS_IMAGES_FALLBACK_PUBLISHER: '0'  # never publish a news-site photo as a fallback (licence-free only)
+      # ── VLM image gate (shorts/media/visual_gate.mjs). Values copied from shorts-world.yml on origin/main.
+      #    The picker forces SHORTS_VLM_STRICT=1 for its own call; it is not set globally here.
+      SHORTS_VLM_GATE: '1'  # gate enabled (also needs OLLAMA_API_KEY above)
+      SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # the pinned VLM (user directive 2026-10-06)
+      SHORTS_VLM_GATE_FALLBACK_MODELS: 'gemma4:31b-cloud'  # used only when the primary returns no verdict; copied from shorts-world. Conflicts with the 2026-10-06 deepseek-only directive: set '' to disable the chain
+      SHORTS_VLM_TIER: '1'  # 4-tier verdict (EXACT/CONTEXTUAL/GENERIC/WRONG); only WRONG is dropped, ranking uses the tier
+      SHORTS_VLM_ENTITY_CTX: '1'  # story entities are passed to the judge
+      SHORTS_VLM_CORP_CTX: '1'  # corporate/organisation context for company stories
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -133,6 +156,15 @@ jobs:
           set -o pipefail
           LOG="$RUNNER_TEMP/review.log"
           node src/review.mjs 2>&1 | tee "$LOG"
+
+      - name: Upload dry-run preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-preview-${{ matrix.edition }}
+          path: out/news_preview_*.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Summary
         if: always()
