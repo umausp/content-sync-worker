@@ -329,7 +329,8 @@ jobs:
         continue-on-error: true
         env:
           SHORTS_SOCIAL_PUBLISH: '1'
-          META_PAGE_ID: '1346624568531932'  # → Agyata Indonesia (per-channel routing, user 2026-09-13; Page created + assigned to the System User this session)
+          # No META_PAGE_ID: Indonesian news posts to NO Facebook Page (user 2026-10-19). Page 1346624568531932
+          # (was Agyata Indonesia) is now Agyata Music, which carries the music live reposts instead.
           META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
           META_APP_ID: ${{ secrets.META_APP_ID }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
