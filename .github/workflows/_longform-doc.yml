@@ -60,6 +60,8 @@ env:
   STUDIO_FOOTAGE: '1'
   SHORTS_MEDIA_VIDEO_SEC: '12'
   DOC_MOTION_CONCURRENCY: '3'
+  # per-beat visuals gather/rank/fetch run 3 beats at a time (shorts/longform/visuals.mjs); the draw/VLM-gate phase stays sequential
+  DOC_VISUALS_CONCURRENCY: '3'
   DOC_GROUND_BUDGET: '120'
   # longform-studio Phase 8: story density rules v2 (info units, re-hook ≤ 75 s, mid-video turn, no restated stats).
   STUDIO_STORY_V2: '1'
