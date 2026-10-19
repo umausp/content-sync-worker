@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  probe:
+    parameters:
+      rc: {type: string}
+    machine:
+      image: ubuntu-2404:current
+    resource_class: << parameters.rc >>
+    steps:
+      - run: nproc && free -g | head -2
+workflows:
+  probe:
+    jobs:
+      - probe: {name: p-2xlargeplus, rc: 2xlarge+}
+      - probe: {name: p-2xlarge, rc: 2xlarge}
+      - probe: {name: p-xlarge, rc: xlarge}
