@@ -71,13 +71,11 @@ jobs:
       date: ${{ steps.mk.outputs.date }}
       pipeline_ref: ${{ steps.mk.outputs.pipeline_ref }}
     env:
-      # FIRST-PUSH SMOKE DEFAULTS (push trigger only). Restore the spec defaults in the next commit
-      # (moods focus,unwind,sleep,slowmorning; ace 6x3; sa3 2x12) so the full initial fill runs.
-      MOODS_IN: ${{ github.event.inputs.moods || 'focus' }}
-      ACE_SHARDS_IN: ${{ github.event.inputs.ace_shards || '1' }}
-      ACE_PER_SHARD_IN: ${{ github.event.inputs.ace_per_shard || '1' }}
-      SA3_SHARDS_IN: ${{ github.event.inputs.sa3_shards || '1' }}
-      SA3_PER_SHARD_IN: ${{ github.event.inputs.sa3_per_shard || '2' }}
+      MOODS_IN: ${{ github.event.inputs.moods || 'focus,unwind,sleep,slowmorning' }}
+      ACE_SHARDS_IN: ${{ github.event.inputs.ace_shards || '6' }}
+      ACE_PER_SHARD_IN: ${{ github.event.inputs.ace_per_shard || '3' }}
+      SA3_SHARDS_IN: ${{ github.event.inputs.sa3_shards || '2' }}
+      SA3_PER_SHARD_IN: ${{ github.event.inputs.sa3_per_shard || '12' }}
       PIPELINE_REF_IN: ${{ github.event.inputs.pipeline_ref || 'feat/neural-music' }}
     steps:
       - id: mk
