@@ -154,7 +154,11 @@ jobs:
         run: |
           [ "$MODE" = doc ] || exit 0
           set -e
-          python3 -m venv "$HOME/venv" && . "$HOME/venv/bin/activate"
+          # The runner's python3 is 3.14 (no wheels for kokoro's blis/spacy chain); the cron pins 3.12, which Ubuntu 24.04 ships.
+          sudo apt-get install -y --no-install-recommends python3.12 python3.12-venv python3.12-dev
+          python3.12 -m venv "$HOME/venv" && . "$HOME/venv/bin/activate"
+          python --version
+          pip install --quiet --upgrade pip
           pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts
           cd pipeline && export CINEMATIC_MODELS_DIR=/tmp/models
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"
