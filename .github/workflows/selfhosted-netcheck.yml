@@ -23,9 +23,14 @@ jobs:
         run: head -c 104857600 /dev/urandom > "$RUNNER_TEMP/blob.bin"; echo "T0=$(date +%s)" >> "$GITHUB_ENV"
       - name: GitHub artifact UPLOAD from the Mac (100 MB)
         uses: actions/upload-artifact@v4
-        with: { name: netcheck-${{ github.run_id }}, path: '${{ runner.temp }}/blob.bin', retention-days: 1, compression-level: 0 }
+        with:
+          name: netcheck-${{ github.run_id }}
+          path: ${{ runner.temp }}/blob.bin
+          retention-days: 1
+          compression-level: 0
       - name: GitHub artifact DOWNLOAD to the Mac via curl (same artifact)
-        env: { GH_TOKEN: '${{ github.token }}' }
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo "upload step finished; elapsed since file made: $(( $(date +%s) - T0 )) s"
           ID=$(curl -fsS -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" | jq -r '.artifacts[0].id')
