@@ -211,49 +211,48 @@ jobs:
           S=$(date +%s)
           jq -r '.plans[].i' "$P" | xargs -P "$N" -I{} sh -c 'SHORTS_PHASE=render LF_BEATS={} node shorts/build_short.mjs "$CH" > "$RUNNER_TEMP/render-{}.log" 2>&1; echo "beat {} exit $?"'
           echo "T_RENDER=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
-      - name: Re-root absolute paths for the GitHub-hosted finalize job
+      - name: Finalize on the Mac (concat, release gate, stage — NO upload)
         if: steps.plan.outputs.ready == 'true'
         working-directory: pipeline
         run: |
-          # the checkpoint stores absolute paths under SHORTS_WORK_DIR; the hosted runner's workspace differs from this Mac's
-          HOSTED=/home/runner/work/content-sync-worker/content-sync-worker/.shorts-work
-          MINE="$WORKROOT/.shorts-work"
-          grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F "$MINE" "$MINE/$CH" 2>/dev/null | while read -r f; do
-            perl -pi -e 's#\Q'"$MINE"'\E#'"$HOSTED"'#g' "$f"
-          done
-          echo "re-rooted $MINE -> $HOSTED"; du -sh "$MINE/$CH"
-      - name: Upload run state + rendered clips
+          set -o pipefail; . "$RUNNER_TEMP/pipeline.env"
+          S=$(date +%s); SHORTS_PHASE=finalize node shorts/build_short.mjs "$CH" 2>&1 | tee "$RUNNER_TEMP/finalize.log"
+          echo "T_FINALIZE=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+          F=$(find docs/shorts/"$CH" -name short.mp4 | head -1); [ -n "$F" ] || { echo "::error::finalize staged no short.mp4 (release gate rejected the render?)"; exit 1; }
+          ls -lh "$(dirname "$F")"
+      - name: Send the finished video back to GitHub (mp4, meta, thumbnail; 1-day retention, deleted after publish)
         if: steps.plan.outputs.ready == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
-          path: ${{ env.WORKROOT }}/.shorts-work/${{ inputs.channel }}/
-          include-hidden-files: true
-          retention-days: 7
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: pipeline/docs/shorts/${{ inputs.channel }}/
+          retention-days: 1
           compression-level: 0
-      - name: Summary (heavy lane timings)
+      - name: Summary (Mac lane timings)
         if: always()
+        working-directory: pipeline
         run: |
           {
-            echo "## heavy lane $CH @ ${{ inputs.pipeline_ref }} — $(sysctl -n machdep.cpu.brand_string), ${PERF_CORES} perf cores, $(( $(sysctl -n hw.memsize) / 1073741824 )) GiB"
-            echo "- wall: prepare ${T_PREPARE:-?} s | render ${T_RENDER:-?} s | total $(( $(date +%s) - T_START )) s  (GitHub 4-vCPU baseline: prepare ~2900 s, render ~1200 s)"
-            grep -hE '\[studio:density2\]' "$RUNNER_TEMP/prepare.log" | tail -1 | sed 's/^/- /'
+            echo "## Mac lane $CH @ ${{ inputs.pipeline_ref }} — $(sysctl -n machdep.cpu.brand_string), ${PERF_CORES} perf cores, $(( $(sysctl -n hw.memsize) / 1073741824 )) GiB"
+            echo "- wall: prepare ${T_PREPARE:-?} s | render ${T_RENDER:-?} s | finalize ${T_FINALIZE:-?} s | total $(( $(date +%s) - T_START )) s  (GitHub 4-vCPU baseline: prepare ~2900 s, render ~1300 s, finalize ~1500 s)"
+            grep -hE '\[studio:density2\]' "$RUNNER_TEMP/prepare.log" "$RUNNER_TEMP/finalize.log" 2>/dev/null | tail -1 | sed 's/^/- /'
+            find docs/shorts/"$CH" -name short.mp4 -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5}'
           } | tee -a "$GITHUB_STEP_SUMMARY"
-      - name: Cleanup (RAM disk)
+      - name: Cleanup (RAM disk, staged output, helper processes)
         if: always()
         run: |
+          rm -rf pipeline/docs/shorts/"$CH"/* || true
           [ -z "${RAMDISK_DEV:-}" ] || hdiutil detach "$RAMDISK_DEV" -force || true
           [ -z "${CAFFEINATE_PID:-}" ] || kill "$CAFFEINATE_PID" 2>/dev/null || true
           [ -z "${SHIM_PID:-}" ] || kill "$SHIM_PID" 2>/dev/null || true
           [ -z "${MLX_PID:-}" ] || kill "$MLX_PID" 2>/dev/null || true
 
-  finalize:
+  publish:
     needs: heavy
     if: needs.heavy.outputs.ready == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      SHORTS_PHASE: finalize
       SHORTS_STAMP: ${{ needs.heavy.outputs.stamp }}
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -281,28 +280,25 @@ jobs:
           repository: umausp/agyata-pipeline-private
           ref: ${{ inputs.pipeline_ref }}
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
-      - name: Render setup (cached)
-        uses: ./.github/actions/render-setup
+      - uses: actions/checkout@v4
         with:
-          tts-pip: 'kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts'
-          apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
-          voice-cache-path: '~/.cache/huggingface'
-          voice-cache-key: 'hf-kokoro-m2m100-v1'
-      - name: Download run state + clips from the Mac
+          path: shell
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: ffmpeg (ffprobe for the upload-time quality gate re-check)
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ffmpeg >/dev/null
+      - name: Download the finished video from the Mac
         uses: actions/download-artifact@v4
         with:
-          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
-          path: .shorts-work/${{ inputs.channel }}/
-      - uses: actions/checkout@v4
-        with: { path: shell }
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: docs/shorts/${{ inputs.channel }}/
       - name: Pipeline env (the cron's flags) into this job
         run: |
           node tools/ci/shell_env.mjs shell/.github/workflows/_longform-doc.yml | sed -E "s/^export ([A-Z0-9_]+)='(.*)'$/\1=\2/" >> "$GITHUB_ENV"
-          grep -c . "$GITHUB_ENV"
-      - name: Finalize (concat, release gate, stage)
-        run: |
-          set -o pipefail
-          node shorts/build_short.mjs ${{ inputs.channel }} 2>&1 | tee "$RUNNER_TEMP/finalize.log"
+          find docs/shorts/${{ inputs.channel }} -maxdepth 2 | head -12
       - name: Select channel YouTube token
         id: yt_token
         if: inputs.upload
@@ -359,14 +355,14 @@ jobs:
         run: |
           if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post"; exit 0; fi
           node shorts/social_publish.mjs "${{ inputs.channel }}" "$SHORTS_STAMP" 2>&1 | tee "$RUNNER_TEMP/social.log"
-      - name: Summary (finalize)
+      - name: Summary (publish)
         if: always()
         run: |
           {
-            echo "## finalize ${{ inputs.channel }} (upload=${{ inputs.upload }})"
-            grep -hE '\[studio:[a-z0-9_-]+\]' "$RUNNER_TEMP/finalize.log" "$RUNNER_TEMP/upload.log" 2>/dev/null | sed 's/^/- /' || true
-            find docs/shorts/${{ inputs.channel }} -name 'short.mp4' -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5 " " $9}'
+            echo "## publish ${{ inputs.channel }} (upload=${{ inputs.upload }}, social=${{ inputs.social }})"
+            find docs/shorts/${{ inputs.channel }} -name short.mp4 -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5}'
             grep -hoE 'https://youtube\.com/watch\?v=[A-Za-z0-9_-]+' "$RUNNER_TEMP/upload.log" 2>/dev/null | head -1 | sed 's/^/- YouTube: /' || true
+            [ -f "$RUNNER_TEMP/social.log" ] && tail -5 "$RUNNER_TEMP/social.log" | sed 's/^/- social: /' || true
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload studio meta (always)
         if: always()
@@ -378,14 +374,13 @@ jobs:
             docs/shorts/${{ inputs.channel }}/*/growth_plan.json
           retention-days: 14
           if-no-files-found: warn
-      - name: Upload staged doc artifact (only if NOT uploaded)
-        if: always() && steps.yt.outputs.uploaded != 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
-          path: docs/shorts/${{ inputs.channel }}/
-          retention-days: 14
-          if-no-files-found: warn
+      - name: Delete the video artifact once it is on YouTube (a public repo's artifacts are world-downloadable)
+        if: always() && steps.yt.outputs.uploaded == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ID=$(gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts -q '.artifacts[]|select(.name=="longform-${{ inputs.channel }}-${{ github.run_id }}-staged")|.id')
+          [ -z "$ID" ] || gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/$ID && echo "deleted staged artifact $ID"
       - name: Purge staged output
         if: always()
         run: rm -rf docs/shorts/${{ inputs.channel }}/* || true
