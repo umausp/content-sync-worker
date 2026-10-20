@@ -74,13 +74,26 @@ jobs:
           export CINEMATIC_MODELS_DIR=$HOME/.cache/lf-models; mkdir -p "$CINEMATIC_MODELS_DIR"
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"; bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
           echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
-      - name: Download the saved state
-        uses: actions/download-artifact@v4
-        with:
-          name: longform-${{ inputs.channel }}-${{ inputs.state_run_id }}-state
-          run-id: ${{ inputs.state_run_id }}
-          github-token: ${{ github.token }}
-          path: ${{ env.WORKROOT }}/.shorts-work/${{ inputs.channel }}/
+      - timeout-minutes: 20
+        name: Download the saved state (curl with retries; the download-artifact action hung on a 264 MB cross-run artifact)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          NAME="longform-${{ inputs.channel }}-${{ inputs.state_run_id }}-state"
+          ID=$(curl -fsS -m 60 -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.state_run_id }}/artifacts?per_page=100" \
+            | jq -r --arg n "$NAME" '.artifacts[]|select(.name==$n and (.expired|not))|.id' | head -1)
+          [ -n "$ID" ] || { echo "::error::artifact $NAME not found or expired"; exit 1; }
+          echo "artifact $NAME id $ID"
+          Z="$RUNNER_TEMP/state.zip"; rm -f "$Z"
+          S=$(date +%s)
+          curl -fSL --retry 4 --retry-delay 5 --retry-all-errors --connect-timeout 20 --max-time 900 -H "Authorization: Bearer $GH_TOKEN" \
+            -o "$Z" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip"
+          echo "downloaded $(du -h "$Z" | cut -f1) in $(( $(date +%s) - S )) s"
+          mkdir -p "$WORKROOT/.shorts-work/${{ inputs.channel }}"
+          unzip -q -o "$Z" -d "$WORKROOT/.shorts-work/${{ inputs.channel }}/"; rm -f "$Z"
+          echo "unzipped in $(( $(date +%s) - S )) s total"
       - name: Re-root paths (hosted runner → this Mac) + find stamp
         id: st
         working-directory: pipeline
