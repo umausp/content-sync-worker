@@ -291,8 +291,11 @@ jobs:
             node tools/ci/shell_env.mjs "$HOME/shell/.github/workflows/_longform-doc.yml" > "$HOME/pipeline.env"
             echo "env lines: $(grep -c '^export' "$HOME/pipeline.env")"
             echo 'source "$HOME/pipeline.env"' >> "$BASH_ENV"
-            python3 -m venv ~/venv && . ~/venv/bin/activate
-            pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts modal
+            # python3 on the machine image is too new for blis/spacy wheels: pin 3.12 with uv
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+            export PATH="$HOME/.local/bin:$PATH"
+            uv venv --python 3.12 ~/venv && . ~/venv/bin/activate
+            uv pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts modal pyyaml
             echo 'source ~/venv/bin/activate' >> "$BASH_ENV"
       - run:
           name: ONNX provisioning (CLIP scorer + cinematic)
