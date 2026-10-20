@@ -46,6 +46,9 @@ parameters:
   big_class:
     type: string
     default: 2xlarge+        # 20 vCPU / 40 GB — the largest Docker class; pass 2xlarge if the plan refuses it
+  mach_class:
+    type: string
+    default: 2xlarge         # Linux machine executor (the plan refuses docker classes): medium|large|xlarge|2xlarge
   mid_class:
     type: string
     default: 2xlarge         # 16 vCPU / 32 GB for validate + preview
@@ -116,6 +119,11 @@ executors:
     docker:
       - image: cimg/node:22.12
     resource_class: << pipeline.parameters.big_class >>
+
+  mach:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: << pipeline.parameters.mach_class >>
 
 jobs:
   validate:
@@ -252,8 +260,13 @@ jobs:
           destination: doc
 
   prepare_split:
-    executor: xxl
+    executor: mach
     steps:
+      - run:
+          name: Node 22 (machine image has none pinned)
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - >/dev/null
+            sudo apt-get install -y nodejs >/dev/null && node --version
       - run:
           name: Clone pipeline at /repo (the state holds absolute paths; Modal render runs from /repo too) + shell
           command: |
