@@ -94,6 +94,13 @@ jobs:
       NEWS_DDG_TOPICS: 'finance,tech'
       NEWS_DDG_MAX: '24'
       NEWS_FOCUS: 'business,tech'
+      # Single-source stories in NON-English editions publish when score >= 5 and importance >= 3 (their outlets rarely
+      # repeat each other, so the two-outlet rule left `in` with ~1 story per run). Every other gate still applies
+      # (LLM verifier, brand-fit, tip gate, summary checks). Validated in the QA lane: Hindi 4/4 stories passed the
+      # strict cloud validator. English editions are unaffected by design.
+      NEWS_NATIVE_SOLO: '1'
+      PUBLISH_NATIVE_MIN_SCORE: '5'
+      PUBLISH_NATIVE_MIN_IMPORTANCE: '3'
       SHORTS_DDG_NEWS: '1'
       SHORTS_DDG_RETRIES: '3'
       SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
