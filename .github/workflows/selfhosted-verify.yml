@@ -13,6 +13,9 @@ on:
       channel: { description: 'channel id', default: 'nl' }
       ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '70' }
       local_llm: { description: 'serve LLM + VLM from the cached mlx-community/gemma-4-31b-it-4bit on this Mac (think=false) instead of Ollama Cloud', type: boolean, default: false }
+      modal_state: { description: 'skip prepare: use this Modal-volume state (longform-state:/<channel>/<id>/state.tar), e.g. gh39391318214-1', default: '' }
+      attempts: { description: 'prepare attempts when the script gate stops a run (each picks a new stamp)', default: '2' }
+      social: { description: 'post to Facebook + Instagram after the YouTube step (Graph API, best effort)', type: boolean, default: false }
       upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
@@ -20,7 +23,8 @@ jobs:
     runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 240
     outputs:
-      stamp: ${{ steps.envs.outputs.stamp }}
+      stamp: ${{ steps.plan.outputs.stamp }}
+      ready: ${{ steps.plan.outputs.ready }}
     env:
       CH: ${{ inputs.channel }}
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
@@ -149,14 +153,55 @@ jobs:
           fi
           mkdir -p "$WORKROOT"
 
-      - name: Prepare
+      - name: Prepare (retries when the script gate stops a run)
+        if: inputs.modal_state == ''
         working-directory: pipeline
         run: |
           set -o pipefail; . "$RUNNER_TEMP/pipeline.env"
           export DOC_MOTION_CONCURRENCY=$PERF_CORES
-          S=$(date +%s); SHORTS_PHASE=prepare node shorts/build_short.mjs "$CH" 2>&1 | tee "$RUNNER_TEMP/prepare.log"
+          S=$(date +%s)
+          for A in $(seq 1 ${{ inputs.attempts }}); do
+            rm -rf "$SHORTS_WORK_DIR/$CH"
+            export SHORTS_STAMP=$(date -u +%Y%m%dT%H%M)
+            echo "=== prepare attempt $A/${{ inputs.attempts }} stamp $SHORTS_STAMP"
+            SHORTS_PHASE=prepare node shorts/build_short.mjs "$CH" 2>&1 | tee -a "$RUNNER_TEMP/prepare.log" || true
+            ls "$SHORTS_WORK_DIR/$CH"/*/lf_plan.json >/dev/null 2>&1 && break
+            echo "no render plan after attempt $A (script gate / preflight stopped the run)"
+          done
           echo "T_PREPARE=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+      - name: Fetch a Modal-prepared state instead of preparing
+        if: inputs.modal_state != ''
+        timeout-minutes: 25
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: |
+          set -e
+          . "$HOME/.cache/lf-venv/bin/activate"; uv pip install --quiet modal
+          S=$(date +%s); D="$RUNNER_TEMP/mstate"; rm -rf "$D"; mkdir -p "$D"
+          modal volume get --force longform-state "/${{ inputs.channel }}/${{ inputs.modal_state }}/state.tar" "$D/state.tar"
+          echo "fetched $(du -h "$D/state.tar" | cut -f1) in $(( $(date +%s) - S )) s"
+          tar -xf "$D/state.tar" -C "$WORKROOT"; rm -rf "$D"
+          grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F /repo/.shorts-work "$WORKROOT/.shorts-work/$CH" 2>/dev/null | while read -r f; do perl -pi -e 's#/repo/\.shorts-work#'"$WORKROOT/.shorts-work"'#g' "$f"; done
+          echo "T_PREPARE=0" >> "$GITHUB_ENV"; echo "state unpacked and re-rooted to $WORKROOT in $(( $(date +%s) - S )) s"
+      - name: Locate the render plan
+        id: plan
+        working-directory: pipeline
+        run: |
+          . "$RUNNER_TEMP/pipeline.env"
+          P=$(ls "$SHORTS_WORK_DIR/$CH"/*/lf_plan.json 2>/dev/null | head -1)
+          if [ -z "$P" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "no render plan: the script gate / preflight stopped this run — a normal outcome (the cron treats it the same). Nothing to render or upload."
+            exit 0
+          fi
+          STAMP=$(basename "$(dirname "$P")")
+          { echo "ready=true"; echo "stamp=$STAMP"; } >> "$GITHUB_OUTPUT"
+          sed -i '' "s/^export SHORTS_STAMP=.*/export SHORTS_STAMP=$STAMP/" "$RUNNER_TEMP/pipeline.env"
+          echo "SHORTS_STAMP=$STAMP" >> "$GITHUB_ENV"
+          jq -c '.plans[]|{i,dur}' "$P"
       - name: Render every beat in parallel
+        if: steps.plan.outputs.ready == 'true'
         working-directory: pipeline
         run: |
           . "$RUNNER_TEMP/pipeline.env"
@@ -167,6 +212,7 @@ jobs:
           jq -r '.plans[].i' "$P" | xargs -P "$N" -I{} sh -c 'SHORTS_PHASE=render LF_BEATS={} node shorts/build_short.mjs "$CH" > "$RUNNER_TEMP/render-{}.log" 2>&1; echo "beat {} exit $?"'
           echo "T_RENDER=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
       - name: Re-root absolute paths for the GitHub-hosted finalize job
+        if: steps.plan.outputs.ready == 'true'
         working-directory: pipeline
         run: |
           # the checkpoint stores absolute paths under SHORTS_WORK_DIR; the hosted runner's workspace differs from this Mac's
@@ -177,6 +223,7 @@ jobs:
           done
           echo "re-rooted $MINE -> $HOSTED"; du -sh "$MINE/$CH"
       - name: Upload run state + rendered clips
+        if: steps.plan.outputs.ready == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
@@ -202,6 +249,7 @@ jobs:
 
   finalize:
     needs: heavy
+    if: needs.heavy.outputs.ready == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
@@ -298,6 +346,19 @@ jobs:
           set -o pipefail
           node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP" 2>&1 | tee "$RUNNER_TEMP/upload.log"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
+      - name: Auto-post to Facebook + Instagram (Graph API, best effort — same step the shorts workflows run)
+        if: always() && inputs.social
+        continue-on-error: true
+        env:
+          SHORTS_SOCIAL_PUBLISH: '1'
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          META_APP_ID: ${{ secrets.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          THREADS_USER_TOKEN: ${{ secrets.THREADS_USER_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        run: |
+          if [ -z "$META_USER_TOKEN" ]; then echo "no META_USER_TOKEN — skipping social auto-post"; exit 0; fi
+          node shorts/social_publish.mjs "${{ inputs.channel }}" "$SHORTS_STAMP" 2>&1 | tee "$RUNNER_TEMP/social.log"
       - name: Summary (finalize)
         if: always()
         run: |
