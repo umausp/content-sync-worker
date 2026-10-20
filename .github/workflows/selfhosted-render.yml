@@ -74,26 +74,31 @@ jobs:
           export CINEMATIC_MODELS_DIR=$HOME/.cache/lf-models; mkdir -p "$CINEMATIC_MODELS_DIR"
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"; bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
           echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
-      - timeout-minutes: 20
-        name: Download the saved state (curl with retries; the download-artifact action hung on a 264 MB cross-run artifact)
+      - name: Download the saved state (32 parallel ranges — one stream from GitHub storage to this Mac is capped at ~150 KB/s)
+        timeout-minutes: 25
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
           NAME="longform-${{ inputs.channel }}-${{ inputs.state_run_id }}-state"
-          ID=$(curl -fsS -m 60 -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.state_run_id }}/artifacts?per_page=100" \
-            | jq -r --arg n "$NAME" '.artifacts[]|select(.name==$n and (.expired|not))|.id' | head -1)
-          [ -n "$ID" ] || { echo "::error::artifact $NAME not found or expired"; exit 1; }
-          echo "artifact $NAME id $ID"
-          Z="$RUNNER_TEMP/state.zip"; rm -f "$Z"
+          J=$(curl -fsS -m 60 -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.state_run_id }}/artifacts?per_page=100" \
+            | jq -c --arg n "$NAME" '.artifacts[]|select(.name==$n and (.expired|not))' | head -1)
+          [ -n "$J" ] || { echo "::error::artifact $NAME not found or expired"; exit 1; }
+          ID=$(echo "$J" | jq -r .id); SIZE=$(echo "$J" | jq -r .size_in_bytes); echo "artifact $NAME id $ID, $SIZE bytes"
+          D="$RUNNER_TEMP/parts"; rm -rf "$D"; mkdir -p "$D"
+          export GH_TOKEN ID D REPO=${{ github.repository }}
+          CH=8000000; PARTS=$(( SIZE / CH + 1 )); export CH
           S=$(date +%s)
-          curl -fSL --retry 4 --retry-delay 5 --retry-all-errors --connect-timeout 20 --max-time 900 -H "Authorization: Bearer $GH_TOKEN" \
-            -o "$Z" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip"
-          echo "downloaded $(du -h "$Z" | cut -f1) in $(( $(date +%s) - S )) s"
+          part() { i=$1; for try in 1 2 3 4 5; do
+              U=$(curl -sI -m 30 -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/$REPO/actions/artifacts/$ID/zip" | awk 'tolower($1)=="location:"{print $2}' | tr -d '\r')
+              [ -n "$U" ] && curl -sf -m 240 -o "$D/p$(printf %04d $i)" -r $((i*CH))-$((i*CH+CH-1)) "$U" && return 0; sleep 3; done; echo "part $i failed"; return 1; }
+          export -f part
+          seq 0 $((PARTS-1)) | xargs -P 32 -I{} bash -c 'part {}'
+          cat "$D"/p* > "$RUNNER_TEMP/state.zip"; rm -rf "$D"
+          echo "downloaded $(du -h "$RUNNER_TEMP/state.zip" | cut -f1) in $(( $(date +%s) - S )) s"
           mkdir -p "$WORKROOT/.shorts-work/${{ inputs.channel }}"
-          unzip -q -o "$Z" -d "$WORKROOT/.shorts-work/${{ inputs.channel }}/"; rm -f "$Z"
-          echo "unzipped in $(( $(date +%s) - S )) s total"
+          unzip -q -o "$RUNNER_TEMP/state.zip" -d "$WORKROOT/.shorts-work/${{ inputs.channel }}/"; rm -f "$RUNNER_TEMP/state.zip"
+          echo "unzipped; total $(( $(date +%s) - S )) s"
       - name: Re-root paths (hosted runner → this Mac) + find stamp
         id: st
         working-directory: pipeline
