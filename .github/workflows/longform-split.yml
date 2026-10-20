@@ -12,6 +12,7 @@ on:
       prepare_on: { description: 'circleci | modal', default: 'circleci' }
       render_cpu: { description: 'Modal cores for render', default: '16' }
       reuse_state_id: { description: 'skip prepare and render this existing Modal-volume state (e.g. gh39391318214-1)', default: '' }
+      finalize_only: { description: 'reuse the rendered clips saved on the volume (rendered.tar) and only run finalize', type: boolean, default: false }
       upload: { description: 'upload to YouTube after render', type: boolean, default: false }
 concurrency:
   group: longform-split-${{ inputs.channel }}
@@ -67,9 +68,10 @@ jobs:
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
       - name: Render + finalize on Modal (no upload)
         run: |
+          set -o pipefail
           pip install --quiet modal pyyaml
           S=$(date +%s)
-          modal run tools/modal/longform_modal.py::render --channel "${{ inputs.channel }}" --state-id "$STATE_ID" 2>&1 | tee render.log
+          modal run tools/modal/longform_modal.py::render --channel "${{ inputs.channel }}" --state-id "$STATE_ID" ${{ inputs.finalize_only && '--finalize-only' || '' }} 2>&1 | tee render.log
           echo "render stage wall: $(( $(date +%s) - S )) s" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Pull the staged output back from the volume
         id: out
