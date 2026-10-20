@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "upload step finished; elapsed since file made: $(( $(date +%s) - T0 )) s"
           ID=$(curl -fsS -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" | jq -r '.artifacts[0].id')
-          curl -sSL -m 180 -o /dev/null -w "github artifact download: %{speed_download} B/s, %{size_download} bytes in %{time_total}s\n" -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip"
+          curl -sSL -m 20 -o /dev/null -w "github artifact download: %{speed_download} B/s, %{size_download} bytes in %{time_total}s\n" -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip" || true
           rm -f "$RUNNER_TEMP/blob.bin"
           # per-connection throttle? resolve the storage URL once, then pull 16 x 6 MB ranges in parallel
           U=$(curl -sI -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip" | awk 'tolower($1)=="location:"{print $2}' | tr -d '\r')
