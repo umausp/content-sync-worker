@@ -11,14 +11,16 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       prepare_on: { description: 'circleci | modal', default: 'circleci' }
       render_cpu: { description: 'Modal cores for render', default: '16' }
+      reuse_state_id: { description: 'skip prepare and render this existing Modal-volume state (e.g. gh39391318214-1)', default: '' }
       upload: { description: 'upload to YouTube after render', type: boolean, default: false }
 concurrency:
   group: longform-split-${{ inputs.channel }}
   cancel-in-progress: false
 env:
-  STATE_ID: gh${{ github.run_id }}-${{ github.run_attempt }}
+  STATE_ID: ${{ inputs.reuse_state_id || format('gh{0}-{1}', github.run_id, github.run_attempt) }}
 jobs:
   prepare:
+    if: inputs.reuse_state_id == ''
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -45,6 +47,7 @@ jobs:
           modal run tools/modal/longform_modal.py::prepare --channel "${{ inputs.channel }}" --state-id "$STATE_ID" --ref "${{ inputs.pipeline_ref }}"
   render:
     needs: prepare
+    if: ${{ !cancelled() && (needs.prepare.result == 'success' || needs.prepare.result == 'skipped') }}
     runs-on: ubuntu-latest
     timeout-minutes: 240
     outputs:
