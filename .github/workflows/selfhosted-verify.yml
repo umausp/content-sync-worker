@@ -11,7 +11,7 @@ on:
     inputs:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       channel: { description: 'channel id', default: 'nl' }
-      ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '24' }
+      ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '70' }
       upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
@@ -60,7 +60,8 @@ jobs:
           echo "machine: $(sysctl -n machdep.cpu.brand_string) | perf cores $P | logical $L | RAM ${M} GiB"
           {
             echo "PERF_CORES=$P"; echo "LOGICAL=$L"
-            echo "NODE_OPTIONS=--max-old-space-size=$(( M / 4 * 1024 ))"
+            R=${{ inputs.ramdisk_gb }}; H=$(( (M - R - 6) * 1024 / 8 )); [ $H -ge 2048 ] || H=2048   # per-process cap: what the RAM disk leaves, split over ~8 node processes
+            echo "NODE_OPTIONS=--max-old-space-size=$H"
             echo "UV_THREADPOOL_SIZE=64"
             echo "DOC_VISUALS_CONCURRENCY=8"     # network-bound fetch/ground: more in flight, same budgets and gates
             echo "OMP_NUM_THREADS=$P"; echo "PYTORCH_ENABLE_MPS_FALLBACK=1"
