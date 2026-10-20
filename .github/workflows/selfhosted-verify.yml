@@ -83,6 +83,8 @@ jobs:
           RD=${{ inputs.ramdisk_gb }}; MEM=$(( $(sysctl -n hw.memsize) / 1073741824 ))
           # a local 31B 4-bit model needs ~25 GB resident: leave 40 GB for model + node + the OS
           if [ "${{ inputs.local_llm }}" = "true" ] && [ "$RD" -gt $(( MEM - 40 )) ]; then RD=$(( MEM - 40 )); echo "RAM disk capped to ${RD} GB for the local model"; fi
+          # a RAM disk left mounted by an earlier (cancelled) run still holds that run's state: detach every stale one first
+          for V in /Volumes/lfwork*; do [ -d "$V" ] && { echo "detaching stale $V"; hdiutil detach "$V" -force >/dev/null 2>&1 || true; }; done
           if [ "$RD" != "0" ]; then
             SECT=$(( RD * 2097152 ))
             DEV=$(hdiutil attach -nomount "ram://$SECT" | awk 'NR==1{print $1}')
@@ -92,7 +94,7 @@ jobs:
               echo "RAM disk unavailable — using disk"; [ -z "$DEV" ] || hdiutil detach "$DEV" -force >/dev/null 2>&1 || true
             fi
           fi
-          mkdir -p "$WR"; echo "WORKROOT=$WR" >> "$GITHUB_ENV"; echo "work dir: $WR"
+          mkdir -p "$WR"; rm -rf "$WR/.shorts-work"; echo "WORKROOT=$WR" >> "$GITHUB_ENV"; echo "work dir (empty): $WR"
       - name: System deps (brew, idempotent)
         run: brew install ffmpeg librsvg espeak-ng node@22 python@3.12 jq uv 2>&1 | tail -3 || true
       - name: Node 22 on PATH + npm ci
@@ -181,7 +183,7 @@ jobs:
           S=$(date +%s); D="$RUNNER_TEMP/mstate"; rm -rf "$D"; mkdir -p "$D"
           modal volume get --force longform-state "/${{ inputs.channel }}/${{ inputs.modal_state }}/state.tar" "$D/state.tar"
           echo "fetched $(du -h "$D/state.tar" | cut -f1) in $(( $(date +%s) - S )) s"
-          tar -xf "$D/state.tar" -C "$WORKROOT"; rm -rf "$D"
+          rm -rf "$WORKROOT/.shorts-work/$CH"; tar -xf "$D/state.tar" -C "$WORKROOT"; rm -rf "$D"
           grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F /repo/.shorts-work "$WORKROOT/.shorts-work/$CH" 2>/dev/null | while read -r f; do perl -pi -e 's#/repo/\.shorts-work#'"$WORKROOT/.shorts-work"'#g' "$f"; done
           echo "T_PREPARE=0" >> "$GITHUB_ENV"; echo "state unpacked and re-rooted to $WORKROOT in $(( $(date +%s) - S )) s"
       - name: Locate the render plan
@@ -189,7 +191,8 @@ jobs:
         working-directory: pipeline
         run: |
           . "$RUNNER_TEMP/pipeline.env"
-          P=$(ls "$SHORTS_WORK_DIR/$CH"/*/lf_plan.json 2>/dev/null | head -1)
+          N=$(ls -d "$SHORTS_WORK_DIR/$CH"/*/ 2>/dev/null | wc -l); [ "$N" -le 1 ] || echo "::warning::$N stamp dirs in the work dir — using the newest"
+          P=$(ls "$SHORTS_WORK_DIR/$CH"/*/lf_plan.json 2>/dev/null | sort | tail -1)
           if [ -z "$P" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "no render plan: the script gate / preflight stopped this run — a normal outcome (the cron treats it the same). Nothing to render or upload."
