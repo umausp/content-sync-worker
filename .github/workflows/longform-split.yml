@@ -1,0 +1,136 @@
+# GitHub → CircleCI → Modal → GitHub (source of truth for shell .github/workflows/longform-split.yml). Dispatch-only; never scheduled.
+#   1 prepare : GitHub triggers the CircleCI native `prepare` pipeline (machine large) and waits; it packs the state to Modal Volume longform-state.
+#               prepare_on=modal runs the same prepare on a small Modal box instead (proves the hand-over while CircleCI prepare is blocked).
+#   2 render  : GitHub runs Modal `::render` (render + finalize, no upload; 16 cores) and pulls the staged output back from the volume.
+#   3 upload  : GitHub-hosted job places the staged dir, then uploads to YouTube ONLY when input `upload` is true (default false).
+name: longform-split
+on:
+  workflow_dispatch:
+    inputs:
+      channel: { description: 'channel id', default: 'nl' }
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      prepare_on: { description: 'circleci | modal', default: 'circleci' }
+      render_cpu: { description: 'Modal cores for render', default: '16' }
+      upload: { description: 'upload to YouTube after render', type: boolean, default: false }
+concurrency:
+  group: longform-split-${{ inputs.channel }}
+  cancel-in-progress: false
+env:
+  STATE_ID: gh${{ github.run_id }}-${{ github.run_attempt }}
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - name: Prepare on CircleCI (machine large) and wait
+        if: inputs.prepare_on == 'circleci'
+        env:
+          CCI_API_KEY: ${{ secrets.CCI_API_KEY }}
+        run: tools/ci/circleci_run.sh prepare "${{ inputs.pipeline_ref }}" "${{ inputs.channel }}" "$STATE_ID"
+      - name: Prepare on a small Modal box (stand-in)
+        if: inputs.prepare_on == 'modal'
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          LONGFORM_DOC: '1'
+          MODAL_PREP_CPU: '8'
+        run: |
+          pip install --quiet modal pyyaml
+          modal run tools/modal/longform_modal.py::prepare --channel "${{ inputs.channel }}" --state-id "$STATE_ID" --ref "${{ inputs.pipeline_ref }}"
+  render:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    outputs:
+      stamp: ${{ steps.out.outputs.stamp }}
+    env:
+      MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+      MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+      GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      LONGFORM_DOC: '1'
+      MODAL_CPU: ${{ inputs.render_cpu }}
+      MODAL_DOC_MEM: '32768'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - name: Render + finalize on Modal (no upload)
+        run: |
+          pip install --quiet modal pyyaml
+          S=$(date +%s)
+          modal run tools/modal/longform_modal.py::render --channel "${{ inputs.channel }}" --state-id "$STATE_ID" 2>&1 | tee render.log
+          echo "render stage wall: $(( $(date +%s) - S )) s" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Pull the staged output back from the volume
+        id: out
+        run: |
+          modal volume get longform-state "/${{ inputs.channel }}/$STATE_ID/out" ./out
+          ls -la out | head -20; echo "stamp=$(cat out/STAMP)" >> "$GITHUB_OUTPUT"
+          { grep -hE '\[modal:(prepare|render)\]|\[studio:density2\]' render.log | sed 's/^/- /'; ls -lh out/short.mp4 | awk '{print "- mp4 " $5}'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep the staged output
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: out/
+          retention-days: 14
+  upload:
+    needs: render
+    if: inputs.upload
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SHORTS_STAMP: ${{ needs.render.outputs.stamp }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: docs/shorts/${{ inputs.channel }}/${{ needs.render.outputs.stamp }}/
+      - name: Select channel token and upload
+        env:
+            YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+            YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+            YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+            YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+            YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+            YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+            YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+            YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+            YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+            YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+            YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+            YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+            YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+            YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+            YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+            YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+            YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+            YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+            YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+            YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+            YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+            YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+        run: |
+          CH="${{ inputs.channel }}"; VAR="YT_REFRESH_TOKEN_$(printf '%s' "$CH" | tr '[:lower:]' '[:upper:]')"; TOKEN="${!VAR:-}"
+          [ -n "$TOKEN" ] || { echo "::error::no token for $CH ($VAR empty); upload refused"; exit 1; }
+          echo "::add-mask::$TOKEN"; export "$VAR=$TOKEN"
+          node shorts/upload.mjs "$CH" "$SHORTS_STAMP" 2>&1 | tee upload.log
+          grep -hoE 'https://youtube\.com/watch\?v=[A-Za-z0-9_-]+' upload.log | head -1 | sed 's/^/- YouTube: /' >> "$GITHUB_STEP_SUMMARY" || true
