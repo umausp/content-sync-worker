@@ -61,14 +61,15 @@ jobs:
           {
             echo "PERF_CORES=$P"; echo "LOGICAL=$L"
             R=${{ inputs.ramdisk_gb }}; H=$(( (M - R - 6) * 1024 / 8 )); [ $H -ge 2048 ] || H=2048   # per-process cap: what the RAM disk leaves, split over ~8 node processes
-            echo "NODE_OPTIONS=--max-old-space-size=$H"
+            echo "NODE_HEAP_MB=$H"   # NODE_OPTIONS itself cannot be set through GITHUB_ENV (blocked); exported in pipeline.env below
             echo "UV_THREADPOOL_SIZE=64"
             echo "DOC_VISUALS_CONCURRENCY=8"     # network-bound fetch/ground: more in flight, same budgets and gates
             echo "OMP_NUM_THREADS=$P"; echo "PYTORCH_ENABLE_MPS_FALLBACK=1"
             echo "PATH=/opt/homebrew/bin:/usr/local/bin:$PATH"
           } >> "$GITHUB_ENV"
-          # keep the laptop awake for the whole job
-          nohup caffeinate -dimsu -w $$ >/dev/null 2>&1 &
+          # keep the laptop awake for the whole job: a detached caffeinate (own session, survives this step), 4 h cap, killed in Cleanup
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' caffeinate -dimsu -t 14400 >/dev/null 2>&1 < /dev/null &
+          echo "CAFFEINATE_PID=$!" >> "$GITHUB_ENV"; pmset -g assertions | grep -iE 'PreventUserIdleSystemSleep|caffeinate' | head -2 || true
           echo "T_START=$(date +%s)" >> "$GITHUB_ENV"
 
       - name: Work dir (RAM disk when asked and possible, else disk)
@@ -113,7 +114,7 @@ jobs:
           node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$RUNNER_TEMP/pipeline.env"
           echo "env lines: $(grep -c '^export' "$RUNNER_TEMP/pipeline.env")"
           STAMP=$(date -u +%Y%m%dT%H%M); echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
-          { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"
+          { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"; echo "export NODE_OPTIONS=--max-old-space-size=$NODE_HEAP_MB"
             echo "export SHORTS_STAMP=$STAMP"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
           mkdir -p "$WORKROOT"
 
@@ -164,6 +165,7 @@ jobs:
         if: always()
         run: |
           [ -z "${RAMDISK_DEV:-}" ] || hdiutil detach "$RAMDISK_DEV" -force || true
+          [ -z "${CAFFEINATE_PID:-}" ] || kill "$CAFFEINATE_PID" 2>/dev/null || true
 
   finalize:
     needs: heavy
