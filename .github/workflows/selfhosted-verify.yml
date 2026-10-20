@@ -70,19 +70,19 @@ jobs:
           nohup caffeinate -dimsu -w $$ >/dev/null 2>&1 &
           echo "T_START=$(date +%s)" >> "$GITHUB_ENV"
 
-      - name: RAM disk for the work dir
-        if: inputs.ramdisk_gb != '0'
+      - name: Work dir (RAM disk when asked and possible, else disk)
         run: |
-          SECT=$(( ${{ inputs.ramdisk_gb }} * 2097152 ))
-          DEV=$(hdiutil attach -nomount "ram://$SECT" | tr -d ' ')
-          diskutil erasevolume APFS lfwork "$DEV" >/dev/null
-          echo "RAMDISK_DEV=$DEV" >> "$GITHUB_ENV"
-          echo "WORKROOT=/Volumes/lfwork" >> "$GITHUB_ENV"
-          df -h /Volumes/lfwork | tail -1
-      - name: Work dir on disk (no RAM disk)
-        if: inputs.ramdisk_gb == '0'
-        run: echo "WORKROOT=$RUNNER_TEMP/lfwork" >> "$GITHUB_ENV" && mkdir -p "$RUNNER_TEMP/lfwork"
-
+          WR="$RUNNER_TEMP/lfwork"
+          if [ "${{ inputs.ramdisk_gb }}" != "0" ]; then
+            SECT=$(( ${{ inputs.ramdisk_gb }} * 2097152 ))
+            DEV=$(hdiutil attach -nomount "ram://$SECT" | awk 'NR==1{print $1}')
+            if [ -n "$DEV" ] && diskutil erasevolume HFS+ lfwork "$DEV" >/dev/null 2>&1 && [ -d /Volumes/lfwork ]; then
+              echo "RAMDISK_DEV=$DEV" >> "$GITHUB_ENV"; WR=/Volumes/lfwork; df -h "$WR" | tail -1
+            else
+              echo "RAM disk unavailable — using disk"; [ -z "$DEV" ] || hdiutil detach "$DEV" -force >/dev/null 2>&1 || true
+            fi
+          fi
+          mkdir -p "$WR"; echo "WORKROOT=$WR" >> "$GITHUB_ENV"; echo "work dir: $WR"
       - name: System deps (brew, idempotent)
         run: brew install ffmpeg librsvg espeak-ng node@22 python@3.12 jq uv 2>&1 | tail -3 || true
       - name: Node 22 on PATH + npm ci
