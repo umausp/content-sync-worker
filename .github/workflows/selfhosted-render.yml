@@ -1,0 +1,143 @@
+# Render-only test on the self-hosted Mac: take a REAL prepared state (the `-state` artifact a cron/verify run uploaded), re-root its
+# absolute paths to this Mac, then render every beat in parallel + finalize (concat, release gate, stage — NO upload).
+# Source of truth for the shell's .github/workflows/selfhosted-render.yml. Use it to time/tune the CPU-bound stage without a 10-45 min prepare.
+name: selfhosted-render
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      channel: { description: 'channel of the saved state', default: 'nl' }
+      state_run_id: { description: 'GitHub run id whose longform-<ch>-<id>-state artifact to render', default: '39271726523' }
+      ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '40' }
+      beat_conc: { description: 'motion workers per beat (0 = auto from cores)', default: '0' }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  render:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 120
+    env:
+      CH: ${{ inputs.channel }}
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+      WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+      WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+      OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+      OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+      DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
+      EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
+      EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}
+      EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}
+      RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+      RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+    steps:
+      - name: Checkout private pipeline (./pipeline) + this shell (./shell)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - uses: actions/checkout@v4
+        with: { path: shell }
+      - name: Machine profile, keep-awake, work dir (RAM disk when possible)
+        run: |
+          export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
+          P=$(sysctl -n hw.perflevel0.physicalcpu); M=$(( $(sysctl -n hw.memsize) / 1073741824 ))
+          echo "machine: $(sysctl -n machdep.cpu.brand_string) | perf cores $P | RAM ${M} GiB"
+          { echo "PERF_CORES=$P"; echo "PATH=/opt/homebrew/bin:/usr/local/bin:$PATH"; echo "T_START=$(date +%s)"; echo "NODE_HEAP_MB=$(( (M - ${{ inputs.ramdisk_gb }} - 6) * 1024 / 8 ))"; } >> "$GITHUB_ENV"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' caffeinate -dimsu -t 14400 >/dev/null 2>&1 < /dev/null &
+          echo "CAFFEINATE_PID=$!" >> "$GITHUB_ENV"
+          WR="$RUNNER_TEMP/lfwork"
+          if [ "${{ inputs.ramdisk_gb }}" != "0" ]; then
+            DEV=$(hdiutil attach -nomount "ram://$(( ${{ inputs.ramdisk_gb }} * 2097152 ))" | awk 'NR==1{print $1}')
+            if [ -n "$DEV" ] && diskutil erasevolume HFS+ lfwork "$DEV" >/dev/null 2>&1 && [ -d /Volumes/lfwork ]; then
+              echo "RAMDISK_DEV=$DEV" >> "$GITHUB_ENV"; WR=/Volumes/lfwork
+            else echo "RAM disk unavailable — using disk"; fi
+          fi
+          mkdir -p "$WR"; echo "WORKROOT=$WR" >> "$GITHUB_ENV"; echo "work dir: $WR"
+      - name: System deps, Node, Python venv, ONNX (all cached after the first run)
+        working-directory: pipeline
+        run: |
+          brew install ffmpeg librsvg espeak-ng node@22 python@3.12 jq uv 2>&1 | tail -2 || true
+          export PATH="$(brew --prefix node@22)/bin:$PATH"; echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"
+          npm ci --no-audit --no-fund
+          V=$HOME/.cache/lf-venv; [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"; uv pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts pyyaml
+          echo "$V/bin" >> "$GITHUB_PATH"
+          export CINEMATIC_MODELS_DIR=$HOME/.cache/lf-models; mkdir -p "$CINEMATIC_MODELS_DIR"
+          bash scripts/setup_image_clip.sh || echo "clip setup failed open"; bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
+          echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
+      - name: Download the saved state
+        uses: actions/download-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ inputs.state_run_id }}-state
+          run-id: ${{ inputs.state_run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ env.WORKROOT }}/.shorts-work/${{ inputs.channel }}/
+      - name: Re-root paths (hosted runner → this Mac) + find stamp
+        id: st
+        working-directory: pipeline
+        run: |
+          W="$WORKROOT/.shorts-work"
+          STAMP=$(ls "$W/$CH" | grep -E '^[0-9]{8}T' | head -1); [ -n "$STAMP" ] || { echo "::error::no stamp dir in state"; ls -la "$W/$CH"; exit 1; }
+          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"; echo "SHORTS_STAMP=$STAMP" >> "$GITHUB_ENV"
+          N=0
+          for HOSTED in /home/runner/work/content-sync-worker/content-sync-worker/.shorts-work /home/runner/work/agyata-pipeline-private/agyata-pipeline-private/.shorts-work; do
+            grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F "$HOSTED" "$W/$CH" 2>/dev/null | while read -r f; do perl -pi -e 's#\Q'"$HOSTED"'\E#'"$W"'#g' "$f"; done
+          done
+          echo "stamp $STAMP; remaining hosted refs: $(grep -rIl --exclude='*.mp4' -F '/home/runner/' "$W/$CH" 2>/dev/null | wc -l)"
+          du -sh "$W/$CH"; jq -c '.plans[]|{i,beat:(.beat|tostring|.[0:40]),dur}' "$W/$CH/$STAMP/lf_plan.json"
+      - name: Pipeline env (the cron's flags)
+        working-directory: pipeline
+        run: |
+          node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$RUNNER_TEMP/pipeline.env"
+          { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"; echo "export SHORTS_STAMP=$SHORTS_STAMP"
+            echo "export NODE_OPTIONS=--max-old-space-size=$NODE_HEAP_MB"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
+      - name: Render every beat in parallel
+        working-directory: pipeline
+        run: |
+          . "$RUNNER_TEMP/pipeline.env"
+          P="$SHORTS_WORK_DIR/$CH/$SHORTS_STAMP/lf_plan.json"; N=$(jq '.plans|length' "$P")
+          C=${{ inputs.beat_conc }}; [ "$C" != 0 ] || C=$(( (PERF_CORES * 3 / 2 + N - 1) / N )); export DOC_MOTION_CONCURRENCY=$C
+          echo "beats=$N, motion workers per beat=$C, perf cores=$PERF_CORES"
+          S=$(date +%s)
+          jq -r '.plans[].i' "$P" | xargs -P "$N" -I{} sh -c 'SHORTS_PHASE=render LF_BEATS={} node shorts/build_short.mjs "$CH" > "$RUNNER_TEMP/render-{}.log" 2>&1; echo "beat {} exit $?"'
+          echo "T_RENDER=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+          tail -n 3 "$RUNNER_TEMP"/render-*.log
+      - name: Finalize (concat, release gate, stage — NO upload)
+        working-directory: pipeline
+        run: |
+          set -o pipefail; . "$RUNNER_TEMP/pipeline.env"
+          S=$(date +%s); SHORTS_PHASE=finalize node shorts/build_short.mjs "$CH" 2>&1 | tee "$RUNNER_TEMP/finalize.log"
+          echo "T_FINALIZE=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+      - name: Summary
+        if: always()
+        working-directory: pipeline
+        run: |
+          {
+            echo "## selfhosted-render $CH state ${{ inputs.state_run_id }} — $(sysctl -n machdep.cpu.brand_string), ${PERF_CORES} perf cores, $(( $(sysctl -n hw.memsize) / 1073741824 )) GiB"
+            echo "- wall: render ${T_RENDER:-?} s | finalize ${T_FINALIZE:-?} s | total $(( $(date +%s) - T_START )) s  (GitHub 4-vCPU baseline: render ~1200 s)"
+            grep -hE '\[studio:density2\]' "$RUNNER_TEMP/finalize.log" "$RUNNER_TEMP"/render-*.log 2>/dev/null | tail -1 | sed 's/^/- /'
+            find docs/shorts/"$CH" -name 'short.mp4' -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5 " " $9}'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Keep the staged mp4 + meta as an artifact (3 days)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: pipeline/docs/shorts/${{ inputs.channel }}/
+          retention-days: 3
+          if-no-files-found: warn
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -rf pipeline/docs/shorts/"$CH"/* || true
+          [ -z "${RAMDISK_DEV:-}" ] || hdiutil detach "$RAMDISK_DEV" -force || true
+          [ -z "${CAFFEINATE_PID:-}" ] || kill "$CAFFEINATE_PID" 2>/dev/null || true
