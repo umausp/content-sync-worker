@@ -8,6 +8,7 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       channel: { description: 'channel of the saved state', default: 'nl' }
       state_run_id: { description: 'GitHub run id whose longform-<ch>-<id>-state artifact to render', default: '39271726523' }
+      modal_state: { description: 'use this Modal-volume state instead of a GitHub artifact, e.g. gh39391318214-1 (longform-state:/<channel>/<id>/state.tar)', default: '' }
       ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '40' }
       beat_conc: { description: 'motion workers per beat (0 = auto from cores)', default: '0' }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
@@ -75,6 +76,7 @@ jobs:
           bash scripts/setup_image_clip.sh || echo "clip setup failed open"; bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
           echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
       - name: Download the saved state (32 parallel ranges — one stream from GitHub storage to this Mac is capped at ~150 KB/s)
+        if: inputs.modal_state == ''
         timeout-minutes: 25
         env:
           GH_TOKEN: ${{ github.token }}
@@ -99,6 +101,21 @@ jobs:
           mkdir -p "$WORKROOT/.shorts-work/${{ inputs.channel }}"
           unzip -q -o "$RUNNER_TEMP/state.zip" -d "$WORKROOT/.shorts-work/${{ inputs.channel }}/"; rm -f "$RUNNER_TEMP/state.zip"
           echo "unzipped; total $(( $(date +%s) - S )) s"
+      - name: Fetch the state from the Modal volume (prepared on Modal, rendered here)
+        if: inputs.modal_state != ''
+        timeout-minutes: 25
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: |
+          set -e
+          . "$HOME/.cache/lf-venv/bin/activate"; uv pip install --quiet modal
+          S=$(date +%s); D="$RUNNER_TEMP/mstate"; rm -rf "$D"; mkdir -p "$D"
+          modal volume get --force longform-state "/${{ inputs.channel }}/${{ inputs.modal_state }}/state.tar" "$D/state.tar"
+          modal volume get --force longform-state "/${{ inputs.channel }}/${{ inputs.modal_state }}/meta.json" "$D/meta.json"
+          echo "fetched $(du -h "$D/state.tar" | cut -f1) in $(( $(date +%s) - S )) s; meta: $(cat "$D/meta.json")"
+          tar -xf "$D/state.tar" -C "$WORKROOT"      # .shorts-work/<ch>/... (+ work/doc)
+          rm -rf "$D"; echo "unpacked in $(( $(date +%s) - S )) s total"
       - name: Re-root paths (hosted runner → this Mac) + find stamp
         id: st
         working-directory: pipeline
@@ -107,7 +124,7 @@ jobs:
           STAMP=$(ls "$W/$CH" | grep -E '^[0-9]{8}T' | head -1); [ -n "$STAMP" ] || { echo "::error::no stamp dir in state"; ls -la "$W/$CH"; exit 1; }
           echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"; echo "SHORTS_STAMP=$STAMP" >> "$GITHUB_ENV"
           N=0
-          for HOSTED in /home/runner/work/content-sync-worker/content-sync-worker/.shorts-work /home/runner/work/agyata-pipeline-private/agyata-pipeline-private/.shorts-work; do
+          for HOSTED in /repo/.shorts-work /home/runner/work/content-sync-worker/content-sync-worker/.shorts-work /home/runner/work/agyata-pipeline-private/agyata-pipeline-private/.shorts-work; do
             grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F "$HOSTED" "$W/$CH" 2>/dev/null | while read -r f; do perl -pi -e 's#\Q'"$HOSTED"'\E#'"$W"'#g' "$f"; done
           done
           echo "stamp $STAMP; remaining hosted refs: $(grep -rIl --exclude='*.mp4' -F '/home/runner/' "$W/$CH" 2>/dev/null | wc -l)"
