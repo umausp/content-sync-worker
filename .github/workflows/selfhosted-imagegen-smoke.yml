@@ -24,7 +24,7 @@ jobs:
           if [ -n "$PY" ] && "$PY" -c "import mflux; from mflux.models.flux.variants.txt2img.flux import Flux1" 2>/dev/null; then echo "mflux imports fine with $PY ($("$PY" -c 'import PIL;print("pillow",PIL.__version__)'))"; exit 0; fi
           [ -n "$PY" ] && "$PY" -c 'import PIL;print("broken install had pillow",PIL.__version__)' 2>/dev/null
           echo "mflux import broken (or missing) → uv tool install --force --python /opt/homebrew/bin/python3.12 mflux==0.23.0"
-          /opt/homebrew/bin/uv tool install --force --python /opt/homebrew/bin/python3.12 --with "pillow==11.3.0" mflux==0.23.0 2>&1 | rg "pillow|mflux|mlx==|Installed" | head -8
+          /opt/homebrew/bin/uv tool install --force --python /opt/homebrew/bin/python3.12 --with "pillow>=12.3.0,<13" mflux==0.23.0 2>&1 | rg "pillow|mflux|mlx==|Installed" | head -8
           export PATH="$HOME/.local/bin:$PATH"; CLI="$(command -v mflux-generate)"; PY="$(head -1 "$CLI" | sed -E 's/^#! *//; s/ .*$//')"
           "$PY" -c "import mflux, sys, PIL; from mflux.models.flux.variants.txt2img.flux import Flux1; print('ok python', sys.version.split()[0], 'pillow', PIL.__version__)" || { echo "::error::mflux still cannot import after reinstall"; exit 1; }
       - name: Probe the mflux install
