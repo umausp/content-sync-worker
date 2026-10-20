@@ -105,8 +105,11 @@ jobs:
         run: |
           [ "$MODE" != doc ] || exit 0
           cd pipeline
+          echo "pipeline commit: $(git log -1 --format='%h %s' | cut -c1-100)"
+          # STUDIO_REPLAY_FAKE_PHOTO=1: the saved pool's photo paths do not exist here, so a stand-in photo lets the
+          # split (photo + panel) windows form exactly as in the local and Modal replays; without it every filler is text.
           for g in deny "$GROUND" all; do
-            node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work /tmp/replay | grep -v '^\[replay:ch\]'
+            STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work /tmp/replay | grep -v '^\[replay:ch\]'
           done
       - name: Preview — real clip renders + concat + contact sheet
         run: |
