@@ -48,7 +48,7 @@ parameters:
     default: 2xlarge+        # 20 vCPU / 40 GB — the largest Docker class; pass 2xlarge if the plan refuses it
   mach_class:
     type: string
-    default: 2xlarge         # Linux machine executor (the plan refuses docker classes): medium|large|xlarge|2xlarge
+    default: large           # Linux machine executor; this plan refuses docker classes AND machine xlarge/2xlarge (probed 2026-10-20): large=4 vCPU is the max
   mid_class:
     type: string
     default: 2xlarge         # 16 vCPU / 32 GB for validate + preview
