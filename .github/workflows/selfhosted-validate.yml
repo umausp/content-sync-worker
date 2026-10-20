@@ -1,0 +1,71 @@
+# selfhosted-validate — the FAST code check on the Mac runner (user 2026-10-20: "use the Mac lane, you can test small
+# parts of the code there too"): unit suites, acceptance probes and the offline motion replay on a saved run's
+# script/packet. No TTS, no LLM, no render — a couple of minutes. selfhosted-verify is the full prepare+render lane.
+name: selfhosted-validate
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      channel: { description: 'channel of the saved script artifact (replay only)', default: 'nl' }
+      run_id: { description: 'GitHub run id whose longform-<channel>-<run>-script artifact feeds the replay', default: '39271726523' }
+      ground: { description: 'replay grounding policy deny | all | p:<ratio>', default: 'p:0.17' }
+      tests: { description: 'extra node --test globs (space separated), e.g. test/doc_english_channels_test.mjs', default: '' }
+concurrency: { group: selfhosted-validate, cancel-in-progress: false }
+jobs:
+  validate:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 30
+    env:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      CH: ${{ inputs.channel }}
+      RUN_ID: ${{ inputs.run_id }}
+      GROUND: ${{ inputs.ground }}
+    steps:
+      - name: Checkout private pipeline (./pipeline) + this shell (./shell)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - uses: actions/checkout@v4
+        with: { path: shell }
+      - name: Node 22 on PATH + npm ci
+        working-directory: pipeline
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version && npm ci --no-audit --no-fund
+          echo "pipeline commit: $(git log -1 --format='%h %s' | cut -c1-100)"
+      - name: Unit suites
+        working-directory: pipeline
+        run: |
+          set -o pipefail
+          node --test 'test/doc_*test.mjs' 2>&1 | tail -3
+          node --test 'packages/longform-studio/test/*_test.mjs' 2>&1 | tail -3
+          node --test test/motion_dispatch_test.mjs 'test/*safe_motion*test.mjs' test/split_photo_test.mjs test/split_sentences_test.mjs test/split_card_test.mjs 2>&1 | tail -3
+          node --test test/doc_narrator_test.mjs test/doc_english_channels_test.mjs test/channel_voices_test.mjs 2>&1 | tail -3
+          if [ -n "${{ inputs.tests }}" ]; then node --test ${{ inputs.tests }} 2>&1 | tail -3; fi
+      - name: Acceptance probes
+        working-directory: pipeline
+        run: |
+          node tools/acceptance/probes/studio_gate_lines.mjs
+          node tools/acceptance/probes/studio_graphics_frames.mjs
+          node tools/acceptance/probes/studio_prune_samples.mjs --n 200 --seed 7 | tail -2
+      - name: Script artifact (script.json, packet.json, topic.json)
+        run: |
+          mkdir -p run
+          NAME="longform-${CH}-${RUN_ID}-script"
+          ID=$(curl -sS -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" "https://api.github.com/repos/umausp/content-sync-worker/actions/runs/${RUN_ID}/artifacts" | jq -r --arg n "$NAME" '.artifacts[] | select(.name==$n) | .id' | head -1)
+          [ -n "$ID" ] || { echo "::error::artifact $NAME not found"; exit 1; }
+          curl -sSL -H "Authorization: Bearer ${PRIVATE_REPO_TOKEN}" -o run/script.zip "https://api.github.com/repos/umausp/content-sync-worker/actions/artifacts/${ID}/zip"
+          cd run && unzip -o -q script.zip && ls
+      - name: Offline replay (density without a render)
+        working-directory: pipeline
+        run: |
+          # STUDIO_REPLAY_FAKE_PHOTO=1: the saved pool's photo paths do not exist here; a stand-in photo lets split windows form.
+          for g in deny "$GROUND" all; do
+            STUDIO_REPLAY_FAKE_PHOTO=1 node tools/studio_replay_motion.mjs --script ../run/script.json --packet ../run/packet.json --topic ../run/topic.json --ground "$g" --work "$RUNNER_TEMP/replay" | grep -v '^\[replay:ch\]'
+          done
+      - name: Cleanup
+        if: ${{ always() }}
+        run: rm -rf run "$RUNNER_TEMP/replay"
