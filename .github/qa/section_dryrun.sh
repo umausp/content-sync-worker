@@ -38,6 +38,13 @@ for e in $EDITIONS_LIST; do
   node "$QA_ROOT/.github/qa/validate_cloud.mjs" "$prev" --model "$QA_VALIDATOR_MODEL" --out "$QA_OUT/validation_$e.json" > "$QA_OUT/validate_$e.log" 2>&1
   vrc=$?
   [ "$vrc" = 0 ] || fails+=("$e: validator exit $vrc (see validate_$e.log)")
+  bash "$QA_ROOT/.github/qa/schema_check.sh" "$prev" > "$QA_OUT/schema_$e.log" 2>&1
+  src=$?
+  case $src in
+    0) ;;
+    1) fails+=("$e: ingest bodies fail the news-svc schema (news-svc would 400 them): $(grep -m2 SCHEMA-FAIL "$QA_OUT/schema_$e.log" | cut -c1-200 | tr '\n' ' ')") ;;
+    *) fails+=("$e: schema check could not run (see schema_$e.log, schema_deps.log)") ;;
+  esac
   if [ -f "$QA_OUT/validation_$e.json" ]; then
     node -e 'const j=require(process.argv[1]); (j.warnings||[]).forEach(w=>console.log(process.argv[2]+": "+w))' "$QA_OUT/validation_$e.json" "$e" 2>/dev/null \
       | while IFS= read -r w; do qa_warn "$w"; done
