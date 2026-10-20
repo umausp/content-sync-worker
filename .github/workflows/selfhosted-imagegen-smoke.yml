@@ -1,0 +1,66 @@
+# selfhosted-imagegen-smoke — prove a LOCAL FLUX.1-schnell (mflux, 4-bit) on the Mac runner: probe the install, save the
+# 4-bit weights once (~7 GB under ~/.cache/lf-models), time one 1344x768 image, print the Python API signature, upload the PNG.
+# $0: nothing leaves the machine except the HF weight download on the first run (HF_TOKEN from secrets; schnell is gated).
+name: selfhosted-imagegen-smoke
+on:
+  workflow_dispatch:
+    inputs:
+      width:  { description: 'image width (multiple of 16)',  default: '1344' }
+      height: { description: 'image height (multiple of 16)', default: '768' }
+      steps:  { description: 'schnell steps', default: '4' }
+      prompt: { description: 'prompt', default: 'hand-drawn graphic novel illustration, storybook documentary style, a cargo plane on a rain-wet runway at night, crates of gold being loaded, warm sepia and gold, soft paper grain, wide cinematic composition, no text, no letters, not photorealistic' }
+jobs:
+  smoke:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 120
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
+      LF_MODELS: ${{ format('{0}/.cache/lf-models', env.HOME) }}
+    steps:
+      - name: Probe the mflux install
+        run: |
+          set +e
+          echo "runner user: $(id -un)  HOME=$HOME  free: $(df -h "$HOME" | awk 'NR==2{print $4}')"
+          for c in mflux-generate mflux-save python3 python3.12 uv pipx; do printf '%-16s %s\n' "$c" "$(command -v $c || echo '-')"; done
+          ls -la "$LF_MODELS" 2>/dev/null || echo "no $LF_MODELS yet"
+          # Find the interpreter that has mflux: venv under lf-models, then pipx, then any python3 on PATH.
+          for py in "$LF_MODELS/mflux-venv/bin/python" "$HOME/.local/pipx/venvs/mflux/bin/python" /opt/homebrew/bin/python3.12 /opt/homebrew/bin/python3.13 /opt/homebrew/bin/python3 python3; do
+            if "$py" -c "import mflux" 2>/dev/null; then echo "MFLUX_PY=$py" >> "$GITHUB_ENV"; echo "mflux python: $py ($("$py" -c 'import mflux,sys;print(getattr(mflux,"__version__","?"), sys.version.split()[0])'))"; break; fi
+          done
+          grep -q MFLUX_PY "$GITHUB_ENV" || { echo "::error::no python with mflux found (checked venv, pipx, brew pythons)"; exit 1; }
+      - name: Python API signature (for the server)
+        run: |
+          "$MFLUX_PY" - <<'PY'
+          import inspect, importlib, pkgutil, mflux
+          mods=[m.name for m in pkgutil.walk_packages(mflux.__path__, 'mflux.')]
+          print("modules with flux1:", [m for m in mods if m.split('.')[-1] in ('flux','flux1')][:8])
+          for p in ("mflux.models.flux.flux","mflux.flux.flux","mflux.models.flux"):
+              try:
+                  m=importlib.import_module(p); c=getattr(m,'Flux1',None)
+                  if c: print(p,"Flux1.__init__",inspect.signature(c.__init__)); print("generate_image",inspect.signature(c.generate_image)); break
+              except Exception as e: print(p,"err",e)
+          for p in ("mflux.config.model_config","mflux.models.common.model_config"):
+              try:
+                  m=importlib.import_module(p); mc=getattr(m,'ModelConfig',None); print(p,"ModelConfig:",[x for x in dir(mc) if not x.startswith('_')][:24] if mc else dir(m)[:10]); break
+              except Exception as e: print(p,"err",e)
+          PY
+      - name: Save 4-bit schnell weights once
+        run: |
+          BIN="$(dirname "$MFLUX_PY")"
+          if [ -d "$LF_MODELS/flux-schnell-4bit" ] && [ -n "$(ls -A "$LF_MODELS/flux-schnell-4bit")" ]; then echo "weights present: $(du -sh "$LF_MODELS/flux-schnell-4bit" | cut -f1)"; exit 0; fi
+          mkdir -p "$LF_MODELS"; S=$(date +%s)
+          "$BIN/mflux-save" --model schnell --quantize 4 --path "$LF_MODELS/flux-schnell-4bit"
+          echo "saved in $(( $(date +%s) - S )) s: $(du -sh "$LF_MODELS/flux-schnell-4bit" | cut -f1)"
+      - name: Generate one image (timed)
+        run: |
+          BIN="$(dirname "$MFLUX_PY")"; OUT="$RUNNER_TEMP/smoke"; mkdir -p "$OUT"; cd "$OUT"
+          S=$(date +%s)
+          "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke.png" || "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}"
+          echo "first image (incl. model load): $(( $(date +%s) - S )) s"
+          S=$(date +%s)
+          "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 8 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke2.png" || true
+          echo "second image (CLI, warm cache): $(( $(date +%s) - S )) s"
+          ls -la "$OUT"; find "$OUT" -name '*.png' -exec file {} \;
+      - uses: actions/upload-artifact@v4
+        with: { name: imagegen-smoke-${{ github.run_id }}, path: ${{ runner.temp }}/smoke, if-no-files-found: warn, retention-days: 3 }
