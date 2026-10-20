@@ -92,10 +92,12 @@ export const PROMPTS = {
     'Return {"states_main_event": true|false, "reason": "<short>"}.',
     'Reply with ONLY one JSON object, no prose, no code fence.',
   ].join('\n'),
-  image: ({ title }) => [
+  image: ({ title, summary = '' }) => [
     `Headline: ${title}`,
-    'Does this image depict the news event in the headline or its main subject (a person, place or thing it is about)?',
-    'A generic stock photo that does not match the story is NOT relevant.',
+    ...(summary ? [`Summary: ${String(summary).slice(0, 400)}`] : []),
+    'Does this image depict the news event, or a main subject (a named person, company, product, place) that the headline or summary is about?',
+    'RELEVANT: it shows that named subject (for example the company\'s building, product or branded stage, or the named person).',
+    'NOT relevant: a different entity or a namesake, a generic stock photo, an unrelated event, or a photo that falsely implies an event the story does not report (a crash, protest or fire the story is not about).',
     'Return {"relevant": true|false, "depicts": "<what the image shows>", "reason": "<short>"}.',
     'Reply with ONLY one JSON object, no prose, no code fence.',
   ].join('\n'),
@@ -191,7 +193,7 @@ export async function validateStory(story, { host, key, model, fetchImpl = fetch
       images.push({ url: im.url, verdict: 'unavailable', reason: e?.message || String(e) });
       continue;
     }
-    const v = await ask(opts, PROMPTS.image({ title }), [img.b64]);
+    const v = await ask(opts, PROMPTS.image({ title, summary }), [img.b64]);
     if (!v.ok) images.push({ url: img.url, verdict: 'error', reason: v.error });
     else images.push({ url: img.url, verdict: v.json.relevant === true ? 'relevant' : 'irrelevant', depicts: v.json.depicts ?? '', reason: v.json.reason ?? '' });
   }
