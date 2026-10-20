@@ -36,3 +36,10 @@ jobs:
           ID=$(curl -fsS -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" | jq -r '.artifacts[0].id')
           curl -sSL -m 180 -o /dev/null -w "github artifact download: %{speed_download} B/s, %{size_download} bytes in %{time_total}s\n" -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip"
           rm -f "$RUNNER_TEMP/blob.bin"
+          # per-connection throttle? resolve the storage URL once, then pull 16 x 6 MB ranges in parallel
+          U=$(curl -sI -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip" | awk 'tolower($1)=="location:"{print $2}' | tr -d '\r')
+          [ -n "$U" ] || { echo "no redirect location"; exit 0; }
+          S=$(date +%s)
+          for i in $(seq 0 15); do ( curl -s -m 120 -o "$RUNNER_TEMP/part$i" -r $((i*6000000))-$((i*6000000+5999999)) "$U" ) & done; wait
+          B=$(cat "$RUNNER_TEMP"/part* | wc -c); D=$(( $(date +%s) - S )); echo "parallel x16 ranges: $B bytes in ${D}s = $(( B / (D>0?D:1) / 1024 )) KB/s"
+          rm -f "$RUNNER_TEMP"/part*
