@@ -12,6 +12,7 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       channel: { description: 'channel id', default: 'nl' }
       ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '70' }
+      local_llm: { description: 'serve LLM + VLM from the cached mlx-community/gemma-4-31b-it-4bit on this Mac (think=false) instead of Ollama Cloud', type: boolean, default: false }
       upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
@@ -75,8 +76,11 @@ jobs:
       - name: Work dir (RAM disk when asked and possible, else disk)
         run: |
           WR="$RUNNER_TEMP/lfwork"
-          if [ "${{ inputs.ramdisk_gb }}" != "0" ]; then
-            SECT=$(( ${{ inputs.ramdisk_gb }} * 2097152 ))
+          RD=${{ inputs.ramdisk_gb }}; MEM=$(( $(sysctl -n hw.memsize) / 1073741824 ))
+          # a local 31B 4-bit model needs ~25 GB resident: leave 40 GB for model + node + the OS
+          if [ "${{ inputs.local_llm }}" = "true" ] && [ "$RD" -gt $(( MEM - 40 )) ]; then RD=$(( MEM - 40 )); echo "RAM disk capped to ${RD} GB for the local model"; fi
+          if [ "$RD" != "0" ]; then
+            SECT=$(( RD * 2097152 ))
             DEV=$(hdiutil attach -nomount "ram://$SECT" | awk 'NR==1{print $1}')
             if [ -n "$DEV" ] && diskutil erasevolume HFS+ lfwork "$DEV" >/dev/null 2>&1 && [ -d /Volumes/lfwork ]; then
               echo "RAMDISK_DEV=$DEV" >> "$GITHUB_ENV"; WR=/Volumes/lfwork; df -h "$WR" | tail -1
@@ -107,6 +111,25 @@ jobs:
           bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
           echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
 
+      - name: Local MLX model (gemma-4-31b 4-bit, think=false) behind an Ollama-protocol shim
+        if: inputs.local_llm
+        working-directory: pipeline
+        run: |
+          . "$HOME/.cache/lf-venv/bin/activate"
+          uv pip install --quiet --upgrade mlx-vlm
+          export HF_HUB_OFFLINE=1   # the weights are already in ~/.cache/huggingface; never re-download
+          M=mlx-community/gemma-4-31b-it-4bit
+          ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$M not in the HF cache on this Mac"; exit 1; }
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$M" --port 8081 > "$RUNNER_TEMP/mlx.log" 2>&1 < /dev/null &
+          echo "MLX_PID=$!" >> "$GITHUB_ENV"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11434 --upstream http://127.0.0.1:8081 --model "$M" > "$RUNNER_TEMP/shim.log" 2>&1 < /dev/null &
+          echo "SHIM_PID=$!" >> "$GITHUB_ENV"
+          for i in $(seq 1 120); do
+            R=$(curl -s -m 120 http://127.0.0.1:11434/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            echo "$R" | grep -q '"done":true' && { echo "model ready after ~$((i*10)) s: $R" | cut -c1-300; exit 0; }
+            sleep 10
+          done
+          echo "::error::local model did not come up"; tail -30 "$RUNNER_TEMP/mlx.log" "$RUNNER_TEMP/shim.log"; exit 1
       - name: Pipeline env (the cron's flags) + machine overrides
         id: envs
         working-directory: pipeline
@@ -116,6 +139,14 @@ jobs:
           STAMP=$(date -u +%Y%m%dT%H%M); echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
           { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"; echo "export NODE_OPTIONS=--max-old-space-size=$NODE_HEAP_MB"
             echo "export SHORTS_STAMP=$STAMP"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
+          if [ "${{ inputs.local_llm }}" = "true" ]; then
+            L=mlx-community/gemma-4-31b-it-4bit
+            { echo "export OLLAMA_HOST=http://127.0.0.1:11434"; echo "export OLLAMA_API_KEY=local"   # non-empty key = chat protocol; the shim ignores auth
+              for v in DOC_WRITER_MODEL DOC_CRITIC_MODEL DOC_RESEARCH_MODEL OLLAMA_MODEL SHORTS_VLM_GATE_MODEL SHORTS_VLM_GATE_FALLBACK_MODELS NAME_GUARD_OLLAMA_MODEL; do echo "export $v=$L"; done
+              echo "export OLLAMA_GLOBAL_CONCURRENCY=2"; echo "export DOC_VISUALS_CONCURRENCY=3"   # one local GPU serves LLM and VLM: do not queue 10 deep
+              echo "export SHORTS_VLM_GATE_TIMEOUT_MS=180000"; } >> "$RUNNER_TEMP/pipeline.env"
+            echo "local model env applied"
+          fi
           mkdir -p "$WORKROOT"
 
       - name: Prepare
@@ -166,6 +197,8 @@ jobs:
         run: |
           [ -z "${RAMDISK_DEV:-}" ] || hdiutil detach "$RAMDISK_DEV" -force || true
           [ -z "${CAFFEINATE_PID:-}" ] || kill "$CAFFEINATE_PID" 2>/dev/null || true
+          [ -z "${SHIM_PID:-}" ] || kill "$SHIM_PID" 2>/dev/null || true
+          [ -z "${MLX_PID:-}" ] || kill "$MLX_PID" 2>/dev/null || true
 
   finalize:
     needs: heavy
