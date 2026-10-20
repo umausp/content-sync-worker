@@ -42,6 +42,8 @@ jobs:
       RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
       RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      IMAGEGEN_ENDPOINT: ${{ secrets.IMAGEGEN_ENDPOINT }}   # Phase 14B illustrated scenes (FLUX.1-schnell on Modal); empty token = feature off
+      IMAGEGEN_TOKEN: ${{ secrets.IMAGEGEN_TOKEN }}
       UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
       UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
@@ -256,6 +258,8 @@ jobs:
       RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
       RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      IMAGEGEN_ENDPOINT: ${{ secrets.IMAGEGEN_ENDPOINT }}   # Phase 14B illustrated scenes (FLUX.1-schnell on Modal); empty token = feature off
+      IMAGEGEN_TOKEN: ${{ secrets.IMAGEGEN_TOKEN }}
       UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
       UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
