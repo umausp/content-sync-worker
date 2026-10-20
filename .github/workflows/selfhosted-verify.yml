@@ -1,0 +1,294 @@
+# Self-hosted (Apple-silicon MacBook, labels self-hosted/macOS/ARM64) HEAVY lane. Job `heavy` runs prepare + render of
+# every beat in parallel on the Mac (concurrency from the core count, work dir on a RAM disk, venv/models cached), then
+# uploads the run state (incl. rendered clips) as a GitHub artifact. Job `finalize` runs on a GitHub-hosted runner, exactly
+# like the cron's: concat, release gate, stage, then (only when `upload` is true) the YouTube upload with the channel token,
+# and keeps the staged mp4/meta as an artifact. Secrets for upload never leave GitHub-hosted runners.
+# Source of truth for the PUBLIC shell's .github/workflows/selfhosted-verify.yml (umausp/content-sync-worker).
+# Flags are the cron's: the env block is read from _longform-doc.yml by tools/ci/shell_env.mjs.
+name: selfhosted-verify
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      channel: { description: 'channel id', default: 'nl' }
+      ramdisk_gb: { description: 'RAM disk for the work dir (0 = disk)', default: '24' }
+      upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  heavy:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 240
+    outputs:
+      stamp: ${{ steps.envs.outputs.stamp }}
+    env:
+      CH: ${{ inputs.channel }}
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+      WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+      WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+      OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+      OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+      DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
+      EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
+      EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}
+      EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}
+      RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+      RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+    steps:
+      - name: Checkout private pipeline (./pipeline) + this shell (./shell)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - uses: actions/checkout@v4
+        with: { path: shell }
+
+      - name: Machine profile + tuning
+        run: |
+          export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
+          P=$(sysctl -n hw.perflevel0.physicalcpu 2>/dev/null || sysctl -n hw.physicalcpu)
+          L=$(sysctl -n hw.logicalcpu); M=$(( $(sysctl -n hw.memsize) / 1073741824 ))
+          echo "machine: $(sysctl -n machdep.cpu.brand_string) | perf cores $P | logical $L | RAM ${M} GiB"
+          {
+            echo "PERF_CORES=$P"; echo "LOGICAL=$L"
+            echo "NODE_OPTIONS=--max-old-space-size=$(( M / 4 * 1024 ))"
+            echo "UV_THREADPOOL_SIZE=64"
+            echo "DOC_VISUALS_CONCURRENCY=8"     # network-bound fetch/ground: more in flight, same budgets and gates
+            echo "OMP_NUM_THREADS=$P"; echo "PYTORCH_ENABLE_MPS_FALLBACK=1"
+            echo "PATH=/opt/homebrew/bin:/usr/local/bin:$PATH"
+          } >> "$GITHUB_ENV"
+          # keep the laptop awake for the whole job
+          nohup caffeinate -dimsu -w $$ >/dev/null 2>&1 &
+          echo "T_START=$(date +%s)" >> "$GITHUB_ENV"
+
+      - name: RAM disk for the work dir
+        if: inputs.ramdisk_gb != '0'
+        run: |
+          SECT=$(( ${{ inputs.ramdisk_gb }} * 2097152 ))
+          DEV=$(hdiutil attach -nomount "ram://$SECT" | tr -d ' ')
+          diskutil erasevolume APFS lfwork "$DEV" >/dev/null
+          echo "RAMDISK_DEV=$DEV" >> "$GITHUB_ENV"
+          echo "WORKROOT=/Volumes/lfwork" >> "$GITHUB_ENV"
+          df -h /Volumes/lfwork | tail -1
+      - name: Work dir on disk (no RAM disk)
+        if: inputs.ramdisk_gb == '0'
+        run: echo "WORKROOT=$RUNNER_TEMP/lfwork" >> "$GITHUB_ENV" && mkdir -p "$RUNNER_TEMP/lfwork"
+
+      - name: System deps (brew, idempotent)
+        run: brew install ffmpeg librsvg espeak-ng node@22 python@3.12 jq uv 2>&1 | tail -3 || true
+      - name: Node 22 on PATH + npm ci
+        working-directory: pipeline
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version && npm ci --no-audit --no-fund
+      - name: Python 3.12 venv + TTS stack (cached in ~/.cache/lf-venv)
+        run: |
+          V=$HOME/.cache/lf-venv
+          [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"
+          uv pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts pyyaml
+          echo "$V/bin" >> "$GITHUB_PATH"
+      - name: ONNX provisioning (cached in ~/.cache/lf-models)
+        working-directory: pipeline
+        run: |
+          export CINEMATIC_MODELS_DIR=$HOME/.cache/lf-models; mkdir -p "$CINEMATIC_MODELS_DIR"
+          bash scripts/setup_image_clip.sh || echo "clip setup failed open"
+          bash scripts/setup_cinematic.sh || echo "cinematic setup failed open"
+          echo "CINEMATIC_MODELS_DIR=$CINEMATIC_MODELS_DIR" >> "$GITHUB_ENV"
+
+      - name: Pipeline env (the cron's flags) + machine overrides
+        id: envs
+        working-directory: pipeline
+        run: |
+          node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$RUNNER_TEMP/pipeline.env"
+          echo "env lines: $(grep -c '^export' "$RUNNER_TEMP/pipeline.env")"
+          STAMP=$(date -u +%Y%m%dT%H%M); echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
+          { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"
+            echo "export SHORTS_STAMP=$STAMP"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
+          mkdir -p "$WORKROOT"
+
+      - name: Prepare
+        working-directory: pipeline
+        run: |
+          set -o pipefail; . "$RUNNER_TEMP/pipeline.env"
+          export DOC_MOTION_CONCURRENCY=$PERF_CORES
+          S=$(date +%s); SHORTS_PHASE=prepare node shorts/build_short.mjs "$CH" 2>&1 | tee "$RUNNER_TEMP/prepare.log"
+          echo "T_PREPARE=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+      - name: Render every beat in parallel
+        working-directory: pipeline
+        run: |
+          . "$RUNNER_TEMP/pipeline.env"
+          P=$(ls "$SHORTS_WORK_DIR/$CH"/*/lf_plan.json 2>/dev/null | head -1); [ -n "$P" ] || { echo "no render plan — nothing to render"; exit 1; }
+          N=$(jq '.plans|length' "$P"); export DOC_MOTION_CONCURRENCY=$(( (PERF_CORES * 3 / 2 + N - 1) / N ))
+          echo "beats=$N, motion workers per beat=$DOC_MOTION_CONCURRENCY, perf cores=$PERF_CORES"
+          S=$(date +%s)
+          jq -r '.plans[].i' "$P" | xargs -P "$N" -I{} sh -c 'SHORTS_PHASE=render LF_BEATS={} node shorts/build_short.mjs "$CH" > "$RUNNER_TEMP/render-{}.log" 2>&1; echo "beat {} exit $?"'
+          echo "T_RENDER=$(( $(date +%s) - S ))" >> "$GITHUB_ENV"
+      - name: Re-root absolute paths for the GitHub-hosted finalize job
+        working-directory: pipeline
+        run: |
+          # the checkpoint stores absolute paths under SHORTS_WORK_DIR; the hosted runner's workspace differs from this Mac's
+          HOSTED=/home/runner/work/content-sync-worker/content-sync-worker/.shorts-work
+          MINE="$WORKROOT/.shorts-work"
+          grep -rIl --exclude='*.mp4' --exclude='*.wav' --exclude='*.mp3' -F "$MINE" "$MINE/$CH" 2>/dev/null | while read -r f; do
+            perl -pi -e 's#\Q'"$MINE"'\E#'"$HOSTED"'#g' "$f"
+          done
+          echo "re-rooted $MINE -> $HOSTED"; du -sh "$MINE/$CH"
+      - name: Upload run state + rendered clips
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
+          path: ${{ env.WORKROOT }}/.shorts-work/${{ inputs.channel }}/
+          include-hidden-files: true
+          retention-days: 7
+          compression-level: 0
+      - name: Summary (heavy lane timings)
+        if: always()
+        run: |
+          {
+            echo "## heavy lane $CH @ ${{ inputs.pipeline_ref }} — $(sysctl -n machdep.cpu.brand_string), ${PERF_CORES} perf cores, $(( $(sysctl -n hw.memsize) / 1073741824 )) GiB"
+            echo "- wall: prepare ${T_PREPARE:-?} s | render ${T_RENDER:-?} s | total $(( $(date +%s) - T_START )) s  (GitHub 4-vCPU baseline: prepare ~2900 s, render ~1200 s)"
+            grep -hE '\[studio:density2\]' "$RUNNER_TEMP/prepare.log" | tail -1 | sed 's/^/- /'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Cleanup (RAM disk)
+        if: always()
+        run: |
+          [ -z "${RAMDISK_DEV:-}" ] || hdiutil detach "$RAMDISK_DEV" -force || true
+
+  finalize:
+    needs: heavy
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SHORTS_PHASE: finalize
+      SHORTS_STAMP: ${{ needs.heavy.outputs.stamp }}
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      PIXBAY_API_KEY: ${{ secrets.PIXBAY_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      EUROPEANA_API_KEY: ${{ secrets.EUROPEANA_API_KEY }}
+      WIKIMEDIA_BOT_USER: ${{ secrets.WIKIMEDIA_BOT_USER }}
+      WIKIMEDIA_BOT_PASSWORD: ${{ secrets.WIKIMEDIA_BOT_PASSWORD }}
+      OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+      OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+      DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
+      EDGE_TTS_RELAY_TOKEN: ${{ secrets.EDGE_TTS_RELAY_TOKEN }}
+      EDGE_TTS_RELAY_URL: ${{ vars.EDGE_TTS_RELAY_URL }}
+      EDGE_TTS_RELAY_DISABLE: ${{ vars.EDGE_TTS_RELAY_DISABLE }}
+      RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
+      RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
+    steps:
+      - name: Checkout private pipeline code
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      - name: Render setup (cached)
+        uses: ./.github/actions/render-setup
+        with:
+          tts-pip: 'kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts'
+          apt-packages: 'ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra'
+          voice-cache-path: '~/.cache/huggingface'
+          voice-cache-key: 'hf-kokoro-m2m100-v1'
+      - name: Download run state + clips from the Mac
+        uses: actions/download-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-state
+          path: .shorts-work/${{ inputs.channel }}/
+      - uses: actions/checkout@v4
+        with: { path: shell }
+      - name: Pipeline env (the cron's flags) into this job
+        run: |
+          node tools/ci/shell_env.mjs shell/.github/workflows/_longform-doc.yml | sed -E "s/^export ([A-Z0-9_]+)='(.*)'$/\1=\2/" >> "$GITHUB_ENV"
+          grep -c . "$GITHUB_ENV"
+      - name: Finalize (concat, release gate, stage)
+        run: |
+          set -o pipefail
+          node shorts/build_short.mjs ${{ inputs.channel }} 2>&1 | tee "$RUNNER_TEMP/finalize.log"
+      - name: Select channel YouTube token
+        id: yt_token
+        if: inputs.upload
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN_WORLD: ${{ secrets.YT_REFRESH_TOKEN_WORLD }}
+          YT_REFRESH_TOKEN_USA: ${{ secrets.YT_REFRESH_TOKEN_USA }}
+          YT_REFRESH_TOKEN_UK: ${{ secrets.YT_REFRESH_TOKEN_UK }}
+          YT_REFRESH_TOKEN_BHARAT: ${{ secrets.YT_REFRESH_TOKEN_BHARAT }}
+          YT_REFRESH_TOKEN_DE: ${{ secrets.YT_REFRESH_TOKEN_DE }}
+          YT_REFRESH_TOKEN_NL: ${{ secrets.YT_REFRESH_TOKEN_NL }}
+          YT_REFRESH_TOKEN_FR: ${{ secrets.YT_REFRESH_TOKEN_FR }}
+          YT_REFRESH_TOKEN_JP: ${{ secrets.YT_REFRESH_TOKEN_JP }}
+          YT_REFRESH_TOKEN_SV: ${{ secrets.YT_REFRESH_TOKEN_SV }}
+          YT_REFRESH_TOKEN_NO: ${{ secrets.YT_REFRESH_TOKEN_NO }}
+          YT_REFRESH_TOKEN_DA: ${{ secrets.YT_REFRESH_TOKEN_DA }}
+          YT_REFRESH_TOKEN_IT: ${{ secrets.YT_REFRESH_TOKEN_IT }}
+          YT_REFRESH_TOKEN_ES: ${{ secrets.YT_REFRESH_TOKEN_ES }}
+          YT_REFRESH_TOKEN_PT: ${{ secrets.YT_REFRESH_TOKEN_PT }}
+          YT_REFRESH_TOKEN_PL: ${{ secrets.YT_REFRESH_TOKEN_PL }}
+          YT_REFRESH_TOKEN_ID: ${{ secrets.YT_REFRESH_TOKEN_ID }}
+          YT_REFRESH_TOKEN_VI: ${{ secrets.YT_REFRESH_TOKEN_VI }}
+          YT_REFRESH_TOKEN_TR: ${{ secrets.YT_REFRESH_TOKEN_TR }}
+          YT_REFRESH_TOKEN_AR: ${{ secrets.YT_REFRESH_TOKEN_AR }}
+          YT_REFRESH_TOKEN_MX: ${{ secrets.YT_REFRESH_TOKEN_MX }}
+          YT_REFRESH_TOKEN_AU: ${{ secrets.YT_REFRESH_TOKEN_AU }}
+          YT_REFRESH_TOKEN_CA: ${{ secrets.YT_REFRESH_TOKEN_CA }}
+        run: |
+          CH="${{ inputs.channel }}"
+          VAR="YT_REFRESH_TOKEN_$(printf '%s' "$CH" | tr '[:lower:]' '[:upper:]')"
+          TOKEN="${!VAR:-}"
+          if [ -z "$TOKEN" ]; then echo "::error::no token for $CH ($VAR empty); upload refused"; exit 1; fi
+          echo "::add-mask::$TOKEN"; echo "$VAR=$TOKEN" >> "$GITHUB_ENV"
+          echo "YT_CLIENT_ID=$YT_CLIENT_ID" >> "$GITHUB_ENV"; echo "YT_CLIENT_SECRET=$YT_CLIENT_SECRET" >> "$GITHUB_ENV"
+      - name: Auto-upload to YouTube
+        id: yt
+        if: inputs.upload
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node shorts/upload.mjs ${{ inputs.channel }} "$SHORTS_STAMP" 2>&1 | tee "$RUNNER_TEMP/upload.log"
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
+      - name: Summary (finalize)
+        if: always()
+        run: |
+          {
+            echo "## finalize ${{ inputs.channel }} (upload=${{ inputs.upload }})"
+            grep -hE '\[studio:[a-z0-9_-]+\]' "$RUNNER_TEMP/finalize.log" "$RUNNER_TEMP/upload.log" 2>/dev/null | sed 's/^/- /' || true
+            find docs/shorts/${{ inputs.channel }} -name 'short.mp4' -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5 " " $9}'
+            grep -hoE 'https://youtube\.com/watch\?v=[A-Za-z0-9_-]+' "$RUNNER_TEMP/upload.log" 2>/dev/null | head -1 | sed 's/^/- YouTube: /' || true
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload studio meta (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-studio-meta
+          path: |
+            docs/shorts/${{ inputs.channel }}/*/meta.json
+            docs/shorts/${{ inputs.channel }}/*/growth_plan.json
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Upload staged doc artifact (only if NOT uploaded)
+        if: always() && steps.yt.outputs.uploaded != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ inputs.channel }}-${{ github.run_id }}-staged
+          path: docs/shorts/${{ inputs.channel }}/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Purge staged output
+        if: always()
+        run: rm -rf docs/shorts/${{ inputs.channel }}/* || true
