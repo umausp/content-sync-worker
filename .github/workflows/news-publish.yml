@@ -14,6 +14,11 @@ on:
         required: true
         default: 'world'
         type: string
+      dry_run:
+        description: 'Preview only: run the full pipeline (gates, LLM summary, VLM image gate) but POST nothing, claim no dedup keys and send no push. Preview JSON is uploaded as the news-preview-<edition> artifact.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -56,7 +61,7 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 2  # shares the Ollama Cloud cap (10) with video renders; was 4
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     concurrency:
       group: news-publish-${{ matrix.edition }}
@@ -67,16 +72,39 @@ jobs:
       INGEST_URL: ${{ secrets.INGEST_URL }}
       STORIES_URL: ${{ secrets.STORIES_URL }}
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
-      # LLM provider ladder (ollama intentionally excluded: no local model on this runner).
-      PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai'
+      # ── Production flags. Values mirror shorts-world.yml on origin/main (2026-10-19).
+      #    NEWS_DDG / NEWS_DDG_TOPICS / NEWS_DDG_MAX / NEWS_FOCUS: website-news DuckDuckGo
+      #      finance+tech vertical (NEWS_DDG_MAX caps DDG items per edition run).
+      #    SHORTS_DDG_NEWS / SHORTS_DDG_RETRIES / SHORTS_DDG_PROXY_URL: DDG news vertical and
+      #      retry/backoff on 202/403/429 (Azure/GitHub runner IPs are throttled); the proxy
+      #      secret is optional, empty => direct.
+      #    NOT SET here on purpose: GDELT_ENABLED, BUZZ_ENABLED.
+      #    These flags are LIVE only after pipeline branch feat/news-ddg-finance-tech is merged
+      #    to the private repo's main. Until then the pipeline does not read them and unknown
+      #    env vars are ignored harmlessly.
+      # Ollama Cloud is the ONLY LLM provider (no paid Gemini/OpenAI spend). Other provider
+      # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
+      PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY, same as shorts-world.yml
+      PROVIDER_USE_OLLAMA: '1'
+      OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
+      OLLAMA_MAX_TRIES: '6'
+      NEWS_DDG: '1'
+      NEWS_DDG_TOPICS: 'finance,tech'
+      NEWS_DDG_MAX: '24'
+      NEWS_FOCUS: 'business,tech'
+      SHORTS_DDG_NEWS: '1'
+      SHORTS_DDG_RETRIES: '3'
+      SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      GEMINI_MODEL: 'gemini-2.0-flash'
+      GEMINI_MODEL: 'gemini-flash-lite-latest'
       SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
       SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
       COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
       COHERE_MODEL: 'command-r-08-2024'
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-      OPENROUTER_MODEL: 'meta-llama/llama-3.3-70b-instruct:free'
+      OPENROUTER_MODEL: 'openrouter/free'  # auto-router to a free model, immune to model-ID rot
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
@@ -85,7 +113,25 @@ jobs:
       GITMODELS_MODEL: 'openai/gpt-4o-mini'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: 'gpt-4o-mini'
-      OPENAI_DAILY_CAP: '80'
+      OPENAI_DAILY_CAP: '30'
+      # NEWS_DRY_RUN=1 only when dispatched with dry_run=true (anything else is '0', which the pipeline ignores).
+      NEWS_DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+      # ── Website news summary + licence-free images (STAGE 1/2). Production values.
+      NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
+      NEWS_SUMMARY_MODEL: 'deepseek-v4.1-flash:cloud'  # same model family as the VLM gate; pinned here so a model-ID change is a reviewed diff
+      NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
+      NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
+      NEWS_IMAGES_VLM: '1'  # pixel relevance gate on the picker's candidates; fail-closed (no verdict -> no images)
+      NEWS_IMAGES_MAX_STORIES: '25'  # cap on stories that run the image picker per run
+      NEWS_IMAGES_FALLBACK_PUBLISHER: '0'  # never publish a news-site photo as a fallback (licence-free only)
+      # ── VLM image gate (shorts/media/visual_gate.mjs). Values copied from shorts-world.yml on origin/main.
+      #    The picker forces SHORTS_VLM_STRICT=1 for its own call; it is not set globally here.
+      SHORTS_VLM_GATE: '1'  # gate enabled (also needs OLLAMA_API_KEY above)
+      SHORTS_VLM_GATE_MODEL: 'deepseek-v4.1-flash:cloud'  # the pinned VLM (user directive 2026-10-06)
+      SHORTS_VLM_GATE_FALLBACK_MODELS: 'gemma4:31b-cloud'  # used only when the primary returns no verdict; copied from shorts-world. Conflicts with the 2026-10-06 deepseek-only directive: set '' to disable the chain
+      SHORTS_VLM_TIER: '1'  # 4-tier verdict (EXACT/CONTEXTUAL/GENERIC/WRONG); only WRONG is dropped, ranking uses the tier
+      SHORTS_VLM_ENTITY_CTX: '1'  # story entities are passed to the judge
+      SHORTS_VLM_CORP_CTX: '1'  # corporate/organisation context for company stories
     steps:
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
@@ -110,6 +156,15 @@ jobs:
           set -o pipefail
           LOG="$RUNNER_TEMP/review.log"
           node src/review.mjs 2>&1 | tee "$LOG"
+
+      - name: Upload dry-run preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-preview-${{ matrix.edition }}
+          path: out/news_preview_*.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Summary
         if: always()
