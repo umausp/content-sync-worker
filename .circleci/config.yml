@@ -81,9 +81,12 @@ commands:
     steps:
       - run:
           name: apt render deps
+          no_output_timeout: 30m
           command: |
-            sudo apt-get update -qq
-            sudo apt-get install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra python3-venv
+            export DEBIAN_FRONTEND=noninteractive
+            sudo systemctl stop unattended-upgrades apt-daily.service apt-daily-upgrade.service 2>/dev/null || true
+            sudo apt-get -o DPkg::Lock::Timeout=600 update -qq
+            sudo apt-get -o DPkg::Lock::Timeout=600 install -y --no-install-recommends ffmpeg librsvg2-bin espeak-ng fonts-dejavu fonts-noto-core fonts-noto-cjk fonts-noto-extra python3-venv
   script_artifact:
     description: Download the saved run's script artifact (script.json, packet.json, topic.json) into ./run
     steps:
