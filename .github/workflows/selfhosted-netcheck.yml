@@ -1,0 +1,21 @@
+# 1-minute network probe of the self-hosted Mac: download/upload speed to a CDN and to GitHub (the lane moves 200-300 MB of state each way).
+name: selfhosted-netcheck
+on: workflow_dispatch
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  net:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 10
+    steps:
+      - name: Speeds
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          sp() { curl -s -o /dev/null -m 40 -w "$1: %{speed_download} B/s down, %{size_download} bytes in %{time_total}s\n" "${@:2}"; }
+          sp "cloudflare 50MB" "https://speed.cloudflare.com/__down?bytes=52428800"
+          sp "github codeload (pipeline repo tarball)" -H "Authorization: Bearer $GH_TOKEN" -L "https://api.github.com/repos/${{ github.repository }}/tarball/main"
+          sp "huggingface (config.json)" "https://huggingface.co/bert-base-uncased/resolve/main/model.safetensors" --range 0-20000000
+          head -c 20000000 /dev/zero > "$RUNNER_TEMP/up.bin"
+          curl -s -o /dev/null -m 60 -w "cloudflare upload 20MB: %{speed_upload} B/s up in %{time_total}s\n" --data-binary @"$RUNNER_TEMP/up.bin" "https://speed.cloudflare.com/__up"
+          rm -f "$RUNNER_TEMP/up.bin"
+          echo "proxy env: ${HTTPS_PROXY:-none} ${https_proxy:-none}"; scutil --proxy 2>/dev/null | grep -E 'HTTPSEnable|HTTPSProxy' || true
+          networksetup -getairportnetwork en0 2>/dev/null || true
