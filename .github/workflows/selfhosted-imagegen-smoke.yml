@@ -17,9 +17,19 @@ jobs:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
     steps:
+      - name: Reinstall mflux on Python 3.12 when the current install cannot import (owner OK, 2026-10-21)
+        run: |
+          set +e
+          CLI="$(command -v mflux-generate)"; PY="$(head -1 "$CLI" 2>/dev/null | sed -E 's/^#! *//; s/ .*$//')"
+          if [ -n "$PY" ] && "$PY" -c "import mflux; from mflux.models.flux.variants.txt2img.flux import Flux1" 2>/dev/null; then echo "mflux imports fine with $PY"; exit 0; fi
+          echo "mflux import broken (or missing) → uv tool install --force --python /opt/homebrew/bin/python3.12 mflux==0.23.0"
+          /opt/homebrew/bin/uv tool install --force --python /opt/homebrew/bin/python3.12 mflux==0.23.0 2>&1 | tail -5
+          export PATH="$HOME/.local/bin:$PATH"; CLI="$(command -v mflux-generate)"; PY="$(head -1 "$CLI" | sed -E 's/^#! *//; s/ .*$//')"
+          "$PY" -c "import mflux, sys; from mflux.models.flux.variants.txt2img.flux import Flux1; print('ok', sys.version.split()[0])" || { echo "::error::mflux still cannot import after reinstall"; exit 1; }
       - name: Probe the mflux install
         run: |
           set +e
+          export PATH="$HOME/.local/bin:$PATH"
           LF_MODELS="$HOME/.cache/lf-models"; echo "LF_MODELS=$LF_MODELS" >> "$GITHUB_ENV"
           echo "runner user: $(id -un)  HOME=$HOME  free: $(df -h "$HOME" | awk 'NR==2{print $4}')"
           for c in mflux-generate mflux-save python3 python3.12 uv pipx; do printf '%-16s %s\n' "$c" "$(command -v $c || echo '-')"; done
@@ -38,12 +48,12 @@ jobs:
           import inspect, importlib, pkgutil, mflux
           mods=[m.name for m in pkgutil.walk_packages(mflux.__path__, 'mflux.')]
           print("modules with flux1:", [m for m in mods if m.split('.')[-1] in ('flux','flux1')][:8])
-          for p in ("mflux.models.flux.flux","mflux.flux.flux","mflux.models.flux"):
+          for p in ("mflux.models.flux.variants.txt2img.flux","mflux.models.flux","mflux.models.flux.flux"):
               try:
                   m=importlib.import_module(p); c=getattr(m,'Flux1',None)
                   if c: print(p,"Flux1.__init__",inspect.signature(c.__init__)); print("generate_image",inspect.signature(c.generate_image)); break
               except Exception as e: print(p,"err",e)
-          for p in ("mflux.config.model_config","mflux.models.common.model_config"):
+          for p in ("mflux.models.common.config.model_config","mflux.models.common.config.config","mflux.models.common.config"):
               try:
                   m=importlib.import_module(p); mc=getattr(m,'ModelConfig',None); print(p,"ModelConfig:",[x for x in dir(mc) if not x.startswith('_')][:24] if mc else dir(m)[:10]); break
               except Exception as e: print(p,"err",e)
