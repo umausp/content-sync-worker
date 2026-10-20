@@ -18,7 +18,7 @@ const axeMod = req('@axe-core/playwright');
 const AxeBuilder = axeMod.AxeBuilder || axeMod.default;
 
 const VIEWPORTS = [{ w: 375, h: 812 }, { w: 1280, h: 800 }];
-const PAGES = ['/news', '/watch/chipsupply', '/news/edition/jp', '/news/edition/ar', '/news/edition/in', '/advertise'];
+const PAGES = ['/news', '/watch/chipsupply', '/news/edition/jp', '/news/edition/ar', '/news/edition/in', '/advertise', '/editorial-policy', '/corrections'];
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1']);
 const RTL_PATH = /\/edition\/ar(\/|$)/;
 
