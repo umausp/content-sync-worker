@@ -48,6 +48,8 @@ jobs:
       - name: Acceptance probes
         working-directory: pipeline
         run: |
+          # studio_gate_lines diffs visual_gate.mjs against origin/feat/doc-motion-kit; the shallow checkout lacks that ref.
+          git fetch --depth 1 origin feat/doc-motion-kit:refs/remotes/origin/feat/doc-motion-kit
           node tools/acceptance/probes/studio_gate_lines.mjs
           node tools/acceptance/probes/studio_graphics_frames.mjs
           node tools/acceptance/probes/studio_prune_samples.mjs --n 200 --seed 7 | tail -2
