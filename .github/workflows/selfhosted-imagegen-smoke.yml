@@ -24,8 +24,11 @@ jobs:
           echo "runner user: $(id -un)  HOME=$HOME  free: $(df -h "$HOME" | awk 'NR==2{print $4}')"
           for c in mflux-generate mflux-save python3 python3.12 uv pipx; do printf '%-16s %s\n' "$c" "$(command -v $c || echo '-')"; done
           ls -la "$LF_MODELS" 2>/dev/null || echo "no $LF_MODELS yet"
-          # Find the interpreter that has mflux: venv under lf-models, then pipx, then any python3 on PATH.
-          for py in "$LF_MODELS/mflux-venv/bin/python" "$HOME/.local/pipx/venvs/mflux/bin/python" /opt/homebrew/bin/python3.12 /opt/homebrew/bin/python3.13 /opt/homebrew/bin/python3 python3; do
+          # Find the interpreter that has mflux: the CLI's own shebang (pipx / uv tool venv), then known venvs, then brew pythons.
+          SHEBANG=""; CLI="$(command -v mflux-generate)"; [ -n "$CLI" ] && SHEBANG="$(head -1 "$CLI" | sed -E 's/^#! *//; s/ .*$//')"
+          echo "mflux-generate shebang: ${SHEBANG:--}"
+          for py in "$SHEBANG" "$LF_MODELS/mflux-venv/bin/python" "$HOME/.local/pipx/venvs/mflux/bin/python" "$HOME/.local/share/uv/tools/mflux/bin/python" /opt/homebrew/bin/python3.12 /opt/homebrew/bin/python3.13 /opt/homebrew/bin/python3 python3; do
+            [ -n "$py" ] || continue
             if "$py" -c "import mflux" 2>/dev/null; then echo "MFLUX_PY=$py" >> "$GITHUB_ENV"; echo "mflux python: $py ($("$py" -c 'import mflux,sys;print(getattr(mflux,"__version__","?"), sys.version.split()[0])'))"; break; fi
           done
           grep -q MFLUX_PY "$GITHUB_ENV" || { echo "::error::no python with mflux found (checked venv, pipx, brew pythons)"; exit 1; }
