@@ -70,6 +70,7 @@ export const PROMPTS = {
     'Is the story PRIMARILY a finance, business, markets, economy-policy-affecting-markets, or technology story?',
     `HEADLINE: ${title}`,
     `SUMMARY: ${summary}`,
+    'Use "finance" for ANY business, company, commerce, e-commerce, funding, markets, banking or economy-policy story (business news counts as finance here); "tech" for technology, software, AI, chips, internet, cyber; "other" only for politics, crime, sport, entertainment, accidents, safety, food or lifestyle stories with no business or technology point.',
     'Return {"primary": "finance"|"tech"|"other", "fit": true|false, "reason": "<short>"}.',
     'Reply with ONLY one JSON object, no prose, no code fence.',
   ].join('\n'),
