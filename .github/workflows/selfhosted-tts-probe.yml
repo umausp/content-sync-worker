@@ -1,0 +1,26 @@
+name: selfhosted-tts-probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 30
+    concurrency: { group: tts-eval, cancel-in-progress: false }
+    steps:
+      - name: Locate fish model and read card/config
+        run: |
+          set +e
+          export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+          echo "user=$(id -un) free=$(df -h $HOME | awk 'NR==2{print $4}')"
+          ls ~/.cache/huggingface/hub | grep -i -E 'fish|audio|tts|speech|kokoro|orpheus' 
+          echo "--- lf-models"; ls ~/.cache/lf-models
+          find ~ -maxdepth 4 -iname '*fish*' -not -path '*/Library/*' 2>/dev/null | head -20
+          for d in ~/.cache/huggingface/hub/models--*fish*; do
+            echo "=== $d"; du -shL "$d"
+            find -L "$d/snapshots" -maxdepth 3 | head -40
+            for f in README.md config.json LICENSE; do p=$(ls -d "$d"/snapshots/*/$f 2>/dev/null | head -1); [ -n "$p" ] && { echo "----- $f"; head -c 7000 "$p"; echo; }; done
+          done
+          echo "--- tools"; for c in uv python3.12 python3.11 ffmpeg ffprobe mlx_audio.generate; do printf '%-18s %s\n' $c "$(command -v $c || echo -)"; done
+          ls ~/.local/share/uv/tools 2>/dev/null
+          pip list 2>/dev/null | grep -i -E 'mlx|whisper|fish' 
+          ls ~/.cache/huggingface/hub | grep -i whisper
