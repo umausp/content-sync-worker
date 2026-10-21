@@ -1,0 +1,93 @@
+# selfhosted-m2-illustration — Agyata Doc v2, module M2 (illustration) proven on its own real output. NOT an end-to-end render.
+# Fixture briefs → prompt compiler + lints → local FLUX.1-schnell plates (all styles queued at once) → local gemma VLM judge
+# (relevance vs the BRIEF, cleanliness, style consistency vs a reference plate, host pair) → retries with camera/light variations
+# → contact sheet per style (brief text under each plate) + review.json + review.md in artifact agyata-m2-review-<run>.
+# $0: mflux + mlx_vlm on the runner Mac. Shares the selfhosted-verify concurrency group: one Mac workflow at a time.
+# Canonical copy: tools/ci/selfhosted-m2-illustration.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-m2-illustration
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      fixtures: { description: 'fixture set', default: 'password-heist-12' }
+      styles: { description: "all | default | comma list of style ids", default: 'all' }
+      steps: { description: 'schnell steps', default: '4' }
+      size: { description: 'plate size WxH', default: '1152x640' }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  m2:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 240
+    env:
+      AGD_FIXTURES: packages/agyata-doc/illustration/fixtures/${{ inputs.fixtures }}.json
+      AGD_STYLES: ${{ inputs.styles }}
+      AGD_STEPS: ${{ inputs.steps }}
+      AGD_SIZE: ${{ inputs.size }}
+      AGD_WORKERS: '3'
+      AGD_FLUX_URL: http://127.0.0.1:8090/
+      AGD_LLM_URL: http://127.0.0.1:11434
+      AGD_JUDGE_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_MAX_RETRIES: '3'
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH + unit suite (lints are the first gate)
+        working-directory: pipeline
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version
+          node --test 'packages/agyata-doc/illustration/test/*_test.mjs'
+          node packages/agyata-doc/illustration/bin/m2_run.mjs --lint-only
+      - name: Local FLUX server (mflux 4-bit, workers=AGD_WORKERS)
+        working-directory: pipeline
+        run: |
+          W="$HOME/.cache/lf-models/flux-schnell-4bit"; PY="$HOME/.local/share/uv/tools/mflux/bin/python"
+          [ -d "$W" ] && [ -x "$PY" ] || { echo "::error::mflux weights/venv missing ($W, $PY)"; exit 1; }
+          AGD_OUT="$RUNNER_TEMP/m2"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; echo "AGD_PY=$PY" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' "$PY" services/imagegen/local_server.py --port 8090 --workers "$AGD_WORKERS" --model-path "$W" --quantize 4 --warm > "$AGD_OUT/flux.log" 2>&1 < /dev/null &
+          S=$(date +%s)
+          for i in $(seq 1 240); do curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' && break; sleep 5; done
+          curl -s -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' || { echo "::error::FLUX server not loaded"; tail -30 "$AGD_OUT/flux.log"; exit 1; }
+          echo "FLUX ready in $(( $(date +%s) - S )) s"
+      - name: Local VLM judge (gemma-4-31b 4-bit via mlx_vlm) behind the Ollama-protocol shim
+        working-directory: pipeline
+        run: |
+          . "$HOME/.cache/lf-venv/bin/activate"
+          uv pip install --quiet --upgrade mlx-vlm
+          export HF_HUB_OFFLINE=1
+          ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_JUDGE_MODEL not in the HF cache"; exit 1; }
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_JUDGE_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11434 --upstream http://127.0.0.1:8081 --model "$AGD_JUDGE_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          for i in $(seq 1 120); do
+            R=$(curl -s -m 120 http://127.0.0.1:11434/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            echo "$R" | grep -q '"done":true' && { echo "judge ready after ~$((i*10)) s"; exit 0; }
+            sleep 10
+          done
+          echo "::error::local VLM did not come up"; tail -30 "$AGD_OUT/mlx.log" "$AGD_OUT/shim.log"; exit 1
+      - name: M2 run (compile → generate → judge → retries → sheets + review)
+        working-directory: pipeline
+        run: node packages/agyata-doc/illustration/bin/m2_run.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agyata-m2-review-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m2/*.jpg
+            ${{ runner.temp }}/m2/review.json
+            ${{ runner.temp }}/m2/review.md
+            ${{ runner.temp }}/m2/*.log
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agyata-m2-plates-${{ github.run_id }}
+          path: ${{ runner.temp }}/m2/plates
+          retention-days: 7
+      - name: Cleanup
+        if: always()
+        run: pkill -f services/imagegen/local_server.py; pkill -f mlx_vlm.server; pkill -f mlx_ollama_shim.mjs; rm -rf "$RUNNER_TEMP/m2"; true
