@@ -66,7 +66,7 @@ jobs:
     timeout-minutes: ${{ inputs.local_model != '' && 70 || 25 }}
     strategy:
       fail-fast: false
-      max-parallel: 2  # shares the Ollama Cloud cap (10) with video renders; was 4
+      max-parallel: ${{ inputs.local_model != '' && 6 || 2 }}  # cloud shares the Ollama cap (10) with video renders; local models run on their own runners
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     concurrency:
       group: news-publish-${{ matrix.edition }}
@@ -94,6 +94,12 @@ jobs:
       OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
       OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
       OLLAMA_THINK: '0'  # think:false everywhere (no reasoning tokens)
+      # Local CPU model: small prompts. Cloud keeps the big batches.
+      TRIAGE_BATCH: ${{ inputs.local_model != '' && '5' || '20' }}
+      TRIAGE_MAX: ${{ inputs.local_model != '' && '60' || '600' }}
+      SYNTH_BATCH: ${{ inputs.local_model != '' && '2' || '8' }}
+      SYNTH_HOSTED_MAX: ${{ inputs.local_model != '' && '24' || '90' }}
+      OLLAMA_LOCAL_TIMEOUT_MS: '300000'
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
       OLLAMA_MAX_TRIES: '6'
