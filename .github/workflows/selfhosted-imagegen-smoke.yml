@@ -5,6 +5,7 @@ name: selfhosted-imagegen-smoke
 on:
   workflow_dispatch:
     inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private (for services/imagegen/local_server.py)', default: 'feat/longform-studio' }
       width:  { description: 'image width (multiple of 16)',  default: '1344' }
       height: { description: 'image height (multiple of 16)', default: '768' }
       steps:  { description: 'schnell steps', default: '4' }
@@ -17,6 +18,13 @@ jobs:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       HUGGING_FACE_HUB_TOKEN: ${{ secrets.HF_TOKEN }}
     steps:
+      - name: Checkout private pipeline (./pipeline) for the local server
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
       - name: Reinstall mflux on Python 3.12 when the current install cannot import (owner OK, 2026-10-21)
         run: |
           set +e
@@ -76,6 +84,20 @@ jobs:
           "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 8 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke2.png" || true
           echo "second image (CLI, warm cache): $(( $(date +%s) - S )) s"
           ls -la "$OUT"; find "$OUT" -name '*.png' -exec file {} \;
+      - name: Serve it (services/imagegen/local_server.py) and POST one plate — the contract the render lane uses
+        run: |
+          OUT="$RUNNER_TEMP/smoke"; mkdir -p "$OUT"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' "$MFLUX_PY" pipeline/services/imagegen/local_server.py --port 8090 --model-path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --warm > "$OUT/server.log" 2>&1 < /dev/null &
+          PID=$!
+          for i in $(seq 1 60); do curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' && break; sleep 5; done
+          curl -s -m 5 http://127.0.0.1:8090/health; echo
+          S=$(date +%s)
+          curl -sf -m 600 -X POST http://127.0.0.1:8090/ -H 'content-type: application/json' -d "$(jq -cn --arg p "${{ inputs.prompt }}" --argjson w "${{ inputs.width }}" --argjson h "${{ inputs.height }}" --argjson s "${{ inputs.steps }}" '{prompt:$p,width:$w,height:$h,steps:$s,seed:9}')" -o "$OUT/server.png"
+          echo "server plate: $(( $(date +%s) - S )) s  $(file "$OUT/server.png" | cut -d: -f2)"
+          S=$(date +%s)
+          curl -sf -m 600 -X POST http://127.0.0.1:8090/ -H 'content-type: application/json' -d '{"prompt":"a parchment map of the Indian Ocean, hand-drawn, warm sepia, no text","width":1344,"height":768,"steps":4,"seed":10}' -o "$OUT/server2.png"
+          echo "server plate 2 (warm): $(( $(date +%s) - S )) s  $(file "$OUT/server2.png" | cut -d: -f2)"
+          kill "$PID" 2>/dev/null || true; cat "$OUT/server.log"
       - uses: actions/upload-artifact@v4
         with:
           name: imagegen-smoke-${{ github.run_id }}
