@@ -10,8 +10,8 @@ import asyncio, json, os, re, shutil, subprocess, sys, threading, time, urllib.r
 KEY = "__KEY__"
 RUN = "__RUN__"
 MODEL = "__MODEL__"
-PARALLEL = os.environ.get("LLM_PARALLEL", "2")      # concurrent requests per GPU
-CTX = os.environ.get("LLM_CTX", "8192")             # per-request context
+PARALLEL = "__PARALLEL__"      # concurrent requests per GPU
+CTX = "__CTX__"             # per-request context
 IDLE_MIN = float(os.environ.get("LLM_IDLE_MIN", "6"))        # exit after this long with no requests
 FIRST_IDLE_MIN = float(os.environ.get("LLM_FIRST_IDLE_MIN", "15"))  # grace for the pipeline to start calling
 MAX_MIN = float(os.environ.get("LLM_MAX_MIN", "45"))         # hard session cap
@@ -21,8 +21,15 @@ state = {"last": None, "inflight": 0, "served": 0, "stop": False}
 procs = []
 
 
+DIAG = open("/kaggle/working/server_diag.log", "a")
+
+
 def log(*a):
     print(*a, flush=True)
+    try:
+        print(*a, file=DIAG, flush=True)
+    except Exception:
+        pass
 
 
 def sh(cmd, **kw):
@@ -96,8 +103,13 @@ def run_proxy(ports):
             async with ClientSession(timeout=ClientTimeout(total=900)) as s:
                 async with s.request(req.method, f"http://127.0.0.1:{port}{req.path_qs}", data=body, headers={"content-type": req.headers.get("content-type", "application/json")}) as up:
                     data = await up.read()
+                    if up.status != 200:
+                        log(f"UPSTREAM_ERROR port={port} status={up.status} body={data[:300]!r}")
                     state["served"] += 1
                     return web.Response(status=up.status, body=data, content_type=up.content_type)
+        except Exception as e:
+            log(f"PROXY_EXCEPTION port={port} {type(e).__name__}: {e}")
+            return web.Response(status=502, text=str(e))
         finally:
             inflight[port] -= 1; state["inflight"] -= 1; state["last"] = time.time()
 

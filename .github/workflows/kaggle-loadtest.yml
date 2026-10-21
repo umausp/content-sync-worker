@@ -1,0 +1,94 @@
+name: kaggle-loadtest
+
+# Manual: start the Kaggle GPU server, fire N concurrent news-sized requests, print latency/status, then shut it down
+# and show the server's own diagnostic log. Used to size LLM_PARALLEL and SYNTH_CONCURRENCY. Costs ~15 GPU minutes.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Ollama model tag'
+        default: 'gemma3:12b'
+        type: string
+      parallel:
+        description: 'Concurrent requests per GPU (OLLAMA_NUM_PARALLEL)'
+        default: '2'
+        type: string
+      ctx:
+        description: 'Context length per request'
+        default: '8192'
+        type: string
+      levels:
+        description: 'Client concurrency levels to test, space separated'
+        default: '1 2 4'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      KAGGLE_MODEL: ${{ inputs.model }}
+      KAGGLE_PARALLEL: ${{ inputs.parallel }}
+      KAGGLE_CTX: ${{ inputs.ctx }}
+      KAGGLE_MIN_REMAINING_H: '1.5'
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q kaggle
+      - name: Start server
+        id: up
+        shell: bash
+        run: bash kaggle/up.sh
+      - name: Load test
+        if: steps.up.outputs.url != ''
+        shell: bash
+        env:
+          KURL: ${{ steps.up.outputs.url }}
+          LEVELS: ${{ inputs.levels }}
+          MODEL: ${{ inputs.model }}
+        run: |
+          KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
+          echo "::add-mask::$KEY"
+          python3 - <<'PY'
+          import json, os, threading, time, urllib.request, urllib.error
+          url, key, model = os.environ["KURL"], os.popen("printf '%s:%s' \"$KAGGLE_API_TOKEN\" \"$GITHUB_RUN_ID\" | sha256sum | cut -c1-40").read().strip(), os.environ["MODEL"]
+          article = ("The central bank of the republic announced on Wednesday that it would cut its benchmark interest rate by 25 basis points to 5.25 percent, "
+                     "citing slowing growth, easing inflation at 3.1 percent and a weaker labour market, while warning that energy prices remain volatile. "
+                     "Analysts at three large banks had expected a pause, and bond yields fell sharply after the decision. ") * 6
+          prompt = "Summarise each numbered article in 2 sentences and return JSON {\"items\":[{\"i\":n,\"summary\":\"...\"}]}.\n" + "\n".join(f"[{i}] {article}" for i in range(1, 9))
+          def call(res, idx):
+              body = json.dumps({"model": model, "stream": False, "think": False, "format": "json", "messages": [{"role": "user", "content": prompt}], "options": {"num_predict": 700, "temperature": 0.2}}).encode()
+              t = time.time()
+              try:
+                  r = urllib.request.urlopen(urllib.request.Request(url + "/api/chat", body, {"authorization": f"Bearer {key}", "content-type": "application/json"}), timeout=600)
+                  d = json.loads(r.read()); res[idx] = (r.status, time.time() - t, d.get("prompt_eval_count"), d.get("eval_count"), len((d.get("message") or {}).get("content", "")))
+              except urllib.error.HTTPError as e:
+                  res[idx] = (e.code, time.time() - t, None, None, e.read()[:200])
+              except Exception as e:
+                  res[idx] = ("EXC", time.time() - t, None, None, str(e)[:200])
+          for lvl in map(int, os.environ["LEVELS"].split()):
+              res = [None] * lvl; ths = [threading.Thread(target=call, args=(res, i)) for i in range(lvl)]
+              t0 = time.time(); [t.start() for t in ths]; [t.join() for t in ths]
+              wall = time.time() - t0; ok = [r for r in res if r[0] == 200]
+              toks = sum(r[3] or 0 for r in ok)
+              print(f"concurrency={lvl} wall={wall:.0f}s ok={len(ok)}/{lvl} out_tokens={toks} agg_tok_s={toks / wall:.1f}")
+              for r in res: print("   ", r)
+          PY
+      - name: Shut down and show server diagnostic log
+        if: always() && steps.up.outputs.url != ''
+        shell: bash
+        env:
+          KURL: ${{ steps.up.outputs.url }}
+        run: |
+          KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
+          echo "::add-mask::$KEY"
+          curl -sS -m 20 -X POST -H "Authorization: Bearer $KEY" "$KURL/__shutdown" || true
+          KUSER=$(kaggle config view | sed -n 's/^- username: //p')
+          for i in $(seq 1 18); do
+            mkdir -p "$RUNNER_TEMP/kout"; kaggle kernels output "$KUSER/agyata-llm-server" -p "$RUNNER_TEMP/kout" >/dev/null 2>&1 && [ -f "$RUNNER_TEMP/kout/server_diag.log" ] && break
+            sleep 10
+          done
+          echo "--- server_diag.log (tail) ---"; tail -n 60 "$RUNNER_TEMP/kout/server_diag.log" 2>/dev/null | cut -c1-300 || echo "no diag log available"
