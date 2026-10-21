@@ -16,6 +16,9 @@ on:
       attempts: { description: 'prepare attempts when the script gate stops a run (each picks a new stamp)', default: '2' }
       social: { description: 'post to Facebook + Instagram after the YouTube step (Graph API, best effort)', type: boolean, default: false }
       upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
+      topic: { description: 'OWNER TOPIC for this run (empty = the channel queue / normal picker). Becomes DOC_TOPIC', default: '' }
+      angle: { description: 'optional angle for the owner topic (DOC_TOPIC_ANGLE)', default: '' }
+      sources: { description: 'optional source URLs for the owner topic, one per line or comma-separated (DOC_TOPIC_SOURCES)', default: '' }
       local_imagegen: { description: 'illustrated scenes from a LOCAL FLUX.1-schnell (mflux 4-bit) on this Mac — $0; off or missing weights = no illustrations, never Modal', type: boolean, default: true }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
@@ -139,12 +142,21 @@ jobs:
       - name: Pipeline env (the cron's flags) + machine overrides
         id: envs
         working-directory: pipeline
+        env:
+          TOPIC_IN: ${{ inputs.topic }}
+          ANGLE_IN: ${{ inputs.angle }}
+          SOURCES_IN: ${{ inputs.sources }}
         run: |
           node tools/ci/shell_env.mjs ../shell/.github/workflows/_longform-doc.yml > "$RUNNER_TEMP/pipeline.env"
           echo "env lines: $(grep -c '^export' "$RUNNER_TEMP/pipeline.env")"
           STAMP=$(date -u +%Y%m%dT%H%M); echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
           { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"; echo "export NODE_OPTIONS=--max-old-space-size=$NODE_HEAP_MB"
             echo "export SHORTS_STAMP=$STAMP"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
+          # owner topic: values come through env (never interpolated into the script) and are shell-quoted with %q
+          if [ -n "$TOPIC_IN" ]; then
+            { printf 'export DOC_TOPIC=%q\n' "$TOPIC_IN"; [ -n "$ANGLE_IN" ] && printf 'export DOC_TOPIC_ANGLE=%q\n' "$ANGLE_IN"; [ -n "$SOURCES_IN" ] && printf 'export DOC_TOPIC_SOURCES=%q\n' "$SOURCES_IN"; } >> "$RUNNER_TEMP/pipeline.env"
+            echo "owner topic: $TOPIC_IN"
+          fi
           if [ "${{ inputs.local_llm }}" = "true" ]; then
             L=mlx-community/gemma-4-31b-it-4bit
             { echo "export OLLAMA_HOST=http://127.0.0.1:11434"; echo "export OLLAMA_API_KEY=local"   # non-empty key = chat protocol; the shim ignores auth
