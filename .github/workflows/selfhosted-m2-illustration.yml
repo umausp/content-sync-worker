@@ -20,6 +20,7 @@ jobs:
     runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 330
     env:
+      AGD_PROFILE: documentary
       AGD_FIXTURES: packages/agyata-doc/illustration/fixtures/${{ inputs.fixtures }}.json
       AGD_STYLES: ${{ inputs.styles }}
       AGD_STEPS: ${{ inputs.steps }}
