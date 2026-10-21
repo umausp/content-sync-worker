@@ -21,7 +21,7 @@ jobs:
       - name: LLM server kernel status and files
         run: |
           kaggle kernels status umausp/agyata-llm-server || true
-          kaggle kernels logs umausp/agyata-llm-server 2>&1 | grep -a -E "GPU [0-9]|KAGGLE_LLM_ENDPOINT|MODEL_READY|HEARTBEAT|EXIT|USAGE" | tail -15 || true
+          kaggle kernels logs umausp/agyata-llm-server 2>&1 | tail -n 80 | cut -c1-300 || true
           kaggle quota --format json || true
       - name: Push CPU probe and follow logs
         run: |
