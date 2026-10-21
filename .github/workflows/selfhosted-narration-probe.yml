@@ -1,0 +1,45 @@
+# selfhosted-narration-probe — Docfilm plan E1: narrate 3 fixture beats with REAL Edge (pinned voice) + REAL faster-whisper
+# verification + ffmpeg paragraph join on the Mac runner. Prints the [docfilm:narration] lines and a final
+# "narration-probe: beats=3 failed=N ..." line. No upload, no video. Shares the selfhosted-verify concurrency group.
+name: selfhosted-narration-probe
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      voice: { description: 'edge voice', default: 'en-US-AvaMultilingualNeural' }
+      lang: { description: 'language', default: 'en' }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  probe:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 60
+    env:
+      WHISPER_MODAL: '0'
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH + npm ci
+        working-directory: pipeline
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version && npm ci --no-audit --no-fund
+      - name: Python 3.12 venv + TTS stack (cached in ~/.cache/lf-venv)
+        run: |
+          V=$HOME/.cache/lf-venv
+          [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"
+          uv pip install --quiet kokoro soundfile sentencepiece faster-whisper "av<19" edge-tts pyyaml
+          echo "$V/bin" >> "$GITHUB_PATH"
+      - name: Narrate the fixture beats (real Edge + real whisper)
+        working-directory: pipeline
+        run: |
+          mkdir -p "$RUNNER_TEMP/narr"
+          node tools/ci/docfilm_narration_probe.mjs --voice "${{ inputs.voice }}" --lang "${{ inputs.lang }}" --out "$RUNNER_TEMP/narr" | tee "$RUNNER_TEMP/narr/probe.log"
+      - name: Cleanup
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/narr"; true
