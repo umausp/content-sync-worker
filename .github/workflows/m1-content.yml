@@ -38,7 +38,7 @@ jobs:
         with: { node-version: '22' }
       - name: Unit suites (lints are the first gate)
         working-directory: pipeline
-        run: node --test 'packages/agyata-doc/content/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
+        run: node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/content/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
       - name: M1 run (research → write → lint + review → rewrites → storyboard)
         working-directory: pipeline
         run: |
