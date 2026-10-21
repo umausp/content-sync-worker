@@ -1,0 +1,32 @@
+# selfhosted-video-audit — run tools/ci/video_audit.mjs (the [docfilm:gate] rendered-mp4 gate) on the staged mp4 of an
+# earlier selfhosted-verify run, ON the Mac runner, so no video is ever downloaded to a laptop. Observe-only (no --enforce).
+name: selfhosted-video-audit
+on:
+  workflow_dispatch:
+    inputs:
+      run_id: { description: 'selfhosted-verify run id whose staged artifact to audit', required: true }
+      channel: { description: 'channel', default: 'nl' }
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private (for tools/ci/video_audit.mjs)', default: 'feat/longform-studio' }
+jobs:
+  audit:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 30
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Download the staged mp4 into the runner temp dir and audit it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="$RUNNER_TEMP/audit-in"; rm -rf "$D"; mkdir -p "$D"
+          gh run download "${{ inputs.run_id }}" -R "$GITHUB_REPOSITORY" -n "longform-${{ inputs.channel }}-${{ inputs.run_id }}-staged" -D "$D" || { echo "::error::artifact expired or missing (1-day retention)"; exit 1; }
+          F=$(find "$D" -name short.mp4 | head -1); [ -n "$F" ] || { echo "::error::no short.mp4 in the artifact"; exit 1; }
+          ls -lh "$F"
+          node pipeline/tools/ci/video_audit.mjs "$F" --json "$RUNNER_TEMP/audit.json" | tee "$RUNNER_TEMP/audit.log"
+          { echo "## video audit of run ${{ inputs.run_id }}"; grep -h '^\[docfilm:gate\]' "$RUNNER_TEMP/audit.log" | tail -1 | sed 's/^/- /'; } >> "$GITHUB_STEP_SUMMARY"
+          rm -rf "$D"
