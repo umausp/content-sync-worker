@@ -1,0 +1,74 @@
+name: llm-bench
+
+# Manual bench: run a local Ollama model (CPU, think:false) over real published stories with the
+# pipeline's own summary step; reports tokens/s, pass rate vs the quality gates, and samples in the job summary.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Ollama model tag, e.g. gemma4:12b'
+        required: true
+        default: 'gemma4:12b'
+        type: string
+      editions:
+        description: 'Comma-separated editions to sample'
+        required: false
+        default: 'us,in,de,fr,jp,id'
+        type: string
+      per_edition:
+        description: 'Stories per edition'
+        required: false
+        default: '2'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      BENCH_MODEL: ${{ inputs.model }}
+      BENCH_EDITIONS: ${{ inputs.editions }}
+      BENCH_PER: ${{ inputs.per_edition }}
+      PROVIDER_ORDER: 'ollama'
+      PROVIDER_USE_OLLAMA: '1'
+      OLLAMA_API_KEY: 'local'  # non-empty selects the chat protocol (think:false); the host below is the local daemon
+      OLLAMA_LLM_HOST: 'http://127.0.0.1:11434'
+      OLLAMA_MODEL: ${{ inputs.model }}
+      NEWS_SUMMARY_MODEL: ${{ inputs.model }}
+      OLLAMA_THINK: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Cache Ollama binary and models
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/ollama-bin
+            ~/.ollama
+          key: ollama-v1-${{ inputs.model }}
+      - name: Install Ollama and pull model (cached)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -x "$HOME/ollama-bin/bin/ollama" ]; then
+            mkdir -p "$HOME/ollama-bin"
+            curl -fsSL https://ollama.com/download/ollama-linux-amd64.tar.zst | zstd -d | tar -x -C "$HOME/ollama-bin"
+          fi
+          export PATH="$HOME/ollama-bin/bin:$PATH"
+          nohup ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          ollama list | grep -q "^${BENCH_MODEL}" || ollama pull "$BENCH_MODEL"
+          ollama list
+      - name: Bench
+        run: node scripts/llm_bench.mjs
