@@ -70,7 +70,7 @@ jobs:
       - name: push
         run: |
           date +%s > t0
-          kaggle kernels push -p kaggle-project/ --accelerator nvidiaTeslaT4
+          kaggle kernels push -p k --accelerator nvidiaTeslaT4
           echo "push_s=$(( $(date +%s) - $(cat t0) ))" | tee -a $GITHUB_STEP_SUMMARY
       - name: poll
         run: |
