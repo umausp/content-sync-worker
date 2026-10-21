@@ -45,7 +45,7 @@ jobs:
         run: |
           echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
           node --version
-          node --test 'packages/agyata-doc/illustration/test/*_test.mjs'
+          node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
           node packages/agyata-doc/illustration/bin/m2_run.mjs --lint-only
       - name: Local FLUX server (mflux 4-bit, workers=AGD_WORKERS)
         working-directory: pipeline
