@@ -228,7 +228,7 @@ jobs:
         run: |
           KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
           echo "::add-mask::$KEY"
-          { echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"; echo "PROVIDER_ORDER=kaggle,$PROVIDER_ORDER"; } >> "$GITHUB_ENV"
+          { echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"; echo "PROVIDER_ORDER=kaggle,$PROVIDER_ORDER"; echo "SYNTH_CONCURRENCY=4"; } >> "$GITHUB_ENV"
 
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
