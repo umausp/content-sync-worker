@@ -228,7 +228,17 @@ jobs:
         run: |
           KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
           echo "::add-mask::$KEY"
-          { echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"; echo "PROVIDER_ORDER=kaggle,$PROVIDER_ORDER"; echo "SYNTH_CONCURRENCY=4"; } >> "$GITHUB_ENV"
+          # Kaggle Gemma serves EVERYTHING: text LLM, summaries and the image VLM gates. Ollama Cloud is not used on this lane,
+          # so the cloud 'ollama' provider is removed from the order and OLLAMA_HOST/KEY/MODEL all point at the Kaggle server.
+          ORDER="kaggle,$(echo "$PROVIDER_ORDER" | tr ',' '\n' | grep -v -x -e ollama -e kaggle | paste -sd, -)"
+          {
+            echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"
+            echo "PROVIDER_ORDER=$ORDER"; echo "SYNTH_CONCURRENCY=4"
+            echo "OLLAMA_HOST=$KURL"; echo "OLLAMA_API_KEY=$KEY"; echo "OLLAMA_MODEL=gemma3:12b"; echo "NEWS_SUMMARY_MODEL=gemma3:12b"
+            echo "SHORTS_VLM_GATE_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_QUORUM_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_FALLBACK_MODELS="
+            echo "SHORTS_VLM_GATE_TIMEOUT_MS=180000"
+          } >> "$GITHUB_ENV"
+          echo "::add-mask::$KEY" >> "$GITHUB_ENV"
 
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
