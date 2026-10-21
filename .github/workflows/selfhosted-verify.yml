@@ -157,7 +157,7 @@ jobs:
           { echo "export SHORTS_WORK_DIR='$WORKROOT/.shorts-work'"; echo "export SHORTS_PY=python"; echo "export NODE_OPTIONS=--max-old-space-size=$NODE_HEAP_MB"
             echo "export SHORTS_STAMP=$STAMP"; echo "export TMPDIR='$WORKROOT'"; } >> "$RUNNER_TEMP/pipeline.env"
           # docfilm stage cache (script + narration + plates stay on the runner; never videos) + reuse / sample
-          echo "export DOCFILM_STAGE_CACHE=$HOME/.cache/lf-docfilm" >> "$RUNNER_TEMP/pipeline.env"
+          { echo "export DOCFILM_STAGE_CACHE=$HOME/.cache/lf-docfilm"; echo "export WHISPER_MODAL=0"; } >> "$RUNNER_TEMP/pipeline.env"
           if [ -n "$REUSE_IN" ]; then printf 'export DOCFILM_REUSE=%q\n' "$REUSE_IN" >> "$RUNNER_TEMP/pipeline.env"; echo "reuse stage cache: $REUSE_IN"; fi
           if [ -n "$SAMPLE_IN" ]; then { printf 'export DOCFILM_SAMPLE_CHAPTERS=%q\n' "$SAMPLE_IN"; echo "export DOCFILM_PREFLIGHT_ENFORCE=0"; } >> "$RUNNER_TEMP/pipeline.env"; echo "sample chapters: $SAMPLE_IN"; fi
           # owner topic: values come through env (never interpolated into the script) and are shell-quoted with %q
