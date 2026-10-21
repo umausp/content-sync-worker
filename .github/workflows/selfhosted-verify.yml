@@ -236,6 +236,15 @@ jobs:
           path: pipeline/docs/shorts/${{ inputs.channel }}/
           retention-days: 1
           compression-level: 0
+      - name: Final gate on the RENDERED mp4 (cuts/min, longest cut gap, freeze) - fails the run
+        if: steps.plan.outputs.ready == 'true'
+        working-directory: pipeline
+        run: |
+          F=$(find docs/shorts/"$CH" -name short.mp4 | head -1); [ -n "$F" ] || { echo "::error::no short.mp4 to audit"; exit 1; }
+          [ -f tools/ci/video_audit.mjs ] || { echo "::error::tools/ci/video_audit.mjs missing on this pipeline ref"; exit 1; }
+          set +e; node tools/ci/video_audit.mjs "$F" --json "$RUNNER_TEMP/video_audit.json" --enforce | tee "$RUNNER_TEMP/video_audit.log"; RC=${PIPESTATUS[0]}; set -e
+          { echo "- $(grep -h '^\[docfilm:gate\]' "$RUNNER_TEMP/video_audit.log" | tail -1)"; } >> "$GITHUB_STEP_SUMMARY"
+          exit $RC
       - name: Summary (Mac lane timings)
         if: always()
         working-directory: pipeline
