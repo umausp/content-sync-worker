@@ -86,7 +86,7 @@ jobs:
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
       PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY, same as shorts-world.yml
       PROVIDER_USE_OLLAMA: '1'
-      OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
+      OLLAMA_MODEL: 'gemma4:31b-cloud'  # news-publish pins gemma4 (owner decision 2026-10-21); other workflows keep the OLLAMA_MODEL secret
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
       OLLAMA_MAX_TRIES: '6'
@@ -125,7 +125,7 @@ jobs:
       NEWS_DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
       # ── Website news summary + licence-free images (STAGE 1/2). Production values.
       NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
-      NEWS_SUMMARY_MODEL: 'deepseek-v4.1-flash:cloud'  # same model family as the VLM gate; pinned here so a model-ID change is a reviewed diff
+      NEWS_SUMMARY_MODEL: 'gemma4:31b-cloud'  # same model as synthesis and the VLM gate; pinned here so a model-ID change is a reviewed diff
       NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}  # public IndexNow key (also served at agyata.com/<key>.txt): pings Bing/Yandex/Seznam/Naver after each publish; no-op when unset
       NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
