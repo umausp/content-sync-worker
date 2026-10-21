@@ -53,6 +53,8 @@ env:
   # (STUDIO_DENSITY_BARS flips to '1' once the measured numbers are seen). More windows per clip → more safe-motion plans.
   STUDIO_DENSITY_BARS: '0'
   STUDIO_SHOT_MAX_HOLD: '4'
+  # Docfilm engine (docs/longform/DOCFILM_ENGINE.md): narrate first, plan every shot on the real word timestamps.
+  DOCFILM: '1'
   STUDIO_CHAPTER_CARDS: '1'
   SAFE_MOTION_MAX_PER_CLIP: '12'
   # longform-studio Phase 7: real footage for real-thing sentences (≤ 12 s clips, 3 keyframes each judged by the
