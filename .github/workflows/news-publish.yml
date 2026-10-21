@@ -127,6 +127,7 @@ jobs:
       NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
       NEWS_SUMMARY_MODEL: 'deepseek-v4.1-flash:cloud'  # same model family as the VLM gate; pinned here so a model-ID change is a reviewed diff
       NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}  # public IndexNow key (also served at agyata.com/<key>.txt): pings Bing/Yandex/Seznam/Naver after each publish; no-op when unset
       NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
       NEWS_IMAGES_VLM: '1'  # pixel relevance gate on the picker's candidates; fail-closed (no verdict -> no images)
       NEWS_IMAGES_MAX_STORIES: '60'  # cap on stories that run the image picker per run (was 25: stories past the cap got no photo)
