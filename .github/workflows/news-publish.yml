@@ -129,7 +129,7 @@ jobs:
       NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
       NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
       NEWS_IMAGES_VLM: '1'  # pixel relevance gate on the picker's candidates; fail-closed (no verdict -> no images)
-      NEWS_IMAGES_MAX_STORIES: '25'  # cap on stories that run the image picker per run
+      NEWS_IMAGES_MAX_STORIES: '60'  # cap on stories that run the image picker per run (was 25: stories past the cap got no photo)
       NEWS_IMAGES_FALLBACK_PUBLISHER: '0'  # never publish a news-site photo as a fallback (licence-free only)
       # ── VLM image gate (shorts/media/visual_gate.mjs). Values copied from shorts-world.yml on origin/main.
       #    The picker forces SHORTS_VLM_STRICT=1 for its own call; it is not set globally here.
