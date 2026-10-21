@@ -1,8 +1,9 @@
 # m1-content — Agyata Doc v2, module M1 (content) proven on its own real output. NOT an end-to-end render.
 # Per fixture topic: grounded fact packet from Wikipedia (verbatim quotes, numbers inside quotes) → outline + chapter writer
-# (narration AND picture brief per beat) → deterministic lints (incl. every brief through the M2 prompt compiler) + second-model
-# reviewer → ≤ AGD_MAX_REWRITES targeted rewrites → beat_sheet.json, m2_fixture.json, storyboard.md, review.json/md in
-# artifact agyata-m1-review-<run>. No GPU: runs on a GitHub-hosted runner, so it never blocks the Mac lane. $0: Ollama Cloud.
+# (narration AND picture brief per beat) → deterministic lints (incl. every brief through the M2 prompt compiler) + reviewer
+# → ≤ AGD_MAX_REWRITES targeted rewrites → beat_sheet.json, m2_fixture.json, storyboard.md, review.json/md in artifact
+# agyata-m1-review-<run>. User 2026-10-21: run on the self-hosted Mac with the LOCAL gemma-4 from the HF cache
+# (mlx_vlm server + Ollama-protocol shim, think=false) — no cloud LLM. Shares the selfhosted-verify group: one Mac job at a time.
 # Canonical copy: tools/ci/m1-content.yml in the private repo; the live copy is the public shell's.
 name: m1-content
 on:
@@ -11,21 +12,21 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       only: { description: 'topic ids (empty = all fixture topics)', default: '' }
       minutes: { description: 'target documentary length in minutes', default: '6' }
-concurrency: { group: m1-content, cancel-in-progress: false }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
   m1:
-    runs-on: ubuntu-latest
-    timeout-minutes: 90
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 300
     env:
       AGD_TOPICS: packages/agyata-doc/content/fixtures/topics.json
       AGD_ONLY: ${{ inputs.only }}
       AGD_MINUTES: ${{ inputs.minutes }}
-      AGD_LLM_URL: https://ollama.com
-      AGD_WRITER_MODEL: deepseek-v4-pro:0813
-      AGD_REVIEW_MODEL: mistral-large-4
-      AGD_FACT_MODEL: deepseek-v4.1-flash
+      AGD_LLM_URL: http://127.0.0.1:11535
+      AGD_LOCAL_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_WRITER_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_FACT_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_MAX_REWRITES: '2'
-      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
     steps:
       - name: Checkout private pipeline (./pipeline)
         uses: actions/checkout@v4
@@ -34,19 +35,47 @@ jobs:
           ref: ${{ inputs.pipeline_ref }}
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: pipeline
-      - uses: actions/setup-node@v4
-        with: { node-version: '22' }
-      - name: Unit suites (lints are the first gate)
-        working-directory: pipeline
-        run: node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/content/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
-      - name: M1 run (research → write → lint + review → rewrites → storyboard)
+      - name: Node 22 on PATH + unit suites (lints are the first gate)
         working-directory: pipeline
         run: |
-          echo "AGD_OUT=$RUNNER_TEMP/m1" >> "$GITHUB_ENV"
-          AGD_OUT="$RUNNER_TEMP/m1" node packages/agyata-doc/content/bin/m1_run.mjs
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version
+          node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/content/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
+      - name: Local gemma-4 (mlx_vlm, from the HF cache) behind the Ollama-protocol shim, think=false
+        working-directory: pipeline
+        run: |
+          AGD_OUT="$RUNNER_TEMP/m1"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
+          pkill -f mlx_ollama_shim.mjs || true; pkill -f mlx_vlm.server || true
+          . "$HOME/.cache/lf-venv/bin/activate"
+          uv pip install --quiet --upgrade mlx-vlm
+          export HF_HUB_OFFLINE=1   # weights already in ~/.cache/huggingface; never download
+          echo "gemma models in the HF cache:"; ls "$HOME/.cache/huggingface/hub" | grep -i gemma || true
+          ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_LOCAL_MODEL not in the HF cache"; exit 1; }
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_LOCAL_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11535 --upstream http://127.0.0.1:8081 --model "$AGD_LOCAL_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          for i in $(seq 1 120); do
+            R=$(curl -s -m 120 http://127.0.0.1:11535/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            echo "$R" | grep -q '"done":true' && { echo "local model ready after ~$((i*10)) s"; exit 0; }
+            sleep 10
+          done
+          echo "::error::local model did not come up"; tail -30 "$AGD_OUT/mlx.log" "$AGD_OUT/shim.log"; exit 1
+      - name: M1 run (research → write → lint + review → rewrites → storyboard)
+        working-directory: pipeline
+        run: node packages/agyata-doc/content/bin/m1_run.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: agyata-m1-review-${{ github.run_id }}
-          path: ${{ runner.temp }}/m1
+          path: |
+            ${{ runner.temp }}/m1
+            !${{ runner.temp }}/m1/*.log
           retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agyata-m1-logs-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1/*.log
+          retention-days: 7
+      - name: Cleanup
+        if: always()
+        run: pkill -f mlx_vlm.server || true; pkill -f mlx_ollama_shim.mjs || true; rm -rf "$RUNNER_TEMP/m1"
