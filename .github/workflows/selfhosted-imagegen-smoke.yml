@@ -78,10 +78,10 @@ jobs:
         run: |
           BIN="$(dirname "$MFLUX_PY")"; OUT="$RUNNER_TEMP/smoke"; mkdir -p "$OUT"; cd "$OUT"
           S=$(date +%s)
-          "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke.png" || "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}"
+          "$BIN/mflux-generate" --model "$LF_MODELS/flux-schnell-4bit" --base-model schnell --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke.png" || "$BIN/mflux-generate" --model "$LF_MODELS/flux-schnell-4bit" --base-model schnell --quantize 4 --steps "${{ inputs.steps }}" --seed 7 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}"
           echo "first image (incl. model load): $(( $(date +%s) - S )) s"
           S=$(date +%s)
-          "$BIN/mflux-generate" --model schnell --path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --steps "${{ inputs.steps }}" --seed 8 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke2.png" || true
+          "$BIN/mflux-generate" --model "$LF_MODELS/flux-schnell-4bit" --base-model schnell --quantize 4 --steps "${{ inputs.steps }}" --seed 8 --width "${{ inputs.width }}" --height "${{ inputs.height }}" --prompt "${{ inputs.prompt }}" --output "$OUT/smoke2.png" || true
           echo "second image (CLI, warm cache): $(( $(date +%s) - S )) s"
           ls -la "$OUT"; find "$OUT" -name '*.png' -exec file {} \;
       - name: Serve it (services/imagegen/local_server.py) and POST one plate — the contract the render lane uses
