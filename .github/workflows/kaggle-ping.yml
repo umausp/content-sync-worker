@@ -61,7 +61,12 @@ jobs:
             "machine_shape": "NvidiaTeslaT4"
           }
           JSEOF
-          python3 -c "import os;p='k/ping.py';open(p,'w').write(open(p).read().replace('__PROMPT__',os.environ['PROMPT'].replace('\\','').replace('\"','')))"
+          python3 - <<'SUBEOF'
+          import os
+          p='k/ping.py'
+          s=open(p).read().replace('__PROMPT__',os.environ['PROMPT'].replace('\\','').replace('"',''))
+          open(p,'w').write(s)
+          SUBEOF
       - name: push
         run: |
           date +%s > t0
