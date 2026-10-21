@@ -22,11 +22,12 @@ jobs:
       - name: Download the staged mp4 into the runner temp dir and audit it
         env:
           GH_TOKEN: ${{ github.token }}
+          VIDEO_AUDIT_SCENE_PROBE: '0.02,0.04,0.08,0.18,0.02:6,0.04:6,0.08:6'
         run: |
           D="$RUNNER_TEMP/audit-in"; rm -rf "$D"; mkdir -p "$D"
           gh run download "${{ inputs.run_id }}" -R "$GITHUB_REPOSITORY" -n "longform-${{ inputs.channel }}-${{ inputs.run_id }}-staged" -D "$D" || { echo "::error::artifact expired or missing (1-day retention)"; exit 1; }
           F=$(find "$D" -name short.mp4 | head -1); [ -n "$F" ] || { echo "::error::no short.mp4 in the artifact"; exit 1; }
           ls -lh "$F"
           node pipeline/tools/ci/video_audit.mjs "$F" --json "$RUNNER_TEMP/audit.json" | tee "$RUNNER_TEMP/audit.log"
-          { echo "## video audit of run ${{ inputs.run_id }}"; grep -h '^\[docfilm:gate\]' "$RUNNER_TEMP/audit.log" | tail -1 | sed 's/^/- /'; } >> "$GITHUB_STEP_SUMMARY"
+          { echo "## video audit of run ${{ inputs.run_id }}"; grep -h '^\[docfilm:' "$RUNNER_TEMP/audit.log" | sed 's/^/- /'; } >> "$GITHUB_STEP_SUMMARY"
           rm -rf "$D"
