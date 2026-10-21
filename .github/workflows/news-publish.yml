@@ -151,7 +151,8 @@ jobs:
       #    env vars are ignored harmlessly.
       # Ollama Cloud is the ONLY LLM provider (no paid Gemini/OpenAI spend). Other provider
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
-      PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY, same as shorts-world.yml
+      # Free providers first; Ollama Cloud is the LAST resort, one attempt, no retries (owner decision 2026-10-22).
+      PROVIDER_ORDER: 'gemini,mistral,nvidia,openrouter,sambanova,cohere,gitmodels,ollama'
       PROVIDER_USE_OLLAMA: '1'
       OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
       OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
@@ -164,7 +165,7 @@ jobs:
       OLLAMA_LOCAL_TIMEOUT_MS: '300000'
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
-      OLLAMA_MAX_TRIES: '6'
+      OLLAMA_MAX_TRIES: '1'  # single attempt, no retries
       CAT_CAP_FRACTION: '0.5'  # was 0.4: per-category share of NEW stories per run
       CAT_CAP_MIN: '10'  # was 6: do not cap small runs
       NEWS_DDG: '1'
@@ -185,7 +186,7 @@ jobs:
       GEMINI_MODEL: 'gemini-flash-lite-latest'
       SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
       SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
-      COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+      COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}  # was COHERA_API_KEY (misspelt, always empty); the secret is COHERE_API_KEY
       COHERE_MODEL: 'command-r-08-2024'
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       OPENROUTER_MODEL: 'openrouter/free'  # auto-router to a free model, immune to model-ID rot
