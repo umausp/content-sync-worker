@@ -19,6 +19,11 @@ on:
         required: false
         default: false
         type: boolean
+      local_model:
+        description: 'Optional: run the text LLM locally on the runner with this Ollama model (e.g. gemma3:4b, gemma4:12b) instead of Ollama Cloud. Empty = cloud gemma4 (default). The image VLM gate always stays on Ollama Cloud.'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -58,7 +63,7 @@ jobs:
     name: publish ${{ matrix.edition }}
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: ${{ inputs.local_model != '' && 70 || 25 }}
     strategy:
       fail-fast: false
       max-parallel: 2  # shares the Ollama Cloud cap (10) with video renders; was 4
@@ -86,7 +91,9 @@ jobs:
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
       PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY, same as shorts-world.yml
       PROVIDER_USE_OLLAMA: '1'
-      OLLAMA_MODEL: 'gemma4:31b-cloud'  # news-publish pins gemma4 (owner decision 2026-10-21); other workflows keep the OLLAMA_MODEL secret
+      OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
+      OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
+      OLLAMA_THINK: '0'  # think:false everywhere (no reasoning tokens)
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
       OLLAMA_MAX_TRIES: '6'
@@ -125,7 +132,7 @@ jobs:
       NEWS_DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
       # ── Website news summary + licence-free images (STAGE 1/2). Production values.
       NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
-      NEWS_SUMMARY_MODEL: 'gemma4:31b-cloud'  # same model as synthesis and the VLM gate; pinned here so a model-ID change is a reviewed diff
+      NEWS_SUMMARY_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # same model as synthesis and the VLM gate; pinned here so a model-ID change is a reviewed diff
       NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}  # public IndexNow key (also served at agyata.com/<key>.txt): pings Bing/Yandex/Seznam/Naver after each publish; no-op when unset
       NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
@@ -156,6 +163,34 @@ jobs:
 
       - name: Install npm deps
         run: npm ci --no-audit --no-fund
+
+      - name: Cache Ollama binary and models
+        if: inputs.local_model != ''
+        id: ollama-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/ollama-bin
+            ~/.ollama
+          key: ollama-v1-${{ inputs.local_model }}
+
+      - name: Install Ollama and pull model (cached)
+        if: inputs.local_model != ''
+        shell: bash
+        env:
+          MODEL: ${{ inputs.local_model }}
+        run: |
+          set -euo pipefail
+          if [ ! -x "$HOME/ollama-bin/bin/ollama" ]; then
+            mkdir -p "$HOME/ollama-bin"
+            curl -fsSL https://ollama.com/download/ollama-linux-amd64.tar.zst | zstd -d | tar -x -C "$HOME/ollama-bin"
+          fi
+          export PATH="$HOME/ollama-bin/bin:$PATH"
+          nohup ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+          curl -fs http://127.0.0.1:11434/api/tags >/dev/null || { cat "$RUNNER_TEMP/ollama.log"; exit 1; }
+          ollama list | grep -q "^${MODEL}" || ollama pull "$MODEL"
+          ollama list
 
       - name: Run review (publish edition)
         id: review
