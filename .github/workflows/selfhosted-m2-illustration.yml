@@ -10,20 +10,23 @@ on:
     inputs:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       fixtures: { description: 'fixture set', default: 'password-heist-12' }
-      styles: { description: "all | default | comma list of style ids", default: 'all' }
-      steps: { description: 'schnell steps', default: '4' }
-      size: { description: 'plate size WxH', default: '1152x640' }
+      styles: { description: "all | default | comma list of style ids", default: 'engraving-red' }
+      beats: { description: 'beat subset (empty = all 12)', default: 'B02,B03,B06,B09,B12' }
+      steps: { description: 'schnell steps', default: '3' }
+      size: { description: 'FLUX plate size WxH (multiple of 16)', default: '960x544' }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
   m2:
     runs-on: [self-hosted, macOS, ARM64]
-    timeout-minutes: 240
+    timeout-minutes: 330
     env:
       AGD_FIXTURES: packages/agyata-doc/illustration/fixtures/${{ inputs.fixtures }}.json
       AGD_STYLES: ${{ inputs.styles }}
       AGD_STEPS: ${{ inputs.steps }}
       AGD_SIZE: ${{ inputs.size }}
-      AGD_WORKERS: '3'
+      AGD_BEATS: ${{ inputs.beats }}
+      AGD_FINAL_SIZE: 1920x1080
+      AGD_WORKERS: '2'
       AGD_FLUX_URL: http://127.0.0.1:8090/
       AGD_LLM_URL: http://127.0.0.1:11434
       AGD_JUDGE_MODEL: mlx-community/gemma-4-31b-it-4bit
