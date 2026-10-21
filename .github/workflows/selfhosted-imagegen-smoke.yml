@@ -87,6 +87,7 @@ jobs:
       - name: Serve it (services/imagegen/local_server.py) and POST one plate — the contract the render lane uses
         run: |
           OUT="$RUNNER_TEMP/smoke"; mkdir -p "$OUT"
+          trap 'echo "--- server.log ---"; cat "$OUT/server.log"' EXIT
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' "$MFLUX_PY" pipeline/services/imagegen/local_server.py --port 8090 --model-path "$LF_MODELS/flux-schnell-4bit" --quantize 4 --warm > "$OUT/server.log" 2>&1 < /dev/null &
           PID=$!
           for i in $(seq 1 60); do curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' && break; sleep 5; done
