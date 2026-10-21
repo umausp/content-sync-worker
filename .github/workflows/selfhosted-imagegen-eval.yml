@@ -23,10 +23,11 @@ jobs:
           ref: ${{ inputs.pipeline_ref }}
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: pipeline
-      - name: Node 22 on PATH
+      - name: Node 22 on PATH + npm ci
+        working-directory: pipeline
         run: |
-          export PATH="/opt/homebrew/opt/node@22/bin:/opt/homebrew/bin:$PATH"; node -v
-          echo "/opt/homebrew/opt/node@22/bin" >> "$GITHUB_PATH"; echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version && npm ci --no-audit --no-fund
       - name: Sweep (one server per worker count, warm, then the matrix)
         run: |
           set +e
