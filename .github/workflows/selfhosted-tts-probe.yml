@@ -24,3 +24,28 @@ jobs:
           ls ~/.local/share/uv/tools 2>/dev/null
           pip list 2>/dev/null | grep -i -E 'mlx|whisper|fish' 
           ls ~/.cache/huggingface/hub | grep -i whisper
+      - name: Install mlx-audio into separate venv and print the real API
+        run: |
+          set +e
+          export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+          V=$HOME/.local/share/uv/tools/tts-eval
+          [ -x $V/bin/python ] || uv venv --python /opt/homebrew/bin/python3.12 $V
+          uv pip install --python $V/bin/python -U "mlx-audio>=0.6.0" faster-whisper jiwer soundfile librosa numpy 2>&1 | tail -5
+          $V/bin/python - <<'PY'
+          import inspect, importlib, mlx_audio, sys
+          print("python", sys.version.split()[0], "mlx_audio", getattr(mlx_audio,"__version__","?"))
+          from importlib.metadata import version
+          for p in ("mlx-audio","mlx","mlx-lm","transformers","faster-whisper"):
+              try: print(p, version(p))
+              except Exception as e: print(p, "?", e)
+          import pkgutil, mlx_audio.tts.models as m
+          print([x.name for x in pkgutil.iter_modules(m.__path__) if "fish" in x.name])
+          mod = importlib.import_module("mlx_audio.tts.models.fish_drama3")
+          print(dir(mod))
+          for n in dir(mod):
+              o=getattr(mod,n)
+              if inspect.isclass(o) and hasattr(o,"generate"):
+                  print(n, "generate", inspect.signature(o.generate))
+          import mlx_audio.tts.utils as u; print("load_model", inspect.signature(u.load_model))
+          PY
+          curl -sL https://raw.githubusercontent.com/Blaizzy/mlx-audio/main/docs/models/tts/fish-drama3.md | head -c 9000
