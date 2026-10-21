@@ -19,6 +19,11 @@ on:
         required: false
         default: false
         type: boolean
+      kaggle:
+        description: 'Run the text LLM on the Kaggle 2xT4 GPU lane (GitHub -> Kaggle -> GitHub). Falls back to the free ladder, then Ollama Cloud, if Kaggle is unavailable or out of quota.'
+        required: false
+        default: false
+        type: boolean
       local_model:
         description: 'Optional: run the text LLM locally on the runner with this Ollama model (e.g. gemma3:4b, gemma4:12b) instead of Ollama Cloud. Empty = cloud gemma4 (default). The image VLM gate always stays on Ollama Cloud.'
         required: false
@@ -27,6 +32,11 @@ on:
 
 permissions:
   contents: read
+
+# One Kaggle session at a time (a single kernel slug); queued runs are replaced by the newest. Non-Kaggle runs are independent.
+concurrency:
+  group: ${{ inputs.kaggle && 'kaggle-llm' || format('np-{0}', github.run_id) }}
+  cancel-in-progress: false
 
 jobs:
   plan:
@@ -59,9 +69,30 @@ jobs:
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           echo "editions to publish: $matrix"
 
+  llm_up:
+    name: kaggle llm up
+    if: ${{ inputs.kaggle }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    outputs:
+      url: ${{ steps.up.outputs.url }}
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      KAGGLE_MODEL: 'gemma3:12b'
+      KAGGLE_MIN_REMAINING_H: '1.5'  # skip the lane when less GPU quota than this is left this week
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q kaggle
+      - name: Start Kaggle GPU server and wait for its endpoint
+        id: up
+        shell: bash
+        run: bash kaggle/up.sh
+
   publish:
     name: publish ${{ matrix.edition }}
-    needs: plan
+    needs: [plan, llm_up]
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.local_model != '' && 70 || 25 }}
     strategy:
@@ -89,7 +120,8 @@ jobs:
       #    env vars are ignored harmlessly.
       # Ollama Cloud is the ONLY LLM provider (no paid Gemini/OpenAI spend). Other provider
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
-      PROVIDER_ORDER: 'ollama'  # OLLAMA CLOUD ONLY, same as shorts-world.yml
+      # Free providers first; Ollama Cloud is the LAST resort, one attempt, no retries (owner decision 2026-10-22).
+      PROVIDER_ORDER: 'gemini,mistral,nvidia,openrouter,sambanova,cohere,gitmodels,ollama'
       PROVIDER_USE_OLLAMA: '1'
       OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
       OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
@@ -102,7 +134,9 @@ jobs:
       OLLAMA_LOCAL_TIMEOUT_MS: '300000'
       OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
       OLLAMA_GLOBAL_CONCURRENCY: '10'  # cross-job Ollama semaphore, shared with video renders (cap 10)
-      OLLAMA_MAX_TRIES: '6'
+      OLLAMA_MAX_TRIES: '1'  # single attempt, no retries
+      CAT_CAP_FRACTION: '0.5'  # was 0.4: per-category share of NEW stories per run
+      CAT_CAP_MIN: '10'  # was 6: do not cap small runs
       NEWS_DDG: '1'
       NEWS_DDG_TOPICS: 'finance,tech'
       NEWS_DDG_MAX: '24'
@@ -121,7 +155,7 @@ jobs:
       GEMINI_MODEL: 'gemini-flash-lite-latest'
       SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
       SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
-      COHERA_API_KEY: ${{ secrets.COHERA_API_KEY }}
+      COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}  # was COHERA_API_KEY (misspelt, always empty); the secret is COHERE_API_KEY
       COHERE_MODEL: 'command-r-08-2024'
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       OPENROUTER_MODEL: 'openrouter/free'  # auto-router to a free model, immune to model-ID rot
@@ -139,7 +173,7 @@ jobs:
       # ── Website news summary + licence-free images (STAGE 1/2). Production values.
       NEWS_SUMMARY: '1'  # one small LLM call per story -> the card's summary and summaryShort; extractive fallback on failure
       NEWS_SUMMARY_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # same model as synthesis and the VLM gate; pinned here so a model-ID change is a reviewed diff
-      NEWS_SUMMARY_MAX_CALLS: '40'  # cost guard: max summary LLM calls per process run
+      NEWS_SUMMARY_MAX_CALLS: '120'  # was 40: calls past the cap got no LLM verdict and were rejected by the thin keyword gate
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}  # public IndexNow key (also served at agyata.com/<key>.txt): pings Bing/Yandex/Seznam/Naver after each publish; no-op when unset
       NEWS_IMAGES: '1'  # licence-free image picker (Commons / Openverse / origin-verified DDG)
       NEWS_IMAGES_VLM: '1'  # pixel relevance gate on the picker's candidates; fail-closed (no verdict -> no images)
@@ -154,6 +188,27 @@ jobs:
       SHORTS_VLM_ENTITY_CTX: '1'  # story entities are passed to the judge
       SHORTS_VLM_CORP_CTX: '1'  # corporate/organisation context for company stories
     steps:
+      - name: Kaggle lane
+        if: ${{ needs.llm_up.outputs.url != '' }}
+        shell: bash
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          KURL: ${{ needs.llm_up.outputs.url }}
+        run: |
+          KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
+          echo "::add-mask::$KEY"
+          # Kaggle Gemma serves EVERYTHING: text LLM, summaries and the image VLM gates. Ollama Cloud is not used on this lane,
+          # so the cloud 'ollama' provider is removed from the order and OLLAMA_HOST/KEY/MODEL all point at the Kaggle server.
+          ORDER="kaggle,$(echo "$PROVIDER_ORDER" | tr ',' '\n' | grep -v -x -e ollama -e kaggle | paste -sd, -)"
+          {
+            echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"
+            echo "PROVIDER_ORDER=$ORDER"; echo "SYNTH_CONCURRENCY=4"
+            echo "OLLAMA_HOST=$KURL"; echo "OLLAMA_API_KEY=$KEY"; echo "OLLAMA_MODEL=gemma3:12b"; echo "NEWS_SUMMARY_MODEL=gemma3:12b"
+            echo "SHORTS_VLM_GATE_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_QUORUM_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_FALLBACK_MODELS="
+            echo "SHORTS_VLM_GATE_TIMEOUT_MS=180000"
+          } >> "$GITHUB_ENV"
+          echo "::add-mask::$KEY" >> "$GITHUB_ENV"
+
       - name: Checkout private pipeline code
         uses: actions/checkout@v4
         with:
@@ -226,3 +281,20 @@ jobs:
           msg="news-publish edition=$EDITION outcome=${{ steps.review.outcome }} | $line"
           echo "$msg"
           echo "$msg" >> "$GITHUB_STEP_SUMMARY"
+
+  llm_down:
+    name: kaggle llm down
+    needs: [llm_up, publish]
+    if: ${{ always() && needs.llm_up.outputs.url != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Tell the Kaggle server to stop (saves GPU quota)
+        shell: bash
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          KURL: ${{ needs.llm_up.outputs.url }}
+        run: |
+          KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
+          echo "::add-mask::$KEY"
+          curl -sS -m 20 -X POST -H "Authorization: Bearer $KEY" "$KURL/__shutdown" || true

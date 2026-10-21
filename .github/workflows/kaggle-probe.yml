@@ -18,6 +18,11 @@ jobs:
           kaggle config view || true
           kaggle quota --format json || kaggle quota || true
           kaggle kernels list --mine --page-size 5 || true
+      - name: LLM server kernel status and files
+        run: |
+          kaggle kernels status umausp/agyata-llm-server || true
+          kaggle kernels logs umausp/agyata-llm-server 2>&1 | tail -n 80 | cut -c1-300 || true
+          kaggle quota --format json || true
       - name: Push CPU probe and follow logs
         run: |
           USER=$(kaggle config view 2>/dev/null | sed -n 's/.*username[^A-Za-z0-9_-]*\([A-Za-z0-9_-]*\).*/\1/p' | head -1)
