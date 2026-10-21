@@ -1,0 +1,81 @@
+name: kaggle-ping
+# Spike: GitHub job -> Kaggle kernel -> result back. Lives on the PUBLIC shell repo (CLAUDE.md §6).
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Prompt echoed back by the Kaggle kernel
+        default: "a red fox in snow"
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      SLUG: umausp/agyata-ci-ping
+      PROMPT: ${{ inputs.prompt }}
+    steps:
+      - run: pip install -q kaggle
+      - name: auth + quota
+        run: |
+          test -n "$KAGGLE_API_TOKEN" || { echo "KAGGLE_API_TOKEN secret missing"; exit 1; }
+          kaggle kernels list --mine --page-size 1
+          kaggle quota | tee -a $GITHUB_STEP_SUMMARY
+      - name: write kernel
+        run: |
+          mkdir k
+          cat > k/ping.py <<'PYEOF'
+          import json, os, subprocess, time
+          t0 = time.time()
+          prompt = "__PROMPT__"
+          import shutil
+          gpu = subprocess.run(["nvidia-smi", "--query-gpu=name,memory.total", "--format=csv,noheader"], capture_output=True, text=True).stdout.strip() if shutil.which("nvidia-smi") else "NO GPU"
+          res = {"prompt_echo": prompt, "gpu": gpu}
+          try:
+              import torch
+              x = torch.randn(8192, 8192, device="cuda", dtype=torch.float16)
+              torch.cuda.synchronize(); s = time.time()
+              for _ in range(20): x @ x
+              torch.cuda.synchronize()
+              res["matmul_20x_8192_fp16_s"] = round(time.time() - s, 3)
+          except Exception as e:
+              res["torch_error"] = str(e)
+          res["script_runtime_s"] = round(time.time() - t0, 2)
+          os.makedirs("/kaggle/working", exist_ok=True)
+          json.dump(res, open("/kaggle/working/result.json", "w"), indent=2)
+          print(json.dumps(res))
+          PYEOF
+          cat > k/kernel-metadata.json <<'JSEOF'
+          {
+            "id": "umausp/agyata-ci-ping",
+            "title": "agyata-ci-ping",
+            "code_file": "ping.py",
+            "language": "python",
+            "kernel_type": "script",
+            "is_private": "true",
+            "enable_gpu": "true",
+            "enable_internet": "false",
+            "dataset_sources": [],
+            "competition_sources": [],
+            "kernel_sources": [],
+            "machine_shape": "NvidiaTeslaT4"
+          }
+          JSEOF
+          python3 -c "import os;p='k/ping.py';open(p,'w').write(open(p).read().replace('__PROMPT__',os.environ['PROMPT'].replace('\\','').replace('\"','')))"
+      - name: push
+        run: |
+          date +%s > t0
+          kaggle kernels push -p k
+          echo "push_s=$(( $(date +%s) - $(cat t0) ))" | tee -a $GITHUB_STEP_SUMMARY
+      - name: poll
+        run: |
+          for i in $(seq 1 120); do
+            s=$(kaggle kernels status $SLUG 2>&1 | tail -1); echo "$(( $(date +%s) - $(cat t0) ))s $s"
+            case "$s" in *COMPLETE*) break;; *ERROR*|*CANCEL*) kaggle kernels logs $SLUG | tail -c 2000; exit 1;; esac
+            sleep 10
+          done
+          echo "total_round_trip_s=$(( $(date +%s) - $(cat t0) ))" | tee -a $GITHUB_STEP_SUMMARY
+      - name: output
+        run: |
+          kaggle kernels output $SLUG -p out
+          cat out/result.json | tee -a $GITHUB_STEP_SUMMARY
