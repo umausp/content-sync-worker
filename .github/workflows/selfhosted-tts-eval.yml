@@ -1,0 +1,62 @@
+# selfhosted-tts-eval — evaluate Fish Audio Drama 3 (mlx-audio 4-bit, already in the runner HF cache) as the narrator TTS.
+# $0, local only. Separate uv venv (~/.local/share/uv/tools/tts-eval); never touches the mflux venv.
+name: selfhosted-tts-eval
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of agyata-pipeline-private holding tools/tts_eval', default: 'tts-eval-fish' }
+      model: { description: 'mlx-audio model id', default: 'mlx-community/fish-audio-drama-3-4bit' }
+jobs:
+  eval:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 240
+    concurrency: { group: tts-eval, cancel-in-progress: false }
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: venv
+        run: |
+          export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+          V=$HOME/.local/share/uv/tools/tts-eval
+          [ -x $V/bin/python ] || uv venv --python /opt/homebrew/bin/python3.12 $V
+          uv pip install --python $V/bin/python -U "mlx-audio>=0.6.0" faster-whisper jiwer soundfile librosa numpy whisper-normalizer edge-tts num2words 2>&1 | tail -3
+          echo "PY=$V/bin/python" >> $GITHUB_ENV
+          echo "OUT=$RUNNER_TEMP/tts" >> $GITHUB_ENV
+      - name: synthetic license-free reference voice (macOS say)
+        run: |
+          mkdir -p $OUT; export PATH="/opt/homebrew/bin:$PATH"
+          RT="Many of the oldest maps we still have were drawn by people who never saw the lands they described."
+          say -v Samantha -o $OUT/ref.aiff "$RT"
+          ffmpeg -v error -y -i $OUT/ref.aiff -ar 44100 -ac 1 $OUT/ref.wav
+          echo "$RT" > $OUT/ref.txt; ls -la $OUT
+      - name: Fish synth (all texts)
+        run: |
+          export PATH="/opt/homebrew/bin:$PATH" HF_HUB_DISABLE_PROGRESS_BARS=1
+          $PY pipeline/tools/tts_eval/synth_fish.py pipeline/tools/tts_eval/texts.json $OUT/fish $OUT/ref.wav "$(cat $OUT/ref.txt)" pipeline "${{ inputs.model }}" 2>&1 | tee $OUT/synth.log | rg -v "Warning" 
+      - name: Edge baseline (current narrator)
+        continue-on-error: true
+        run: |
+          export PATH="/opt/homebrew/bin:$PATH"
+          $PY pipeline/tools/tts_eval/run_edge.py pipeline/tools/tts_eval/texts.json $OUT/edge pipeline 2>&1 | tee $OUT/edge.log
+      - name: Analyze (whisper WER, LUFS, pauses, f0)
+        run: |
+          export PATH="/opt/homebrew/bin:$PATH" ALIGN_WHISPER_MODEL=small
+          $PY pipeline/tools/tts_eval/analyze.py $OUT/fish pipeline/tools/tts_eval/texts.json $OUT/fish.json --pipeline pipeline 2>&1 | tail -60
+          [ -d $OUT/edge ] && $PY pipeline/tools/tts_eval/analyze.py $OUT/edge pipeline/tools/tts_eval/texts.json $OUT/edge.json --pipeline pipeline 2>&1 | tail -30
+          { echo "## Fish Drama 3 4-bit vs Edge Ava"; $PY pipeline/tools/tts_eval/summarize.py $OUT/fish.json $OUT/edge.json; echo; echo '```'; $PY -c "import json;print(json.dumps(json.load(open('$OUT/fish.json'))['consistency'],indent=1))"; echo '```'; } >> $GITHUB_STEP_SUMMARY
+      - name: Compress samples
+        if: always()
+        run: |
+          export PATH="/opt/homebrew/bin:$PATH"
+          mkdir -p $OUT/share; for d in fish edge; do for w in $OUT/$d/*.wav; do [ -f "$w" ] && ffmpeg -v error -y -i "$w" -b:a 96k "$OUT/share/$d-$(basename "${w%.wav}").mp3"; done; done
+          cp $OUT/ref.wav $OUT/*.json $OUT/*.log $OUT/share/ 2>/dev/null; cp $OUT/fish/*.meta.json $OUT/share/ 2>/dev/null; du -sh $OUT/share
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tts-eval-fish-drama3-${{ github.run_id }}
+          path: ${{ runner.temp }}/tts/share
+          retention-days: 7
