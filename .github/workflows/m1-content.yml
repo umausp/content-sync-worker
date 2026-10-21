@@ -45,6 +45,7 @@ jobs:
         working-directory: pipeline
         run: |
           AGD_OUT="$RUNNER_TEMP/m1"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
+          echo "AGD_RESEARCH_CACHE=$HOME/.cache/agyata/research" >> "$GITHUB_ENV"   # Wikipedia responses cached on the Mac (429 avoidance)
           pkill -f mlx_ollama_shim.mjs || true; pkill -f mlx_vlm.server || true
           . "$HOME/.cache/lf-venv/bin/activate"
           uv pip install --quiet --upgrade mlx-vlm
