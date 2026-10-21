@@ -16,6 +16,7 @@ on:
       attempts: { description: 'prepare attempts when the script gate stops a run (each picks a new stamp)', default: '2' }
       social: { description: 'post to Facebook + Instagram after the YouTube step (Graph API, best effort)', type: boolean, default: false }
       upload: { description: 'upload to YouTube from the GitHub-hosted finalize job (default: stage only)', type: boolean, default: false }
+      local_imagegen: { description: 'illustrated scenes from a LOCAL FLUX.1-schnell (mflux 4-bit) on this Mac — $0; off or missing weights = no illustrations, never Modal', type: boolean, default: true }
 concurrency: { group: selfhosted-verify, cancel-in-progress: false }
 jobs:
   heavy:
@@ -42,8 +43,6 @@ jobs:
       RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
       RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      IMAGEGEN_ENDPOINT: ${{ secrets.IMAGEGEN_ENDPOINT }}   # Phase 14B illustrated scenes (FLUX.1-schnell on Modal); empty token = feature off
-      IMAGEGEN_TOKEN: ${{ secrets.IMAGEGEN_TOKEN }}
       UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
       UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
@@ -156,6 +155,27 @@ jobs:
           fi
           mkdir -p "$WORKROOT"
 
+      - name: Local FLUX.1-schnell image server (mflux 4-bit, $0) — fails open to "no illustrations"
+        if: inputs.local_imagegen
+        working-directory: pipeline
+        run: |
+          set +e
+          export PATH="$HOME/.local/bin:$PATH"
+          OFF() { echo "::warning::local imagegen unavailable: $1 — illustrations OFF for this render (Modal is never used)"; echo "export IMAGEGEN_ENDPOINT=" >> "$RUNNER_TEMP/pipeline.env"; exit 0; }
+          CLI="$(command -v mflux-generate)"; [ -n "$CLI" ] || OFF "mflux-generate not on PATH (run selfhosted-imagegen-smoke first)"
+          PY="$(head -1 "$CLI" | sed -E 's/^#! *//; s/ .*$//')"
+          "$PY" -c "from mflux.models.flux.variants.txt2img.flux import Flux1" 2>/dev/null || OFF "mflux does not import with $PY"
+          W="$HOME/.cache/lf-models/flux-schnell-4bit"; [ -n "$(ls -A "$W" 2>/dev/null)" ] || OFF "no saved 4-bit weights at $W (run selfhosted-imagegen-smoke first)"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' "$PY" services/imagegen/local_server.py --port 8090 --model-path "$W" --quantize 4 --warm > "$RUNNER_TEMP/imagegen.log" 2>&1 < /dev/null &
+          echo "IMAGEGEN_PID=$!" >> "$GITHUB_ENV"
+          for i in $(seq 1 60); do curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' && break; sleep 5; done
+          curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' || { tail -20 "$RUNNER_TEMP/imagegen.log"; OFF "server did not load the model within 300 s"; }
+          S=$(date +%s)
+          curl -sf -m 600 -X POST http://127.0.0.1:8090/ -H 'content-type: application/json' -d '{"prompt":"hand-drawn graphic novel illustration, a lighthouse at dusk, warm sepia, no text","width":1344,"height":768,"steps":4,"seed":7}' -o "$RUNNER_TEMP/imagegen-probe.png"
+          file "$RUNNER_TEMP/imagegen-probe.png" | grep -q PNG || { tail -20 "$RUNNER_TEMP/imagegen.log"; OFF "probe POST did not return a PNG"; }
+          echo "probe image 1344x768 in $(( $(date +%s) - S )) s: $(file "$RUNNER_TEMP/imagegen-probe.png" | cut -d: -f2)"
+          { echo "export IMAGEGEN_ENDPOINT=http://127.0.0.1:8090"; echo "export IMAGEGEN_TOKEN="; echo "export IMAGEGEN_TIMEOUT_MS=600000"; echo "export VISUAL_GPU_BUDGET_USD=0"; } >> "$RUNNER_TEMP/pipeline.env"
+          echo "local imagegen ON: http://127.0.0.1:8090"
       - name: Prepare (fresh script, visuals, narration; retries when the script gate stops a run)
         working-directory: pipeline
         run: |
@@ -225,6 +245,7 @@ jobs:
             echo "- wall: prepare ${T_PREPARE:-?} s | render ${T_RENDER:-?} s | finalize ${T_FINALIZE:-?} s | total $(( $(date +%s) - T_START )) s  (GitHub 4-vCPU baseline: prepare ~2900 s, render ~1300 s, finalize ~1500 s)"
             grep -hE '\[studio:density2\]' "$RUNNER_TEMP/prepare.log" "$RUNNER_TEMP/finalize.log" 2>/dev/null | tail -1 | sed 's/^/- /'
             find docs/shorts/"$CH" -name short.mp4 -exec ls -lh {} \; 2>/dev/null | awk '{print "- mp4 " $5}'
+            [ -f "$RUNNER_TEMP/imagegen.log" ] && echo "- local imagegen: $(grep -c '^\[imagegen\] 200' "$RUNNER_TEMP/imagegen.log") plates served, $(grep -cE '^\[imagegen\] (4|5)[0-9][0-9]' "$RUNNER_TEMP/imagegen.log") errors; $(grep -c 'motion.illustration' "$RUNNER_TEMP/prepare.log" 2>/dev/null) motion.illustration lines"
           } | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Cleanup (RAM disk, staged output, helper processes)
         if: always()
@@ -234,6 +255,7 @@ jobs:
           [ -z "${CAFFEINATE_PID:-}" ] || kill "$CAFFEINATE_PID" 2>/dev/null || true
           [ -z "${SHIM_PID:-}" ] || kill "$SHIM_PID" 2>/dev/null || true
           [ -z "${MLX_PID:-}" ] || kill "$MLX_PID" 2>/dev/null || true
+          [ -z "${IMAGEGEN_PID:-}" ] || kill "$IMAGEGEN_PID" 2>/dev/null || true
 
   publish:
     needs: heavy
@@ -258,8 +280,6 @@ jobs:
       RESEARCH_POD_ENDPOINT: ${{ secrets.RESEARCH_POD_ENDPOINT }}
       RESEARCH_POD_TOKEN: ${{ secrets.RESEARCH_POD_TOKEN }}
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      IMAGEGEN_ENDPOINT: ${{ secrets.IMAGEGEN_ENDPOINT }}   # Phase 14B illustrated scenes (FLUX.1-schnell on Modal); empty token = feature off
-      IMAGEGEN_TOKEN: ${{ secrets.IMAGEGEN_TOKEN }}
       UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
       UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
       NEWS_INGEST_TOKEN: ${{ secrets.NEWS_INGEST_TOKEN }}
