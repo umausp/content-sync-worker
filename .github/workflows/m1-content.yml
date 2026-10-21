@@ -1,0 +1,52 @@
+# m1-content — Agyata Doc v2, module M1 (content) proven on its own real output. NOT an end-to-end render.
+# Per fixture topic: grounded fact packet from Wikipedia (verbatim quotes, numbers inside quotes) → outline + chapter writer
+# (narration AND picture brief per beat) → deterministic lints (incl. every brief through the M2 prompt compiler) + second-model
+# reviewer → ≤ AGD_MAX_REWRITES targeted rewrites → beat_sheet.json, m2_fixture.json, storyboard.md, review.json/md in
+# artifact agyata-m1-review-<run>. No GPU: runs on a GitHub-hosted runner, so it never blocks the Mac lane. $0: Ollama Cloud.
+# Canonical copy: tools/ci/m1-content.yml in the private repo; the live copy is the public shell's.
+name: m1-content
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      only: { description: 'topic ids (empty = all fixture topics)', default: '' }
+      minutes: { description: 'target documentary length in minutes', default: '6' }
+concurrency: { group: m1-content, cancel-in-progress: false }
+jobs:
+  m1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      AGD_TOPICS: packages/agyata-doc/content/fixtures/topics.json
+      AGD_ONLY: ${{ inputs.only }}
+      AGD_MINUTES: ${{ inputs.minutes }}
+      AGD_LLM_URL: https://ollama.com
+      AGD_WRITER_MODEL: deepseek-v4-pro:0813
+      AGD_REVIEW_MODEL: mistral-large-4
+      AGD_FACT_MODEL: deepseek-v4.1-flash
+      AGD_MAX_REWRITES: '2'
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Unit suites (lints are the first gate)
+        working-directory: pipeline
+        run: node --test 'packages/agyata-doc/content/test/*_test.mjs' 'packages/agyata-doc/illustration/test/*_test.mjs'
+      - name: M1 run (research → write → lint + review → rewrites → storyboard)
+        working-directory: pipeline
+        run: |
+          echo "AGD_OUT=$RUNNER_TEMP/m1" >> "$GITHUB_ENV"
+          AGD_OUT="$RUNNER_TEMP/m1" node packages/agyata-doc/content/bin/m1_run.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agyata-m1-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1
+          retention-days: 30
