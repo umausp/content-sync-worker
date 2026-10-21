@@ -25,8 +25,11 @@ jobs:
       AGD_LOCAL_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_WRITER_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
-      AGD_FACT_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit   # facts are simple extraction: the faster 12B (cached on the Mac)
+      AGD_FACT_LLM_URL: http://127.0.0.1:11536
       AGD_MAX_REWRITES: '2'
+      AGD_LLM_TIMEOUT_S: '600'
+      AGD_FACT_CONCURRENCY: '2'
     steps:
       - name: Checkout private pipeline (./pipeline)
         uses: actions/checkout@v4
@@ -54,9 +57,13 @@ jobs:
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_LOCAL_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_LOCAL_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11535 --upstream http://127.0.0.1:8081 --model "$AGD_LOCAL_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-3-12b' || { echo "::error::$AGD_FACT_MODEL not in the HF cache"; exit 1; }
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_FACT_MODEL" --port 8082 > "$AGD_OUT/mlx_fact.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11536 --upstream http://127.0.0.1:8082 --model "$AGD_FACT_MODEL" > "$AGD_OUT/shim_fact.log" 2>&1 < /dev/null &
           for i in $(seq 1 120); do
             R=$(curl -s -m 120 http://127.0.0.1:11535/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
-            echo "$R" | grep -q '"done":true' && { echo "local model ready after ~$((i*10)) s"; exit 0; }
+            R2=$(curl -s -m 120 http://127.0.0.1:11536/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            echo "$R" | grep -q '"done":true' && echo "$R2" | grep -q '"done":true' && { echo "both local models ready after ~$((i*10)) s"; exit 0; }
             sleep 10
           done
           echo "::error::local model did not come up"; tail -30 "$AGD_OUT/mlx.log" "$AGD_OUT/shim.log"; exit 1
