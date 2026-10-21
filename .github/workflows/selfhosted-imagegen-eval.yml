@@ -1,0 +1,73 @@
+# selfhosted-imagegen-eval — Docfilm plan E0: which local FLUX.1-schnell setting gives >= 4 plates/min at a quality the owner accepts?
+# Sweeps workers {1,2,3} x steps {2,3,4} x size {896x512,1152x640,1344x768}; 6 house-style prompts per setting, concurrency = workers.
+# Output: results.json + table.md + one contact sheet (JPEG, 3x2 tile) per setting in artifact imagegen-eval-sheets-<run>; raw plates in
+# imagegen-eval-plates-<run> (1 day). $0: local mflux only. Shares the selfhosted-verify concurrency group: never overlaps a render.
+name: selfhosted-imagegen-eval
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      workers: { description: 'worker counts to sweep', default: '1,2,3' }
+      steps: { description: 'schnell steps to sweep', default: '2,3,4' }
+      sizes: { description: 'sizes to sweep', default: '896x512,1152x640,1344x768' }
+concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+jobs:
+  eval:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 240
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH
+        run: |
+          export PATH="/opt/homebrew/opt/node@22/bin:/opt/homebrew/bin:$PATH"; node -v
+          echo "/opt/homebrew/opt/node@22/bin" >> "$GITHUB_PATH"; echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+      - name: Sweep (one server per worker count, warm, then the matrix)
+        run: |
+          set +e
+          W="$HOME/.cache/lf-models/flux-schnell-4bit"; PY="$HOME/.local/share/uv/tools/mflux/bin/python"
+          [ -d "$W" ] && [ -x "$PY" ] || { echo "::error::mflux weights/venv missing ($W, $PY)"; exit 1; }
+          OUT="$RUNNER_TEMP/eval"; mkdir -p "$OUT"; cd pipeline
+          FAILED=0
+          for N in $(echo "${{ inputs.workers }}" | tr ',' ' '); do
+            echo "=== workers=$N : starting server"; S=$(date +%s)
+            perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' "$PY" services/imagegen/local_server.py --port 8090 --workers "$N" --model-path "$W" --quantize 4 --warm > "$OUT/server_w$N.log" 2>&1 < /dev/null &
+            SP=$!
+            for i in $(seq 1 240); do curl -sf -m 5 http://127.0.0.1:8090/health | grep -q '"loaded": *true' && break; sleep 5; done
+            curl -s -m 5 http://127.0.0.1:8090/health; echo; echo "ready in $(( $(date +%s) - S )) s"
+            node tools/ci/imagegen_eval.mjs --endpoint http://127.0.0.1:8090/ --workers "$N" --steps "${{ inputs.steps }}" --sizes "${{ inputs.sizes }}" --out "$OUT" || FAILED=1
+            kill "$SP" 2>/dev/null; sleep 3; pkill -f services/imagegen/local_server.py 2>/dev/null; sleep 5
+          done
+          node tools/ci/imagegen_eval.mjs --summarize "$OUT"
+          # one contact sheet per setting: 3x2 tile of the 6 plates, JPEG (small)
+          mkdir -p "$OUT/sheets"
+          for f in "$OUT"/w*_1.png; do
+            b="$(basename "$f" _1.png)"
+            ffmpeg -v error -y -framerate 1 -i "$OUT/${b}_%d.png" -vf "scale=640:-1,tile=3x2" -frames:v 1 -q:v 4 "$OUT/sheets/$b.jpg" || echo "sheet failed: $b"
+          done
+          ls "$OUT/sheets" | wc -l
+          exit $FAILED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: imagegen-eval-sheets-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/eval/sheets
+            ${{ runner.temp }}/eval/results.json
+            ${{ runner.temp }}/eval/table.md
+            ${{ runner.temp }}/eval/server_w*.log
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: imagegen-eval-plates-${{ github.run_id }}
+          path: ${{ runner.temp }}/eval/*.png
+          retention-days: 1
+      - name: Cleanup
+        if: always()
+        run: pkill -f services/imagegen/local_server.py 2>/dev/null; rm -rf "$RUNNER_TEMP/eval"; true
