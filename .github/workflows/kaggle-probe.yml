@@ -1,0 +1,32 @@
+name: kaggle-probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q kaggle
+      - name: Auth, quota, user
+        run: |
+          kaggle --version
+          kaggle config view || true
+          kaggle quota --format json || kaggle quota || true
+          kaggle kernels list --mine --page-size 5 || true
+      - name: Push CPU probe and follow logs
+        run: |
+          USER=$(kaggle config view 2>/dev/null | sed -n 's/.*username[^A-Za-z0-9_-]*\([A-Za-z0-9_-]*\).*/\1/p' | head -1)
+          echo "user=$USER"
+          cd kaggle/probe
+          cat > kernel-metadata.json <<JSON
+          {"id":"$USER/agyata-probe","title":"agyata-probe","code_file":"probe.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":false,"enable_internet":true,"dataset_sources":[],"competition_sources":[],"kernel_sources":[]}
+          JSON
+          kaggle kernels push -p . -t 300
+          sleep 20
+          timeout 150 kaggle kernels logs -f "$USER/agyata-probe" | tee /tmp/probe.log || true
+          kaggle kernels status "$USER/agyata-probe" || true
