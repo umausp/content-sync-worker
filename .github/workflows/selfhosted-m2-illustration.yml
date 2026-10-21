@@ -28,7 +28,7 @@ jobs:
       AGD_FINAL_SIZE: 1920x1080
       AGD_WORKERS: '2'
       AGD_FLUX_URL: http://127.0.0.1:8090/
-      AGD_LLM_URL: http://127.0.0.1:11434
+      AGD_LLM_URL: http://127.0.0.1:11535
       AGD_JUDGE_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_MAX_RETRIES: '3'
     steps:
@@ -60,14 +60,15 @@ jobs:
       - name: Local VLM judge (gemma-4-31b 4-bit via mlx_vlm) behind the Ollama-protocol shim
         working-directory: pipeline
         run: |
+          pkill -f mlx_ollama_shim.mjs || true; pkill -f mlx_vlm.server || true   # a leftover from a killed run would hold the ports
           . "$HOME/.cache/lf-venv/bin/activate"
           uv pip install --quiet --upgrade mlx-vlm
           export HF_HUB_OFFLINE=1
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_JUDGE_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_JUDGE_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
-          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11434 --upstream http://127.0.0.1:8081 --model "$AGD_JUDGE_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11535 --upstream http://127.0.0.1:8081 --model "$AGD_JUDGE_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
           for i in $(seq 1 120); do
-            R=$(curl -s -m 120 http://127.0.0.1:11434/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            R=$(curl -s -m 120 http://127.0.0.1:11535/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
             echo "$R" | grep -q '"done":true' && { echo "judge ready after ~$((i*10)) s"; exit 0; }
             sleep 10
           done
