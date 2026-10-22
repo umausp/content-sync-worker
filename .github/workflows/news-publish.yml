@@ -167,7 +167,7 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       OPENROUTER_MODEL: 'openrouter/free'  # auto-router to a free model, immune to model-ID rot
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-      NVIDIA_MODEL: 'meta/llama-3.3-70b-instruct'
+      NVIDIA_MODEL: 'mistralai/mistral-large-2-instruct'  # meta/llama-3.3-70b-instruct is retired on NVIDIA (http 410, 2026-10-22)
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
       MISTRAL_MODEL: 'mistral-small-latest'
       GITMODELS_API_KEY: ${{ secrets.GITMODELS_API_KEY }}
