@@ -22,7 +22,7 @@ WORK="$RUNNER_TEMP/kllm"; mkdir -p "$WORK"
 sed -e "s|__KEY__|$KEY|" -e "s|__TOPIC__|$TOPIC|" -e "s|__MODEL__|$KAGGLE_MODEL|" -e "s|__RUN__|$GITHUB_RUN_ID|" \
     -e "s|__PARALLEL__|${KAGGLE_PARALLEL:-2}|" -e "s|__CTX__|${KAGGLE_CTX:-8192}|" kaggle/llm_server/server.py > "$WORK/server.py"
 # Mount the private cache dataset (Ollama program + model files) when it exists; the server falls back to install + pull otherwise.
-DS=""; if kaggle datasets status "$KUSER/agyata-ollama-cache" >/dev/null 2>&1; then DS="\"$KUSER/agyata-ollama-cache\""; echo "cache dataset: $KUSER/agyata-ollama-cache"; else echo "cache dataset not found: installing Ollama and pulling the model in the session"; fi
+DS=""; if kaggle datasets list --mine --search agyata-ollama-cache --csv 2>/dev/null | grep -q "agyata-ollama-cache"; then DS="\"$KUSER/agyata-ollama-cache\""; echo "cache dataset: $KUSER/agyata-ollama-cache"; else echo "cache dataset not found: installing Ollama and pulling the model in the session"; fi
 cat > "$WORK/kernel-metadata.json" <<JSON
 {"id":"$SLUG","title":"agyata-llm-server","code_file":"server.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[$DS],"competition_sources":[],"kernel_sources":[]}
 JSON
