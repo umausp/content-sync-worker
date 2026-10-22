@@ -3,7 +3,9 @@
 # (narration AND picture brief per beat) → deterministic lints (incl. every brief through the M2 prompt compiler) + reviewer
 # → ≤ AGD_MAX_REWRITES targeted rewrites → beat_sheet.json, m2_fixture.json, storyboard.md, review.json/md in artifact
 # agyata-m1-review-<run>. User 2026-10-21: run on the self-hosted Mac with the LOCAL gemma-4 from the HF cache
-# (mlx_vlm server + Ollama-protocol shim, think=false) — no cloud LLM. Shares the selfhosted-verify group: one Mac job at a time.
+# (mlx_vlm server + Ollama-protocol shim, think=false) — no cloud LLM. Lane mac-llm: a second runner on the same Mac (labels
+# mac-llm only, so legacy jobs never land on it), beside M2 on mac-img. Ports 8181/8182/11635/11636 belong to this lane (8081 and
+# 11535 are mac-img's); cleanup is by port, never by name.
 # Canonical copy: tools/ci/m1-content.yml in the private repo; the live copy is the public shell's.
 name: m1-content
 on:
@@ -12,21 +14,21 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       only: { description: 'topic ids (empty = all fixture topics)', default: '' }
       minutes: { description: 'target documentary length in minutes', default: '6' }
-concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+concurrency: { group: mac-llm, cancel-in-progress: false }
 jobs:
   m1:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [mac-llm]
     timeout-minutes: 300
     env:
       AGD_TOPICS: packages/agyata-doc/content/fixtures/topics.json
       AGD_ONLY: ${{ inputs.only }}
       AGD_MINUTES: ${{ inputs.minutes }}
-      AGD_LLM_URL: http://127.0.0.1:11535
+      AGD_LLM_URL: http://127.0.0.1:11635
       AGD_LOCAL_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_WRITER_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit   # facts are simple extraction: the faster 12B (cached on the Mac)
-      AGD_FACT_LLM_URL: http://127.0.0.1:11536
+      AGD_FACT_LLM_URL: http://127.0.0.1:11636
       AGD_MAX_REWRITES: '2'
       AGD_LLM_TIMEOUT_S: '600'
       AGD_FACT_CONCURRENCY: '1'   # 2 only after a measured run proves mlx_vlm serves concurrent requests
@@ -49,20 +51,21 @@ jobs:
         run: |
           AGD_OUT="$RUNNER_TEMP/m1"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
           echo "AGD_RESEARCH_CACHE=$HOME/.cache/agyata/research" >> "$GITHUB_ENV"   # Wikipedia responses cached on the Mac (429 avoidance)
-          pkill -f mlx_ollama_shim.mjs || true; pkill -f mlx_vlm.server || true
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8181 8182 11635 11636   # a leftover from a killed run of THIS lane would hold the ports
           . "$HOME/.cache/lf-venv/bin/activate"
-          uv pip install --quiet --upgrade mlx-vlm
+          python -c "import mlx_vlm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-vlm   # no --upgrade: the other lane may be serving from this venv
           export HF_HUB_OFFLINE=1   # weights already in ~/.cache/huggingface; never download
           echo "gemma models in the HF cache:"; ls "$HOME/.cache/huggingface/hub" | grep -i gemma || true
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_LOCAL_MODEL not in the HF cache"; exit 1; }
-          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_LOCAL_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
-          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11535 --upstream http://127.0.0.1:8081 --model "$AGD_LOCAL_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_LOCAL_MODEL" --port 8181 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11635 --upstream http://127.0.0.1:8181 --model "$AGD_LOCAL_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-3-12b' || { echo "::error::$AGD_FACT_MODEL not in the HF cache"; exit 1; }
-          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_FACT_MODEL" --port 8082 > "$AGD_OUT/mlx_fact.log" 2>&1 < /dev/null &
-          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11536 --upstream http://127.0.0.1:8082 --model "$AGD_FACT_MODEL" > "$AGD_OUT/shim_fact.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_FACT_MODEL" --port 8182 > "$AGD_OUT/mlx_fact.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11636 --upstream http://127.0.0.1:8182 --model "$AGD_FACT_MODEL" > "$AGD_OUT/shim_fact.log" 2>&1 < /dev/null &
           for i in $(seq 1 120); do
-            R=$(curl -s -m 120 http://127.0.0.1:11535/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
-            R2=$(curl -s -m 120 http://127.0.0.1:11536/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            R=$(curl -s -m 120 http://127.0.0.1:11635/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            R2=$(curl -s -m 120 http://127.0.0.1:11636/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
             echo "$R" | grep -q '"done":true' && echo "$R2" | grep -q '"done":true' && { echo "both local models ready after ~$((i*10)) s"; exit 0; }
             sleep 10
           done
@@ -86,4 +89,6 @@ jobs:
           retention-days: 7
       - name: Cleanup
         if: always()
-        run: pkill -f mlx_vlm.server || true; pkill -f mlx_ollama_shim.mjs || true; rm -rf "$RUNNER_TEMP/m1"
+        run: |
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8181 8182 11635 11636; rm -rf "$RUNNER_TEMP/m1"
