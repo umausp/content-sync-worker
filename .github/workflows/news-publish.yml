@@ -122,9 +122,9 @@ jobs:
       # Ollama Cloud is the ONLY LLM provider (no paid Gemini/OpenAI spend). Other provider
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
       # Free providers first; Ollama Cloud is the LAST resort, one attempt, no retries (owner decision 2026-10-22).
-      # groq (gpt-oss-120b, strong multilingual JSON) sits right after gemini; its 8K TPM free limit 429s under load and the
-      # ladder moves on to the next free provider.
-      PROVIDER_ORDER: 'gemini,groq,mistral,nvidia,openrouter,sambanova,cohere,gitmodels,ollama'
+      # groq (gpt-oss-120b, strong multilingual JSON) leads; its 8K TPM free limit 429s under load and the ladder moves on.
+      # gemini/mistral/openrouter/gitmodels removed (owner 2026-10-22: always 429 or broken on the free tier).
+      PROVIDER_ORDER: 'groq,nvidia,sambanova,cohere,ollama'
       PROVIDER_USE_OLLAMA: '1'
       OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
       OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
