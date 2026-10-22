@@ -18,6 +18,12 @@ jobs:
           kaggle config view || true
           kaggle quota --format json || kaggle quota || true
           kaggle kernels list --mine --page-size 5 || true
+      - name: List Gemma models and instances
+        run: |
+          kaggle models list --search gemma --owner google --page-size 20 2>&1 | head -30 || true
+          kaggle models get google/gemma-4 2>&1 | head -40 || true
+          kaggle models get google/gemma-3 2>&1 | head -40 || true
+          for M in google/gemma-4/transformers google/gemma-3/transformers; do echo "== $M"; kaggle models variations list $M 2>&1 | head -20 || true; done
       - name: LLM server kernel status and files
         run: |
           kaggle kernels status umausp/agyata-llm-server || true
