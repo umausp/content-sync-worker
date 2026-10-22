@@ -22,7 +22,15 @@ fi
 ( while true; do kaggle kernels logs -f "$KUSER/agyata-llm-server" >> "$WORK/log.txt" 2>&1; sleep 5; done ) &
 FOLLOWER=$!
 trap 'kill $FOLLOWER 2>/dev/null' EXIT
+QUEUED_SINCE=0
 for i in $(seq 1 84); do
+  if [ $((i % 3)) -eq 1 ]; then
+    STATE=$(kaggle kernels status "$KUSER/agyata-llm-server" 2>/dev/null | sed -n 's/.*KernelWorkerStatus\.\([A-Z_]*\).*/\1/p')
+    echo "[$(date -u +%H:%M:%S)] kaggle kernel state: ${STATE:-unknown}"
+    if [ "$STATE" = "QUEUED" ]; then QUEUED_SINCE=$((QUEUED_SINCE + 30)); else QUEUED_SINCE=0; fi
+    if [ "$STATE" = "ERROR" ] || [ "$STATE" = "CANCEL_ACKNOWLEDGED" ]; then echo "::error::Kaggle kernel ended in state $STATE"; exit 1; fi
+    if [ "$QUEUED_SINCE" -ge 480 ]; then echo "::error::Kaggle kept the kernel QUEUED for 8+ minutes (no GPU session started; check https://www.kaggle.com/code/$KUSER/agyata-llm-server)"; exit 1; fi
+  fi
   LINE=$(grep -a "KAGGLE_LLM_ENDPOINT=.* run=$GITHUB_RUN_ID" "$WORK/log.txt" | tail -1 || true)
   if [ -n "$LINE" ]; then
     URL=$(echo "$LINE" | sed -n 's/.*KAGGLE_LLM_ENDPOINT=\([^ ]*\) .*/\1/p')
