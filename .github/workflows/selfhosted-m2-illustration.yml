@@ -2,7 +2,8 @@
 # Fixture briefs → prompt compiler + lints → local FLUX.1-schnell plates (all styles queued at once) → local gemma VLM judge
 # (relevance vs the BRIEF, cleanliness, style consistency vs a reference plate, host pair) → retries with camera/light variations
 # → contact sheet per style (brief text under each plate) + review.json + review.md in artifact agyata-m2-review-<run>.
-# $0: mflux + mlx_vlm on the runner Mac. Shares the selfhosted-verify concurrency group: one Mac workflow at a time.
+# $0: mflux + mlx_vlm on the runner Mac. Lane mac-img (the original runner, shared with the legacy selfhosted-* jobs, which it
+# runs one at a time); M1 runs beside it on lane mac-llm. Ports 8090/8081/11535 belong to this lane; cleanup is by port, never by name.
 # Canonical copy: tools/ci/selfhosted-m2-illustration.yml in the private repo; the live copy is the public shell's.
 name: selfhosted-m2-illustration
 on:
@@ -14,10 +15,10 @@ on:
       beats: { description: 'beat subset (empty = all 12)', default: 'B02,B03,B06,B09,B12' }
       steps: { description: 'schnell steps', default: '3' }
       size: { description: 'FLUX plate size WxH (multiple of 16)', default: '960x544' }
-concurrency: { group: selfhosted-verify, cancel-in-progress: false }
+concurrency: { group: mac-img, cancel-in-progress: false }
 jobs:
   m2:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, macOS, ARM64, mac-img]
     timeout-minutes: 330
     env:
       AGD_PROFILE: documentary
@@ -61,9 +62,10 @@ jobs:
       - name: Local VLM judge (gemma-4-31b 4-bit via mlx_vlm) behind the Ollama-protocol shim
         working-directory: pipeline
         run: |
-          pkill -f mlx_ollama_shim.mjs || true; pkill -f mlx_vlm.server || true   # a leftover from a killed run would hold the ports
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8081 11535   # a leftover from a killed run of THIS lane would hold the ports
           . "$HOME/.cache/lf-venv/bin/activate"
-          uv pip install --quiet --upgrade mlx-vlm
+          python -c "import mlx_vlm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-vlm   # no --upgrade: the other lane may be serving from this venv
           export HF_HUB_OFFLINE=1
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_JUDGE_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_JUDGE_MODEL" --port 8081 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
@@ -95,4 +97,6 @@ jobs:
           retention-days: 7
       - name: Cleanup
         if: always()
-        run: pkill -f services/imagegen/local_server.py || true; pkill -f mlx_vlm.server || true; pkill -f mlx_ollama_shim.mjs || true; rm -rf "$RUNNER_TEMP/m2"
+        run: |
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8090 8081 11535; rm -rf "$RUNNER_TEMP/m2"
