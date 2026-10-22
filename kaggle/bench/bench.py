@@ -9,7 +9,7 @@ Writes /kaggle/working/bench.json and prints BENCH lines as it goes.
 """
 import glob, json, os, random, subprocess, threading, time, urllib.request
 
-ROOT = "/kaggle/tmp"  # NOT /kaggle/working: Kaggle saves that dir as output at session end (GBs of model files)
+ROOT = "/tmp/agyata"  # NOT /kaggle/working or /kaggle/tmp: both are saved as output (20 GB cap; the 12B GGUF hit it 2026-10-22)
 OUTDIR = "/kaggle/working"
 os.makedirs(ROOT, exist_ok=True)
 OUT = {"t0": time.time(), "results": [], "lang": [], "notes": []}
@@ -246,6 +246,8 @@ def section_llama():
     m12, m1 = f"{d}/g12.gguf", f"{d}/g1.gguf"
     fetch(f"{hf}/gemma-3-12b-it-GGUF/resolve/main/gemma-3-12b-it-Q4_K_M.gguf", m12)
     fetch(f"{hf}/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf", m1)
+    if not (os.path.exists(m12) and os.path.getsize(m12) > 7e9 and os.path.exists(m1)):
+        OUT["notes"].append("gguf download incomplete, skipping llama.cpp: " + sh(f"df -h {ROOT} /kaggle/working").stdout); save(); return
     s8 = lambda r: synth_prompt(r, 8)
     s2 = lambda r: synth_prompt(r, 2)
     for np_, concs in ((4, (8,)), (8, (16,))):
