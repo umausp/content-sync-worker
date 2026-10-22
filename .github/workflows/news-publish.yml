@@ -81,6 +81,7 @@ jobs:
       KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
       KAGGLE_MODEL: 'gemma3:12b'
       KAGGLE_MIN_REMAINING_H: '1.5'  # skip the lane when less GPU quota than this is left this week
+      KAGGLE_PARALLEL: '4'  # slots per GPU; bench 2026-10-22: 45 vs 35 articles/min at np2, VRAM 10.4/15 GB
     steps:
       - uses: actions/checkout@v4
       - run: pip install -q kaggle
@@ -95,7 +96,7 @@ jobs:
     # kaggle=true means Kaggle only: if llm_up failed the run fails (no silent fallback to other providers).
     if: ${{ !cancelled() && needs.plan.result == 'success' && (needs.llm_up.result == 'success' || needs.llm_up.result == 'skipped') }}
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.local_model != '' && 70 || 25 }}
+    timeout-minutes: ${{ inputs.local_model != '' && 70 || inputs.kaggle && 40 || 25 }}
     strategy:
       fail-fast: false
       max-parallel: ${{ inputs.local_model != '' && 6 || 2 }}  # cloud shares the Ollama cap (10) with video renders; local models run on their own runners
@@ -203,7 +204,9 @@ jobs:
           ORDER="kaggle"  # Kaggle only: no free-ladder or Ollama Cloud fallback on this lane
           {
             echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"
-            echo "PROVIDER_ORDER=$ORDER"; echo "SYNTH_CONCURRENCY=4"
+            echo "PROVIDER_ORDER=$ORDER"; echo "SYNTH_CONCURRENCY=8"
+            # 2 GPUs x 4 slots: keep ~8-16 requests in flight in every stage (bench: throughput saturates at 16)
+            echo "TRIAGE_CONCURRENCY=4"; echo "REVIEW_LOOKAHEAD=6"; echo "NEWS_SUMMARY_CONCURRENCY=8"; echo "NEWS_VLM_CONCURRENCY=2"
             echo "OLLAMA_HOST=$KURL"; echo "OLLAMA_API_KEY=$KEY"; echo "OLLAMA_MODEL=gemma3:12b"; echo "NEWS_SUMMARY_MODEL=gemma3:12b"
             echo "SHORTS_VLM_GATE_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_QUORUM_MODEL=gemma3:12b"; echo "SHORTS_VLM_GATE_FALLBACK_MODELS="
             echo "SHORTS_VLM_GATE_TIMEOUT_MS=180000"
