@@ -68,7 +68,7 @@ for i in $(seq 1 90); do
     fi
     echo "endpoint announced ($URL) but /health not reachable yet"
   fi
-  if grep -aq "KAGGLE_LLM_FAILED" "$WORK/log.txt" 2>/dev/null; then echo "::error::Kaggle server reported a startup failure"; grep -a -A12 "KAGGLE_LLM_FAILED" "$WORK/log.txt" | cut -c1-220; exit 1; fi
+  if grep -aq "KAGGLE_LLM_FAILED" "$WORK/log.txt" 2>/dev/null; then echo "::error::Kaggle server reported a startup failure"; sleep 20; grep -a -A120 "KAGGLE_LLM_FAILED" "$WORK/log.txt" | cut -c1-240; exit 1; fi
   sleep 10
 done
 echo "::error::Kaggle LLM did not become ready within 15 minutes"; tail -n 60 "$WORK/log.txt" | cut -c1-200
