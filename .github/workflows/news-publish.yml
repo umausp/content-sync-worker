@@ -122,7 +122,9 @@ jobs:
       # Ollama Cloud is the ONLY LLM provider (no paid Gemini/OpenAI spend). Other provider
       # keys below are kept in sync with shorts-world but are inert while PROVIDER_ORDER='ollama'.
       # Free providers first; Ollama Cloud is the LAST resort, one attempt, no retries (owner decision 2026-10-22).
-      PROVIDER_ORDER: 'gemini,mistral,nvidia,openrouter,sambanova,cohere,gitmodels,ollama'
+      # groq (gpt-oss-120b, strong multilingual JSON) sits right after gemini; its 8K TPM free limit 429s under load and the
+      # ladder moves on to the next free provider.
+      PROVIDER_ORDER: 'gemini,groq,mistral,nvidia,openrouter,sambanova,cohere,gitmodels,ollama'
       PROVIDER_USE_OLLAMA: '1'
       OLLAMA_MODEL: ${{ inputs.local_model != '' && inputs.local_model || 'gemma4:31b-cloud' }}  # news-publish pins gemma4 (owner decision 2026-10-21) unless local_model is given; other workflows keep the OLLAMA_MODEL secret
       OLLAMA_LLM_HOST: ${{ inputs.local_model != '' && 'http://127.0.0.1:11434' || '' }}  # text LLM only; VLM gate/image picker keep Ollama Cloud
@@ -154,6 +156,10 @@ jobs:
       SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: 'gemini-flash-lite-latest'
+      GROQ_API_KEY: ${{ secrets.GROQ_API_TOKEN }}  # the secret is named GROQ_API_TOKEN; the pipeline reads GROQ_API_KEY
+      GROQ_MODEL: 'openai/gpt-oss-120b'  # free tier 30 RPM / 1K RPD / 8K TPM; llama-3.3-70b is enterprise-only on Groq now
+      GROQ_REASONING_EFFORT: 'low'  # reasoning model: keep hidden reasoning tokens small
+      GROQ_DAILY_CAP: '900'
       SOMBANOVA_API_KEY: ${{ secrets.SOMBANOVA_API_KEY }}
       SAMBANOVA_MODEL: 'Meta-Llama-3.3-70B-Instruct'
       COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}  # was COHERA_API_KEY (misspelt, always empty); the secret is COHERE_API_KEY
