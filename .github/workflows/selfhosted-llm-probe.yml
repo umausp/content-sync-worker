@@ -31,7 +31,11 @@ jobs:
           python -c "import mlx_lm, mlx_vlm; print('mlx_lm', mlx_lm.__version__, 'mlx_vlm', mlx_vlm.__version__)" || true
           echo "free disk: $(df -h "$HOME" | tail -1)"
           A=mlx-community/gemma-4-26b-a4b-it-4bit; B=mlx-community/gemma-4-31b-it-4bit
-          ls "$HOME/.cache/huggingface/hub" | grep -qi 'gemma-4-26b-a4b' || HF_HUB_OFFLINE=0 lockf -k "$HOME/.cache/hf-fetch.lock" python -c "import sys; from huggingface_hub import snapshot_download; snapshot_download(sys.argv[1])" "$A"
+          # A stalled HF read errors after 60 s instead of hanging; snapshot_download resumes partial files, so retry up to 5x.
+          for t in 1 2 3 4 5; do
+            HF_HUB_OFFLINE=0 HF_HUB_DOWNLOAD_TIMEOUT=60 HF_HUB_ETAG_TIMEOUT=30 lockf -k "$HOME/.cache/hf-fetch.lock" python -c "import sys; from huggingface_hub import snapshot_download; print(snapshot_download(sys.argv[1]))" "$A" && break
+            echo "download attempt $t failed; resuming"; sleep 10
+          done
           export HF_HUB_OFFLINE=1
           LMFLAGS=""
           python -m mlx_lm.server --help > "$RUNNER_TEMP/lmhelp.txt" 2>&1 || true
