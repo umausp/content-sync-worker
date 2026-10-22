@@ -18,7 +18,8 @@ echo "::add-mask::$KEY"
 TOPIC="agyata-$(printf '%s' "$KEY" | sha256sum | cut -c1-24)"   # unguessable without the key; the URL alone is useless without the key
 echo "::add-mask::$TOPIC"
 KUSER=$(kaggle config view | sed -n 's/^- username: //p')
-SLUG="$KUSER/agyata-llm-server"
+SLUG="$KUSER/${KAGGLE_SLUG:-agyata-llm-server}"
+ACCEL="${KAGGLE_ACCELERATOR:-NvidiaTeslaT4}"  # NvidiaTeslaP100 = separate Kaggle queue, one 16 GB card
 WORK="$RUNNER_TEMP/kllm"; mkdir -p "$WORK"
 
 sed -e "s|__KEY__|$KEY|" -e "s|__TOPIC__|$TOPIC|" -e "s|__MODEL__|$KAGGLE_MODEL|" -e "s|__RUN__|$GITHUB_RUN_ID|" -e "s|__REPO__|${GITHUB_REPOSITORY:-umausp/content-sync-worker}|" \
@@ -27,11 +28,11 @@ sed -e "s|__KEY__|$KEY|" -e "s|__TOPIC__|$TOPIC|" -e "s|__MODEL__|$KAGGLE_MODEL|
 # Measured 2026-10-22: loading the model from the mounted dataset takes >5 min (slow mount), slower than install+pull (~2 min), so the cache is OFF unless KAGGLE_USE_CACHE=1.
 DS=""; if [ "${KAGGLE_USE_CACHE:-0}" = "1" ] && kaggle datasets list --mine --search agyata-ollama-cache --csv 2>/dev/null | grep -q "agyata-ollama-cache"; then DS="\"$KUSER/agyata-ollama-cache\""; echo "cache dataset: $KUSER/agyata-ollama-cache"; else echo "cache dataset not found: installing Ollama and pulling the model in the session"; fi
 cat > "$WORK/kernel-metadata.json" <<JSON
-{"id":"$SLUG","title":"agyata-llm-server","code_file":"server.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[$DS],"competition_sources":[],"kernel_sources":[]}
+{"id":"$SLUG","title":"${SLUG#*/}","code_file":"server.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[$DS],"competition_sources":[],"kernel_sources":[]}
 JSON
 
-if ! kaggle kernels push -p "$WORK" -t 3300 --accelerator NvidiaTeslaT4 2>"$WORK/push.err"; then
-  echo "push with --accelerator NvidiaTeslaT4 failed: $(tail -c 400 "$WORK/push.err")"
+if ! kaggle kernels push -p "$WORK" -t 3300 --accelerator "$ACCEL" 2>"$WORK/push.err"; then
+  echo "push with --accelerator $ACCEL failed: $(tail -c 400 "$WORK/push.err")"
   kaggle kernels push -p "$WORK" -t 3300 || { echo "::error::Kaggle push failed"; exit 1; }
 fi
 
