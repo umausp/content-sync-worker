@@ -25,12 +25,15 @@ jobs:
       AGD_MINUTES: ${{ inputs.minutes }}
       AGD_LLM_URL: http://127.0.0.1:11635
       AGD_LOCAL_MODEL: mlx-community/gemma-4-31b-it-4bit
-      AGD_WRITER_MODEL: mlx-community/gemma-4-31b-it-4bit
-      AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_WRITER_MODEL: mlx-community/gemma-4-26b-a4b-it-4bit   # A: fast MoE writer (64 tok/s single, 110 at 4 parallel; probe 39857383031)
+      AGD_WRITER_LLM_URL: http://127.0.0.1:11637
+      AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit      # B: critic + final reviewer (quality)
+      AGD_MAX_ROUNDS: '4'                                     # A/B rounds per chapter until the rubric bar (8) is met
+      AGD_CHAPTER_CONCURRENCY: '4'                            # chapters in parallel; aggregate gain flattens past 4
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit   # facts are simple extraction: the faster 12B (cached on the Mac)
       AGD_FACT_LLM_URL: http://127.0.0.1:11636
       AGD_MAX_REWRITES: '2'
-      AGD_LLM_TIMEOUT_S: '600'
+      AGD_LLM_TIMEOUT_S: '240'                                # longest call seen 70 s; one retry on timeout
       AGD_FACT_CONCURRENCY: '1'   # 2 only after a measured run proves mlx_vlm serves concurrent requests
     steps:
       - name: Checkout private pipeline (./pipeline)
@@ -52,7 +55,7 @@ jobs:
           AGD_OUT="$RUNNER_TEMP/m1"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
           echo "AGD_RESEARCH_CACHE=$HOME/.cache/agyata/research" >> "$GITHUB_ENV"   # Wikipedia responses cached on the Mac (429 avoidance)
           lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
-          lane_kill 8181 8182 11635 11636   # a leftover from a killed run of THIS lane would hold the ports
+          lane_kill 8181 8182 8183 11635 11636 11637   # a leftover from a killed run of THIS lane would hold the ports
           . "$HOME/.cache/lf-venv/bin/activate"
           python -c "import mlx_vlm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-vlm   # no --upgrade: the other lane may be serving from this venv
           export HF_HUB_OFFLINE=1   # weights already in ~/.cache/huggingface; never download
@@ -65,10 +68,17 @@ jobs:
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-3-12b' || { echo "::error::$AGD_FACT_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_FACT_MODEL" --port 8182 > "$AGD_OUT/mlx_fact.log" 2>&1 < /dev/null &
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11636 --upstream http://127.0.0.1:8182 --model "$AGD_FACT_MODEL" > "$AGD_OUT/shim_fact.log" 2>&1 < /dev/null &
+          # A: the writer (gemma-4-26b-a4b, ungated, Apache-2.0, ~15 GB; fetched once, resumable) on its own server.
+          if ! ls "$HOME/.cache/huggingface/hub" | grep -qi 'gemma-4-26b-a4b'; then
+            for t in 1 2 3 4 5; do HF_HUB_OFFLINE=0 HF_HUB_DOWNLOAD_TIMEOUT=60 lockf -k "$HOME/.cache/hf-fetch.lock" python -c "import sys; from huggingface_hub import snapshot_download; snapshot_download(sys.argv[1])" "$AGD_WRITER_MODEL" && break; sleep 10; done
+          fi
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_WRITER_MODEL" --port 8183 > "$AGD_OUT/mlx_writer.log" 2>&1 < /dev/null &
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11637 --upstream http://127.0.0.1:8183 --model "$AGD_WRITER_MODEL" > "$AGD_OUT/shim_writer.log" 2>&1 < /dev/null &
           for i in $(seq 1 120); do
             R=$(curl -s -m 120 http://127.0.0.1:11635/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
             R2=$(curl -s -m 120 http://127.0.0.1:11636/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
-            echo "$R" | grep -q '"done":true' && echo "$R2" | grep -q '"done":true' && { echo "both local models ready after ~$((i*10)) s"; exit 0; }
+            R3=$(curl -s -m 120 http://127.0.0.1:11637/api/chat -d '{"model":"x","stream":false,"think":false,"messages":[{"role":"user","content":"Reply with the single word: ok"}],"options":{"num_predict":8}}' || true)
+            echo "$R" | grep -q '"done":true' && echo "$R2" | grep -q '"done":true' && echo "$R3" | grep -q '"done":true' && { echo "all three local models ready after ~$((i*10)) s"; exit 0; }
             sleep 10
           done
           echo "::error::local model did not come up"; tail -30 "$AGD_OUT/mlx.log" "$AGD_OUT/shim.log"; exit 1
@@ -93,4 +103,4 @@ jobs:
         if: always()
         run: |
           lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
-          lane_kill 8181 8182 11635 11636; rm -rf "$RUNNER_TEMP/m1"
+          lane_kill 8181 8182 8183 11635 11636 11637; rm -rf "$RUNNER_TEMP/m1"
