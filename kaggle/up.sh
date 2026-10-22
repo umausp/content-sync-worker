@@ -5,7 +5,7 @@ set -uo pipefail
 echo "url=" >> "$GITHUB_OUTPUT"
 REMAIN=$(kaggle quota --format json | python3 -c "import sys,json;d=json.load(sys.stdin);print(next(float(x['remaining'].rstrip('h')) for x in d if x['resource']=='GPU'))") || REMAIN=0
 echo "Kaggle GPU quota remaining: ${REMAIN}h"
-python3 -c "import sys;sys.exit(0 if float('$REMAIN')>=float('$KAGGLE_MIN_REMAINING_H') else 1)" || { echo "::notice::Kaggle GPU quota low (${REMAIN}h); using the free ladder"; exit 0; }
+python3 -c "import sys;sys.exit(0 if float('$REMAIN')>=float('$KAGGLE_MIN_REMAINING_H') else 1)" || { echo "::error::Kaggle GPU quota low (${REMAIN}h)"; exit 1; }
 KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
 echo "::add-mask::$KEY"
 KUSER=$(kaggle config view | sed -n 's/^- username: //p')
@@ -16,7 +16,7 @@ cat > "$WORK/kernel-metadata.json" <<JSON
 JSON
 if ! kaggle kernels push -p "$WORK" -t 3300 --accelerator NvidiaTeslaT4 2>"$WORK/push.err"; then
   echo "push with --accelerator NvidiaTeslaT4 failed: $(tail -c 400 "$WORK/push.err")"
-  kaggle kernels push -p "$WORK" -t 3300 || { echo "::warning::Kaggle push failed; using the free ladder"; exit 0; }
+  kaggle kernels push -p "$WORK" -t 3300 || { echo "::error::Kaggle push failed"; exit 1; }
 fi
 # Kaggle's log stream occasionally dies (500 Internal Server Error): keep re-attaching and appending until the job ends.
 ( while true; do kaggle kernels logs -f "$KUSER/agyata-llm-server" >> "$WORK/log.txt" 2>&1; sleep 5; done ) &
@@ -33,5 +33,5 @@ for i in $(seq 1 84); do
   if grep -aq "Traceback\|SystemExit\|failed" "$WORK/log.txt"; then break; fi
   sleep 10
 done
-echo "::warning::Kaggle LLM did not become ready; using the free ladder"; tail -n 40 "$WORK/log.txt" | cut -c1-200
-exit 0
+echo "::error::Kaggle LLM did not become ready"; tail -n 60 "$WORK/log.txt" | cut -c1-200
+exit 1
