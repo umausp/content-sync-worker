@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       handle:
-        description: 'Kaggle model handle (transformers)'
-        default: 'google/gemma-4/transformers/gemma-4-12b'
+        description: 'Hugging Face repo (ungated mirror), e.g. unsloth/gemma-3-12b-it-bnb-4bit'
+        default: 'unsloth/gemma-3-12b-it-bnb-4bit'
         type: string
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
           echo "model version: ${VER:-unknown} ($HANDLE)"
           MS=""; [ -n "$VER" ] && MS="\"$HANDLE/$VER\""
           cat > "$W/kernel-metadata.json" <<JSON
-          {"id":"$KUSER/agyata-smoke","title":"agyata-smoke","code_file":"smoke.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"competition_sources":[],"kernel_sources":[],"model_sources":[$MS]}
+          {"id":"$KUSER/agyata-smoke","title":"agyata-smoke","code_file":"smoke.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"competition_sources":[],"kernel_sources":[]}
           JSON
           kaggle kernels push -p "$W" -t 1500 --accelerator NvidiaTeslaT4 || { echo "::error::push failed"; exit 1; }
           for i in $(seq 1 90); do
