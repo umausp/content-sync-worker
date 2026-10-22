@@ -1,0 +1,53 @@
+# selfhosted-llm-probe — measure parallel LLM throughput on the mac-llm lane before M1 is parallelised (user 2026-10-22).
+# For gemma-4-26b-a4b (A, writer) and gemma-4-31b (B, critic), on mlx_vlm.server (today's server, one request at a time?) and
+# mlx_lm.server (batched decoding when the installed version supports it), sends 1/2/4/8 requests at once and prints aggregate
+# tokens/s. Fetches gemma-4-26b-a4b-it-4bit once into the HF cache (ungated, Apache-2.0, Google, ~15 GB). Port 8190 only.
+# Canonical copy: tools/ci/selfhosted-llm-probe.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-llm-probe
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      levels: { description: 'concurrency levels', default: '1,2,4,8' }
+concurrency: { group: mac-llm, cancel-in-progress: false }
+jobs:
+  probe:
+    runs-on: [mac-llm]
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Probe
+        working-directory: pipeline
+        run: |
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          . "$HOME/.cache/lf-venv/bin/activate"
+          python -c "import mlx_vlm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-vlm
+          python -c "import mlx_lm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-lm
+          python -c "import mlx_lm, mlx_vlm; print('mlx_lm', mlx_lm.__version__, 'mlx_vlm', mlx_vlm.__version__)" || true
+          echo "free disk: $(df -h "$HOME" | tail -1)"
+          A=mlx-community/gemma-4-26b-a4b-it-4bit; B=mlx-community/gemma-4-31b-it-4bit
+          ls "$HOME/.cache/huggingface/hub" | grep -qi 'gemma-4-26b-a4b' || HF_HUB_OFFLINE=0 lockf -k "$HOME/.cache/hf-fetch.lock" python -c "import sys; from huggingface_hub import snapshot_download; snapshot_download(sys.argv[1])" "$A"
+          export HF_HUB_OFFLINE=1
+          LMFLAGS=""
+          python -m mlx_lm.server --help > "$RUNNER_TEMP/lmhelp.txt" 2>&1 || true
+          grep -q -- '--decode-concurrency' "$RUNNER_TEMP/lmhelp.txt" && LMFLAGS="--decode-concurrency 8 --prompt-concurrency 8"
+          echo "mlx_lm.server batching flags: ${LMFLAGS:-none in this version}"
+          for M in "$A" "$B"; do
+            for S in mlx_vlm mlx_lm; do
+              lane_kill 8190
+              if [ $S = mlx_vlm ]; then CMD="python -m mlx_vlm.server --model $M --port 8190"; else CMD="python -m mlx_lm.server --model $M --port 8190 $LMFLAGS"; fi
+              perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' $CMD > "$RUNNER_TEMP/srv.log" 2>&1 < /dev/null &
+              up=0; for i in $(seq 1 90); do curl -s -m 5 -o /dev/null http://127.0.0.1:8190/v1/models && { up=1; break; }; curl -s -m 5 -o /dev/null http://127.0.0.1:8190/health && { up=1; break; }; sleep 5; done
+              if [ $up = 1 ]; then python tools/ci/llm_concurrency_probe.py --url http://127.0.0.1:8190 --label "$S/${M##*/}" --levels "${{ inputs.levels }}" || { echo "[probe] $S/${M##*/} FAILED"; tail -15 "$RUNNER_TEMP/srv.log"; }
+              else echo "[probe] $S/${M##*/} server did not start"; tail -15 "$RUNNER_TEMP/srv.log"; fi
+            done
+          done
+          lane_kill 8190
+      - name: Cleanup
+        if: always()
+        run: for pid in $(lsof -ti tcp:8190 -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done
