@@ -92,7 +92,8 @@ jobs:
   publish:
     name: publish ${{ matrix.edition }}
     needs: [plan, llm_up]
-    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    # kaggle=true means Kaggle only: if llm_up failed the run fails (no silent fallback to other providers).
+    if: ${{ !cancelled() && needs.plan.result == 'success' && (needs.llm_up.result == 'success' || needs.llm_up.result == 'skipped') }}
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.local_model != '' && 70 || 25 }}
     strategy:
@@ -198,8 +199,8 @@ jobs:
           KEY=$(printf '%s:%s' "$KAGGLE_API_TOKEN" "$GITHUB_RUN_ID" | sha256sum | cut -c1-40)
           echo "::add-mask::$KEY"
           # Kaggle Gemma serves EVERYTHING: text LLM, summaries and the image VLM gates. Ollama Cloud is not used on this lane,
-          # so the cloud 'ollama' provider is removed from the order and OLLAMA_HOST/KEY/MODEL all point at the Kaggle server.
-          ORDER="kaggle,$(echo "$PROVIDER_ORDER" | tr ',' '\n' | grep -v -x -e ollama -e kaggle | paste -sd, -)"
+          # so every other provider is removed from the order and OLLAMA_HOST/KEY/MODEL all point at the Kaggle server.
+          ORDER="kaggle"  # Kaggle only: no free-ladder or Ollama Cloud fallback on this lane
           {
             echo "KAGGLE_LLM_URL=$KURL"; echo "KAGGLE_LLM_KEY=$KEY"; echo "KAGGLE_LLM_MODEL=gemma3:12b"
             echo "PROVIDER_ORDER=$ORDER"; echo "SYNTH_CONCURRENCY=4"
