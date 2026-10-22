@@ -246,4 +246,10 @@ except BaseException as e:  # noqa: BLE001 - always leave a clear sentinel for t
     import traceback
     log("KAGGLE_LLM_FAILED " + type(e).__name__ + ": " + str(e))
     log(traceback.format_exc()[-1500:])
+    for i in range(4):
+        try:
+            tail = open(f"{ROOT}/ollama{i}.log", errors="replace").read()[-2500:]
+            log(f"--- ollama{i}.log (tail) ---\n{tail}")
+        except Exception:
+            pass
     raise
