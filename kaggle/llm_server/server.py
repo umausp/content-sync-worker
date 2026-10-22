@@ -9,6 +9,7 @@ import asyncio, json, os, re, shutil, subprocess, sys, threading, time, urllib.r
 
 KEY = "__KEY__"
 RUN = "__RUN__"
+TOPIC = "__TOPIC__"
 MODEL = "__MODEL__"
 PARALLEL = "__PARALLEL__"      # concurrent requests per GPU
 CTX = "__CTX__"             # per-request context
@@ -58,7 +59,7 @@ def start_ollama(n):
         port = 11434 + i
         env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(i), OLLAMA_HOST=f"127.0.0.1:{port}", OLLAMA_MODELS=f"{ROOT}/models",
                    OLLAMA_NUM_PARALLEL=PARALLEL, OLLAMA_CONTEXT_LENGTH=CTX, OLLAMA_KEEP_ALIVE="-1",
-                   OLLAMA_MAX_LOADED_MODELS="1", OLLAMA_FLASH_ATTENTION="1")
+                   OLLAMA_MAX_LOADED_MODELS="1", OLLAMA_FLASH_ATTENTION="1", OLLAMA_KV_CACHE_TYPE="q8_0")
         procs.append(subprocess.Popen([f"{ROOT}/ollama/bin/ollama", "serve"], env=env, stdout=open(f"{ROOT}/ollama{i}.log", "w"), stderr=subprocess.STDOUT))
         ports.append(port)
     for port in ports:
@@ -157,6 +158,17 @@ def start_tunnel():
     raise SystemExit("no tunnel url")
 
 
+def announce(url):
+    """Publish the tunnel URL on a ntfy.sh topic (derived from the run key) so GitHub can read it without Kaggle's log API."""
+    try:
+        req = urllib.request.Request(f"https://ntfy.sh/{TOPIC}", data=f"{url} run={RUN}".encode(), method="POST")
+        urllib.request.urlopen(req, timeout=15).read()
+        return True
+    except Exception as e:
+        log(f"ANNOUNCE_FAILED {type(e).__name__}: {e}")
+        return False
+
+
 def tunnel_ok(url):
     for _ in range(30):
         try:
@@ -181,6 +193,7 @@ def main():
         raise SystemExit("tunnel health check failed")
     state["last"] = time.time()
     log(f"KAGGLE_LLM_ENDPOINT={url} run={RUN}")
+    announce(url)
     log("KAGGLE_LLM_READY", f"{time.time() - T0:.0f}s")
     last_beat = 0
     while True:
@@ -195,11 +208,21 @@ def main():
         if now - T0 > MAX_MIN * 60:
             log("EXIT max session"); break
         if now - last_beat > 60:
-            last_beat = now; log(f"HEARTBEAT served={state['served']} inflight={state['inflight']} up={(now - T0) / 60:.1f}m")
+            last_beat = now
+            if state["served"] == 0:
+                announce(url)  # repeat until first use so a late subscriber still gets it
+            log(f"HEARTBEAT served={state['served']} inflight={state['inflight']} up={(now - T0) / 60:.1f}m")
     for p in procs:
         try: p.terminate()
         except Exception: pass
     log(f"KAGGLE_LLM_USAGE minutes={(time.time() - T0) / 60:.1f} served={state['served']}")
 
 
-main()
+
+try:
+    main()
+except BaseException as e:  # noqa: BLE001 - always leave a clear sentinel for the GitHub side
+    import traceback
+    log("KAGGLE_LLM_FAILED " + type(e).__name__ + ": " + str(e))
+    log(traceback.format_exc()[-1500:])
+    raise
