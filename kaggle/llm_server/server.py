@@ -52,7 +52,7 @@ def install_ollama():
     if CACHE:  # private dataset umausp/agyata-ollama-cache: program + model files already built
         t = time.time()
         shutil.copytree(f"{CACHE}/ollama", f"{ROOT}/ollama", dirs_exist_ok=True)  # mounted read-only and zipped (no exec bit)
-        sh(f"chmod -R u+x {ROOT}/ollama/bin")
+        sh(f"chmod -R u+x {ROOT}/ollama")  # zip datasets drop exec bits: bin/ollama AND lib/ollama/llama-server (+ runners) need them
         if os.path.isdir(f"{CACHE}/models"):
             MODELS = f"{CACHE}/models"
         log("CACHE_USED", CACHE, f"copy {time.time() - t:.0f}s", "models:", MODELS)
