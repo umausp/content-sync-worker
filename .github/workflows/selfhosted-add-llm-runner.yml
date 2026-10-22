@@ -1,0 +1,54 @@
+# selfhosted-add-llm-runner — one-off: registers a SECOND runner (umashan-ltm7td4-llm, label mac-llm only) on the runner Mac,
+# from a job on the existing runner, so nobody has to carry the setup to that laptop by hand.
+# Binaries are copied from the running runner's own install (same version, no download) into ~/actions-runner-llm.
+# The registration token is fetched on the Mac with its gh login (account umausp only), masked, and used once; it is never
+# printed or stored. --no-default-labels keeps legacy selfhosted-* jobs off the new runner. Re-running is safe: an already
+# configured ~/actions-runner-llm is only (re)started.
+# Canonical copy: tools/ci/selfhosted-add-llm-runner.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-add-llm-runner
+on: workflow_dispatch
+jobs:
+  add:
+    runs-on: [self-hosted, macOS, ARM64, mac-img]
+    timeout-minutes: 15
+    env:
+      NAME: umashan-ltm7td4-llm
+      REPO_URL: https://github.com/umausp/content-sync-worker
+    steps:
+      - name: Copy the runner install into ~/actions-runner-llm
+        run: |
+          SRC=$(cd "$GITHUB_WORKSPACE/../../.." && pwd); DEST="$HOME/actions-runner-llm"; echo "DEST=$DEST" >> "$GITHUB_ENV"
+          [ -x "$SRC/config.sh" ] && [ -d "$SRC/bin" ] || { echo "::error::runner install not found at $SRC"; exit 1; }
+          echo "source install: $SRC ($("$SRC/bin/Runner.Listener" --version 2>/dev/null))"
+          mkdir -p "$DEST"
+          if [ -f "$DEST/.runner" ]; then echo "already configured: $(grep -o '"agentName": *"[^"]*"' "$DEST/.runner")"; exit 0; fi
+          rsync -a --exclude '_work' --exclude '_diag' --exclude '.runner' --exclude '.credentials*' --exclude '.service' "$SRC/" "$DEST/"
+          ls "$DEST"
+      - name: Register (gh login of umausp on this Mac, token masked)
+        run: |
+          cd "$DEST"
+          if [ -f .runner ]; then echo "skip: registered"; exit 0; fi
+          unset GH_TOKEN GITHUB_TOKEN
+          GHT=$(gh auth token --user umausp 2>/dev/null) || { echo "::error::gh on this Mac has no login for umausp"; exit 1; }
+          echo "::add-mask::$GHT"
+          T=$(GH_TOKEN="$GHT" gh api -X POST repos/umausp/content-sync-worker/actions/runners/registration-token --jq .token)
+          [ -n "$T" ] || { echo "::error::no registration token"; exit 1; }
+          echo "::add-mask::$T"
+          ./config.sh --unattended --url "$REPO_URL" --token "$T" --name "$NAME" --no-default-labels --labels mac-llm --work _work --replace
+      - name: Start as a launchd service (falls back to a detached run.sh)
+        run: |
+          cd "$DEST"
+          if ./svc.sh status 2>/dev/null | grep -qi 'started\|running'; then echo "service already running"; exit 0; fi
+          if ./svc.sh install && ./svc.sh start; then ./svc.sh status; exit 0; fi
+          echo "::warning::svc.sh failed; starting run.sh detached (will not survive a reboot)"
+          RUNNER_TRACKING_ID="" perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' ./run.sh > "$DEST/_run.log" 2>&1 < /dev/null &
+      - name: Verify the new runner is online
+        run: |
+          unset GH_TOKEN GITHUB_TOKEN
+          export GH_TOKEN=$(gh auth token --user umausp); echo "::add-mask::$GH_TOKEN"
+          for i in $(seq 1 24); do
+            S=$(gh api repos/umausp/content-sync-worker/actions/runners --jq ".runners[]|select(.name==\"$NAME\")|.status+\" \"+([.labels[].name]|join(\",\"))")
+            echo "$S" | grep -q '^online' && { echo "$NAME: $S"; exit 0; }
+            sleep 5
+          done
+          echo "::error::$NAME not online after 2 min ($S)"; tail -30 "$DEST/_diag/"Runner_*.log 2>/dev/null; exit 1
