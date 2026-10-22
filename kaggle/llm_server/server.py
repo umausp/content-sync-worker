@@ -9,6 +9,7 @@ import asyncio, json, os, re, shutil, subprocess, sys, threading, time, urllib.r
 
 KEY = "__KEY__"
 RUN = "__RUN__"
+REPO = "__REPO__"
 TOPIC = "__TOPIC__"
 MODEL = "__MODEL__"
 PARALLEL = "__PARALLEL__"      # concurrent requests per GPU
@@ -18,8 +19,10 @@ FIRST_IDLE_MIN = float(os.environ.get("LLM_FIRST_IDLE_MIN", "8"))  # grace for t
 MAX_MIN = float(os.environ.get("LLM_MAX_MIN", "45"))         # hard session cap
 KEEPALIVE_S = float(os.environ.get("LLM_KEEPALIVE_S", "15"))
 T0 = time.time()
-ROOT = "/kaggle/working"
+ROOT = "/tmp/agyata"  # program + model files: NOT /kaggle/working or /kaggle/tmp, both are saved as kernel output (20 GB cap, minutes of upload at session end)
+os.makedirs(ROOT, exist_ok=True)
 state = {"last": None, "inflight": 0, "served": 0, "stop": False}
+READY = threading.Event()  # set once the model is pulled and warm; the proxy holds /api/ requests until then
 procs = []
 
 
@@ -98,11 +101,24 @@ def pull_and_warm(ports):
     log("PULL", MODEL, "rc", r.returncode, (r.stderr or r.stdout)[-120:].replace("\n", " "))
     if r.returncode != 0:
         raise SystemExit("model pull failed")
-    for port in ports:
-        body = json.dumps({"model": MODEL, "stream": False, "think": False, "messages": [{"role": "user", "content": "Say OK."}], "options": {"num_predict": 4}}).encode()
-        t = time.time()
-        urllib.request.urlopen(urllib.request.Request(f"http://127.0.0.1:{port}/api/chat", body, {"content-type": "application/json"}), timeout=300).read()
-        log("WARM port", port, f"{time.time() - t:.1f}s")
+    body = json.dumps({"model": MODEL, "stream": False, "think": False, "messages": [{"role": "user", "content": "Say OK."}], "options": {"num_predict": 4}}).encode()
+    errs = []
+
+    def warm(port):
+        try:
+            t = time.time()
+            urllib.request.urlopen(urllib.request.Request(f"http://127.0.0.1:{port}/api/chat", body, {"content-type": "application/json"}), timeout=300).read()
+            log("WARM port", port, f"{time.time() - t:.1f}s")
+        except Exception as e:
+            errs.append(e)
+
+    ths = [threading.Thread(target=warm, args=(p,)) for p in ports]  # one GPU each, in parallel
+    for th in ths:
+        th.start()
+    for th in ths:
+        th.join()
+    if errs:
+        raise errs[0]
 
 
 def run_proxy(ports):
@@ -116,41 +132,54 @@ def run_proxy(ports):
             state["stop"] = True
             return web.json_response({"stopping": True})
         if req.path == "/health":
-            return web.json_response({"ok": True, "model": MODEL, "gpus": len(ports), "served": state["served"], "inflight": state["inflight"]})
+            return web.json_response({"ok": True, "ready": READY.is_set(), "model": MODEL, "gpus": len(ports), "served": state["served"], "inflight": state["inflight"]})
         if not req.path.startswith("/api/"):
             return web.Response(status=404, text="not found")
-        port = min(ports, key=lambda p: inflight[p])
-        inflight[port] += 1; state["inflight"] += 1; state["last"] = time.time()
-        body = await req.read()
-
-        async def upstream():
-            async with ClientSession(timeout=ClientTimeout(total=900)) as s:
-                async with s.request(req.method, f"http://127.0.0.1:{port}{req.path_qs}", data=body, headers={"content-type": req.headers.get("content-type", "application/json")}) as up:
-                    return up.status, await up.read()
-
-        # Send the 200 headers NOW and keep the connection alive with JSON-safe whitespace: the Cloudflare quick tunnel
-        # answers 524 when an origin sends nothing for ~100 s, and a busy 12B model needs longer than that per batch.
-        resp = web.StreamResponse(status=200, headers={"content-type": "application/json"})
-        await resp.prepare(req)
-        task = asyncio.ensure_future(upstream())
+        state["inflight"] += 1; state["last"] = time.time()  # counts while waiting for the model, so idle exit cannot fire
+        port = None
+        task = None
         try:
-            while True:
-                done, _ = await asyncio.wait({task}, timeout=KEEPALIVE_S)
-                if done:
-                    break
-                await resp.write(b" ")
-            status, data = task.result()
-            if status != 200:
-                log(f"UPSTREAM_ERROR port={port} status={status} body={data[:300]!r}")
-            state["served"] += 1
-            await resp.write(data)
-        except Exception as e:
-            log(f"PROXY_EXCEPTION port={port} {type(e).__name__}: {e}")
-            await resp.write(json.dumps({"error": str(e)}).encode())
+            body = await req.read()
+
+            async def upstream():
+                nonlocal port
+                while not READY.is_set():  # model still loading: wait without blocking the loop
+                    await asyncio.sleep(1)
+                port = min(ports, key=lambda p: inflight[p])
+                inflight[port] += 1; state["last"] = time.time()
+                try:
+                    async with ClientSession(timeout=ClientTimeout(total=900)) as s:
+                        async with s.request(req.method, f"http://127.0.0.1:{port}{req.path_qs}", data=body, headers={"content-type": req.headers.get("content-type", "application/json")}) as up:
+                            return up.status, await up.read()
+                finally:
+                    inflight[port] -= 1; state["last"] = time.time()
+
+            # Send the 200 headers NOW and keep the connection alive with JSON-safe whitespace: the Cloudflare quick tunnel
+            # answers 524 when an origin sends nothing for ~100 s, and a busy 12B model needs longer than that per batch.
+            # The same keepalives cover the wait for the model to load.
+            resp = web.StreamResponse(status=200, headers={"content-type": "application/json"})
+            await resp.prepare(req)
+            task = asyncio.ensure_future(upstream())
+            try:
+                while True:
+                    done, _ = await asyncio.wait({task}, timeout=KEEPALIVE_S)
+                    if done:
+                        break
+                    await resp.write(b" ")
+                status, data = task.result()
+                if status != 200:
+                    log(f"UPSTREAM_ERROR port={port} status={status} body={data[:300]!r}")
+                state["served"] += 1
+                await resp.write(data)
+            except Exception as e:
+                log(f"PROXY_EXCEPTION port={port} {type(e).__name__}: {e}")
+                await resp.write(json.dumps({"error": str(e)}).encode())
+            await resp.write_eof()
+            return resp
         finally:
-            inflight[port] -= 1; state["inflight"] -= 1; state["last"] = time.time()
-        await resp.write_eof()
-        return resp
+            if task is not None and not task.done():
+                task.cancel()  # caller went away while waiting or streaming
+            state["inflight"] -= 1; state["last"] = time.time()
 
     async def main():
         app = web.Application(client_max_size=64 * 1024 * 1024)
@@ -201,13 +230,26 @@ def tunnel_ok(url):
     return False
 
 
+def run_finished():
+    """Stale queued Kaggle versions start after the GitHub run gave up: True means exit instead of burning GPU time."""
+    if not RUN.isdigit() or "__" in REPO:
+        return False
+    try:
+        req = urllib.request.Request(f"https://api.github.com/repos/{REPO}/actions/runs/{RUN}", headers={"User-Agent": "agyata-llm-server", "Accept": "application/vnd.github+json"})
+        return json.load(urllib.request.urlopen(req, timeout=10)).get("status") == "completed"
+    except Exception:
+        return False
+
+
 def main():
     log("KAGGLE_LLM_START", MODEL)
+    if run_finished():
+        log("EXIT stale: GitHub run", RUN, "already completed")
+        return
     log(sh("nvidia-smi -L").stdout.strip())
     n = gpu_count()
     install_ollama(); log("OLLAMA_INSTALLED", f"{time.time() - T0:.0f}s")
     ports = start_ollama(n)
-    pull_and_warm(ports); log("MODEL_READY", f"{time.time() - T0:.0f}s", "gpus", n)
     run_proxy(ports)
     url = start_tunnel()
     if not tunnel_ok(url):
@@ -215,6 +257,10 @@ def main():
     state["last"] = time.time()
     log(f"KAGGLE_LLM_ENDPOINT={url} run={RUN}")
     announce(url)
+    log("KAGGLE_LLM_ANNOUNCED", f"{time.time() - T0:.0f}s")
+    pull_and_warm(ports)
+    READY.set(); state["last"] = time.time()  # restart the idle clock from ready, not from announce
+    log("MODEL_READY", f"{time.time() - T0:.0f}s", "gpus", n)
     log("KAGGLE_LLM_READY", f"{time.time() - T0:.0f}s")
     last_beat = 0
     while True:
@@ -230,6 +276,8 @@ def main():
             log("EXIT max session"); break
         if now - last_beat > 60:
             last_beat = now
+            if run_finished():
+                log("EXIT github run completed"); break
             if state["served"] == 0:
                 announce(url)  # repeat until first use so a late subscriber still gets it
             log(f"HEARTBEAT served={state['served']} inflight={state['inflight']} up={(now - T0) / 60:.1f}m")
