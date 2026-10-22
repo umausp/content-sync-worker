@@ -46,8 +46,8 @@ jobs:
               lane_kill 8190
               if [ $S = mlx_vlm ]; then CMD="python -m mlx_vlm.server --model $M --port 8190"; else CMD="python -m mlx_lm.server --model $M --port 8190 $LMFLAGS"; fi
               perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' $CMD > "$RUNNER_TEMP/srv.log" 2>&1 < /dev/null &
-              up=0; for i in $(seq 1 90); do curl -s -m 5 -o /dev/null http://127.0.0.1:8190/v1/models && { up=1; break; }; curl -s -m 5 -o /dev/null http://127.0.0.1:8190/health && { up=1; break; }; sleep 5; done
-              if [ $up = 1 ]; then python tools/ci/llm_concurrency_probe.py --url http://127.0.0.1:8190 --label "$S/${M##*/}" --levels "${{ inputs.levels }}" || { echo "[probe] $S/${M##*/} FAILED"; tail -15 "$RUNNER_TEMP/srv.log"; }
+              up=0; for i in $(seq 1 90); do curl -sf -m 5 -o /dev/null http://127.0.0.1:8190/v1/models && { up=1; break; }; curl -sf -m 5 -o /dev/null http://127.0.0.1:8190/health && { up=1; break; }; sleep 5; done
+              if [ $up = 1 ]; then python tools/ci/llm_concurrency_probe.py --url http://127.0.0.1:8190 --label "$S/${M##*/}" --model "$M" --levels "${{ inputs.levels }}" || { echo "[probe] $S/${M##*/} FAILED"; tail -15 "$RUNNER_TEMP/srv.log"; }
               else echo "[probe] $S/${M##*/} server did not start"; tail -15 "$RUNNER_TEMP/srv.log"; fi
             done
           done
