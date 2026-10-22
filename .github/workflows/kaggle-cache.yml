@@ -1,0 +1,54 @@
+name: kaggle-cache
+
+# Build (or refresh) the private Kaggle dataset umausp/agyata-ollama-cache: the Ollama program and the model files, so a Kaggle
+# LLM session mounts them instead of installing Ollama (55 s) and downloading the model (60 s) every time. CPU only: no Kaggle
+# GPU hours. Re-run when the model or Ollama version should change.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Ollama model tag to cache'
+        default: 'gemma3:12b'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      MODEL: ${{ inputs.model }}
+    steps:
+      - run: pip install -q kaggle
+      - name: Build the cache directory (Ollama program + model files)
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=/mnt/ollama-cache; sudo mkdir -p "$D" && sudo chown "$USER" "$D"
+          mkdir -p "$D/ollama" "$D/models"
+          curl -fsSL https://ollama.com/download/ollama-linux-amd64.tar.zst | zstd -d | tar -x -C "$D/ollama"
+          export OLLAMA_MODELS="$D/models" OLLAMA_HOST=127.0.0.1:11499
+          nohup "$D/ollama/bin/ollama" serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:11499/api/tags >/dev/null && break; sleep 1; done
+          "$D/ollama/bin/ollama" pull "$MODEL"
+          pkill -f "ollama serve" || true
+          "$D/ollama/bin/ollama" --version | head -1 > "$D/VERSION.txt"; echo "$MODEL" >> "$D/VERSION.txt"
+          du -sh "$D/ollama" "$D/models"
+      - name: Create or update the private dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=/mnt/ollama-cache
+          KUSER=$(kaggle config view | sed -n 's/^- username: //p')
+          cat > "$D/dataset-metadata.json" <<JSON
+          {"title":"agyata-ollama-cache","id":"$KUSER/agyata-ollama-cache","licenses":[{"name":"other"}]}
+          JSON
+          if kaggle datasets status "$KUSER/agyata-ollama-cache" >/dev/null 2>&1; then
+            kaggle datasets version -p "$D" -m "refresh $(date -u +%F) $MODEL" --dir-mode zip
+          else
+            kaggle datasets create -p "$D" --dir-mode zip
+          fi
+          sleep 20; kaggle datasets status "$KUSER/agyata-ollama-cache" || true

@@ -43,7 +43,20 @@ def gpu_count():
     return max(1, len([l for l in out.splitlines() if l.startswith("GPU")]))
 
 
+CACHE = next((os.path.dirname(os.path.dirname(os.path.dirname(p))) for p in __import__("glob").glob("/kaggle/input/**/ollama/bin/ollama", recursive=True)), None)
+MODELS = f"{ROOT}/models"
+
+
 def install_ollama():
+    global MODELS
+    if CACHE:  # private dataset umausp/agyata-ollama-cache: program + model files already built
+        t = time.time()
+        shutil.copytree(f"{CACHE}/ollama", f"{ROOT}/ollama", dirs_exist_ok=True)  # mounted read-only and zipped (no exec bit)
+        sh(f"chmod -R u+x {ROOT}/ollama/bin")
+        if os.path.isdir(f"{CACHE}/models"):
+            MODELS = f"{CACHE}/models"
+        log("CACHE_USED", CACHE, f"copy {time.time() - t:.0f}s", "models:", MODELS)
+        return
     if os.path.exists(f"{ROOT}/ollama/bin/ollama"):
         return
     sh("apt-get -qq install -y zstd >/dev/null 2>&1")
@@ -57,7 +70,7 @@ def start_ollama(n):
     ports = []
     for i in range(n):
         port = 11434 + i
-        env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(i), OLLAMA_HOST=f"127.0.0.1:{port}", OLLAMA_MODELS=f"{ROOT}/models",
+        env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(i), OLLAMA_HOST=f"127.0.0.1:{port}", OLLAMA_MODELS=MODELS,
                    OLLAMA_NUM_PARALLEL=PARALLEL, OLLAMA_CONTEXT_LENGTH=CTX, OLLAMA_KEEP_ALIVE="-1",
                    OLLAMA_MAX_LOADED_MODELS="1", OLLAMA_FLASH_ATTENTION="1", OLLAMA_KV_CACHE_TYPE="q8_0")
         procs.append(subprocess.Popen([f"{ROOT}/ollama/bin/ollama", "serve"], env=env, stdout=open(f"{ROOT}/ollama{i}.log", "w"), stderr=subprocess.STDOUT))
@@ -72,8 +85,16 @@ def start_ollama(n):
 
 
 def pull_and_warm(ports):
-    env = dict(os.environ, OLLAMA_HOST=f"127.0.0.1:{ports[0]}", OLLAMA_MODELS=f"{ROOT}/models")
-    r = subprocess.run([f"{ROOT}/ollama/bin/ollama", "pull", MODEL], env=env, capture_output=True, text=True)
+    env = dict(os.environ, OLLAMA_HOST=f"127.0.0.1:{ports[0]}", OLLAMA_MODELS=MODELS)
+    try:
+        have = [m["name"] for m in json.load(urllib.request.urlopen(f"http://127.0.0.1:{ports[0]}/api/tags", timeout=10)).get("models", [])]
+    except Exception:
+        have = []
+    if MODEL in have or f"{MODEL}:latest" in have:
+        log("PULL skipped: model already present", MODEL)
+        r = subprocess.CompletedProcess([], 0, "", "")
+    else:
+      r = subprocess.run([f"{ROOT}/ollama/bin/ollama", "pull", MODEL], env=env, capture_output=True, text=True)
     log("PULL", MODEL, "rc", r.returncode, (r.stderr or r.stdout)[-120:].replace("\n", " "))
     if r.returncode != 0:
         raise SystemExit("model pull failed")
