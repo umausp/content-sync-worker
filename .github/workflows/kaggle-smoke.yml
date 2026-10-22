@@ -32,8 +32,11 @@ jobs:
           kaggle quota --format json | python3 -c "import sys,json;print([ (x['resource'],x['used'],x['remaining']) for x in json.load(sys.stdin)])"
           W="$RUNNER_TEMP/smoke"; mkdir -p "$W"
           sed "s|__HANDLE__|$HANDLE|" kaggle/smoke/smoke.py > "$W/smoke.py"
+          VER=$(kaggle models instances versions list "$HANDLE" --format json 2>/dev/null | python3 -c "import sys,json;d=json.load(sys.stdin);print(max(int(x.get('versionNumber', x.get('version', 0))) for x in d))" 2>/dev/null || echo "")
+          echo "model version: ${VER:-unknown} ($HANDLE)"
+          MS=""; [ -n "$VER" ] && MS="\"$HANDLE/$VER\""
           cat > "$W/kernel-metadata.json" <<JSON
-          {"id":"$KUSER/agyata-smoke","title":"agyata-smoke","code_file":"smoke.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"competition_sources":[],"kernel_sources":[]}
+          {"id":"$KUSER/agyata-smoke","title":"agyata-smoke","code_file":"smoke.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"competition_sources":[],"kernel_sources":[],"model_sources":[$MS]}
           JSON
           kaggle kernels push -p "$W" -t 1500 --accelerator NvidiaTeslaT4 || { echo "::error::push failed"; exit 1; }
           for i in $(seq 1 90); do

@@ -10,8 +10,12 @@ try:
     import torch, kagglehub
     res["gpus"] = [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]
     step(f"gpus {res['gpus']}")
-    handles = ["__HANDLE__", "google/gemma-3/transformers/gemma-3-12b-it"]
     path = None
+    # 1) model attached at push time via kernel-metadata model_sources (mounted under /kaggle/input)
+    import glob
+    for cfg in glob.glob("/kaggle/input/**/config.json", recursive=True):
+        path = os.path.dirname(cfg); res["handle"] = "attached"; step(f"found attached model at {path}"); break
+    handles = [] if path else ["__HANDLE__", "google/gemma-3/transformers/gemma-3-12b-it"]
     for h in handles:
         try:
             path = kagglehub.model_download(h); res["handle"] = h; step(f"downloaded {h} -> {path}"); break
