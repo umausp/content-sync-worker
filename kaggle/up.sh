@@ -18,7 +18,10 @@ if ! kaggle kernels push -p "$WORK" -t 3300 --accelerator NvidiaTeslaT4 2>"$WORK
   echo "push with --accelerator NvidiaTeslaT4 failed: $(tail -c 400 "$WORK/push.err")"
   kaggle kernels push -p "$WORK" -t 3300 || { echo "::warning::Kaggle push failed; using the free ladder"; exit 0; }
 fi
-kaggle kernels logs -f "$KUSER/agyata-llm-server" > "$WORK/log.txt" 2>&1 &
+# Kaggle's log stream occasionally dies (500 Internal Server Error): keep re-attaching and appending until the job ends.
+( while true; do kaggle kernels logs -f "$KUSER/agyata-llm-server" >> "$WORK/log.txt" 2>&1; sleep 5; done ) &
+FOLLOWER=$!
+trap 'kill $FOLLOWER 2>/dev/null' EXIT
 for i in $(seq 1 84); do
   LINE=$(grep -a "KAGGLE_LLM_ENDPOINT=.* run=$GITHUB_RUN_ID" "$WORK/log.txt" | tail -1 || true)
   if [ -n "$LINE" ]; then
