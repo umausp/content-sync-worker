@@ -15,6 +15,7 @@ CTX = "__CTX__"             # per-request context
 IDLE_MIN = float(os.environ.get("LLM_IDLE_MIN", "6"))        # exit after this long with no requests
 FIRST_IDLE_MIN = float(os.environ.get("LLM_FIRST_IDLE_MIN", "15"))  # grace for the pipeline to start calling
 MAX_MIN = float(os.environ.get("LLM_MAX_MIN", "45"))         # hard session cap
+KEEPALIVE_S = float(os.environ.get("LLM_KEEPALIVE_S", "15"))
 T0 = time.time()
 ROOT = "/kaggle/working"
 state = {"last": None, "inflight": 0, "served": 0, "stop": False}
@@ -98,20 +99,36 @@ def run_proxy(ports):
             return web.Response(status=404, text="not found")
         port = min(ports, key=lambda p: inflight[p])
         inflight[port] += 1; state["inflight"] += 1; state["last"] = time.time()
-        try:
-            body = await req.read()
+        body = await req.read()
+
+        async def upstream():
             async with ClientSession(timeout=ClientTimeout(total=900)) as s:
                 async with s.request(req.method, f"http://127.0.0.1:{port}{req.path_qs}", data=body, headers={"content-type": req.headers.get("content-type", "application/json")}) as up:
-                    data = await up.read()
-                    if up.status != 200:
-                        log(f"UPSTREAM_ERROR port={port} status={up.status} body={data[:300]!r}")
-                    state["served"] += 1
-                    return web.Response(status=up.status, body=data, content_type=up.content_type)
+                    return up.status, await up.read()
+
+        # Send the 200 headers NOW and keep the connection alive with JSON-safe whitespace: the Cloudflare quick tunnel
+        # answers 524 when an origin sends nothing for ~100 s, and a busy 12B model needs longer than that per batch.
+        resp = web.StreamResponse(status=200, headers={"content-type": "application/json"})
+        await resp.prepare(req)
+        task = asyncio.ensure_future(upstream())
+        try:
+            while True:
+                done, _ = await asyncio.wait({task}, timeout=KEEPALIVE_S)
+                if done:
+                    break
+                await resp.write(b" ")
+            status, data = task.result()
+            if status != 200:
+                log(f"UPSTREAM_ERROR port={port} status={status} body={data[:300]!r}")
+            state["served"] += 1
+            await resp.write(data)
         except Exception as e:
             log(f"PROXY_EXCEPTION port={port} {type(e).__name__}: {e}")
-            return web.Response(status=502, text=str(e))
+            await resp.write(json.dumps({"error": str(e)}).encode())
         finally:
             inflight[port] -= 1; state["inflight"] -= 1; state["last"] = time.time()
+        await resp.write_eof()
+        return resp
 
     async def main():
         app = web.Application(client_max_size=64 * 1024 * 1024)
