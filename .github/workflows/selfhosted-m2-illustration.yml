@@ -10,7 +10,7 @@ on:
     inputs:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       fixtures: { description: 'fixture set', default: 'password-heist-12' }
-      styles: { description: "all | default | comma list of style ids", default: 'engraving-red' }
+      styles: { description: "all | default | comma list of style ids", default: 'default' }
       beats: { description: 'beat subset (empty = all 12)', default: 'B02,B03,B06,B09,B12' }
       steps: { description: 'schnell steps', default: '3' }
       size: { description: 'FLUX plate size WxH (multiple of 16)', default: '960x544' }
