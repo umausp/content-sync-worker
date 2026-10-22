@@ -1,0 +1,30 @@
+# selfhosted-claude-probe — one-off check (user 2026-10-22): can a mac-llm job drive the Claude Code CLI already installed and
+# logged in on the runner Mac (`claude -p`) as the M1 writer? Prints only: where claude is, its version, whether a print-mode
+# call succeeds from the launchd runner context, the wall time per model and the JSON shape. No secrets are read or printed.
+# Canonical copy: tools/ci/selfhosted-claude-probe.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-claude-probe
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: [mac-llm]
+    timeout-minutes: 15
+    steps:
+      - name: Find claude
+        run: |
+          for d in "$HOME/.local/bin" "$HOME/.claude/local" /opt/homebrew/bin /usr/local/bin "$HOME/.npm-global/bin"; do
+            [ -x "$d/claude" ] && { echo "$d" >> "$GITHUB_PATH"; echo "found $d/claude"; }
+          done
+          export PATH="$HOME/.local/bin:$HOME/.claude/local:/opt/homebrew/bin:/usr/local/bin:$PATH"
+          command -v claude || { echo "::error::claude not found on this runner"; exit 1; }
+          claude --version
+      - name: Print-mode calls (outside any repo, no tools)
+        working-directory: ${{ runner.temp }}
+        run: |
+          unset GITHUB_TOKEN GH_TOKEN
+          for m in sonnet opus; do
+            S=$(date +%s)
+            OUT=$(claude -p --model "$m" --output-format json --max-turns 1 --disallowedTools "Bash,Edit,Write,Read,WebFetch,WebSearch" \
+              'Reply with JSON only: {"ok": true, "model_hint": "<your model name>", "words": ["three","short","words"]}' 2>&1) || true
+            echo "== $m: $(( $(date +%s) - S )) s"
+            echo "$OUT" | jq -c '{is_error, subtype, duration_ms, num_turns, total_cost_usd, model: (.modelUsage // {} | keys), result: (.result // "" | .[0:200])}' 2>/dev/null || echo "$OUT" | head -c 600
+          done
