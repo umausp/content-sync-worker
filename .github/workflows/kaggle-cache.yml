@@ -46,9 +46,9 @@ jobs:
           cat > "$D/dataset-metadata.json" <<JSON
           {"title":"agyata-ollama-cache","id":"$KUSER/agyata-ollama-cache","licenses":[{"name":"other"}]}
           JSON
-          if kaggle datasets status "$KUSER/agyata-ollama-cache" >/dev/null 2>&1; then
+          if kaggle datasets list --mine --search agyata-ollama-cache --csv 2>/dev/null | grep -q "agyata-ollama-cache"; then
             kaggle datasets version -p "$D" -m "refresh $(date -u +%F) $MODEL" --dir-mode zip
           else
             kaggle datasets create -p "$D" --dir-mode zip
           fi
-          sleep 20; kaggle datasets status "$KUSER/agyata-ollama-cache" || true
+          kaggle datasets list --mine --search agyata-ollama-cache || true
