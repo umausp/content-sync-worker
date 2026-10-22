@@ -60,6 +60,8 @@ jobs:
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-4-31b' || { echo "::error::$AGD_LOCAL_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_LOCAL_MODEL" --port 8181 > "$AGD_OUT/mlx.log" 2>&1 < /dev/null &
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11635 --upstream http://127.0.0.1:8181 --model "$AGD_LOCAL_MODEL" > "$AGD_OUT/shim.log" 2>&1 < /dev/null &
+          # The fact model is ungated (Gemma licence, ~8 GB): fetched once into the HF cache, then offline like the rest.
+          ls "$HOME/.cache/huggingface/hub" | grep -qi 'gemma-3-12b' || HF_HUB_OFFLINE=0 lockf -k "$HOME/.cache/hf-fetch.lock" python -c "import sys; from huggingface_hub import snapshot_download; snapshot_download(sys.argv[1])" "$AGD_FACT_MODEL"
           ls "$HOME/.cache/huggingface/hub" | grep -i 'gemma-3-12b' || { echo "::error::$AGD_FACT_MODEL not in the HF cache"; exit 1; }
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python -m mlx_vlm.server --model "$AGD_FACT_MODEL" --port 8182 > "$AGD_OUT/mlx_fact.log" 2>&1 < /dev/null &
           perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' node tools/ci/mlx_ollama_shim.mjs --listen 11636 --upstream http://127.0.0.1:8182 --model "$AGD_FACT_MODEL" > "$AGD_OUT/shim_fact.log" 2>&1 < /dev/null &
