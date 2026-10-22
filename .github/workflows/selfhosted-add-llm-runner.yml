@@ -22,7 +22,11 @@ jobs:
           echo "source install: $SRC ($("$SRC/bin/Runner.Listener" --version 2>/dev/null))"
           mkdir -p "$DEST"
           if [ -f "$DEST/.runner" ]; then echo "already configured: $(grep -o '"agentName": *"[^"]*"' "$DEST/.runner")"; exit 0; fi
-          rsync -a --exclude '_work' --exclude '_diag' --exclude '.runner' --exclude '.credentials*' --exclude '.service' "$SRC/" "$DEST/"
+          ls -la "$SRC" | grep -E ' (bin|externals)' || true   # an auto-updated runner symlinks bin/externals to versioned dirs
+          for d in bin externals; do [ -L "$DEST/$d" ] && rm "$DEST/$d"; done   # links left by an earlier copy would point back into SRC
+          # -L: copy symlinks as real dirs, else the copy's root resolves to SRC ("already configured")
+          rsync -aL --exclude '_work' --exclude '_diag' --exclude '.runner' --exclude '.credentials*' --exclude '.service' --exclude 'bin.*' --exclude 'externals.*' "$SRC/" "$DEST/"
+          [ -L "$DEST/bin" ] && { echo "::error::$DEST/bin is still a symlink"; exit 1; }
           ls "$DEST"
       - name: Register (gh login of umausp on this Mac, token masked)
         run: |
