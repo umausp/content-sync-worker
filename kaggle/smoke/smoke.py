@@ -23,7 +23,7 @@ try:
     path = snapshot_download(repo, allow_patterns=["*.json", "*.safetensors", "*.model", "tokenizer*"], local_dir="/tmp/gemma")
     res["handle"] = repo; step(f"downloaded {repo}")
     tok = AutoTokenizer.from_pretrained(path)
-    kw = dict(device_map="auto")
+    kw = dict(device_map={"": 0})  # one model replica on GPU 0 (a second process can use GPU 1)
     if "bnb-4bit" in repo or "4bit" in repo:
         kw["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16)
     else:
@@ -35,14 +35,30 @@ try:
         from transformers import AutoModelForImageTextToText
         model = AutoModelForImageTextToText.from_pretrained(path, **kw)
     step("model loaded")
-    msgs = [{"role": "user", "content": "Fasse in einem deutschen Satz zusammen: Die Zentralbank senkte den Leitzins um 25 Basispunkte auf 5,25 Prozent."}]
-    enc = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt", return_dict=True).to(model.device)
-    t1 = time.time()
-    out = model.generate(**enc, max_new_tokens=80, do_sample=False)
-    gen = out[0][enc["input_ids"].shape[1]:]
-    res["answer"] = tok.decode(gen, skip_special_tokens=True)
-    res["new_tokens"] = int(gen.shape[0]); res["tok_per_s"] = round(res["new_tokens"] / (time.time() - t1), 1)
-    step(f"answer ok ({res['new_tokens']} tokens, {res['tok_per_s']} tok/s)")
+    tok.padding_side = "left"
+    device = next(model.parameters()).device
+    res["device_map"] = str(getattr(model, "hf_device_map", None))[:200]
+    article = ("The central bank announced on Wednesday that it would cut its benchmark interest rate by 25 basis points to 5.25 percent, citing slowing "
+               "growth and easing inflation at 3.1 percent, while warning that energy prices remain volatile. ") * 4
+    def prompt(i):
+        return tok.apply_chat_template([{"role": "user", "content": f"[{i}] Summarise in German in 3 sentences: {article}"}], add_generation_prompt=True, tokenize=False)
+    def run(bs, new):
+        enc = tok([prompt(i) for i in range(bs)], return_tensors="pt", padding=True).to(device)
+        torch.cuda.synchronize(); t = time.time()
+        out = model.generate(**enc, max_new_tokens=new, min_new_tokens=new, do_sample=False)
+        torch.cuda.synchronize(); dt = time.time() - t
+        n = int((out.shape[1] - enc["input_ids"].shape[1]) * bs)
+        return dt, n, tok.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True), int(enc["input_ids"].shape[1])
+    run(1, 8); step("warm-up done")
+    res["bench"] = []
+    for bs in (1, 4, 8, 16):
+        try:
+            dt, n, text, plen = run(bs, 128)
+            res["bench"].append({"batch": bs, "prompt_tokens": plen, "new_tokens_each": 128, "seconds": round(dt, 1), "agg_tok_s": round(n / dt, 1), "per_req_tok_s": round(128 / dt, 1)})
+            if bs == 1: res["answer"] = text
+            step(f"batch {bs}: {n / dt:.1f} tok/s aggregate ({128 / dt:.1f} per request) in {dt:.1f}s")
+        except Exception as e:
+            step(f"batch {bs} failed: {type(e).__name__}: {str(e)[:120]}"); break
 except Exception:
     res["error"] = traceback.format_exc()[-1500:]; step("FAILED")
 save()
