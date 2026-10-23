@@ -1,0 +1,84 @@
+# selfhosted-m3-voice — Agyata Doc v2, module M3 (voice) proven on its own real output. NOT an end-to-end render.
+# One beat sheet (the M1 output fixture) → Edge TTS (en-US-AvaMultilingualNeural) per paragraph → faster-whisper ASR
+# (asr_server.py on 127.0.0.1:8291) → judge + revise loop (voice/index.mjs) → out/preview.mp3, narration.json,
+# review.json + review.md in artifact agyata-m3-review-<run>. $0: edge-tts is free, faster-whisper runs on the Mac CPU.
+# Lane mac-tts (its own runner; CPU work, no clash with FLUX on mac-img or gemma on mac-llm). Port 8291 belongs to this lane; cleanup is by port, never by name.
+# Canonical copy: tools/ci/selfhosted-m3-voice.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-m3-voice
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      beatsheet: { description: 'beat sheet path in the pipeline repo', default: 'packages/agyata-doc/voice/fixtures/kodak-beat-sheet.json' }
+concurrency: { group: mac-tts, cancel-in-progress: false }
+jobs:
+  m3:
+    runs-on: [mac-tts]
+    timeout-minutes: 120
+    env:
+      AGD_PROFILE: documentary
+      AGD_LANG: en
+      AGD_MAX_ROUNDS: '3'
+      AGD_ASR_URL: http://127.0.0.1:8291
+      AGD_FFMPEG: /opt/homebrew/bin/ffmpeg
+      AGD_FFPROBE: /opt/homebrew/bin/ffprobe
+      HF_HUB_OFFLINE: '1'   # the whisper 'small' model is cached by selfhosted-voice-setup; never download here
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH + voice unit suites (offline, fakes)
+        working-directory: pipeline
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --version
+          node --test 'packages/agyata-doc/voice/test/*_test.mjs'
+      - name: voice-venv + packages (install only if missing; same as selfhosted-voice-setup)
+        run: |
+          V="$HOME/.cache/voice-venv"
+          [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"
+          python -c "import faster_whisper, edge_tts" 2>/dev/null || uv pip install --quiet faster-whisper edge-tts
+          python -c "import faster_whisper, edge_tts, numpy; print('faster_whisper', faster_whisper.__version__, 'edge_tts', edge_tts.__version__)"
+      - name: asr_server.py on 127.0.0.1:8291 (model loads once)
+        working-directory: pipeline
+        run: |
+          mkdir -p "$RUNNER_TEMP/m3"
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8291   # a leftover from a killed run of THIS lane would hold the port
+          . "$HOME/.cache/voice-venv/bin/activate"
+          perl -MPOSIX -e 'POSIX::setsid(); exec @ARGV' python packages/agyata-doc/voice/providers/asr_server.py --port 8291 --model small > "$RUNNER_TEMP/m3/asr_server.log" 2>&1 < /dev/null &
+          for i in $(seq 1 60); do
+            curl -sf -m 5 http://127.0.0.1:8291/health && { echo; echo "asr ready after ~$((i*5)) s"; exit 0; }
+            sleep 5
+          done
+          echo "::error::asr_server did not come up"; tail -30 "$RUNNER_TEMP/m3/asr_server.log"; exit 1
+      - name: M3 run (Edge TTS → ASR → judge/revise → preview + review)
+        working-directory: pipeline
+        env:
+          AGD_BEATSHEET: ${{ inputs.beatsheet }}
+          AGD_OUT: ${{ runner.temp }}/m3
+        run: |
+          set -o pipefail
+          . "$HOME/.cache/voice-venv/bin/activate"
+          node packages/agyata-doc/voice/bin/m3_run.mjs 2>&1 | tee "$AGD_OUT/m3_run.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agyata-m3-review-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m3/preview.mp3
+            ${{ runner.temp }}/m3/review.json
+            ${{ runner.temp }}/m3/review.md
+            ${{ runner.temp }}/m3/narration.json
+            ${{ runner.temp }}/m3/*.log
+          retention-days: 30
+      - name: Cleanup
+        if: always()
+        run: |
+          lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
+          lane_kill 8291; rm -rf "$RUNNER_TEMP/m3"
