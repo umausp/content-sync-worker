@@ -93,6 +93,9 @@ jobs:
         if: inputs.research == 'library'
         working-directory: pipeline
         run: bash tools/ci/lanes/start_library.sh "$AGD_OUT"
+      - name: "Critic calibration (fail closed; a failing critic blocks every topic)"
+        working-directory: pipeline
+        run: node packages/agyata-doc/content/bin/calibrate.mjs --out "$AGD_OUT/calibration"
       - name: M1 run (research → write → lint + review → rewrites → storyboard)
         working-directory: pipeline
         run: node packages/agyata-doc/content/bin/m1_run.mjs
