@@ -75,6 +75,8 @@ jobs:
           node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/content/test/*_test.mjs'
       - name: Start mac-llm lane (three gemma servers + shims)
         run: bash tools/ci/lanes/start_llm.sh "$RUN_DIR/logs"
+      - name: "Critic calibration (fail closed; a failing critic blocks the topic)"
+        run: node packages/agyata-doc/content/bin/calibrate.mjs --out "$RUN_DIR/content/calibration"
       - name: M1 run (research → write → lint + review → rewrites → storyboard)
         # research = library when the lane's library service came up (start_library.sh set AGD_LIBRARY_URL), else live
         run: |
@@ -93,6 +95,7 @@ jobs:
           path: |
             ${{ steps.paths.outputs.dir }}/content/review.json
             ${{ steps.paths.outputs.dir }}/content/review.md
+            ${{ steps.paths.outputs.dir }}/content/calibration/calibration.json
             ${{ steps.paths.outputs.dir }}/content/storyboard.md
             ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/beat_sheet.json
             ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/m2_fixture.json
