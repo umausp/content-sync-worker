@@ -1,15 +1,17 @@
-# selfhosted-lora-dataset — fetches the public-domain wood-engraving dataset for the "agyengrave" FLUX LoRA onto the
-# runner Mac (never the laptop): tools/lora/fetch_style_dataset.py -> $HOME/agyata-lora/engraving. Resumable; rerun to top up.
+# selfhosted-lora-dataset — puts the "agyengrave" style guide on the runner Mac at $HOME/agyata-lora/STYLE.md (always), and
+# optionally fetches public-domain wood engravings from Wikimedia Commons (tools/lora/fetch_style_dataset.py, slow: Commons
+# rate-limits with HTTP 429) into $HOME/agyata-lora/engraving. Never on the laptop.
 # Canonical copy: tools/ci/selfhosted-lora-dataset.yml in the private repo; the live copy is the public shell's.
 name: selfhosted-lora-dataset
 on:
   workflow_dispatch:
     inputs:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
-      limit: { description: 'images to keep in total', default: '400' }
-      per_category: { description: 'cap per root category', default: '40' }
+      fetch: { description: 'also download images from Commons (slow, rate-limited)', default: 'false' }
+      limit: { description: 'images to keep in total (fetch only)', default: '60' }
+      per_category: { description: 'cap per root category (fetch only)', default: '10' }
 jobs:
-  fetch:
+  style:
     runs-on: [self-hosted, macOS, ARM64, mac-img]
     timeout-minutes: 120
     steps:
@@ -20,19 +22,23 @@ jobs:
           ref: ${{ inputs.pipeline_ref }}
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: pipeline
-      - name: Fetch the dataset (Pillow from a venv, the colour filter needs it)
+      - name: Style guide to $HOME/agyata-lora/STYLE.md
+        working-directory: pipeline
+        run: |
+          mkdir -p "$HOME/agyata-lora"
+          cp tools/lora/STYLE.md "$HOME/agyata-lora/STYLE.md"
+          cp tools/lora/fetch_style_dataset.py "$HOME/agyata-lora/fetch_style_dataset.py"
+          ls -la "$HOME/agyata-lora"
+      - name: Fetch images (optional)
+        if: ${{ inputs.fetch == 'true' }}
         working-directory: pipeline
         env:
           LIMIT: ${{ inputs.limit }}
           PER_CATEGORY: ${{ inputs.per_category }}
         run: |
-          OUT="$HOME/agyata-lora/engraving"; mkdir -p "$OUT"
           export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+          OUT="$HOME/agyata-lora/engraving"; mkdir -p "$OUT"
           uv venv --quiet --python 3.12 --allow-existing "$HOME/agyata-lora/venv"
           VIRTUAL_ENV="$HOME/agyata-lora/venv" uv pip install --quiet pillow
           "$HOME/agyata-lora/venv/bin/python" tools/lora/fetch_style_dataset.py --out "$OUT" --limit "$LIMIT" --per-category "$PER_CATEGORY"
-      - name: Summary
-        run: |
-          OUT="$HOME/agyata-lora/engraving"
-          echo "images: $(ls "$OUT"/*.jpg | wc -l)"; du -sh "$OUT"
-          head -10 "$OUT/manifest.csv"
+          echo "images: $(ls "$OUT"/*.jpg 2>/dev/null | wc -l)"; du -sh "$OUT"
