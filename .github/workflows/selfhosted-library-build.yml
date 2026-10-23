@@ -1,0 +1,92 @@
+# selfhosted-library-build — builds the local Wikipedia library on this Mac (packages/agyata-doc/library/SPEC.md "Build").
+# dump=simple is the rehearsal (simplewiki, ~300 MB; its own root ~/agyata-library/simple, never the live library).
+# dump=en is the real library (enwiki, ~24 GB): download (resumable, md5 checked) → wikiextractor 3.0.8 JSON + links →
+# native Postgres 17 (pgvector; cluster ~/agyata-library/pg, port 5433) loaded with COPY, indexes last → database promoted
+# → ~/agyata-library/current.json written LAST → smoke query. The extract is deleted after load; the dump only after success.
+# Work dir ~/agyata-library/work-<dump>. Canonical copy: tools/ci/selfhosted-library-build.yml in the private repo; the live copy
+# is the public shell's. Pins: wikiextractor==3.0.8 (3.0.6 fails on Python 3.12; 3.1.0 wrote no articles on the test fixture).
+name: selfhosted-library-build
+on:
+  workflow_dispatch:
+    inputs:
+      dump: { description: 'simple (rehearsal, ~300 MB) or en (full English, ~24 GB)', type: choice, options: [simple, en], default: simple }
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+concurrency: { group: mac-library, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: [mac-renderer]
+    timeout-minutes: 720
+    env:
+      DUMP: ${{ inputs.dump }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Names, disk check, tools
+        run: |
+          if [ "$DUMP" = en ]; then NEED=120; ROOT="$HOME/agyata-library"; DBL=agyata_library
+          else NEED=10; ROOT="$HOME/agyata-library/simple"; DBL=agyata_library_simple; fi
+          W="$HOME/agyata-library/work-$DUMP"; mkdir -p "$W" "$ROOT"
+          {
+            echo "ROOT=$ROOT"; echo "DBL=$DBL"; echo "DBB=agyata_library_build_$DUMP"; echo "W=$W"
+            echo "PG_URL=postgresql://127.0.0.1:5433"; echo "WX=$HOME/.cache/library-venv/bin/python"
+          } >> "$GITHUB_ENV"
+          FREE=$(df -g "$HOME" | awk 'NR==2{print $4}')
+          echo "dump=$DUMP free=${FREE}G need=${NEED}G root=$ROOT db=$DBL"
+          [ "$FREE" -ge "$NEED" ] || { echo "::error::only ${FREE} GB free, need ${NEED} GB for $DUMP"; exit 1; }
+          command -v uv >/dev/null || { echo "::error::uv is not on PATH"; exit 1; }
+          command -v brew >/dev/null || { echo "::error::Homebrew is not on PATH"; exit 1; }
+      - name: Postgres 17 + pgvector (install once, start the cluster on 5433)
+        run: |
+          brew list postgresql@17 >/dev/null 2>&1 || brew install postgresql@17
+          brew list pgvector >/dev/null 2>&1 || brew install pgvector
+          PGBIN="$(brew --prefix postgresql@17)/bin"
+          export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+          PG="$HOME/agyata-library/pg"
+          [ -f "$PG/PG_VERSION" ] || "$PGBIN/initdb" -D "$PG" -U postgres -A trust -E UTF8 --locale=en_US.UTF-8
+          "$PGBIN/pg_ctl" -D "$PG" status >/dev/null 2>&1 || "$PGBIN/pg_ctl" -D "$PG" -l "$HOME/agyata-library/pg.log" \
+            -o "-p 5433 -k /tmp -c shared_buffers=4GB -c maintenance_work_mem=8GB -c max_wal_size=32GB -c checkpoint_timeout=30min" -w start
+          "$PGBIN/psql" -h 127.0.0.1 -p 5433 -U postgres -tAc "SELECT version()"
+          "$PGBIN/psql" -h 127.0.0.1 -p 5433 -U postgres -tAc "CREATE EXTENSION IF NOT EXISTS vector" -d postgres
+      - name: Library venv (wikiextractor 3.0.8, psycopg, sentence-transformers)
+        run: |
+          V="$HOME/.cache/library-venv"
+          [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"
+          python -c "import wikiextractor, psycopg, sentence_transformers" 2>/dev/null || uv pip install --quiet 'wikiextractor==3.0.8' 'psycopg[binary]' sentence-transformers
+          python -c "import importlib.metadata as m, psycopg, sentence_transformers as st; print('wikiextractor', m.version('wikiextractor'), 'psycopg', psycopg.__version__, 'sentence-transformers', st.__version__)"
+      - name: Download dump (resume, md5 verified)
+        working-directory: pipeline
+        run: |
+          "$WX" tools/library/build_library.py download --wiki "$DUMP" --out "$W"
+      - name: Extract (wikiextractor, JSON + links)
+        working-directory: pipeline
+        run: |
+          FILE=$("$WX" -c "import json,sys;print(json.load(open(sys.argv[1]))['file'])" "$W/download.json")
+          rm -rf "$W/extract"
+          "$WX" tools/library/build_library.py extract --dump "$FILE" --out "$W/extract" --processes "$(( $(sysctl -n hw.ncpu) - 2 ))"
+      - name: Load into Postgres (COPY batches, indexes last)
+        working-directory: pipeline
+        run: |
+          "$WX" tools/library/build_library.py load --extract "$W/extract" --pg "$PG_URL" --database "$DBB"
+      - name: Promote database + current.json (written last)
+        working-directory: pipeline
+        run: |
+          MD5=$("$WX" -c "import json,sys;print(json.load(open(sys.argv[1]))['md5'])" "$W/download.json")
+          DATE=$("$WX" -c "import json,sys;print(json.load(open(sys.argv[1]))['dumpDate'])" "$W/download.json")
+          "$WX" tools/library/build_library.py finalize --root "$ROOT" --wiki "$DUMP" --date "$DATE" --md5 "$MD5" \
+            --pg "$PG_URL" --database-build "$DBB" --database "$DBL"
+      - name: Smoke query (BM25 top 5)
+        working-directory: pipeline
+        run: |
+          "$WX" tools/library/build_library.py smoke --q "kodak digital camera sasson" --pg "$PG_URL" --database "$DBL" --k 5
+      - name: Cleanup (extract always; dump only after en succeeded)
+        run: |
+          rm -rf "$W/extract"
+          if [ "$DUMP" = en ]; then rm -f "$W"/*-pages-articles-multistream.xml.bz2; fi
+          du -sh "$HOME/agyata-library" || true
+          cat "$ROOT/current.json"; echo
