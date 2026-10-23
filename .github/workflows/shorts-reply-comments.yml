@@ -52,11 +52,11 @@ env:
   SHORTS_REPLY_MODEL: 'deepseek-v4-pro:0813-cloud'
   # LLM router: Ollama Cloud ONLY — reply_comments also pins order:['ollama'] per call, so paid Gemini is
   # never reachable even if a future edit forgets the pin. Matches the shorts-*.yml provider ladder.
-  PROVIDER_ORDER: 'ollama'
+  PROVIDER_ORDER: 'gemini,sambanova,cohere,openrouter,nvidia,mistral,gitmodels,openai,ollama'  # user 2026-10-23: news-publish free-tier ladder, Ollama Cloud LAST; each provider gets ONE try then falls through
   PROVIDER_USE_OLLAMA: '1'
   OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL || 'deepseek-v4-pro:0813-cloud' }}
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
-  OLLAMA_MAX_TRIES: '6'
+  OLLAMA_MAX_TRIES: '1'  # user 2026-10-23: one try, then fail open (was 6)
 
 jobs:
   reply:
