@@ -11,7 +11,8 @@ on:
   workflow_dispatch:
     inputs:
       topics: { description: 'comma list of topic ids (packages/agyata-doc/content/fixtures/topics.json)', default: 'business-kodak-invented-the-digital-camera-then-died-from' }
-      profile: { description: 'profile id', default: 'documentary' }
+      mode: { description: 'smoke = short profile + 1 round everywhere to prove the flow fast; full = production limits', type: choice, options: [smoke, full], default: 'smoke' }
+      profile: { description: 'profile id (smoke forces short)', default: 'documentary' }
       minutes: { description: 'target length in minutes', default: '6' }
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
 jobs:
@@ -46,6 +47,7 @@ jobs:
       topic: ${{ matrix.topic }}
       run_id: ${{ github.run_id }}
       pipeline_ref: ${{ inputs.pipeline_ref }}
-      profile: ${{ inputs.profile }}
+      profile: ${{ inputs.mode == 'smoke' && 'short' || inputs.profile }}
+      mode: ${{ inputs.mode }}
       minutes: ${{ inputs.minutes }}
     secrets: inherit
