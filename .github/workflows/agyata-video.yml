@@ -1,0 +1,292 @@
+# agyata-video — one topic's assembly line: content → (images ∥ voice) → package. Called once per topic by agyata-pipeline.yml.
+# Lanes (one runner = one job at a time, so no concurrency groups here):
+#   content  [mac-llm]                       M1: research → writer A / critic B → lints → beat_sheet + m2_fixture
+#   images   [self-hosted, macOS, ARM64, mac-img]  M2: FLUX plates + VLM judge + retries → sheets + review
+#   voice    [mac-tts]                       M3: Edge TTS → whisper ASR judge → revise → preview.mp3 + review
+#   package  [mac-renderer]                  stage hand-over manifest. M4 scene and M5 assemble are NOT built yet:
+#                                            no video is rendered and nothing is published here (publish comes with M5).
+# Stages hand files over through $HOME/agyata-runs/<run_id>/<topic>/ on the same Mac (content/, images/, voice/, package/).
+# The package job deletes the topic folder only after its artifact upload succeeded; folders older than 3 days are swept.
+# Canonical copy: tools/ci/agyata-video.yml in the private repo. A reusable workflow must sit in the CALLER's repo:
+# the live copy is the public shell's .github/workflows/agyata-video.yml (agyata-pipeline.yml calls ./.github/workflows/...).
+name: agyata-video
+on:
+  workflow_call:
+    inputs:
+      topic: { type: string, required: true, description: 'topic id from packages/agyata-doc/content/fixtures/topics.json' }
+      run_id: { type: string, required: true, description: 'the dispatching run id (shared folder name)' }
+      pipeline_ref: { type: string, required: false, default: 'feat/longform-studio' }
+      profile: { type: string, required: false, default: 'documentary' }
+      minutes: { type: string, required: false, default: '6' }
+    secrets:
+      PRIVATE_REPO_TOKEN: { required: true }
+jobs:
+  content:
+    name: content (${{ inputs.topic }})
+    runs-on: [mac-llm]
+    timeout-minutes: 180
+    defaults: { run: { working-directory: pipeline } }
+    env:
+      AGD_TOPICS: packages/agyata-doc/content/fixtures/topics.json
+      AGD_ONLY: ${{ inputs.topic }}
+      AGD_PROFILE: ${{ inputs.profile }}
+      AGD_MINUTES: ${{ inputs.minutes }}
+      AGD_LLM_URL: http://127.0.0.1:11635
+      AGD_LOCAL_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_WRITER_MODEL: mlx-community/gemma-4-26b-a4b-it-4bit
+      AGD_WRITER_LLM_URL: http://127.0.0.1:11637
+      AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_MAX_ROUNDS: '4'
+      AGD_CHAPTER_CONCURRENCY: '4'
+      AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit
+      AGD_FACT_LLM_URL: http://127.0.0.1:11636
+      AGD_MAX_REWRITES: '2'
+      AGD_LLM_TIMEOUT_S: '240'
+      AGD_FACT_CONCURRENCY: '1'
+    outputs:
+      verdict: ${{ steps.verdict.outputs.verdict }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"; node --version
+      - name: Run folder and paths
+        id: paths
+        run: |
+          RUN="$HOME/agyata-runs/${{ inputs.run_id }}/${{ inputs.topic }}"
+          mkdir -p "$RUN/logs"
+          echo "RUN_DIR=$RUN" >> "$GITHUB_ENV"
+          echo "dir=$RUN" >> "$GITHUB_OUTPUT"
+          echo "AGD_OUT=$RUN/content" >> "$GITHUB_ENV"
+          echo "AGD_RESEARCH_CACHE=$HOME/.cache/agyata/research" >> "$GITHUB_ENV"
+      - name: Unit suites (lints are the first gate)
+        run: |
+          export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --test 'packages/agyata-doc/core/test/*_test.mjs' 'packages/agyata-doc/profiles/test/*_test.mjs' 'packages/agyata-doc/content/test/*_test.mjs'
+      - name: Start mac-llm lane (three gemma servers + shims)
+        run: bash tools/ci/lanes/start_llm.sh "$RUN_DIR/logs"
+      - name: M1 run (research → write → lint + review → rewrites → storyboard)
+        run: node packages/agyata-doc/content/bin/m1_run.mjs
+      - name: Stage verdict
+        id: verdict
+        if: always()
+        run: |
+          V=$(node -e 'const fs=require("fs");const p=process.env.RUN_DIR+"/content/review.json";console.log(fs.existsSync(p)?String(JSON.parse(fs.readFileSync(p,"utf8")).verdict):"missing")' || echo missing)
+          echo "verdict=$V" >> "$GITHUB_OUTPUT"; echo "content verdict: $V"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: content-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: |
+            ${{ steps.paths.outputs.dir }}/content/review.json
+            ${{ steps.paths.outputs.dir }}/content/review.md
+            ${{ steps.paths.outputs.dir }}/content/storyboard.md
+            ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/beat_sheet.json
+            ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/m2_fixture.json
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-content-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: ${{ steps.paths.outputs.dir }}/logs
+          retention-days: 7
+      - name: Stop mac-llm lane
+        if: always()
+        run: bash tools/ci/lanes/stop.sh 8181 8182 8183 11635 11636 11637
+
+  images:
+    name: images (${{ inputs.topic }})
+    needs: content
+    runs-on: [self-hosted, macOS, ARM64, mac-img]
+    timeout-minutes: 180
+    defaults: { run: { working-directory: pipeline } }
+    env:
+      AGD_PROFILE: ${{ inputs.profile }}
+      AGD_STYLES: default
+      AGD_STEPS: '3'
+      AGD_SIZE: 960x544
+      AGD_FINAL_SIZE: 1920x1080
+      AGD_WORKERS: '2'
+      AGD_BEATS: ''
+      AGD_FLUX_URL: http://127.0.0.1:8090/
+      AGD_LLM_URL: http://127.0.0.1:11535
+      AGD_JUDGE_MODEL: mlx-community/gemma-4-31b-it-4bit
+      AGD_MAX_RETRIES: '3'
+    outputs:
+      verdict: ${{ steps.verdict.outputs.verdict }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"; node --version
+      - name: Run folder and paths
+        id: paths
+        run: |
+          RUN="$HOME/agyata-runs/${{ inputs.run_id }}/${{ inputs.topic }}"
+          mkdir -p "$RUN/logs" "$RUN/images"
+          echo "RUN_DIR=$RUN" >> "$GITHUB_ENV"
+          echo "dir=$RUN" >> "$GITHUB_OUTPUT"
+          echo "AGD_OUT=$RUN/images" >> "$GITHUB_ENV"
+          echo "AGD_FIXTURES=$RUN/content/${{ inputs.topic }}/m2_fixture.json" >> "$GITHUB_ENV"
+          echo "AGD_PY=$HOME/.local/share/uv/tools/mflux/bin/python" >> "$GITHUB_ENV"
+      - name: Unit suite (no lint-only gate, the real run hardens weak M1 briefs with the LLM before compiling)
+        run: |
+          export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --test 'packages/agyata-doc/illustration/test/*_test.mjs'
+      - name: Start mac-img lane (FLUX + VLM judge + shim)
+        run: bash tools/ci/lanes/start_img.sh "$RUN_DIR/logs"
+      - name: M2 run (compile → generate → judge → retries → sheets + review)
+        run: node packages/agyata-doc/illustration/bin/m2_run.mjs
+      - name: Stage verdict
+        id: verdict
+        if: always()
+        run: |
+          V=$(node -e 'const fs=require("fs");const p=process.env.RUN_DIR+"/images/review.json";console.log(fs.existsSync(p)?(JSON.parse(fs.readFileSync(p,"utf8")).overall?.pass?"PASS":"FAIL"):"missing")' || echo missing)
+          echo "verdict=$V" >> "$GITHUB_OUTPUT"; echo "images verdict: $V"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: images-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: |
+            ${{ steps.paths.outputs.dir }}/images/sheet_*.jpg
+            ${{ steps.paths.outputs.dir }}/images/review.json
+            ${{ steps.paths.outputs.dir }}/images/review.md
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-images-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: ${{ steps.paths.outputs.dir }}/logs
+          retention-days: 7
+      - name: Stop mac-img lane
+        if: always()
+        run: bash tools/ci/lanes/stop.sh 8090 8081 11535
+
+  voice:
+    name: voice (${{ inputs.topic }})
+    needs: content
+    runs-on: [mac-tts]
+    timeout-minutes: 120
+    defaults: { run: { working-directory: pipeline } }
+    env:
+      AGD_PROFILE: ${{ inputs.profile }}
+      AGD_LANG: en
+      AGD_MAX_ROUNDS: '3'
+      AGD_ASR_URL: http://127.0.0.1:8291
+      AGD_FFMPEG: /opt/homebrew/bin/ffmpeg
+      AGD_FFPROBE: /opt/homebrew/bin/ffprobe
+      HF_HUB_OFFLINE: '1'
+    outputs:
+      verdict: ${{ steps.verdict.outputs.verdict }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"; node --version
+      - name: Run folder and paths
+        id: paths
+        run: |
+          RUN="$HOME/agyata-runs/${{ inputs.run_id }}/${{ inputs.topic }}"
+          mkdir -p "$RUN/logs" "$RUN/voice"
+          echo "RUN_DIR=$RUN" >> "$GITHUB_ENV"
+          echo "dir=$RUN" >> "$GITHUB_OUTPUT"
+          echo "AGD_OUT=$RUN/voice" >> "$GITHUB_ENV"
+          echo "AGD_BEATSHEET=$RUN/content/${{ inputs.topic }}/beat_sheet.json" >> "$GITHUB_ENV"
+      - name: Voice unit suites (offline, fakes)
+        run: |
+          export PATH="$(brew --prefix node@22)/bin:$PATH"
+          node --test 'packages/agyata-doc/voice/test/*_test.mjs'
+      - name: Start mac-tts lane (asr_server on 8291)
+        run: bash tools/ci/lanes/start_tts.sh "$RUN_DIR/logs"
+      - name: M3 run (Edge TTS → ASR → judge/revise → preview + review)
+        run: |
+          set -o pipefail
+          . "$HOME/.cache/voice-venv/bin/activate"
+          node packages/agyata-doc/voice/bin/m3_run.mjs 2>&1 | tee "$RUN_DIR/logs/m3_run.log"
+      - name: Stage verdict
+        id: verdict
+        if: always()
+        run: |
+          V=$(node -e 'const fs=require("fs");const p=process.env.RUN_DIR+"/voice/review.json";console.log(fs.existsSync(p)?(JSON.parse(fs.readFileSync(p,"utf8")).pass?"PASS":"FAIL"):"missing")' || echo missing)
+          echo "verdict=$V" >> "$GITHUB_OUTPUT"; echo "voice verdict: $V"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: |
+            ${{ steps.paths.outputs.dir }}/voice/preview.mp3
+            ${{ steps.paths.outputs.dir }}/voice/review.json
+            ${{ steps.paths.outputs.dir }}/voice/review.md
+            ${{ steps.paths.outputs.dir }}/voice/narration.json
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-voice-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: ${{ steps.paths.outputs.dir }}/logs
+          retention-days: 7
+      - name: Stop mac-tts lane
+        if: always()
+        run: bash tools/ci/lanes/stop.sh 8291
+
+  package:
+    name: package (${{ inputs.topic }})
+    needs: [content, images, voice]
+    if: ${{ always() && needs.content.result == 'success' }}
+    runs-on: [mac-renderer]
+    timeout-minutes: 30
+    defaults: { run: { working-directory: pipeline } }
+    env:
+      AGD_PROFILE: ${{ inputs.profile }}
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Node 22 on PATH
+        run: |
+          echo "$(brew --prefix node@22)/bin" >> "$GITHUB_PATH"; export PATH="$(brew --prefix node@22)/bin:$PATH"; node --version
+      - name: Run folder
+        id: paths
+        run: |
+          RUN="$HOME/agyata-runs/${{ inputs.run_id }}/${{ inputs.topic }}"
+          mkdir -p "$RUN"
+          echo "RUN_DIR=$RUN" >> "$GITHUB_ENV"
+          echo "dir=$RUN" >> "$GITHUB_OUTPUT"
+      - name: Package (manifest + summary; M4 scene and M5 assemble not built, nothing rendered or published)
+        run: |
+          AGD_RUN_DIR="$RUN_DIR" AGD_TOPIC="${{ inputs.topic }}" AGD_RUN_ID="${{ inputs.run_id }}" node packages/agyata-doc/package/bin/package_run.mjs
+          cat "$RUN_DIR/package/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ inputs.topic }}-${{ inputs.run_id }}
+          path: ${{ steps.paths.outputs.dir }}/package
+          if-no-files-found: error
+          retention-days: 30
+      - name: Delete this topic's run folder (only after the upload succeeded) and sweep folders older than 3 days
+        if: success()
+        run: |
+          rm -rf "$RUN_DIR"
+          find "$HOME/agyata-runs" -mindepth 1 -maxdepth 1 -mtime +3 -exec rm -rf {} + 2>/dev/null || true
