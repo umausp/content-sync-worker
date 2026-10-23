@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       topics: { description: 'comma list of topic ids (packages/agyata-doc/content/fixtures/topics.json)', default: 'business-kodak-invented-the-digital-camera-then-died-from' }
-      mode: { description: 'smoke = short profile + 1 round everywhere to prove the flow fast; full = production limits', type: choice, options: [smoke, full], default: 'smoke' }
+      mode: { description: 'smoke = short piece (3-6 beats), write-review-rewrite until every aspect >= 9, image/voice retries on; full = documentary', type: choice, options: [smoke, full], default: 'smoke' }
       profile: { description: 'profile id (smoke forces short)', default: 'documentary' }
       minutes: { description: 'target length in minutes', default: '6' }
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
