@@ -37,8 +37,9 @@ jobs:
       AGD_WRITER_MODEL: mlx-community/gemma-4-26b-a4b-it-4bit
       AGD_WRITER_LLM_URL: http://127.0.0.1:11637
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
-      AGD_MAX_ROUNDS: ${{ inputs.mode == 'smoke' && '8' || '4' }}       # smoke: small piece, strict loop until the bar
-      AGD_QUALITY_BAR: ${{ inputs.mode == 'smoke' && '9' || '8' }}      # every rubric aspect must reach this
+      AGD_MAX_ROUNDS: ${{ inputs.mode == 'smoke' && '8' || '6' }}       # strict loop until the bar; per-beat rewrites keep rounds cheap
+      AGD_QUALITY_BAR: '9'                                               # user bar: every rubric aspect >= 9 (minimum), smoke and full
+      AGD_LLM_INFLIGHT: '8'                                              # requests in flight per model (26b best throughput at 8)
       AGD_DRAFTS: ${{ inputs.mode == 'smoke' && '1' || '3' }}           # best-of-N drafts per chapter; smoke 1, full 3
       AGD_CHAPTER_CONCURRENCY: '4'
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit
@@ -75,7 +76,10 @@ jobs:
       - name: Start mac-llm lane (three gemma servers + shims)
         run: bash tools/ci/lanes/start_llm.sh "$RUN_DIR/logs"
       - name: M1 run (research → write → lint + review → rewrites → storyboard)
-        run: node packages/agyata-doc/content/bin/m1_run.mjs
+        # research = library when the lane's library service came up (start_library.sh set AGD_LIBRARY_URL), else live
+        run: |
+          export AGD_RESEARCH="${AGD_LIBRARY_URL:+library}"; export AGD_RESEARCH="${AGD_RESEARCH:-live}"; echo "research: $AGD_RESEARCH"
+          node packages/agyata-doc/content/bin/m1_run.mjs
       - name: Stage verdict
         id: verdict
         if: always()
@@ -92,6 +96,8 @@ jobs:
             ${{ steps.paths.outputs.dir }}/content/storyboard.md
             ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/beat_sheet.json
             ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/m2_fixture.json
+            ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/dossier.json
+            ${{ steps.paths.outputs.dir }}/content/${{ inputs.topic }}/seo.json
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
@@ -101,7 +107,7 @@ jobs:
           retention-days: 7
       - name: Stop mac-llm lane
         if: always()
-        run: bash tools/ci/lanes/stop.sh 8181 8182 8183 11635 11636 11637
+        run: bash tools/ci/lanes/stop.sh 8181 8182 8183 8184 11635 11636 11637
 
   images:
     name: images (${{ inputs.topic }})
