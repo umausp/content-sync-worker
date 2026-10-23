@@ -34,12 +34,16 @@ jobs:
           TEXT="In 1975, an engineer built the first digital camera. It took 23 seconds to record one image onto a cassette tape."
           S=$(date +%s); edge-tts --voice en-US-AvaMultilingualNeural --text "$TEXT" --write-media probe.mp3; echo "tts $(( $(date +%s) - S )) s"
           python - "$TEXT" <<'PY'
-          import os, re, sys, time
+          import os, re, subprocess, sys, time
+          import numpy as np
           from faster_whisper import WhisperModel
+          # Decode with ffmpeg (16 kHz mono float32) and pass samples: faster-whisper's PyAV path breaks on new av releases.
+          pcm = subprocess.run(["ffmpeg", "-nostdin", "-loglevel", "error", "-i", "probe.mp3", "-f", "f32le", "-ac", "1", "-ar", "16000", "-"], check=True, capture_output=True).stdout
+          audio = np.frombuffer(pcm, dtype=np.float32)
           expected = sys.argv[1]
           t0 = time.time()
           model = WhisperModel(os.environ["WM"], device="cpu", compute_type="int8")
-          segs, info = model.transcribe("probe.mp3", word_timestamps=True, language="en")
+          segs, info = model.transcribe(audio, word_timestamps=True, language="en")
           words = [w for s in segs for w in s.words]
           print(f"asr {time.time() - t0:.1f}s lang={info.language} duration={info.duration:.2f}s")
           print(" ".join(f"{w.word.strip()}[{w.start:.2f}-{w.end:.2f} p{w.probability:.2f}]" for w in words))
