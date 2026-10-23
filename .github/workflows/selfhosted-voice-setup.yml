@@ -1,0 +1,55 @@
+# selfhosted-voice-setup — one-off (user 2026-10-23: "faster-whisper is not installed, download that and others if needed").
+# Creates ~/.cache/voice-venv (separate from lf-venv so the gemma/mlx servers' packages are never upgraded under them),
+# installs edge-tts + faster-whisper, pre-downloads the whisper model into the HF cache, then smoke-tests the M3 providers:
+# Edge TTS (Ava) speaks one sentence → faster-whisper transcribes it → prints words, timings and WER.
+# Runs on mac-img (idle while M1 uses mac-llm); CPU only, no port. Re-running is safe (install only if missing).
+# Canonical copy: tools/ci/selfhosted-voice-setup.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-voice-setup
+on:
+  workflow_dispatch:
+    inputs:
+      whisper_model: { description: 'faster-whisper model (multilingual; Systran CTranslate2 conversion of OpenAI whisper)', default: 'small' }
+concurrency: { group: mac-img, cancel-in-progress: false }
+jobs:
+  setup:
+    runs-on: [self-hosted, macOS, ARM64, mac-img]
+    timeout-minutes: 45
+    steps:
+      - name: voice-venv + packages
+        run: |
+          V="$HOME/.cache/voice-venv"
+          [ -x "$V/bin/python" ] || uv venv --python 3.12 "$V"
+          . "$V/bin/activate"
+          python -c "import faster_whisper, edge_tts" 2>/dev/null || uv pip install --quiet faster-whisper edge-tts
+          python -c "import faster_whisper, edge_tts, ctranslate2; print('faster_whisper', faster_whisper.__version__, 'ctranslate2', ctranslate2.__version__, 'edge_tts', edge_tts.__version__)"
+          command -v ffmpeg && ffmpeg -version | head -1 || echo "::warning::ffmpeg not on PATH"
+      - name: Whisper model (download once) + Edge voice check + round trip
+        working-directory: ${{ runner.temp }}
+        env:
+          WM: ${{ inputs.whisper_model }}
+        run: |
+          . "$HOME/.cache/voice-venv/bin/activate"
+          for t in 1 2 3; do HF_HUB_DOWNLOAD_TIMEOUT=60 python -c "import os; from faster_whisper import WhisperModel; WhisperModel(os.environ['WM'], device='cpu', compute_type='int8'); print('model ready:', os.environ['WM'])" && break; sleep 10; done
+          edge-tts --list-voices | grep -E 'en-US-AvaMultilingualNeural|hi-IN-SwaraNeural' || { echo "::error::required Edge voices missing"; exit 1; }
+          TEXT="In 1975, an engineer built the first digital camera. It took 23 seconds to record one image onto a cassette tape."
+          S=$(date +%s); edge-tts --voice en-US-AvaMultilingualNeural --text "$TEXT" --write-media probe.mp3; echo "tts $(( $(date +%s) - S )) s"
+          python - "$TEXT" <<'PY'
+          import os, re, sys, time
+          from faster_whisper import WhisperModel
+          expected = sys.argv[1]
+          t0 = time.time()
+          model = WhisperModel(os.environ["WM"], device="cpu", compute_type="int8")
+          segs, info = model.transcribe("probe.mp3", word_timestamps=True, language="en")
+          words = [w for s in segs for w in s.words]
+          print(f"asr {time.time() - t0:.1f}s lang={info.language} duration={info.duration:.2f}s")
+          print(" ".join(f"{w.word.strip()}[{w.start:.2f}-{w.end:.2f} p{w.probability:.2f}]" for w in words))
+          tok = lambda s: re.findall(r"[\w']+", s.lower())
+          a, b = tok(expected), tok(" ".join(w.word for w in words))
+          d = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+          for i in range(len(a) + 1): d[i][0] = i
+          for j in range(len(b) + 1): d[0][j] = j
+          for i in range(1, len(a) + 1):
+              for j in range(1, len(b) + 1):
+                  d[i][j] = min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a[i-1] != b[j-1]))
+          print(f"[voice-setup] WER {d[-1][-1] / max(1, len(a)):.3f} expected={len(a)} heard={len(b)}")
+          PY
