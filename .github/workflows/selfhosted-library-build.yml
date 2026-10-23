@@ -33,7 +33,7 @@ jobs:
           W="$HOME/agyata-library/work-$DUMP"; mkdir -p "$W" "$ROOT"
           {
             echo "ROOT=$ROOT"; echo "DBL=$DBL"; echo "DBB=agyata_library_build_$DUMP"; echo "W=$W"
-            echo "PG_URL=postgresql://127.0.0.1:5433"; echo "WX=$HOME/.cache/library-venv/bin/python"
+            echo "PG_URL=postgresql://postgres@127.0.0.1:5433"; echo "WX=$HOME/.cache/library-venv/bin/python"
           } >> "$GITHUB_ENV"
           FREE=$(df -g "$HOME" | awk 'NR==2{print $4}')
           echo "dump=$DUMP free=${FREE}G need=${NEED}G root=$ROOT db=$DBL"
