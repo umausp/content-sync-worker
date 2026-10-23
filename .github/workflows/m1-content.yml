@@ -16,7 +16,8 @@ on:
       minutes: { description: 'target documentary length in minutes', default: '6' }
       research: { description: 'library (local Wikipedia dossier) or live', default: 'library' }
       quality_bar: { description: 'every rubric aspect must reach this (minimum, not average)', default: '9' }
-      drafts: { description: 'best-of-N drafts per chapter', default: '3' }
+      drafts: { description: 'best-of-N drafts per chapter (1 = one draft, no ranking)', default: '1' }
+      max_chapters: { description: 'quick-run cap on chapters per topic (empty = no cap)', default: '' }
 concurrency: { group: mac-llm, cancel-in-progress: false }
 jobs:
   m1:
@@ -35,6 +36,7 @@ jobs:
       AGD_QUALITY_BAR: ${{ inputs.quality_bar }}
       AGD_RESEARCH: ${{ inputs.research }}
       AGD_DRAFTS: ${{ inputs.drafts }}
+      AGD_MAX_CHAPTERS: ${{ inputs.max_chapters }}                          # empty = no cap (m1_run treats '' as unset)
       AGD_LLM_INFLIGHT: '8'                                   # writer requests in flight per model: the 26b's measured best is 8 parallel
       AGD_REVIEW_INFLIGHT: '3'                                # review (31b) decodes ~7 tok/s per request at 3 concurrent
       AGD_FACT_INFLIGHT: '4'
