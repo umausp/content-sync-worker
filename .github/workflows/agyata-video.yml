@@ -44,7 +44,7 @@ jobs:
       AGD_FACT_INFLIGHT: '4'
       AGD_REVIEW_TIMEOUT_S: '600'
       SHIM_TIMEOUT_MS: '900000'                                          # shims must never give up before the client
-      AGD_DRAFTS: ${{ inputs.mode == 'smoke' && '1' || '3' }}           # best-of-N drafts per chapter; smoke 1, full 3
+      AGD_DRAFTS: '1'                                                    # one draft per chapter; the writer, reviewer 1 and reviewer 2 loop does the quality work
       AGD_CHAPTER_CONCURRENCY: '4'
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit
       AGD_FACT_LLM_URL: http://127.0.0.1:11636
