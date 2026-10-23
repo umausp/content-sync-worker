@@ -35,7 +35,11 @@ jobs:
       AGD_QUALITY_BAR: ${{ inputs.quality_bar }}
       AGD_RESEARCH: ${{ inputs.research }}
       AGD_DRAFTS: ${{ inputs.drafts }}
-      AGD_LLM_INFLIGHT: '8'                                   # requests in flight per model: the 26b's measured best is 8 parallel
+      AGD_LLM_INFLIGHT: '8'                                   # writer requests in flight per model: the 26b's measured best is 8 parallel
+      AGD_REVIEW_INFLIGHT: '3'                                # review (31b) decodes ~7 tok/s per request at 3 concurrent
+      AGD_FACT_INFLIGHT: '4'
+      AGD_REVIEW_TIMEOUT_S: '600'
+      SHIM_TIMEOUT_MS: '900000'                               # shims must never give up before the client (240 s client, 900 s shim)
       AGD_CHAPTER_CONCURRENCY: '4'                            # chapters in parallel; aggregate gain flattens past 4
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit   # facts are simple extraction: the faster 12B (cached on the Mac)
       AGD_FACT_LLM_URL: http://127.0.0.1:11636
