@@ -32,7 +32,7 @@ jobs:
       AGD_WRITER_MODEL: mlx-community/gemma-4-26b-a4b-it-4bit   # A: fast MoE writer (64 tok/s single, 110 at 4 parallel; probe 39857383031)
       AGD_WRITER_LLM_URL: http://127.0.0.1:11637
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit      # B: critic + final reviewer (quality)
-      AGD_MAX_ROUNDS: '6'                                     # A/B rounds per chapter until the bar; per-beat rewrites keep rounds cheap
+      AGD_MAX_ROUNDS: '2'                                     # judged rounds per stage (text, picture, voice): write + judge, one targeted rewrite + final judge
       AGD_QUALITY_BAR: ${{ inputs.quality_bar }}
       AGD_RESEARCH: ${{ inputs.research }}
       AGD_DRAFTS: ${{ inputs.drafts }}
