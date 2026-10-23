@@ -1,0 +1,38 @@
+# selfhosted-lora-dataset — fetches the public-domain wood-engraving dataset for the "agyengrave" FLUX LoRA onto the
+# runner Mac (never the laptop): tools/lora/fetch_style_dataset.py -> $HOME/agyata-lora/engraving. Resumable; rerun to top up.
+# Canonical copy: tools/ci/selfhosted-lora-dataset.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-lora-dataset
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+      limit: { description: 'images to keep in total', default: '400' }
+      per_category: { description: 'cap per root category', default: '40' }
+jobs:
+  fetch:
+    runs-on: [self-hosted, macOS, ARM64, mac-img]
+    timeout-minutes: 120
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Fetch the dataset (Pillow from a venv, the colour filter needs it)
+        working-directory: pipeline
+        env:
+          LIMIT: ${{ inputs.limit }}
+          PER_CATEGORY: ${{ inputs.per_category }}
+        run: |
+          OUT="$HOME/agyata-lora/engraving"; mkdir -p "$OUT"
+          export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+          uv venv --quiet --python 3.12 --allow-existing "$HOME/agyata-lora/venv"
+          VIRTUAL_ENV="$HOME/agyata-lora/venv" uv pip install --quiet pillow
+          "$HOME/agyata-lora/venv/bin/python" tools/lora/fetch_style_dataset.py --out "$OUT" --limit "$LIMIT" --per-category "$PER_CATEGORY"
+      - name: Summary
+        run: |
+          OUT="$HOME/agyata-lora/engraving"
+          echo "images: $(ls "$OUT"/*.jpg | wc -l)"; du -sh "$OUT"
+          head -10 "$OUT/manifest.csv"
