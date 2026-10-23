@@ -1,0 +1,31 @@
+# selfhosted-library-manual-prep — puts build_en_manual.sh (and the build_library.py + server.py it runs) on the runner Mac,
+# so the English library can be built by hand in a terminal: bash ~/build_en_manual.sh. User 2026-10-23 (gh is not on the
+# PATH of a login terminal on that Mac). Copies files only; runs nothing else.
+# Canonical copy: tools/ci/selfhosted-library-manual-prep.yml in the private repo; the live copy is the public shell's.
+name: selfhosted-library-manual-prep
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+jobs:
+  prep:
+    runs-on: [mac-renderer]
+    timeout-minutes: 10
+    steps:
+      - name: Checkout private pipeline (./pipeline)
+        uses: actions/checkout@v4
+        with:
+          repository: umausp/agyata-pipeline-private
+          ref: ${{ inputs.pipeline_ref }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: pipeline
+      - name: Copy the manual build script and its two helpers
+        working-directory: pipeline
+        run: |
+          W="$HOME/agyata-library/work-en"; mkdir -p "$W"
+          cp tools/library/build_en_manual.sh "$HOME/build_en_manual.sh"; chmod +x "$HOME/build_en_manual.sh"
+          cp tools/library/build_library.py "$W/build_library.py"
+          cp packages/agyata-doc/library/server.py "$W/server.py"
+          ls -la "$HOME/build_en_manual.sh" "$W/build_library.py" "$W/server.py"
+          echo "commit: $(git rev-parse --short HEAD)"
+          echo "now run in a terminal on this Mac:  bash ~/build_en_manual.sh"
