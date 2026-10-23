@@ -43,7 +43,11 @@ jobs:
       - name: Postgres 17 + pgvector (install once, start the cluster on 5433)
         run: |
           brew list postgresql@17 >/dev/null 2>&1 || brew install postgresql@17
-          brew list pgvector >/dev/null 2>&1 || brew install pgvector
+          # pgvector may already be present for postgresql@17 (an earlier install left vector.control/vector.dylib): use it;
+          # install only when the extension is missing, and never overwrite existing files.
+          VSHARE="$(brew --prefix postgresql@17)/share/postgresql@17/extension/vector.control"
+          if [ -f "$VSHARE" ] || [ -f /opt/homebrew/share/postgresql@17/extension/vector.control ]; then echo "pgvector already available"; else brew install pgvector || true; fi
+          [ -f "$VSHARE" ] || [ -f /opt/homebrew/share/postgresql@17/extension/vector.control ] || { echo "::error::pgvector extension not available for postgresql@17"; exit 1; }
           PGBIN="$(brew --prefix postgresql@17)/bin"
           export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
           PG="$HOME/agyata-library/pg"
