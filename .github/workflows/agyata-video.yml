@@ -39,7 +39,11 @@ jobs:
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit
       AGD_MAX_ROUNDS: ${{ inputs.mode == 'smoke' && '8' || '6' }}       # strict loop until the bar; per-beat rewrites keep rounds cheap
       AGD_QUALITY_BAR: '9'                                               # user bar: every rubric aspect >= 9 (minimum), smoke and full
-      AGD_LLM_INFLIGHT: '8'                                              # requests in flight per model (26b best throughput at 8)
+      AGD_LLM_INFLIGHT: '8'                                              # writer requests in flight per model (26b best throughput at 8)
+      AGD_REVIEW_INFLIGHT: '3'                                           # review (31b) requests in flight
+      AGD_FACT_INFLIGHT: '4'
+      AGD_REVIEW_TIMEOUT_S: '600'
+      SHIM_TIMEOUT_MS: '900000'                                          # shims must never give up before the client
       AGD_DRAFTS: ${{ inputs.mode == 'smoke' && '1' || '3' }}           # best-of-N drafts per chapter; smoke 1, full 3
       AGD_CHAPTER_CONCURRENCY: '4'
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit
