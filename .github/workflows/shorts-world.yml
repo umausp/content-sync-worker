@@ -112,6 +112,7 @@ env:
   SHORTS_VLM_STRICT: '1'            # news fails CLOSED: no third-party still/clip without a pixel verdict
   SHORTS_VLM_GATE_FALLBACK_MODELS: gemma4:31b-cloud  # tried when the primary VLM returns no verdict
   SHORTS_LOCAL_VLM_RANK: '1'        # local Gemma-4-E2B reranks image candidates before the cloud VLM gate (never rejects; fail-open)
+  SHORTS_FRAME_RELEVANCE: '1'      # 2026-10-24: measure-only final-frame relevance on the same local Gemma (logs frame-relevance X/10; never gates)
   SHORTS_TMDB_ADOPT: '0'            # no entertainment news; keep TMDB images out
   SHORTS_CLAIM_BUFFER: '15'         # larger candidate pool so the country gate cannot starve the claim
   SHORTS_DDG_PROXY_URL: ${{ secrets.DDG_PROXY_URL }}  # optional; applied to DDG calls only, empty => direct
