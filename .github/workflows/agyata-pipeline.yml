@@ -1,0 +1,51 @@
+# agyata-pipeline — ONE dispatch triggers one job per topic, and each topic flows through an assembly line of four runners:
+#   mac-llm (content: writer + critic + lints) → mac-img (images) ∥ mac-tts (voice) → mac-renderer (package)
+# Each topic is its own chain (agyata-video.yml, called from a matrix) so topics overlap like an assembly line.
+# NO concurrency groups here or in agyata-video.yml: GitHub keeps one pending job per group and cancels the rest, and
+# each runner already runs one job at a time.
+# STATUS (2026-10-23): M4 scene and M5 assemble are NOT built. The last stage builds a package (manifest + summary) and
+# stops: no video is rendered and nothing is published (no website, YouTube, Facebook or Instagram job yet; they arrive with M5).
+# Canonical copy: tools/ci/agyata-pipeline.yml in the private repo; the live copy is the public shell's .github/workflows/.
+name: agyata-pipeline
+on:
+  workflow_dispatch:
+    inputs:
+      topics: { description: 'comma list of topic ids (packages/agyata-doc/content/fixtures/topics.json)', default: 'business-kodak-invented-the-digital-camera-then-died-from' }
+      profile: { description: 'profile id', default: 'documentary' }
+      minutes: { description: 'target length in minutes', default: '6' }
+      pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
+jobs:
+  plan:
+    name: plan topics
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - id: plan
+        env:
+          TOPICS: ${{ inputs.topics }}
+        run: |
+          node -e '
+            const ids = process.env.TOPICS.split(",").map((s) => s.trim()).filter(Boolean);
+            if (!ids.length) { console.error("no topics given"); process.exit(1); }
+            const bad = ids.filter((id) => !/^[a-z0-9][a-z0-9-]*$/.test(id));
+            if (bad.length) { console.error("invalid topic ids (lowercase slugs only): " + bad.join(", ")); process.exit(1); }
+            console.log("matrix=" + JSON.stringify([...new Set(ids)]));
+          ' >> "$GITHUB_OUTPUT"
+  video:
+    name: video (${{ matrix.topic }})
+    needs: plan
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        topic: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    uses: ./.github/workflows/agyata-video.yml
+    with:
+      topic: ${{ matrix.topic }}
+      run_id: ${{ github.run_id }}
+      pipeline_ref: ${{ inputs.pipeline_ref }}
+      profile: ${{ inputs.profile }}
+      minutes: ${{ inputs.minutes }}
+    secrets: inherit
