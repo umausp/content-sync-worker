@@ -14,6 +14,9 @@ on:
       pipeline_ref: { description: 'ref of umausp/agyata-pipeline-private', default: 'feat/longform-studio' }
       only: { description: 'topic ids (empty = all fixture topics)', default: '' }
       minutes: { description: 'target documentary length in minutes', default: '6' }
+      research: { description: 'library (local Wikipedia dossier) or live', default: 'library' }
+      quality_bar: { description: 'every rubric aspect must reach this (minimum, not average)', default: '9' }
+      drafts: { description: 'best-of-N drafts per chapter', default: '3' }
 concurrency: { group: mac-llm, cancel-in-progress: false }
 jobs:
   m1:
@@ -28,7 +31,11 @@ jobs:
       AGD_WRITER_MODEL: mlx-community/gemma-4-26b-a4b-it-4bit   # A: fast MoE writer (64 tok/s single, 110 at 4 parallel; probe 39857383031)
       AGD_WRITER_LLM_URL: http://127.0.0.1:11637
       AGD_REVIEW_MODEL: mlx-community/gemma-4-31b-it-4bit      # B: critic + final reviewer (quality)
-      AGD_MAX_ROUNDS: '4'                                     # A/B rounds per chapter until the rubric bar (8) is met
+      AGD_MAX_ROUNDS: '6'                                     # A/B rounds per chapter until the bar; per-beat rewrites keep rounds cheap
+      AGD_QUALITY_BAR: ${{ inputs.quality_bar }}
+      AGD_RESEARCH: ${{ inputs.research }}
+      AGD_DRAFTS: ${{ inputs.drafts }}
+      AGD_LLM_INFLIGHT: '8'                                   # requests in flight per model: the 26b's measured best is 8 parallel
       AGD_CHAPTER_CONCURRENCY: '4'                            # chapters in parallel; aggregate gain flattens past 4
       AGD_FACT_MODEL: mlx-community/gemma-3-12b-it-4bit   # facts are simple extraction: the faster 12B (cached on the Mac)
       AGD_FACT_LLM_URL: http://127.0.0.1:11636
@@ -55,7 +62,7 @@ jobs:
           AGD_OUT="$RUNNER_TEMP/m1"; echo "AGD_OUT=$AGD_OUT" >> "$GITHUB_ENV"; mkdir -p "$AGD_OUT"
           echo "AGD_RESEARCH_CACHE=$HOME/.cache/agyata/research" >> "$GITHUB_ENV"   # Wikipedia responses cached on the Mac (429 avoidance)
           lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
-          lane_kill 8181 8182 8183 11635 11636 11637   # a leftover from a killed run of THIS lane would hold the ports
+          lane_kill 8181 8182 8183 8184 11635 11636 11637   # a leftover from a killed run of THIS lane would hold the ports
           . "$HOME/.cache/lf-venv/bin/activate"
           python -c "import mlx_vlm" 2>/dev/null || lockf -k "$HOME/.cache/lf-venv.lock" uv pip install --quiet mlx-vlm   # no --upgrade: the other lane may be serving from this venv
           export HF_HUB_OFFLINE=1   # weights already in ~/.cache/huggingface; never download
@@ -82,6 +89,10 @@ jobs:
             sleep 10
           done
           echo "::error::local model did not come up"; tail -30 "$AGD_OUT/mlx.log" "$AGD_OUT/shim.log"; exit 1
+      - name: Local Wikipedia library (Postgres query service on 8184; required for research=library)
+        if: inputs.research == 'library'
+        working-directory: pipeline
+        run: bash tools/ci/lanes/start_library.sh "$AGD_OUT"
       - name: M1 run (research → write → lint + review → rewrites → storyboard)
         working-directory: pipeline
         run: node packages/agyata-doc/content/bin/m1_run.mjs
@@ -103,4 +114,4 @@ jobs:
         if: always()
         run: |
           lane_kill() { for p in "$@"; do for pid in $(lsof -ti tcp:$p -sTCP:LISTEN 2>/dev/null); do kill -- -$pid 2>/dev/null || kill $pid 2>/dev/null || true; done; done; }
-          lane_kill 8181 8182 8183 11635 11636 11637; rm -rf "$RUNNER_TEMP/m1"
+          lane_kill 8181 8182 8183 8184 11635 11636 11637; rm -rf "$RUNNER_TEMP/m1"
